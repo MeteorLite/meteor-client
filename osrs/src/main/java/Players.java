@@ -3,65 +3,56 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ee")
+@ObfuscatedName("ei")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("activityFlags")
 	static byte[] activityFlags;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "[Lin;"
+		descriptor = "[Lip;"
 	)
 	@Export("playerMovementSpeeds")
 	static MoveSpeed[] playerMovementSpeeds;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "[Ltm;"
+		descriptor = "[Lul;"
 	)
 	@Export("cachedAppearanceBuffer")
 	static Buffer[] cachedAppearanceBuffer;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ar")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ab")
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("am")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("af")
+	@ObfuscatedName("av")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("ad")
+	@ObfuscatedName("ag")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("aa")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ap")
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("an")
+	@ObfuscatedName("ay")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Ltm;"
+		descriptor = "Lul;"
 	)
-	static Buffer field1121;
-	@ObfuscatedName("sg")
-	@ObfuscatedSignature(
-		descriptor = "Lfi;"
-	)
-	@Export("guestClanSettings")
-	static ClanSettings guestClanSettings;
-	@ObfuscatedName("uq")
-	@Export("cameraMoveToX")
-	static int cameraMoveToX;
+	static Buffer field1119;
 
 	static {
 		activityFlags = new byte[2048];
@@ -76,39 +67,31 @@ public class Players {
 		Players_targetIndices = new int[2048];
 		Players_pendingUpdateCount = 0;
 		Players_pendingUpdateIndices = new int[2048];
-		field1121 = new Buffer(new byte[5000]);
+		field1119 = new Buffer(new byte[5000]);
 	}
 
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lhc;",
-		garbageValue = "-1692851000"
-	)
-	@Export("StructDefinition_getStructDefinition")
-	public static StructComposition StructDefinition_getStructDefinition(int var0) {
-		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0);
-			var1 = new StructComposition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+	@ObfuscatedName("ac")
+	public static final void method623(long var0) {
+		if (var0 > 0L) {
+			if (0L == var0 % 10L) {
+				long var2 = var0 - 1L;
+
+				try {
+					Thread.sleep(var2);
+				} catch (InterruptedException var8) {
+				}
+
+				try {
+					Thread.sleep(1L);
+				} catch (InterruptedException var7) {
+				}
+			} else {
+				try {
+					Thread.sleep(var0);
+				} catch (InterruptedException var6) {
+				}
 			}
 
-			var1.postDecode();
-			StructComposition.StructDefinition_cached.put(var1, (long)var0);
-			return var1;
 		}
-	}
-
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-831991142"
-	)
-	public static final void method619() {
-		ViewportMouse.ViewportMouse_isInViewport = false;
-		ViewportMouse.ViewportMouse_entityCount = 0;
 	}
 }

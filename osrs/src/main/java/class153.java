@@ -2,101 +2,100 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fw")
-public class class153 extends class143 {
-	@ObfuscatedName("au")
-	int field1370;
-	@ObfuscatedName("ae")
-	String field1371;
+@ObfuscatedName("fp")
+public class class153 extends class161 {
+	@ObfuscatedName("cy")
+	static int field1352;
+	@ObfuscatedName("ac")
+	int field1353;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lfn;"
+		descriptor = "Lgf;"
 	)
-	final class146 this$0;
+	final class162 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfn;)V"
+		descriptor = "(Lgf;)V"
 	)
-	class153(class146 var1) {
+	class153(class162 var1) {
 		this.this$0 = var1;
+		this.field1353 = -1;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;I)V",
-		garbageValue = "209179459"
+		descriptor = "(Lul;B)V",
+		garbageValue = "0"
 	)
-	@Export("vmethod3254")
-	void vmethod3254(Buffer var1) {
-		this.field1370 = var1.readInt();
-		this.field1371 = var1.readStringCp1252NullTerminated();
-	}
-
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(Lfi;B)V",
-		garbageValue = "73"
-	)
-	@Export("vmethod3248")
-	void vmethod3248(ClanSettings var1) {
-		var1.method824(this.field1370, this.field1371);
-	}
-
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "1017445786"
-	)
-	@Export("changeWorldSelectSorting")
-	static void changeWorldSelectSorting(int var0, int var1) {
-		int[] var2 = new int[4];
-		int[] var3 = new int[4];
-		var2[0] = var0;
-		var3[0] = var1;
-		int var4 = 1;
-
-		for (int var5 = 0; var5 < 4; ++var5) {
-			if (World.World_sortOption1[var5] != var0) {
-				var2[var4] = World.World_sortOption1[var5];
-				var3[var4] = World.World_sortOption2[var5];
-				++var4;
-			}
+	@Export("vmethod3238")
+	void vmethod3238(Buffer var1) {
+		this.field1353 = var1.readUnsignedShort();
+		var1.readUnsignedByte();
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			var1.readLong();
 		}
 
-		World.World_sortOption1 = var2;
-		World.World_sortOption2 = var3;
-		GameEngine.sortWorlds(class176.World_worlds, 0, class176.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "17"
+		descriptor = "(Lgb;B)V",
+		garbageValue = "0"
 	)
-	public static void method802() {
-		KitDefinition.KitDefinition_cached.clear();
+	@Export("vmethod3239")
+	void vmethod3239(ClanChannel var1) {
+		var1.removeMember(this.field1353);
 	}
 
-	@ObfuscatedName("jf")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "-1977866275"
+		descriptor = "(IIIIIIB)I",
+		garbageValue = "125"
 	)
-	static final void method805(int var0, int var1, int var2, int var3) {
-		Client.field486 = 0;
-		int var4 = (VarbitComposition.localPlayer.x >> 7) + UrlRequester.baseX;
-		int var5 = (VarbitComposition.localPlayer.y >> 7) + class47.baseY;
-		if (var4 >= 3053 && var4 <= 3156 && var5 >= 3056 && var5 <= 3136) {
-			Client.field486 = 1;
+	public static int method796(int var0, int var1, int var2, int var3, int var4, int var5) {
+		if ((var5 & 1) == 1) {
+			int var6 = var3;
+			var3 = var4;
+			var4 = var6;
 		}
 
-		if (var4 >= 3072 && var4 <= 3118 && var5 >= 9492 && var5 <= 9535) {
-			Client.field486 = 1;
+		var2 &= 3;
+		if (var2 == 0) {
+			return var0;
+		} else if (var2 == 1) {
+			return var1;
+		} else {
+			return var2 == 2 ? 7 - var0 - (var3 - 1) : 7 - var1 - (var4 - 1);
 		}
+	}
 
-		if (Client.field486 == 1 && var4 >= 3139 && var4 <= 3199 && var5 >= 3008 && var5 <= 3062) {
-			Client.field486 = 0;
-		}
+	@ObfuscatedName("gr")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ltu;",
+		garbageValue = "-496192767"
+	)
+	@Export("getWorldMap")
+	static WorldMap getWorldMap() {
+		return class434.worldMap;
+	}
 
+	@ObfuscatedName("iz")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "107"
+	)
+	static final int method800(int var0) {
+		return Math.min(Math.max(var0, 128), 383);
+	}
+
+	@ObfuscatedName("lc")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
+		garbageValue = "1681206525"
+	)
+	@Export("insertMenuItemNoShift")
+	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+		class208.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
 	}
 }

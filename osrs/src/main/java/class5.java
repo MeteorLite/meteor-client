@@ -5,41 +5,41 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-@ObfuscatedName("ai")
+@ObfuscatedName("ah")
 public class class5 implements class2 {
-	@ObfuscatedName("au")
-	final MessageDigest field4;
+	@ObfuscatedName("ac")
+	final MessageDigest field3;
 
 	@ObfuscatedSignature(
-		descriptor = "(Laa;)V"
+		descriptor = "(Lam;)V"
 	)
 	class5(class8 var1) {
-		this.field4 = this.method10();
+		this.field3 = this.method12();
 	}
 
-	@ObfuscatedName("au")
-	boolean method6(int var1, String var2, long var3) {
-		byte[] var5 = this.method9(var2, var3);
-		return method7(var5) >= var1;
+	@ObfuscatedName("ac")
+	boolean method8(int var1, String var2, long var3) {
+		byte[] var5 = this.method11(var2, var3);
+		return method9(var5) >= var1;
 	}
 
-	@ObfuscatedName("at")
-	byte[] method9(String var1, long var2) {
+	@ObfuscatedName("ax")
+	byte[] method11(String var1, long var2) {
 		StringBuilder var4 = new StringBuilder();
 		var4.append(var1).append(Long.toHexString(var2));
-		this.field4.reset();
+		this.field3.reset();
 
 		try {
-			this.field4.update(var4.toString().getBytes("UTF-8"));
+			this.field3.update(var4.toString().getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException var6) {
 			var6.printStackTrace();
 		}
 
-		return this.field4.digest();
+		return this.field3.digest();
 	}
 
-	@ObfuscatedName("ac")
-	MessageDigest method10() {
+	@ObfuscatedName("ao")
+	MessageDigest method12() {
 		try {
 			return MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException var2) {
@@ -48,14 +48,14 @@ public class class5 implements class2 {
 		}
 	}
 
-	@ObfuscatedName("ae")
-	static int method7(byte[] var0) {
+	@ObfuscatedName("al")
+	static int method9(byte[] var0) {
 		int var1 = 0;
 		byte[] var2 = var0;
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			byte var4 = var2[var3];
-			int var5 = method8(var4);
+			int var5 = method10(var4);
 			var1 += var5;
 			if (var5 != 8) {
 				break;
@@ -65,8 +65,8 @@ public class class5 implements class2 {
 		return var1;
 	}
 
-	@ObfuscatedName("ao")
-	static int method8(byte var0) {
+	@ObfuscatedName("ak")
+	static int method10(byte var0) {
 		int var1 = 0;
 		if (var0 == 0) {
 			var1 = 8;

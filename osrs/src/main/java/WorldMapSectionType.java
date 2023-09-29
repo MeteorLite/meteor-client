@@ -3,45 +3,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ko")
+@ObfuscatedName("ky")
 @Implements("WorldMapSectionType")
-public enum WorldMapSectionType implements class371 {
-	@ObfuscatedName("au")
+public enum WorldMapSectionType implements class386 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lko;"
+		descriptor = "Lky;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
-	WORLDMAPSECTIONTYPE0(2, (byte)0),
-	@ObfuscatedName("ae")
+	WORLDMAPSECTIONTYPE0(0, (byte)0),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lko;"
+		descriptor = "Lky;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(3, (byte)1),
-	@ObfuscatedName("ao")
+	WORLDMAPSECTIONTYPE1(2, (byte)1),
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Lko;"
+		descriptor = "Lky;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
 	WORLDMAPSECTIONTYPE2(1, (byte)2),
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lko;"
+		descriptor = "Lky;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
-	WORLDMAPSECTIONTYPE3(0, (byte)3);
+	WORLDMAPSECTIONTYPE3(3, (byte)3);
 
-	@ObfuscatedName("cn")
-	@ObfuscatedSignature(
-		descriptor = "Lns;"
-	)
-	static StudioGame field2417;
-	@ObfuscatedName("cp")
-	static int field2416;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("type")
 	final int type;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@Export("id")
 	final byte id;
 
@@ -50,44 +43,276 @@ public enum WorldMapSectionType implements class371 {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "41"
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(IB)J",
-		garbageValue = "-44"
+		descriptor = "(Luy;II)V",
+		garbageValue = "2004765344"
 	)
-	public static long method1515(int var0) {
-		return ViewportMouse.ViewportMouse_entityTags[var0];
-	}
+	@Export("readPlayerUpdate")
+	static void readPlayerUpdate(PacketBuffer var0, int var1) {
+		boolean var2 = var0.readBits(1) == 1;
+		if (var2) {
+			Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
+		}
 
-	@ObfuscatedName("lq")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lmi;B)Ljava/lang/String;",
-		garbageValue = "-26"
-	)
-	static String method1516(String var0, Widget var1) {
-		if (var0.indexOf("%") != -1) {
-			for (int var2 = 1; var2 <= 5; ++var2) {
-				while (true) {
-					int var3 = var0.indexOf("%" + var2);
-					if (var3 == -1) {
-						break;
+		int var3 = var0.readBits(2);
+		Player var4 = Client.players[var1];
+		if (var3 == 0) {
+			if (var2) {
+				var4.hasMovementPending = false;
+			} else if (Client.localPlayerIndex == var1) {
+				throw new RuntimeException();
+			} else {
+				Players.Players_regions[var1] = (var4.plane << 28) + (class19.baseY + var4.pathY[0] >> 13) + (class20.baseX + var4.pathX[0] >> 13 << 14);
+				if (var4.movingOrientation != -1) {
+					Players.Players_orientations[var1] = var4.movingOrientation;
+				} else {
+					Players.Players_orientations[var1] = var4.orientation;
+				}
+
+				Players.Players_targetIndices[var1] = var4.targetIndex;
+				Client.players[var1] = null;
+				if (var0.readBits(1) != 0) {
+					class304.updateExternalPlayer(var0, var1);
+				}
+
+			}
+		} else {
+			int var5;
+			int var6;
+			int var7;
+			if (var3 == 1) {
+				var5 = var0.readBits(3);
+				var6 = var4.pathX[0];
+				var7 = var4.pathY[0];
+				if (var5 == 0) {
+					--var6;
+					--var7;
+				} else if (var5 == 1) {
+					--var7;
+				} else if (var5 == 2) {
+					++var6;
+					--var7;
+				} else if (var5 == 3) {
+					--var6;
+				} else if (var5 == 4) {
+					++var6;
+				} else if (var5 == 5) {
+					--var6;
+					++var7;
+				} else if (var5 == 6) {
+					++var7;
+				} else if (var5 == 7) {
+					++var6;
+					++var7;
+				}
+
+				if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
+					if (var2) {
+						var4.hasMovementPending = true;
+						var4.tileX = var6;
+						var4.tileY = var7;
+					} else {
+						var4.hasMovementPending = false;
+						var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
+					}
+				} else {
+					var4.resetPath(var6, var7);
+					var4.hasMovementPending = false;
+				}
+
+			} else if (var3 == 2) {
+				var5 = var0.readBits(4);
+				var6 = var4.pathX[0];
+				var7 = var4.pathY[0];
+				if (var5 == 0) {
+					var6 -= 2;
+					var7 -= 2;
+				} else if (var5 == 1) {
+					--var6;
+					var7 -= 2;
+				} else if (var5 == 2) {
+					var7 -= 2;
+				} else if (var5 == 3) {
+					++var6;
+					var7 -= 2;
+				} else if (var5 == 4) {
+					var6 += 2;
+					var7 -= 2;
+				} else if (var5 == 5) {
+					var6 -= 2;
+					--var7;
+				} else if (var5 == 6) {
+					var6 += 2;
+					--var7;
+				} else if (var5 == 7) {
+					var6 -= 2;
+				} else if (var5 == 8) {
+					var6 += 2;
+				} else if (var5 == 9) {
+					var6 -= 2;
+					++var7;
+				} else if (var5 == 10) {
+					var6 += 2;
+					++var7;
+				} else if (var5 == 11) {
+					var6 -= 2;
+					var7 += 2;
+				} else if (var5 == 12) {
+					--var6;
+					var7 += 2;
+				} else if (var5 == 13) {
+					var7 += 2;
+				} else if (var5 == 14) {
+					++var6;
+					var7 += 2;
+				} else if (var5 == 15) {
+					var6 += 2;
+					var7 += 2;
+				}
+
+				if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
+					if (var2) {
+						var4.hasMovementPending = true;
+						var4.tileX = var6;
+						var4.tileY = var7;
+					} else {
+						var4.hasMovementPending = false;
+						var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
+					}
+				} else {
+					var4.resetPath(var6, var7);
+					var4.hasMovementPending = false;
+				}
+
+			} else {
+				var5 = var0.readBits(1);
+				int var8;
+				int var9;
+				int var10;
+				int var11;
+				if (var5 == 0) {
+					var6 = var0.readBits(12);
+					var7 = var6 >> 10;
+					var8 = var6 >> 5 & 31;
+					if (var8 > 15) {
+						var8 -= 32;
 					}
 
-					var0 = var0.substring(0, var3) + class176.method917(UserComparator9.method686(var1, var2 - 1)) + var0.substring(var3 + 2);
+					var9 = var6 & 31;
+					if (var9 > 15) {
+						var9 -= 32;
+					}
+
+					var10 = var8 + var4.pathX[0];
+					var11 = var9 + var4.pathY[0];
+					if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
+						if (var2) {
+							var4.hasMovementPending = true;
+							var4.tileX = var10;
+							var4.tileY = var11;
+						} else {
+							var4.hasMovementPending = false;
+							var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
+						}
+					} else {
+						var4.resetPath(var10, var11);
+						var4.hasMovementPending = false;
+					}
+
+					var4.plane = (byte)(var7 + var4.plane & 3);
+					if (Client.localPlayerIndex == var1) {
+						class87.Client_plane = var4.plane;
+					}
+
+				} else {
+					var6 = var0.readBits(30);
+					var7 = var6 >> 28;
+					var8 = var6 >> 14 & 16383;
+					var9 = var6 & 16383;
+					var10 = (var8 + class20.baseX + var4.pathX[0] & 16383) - class20.baseX;
+					var11 = (var9 + class19.baseY + var4.pathY[0] & 16383) - class19.baseY;
+					if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
+						if (var2) {
+							var4.hasMovementPending = true;
+							var4.tileX = var10;
+							var4.tileY = var11;
+						} else {
+							var4.hasMovementPending = false;
+							var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
+						}
+					} else {
+						var4.resetPath(var10, var11);
+						var4.hasMovementPending = false;
+					}
+
+					var4.plane = (byte)(var7 + var4.plane & 3);
+					if (Client.localPlayerIndex == var1) {
+						class87.Client_plane = var4.plane;
+					}
+
 				}
 			}
 		}
+	}
 
-		return var0;
+	@ObfuscatedName("io")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)V",
+		garbageValue = "-1356138757"
+	)
+	static final void method1555(int var0, int var1, int var2) {
+		if (Client.cameraX < var0) {
+			Client.cameraX = (var0 - Client.cameraX) * class131.cameraMoveToAcceleration / 1000 + Client.cameraX + SecureRandomCallable.cameraMoveToSpeed;
+			if (Client.cameraX > var0) {
+				Client.cameraX = var0;
+			}
+		}
+
+		if (Client.cameraX > var0) {
+			Client.cameraX -= (Client.cameraX - var0) * class131.cameraMoveToAcceleration / 1000 + SecureRandomCallable.cameraMoveToSpeed;
+			if (Client.cameraX < var0) {
+				Client.cameraX = var0;
+			}
+		}
+
+		if (class17.cameraY < var1) {
+			class17.cameraY = (var1 - class17.cameraY) * class131.cameraMoveToAcceleration / 1000 + class17.cameraY + SecureRandomCallable.cameraMoveToSpeed;
+			if (class17.cameraY > var1) {
+				class17.cameraY = var1;
+			}
+		}
+
+		if (class17.cameraY > var1) {
+			class17.cameraY -= (class17.cameraY - var1) * class131.cameraMoveToAcceleration / 1000 + SecureRandomCallable.cameraMoveToSpeed;
+			if (class17.cameraY < var1) {
+				class17.cameraY = var1;
+			}
+		}
+
+		if (WorldMapArea.cameraZ < var2) {
+			WorldMapArea.cameraZ = (var2 - WorldMapArea.cameraZ) * class131.cameraMoveToAcceleration / 1000 + WorldMapArea.cameraZ + SecureRandomCallable.cameraMoveToSpeed;
+			if (WorldMapArea.cameraZ > var2) {
+				WorldMapArea.cameraZ = var2;
+			}
+		}
+
+		if (WorldMapArea.cameraZ > var2) {
+			WorldMapArea.cameraZ -= (WorldMapArea.cameraZ - var2) * class131.cameraMoveToAcceleration / 1000 + SecureRandomCallable.cameraMoveToSpeed;
+			if (WorldMapArea.cameraZ < var2) {
+				WorldMapArea.cameraZ = var2;
+			}
+		}
+
 	}
 }

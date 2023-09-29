@@ -4,155 +4,82 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-@ObfuscatedName("bx")
+@ObfuscatedName("bj")
 public class class47 {
-	@ObfuscatedName("bk")
+	@ObfuscatedName("kz")
 	@ObfuscatedSignature(
-		descriptor = "Lnu;"
+		descriptor = "[Lud;"
 	)
-	public static AbstractArchive field226;
-	@ObfuscatedName("jr")
-	@Export("baseY")
-	static int baseY;
-	@ObfuscatedName("ra")
+	@Export("mapMarkerSprites")
+	static SpritePixels[] mapMarkerSprites;
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lth;"
+		descriptor = "Lcw;"
 	)
-	@Export("HitSplatDefinition_cachedSprites")
-	static class497 HitSplatDefinition_cachedSprites;
-	@ObfuscatedName("au")
+	VorbisSample field228;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lcm;"
+		descriptor = "Lbs;"
 	)
-	VorbisSample field230;
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "Lbu;"
-	)
-	RawSound field229;
-	@ObfuscatedName("ao")
-	ReentrantLock field231;
+	RawSound field227;
+	@ObfuscatedName("ak")
+	ReentrantLock field229;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lcm;Lbu;)V"
+		descriptor = "(Lcw;Lbs;)V"
 	)
 	class47(VorbisSample var1, RawSound var2) {
-		this.field230 = var1;
-		this.field229 = var2;
-		this.field231 = new ReentrantLock();
+		this.field228 = var1;
+		this.field227 = var2;
+		this.field229 = new ReentrantLock();
 	}
 
-	@ObfuscatedName("ly")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(IIIILjava/lang/String;I)V",
-		garbageValue = "997098077"
+		descriptor = "(Lom;III)Lud;",
+		garbageValue = "1460191246"
 	)
-	@Export("widgetDefaultMenuAction")
-	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
-		Widget var5 = SoundCache.getWidgetChild(var1, var2);
-		if (var5 != null) {
-			if (var5.onOp != null) {
-				ScriptEvent var6 = new ScriptEvent();
-				var6.widget = var5;
-				var6.opIndex = var0;
-				var6.targetName = var4;
-				var6.args = var5.onOp;
-				WorldMapSection1.runScriptEvent(var6);
+	@Export("SpriteBuffer_getSprite")
+	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+		if (!class164.method862(var0, var1, var2)) {
+			return null;
+		} else {
+			SpritePixels var4 = new SpritePixels();
+			var4.width = class159.SpriteBuffer_spriteWidth;
+			var4.height = class500.SpriteBuffer_spriteHeight;
+			var4.xOffset = class326.SpriteBuffer_xOffsets[0];
+			var4.yOffset = ModelData0.SpriteBuffer_yOffsets[0];
+			var4.subWidth = class59.SpriteBuffer_spriteWidths[0];
+			var4.subHeight = class544.SpriteBuffer_spriteHeights[0];
+			int var5 = var4.subHeight * var4.subWidth;
+			byte[] var6 = AddRequestTask.SpriteBuffer_pixels[0];
+			var4.pixels = new int[var5];
+
+			for (int var7 = 0; var7 < var5; ++var7) {
+				var4.pixels[var7] = class372.SpriteBuffer_spritePalette[var6[var7] & 255];
 			}
 
-			boolean var11 = true;
-			if (var5.contentType > 0) {
-				var11 = Bounds.method2290(var5);
-			}
-
-			if (var11) {
-				int var8 = NewShit.getWidgetFlags(var5);
-				int var9 = var0 - 1;
-				boolean var7 = (var8 >> var9 + 1 & 1) != 0;
-				if (var7) {
-					PacketBufferNode var10;
-					if (var0 == 1) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON1, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 2) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON2, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 3) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON3, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 4) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON4, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 5) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON5, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 6) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON6, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 7) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON7, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 8) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON8, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 9) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON9, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 10) {
-						var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IF_BUTTON10, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-				}
-			}
+			class407.method2062();
+			return var4;
 		}
+	}
+
+	@ObfuscatedName("ja")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1083704336"
+	)
+	static boolean method238() {
+		return (Client.drawPlayerNames & 2) != 0;
+	}
+
+	@ObfuscatedName("mt")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "117649211"
+	)
+	@Export("getTapToDrop")
+	static boolean getTapToDrop() {
+		return Client.tapToDrop;
 	}
 }

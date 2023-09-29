@@ -3,54 +3,45 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jo")
+@ObfuscatedName("kr")
 @Implements("BoundaryObject")
 public final class BoundaryObject {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("z")
 	int z;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("x")
 	int x;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("y")
 	int y;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("orientationA")
 	int orientationA;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("orientationB")
 	int orientationB;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lik;"
+		descriptor = "Ljy;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lik;"
+		descriptor = "Ljy;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ab")
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("am")
 	@Export("flags")
 	int flags;
 
 	BoundaryObject() {
 		this.tag = 0L;
 		this.flags = 0;
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)Z",
-		garbageValue = "1066903143"
-	)
-	static boolean method1384(String var0, int var1) {
-		return class299.method1618(var0, var1, "openjs");
 	}
 }

@@ -3,37 +3,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-@ObfuscatedName("hk")
+@ObfuscatedName("hg")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("wz")
-	static List field1532;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lnu;"
+		descriptor = "Lom;"
 	)
 	@Export("VarcInt_archive")
-	public static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("ae")
+	static AbstractArchive VarcInt_archive;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lle;"
+		descriptor = "Llr;"
 	)
 	@Export("VarcInt_cached")
 	static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("dy")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Luk;"
+		descriptor = "Lun;"
 	)
-	static IndexedSprite field1534;
-	@ObfuscatedName("if")
-	@ObfuscatedSignature(
-		descriptor = "Lgz;"
-	)
-	@Export("socketTask")
-	static Task socketTask;
-	@ObfuscatedName("ao")
+	@Export("titlebuttonSprite")
+	static IndexedSprite titlebuttonSprite;
+	@ObfuscatedName("au")
+	static int field1529;
+	@ObfuscatedName("ak")
 	@Export("persist")
 	public boolean persist;
 
@@ -45,41 +41,239 @@ public class VarcInt extends DualNode {
 		this.persist = false;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;I)V",
-		garbageValue = "-2131192855"
+		descriptor = "(Lul;I)V",
+		garbageValue = "-1749757315"
 	)
-	void method954(Buffer var1) {
+	void method972(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
 				return;
 			}
 
-			this.method955(var1, var2);
+			this.method973(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;IB)V",
-		garbageValue = "-12"
+		descriptor = "(Lul;IB)V",
+		garbageValue = "7"
 	)
-	void method955(Buffer var1, int var2) {
+	void method973(Buffer var1, int var2) {
 		if (var2 == 2) {
 			this.persist = true;
 		}
 
 	}
 
-	@ObfuscatedName("aa")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lch;",
-		garbageValue = "-580226644"
+		descriptor = "(III)I",
+		garbageValue = "-1764742883"
 	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? class176.World_worlds[++World.World_listCount - 1] : null;
+	public static int method974(int var0, int var1) {
+		int var2 = var0 >>> 31;
+		return (var0 + var2) / var1 - var2;
+	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Lom;II)V",
+		garbageValue = "-1876796577"
+	)
+	public static void method975(AbstractArchive var0, int var1) {
+		if (!class319.field2789.isEmpty()) {
+			ArrayList var2 = new ArrayList();
+			Iterator var3 = class319.field2789.iterator();
+
+			while (var3.hasNext()) {
+				MusicSong var4 = (MusicSong)var3.next();
+				var4.field2884 = false;
+				var4.field2887 = false;
+				var4.field2886 = false;
+				var4.field2882 = false;
+				var4.musicTrackArchive = var0;
+				var4.musicTrackVolume = var1;
+				var4.field2888 = 0.0F;
+				var2.add(var4);
+			}
+
+			class148.method776(var2, class319.musicPlayerStatus, class319.field2794, class319.field2793, class319.field2795, false);
+		}
+	}
+
+	@ObfuscatedName("kv")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1597661026"
+	)
+	static final boolean method976() {
+		return Client.isMenuOpen;
+	}
+
+	@ObfuscatedName("mw")
+	@ObfuscatedSignature(
+		descriptor = "(Lnm;II)I",
+		garbageValue = "-599828632"
+	)
+	static final int method977(Widget var0, int var1) {
+		if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) {
+			try {
+				int[] var2 = var0.cs1Instructions[var1];
+				int var3 = 0;
+				int var4 = 0;
+				byte var5 = 0;
+
+				while (true) {
+					int var6 = var2[var4++];
+					int var7 = 0;
+					byte var8 = 0;
+					if (var6 == 0) {
+						return var3;
+					}
+
+					if (var6 == 1) {
+						var7 = Client.currentLevels[var2[var4++]];
+					}
+
+					if (var6 == 2) {
+						var7 = Client.levels[var2[var4++]];
+					}
+
+					if (var6 == 3) {
+						var7 = Client.experience[var2[var4++]];
+					}
+
+					int var9;
+					Widget var10;
+					int var11;
+					int var12;
+					if (var6 == 4) {
+						var9 = var2[var4++] << 16;
+						var9 += var2[var4++];
+						var10 = class33.widgetDefinition.method1740(var9);
+						var11 = var2[var4++];
+						if (var11 != -1 && (!class214.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
+							for (var12 = 0; var12 < var10.itemIds.length; ++var12) {
+								if (var11 + 1 == var10.itemIds[var12]) {
+									var7 += var10.field3079[var12];
+								}
+							}
+						}
+					}
+
+					if (var6 == 5) {
+						var7 = Varps.Varps_main[var2[var4++]];
+					}
+
+					if (var6 == 6) {
+						var7 = Skills.Skills_experienceTable[Client.levels[var2[var4++]] - 1];
+					}
+
+					if (var6 == 7) {
+						var7 = Varps.Varps_main[var2[var4++]] * 100 / 46875;
+					}
+
+					if (var6 == 8) {
+						var7 = TextureProvider.localPlayer.combatLevel;
+					}
+
+					if (var6 == 9) {
+						for (var9 = 0; var9 < 25; ++var9) {
+							if (Skills.Skills_enabled[var9]) {
+								var7 += Client.levels[var9];
+							}
+						}
+					}
+
+					if (var6 == 10) {
+						var9 = var2[var4++] << 16;
+						var9 += var2[var4++];
+						var10 = class33.widgetDefinition.method1740(var9);
+						var11 = var2[var4++];
+						if (var11 != -1 && (!class214.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
+							for (var12 = 0; var12 < var10.itemIds.length; ++var12) {
+								if (var11 + 1 == var10.itemIds[var12]) {
+									var7 = 999999999;
+									break;
+								}
+							}
+						}
+					}
+
+					if (var6 == 11) {
+						var7 = Client.runEnergy;
+					}
+
+					if (var6 == 12) {
+						var7 = Client.weight;
+					}
+
+					if (var6 == 13) {
+						var9 = Varps.Varps_main[var2[var4++]];
+						int var13 = var2[var4++];
+						var7 = (var9 & 1 << var13) != 0 ? 1 : 0;
+					}
+
+					if (var6 == 14) {
+						var9 = var2[var4++];
+						var7 = class36.getVarbit(var9);
+					}
+
+					if (var6 == 15) {
+						var8 = 1;
+					}
+
+					if (var6 == 16) {
+						var8 = 2;
+					}
+
+					if (var6 == 17) {
+						var8 = 3;
+					}
+
+					if (var6 == 18) {
+						var7 = (TextureProvider.localPlayer.x >> 7) + class20.baseX;
+					}
+
+					if (var6 == 19) {
+						var7 = (TextureProvider.localPlayer.y >> 7) + class19.baseY;
+					}
+
+					if (var6 == 20) {
+						var7 = var2[var4++];
+					}
+
+					if (var8 == 0) {
+						if (var5 == 0) {
+							var3 += var7;
+						}
+
+						if (var5 == 1) {
+							var3 -= var7;
+						}
+
+						if (var5 == 2 && var7 != 0) {
+							var3 /= var7;
+						}
+
+						if (var5 == 3) {
+							var3 *= var7;
+						}
+
+						var5 = 0;
+					} else {
+						var5 = var8;
+					}
+				}
+			} catch (Exception var14) {
+				return -1;
+			}
+		} else {
+			return -2;
+		}
 	}
 }

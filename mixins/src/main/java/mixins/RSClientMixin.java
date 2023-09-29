@@ -519,7 +519,8 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
-    public Widget getWidget(WidgetInfo widget) {
+    public Widget getWidget(WidgetInfo widget)
+    {
         int groupId = widget.getGroupId();
         int childId = widget.getChildId();
 
@@ -528,39 +529,49 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
-    public Widget getWidget(int id) {
+    public Widget getWidget(int id)
+    {
         return getWidget(WidgetInfo.TO_GROUP(id), WidgetInfo.TO_CHILD(id));
     }
 
     @Inject
     @Override
-    public RSWidget[] getGroup(int groupId) {
+    public RSWidget[] getGroup(int groupId)
+    {
         RSWidget[][] widgets = getWidgets();
 
-        if (widgets == null || groupId < 0 || groupId >= widgets.length || widgets[groupId] == null) {
+        if (widgets == null || groupId < 0 || groupId >= widgets.length || widgets[groupId] == null)
+        {
             return null;
         }
 
         return widgets[groupId];
     }
-
     @Inject
     @Override
-    public Widget getWidget(int groupId, int childId) {
+    public RSWidget[][] getWidgets()
+    {
+        return getWidgetDefinition() != null ? getWidgetDefinition().getWidgets() : null;
+    }
+    @Inject
+    @Override
+    public Widget getWidget(int groupId, int childId)
+    {
         RSWidget[][] widgets = getWidgets();
 
-        if (widgets == null || widgets.length <= groupId) {
+        if (widgets == null || widgets.length <= groupId)
+        {
             return null;
         }
 
         RSWidget[] childWidgets = widgets[groupId];
-        if (childWidgets == null || childWidgets.length <= childId) {
+        if (childWidgets == null || childWidgets.length <= childId)
+        {
             return null;
         }
 
         return childWidgets[childId];
     }
-
     @Inject
     @Override
     public int getVar(VarPlayer varPlayer) {
@@ -1065,15 +1076,18 @@ public abstract class RSClientMixin implements RSClient {
     @Copy("runWidgetOnLoadListener")
     @Replace("runWidgetOnLoadListener")
     @SuppressWarnings("InfiniteRecursion")
-    public static void copy$runWidgetOnLoadListener(int groupId) {
+    public static void copy$runWidgetOnLoadListener(int groupId)
+    {
         copy$runWidgetOnLoadListener(groupId);
 
-        RSWidget[][] widgets = client.getWidgets();
+        RSWidget[][] widgets = client.getWidgetDefinition().getWidgets();
         boolean loaded = widgets != null && widgets[groupId] != null;
 
-        if (loaded) {
+        if (loaded)
+        {
             WidgetLoaded event = new WidgetLoaded(groupId);
-            client.getCallbacks().post(Events.WIDGET_LOADED, event);
+            event.setGroupId(groupId);
+            client.getCallbacks().post(Events.WIDGET_LOADED,event);
         }
     }
 
@@ -2421,6 +2435,7 @@ public abstract class RSClientMixin implements RSClient {
         boolean var3 = dualNodeHashTable.isTrashing();
         dualNodeHashTable.setThreshold(dualNodeHashTable.getThreshold() * 0.92F + (var3 ? 0.07999998F : 0.0F));
         if (var3) {
+
             if (dualNodeHashTable.getThreshold() > 0.9F && dualNodeHashTable.getCapacity() < dualNodeHashTable.getTmpCapacity() * 8) {
                 dualNodeHashTable.increaseCapacity(dualNodeHashTable.getCapacity() * 2);
                 client.getLogger()
@@ -2430,6 +2445,12 @@ public abstract class RSClientMixin implements RSClient {
 
         dualNodeHashTable.getDeque().add(dualNodeHashTable.getDualNode());
     }
+    @Inject
+    @Override
+    public RSEvictingDualNodeHashTable getWidgetSpriteCache()
+    {
+        return getWidgetDefinition() != null ? getWidgetDefinition().getWidgetSpriteCache() : null;
+    }
 
     @Inject
     public static void checkResize() {
@@ -2438,7 +2459,7 @@ public abstract class RSClientMixin implements RSClient {
         check("HealthBarDefinition_cached", client.getHealthBarCache());
         check("HealthBarDefinition_cachedSprites", client.getHealthBarSpriteCache());
         check("ObjectDefinition_cachedModels", client.getObjectDefinitionModelsCache());
-        check("Widget_cachedSprites", client.getWidgetSpriteCache());
+        //check("Widget_cachedSprites", client.getWidgetSpriteCache());
         check("ItemDefinition_cached", client.getItemCompositionCache());
         check("VarbitDefinition_cached", client.getVarbitCache());
         check("EnumDefinition_cached", client.getEnumDefinitionCache());
@@ -2466,9 +2487,9 @@ public abstract class RSClientMixin implements RSClient {
         check("VarcInt_cached", client.getVarcIntCache());
         check("VarpDefinition_cached", client.getVarpDefinitionCache());
         check("Widget_cachedModels", client.getModelsCache());
-        check("Widget_cachedFonts", client.getFontsCache());
+    //    check("Widget_cachedFonts", client.getFontsCache());
         check("Widget_cachedSpriteMasks", client.getSpriteMasksCache());
-        check("WorldMapElement_cachedSprites", client.getSpritesCache());
+     //   check("WorldMapElement_cachedSprites", client.getSpritesCache());
     }
 
     @Inject

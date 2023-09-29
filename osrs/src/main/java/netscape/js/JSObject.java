@@ -69,7 +69,7 @@ public abstract class JSObject {
 
 
 
-	public abstract Object call(String methodName, Object... args) throws netscape.js.JSException;
+	public abstract Object call(String methodName, Object... args) throws JSException;
 
 
 
@@ -83,7 +83,7 @@ public abstract class JSObject {
 
 
 
-	public abstract Object eval(String s) throws netscape.js.JSException;
+	public abstract Object eval(String s) throws JSException;
 
 
 
@@ -96,7 +96,7 @@ public abstract class JSObject {
 
 
 
-	public abstract Object getMember(String name) throws netscape.js.JSException;
+	public abstract Object getMember(String name) throws JSException;
 
 
 
@@ -110,7 +110,7 @@ public abstract class JSObject {
 
 
 
-	public abstract void setMember(String name, Object value) throws netscape.js.JSException;
+	public abstract void setMember(String name, Object value) throws JSException;
 
 
 
@@ -122,7 +122,7 @@ public abstract class JSObject {
 
 
 
-	public abstract void removeMember(String name) throws netscape.js.JSException;
+	public abstract void removeMember(String name) throws JSException;
 
 
 
@@ -135,7 +135,7 @@ public abstract class JSObject {
 
 
 
-	public abstract Object getSlot(int index) throws netscape.js.JSException;
+	public abstract Object getSlot(int index) throws JSException;
 
 
 
@@ -149,7 +149,7 @@ public abstract class JSObject {
 
 
 
-	public abstract void setSlot(int index, Object value) throws netscape.js.JSException;
+	public abstract void setSlot(int index, Object value) throws JSException;
 
 
 

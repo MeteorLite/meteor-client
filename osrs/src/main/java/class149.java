@@ -2,54 +2,67 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fc")
-public class class149 extends class159 {
-	@ObfuscatedName("au")
-	int field1358;
-	@ObfuscatedName("ae")
-	byte field1356;
-	@ObfuscatedName("ao")
-	int field1357;
-	@ObfuscatedName("at")
-	String field1359;
+@ObfuscatedName("fw")
+public class class149 extends class145 {
+	@ObfuscatedName("ac")
+	int field1337;
+	@ObfuscatedName("al")
+	byte field1336;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lgg;"
+		descriptor = "Lff;"
 	)
-	final class160 this$0;
+	final class148 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lgg;)V"
+		descriptor = "(Lff;)V"
 	)
-	class149(class160 var1) {
+	class149(class148 var1) {
 		this.this$0 = var1;
-		this.field1358 = -1;
+		this.field1337 = -1;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;B)V",
-		garbageValue = "1"
+		descriptor = "(Lul;I)V",
+		garbageValue = "-11659242"
 	)
-	@Export("vmethod3238")
-	void vmethod3238(Buffer var1) {
-		this.field1358 = var1.readUnsignedShort();
-		this.field1356 = var1.readByte();
-		this.field1357 = var1.readUnsignedShort();
-		var1.readLong();
-		this.field1359 = var1.readStringCp1252NullTerminated();
+	@Export("vmethod3254")
+	void vmethod3254(Buffer var1) {
+		this.field1337 = var1.readUnsignedShort();
+		this.field1336 = var1.readByte();
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Lgo;I)V",
-		garbageValue = "831405774"
+		descriptor = "(Lgi;I)V",
+		garbageValue = "21847466"
 	)
-	@Export("vmethod3239")
-	void vmethod3239(ClanChannel var1) {
-		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1358);
-		var2.rank = this.field1356;
-		var2.world = this.field1357;
-		var2.username = new Username(this.field1359);
+	@Export("vmethod3248")
+	void vmethod3248(ClanSettings var1) {
+		var1.method822(this.field1337, this.field1336);
+	}
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "(BI)C",
+		garbageValue = "-1818830164"
+	)
+	public static char method782(byte var0) {
+		int var1 = var0 & 255;
+		if (var1 == 0) {
+			throw new IllegalArgumentException("" + Integer.toString(var1, 16));
+		} else {
+			if (var1 >= 128 && var1 < 160) {
+				char var2 = class399.cp1252AsciiExtension[var1 - 128];
+				if (var2 == 0) {
+					var2 = '?';
+				}
+
+				var1 = var2;
+			}
+
+			return (char)var1;
+		}
 	}
 }

@@ -3,79 +3,79 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mg")
+@ObfuscatedName("ms")
 @Implements("MusicPatchNode")
 public class MusicPatchNode extends Node {
-	@ObfuscatedName("au")
-	int field2854;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ac")
+	int field2865;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lll;"
+		descriptor = "Lmq;"
 	)
 	@Export("table")
 	MusicPatch table;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Lbu;"
+		descriptor = "Lbs;"
 	)
 	@Export("rawSound")
 	RawSound rawSound;
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "Llj;"
-	)
-	MusicPatchNode2 field2857;
-	@ObfuscatedName("ac")
-	int field2842;
-	@ObfuscatedName("ai")
-	int field2847;
-	@ObfuscatedName("az")
-	int field2856;
-	@ObfuscatedName("ap")
-	int field2851;
-	@ObfuscatedName("aa")
-	int field2840;
-	@ObfuscatedName("af")
-	int field2844;
-	@ObfuscatedName("ad")
-	int field2843;
-	@ObfuscatedName("aq")
-	int field2852;
-	@ObfuscatedName("al")
-	int field2848;
-	@ObfuscatedName("an")
-	int field2850;
-	@ObfuscatedName("ar")
-	int field2853;
-	@ObfuscatedName("ab")
-	int field2841;
-	@ObfuscatedName("ag")
-	int field2845;
-	@ObfuscatedName("am")
-	int field2849;
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lbn;"
+		descriptor = "Lmx;"
+	)
+	MusicPatchNode2 field2881;
+	@ObfuscatedName("ao")
+	int field2872;
+	@ObfuscatedName("ah")
+	int field2868;
+	@ObfuscatedName("ar")
+	int field2875;
+	@ObfuscatedName("ab")
+	int field2864;
+	@ObfuscatedName("am")
+	int field2870;
+	@ObfuscatedName("av")
+	int field2878;
+	@ObfuscatedName("ag")
+	int field2867;
+	@ObfuscatedName("aa")
+	int field2863;
+	@ObfuscatedName("ap")
+	int field2873;
+	@ObfuscatedName("ay")
+	int field2879;
+	@ObfuscatedName("as")
+	int field2876;
+	@ObfuscatedName("aj")
+	int field2869;
+	@ObfuscatedName("an")
+	int field2871;
+	@ObfuscatedName("au")
+	int field2877;
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "Lbx;"
 	)
 	@Export("stream")
 	RawPcmStream stream;
-	@ObfuscatedName("ah")
-	int field2846;
-	@ObfuscatedName("ay")
-	int field2855;
+	@ObfuscatedName("ae")
+	int field2866;
+	@ObfuscatedName("aq")
+	int field2874;
 
 	MusicPatchNode() {
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-26"
+		garbageValue = "60"
 	)
-	void method1696() {
+	void method1727() {
 		this.table = null;
 		this.rawSound = null;
-		this.field2857 = null;
+		this.field2881 = null;
 		this.stream = null;
 	}
 }

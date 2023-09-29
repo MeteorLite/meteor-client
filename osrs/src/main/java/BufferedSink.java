@@ -6,31 +6,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@ObfuscatedName("qh")
+@ObfuscatedName("net/runelite/rs")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("position")
 	int position;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ar")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ab")
 	@Export("closed")
 	boolean closed;
 
@@ -45,10 +45,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "8226"
+		descriptor = "(I)Z",
+		garbageValue = "-2138016913"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -70,10 +70,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)V",
-		garbageValue = "37"
+		descriptor = "([BIII)V",
+		garbageValue = "-939344469"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -110,10 +110,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-210183735"
+		garbageValue = "792661080"
 	)
 	@Export("close")
 	void close() {
@@ -188,6 +188,20 @@ public class BufferedSink implements Runnable {
 				this.position = (var1 + this.position) % this.capacity;
 			}
 		} while(!this.isClosed());
+
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-100"
+	)
+	public static void method2304() {
+		if (MouseHandler.MouseHandler_instance != null) {
+			synchronized(MouseHandler.MouseHandler_instance) {
+				MouseHandler.MouseHandler_instance = null;
+			}
+		}
 
 	}
 }

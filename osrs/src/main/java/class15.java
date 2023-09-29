@@ -14,15 +14,15 @@ import java.net.UnknownHostException;
 import java.security.SecureRandom;
 import java.security.Security;
 
-@ObfuscatedName("ab")
+@ObfuscatedName("aj")
 public class class15 extends SSLSocketFactory {
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lab;"
+		descriptor = "Laj;"
 	)
-	static class15 field46;
-	@ObfuscatedName("au")
-	SecureRandom field47;
+	public static class15 field44;
+	@ObfuscatedName("ac")
+	SecureRandom field45;
 
 	static {
 		if (Security.getProvider("BC") == null) {
@@ -31,16 +31,16 @@ public class class15 extends SSLSocketFactory {
 
 	}
 
-	class15() {
-		this.field47 = new SecureRandom();
+	public class15() {
+		this.field45 = new SecureRandom();
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;B)Ljavax/net/ssl/SSLSocket;",
-		garbageValue = "59"
+		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;S)Ljavax/net/ssl/SSLSocket;",
+		garbageValue = "-369"
 	)
-	SSLSocket method46(String var1, TlsClientProtocol var2) {
+	SSLSocket method51(String var1, TlsClientProtocol var2) {
 		return new class12(this, var2, var1);
 	}
 
@@ -55,8 +55,8 @@ public class class15 extends SSLSocketFactory {
 			var1.connect(new InetSocketAddress(var2, var3));
 		}
 
-		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field47);
-		return this.method46(var2, var5);
+		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field45);
+		return this.method51(var2, var5);
 	}
 
 	public String[] getDefaultCipherSuites() {
@@ -81,18 +81,5 @@ public class class15 extends SSLSocketFactory {
 
 	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
 		return null;
-	}
-
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lab;",
-		garbageValue = "1970056082"
-	)
-	public static class15 method45() {
-		if (field46 == null) {
-			field46 = new class15();
-		}
-
-		return field46;
 	}
 }

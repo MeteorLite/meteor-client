@@ -4,12 +4,12 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@Implements("org/json/JSONObject$Null")
+@Implements("org/json/Null")
 @ObfuscatedName("org/json/JSONObject$Null")
 final class Null {
-
 	Null() {
 	}
+
 
 	public final Object clone() {
 		return this;

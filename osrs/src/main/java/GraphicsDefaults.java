@@ -3,62 +3,57 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.lang.management.GarbageCollectorMXBean;
-
-@ObfuscatedName("rr")
+@ObfuscatedName("ru")
 @Implements("GraphicsDefaults")
 public class GraphicsDefaults {
-	@ObfuscatedName("bi")
-	@Export("garbageCollector")
-	static GarbageCollectorMXBean garbageCollector;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("compass")
 	public int compass;
-	@ObfuscatedName("ae")
-	public int field3850;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("al")
+	public int field3881;
+	@ObfuscatedName("ak")
 	@Export("mapScenes")
 	public int mapScenes;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("headIconsPk")
 	public int headIconsPk;
-	@ObfuscatedName("ac")
-	public int field3848;
-	@ObfuscatedName("ai")
-	public int field3852;
-	@ObfuscatedName("az")
-	public int field3857;
-	@ObfuscatedName("ap")
-	public int field3854;
-	@ObfuscatedName("aa")
-	public int field3847;
-	@ObfuscatedName("af")
-	public int field3851;
-	@ObfuscatedName("ad")
-	public int field3849;
+	@ObfuscatedName("ao")
+	public int field3883;
+	@ObfuscatedName("ah")
+	public int field3879;
+	@ObfuscatedName("ar")
+	public int field3884;
+	@ObfuscatedName("ab")
+	public int field3876;
+	@ObfuscatedName("am")
+	public int field3882;
+	@ObfuscatedName("av")
+	public int field3885;
+	@ObfuscatedName("ag")
+	public int field3878;
 
 	public GraphicsDefaults() {
 		this.compass = -1;
-		this.field3850 = -1;
+		this.field3881 = -1;
 		this.mapScenes = -1;
 		this.headIconsPk = -1;
-		this.field3848 = -1;
-		this.field3852 = -1;
-		this.field3857 = -1;
-		this.field3854 = -1;
-		this.field3847 = -1;
-		this.field3851 = -1;
-		this.field3849 = -1;
+		this.field3883 = -1;
+		this.field3879 = -1;
+		this.field3884 = -1;
+		this.field3876 = -1;
+		this.field3882 = -1;
+		this.field3885 = -1;
+		this.field3878 = -1;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "497895580"
+		descriptor = "(Lom;B)V",
+		garbageValue = "5"
 	)
 	@Export("decode")
 	public void decode(AbstractArchive var1) {
-		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3844.group);
+		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3874.group);
 		Buffer var3 = new Buffer(var2);
 
 		while (true) {
@@ -72,18 +67,36 @@ public class GraphicsDefaults {
 				var3.readMedium();
 				break;
 			case 2:
-				this.compass = var3.method2563();
-				this.field3850 = var3.method2563();
-				this.mapScenes = var3.method2563();
-				this.headIconsPk = var3.method2563();
-				this.field3848 = var3.method2563();
-				this.field3852 = var3.method2563();
-				this.field3857 = var3.method2563();
-				this.field3854 = var3.method2563();
-				this.field3847 = var3.method2563();
-				this.field3851 = var3.method2563();
-				this.field3849 = var3.method2563();
+				this.compass = var3.readNullableLargeSmart();
+				this.field3881 = var3.readNullableLargeSmart();
+				this.mapScenes = var3.readNullableLargeSmart();
+				this.headIconsPk = var3.readNullableLargeSmart();
+				this.field3883 = var3.readNullableLargeSmart();
+				this.field3879 = var3.readNullableLargeSmart();
+				this.field3884 = var3.readNullableLargeSmart();
+				this.field3876 = var3.readNullableLargeSmart();
+				this.field3882 = var3.readNullableLargeSmart();
+				this.field3885 = var3.readNullableLargeSmart();
+				this.field3878 = var3.readNullableLargeSmart();
 			}
 		}
+	}
+
+	@ObfuscatedName("ie")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)V",
+		garbageValue = "1779911274"
+	)
+	@Export("queueSoundEffect")
+	static void queueSoundEffect(int var0, int var1, int var2) {
+		if (class91.clientPreferences.getCurrentSoundEffectsVolume() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
+			Client.soundEffectIds[Client.soundEffectCount] = var0;
+			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;
+			Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;
+			Client.soundEffects[Client.soundEffectCount] = null;
+			Client.soundLocations[Client.soundEffectCount] = 0;
+			++Client.soundEffectCount;
+		}
+
 	}
 }

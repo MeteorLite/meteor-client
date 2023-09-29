@@ -2,43 +2,52 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nr")
+import java.util.Arrays;
+
+@ObfuscatedName("oq")
 @Implements("Strings")
 public class Strings {
-	@ObfuscatedName("fs")
-	public static String field3315;
-	@ObfuscatedName("kl")
-	public static String field3423;
-	@ObfuscatedName("kk")
-	public static String field3422;
-	@ObfuscatedName("kc")
-	public static String field3414;
+	@ObfuscatedName("fz")
+	public static String field3355;
+	@ObfuscatedName("kv")
+	public static String field3466;
+	@ObfuscatedName("kx")
+	public static String field3468;
+	@ObfuscatedName("kt")
+	public static String field3464;
 
 	static {
-		field3315 = "Please visit the support page for assistance.";
-		field3423 = "";
-		field3422 = "Page has opened in the browser.";
-		field3414 = "";
+		field3355 = "Please visit the support page for assistance.";
+		field3466 = "";
+		field3468 = "Page has opened in the browser.";
+		field3464 = "";
 	}
 
-	@ObfuscatedName("af")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "64"
+		descriptor = "(I)Z",
+		garbageValue = "5563087"
 	)
-	static final void method1877(String var0) {
-		UserComparator8.method673(var0 + " is already on your friend list");
+	public static boolean method1907() {
+		if (!class319.field2798.isEmpty()) {
+			return true;
+		} else {
+			return !class319.musicSongs.isEmpty() && class319.musicSongs.get(0) != null && ((MusicSong)class319.musicSongs.get(0)).midiPcmStream != null ? ((MusicSong)class319.musicSongs.get(0)).midiPcmStream.isReady() : false;
+		}
 	}
 
-	@ObfuscatedName("ag")
+	@ObfuscatedName("bf")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "-116"
+		descriptor = "(Lnm;Lni;ZB)V",
+		garbageValue = "-63"
 	)
-	static final int method1878(int var0, int var1) {
-		int var2 = var1 * 57 + var0;
-		var2 ^= var2 << 13;
-		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
-		return var3 >> 19 & 255;
+	public static void method1908(Widget var0, PlayerComposition var1, boolean var2) {
+		var0.modelType = 7;
+		var0.field3127 = new PlayerComposition(var1);
+		if (!var2) {
+			var0.field3127.equipment = Arrays.copyOf(var0.field3127.field2944, var0.field3127.field2944.length);
+			var0.field3127.method1760();
+		}
+
 	}
 }

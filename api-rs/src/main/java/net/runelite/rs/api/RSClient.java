@@ -197,8 +197,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int getDragTime();
 
-	@Import("Widget_interfaceComponents")
-	RSWidget[][] getWidgets();
+
 
 	/**
 	 * Gets an array of widgets that correspond to the passed group ID.
@@ -854,7 +853,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("compass")
 	void setCompass(SpritePixels spritePixels);
 
-	@Import("Widget_cachedSprites")
+	//@Import("Widget_cachedSprites")
 	@Override
 	RSEvictingDualNodeHashTable getWidgetSpriteCache();
 
@@ -1502,15 +1501,15 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("Widget_cachedModels")
 	RSEvictingDualNodeHashTable getModelsCache();
-
+/*
 	@Import("Widget_cachedFonts")
-	RSEvictingDualNodeHashTable getFontsCache();
+	RSEvictingDualNodeHashTable getFontsCache();*/
 
 	@Import("Widget_cachedSpriteMasks")
 	RSEvictingDualNodeHashTable getSpriteMasksCache();
 
-	@Import("WorldMapElement_cachedSprites")
-	RSEvictingDualNodeHashTable getSpritesCache();
+	//@Import("WorldMapElement_cachedSprites")
+	//RSEvictingDualNodeHashTable getSpritesCache();
 
 	@Construct
 	RSIterableNodeHashTable createIterableNodeHashTable(int size);
@@ -1644,7 +1643,8 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("widgetDefaultMenuAction")
 	void invokeWidgetAction(int identifier, int param1, int param0, int itemId, String target);
-
+	@Import("widgetDefinition")
+	RSWidgetDefinition getWidgetDefinition();
 
 	// Kris changes
 	@Override

@@ -3,679 +3,678 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lw")
+@ObfuscatedName("ln")
 @Implements("ClientPacket")
-public class ClientPacket implements class293 {
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	static final ClientPacket field2592;
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IF_BUTTON8")
-	public static final ClientPacket IF_BUTTON8;
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("RESUME_P_NAMEDIALOG")
-	public static final ClientPacket RESUME_P_NAMEDIALOG;
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("NATIVE_PACKET3")
-	public static final ClientPacket OPLOC2;
+public class ClientPacket implements class307 {
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("IGNORELIST_ADD")
-	public static final ClientPacket IGNORELIST_ADD;
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IF_BUTTON4")
-	public static final ClientPacket IF_BUTTON4;
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IF_BUTTON6")
-	public static final ClientPacket IF_BUTTON6;
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("CLICKWORLDMAP")
-	public static final ClientPacket CLICKWORLDMAP;
-	@ObfuscatedName("aa")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("CLOSE_MODAL")
-	public static final ClientPacket CLOSE_MODAL;
-	@ObfuscatedName("af")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPOBJ2")
-	static final ClientPacket OPOBJ2_;
-	@ObfuscatedName("ad")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPPLAYER1")
-	public static final ClientPacket OPPLAYER1;
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("CLIENT_CHEAT")
-	public static final ClientPacket CLIENT_CHEAT;
+	public static final ClientPacket EVENT_MOUSE_IDLE;
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("OPLOC6")
-	public static final ClientPacket OPLOC6;
-	@ObfuscatedName("an")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPPLAYER5;
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket IF_BUTTONT;
-	@ObfuscatedName("ab")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("LOGIN_STATISTICS")
-	public static final ClientPacket LOGIN_STATISTICS;
-	@ObfuscatedName("ag")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IF_BUTTON2")
-	public static final ClientPacket IF_BUTTON2;
-	@ObfuscatedName("am")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("MAP_BUILD_COMPLETE")
-	public static final ClientPacket MAP_BUILD_COMPLETE;
-	@ObfuscatedName("ax")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPLOCT;
-	@ObfuscatedName("ah")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("FRIENDLIST_ADD")
-	public static final ClientPacket FRIENDLIST_ADD;
-	@ObfuscatedName("as")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPPLAYER7")
-	public static final ClientPacket OPPLAYER7;
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("AFFINEDCLANSETTINGS_SETMUTED_FROMCHANNEL")
-	public static final ClientPacket AFFINEDCLANSETTINGS_SETMUTED_FROMCHANNEL;
-	@ObfuscatedName("aj")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("BUG_REPORT")
-	public static final ClientPacket BUG_REPORT;
-	@ObfuscatedName("av")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("EVENT_CAMERA_POSITION")
-	public static final ClientPacket EVENT_CAMERA_POSITION;
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IDLE_LOGOUT")
-	public static final ClientPacket IDLE_LOGOUT;
+	static final ClientPacket f1;
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("OPNPC6")
-	public static final ClientPacket OPNPC6;
-	@ObfuscatedName("bh")
+	@Export("FRIEND_SETRANK")
+	public static final ClientPacket f2;
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("IF_BUTTON1")
-	public static final ClientPacket IF_BUTTON1;
-	@ObfuscatedName("bj")
+	public static final ClientPacket f3;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("TELEPORT")
-	public static final ClientPacket TELEPORT;
-	@ObfuscatedName("bk")
+	public static final ClientPacket OPOBJE;
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket OPOBJ1;
-	@ObfuscatedName("bv")
+	@Export("OPPLAYERU")
+	public static final ClientPacket OPNPCT;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("EVENT_KEYBOARD")
-	public static final ClientPacket EVENT_KEYBOARD;
-	@ObfuscatedName("bt")
+	@Export("IF_BUTTON6")
+	public static final ClientPacket f5;
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("OPNPC5")
-	static final ClientPacket OPNPC5_;
-	@ObfuscatedName("bd")
+	@Export("UPDATE_APPEARANCE")
+	public static final ClientPacket f9;
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("OPNPC1")
-	public static final ClientPacket OPPLAYER2;
-	@ObfuscatedName("by")
+	@Export("AFFINEDCLANSETTINGS_SETMUTED_FROMCHANNEL")
+	public static final ClientPacket f10;
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("IF_BUTTON10")
-	public static final ClientPacket IF_BUTTON10;
-	@ObfuscatedName("bs")
+	@Export("OPOBJ2_")
+	public static final ClientPacket f11;
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("SEND_PING_REPLY")
-	public static final ClientPacket EVENT_MOUSE_CLICK;
-	@ObfuscatedName("bm")
+	public static final ClientPacket PING_STATS;
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket OPNPC1;
-	@ObfuscatedName("bf")
+	public static final ClientPacket OPNPC2;
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPOBJU")
-	public static final ClientPacket OPNPC5;
-	@ObfuscatedName("bq")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPLOCU")
-	public static final ClientPacket OPLOC5;
-	@ObfuscatedName("ba")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("MESSAGE_PUBLIC")
-	public static final ClientPacket MESSAGE_PUBLIC;
-	@ObfuscatedName("bl")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("MOVE_GAMECLICK")
-	public static final ClientPacket MOVE_GAMECLICK;
-	@ObfuscatedName("bp")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPLOC3;
-	@ObfuscatedName("bu")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("NO_TIMEOUT")
-	public static final ClientPacket NO_TIMEOUT;
-	@ObfuscatedName("bo")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("MOVE_MINIMAPCLICK")
-	public static final ClientPacket MOVE_MINIMAPCLICK;
-	@ObfuscatedName("bb")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPOBJ3")
-	static final ClientPacket OPOBJ3;
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
 	@Export("REFLECTION_CHECK_REPLY")
 	public static final ClientPacket REFLECTION_CHECK_REPLY;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("FRIENDLIST_DEL")
+	public static final ClientPacket FRIEND_DELETE_USER;
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("IF_BUTTONT")
+	static final ClientPacket f6;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("CLICKWORLDMAP")
+	public static final ClientPacket f16;
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("IF_BUTTON2")
+	public static final ClientPacket f17;
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	static final ClientPacket f18;
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPLOCT")
+	public static final ClientPacket OPLOCE;
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket IF_BUTTON5;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket field2534;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("TELEPORT")
+	public static final ClientPacket f20;
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("EVENT_CAMERA_POSITION")
+	public static final ClientPacket EVENT_CAMERA_FOCUS;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("CLAN_JOINCHAT_LEAVECHAT")
+	public static final ClientPacket f22;
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("IDLE_LOGOUT")
+	public static final ClientPacket OPLOC5;
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPNPC6")
+	public static final ClientPacket IF_BUTTONT;
+	@ObfuscatedName("bn")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("IF_BUTTON1")
+	public static final ClientPacket OPPLAYER3;
+	@ObfuscatedName("bk")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket IF_BUTTON9;
+	@ObfuscatedName("by")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPOBJ1")
+	public static final ClientPacket IF_BUTTON3;
+	@ObfuscatedName("bd")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPOBJ1")
+	public static final ClientPacket OPOBJ1;
 	@ObfuscatedName("be")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket OPOBJ4;
-	@ObfuscatedName("bi")
+	@Export("NO_TIMEOUT")
+	public static final ClientPacket NO_TIMEOUT;
+	@ObfuscatedName("bv")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("OPOBJ5")
-	public static final ClientPacket OPOBJ5_;
+	@Export("OPPLAYER2")
+	public static final ClientPacket OPPLAYER8;
+	@ObfuscatedName("ba")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("RESUME_PAUSEBUTTON")
+	public static final ClientPacket RESUME_PAUSEBUTTON;
 	@ObfuscatedName("bz")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket OPOBJE;
-	@ObfuscatedName("bx")
+	@Export("EXIT_FREECAM")
+	public static final ClientPacket OPOBJ4;
+	@ObfuscatedName("bb")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
+	)
+	@Export("OPNPC1")
+	public static final ClientPacket WIDGET_TYPE;
+	@ObfuscatedName("bo")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPPLAYERT")
+	public static final ClientPacket OPNPC4;
+	@ObfuscatedName("bp")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("RESUME_P_OBJDIALOG")
+	public static final ClientPacket RESUME_OBJDIALOG;
+	@ObfuscatedName("bt")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
 	)
 	@Export("EVENT_APPLET_FOCUS")
 	public static final ClientPacket EVENT_APPLET_FOCUS;
-	@ObfuscatedName("bn")
+	@ObfuscatedName("bm")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket OPLOC1;
+	@ObfuscatedName("br")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPLOC3")
+	public static final ClientPacket OPLOC2;
+	@ObfuscatedName("bs")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket OPPLAYERT;
+	@ObfuscatedName("bc")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("MAP_BUILD_COMPLETE")
+	public static final ClientPacket f49;
+	@ObfuscatedName("bu")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPOBJ3")
+	public static final ClientPacket f50;
+	@ObfuscatedName("bf")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket f51;
+	@ObfuscatedName("bh")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("notsure")
+	public static final ClientPacket f52;
+	@ObfuscatedName("bl")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPOBJ5_")
+	static final ClientPacket f53;
+	@ObfuscatedName("bg")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPOBJE")
+	public static final ClientPacket f4;
+	@ObfuscatedName("bj")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket OPNPC3;
+	@ObfuscatedName("bx")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("WINDOW_STATUS")
+	public static final ClientPacket EVENT_WINDOW_SETTING;
+	@ObfuscatedName("bi")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
 	)
 	@Export("OPPLAYER6")
 	public static final ClientPacket OPPLAYER6;
+	@ObfuscatedName("bq")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPOBJ2")
+	public static final ClientPacket IF_BUTTON1;
 	@ObfuscatedName("bw")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("RESUME_P_STRINGDIALOG")
-	public static final ClientPacket RESUME_P_STRINGDIALOG;
-	@ObfuscatedName("bc")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPOBJ2;
-	@ObfuscatedName("bg")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPNPC4")
-	public static final ClientPacket OPNPCU;
-	@ObfuscatedName("cw")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket field2567;
-	@ObfuscatedName("cf")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPNPCT")
-	public static final ClientPacket OPNPC2;
-	@ObfuscatedName("cm")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("EXIT_FREECAM")
-	public static final ClientPacket EXIT_FREECAM;
-	@ObfuscatedName("cn")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IF_BUTTON7")
-	public static final ClientPacket IF_BUTTON7;
-	@ObfuscatedName("cs")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("CONTINUE")
-	public static final ClientPacket CONTINUE;
-	@ObfuscatedName("cx")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IGNORELIST_DEL")
-	public static final ClientPacket IGNORELIST_DEL;
-	@ObfuscatedName("cr")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPLOC2")
-	public static final ClientPacket OPPLAYERT;
-	@ObfuscatedName("cd")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
 	@Export("OPNPCU")
-	public static final ClientPacket OPNPC4;
+	public static final ClientPacket IF_BUTTON8;
 	@ObfuscatedName("ce")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("UPDATE_APPEARANCE")
-	public static final ClientPacket UPDATE_APPEARANCE;
-	@ObfuscatedName("cq")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPPLAYER5")
-	public static final ClientPacket OPPLAYER8;
-	@ObfuscatedName("cp")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("EVENT_MOUSE_SCROLl")
-	public static final ClientPacket EVENT_MOUSE_SCROLl;
-	@ObfuscatedName("cv")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("NATIVE_PACKET2")
-	public static final ClientPacket OPPLAYER3;
-	@ObfuscatedName("co")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPLOCE;
-	@ObfuscatedName("cl")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPNPCE;
+	@Export("RESUME_P_STRINGDIALOG")
+	public static final ClientPacket RESUME_STRINGDIALOG;
 	@ObfuscatedName("cu")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("OPPLAYER4")
-	public static final ClientPacket OPPLAYER4;
-	@ObfuscatedName("ch")
+	@Export("OPPLAYER3")
+	public static final ClientPacket OPPLAYER2;
+	@ObfuscatedName("cw")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("CLAN_JOINCHAT_LEAVECHAT")
-	public static final ClientPacket CLAN_JOINCHAT_LEAVECHAT;
-	@ObfuscatedName("ci")
+	@Export("CLIENT_CHEAT")
+	public static final ClientPacket DOCHEAT;
+	@ObfuscatedName("co")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("IF_BUTTON3")
-	public static final ClientPacket IF_BUTTON3;
-	@ObfuscatedName("ca")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPPLAYERU")
-	public static final ClientPacket OPPLAYERU;
-	@ObfuscatedName("cb")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL")
-	public static final ClientPacket AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL;
-	@ObfuscatedName("cg")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("OPOBJ6")
-	public static final ClientPacket OPOBJ5;
-	@ObfuscatedName("cj")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket notsure;
-	@ObfuscatedName("cz")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPLOC4;
-	@ObfuscatedName("ct")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("FRIEND_SETRANK")
-	public static final ClientPacket FRIEND_SETRANK;
-	@ObfuscatedName("cy")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket field2569;
-	@ObfuscatedName("ck")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IF_BUTTON9")
-	public static final ClientPacket IF_BUTTON9;
+	@Export("CLOSE_MODAL")
+	public static final ClientPacket CLOSE_MODAL;
 	@ObfuscatedName("cc")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket OPOBJT;
-	@ObfuscatedName("dh")
+	@Export("RESUME_P_COUNTDIALOG")
+	public static final ClientPacket RESUME_COUNTDIALOG;
+	@ObfuscatedName("cg")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket OPNPCT;
-	@ObfuscatedName("dj")
+	@Export("RESUME_P_NAMEDIALOG")
+	public static final ClientPacket RESUME_NAMEDIALOG;
+	@ObfuscatedName("cq")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPLOC1;
-	@ObfuscatedName("di")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("SET_CHATFILTERSETTINGS")
-	public static final ClientPacket SET_CHATFILTERSETTINGS;
-	@ObfuscatedName("du")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket OPNPC3;
-	@ObfuscatedName("dn")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	public static final ClientPacket field2581;
-	@ObfuscatedName("dg")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
 	@Export("CLANCHANNEL_KICKUSER")
-	public static final ClientPacket CLANCHANNEL_KICKUSER;
-	@ObfuscatedName("dd")
+	public static final ClientPacket f65;
+	@ObfuscatedName("cy")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("SEND_SNAPSHOT")
-	public static final ClientPacket SEND_SNAPSHOT;
-	@ObfuscatedName("da")
+	@Export("BUG_REPORT")
+	public static final ClientPacket f66;
+	@ObfuscatedName("cz")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("MESSAGE_PRIVATE")
-	public static final ClientPacket MESSAGE_PRIVATE;
-	@ObfuscatedName("ds")
+	public static final ClientPacket IF_BUTTON7;
+	@ObfuscatedName("cp")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("FRIENDLIST_DEL")
-	public static final ClientPacket FRIENDLIST_DEL;
-	@ObfuscatedName("dy")
+	@Export("OPPLAYER8")
+	public static final ClientPacket EVENT_KEYBOARD;
+	@ObfuscatedName("cb")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
+	)
+	@Export("EVENT_MOUSE_SCROLl")
+	public static final ClientPacket f69;
+	@ObfuscatedName("cn")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
 	)
 	@Export("CLAN_KICKUSER")
 	public static final ClientPacket CLAN_KICKUSER;
-	@ObfuscatedName("dt")
+	@ObfuscatedName("ck")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
+	)
+	@Export("OPLOCE")
+	public static final ClientPacket OPLOC3;
+	@ObfuscatedName("cr")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPNPCE")
+	public static final ClientPacket OPPLAYER5;
+	@ObfuscatedName("cs")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPPLAYER4")
+	public static final ClientPacket OPPLAYER4;
+	@ObfuscatedName("cm")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket OPNPCE;
+	@ObfuscatedName("cv")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("IGNORELIST_DEL")
+	public static final ClientPacket IGNORE_DELUSER;
+	@ObfuscatedName("ci")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPLOC2")
+	public static final ClientPacket OPOBJ2;
+	@ObfuscatedName("cj")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket OPNPC1;
+	@ObfuscatedName("cx")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPPLAYER1")
+	public static final ClientPacket OPPLAYER1;
+	@ObfuscatedName("ch")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("SET_CHATFILTERSETTINGS")
+	public static final ClientPacket CHAT_SETFILTER;
+	@ObfuscatedName("cd")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("EVENT_MOUSE_CLICK")
+	public static final ClientPacket EVENT_MOUSE_CLICK;
+	@ObfuscatedName("ct")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("MESSAGE_PRIVATE")
+	public static final ClientPacket CHAT_SENDPRIVATE;
+	@ObfuscatedName("cf")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket IF_BUTTON4;
+	@ObfuscatedName("cl")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL")
+	public static final ClientPacket f83;
+	@ObfuscatedName("ca")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPPLAYER7")
+	public static final ClientPacket OPPLAYER7;
+	@ObfuscatedName("dv")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("LOGIN_STATISTICS")
+	public static final ClientPacket LOGIN_TIMINGS;
+	@ObfuscatedName("dm")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPLOC1")
+	public static final ClientPacket OPLOC4;
+	@ObfuscatedName("ds")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
 	)
 	@Export("DETECT_MODIFIED_CLIENT")
 	public static final ClientPacket DETECT_MODIFIED_CLIENT;
-	@ObfuscatedName("dl")
+	@ObfuscatedName("dx")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("IF_BUTTON5")
-	public static final ClientPacket IF_BUTTON5;
-	@ObfuscatedName("dk")
+	@Export("FRIENDLIST_ADD")
+	public static final ClientPacket f88;
+	@ObfuscatedName("dg")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("WINDOW_STATUS")
-	public static final ClientPacket WINDOW_STATUS;
-	@ObfuscatedName("df")
+	public static final ClientPacket IF_BUTTON10;
+	@ObfuscatedName("dq")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	@Export("RESUME_P_OBJDIALOG")
-	public static final ClientPacket RESUME_P_OBJDIALOG;
+	public static final ClientPacket FREECAM_EXIT;
 	@ObfuscatedName("dz")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket IF_BUTTON2;
+	@ObfuscatedName("dn")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPNPC3")
+	public static final ClientPacket OPNPC5;
+	@ObfuscatedName("dk")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket OPOBJ5;
+	@ObfuscatedName("df")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket IF_BUTTON6;
+	@ObfuscatedName("de")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("MOVE_GAMECLICK")
+	public static final ClientPacket MOVE_GAMECLICK;
+	@ObfuscatedName("dl")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("IF_BUTTON5")
+	public static final ClientPacket OPOBJ3;
+	@ObfuscatedName("dp")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("OPOBJ4")
+	public static final ClientPacket OPLOCT;
+	@ObfuscatedName("do")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("MESSAGE_PUBLIC")
+	public static final ClientPacket f96;
+	@ObfuscatedName("dh")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	public static final ClientPacket f97;
+	@ObfuscatedName("dj")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("SEND_SNAPSHOT")
+	public static final ClientPacket CHAT_SEND_ABUSE_REPORT;
+	@ObfuscatedName("du")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
 	)
 	@Export("SOUND_SONGEND")
 	public static final ClientPacket SOUND_SONGEND;
-	@ObfuscatedName("dw")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("IF_BUTTOND")
-	public static final ClientPacket IF_BUTTOND;
-	@ObfuscatedName("dv")
-	@ObfuscatedSignature(
-		descriptor = "Llw;"
-	)
-	@Export("RESUME_P_COUNTDIALOG")
-	public static final ClientPacket RESUME_P_COUNTDIALOG;
 	@ObfuscatedName("dr")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket field2583;
-	@ObfuscatedName("do")
+	public static final ClientPacket OPOBJT;
+	@ObfuscatedName("dw")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket field2582;
-	@ObfuscatedName("db")
+	@Export("IF_BUTTOND")
+	public static final ClientPacket OPHELDD;
+	@ObfuscatedName("di")
 	@ObfuscatedSignature(
-		descriptor = "Llw;"
+		descriptor = "Lln;"
 	)
-	public static final ClientPacket field2572;
-	@ObfuscatedName("dp")
+	@Export("IGNORELIST_ADD")
+	public static final ClientPacket FIREND_ADDUSER;
+	@ObfuscatedName("dt")
 	@Export("id")
 	public final int id;
-	@ObfuscatedName("dm")
+	@ObfuscatedName("dd")
 	@Export("length")
 	public final int length;
 
 	static {
-		field2592 = new ClientPacket(0, 2);
-		IF_BUTTON8 = new ClientPacket(1, 8);
-		RESUME_P_NAMEDIALOG = new ClientPacket(2, -1);
-		OPLOC2 = new ClientPacket(3, 7);
-		IGNORELIST_ADD = new ClientPacket(4, -1);
-		IF_BUTTON4 = new ClientPacket(5, 8);
-		IF_BUTTON6 = new ClientPacket(6, 8);
-		CLICKWORLDMAP = new ClientPacket(7, 4);
-		CLOSE_MODAL = new ClientPacket(8, 0);
-		OPOBJ2_ = new ClientPacket(9, -1);
-		OPPLAYER1 = new ClientPacket(10, 3);
-		CLIENT_CHEAT = new ClientPacket(11, -1);
-		OPLOC6 = new ClientPacket(12, 15);
-		OPPLAYER5 = new ClientPacket(13, 3);
-		IF_BUTTONT = new ClientPacket(14, 16);
-		LOGIN_STATISTICS = new ClientPacket(15, -1);
-		IF_BUTTON2 = new ClientPacket(16, 8);
-		MAP_BUILD_COMPLETE = new ClientPacket(17, 0);
-		OPLOCT = new ClientPacket(18, 15);
-		FRIENDLIST_ADD = new ClientPacket(19, -1);
-		OPPLAYER7 = new ClientPacket(20, 3);
-		AFFINEDCLANSETTINGS_SETMUTED_FROMCHANNEL = new ClientPacket(21, -1);
-		BUG_REPORT = new ClientPacket(22, -2);
-		EVENT_CAMERA_POSITION = new ClientPacket(23, 4);
-		IDLE_LOGOUT = new ClientPacket(24, 0);
-		OPNPC6 = new ClientPacket(25, 7);
-		IF_BUTTON1 = new ClientPacket(26, 8);
-		TELEPORT = new ClientPacket(27, 9);
-		OPOBJ1 = new ClientPacket(28, 7);
-		EVENT_KEYBOARD = new ClientPacket(29, -2);
-		OPNPC5_ = new ClientPacket(30, 2);
-		OPPLAYER2 = new ClientPacket(31, 3);
-		IF_BUTTON10 = new ClientPacket(32, 8);
-		EVENT_MOUSE_CLICK = new ClientPacket(33, 6);
-		OPNPC1 = new ClientPacket(34, 3);
-		OPNPC5 = new ClientPacket(35, 3);
-		OPLOC5 = new ClientPacket(36, 7);
-		MESSAGE_PUBLIC = new ClientPacket(37, -1);
-		MOVE_GAMECLICK = new ClientPacket(38, -1);
-		OPLOC3 = new ClientPacket(39, 7);
-		NO_TIMEOUT = new ClientPacket(40, 0);
-		MOVE_MINIMAPCLICK = new ClientPacket(41, -1);
-		OPOBJ3 = new ClientPacket(42, -1);
-		REFLECTION_CHECK_REPLY = new ClientPacket(43, -1);
-		OPOBJ4 = new ClientPacket(44, 7);
-		OPOBJ5_ = new ClientPacket(45, 7);
-		OPOBJE = new ClientPacket(46, 6);
-		EVENT_APPLET_FOCUS = new ClientPacket(47, 1);
-		OPPLAYER6 = new ClientPacket(48, 3);
-		RESUME_P_STRINGDIALOG = new ClientPacket(49, -1);
-		OPOBJ2 = new ClientPacket(50, 7);
-		OPNPCU = new ClientPacket(51, 11);
-		field2567 = new ClientPacket(52, 4);
-		OPNPC2 = new ClientPacket(53, 3);
-		EXIT_FREECAM = new ClientPacket(54, 15);
-		IF_BUTTON7 = new ClientPacket(55, 8);
-		CONTINUE = new ClientPacket(56, 6);
-		IGNORELIST_DEL = new ClientPacket(57, -1);
-		OPPLAYERT = new ClientPacket(58, 11);
-		OPNPC4 = new ClientPacket(59, 3);
-		UPDATE_APPEARANCE = new ClientPacket(60, 13);
-		OPPLAYER8 = new ClientPacket(61, 3);
-		EVENT_MOUSE_SCROLl = new ClientPacket(62, 2);
-		OPPLAYER3 = new ClientPacket(63, 3);
-		OPLOCE = new ClientPacket(64, 2);
-		OPNPCE = new ClientPacket(65, 2);
+		EVENT_MOUSE_IDLE = new ClientPacket(0, 0);
+		f1 = new ClientPacket(1, 7);
+		f2 = new ClientPacket(2, -1);
+		f3 = new ClientPacket(3, 1);
+		OPOBJE = new ClientPacket(4, 6);
+		OPNPCT = new ClientPacket(5, 11);
+		f5 = new ClientPacket(6, -1);
+		f9 = new ClientPacket(7, 13);
+		f10 = new ClientPacket(8, -1);
+		f11 = new ClientPacket(9, 22);
+		PING_STATS = new ClientPacket(10, 10);
+		OPNPC2 = new ClientPacket(11, 3);
+		REFLECTION_CHECK_REPLY = new ClientPacket(12, -1);
+		FRIEND_DELETE_USER = new ClientPacket(13, -1);
+		f6 = new ClientPacket(14, -1);
+		f16 = new ClientPacket(15, 4);
+		f17 = new ClientPacket(16, 2);
+		f18 = new ClientPacket(17, 2);
+		OPLOCE = new ClientPacket(18, 2);
+		IF_BUTTON5 = new ClientPacket(19, 8);
+		field2534 = new ClientPacket(20, 15);
+		f20 = new ClientPacket(21, 9);
+		EVENT_CAMERA_FOCUS = new ClientPacket(22, 4);
+		f22 = new ClientPacket(23, -1);
+		OPLOC5 = new ClientPacket(24, 7);
+		IF_BUTTONT = new ClientPacket(25, 16);
+		OPPLAYER3 = new ClientPacket(26, 3);
+		IF_BUTTON9 = new ClientPacket(27, 8);
+		IF_BUTTON3 = new ClientPacket(28, 8);
+		OPOBJ1 = new ClientPacket(29, 7);
+		NO_TIMEOUT = new ClientPacket(30, 0);
+		OPPLAYER8 = new ClientPacket(31, 3);
+		RESUME_PAUSEBUTTON = new ClientPacket(32, 6);
+		OPOBJ4 = new ClientPacket(33, 7);
+		WIDGET_TYPE = new ClientPacket(34, 4);
+		OPNPC4 = new ClientPacket(35, 3);
+		RESUME_OBJDIALOG = new ClientPacket(36, 2);
+		EVENT_APPLET_FOCUS = new ClientPacket(37, 1);
+		OPLOC1 = new ClientPacket(38, 7);
+		OPLOC2 = new ClientPacket(39, 7);
+		OPPLAYERT = new ClientPacket(40, 11);
+		f49 = new ClientPacket(41, 0);
+		f50 = new ClientPacket(42, 1);
+		f51 = new ClientPacket(43, -1);
+		f52 = new ClientPacket(44, -1);
+		f53 = new ClientPacket(45, 2);
+		f4 = new ClientPacket(46, 11);
+		OPNPC3 = new ClientPacket(47, 3);
+		EVENT_WINDOW_SETTING = new ClientPacket(48, 5);
+		OPPLAYER6 = new ClientPacket(49, 3);
+		IF_BUTTON1 = new ClientPacket(50, 8);
+		IF_BUTTON8 = new ClientPacket(51, 8);
+		RESUME_STRINGDIALOG = new ClientPacket(52, -1);
+		OPPLAYER2 = new ClientPacket(53, 3);
+		DOCHEAT = new ClientPacket(54, -1);
+		CLOSE_MODAL = new ClientPacket(55, 0);
+		RESUME_COUNTDIALOG = new ClientPacket(56, 4);
+		RESUME_NAMEDIALOG = new ClientPacket(57, -1);
+		f65 = new ClientPacket(58, -1);
+		f66 = new ClientPacket(59, -2);
+		IF_BUTTON7 = new ClientPacket(60, 8);
+		EVENT_KEYBOARD = new ClientPacket(61, -2);
+		f69 = new ClientPacket(62, 11);
+		CLAN_KICKUSER = new ClientPacket(63, -1);
+		OPLOC3 = new ClientPacket(64, 7);
+		OPPLAYER5 = new ClientPacket(65, 3);
 		OPPLAYER4 = new ClientPacket(66, 3);
-		CLAN_JOINCHAT_LEAVECHAT = new ClientPacket(67, -1);
-		IF_BUTTON3 = new ClientPacket(68, 8);
-		OPPLAYERU = new ClientPacket(69, 11);
-		AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL = new ClientPacket(70, -1);
-		OPOBJ5 = new ClientPacket(71, 7);
-		notsure = new ClientPacket(72, -1);
-		OPLOC4 = new ClientPacket(73, 7);
-		FRIEND_SETRANK = new ClientPacket(74, -1);
-		field2569 = new ClientPacket(75, 0);
-		IF_BUTTON9 = new ClientPacket(76, 8);
-		OPOBJT = new ClientPacket(77, 15);
-		OPNPCT = new ClientPacket(78, 11);
-		OPLOC1 = new ClientPacket(79, 7);
-		SET_CHATFILTERSETTINGS = new ClientPacket(80, 3);
-		OPNPC3 = new ClientPacket(81, 3);
-		field2581 = new ClientPacket(82, 10);
-		CLANCHANNEL_KICKUSER = new ClientPacket(83, -1);
-		SEND_SNAPSHOT = new ClientPacket(84, -1);
-		MESSAGE_PRIVATE = new ClientPacket(85, -2);
-		FRIENDLIST_DEL = new ClientPacket(86, -1);
-		CLAN_KICKUSER = new ClientPacket(87, -1);
-		DETECT_MODIFIED_CLIENT = new ClientPacket(88, 4);
-		IF_BUTTON5 = new ClientPacket(89, 8);
-		WINDOW_STATUS = new ClientPacket(90, 5);
-		RESUME_P_OBJDIALOG = new ClientPacket(91, 2);
-		SOUND_SONGEND = new ClientPacket(92, 4);
-		IF_BUTTOND = new ClientPacket(93, 16);
-		RESUME_P_COUNTDIALOG = new ClientPacket(94, 4);
-		field2583 = new ClientPacket(95, 22);
-		field2582 = new ClientPacket(96, 1);
-		field2572 = new ClientPacket(97, 1);
+		OPNPCE = new ClientPacket(67, 2);
+		IGNORE_DELUSER = new ClientPacket(68, -1);
+		OPOBJ2 = new ClientPacket(69, 7);
+		OPNPC1 = new ClientPacket(70, 3);
+		OPPLAYER1 = new ClientPacket(71, 3);
+		CHAT_SETFILTER = new ClientPacket(72, 3);
+		EVENT_MOUSE_CLICK = new ClientPacket(73, 6);
+		CHAT_SENDPRIVATE = new ClientPacket(74, -2);
+		IF_BUTTON4 = new ClientPacket(75, 8);
+		f83 = new ClientPacket(76, -1);
+		OPPLAYER7 = new ClientPacket(77, 3);
+		LOGIN_TIMINGS = new ClientPacket(78, -1);
+		OPLOC4 = new ClientPacket(79, 7);
+		DETECT_MODIFIED_CLIENT = new ClientPacket(80, 4);
+		f88 = new ClientPacket(81, -1);
+		IF_BUTTON10 = new ClientPacket(82, 8);
+		FREECAM_EXIT = new ClientPacket(83, 0);
+		IF_BUTTON2 = new ClientPacket(84, 8);
+		OPNPC5 = new ClientPacket(85, 3);
+		OPOBJ5 = new ClientPacket(86, 7);
+		IF_BUTTON6 = new ClientPacket(87, 8);
+		MOVE_GAMECLICK = new ClientPacket(88, -1);
+		OPOBJ3 = new ClientPacket(89, 7);
+		OPLOCT = new ClientPacket(90, 15);
+		f96 = new ClientPacket(91, -1);
+		f97 = new ClientPacket(92, 15);
+		CHAT_SEND_ABUSE_REPORT = new ClientPacket(93, -1);
+		SOUND_SONGEND = new ClientPacket(94, 4);
+		OPOBJT = new ClientPacket(95, 15);
+		OPHELDD = new ClientPacket(96, 16);
+		FIREND_ADDUSER = new ClientPacket(97, -1);
 	}
 
 	ClientPacket(int var1, int var2) {
@@ -683,52 +682,85 @@ public class ClientPacket implements class293 {
 		this.length = var2;
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-712911733"
+		descriptor = "(ILds;ZI)I",
+		garbageValue = "1044263127"
 	)
-	@Export("Messages_getLastChatID")
-	static int Messages_getLastChatID(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
+	static int method1640(int var0, Script var1, boolean var2) {
+		Widget var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+		if (var0 == 2800) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = KitDefinition.Widget_unpackTargetMask(MouseRecorder.getWidgetFlags(var3));
+			return 1;
+		} else if (var0 != 2801) {
+			if (var0 == 2802) {
+				if (var3.dataText == null) {
+					Interpreter.Interpreter_stringStack[++class180.Interpreter_stringStackSize - 1] = "";
+				} else {
+					Interpreter.Interpreter_stringStack[++class180.Interpreter_stringStackSize - 1] = var3.dataText;
+				}
+
+				return 1;
+			} else {
+				return 2;
+			}
 		} else {
-			return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count;
+			int var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			--var4;
+			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+				Interpreter.Interpreter_stringStack[++class180.Interpreter_stringStackSize - 1] = var3.actions[var4];
+			} else {
+				Interpreter.Interpreter_stringStack[++class180.Interpreter_stringStackSize - 1] = "";
+			}
+
+			return 1;
 		}
 	}
 
-	@ObfuscatedName("af")
+	@ObfuscatedName("mh")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lui;",
-		garbageValue = "14"
+		descriptor = "([Lnm;IB)V",
+		garbageValue = "5"
 	)
-	static SpritePixels[] method1608() {
-		SpritePixels[] var0 = new SpritePixels[class529.SpriteBuffer_spriteCount];
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null) {
+				if (var3.type == 0) {
+					if (var3.children != null) {
+						runComponentCloseListeners(var3.children, var1);
+					}
 
-		for (int var1 = 0; var1 < class529.SpriteBuffer_spriteCount; ++var1) {
-			SpritePixels var2 = var0[var1] = new SpritePixels();
-			var2.width = class529.SpriteBuffer_spriteWidth;
-			var2.height = class420.SpriteBuffer_spriteHeight;
-			var2.xOffset = class529.SpriteBuffer_xOffsets[var1];
-			var2.yOffset = class152.SpriteBuffer_yOffsets[var1];
-			var2.subWidth = HealthBarUpdate.SpriteBuffer_spriteWidths[var1];
-			var2.subHeight = SpriteMask.SpriteBuffer_spriteHeights[var1];
-			int var3 = var2.subWidth * var2.subHeight;
-			byte[] var4 = Coord.SpriteBuffer_pixels[var1];
-			var2.pixels = new int[var3];
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						Interpreter.runIntfCloseListener(var4.group, var1);
+					}
+				}
 
-			for (int var5 = 0; var5 < var3; ++var5) {
-				var2.pixels[var5] = DbTableType.SpriteBuffer_spritePalette[var4[var5] & 255];
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) {
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onDialogAbort;
+					Interpreter.runScriptEvent(var5);
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) {
+					if (var3.childIndex >= 0) {
+						Widget var6 = class33.widgetDefinition.method1740(var3.id);
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
+							continue;
+						}
+					}
+
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onSubChange;
+					Interpreter.runScriptEvent(var5);
+				}
 			}
 		}
 
-		class529.SpriteBuffer_xOffsets = null;
-		class152.SpriteBuffer_yOffsets = null;
-		HealthBarUpdate.SpriteBuffer_spriteWidths = null;
-		SpriteMask.SpriteBuffer_spriteHeights = null;
-		DbTableType.SpriteBuffer_spritePalette = null;
-		Coord.SpriteBuffer_pixels = null;
-		return var0;
 	}
 }

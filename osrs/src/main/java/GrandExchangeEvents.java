@@ -8,22 +8,22 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-@ObfuscatedName("no")
+@ObfuscatedName("ox")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("GrandExchangeEvents_ageComparator")
 	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("GrandExchangeEvents_priceComparator")
 	public static Comparator GrandExchangeEvents_priceComparator;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("GrandExchangeEvents_nameComparator")
 	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("GrandExchangeEvents_quantityComparator")
 	public static Comparator GrandExchangeEvents_quantityComparator;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("events")
 	public final List events;
 
@@ -36,7 +36,7 @@ public class GrandExchangeEvents {
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;Z)V",
+		descriptor = "(Lul;Z)V",
 		garbageValue = "1"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
@@ -58,10 +58,10 @@ public class GrandExchangeEvents {
 
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Comparator;ZI)V",
-		garbageValue = "2032347624"
+		descriptor = "(Ljava/util/Comparator;ZB)V",
+		garbageValue = "0"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {

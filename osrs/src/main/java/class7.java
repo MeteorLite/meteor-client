@@ -1,86 +1,145 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-@ObfuscatedName("ap")
+@ObfuscatedName("ab")
 public class class7 {
-	@ObfuscatedName("aq")
-	static int field9;
-	@ObfuscatedName("au")
-	ExecutorService field10;
-	@ObfuscatedName("ae")
-	Future field11;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ac")
+	ExecutorService field7;
+	@ObfuscatedName("al")
+	Future field8;
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Ltm;"
+		descriptor = "Lul;"
 	)
-	final Buffer field13;
-	@ObfuscatedName("at")
+	final Buffer field10;
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lat;"
+		descriptor = "Lax;"
 	)
-	final class3 field12;
+	final class3 field9;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;Lat;)V"
+		descriptor = "(Lul;Lax;)V"
 	)
 	public class7(Buffer var1, class3 var2) {
-		this.field10 = Executors.newSingleThreadExecutor();
-		this.field13 = var1;
-		this.field12 = var2;
-		this.method17();
+		this.field7 = Executors.newSingleThreadExecutor();
+		this.field10 = var1;
+		this.field9 = var2;
+		this.method21();
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1836441256"
+		descriptor = "(B)Z",
+		garbageValue = "8"
 	)
-	public boolean method14() {
-		return this.field11.isDone();
+	public boolean method17() {
+		return this.field8.isDone();
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2092027940"
+		descriptor = "(B)V",
+		garbageValue = "40"
 	)
-	public void method15() {
-		this.field10.shutdown();
-		this.field10 = null;
+	public void method18() {
+		this.field7.shutdown();
+		this.field7 = null;
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ltm;",
-		garbageValue = "-120"
+		descriptor = "(I)Lul;",
+		garbageValue = "1362565755"
 	)
-	public Buffer method16() {
+	public Buffer method19() {
 		try {
-			return (Buffer)this.field11.get();
+			return (Buffer)this.field8.get();
 		} catch (Exception var2) {
 			return null;
 		}
 	}
 
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-691162885"
+		garbageValue = "-693034688"
 	)
-	void method17() {
-		this.field11 = this.field10.submit(new class1(this, this.field13, this.field12));
+	void method21() {
+		this.field8 = this.field7.submit(new class1(this, this.field10, this.field9));
 	}
 
-	@ObfuscatedName("iy")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "1"
+		descriptor = "(I)J",
+		garbageValue = "-20434766"
 	)
-	static final int method18(int var0) {
-		return Math.abs(var0 - UserComparator10.cameraYaw) > 1024 ? var0 + 2048 * (var0 < UserComparator10.cameraYaw ? 1 : -1) : var0;
+	static long method20() {
+		try {
+			URL var0 = new URL(ScriptEvent.method474("services", false) + "m=accountappeal/login.ws");
+			URLConnection var1 = var0.openConnection();
+			var1.setRequestProperty("connection", "close");
+			var1.setDoInput(true);
+			var1.setDoOutput(true);
+			var1.setConnectTimeout(5000);
+			OutputStreamWriter var2 = new OutputStreamWriter(var1.getOutputStream());
+			var2.write("data1=req");
+			var2.flush();
+			InputStream var3 = var1.getInputStream();
+			Buffer var4 = new Buffer(new byte[1000]);
+
+			do {
+				int var5 = var3.read(var4.array, var4.offset, 1000 - var4.offset);
+				if (var5 == -1) {
+					var4.offset = 0;
+					long var7 = var4.readLong();
+					return var7;
+				}
+
+				var4.offset += var5;
+			} while(var4.offset < 1000);
+
+			return 0L;
+		} catch (Exception var9) {
+			return 0L;
+		}
+	}
+
+	@ObfuscatedName("ht")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "1063387188"
+	)
+	@Export("forceDisconnect")
+	static final void forceDisconnect(int var0) {
+		CollisionMap.method1166();
+		switch(var0) {
+		case 1:
+			GameEngine.method166(24);
+			AbstractWorldMapIcon.setLoginResponseString("", "You were disconnected from the server.", "");
+			break;
+		case 2:
+			class339.method1746();
+		}
+
+	}
+
+	@ObfuscatedName("jt")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lpf;",
+		garbageValue = "2097624965"
+	)
+	@Export("getScriptEvents")
+	public static NodeDeque getScriptEvents() {
+		return Client.scriptEvents;
 	}
 }

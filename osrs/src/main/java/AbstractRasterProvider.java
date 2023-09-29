@@ -3,56 +3,56 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("uq")
+@ObfuscatedName("ui")
 @Implements("AbstractRasterProvider")
 public abstract class AbstractRasterProvider {
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("pixels")
 	public int[] pixels;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("width")
 	public int width;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("height")
 	public int height;
-	@ObfuscatedName("ai")
-	protected float[] field4225;
+	@ObfuscatedName("ah")
+	protected float[] field4252;
 
 	protected AbstractRasterProvider() {
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "-46"
+		descriptor = "(III)V",
+		garbageValue = "-237304267"
 	)
 	@Export("drawFull")
 	public abstract void drawFull(int var1, int var2);
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1065945289"
+		descriptor = "(IIIIB)V",
+		garbageValue = "-3"
 	)
 	@Export("draw")
 	public abstract void draw(int var1, int var2, int var3, int var4);
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-109"
+		descriptor = "(I)V",
+		garbageValue = "1751275534"
 	)
 	@Export("apply")
 	public final void apply() {
-		Rasterizer2D.method2620(this.pixels, this.width, this.height, this.field4225);
+		Rasterizer2D.method2659(this.pixels, this.width, this.height, this.field4252);
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "-37"
+		descriptor = "(ZI)V",
+		garbageValue = "952320023"
 	)
-	public final void method2646(boolean var1) {
-		this.field4225 = var1 ? new float[this.height * this.width + 1] : null;
+	public final void method2685(boolean var1) {
+		this.field4252 = var1 ? new float[this.width * this.height + 1] : null;
 	}
 }

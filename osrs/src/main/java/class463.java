@@ -2,73 +2,67 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+@ObfuscatedName("ro")
+public class class463 {
+	@ObfuscatedName("oh")
+	@Export("menuY")
+	static int menuY;
+	@ObfuscatedName("ac")
+	float field3893;
+	@ObfuscatedName("al")
+	float field3895;
+	@ObfuscatedName("ak")
+	float field3894;
 
-@ObfuscatedName("rt")
-public class class463 implements class461 {
-	@ObfuscatedName("au")
-	final Map field3906;
-
-	public class463(Map var1) {
-		this.field3906 = var1;
+	static {
+		new class463(0.0F, 0.0F, 0.0F);
+		new class463(1.0F, 1.0F, 1.0F);
+		new class463(1.0F, 0.0F, 0.0F);
+		new class463(0.0F, 1.0F, 0.0F);
+		new class463(0.0F, 0.0F, 1.0F);
+		NPC.method581(100);
 	}
 
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lre;",
-		garbageValue = "1843960357"
-	)
-	@Export("vmethod2213")
-	public class460 vmethod2213() {
-		return null;
+	class463(float var1, float var2, float var3) {
+		this.field3893 = var1;
+		this.field3895 = var2;
+		this.field3894 = var3;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "-2012768243"
+		descriptor = "(I)F",
+		garbageValue = "-718087487"
 	)
-	@Export("vmethod7797")
-	public byte[] vmethod7797() throws UnsupportedEncodingException {
-		return this.method2342().getBytes("UTF-8");
+	final float method2328() {
+		return (float)Math.sqrt((double)(this.field3893 * this.field3893 + this.field3895 * this.field3895 + this.field3894 * this.field3894));
 	}
 
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-920677238"
-	)
-	public String method2342() throws UnsupportedEncodingException {
-		StringBuilder var1 = new StringBuilder();
-		Iterator var2 = this.field3906.entrySet().iterator();
+	@Export("toString")
+	@ObfuscatedName("toString")
+	public String toString() {
+		return this.field3893 + ", " + this.field3895 + ", " + this.field3894;
+	}
 
-		while (var2.hasNext()) {
-			Entry var3 = (Entry)var2.next();
-			String var4 = URLEncoder.encode((String)var3.getKey(), "UTF-8");
-			String var5 = URLEncoder.encode((String)var3.getValue(), "UTF-8");
-			var1.append(var4).append("=").append(var5).append("&");
+	@ObfuscatedName("lt")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Lnm;S)Ljava/lang/String;",
+		garbageValue = "-20030"
+	)
+	static String method2329(String var0, Widget var1) {
+		if (var0.indexOf("%") != -1) {
+			for (int var2 = 1; var2 <= 5; ++var2) {
+				while (true) {
+					int var3 = var0.indexOf("%" + var2);
+					if (var3 == -1) {
+						break;
+					}
+
+					var0 = var0.substring(0, var3) + class517.method2534(VarcInt.method977(var1, var2 - 1)) + var0.substring(var3 + 2);
+				}
+			}
 		}
 
-		if (var1.length() == 0) {
-			return "";
-		} else {
-			var1.deleteCharAt(var1.length() - 1);
-			var1.insert(0, "?");
-			return var1.toString();
-		}
-	}
-
-	@ObfuscatedName("ah")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "67"
-	)
-	static void method2343() {
-		PcmPlayer.method212(24);
-		class318.setLoginResponseString("", "You were disconnected from the server.", "");
+		return var0;
 	}
 }

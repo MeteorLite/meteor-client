@@ -1,93 +1,81 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
+import java.applet.Applet;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-@ObfuscatedName("rl")
-public class class462 implements class461 {
-	@ObfuscatedName("at")
-	public static int field3904;
-	@ObfuscatedName("ae")
+@ObfuscatedName("rf")
+public class class462 {
+	@ObfuscatedName("ac")
+	@Export("RunException_applet")
+	public static Applet RunException_applet;
+
+	@ObfuscatedName("ow")
 	@ObfuscatedSignature(
-		descriptor = "Lorg/json/JSONObject;"
+		descriptor = "(II)V",
+		garbageValue = "-123351457"
 	)
-	JSONObject field3905;
-
-	public class462(byte[] var1) throws UnsupportedEncodingException {
-		this.method2336(var1);
-	}
-
-	public class462(JSONObject var1) {
-		this.field3905 = var1;
-	}
-
-	public class462(String var1) throws UnsupportedEncodingException {
-		this.method2337(var1);
-	}
-
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lre;",
-		garbageValue = "1843960357"
-	)
-	public class460 vmethod2213() {
-		return class460.field3901;
-	}
-
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "-2012768243"
-	)
-	@Export("vmethod7797")
-	public byte[] vmethod7797() throws UnsupportedEncodingException {
-		return this.field3905 == null ? new byte[0] : this.field3905.toString().getBytes("UTF-8");
-	}
-
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "([BB)V",
-		garbageValue = "-68"
-	)
-	void method2336(byte[] var1) throws UnsupportedEncodingException {
-		String var2 = new String(var1, "UTF-8");
-		this.method2337(var2);
-	}
-
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "-32"
-	)
-	void method2337(String var1) throws UnsupportedEncodingException {
-		try {
-			if (var1.charAt(0) == '{') {
-				this.field3905 = new JSONObject(var1);
+	static void method2327(int var0) {
+		SequenceDefinition var1 = class36.SequenceDefinition_get(var0);
+		if (var1.isCachedModelIdSet()) {
+			int var3 = var1.SequenceDefinition_cachedModelId;
+			class139 var5 = (class139)SequenceDefinition.SequenceDefinition_cachedModel.get((long)var3);
+			class139 var4;
+			if (var5 != null) {
+				var4 = var5;
 			} else {
-				if (var1.charAt(0) != '[') {
-					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder.");
+				AbstractArchive var7 = SequenceDefinition.SequenceDefinition_animationsArchive;
+				AbstractArchive var8 = SequenceDefinition.SequenceDefinition_skeletonsArchive;
+				boolean var9 = true;
+				byte[] var10 = var7.getFile(var3 >> 16 & 65535, var3 & 65535);
+				class139 var6;
+				if (var10 == null) {
+					var9 = false;
+					var6 = null;
+				} else {
+					int var11 = (var10[1] & 255) << 8 | var10[2] & 255;
+					byte[] var12 = var8.getFile(var11, 0);
+					if (var12 == null) {
+						var9 = false;
+					}
+
+					if (!var9) {
+						var6 = null;
+					} else {
+						if (SoundCache.field214 == null) {
+							MusicPatchPcmStream.field2855 = Runtime.getRuntime().availableProcessors();
+							SoundCache.field214 = new ThreadPoolExecutor(0, MusicPatchPcmStream.field2855, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(MusicPatchPcmStream.field2855 * 100 + 100), new class73());
+						}
+
+						try {
+							var6 = new class139(var7, var8, var3, false);
+						} catch (Exception var14) {
+							var6 = null;
+						}
+					}
 				}
 
-				JSONArray var2 = new JSONArray(var1);
-				this.field3905 = new JSONObject();
-				this.field3905.method2709("arrayValues", var2);
+				if (var6 != null) {
+					SequenceDefinition.SequenceDefinition_cachedModel.put(var6, (long)var3);
+				}
+
+				var4 = var6;
 			}
 
-		} catch (JSONException var3) {
-			throw new UnsupportedEncodingException(var3.getMessage());
-		}
-	}
+			int var2;
+			if (var4 == null) {
+				var2 = 2;
+			} else {
+				var2 = var4.method738() ? 0 : 1;
+			}
 
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "(B)Lorg/json/JSONObject;",
-		garbageValue = "-30"
-	)
-	public JSONObject method2338() {
-		return this.field3905;
+			if (var2 == 2) {
+				Client.field608.add(var1.SequenceDefinition_cachedModelId);
+			}
+
+		}
 	}
 }

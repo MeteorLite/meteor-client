@@ -2,10 +2,10 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("st")
+@ObfuscatedName("se")
 @Implements("LongNode")
 public class LongNode extends Node {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("longValue")
 	public long longValue;
 

@@ -3,28 +3,28 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gz")
+@ObfuscatedName("hi")
 @Implements("Task")
 public class Task {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lgz;"
+		descriptor = "Lhi;"
 	)
 	@Export("next")
 	Task next;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("status")
 	public volatile int status;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("type")
 	int type;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@Export("intArgument")
 	public int intArgument;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ar")
 	@Export("objectArgument")
 	Object objectArgument;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ab")
 	@Export("result")
 	public volatile Object result;
 

@@ -2,193 +2,114 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dz")
-public class class92 {
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field940;
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field930;
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field935;
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field939;
+@ObfuscatedName("dh")
+public enum class92 implements class386 {
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Ldz;"
+		descriptor = "Ldh;"
 	)
-	static final class92 field928;
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field932;
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field941;
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field936;
-	@ObfuscatedName("aa")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field926;
-	@ObfuscatedName("af")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field931;
-	@ObfuscatedName("ad")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field929;
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field937;
+	field889(0, -1),
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Ldz;"
+		descriptor = "Ldh;"
 	)
-	static final class92 field933;
-	@ObfuscatedName("an")
+	field892(1, 2),
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Ldz;"
+		descriptor = "Ldh;"
 	)
-	static final class92 field934;
+	field891(2, 3),
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field894(3, 4),
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field893(4, 5),
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field890(5, 6);
+
+	@ObfuscatedName("fy")
+	@ObfuscatedSignature(
+		descriptor = "Lok;"
+	)
+	static Archive field888;
 	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field938;
+	final int field896;
 	@ObfuscatedName("ab")
-	@ObfuscatedSignature(
-		descriptor = "Ldz;"
-	)
-	static final class92 field927;
+	final int field895;
 
-	static {
-		field940 = new class92();
-		field930 = new class92();
-		field935 = new class92();
-		field939 = new class92();
-		field928 = new class92();
-		field932 = new class92();
-		field941 = new class92();
-		field936 = new class92();
-		field926 = new class92();
-		field931 = new class92();
-		field929 = new class92();
-		field937 = new class92();
-		field933 = new class92();
-		field934 = new class92();
-		field938 = new class92();
-		field927 = new class92();
+	class92(int var3, int var4) {
+		this.field896 = var3;
+		this.field895 = var4;
 	}
 
-	class92() {
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field895;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lmi;",
-		garbageValue = "412092455"
+		descriptor = "([BIIB)Ljava/lang/String;",
+		garbageValue = "-128"
 	)
-	@Export("getWidget")
-	public static Widget getWidget(int var0) {
-		int var1 = var0 >> 16;
-		int var2 = var0 & 65535;
-		if (PacketBufferNode.Widget_interfaceComponents[var1] == null || PacketBufferNode.Widget_interfaceComponents[var1][var2] == null) {
-			boolean var3 = ModeWhere.loadInterface(var1);
-			if (!var3) {
-				return null;
-			}
-		}
+	@Export("decodeStringCp1252")
+	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
+		char[] var3 = new char[var2];
+		int var4 = 0;
 
-		return PacketBufferNode.Widget_interfaceComponents[var1][var2];
-	}
-
-	@ObfuscatedName("jl")
-	@ObfuscatedSignature(
-		descriptor = "(Ldf;ZB)V",
-		garbageValue = "1"
-	)
-	@Export("addPlayerToScene")
-	static void addPlayerToScene(Player var0, boolean var1) {
-		if (var0 != null && var0.isVisible() && !var0.isHidden) {
-			var0.isUnanimated = false;
-			if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.idleSequence == var0.movementSequence) {
-				var0.isUnanimated = true;
-			}
-
-			int var2 = var0.x >> 7;
-			int var3 = var0.y >> 7;
-			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
-				long var4 = FontName.calculateTag(0, 0, 0, false, var0.index);
-				if (var0.attachedModel != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) {
-					var0.isUnanimated = false;
-					var0.tileHeight = class18.getTileHeight(var0.x, var0.y, HealthBar.Client_plane);
-					var0.playerCycle = Client.cycle;
-					class130.scene.addNullableObject(HealthBar.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.minX, var0.minY, var0.maxX, var0.maxY);
-				} else {
-					if ((var0.x & 127) == 64 && (var0.y & 127) == 64) {
-						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) {
-							return;
-						}
-
-						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount;
+		for (int var5 = 0; var5 < var2; ++var5) {
+			int var6 = var0[var5 + var1] & 255;
+			if (var6 != 0) {
+				if (var6 >= 128 && var6 < 160) {
+					char var7 = class399.cp1252AsciiExtension[var6 - 128];
+					if (var7 == 0) {
+						var7 = '?';
 					}
 
-					var0.tileHeight = class18.getTileHeight(var0.x, var0.y, HealthBar.Client_plane);
-					var0.playerCycle = Client.cycle;
-					class130.scene.drawEntity(HealthBar.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking);
+					var6 = var7;
 				}
+
+				var3[var4++] = (char)var6;
 			}
 		}
 
+		return new String(var3, 0, var4);
 	}
 
-	@ObfuscatedName("ns")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lds;ZI)V",
-		garbageValue = "-1838716449"
+		descriptor = "(CII)Ljava/lang/String;",
+		garbageValue = "1422226008"
 	)
-	@Export("closeInterface")
-	static final void closeInterface(InterfaceParent var0, boolean var1) {
-		int var2 = var0.group;
-		int var3 = (int)var0.key;
-		var0.remove();
-		if (var1) {
-			Skeleton.method1232(var2);
+	public static String method486(char var0, int var1) {
+		char[] var2 = new char[var1];
+
+		for (int var3 = 0; var3 < var1; ++var3) {
+			var2[var3] = var0;
 		}
 
-		class339.method1865(var2);
-		Widget var4 = getWidget(var3);
-		if (var4 != null) {
-			class218.invalidateWidget(var4);
-		}
+		return new String(var2);
+	}
 
-		if (Client.rootInterface != -1) {
-			class385.runIntfCloseListeners(Client.rootInterface, 1);
-		}
-
+	@ObfuscatedName("om")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "-82"
+	)
+	public static boolean method487() {
+		return Client.staffModLevel >= 2;
 	}
 }
