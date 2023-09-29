@@ -3910,7 +3910,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 
 				if (ServerPacket.CAM_RESET == var1.serverPacket) {
 					if (rootInterface != -1) {
-						Interpreter.method418(rootInterface, 0);
+						Interpreter.runIntfCloseListener(rootInterface, 0);
 					}
 
 					var1.serverPacket = null;
@@ -4235,7 +4235,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (rootInterface != -1) {
-						Interpreter.method418(rootInterface, 1);
+						Interpreter.runIntfCloseListener(rootInterface, 1);
 					}
 
 					var1.serverPacket = null;

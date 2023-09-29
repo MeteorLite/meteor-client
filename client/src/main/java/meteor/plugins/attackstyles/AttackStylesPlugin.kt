@@ -111,7 +111,7 @@ class AttackStylesPlugin : Plugin() {
             val weaponSwitch = currentEquippedWeaponTypeVarbit != equippedWeaponTypeVarbit
             equippedWeaponTypeVarbit = currentEquippedWeaponTypeVarbit
             updateAttackStyle(equippedWeaponTypeVarbit, currentAttackStyleVarbit,
-                    currentCastingModeVarbit)
+            currentCastingModeVarbit)
             updateWarning(weaponSwitch)
 
             // this isn't required, but will hide styles 1 tick earlier than the script event, which fires

@@ -168,7 +168,7 @@ public class class158 extends class161 {
 								default:
 									break;
 								case 2:
-									throw new IllegalStateException();
+									//throw new IllegalStateException();
 								}
 							} else if (var32 == 0) {
 								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7[var5];

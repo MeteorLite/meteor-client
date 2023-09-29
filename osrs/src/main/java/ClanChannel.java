@@ -216,7 +216,7 @@ public class ClanChannel extends Node {
 		PendingSpawn.revalidateWidgetScroll(class33.widgetDefinition.Widget_interfaceComponents[var0 >> 16], var4, false);
 		VerticalAlignment.runWidgetOnLoadListener(var1);
 		if (Client.rootInterface != -1) {
-			Interpreter.method418(Client.rootInterface, 1);
+			Interpreter.runIntfCloseListener(Client.rootInterface, 1);
 		}
 
 		return var3;

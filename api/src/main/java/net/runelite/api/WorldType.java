@@ -24,9 +24,10 @@
  */
 package net.runelite.api;
 
+import lombok.AllArgsConstructor;
+
 import java.util.Collection;
 import java.util.EnumSet;
-import lombok.AllArgsConstructor;
 
 /**
  * An enumeration of possible world types.
@@ -67,6 +68,10 @@ public enum WorldType
 	 */
 	LAST_MAN_STANDING(1 << 14),
 	/**
+	 * Beta world.
+	 */
+	BETA_WORLD(1 << 16),
+	/**
 	 * Beta worlds without profiles that are saved.
 	 */
 	NOSAVE_MODE(1 << 25),
@@ -90,34 +95,34 @@ public enum WorldType
 	private final int mask;
 
 	private static final EnumSet<WorldType> PVP_WORLD_TYPES = EnumSet.of(
-		DEADMAN, // dmmt worlds are also flaged as DEADMAN
-		PVP
+			DEADMAN, // dmmt worlds are also flaged as DEADMAN
+			PVP
 	);
 
 	private static final EnumSet<WorldType> DEADMAN_WORLD_TYPES = EnumSet.of(
-		DEADMAN
+			DEADMAN
 	);
 
 	private static final EnumSet<WorldType> HIGHRISK_WORLD_TYPES = EnumSet.of(
-		HIGH_RISK
+			HIGH_RISK
 	);
 
 	private static final EnumSet<WorldType> ALL_HIGHRISK_WORLD_TYPES = EnumSet.of(
-		HIGH_RISK,
-		DEADMAN
+			HIGH_RISK,
+			DEADMAN
 	);
 
 	private static final EnumSet<WorldType> ALL_PVP_WORLD_TYPES = EnumSet.of(
-		HIGH_RISK,
-		DEADMAN,
-		PVP
+			HIGH_RISK,
+			DEADMAN,
+			PVP
 	);
 
 	private static final EnumSet<WorldType> ALL_PK_WORLD_TYPES = EnumSet.of(
-		HIGH_RISK,
-		DEADMAN,
-		PVP,
-		BOUNTY
+			HIGH_RISK,
+			DEADMAN,
+			PVP,
+			BOUNTY
 	);
 
 	/**

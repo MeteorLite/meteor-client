@@ -197,9 +197,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int getDragTime();
 
-	//@Import("Widget_interfaceComponents")
-	@Override
-	RSWidget[][] getWidgets();
+
 
 	/**
 	 * Gets an array of widgets that correspond to the passed group ID.
@@ -855,7 +853,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("compass")
 	void setCompass(SpritePixels spritePixels);
 
-	@Import("Widget_cachedSprites")
+	//@Import("Widget_cachedSprites")
 	@Override
 	RSEvictingDualNodeHashTable getWidgetSpriteCache();
 

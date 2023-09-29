@@ -37,6 +37,7 @@ public class WidgetDefinition {
 	@ObfuscatedSignature(
 		descriptor = "[[Lnm;"
 	)
+	@Export("Widget_interfaceComponents")
 	public Widget[][] Widget_interfaceComponents;
 	@ObfuscatedName("ab")
 	Map field2910;

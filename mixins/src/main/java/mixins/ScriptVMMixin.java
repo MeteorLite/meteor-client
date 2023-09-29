@@ -160,22 +160,12 @@ public abstract class ScriptVMMixin implements RSClient
 
 	@Inject
 	public static int currentQuestRow = -1;
-	@Copy("runScriptLogic")
-	@Replace("runScriptLogic")
-	static void copy$runScriptLogic(RSScriptEvent event, RSScript var4, int maxExecutionTime, int var2)
-	{
-		copy$runScriptLogic(event, var4, maxExecutionTime, var2);
-	}
-
 	@Copy("runScript")
 	@Replace("runScript")
 	static void copy$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
 		Object[] arguments = event.getArguments();
-		if (!(arguments != null && arguments.length > 0)) {
-			System.out.println("Bad script arguments");
-			return;
-		}
+		assert arguments != null && arguments.length > 0;
 		if (arguments[0] instanceof JavaScriptCallback)
 		{
 			try
@@ -184,7 +174,7 @@ public abstract class ScriptVMMixin implements RSClient
 			}
 			catch (Exception e)
 			{
-				e.printStackTrace();
+				client.getLogger().error("Error in JavaScriptCallback", e);
 			}
 		}
 		else
@@ -194,14 +184,18 @@ public abstract class ScriptVMMixin implements RSClient
 				rootScriptEvent = event;
 				copy$runScript(event, maxExecutionTime, var2);
 			}
-			catch (Exception exception) {
-				exception.printStackTrace();
-			}
 			finally
 			{
 				currentScript = null;
 			}
 		}
+	}
+
+	@Copy("runScriptLogic")
+	@Replace("runScriptLogic")
+	static void copy$runScriptLogic(RSScriptEvent event, RSScript var4, int maxExecutionTime, int var2)
+	{
+		copy$runScriptLogic(event, var4, maxExecutionTime, var2);
 	}
 
 	@Inject
@@ -215,17 +209,16 @@ public abstract class ScriptVMMixin implements RSClient
 	@Override
 	public void runScriptEvent(RSScriptEvent event)
 	{
-		Object[] args = event.getArguments();
-		int scriptId = (int) args[0];
-
 		assert isClientThread() : "runScriptEvent must be called on client thread";
-		//assert currentScript == null : "scripts are not reentrant";
+		assert currentScript == null : "scripts are not reentrant";
 		runScript(event, 5000000, 0);
 		boolean assertionsEnabled = false;
 		assert assertionsEnabled = true;
 
+		Object[] args = event.getArguments();
 		if (assertionsEnabled && args[0] instanceof Integer)
 		{
+			int scriptId = (int) args[0];
 			RSScript script = (RSScript) client.getScriptCache().get(scriptId);
 
 			if (script != null)
@@ -244,8 +237,8 @@ public abstract class ScriptVMMixin implements RSClient
 				}
 
 				assert script.getIntArgumentCount() == intCount && script.getStringArgumentCount() == stringCount :
-					"Script " + scriptId + " was called with the incorrect number of arguments; takes "
-						+ script.getIntArgumentCount() + "+" + script.getStringArgumentCount() + ", got " + intCount + "+" + stringCount;
+						"Script " + scriptId + " was called with the incorrect number of arguments; takes "
+								+ script.getIntArgumentCount() + "+" + script.getStringArgumentCount() + ", got " + intCount + "+" + stringCount;
 			}
 		}
 	}
