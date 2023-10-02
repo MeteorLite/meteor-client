@@ -12,16 +12,16 @@ import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
-import net.runelite.asm.attributes.code.instructions.ILoad;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.execution.Execution;
-import net.runelite.asm.execution.InstructionContext;
-import net.runelite.asm.execution.MethodContext;
-import net.runelite.asm.execution.StackContext;
+import asm.Method;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instruction.types.PushConstantInstruction;
+import asm.attributes.code.instructions.ILoad;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.execution.Execution;
+import asm.execution.InstructionContext;
+import asm.execution.MethodContext;
+import asm.execution.StackContext;
 
 public class ClearColorBuffer extends AbstractInjector
 {
@@ -38,8 +38,8 @@ public class ClearColorBuffer extends AbstractInjector
 		 */
 		final Execution exec = new Execution(inject.getVanilla());
 
-		final net.runelite.asm.pool.Method clearBuffer = inject.getVanilla().findClass("Client").findMethod("clearColorBuffer").getPoolMethod();
-		final net.runelite.asm.pool.Method fillRectPool = InjectUtil.findMethod(inject, "Rasterizer2D_fillRectangle", "Rasterizer2D", null).getPoolMethod();
+		final asm.pool.Method clearBuffer = inject.getVanilla().findClass("Client").findMethod("clearColorBuffer").getPoolMethod();
+		final asm.pool.Method fillRectPool = InjectUtil.findMethod(inject, "Rasterizer2D_fillRectangle", "Rasterizer2D", null).getPoolMethod();
 		final Method drawEntities = InjectUtil.findMethod(inject, "drawEntities"); // XXX: should prob be called drawViewport?
 
 		exec.addMethod(drawEntities);

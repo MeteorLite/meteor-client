@@ -13,22 +13,22 @@ import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.List;
 import java.util.ListIterator;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.InstructionType;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.BAStore;
-import net.runelite.asm.attributes.code.instructions.Dup;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.ILoad;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.New;
-import net.runelite.asm.attributes.code.instructions.Return;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Field;
+import asm.Method;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.InstructionType;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.BAStore;
+import asm.attributes.code.instructions.Dup;
+import asm.attributes.code.instructions.GetStatic;
+import asm.attributes.code.instructions.ILoad;
+import asm.attributes.code.instructions.InvokeSpecial;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.attributes.code.instructions.New;
+import asm.attributes.code.instructions.Return;
+import asm.signature.Signature;
 
 public class RuneliteMenuEntry extends AbstractInjector
 {
@@ -69,11 +69,11 @@ public class RuneliteMenuEntry extends AbstractInjector
 		if (iload)
 		{
 			ins.add(new ILoad(instructions, 0));
-			ins.add(new InvokeSpecial(instructions, new net.runelite.asm.pool.Method(runeliteMenuEntryVanilla.getPoolClass(), "<init>", new Signature("(I)V"))));
+			ins.add(new InvokeSpecial(instructions, new asm.pool.Method(runeliteMenuEntryVanilla.getPoolClass(), "<init>", new Signature("(I)V"))));
 		}
 		else
 		{
-			ins.add(new InvokeSpecial(instructions, new net.runelite.asm.pool.Method(runeliteMenuEntryVanilla.getPoolClass(), "<init>", new Signature("()V"))));
+			ins.add(new InvokeSpecial(instructions, new asm.pool.Method(runeliteMenuEntryVanilla.getPoolClass(), "<init>", new Signature("()V"))));
 		}
 		ins.add(new Return(instructions, InstructionType.ARETURN));
 	}
@@ -114,7 +114,7 @@ public class RuneliteMenuEntry extends AbstractInjector
 				}
 
 				ILoad i1 = new ILoad(ins, 3);
-				InvokeStatic i2 = new InvokeStatic(ins, new net.runelite.asm.pool.Method(clientVanilla.getPoolClass(), "swapMenuEntries", new Signature("(I)V")));
+				InvokeStatic i2 = new InvokeStatic(ins, new asm.pool.Method(clientVanilla.getPoolClass(), "swapMenuEntries", new Signature("(I)V")));
 
 				iterator.add(i1);
 				iterator.add(i2);

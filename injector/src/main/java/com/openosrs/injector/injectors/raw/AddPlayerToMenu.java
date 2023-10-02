@@ -14,22 +14,22 @@ import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.Iterator;
 import java.util.ListIterator;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.Label;
-import net.runelite.asm.attributes.code.instruction.types.ComparisonInstruction;
-import net.runelite.asm.attributes.code.instruction.types.JumpingInstruction;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.BiPush;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.IAnd;
-import net.runelite.asm.attributes.code.instructions.IfACmpEq;
-import net.runelite.asm.attributes.code.instructions.IfACmpNe;
-import net.runelite.asm.attributes.code.instructions.IfICmpNe;
-import net.runelite.asm.attributes.code.instructions.IfNe;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.pool.Field;
+import asm.Method;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.Label;
+import asm.attributes.code.instruction.types.ComparisonInstruction;
+import asm.attributes.code.instruction.types.JumpingInstruction;
+import asm.attributes.code.instructions.ALoad;
+import asm.attributes.code.instructions.BiPush;
+import asm.attributes.code.instructions.GetStatic;
+import asm.attributes.code.instructions.IAnd;
+import asm.attributes.code.instructions.IfACmpEq;
+import asm.attributes.code.instructions.IfACmpNe;
+import asm.attributes.code.instructions.IfICmpNe;
+import asm.attributes.code.instructions.IfNe;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.pool.Field;
 
 public class AddPlayerToMenu extends AbstractInjector
 {
@@ -41,9 +41,9 @@ public class AddPlayerToMenu extends AbstractInjector
 	public void inject()
 	{
 		final Method addPlayerOptions = inject.toVanilla(inject.getDeobfuscated().findClass("Scene")).findMethod("copy$addPlayerToMenu");
-		final net.runelite.asm.pool.Method shouldHideAttackOptionFor =
+		final asm.pool.Method shouldHideAttackOptionFor =
 			inject.getVanilla().findClass("Client").findMethod("shouldHideAttackOptionFor").getPoolMethod();
-//		final net.runelite.asm.pool.Method shouldDrawMethod =
+//		final asm.pool.Method shouldDrawMethod =
 //			inject.getVanilla().findStaticMethod("shouldDraw").getPoolMethod();
 
 		try
@@ -58,7 +58,7 @@ public class AddPlayerToMenu extends AbstractInjector
 		}
 	}
 
-//	private void injectSameTileFix(Method addPlayerOptions, net.runelite.asm.pool.Method shouldDrawMethod)
+//	private void injectSameTileFix(Method addPlayerOptions, asm.pool.Method shouldDrawMethod)
 //	{
 //		// ALOAD 0
 //		// ICONST_0
@@ -85,7 +85,7 @@ public class AddPlayerToMenu extends AbstractInjector
 //		}
 //	}
 
-	private void injectHideAttack(Method addPlayerOptions, net.runelite.asm.pool.Method shouldHideAttackOptionFor)
+	private void injectHideAttack(Method addPlayerOptions, asm.pool.Method shouldHideAttackOptionFor)
 	{
 		final Field AttackOption_hidden =
 			InjectUtil.findField(inject, "AttackOption_hidden", "AttackOption").getPoolField();
@@ -176,7 +176,7 @@ public class AddPlayerToMenu extends AbstractInjector
 		ins.addInstruction(injectIdx, i3);
 	}
 
-	private void injectHideCast(Method addPlayerOptions, net.runelite.asm.pool.Method shouldHideAttackOptionFor)
+	private void injectHideCast(Method addPlayerOptions, asm.pool.Method shouldHideAttackOptionFor)
 	{
 		// LABEL before
 		// BIPUSH 8

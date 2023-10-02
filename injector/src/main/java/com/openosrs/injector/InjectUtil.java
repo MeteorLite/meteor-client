@@ -8,6 +8,8 @@
 package com.openosrs.injector;
 
 import com.openosrs.injector.injection.InjectData;
+
+import static com.openosrs.injector.DMath.modInverse;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;
 import static com.openosrs.injector.rsapi.RSApi.RL_API_BASE;
 import com.openosrs.injector.rsapi.RSApiClass;
@@ -17,33 +19,33 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import net.runelite.asm.Annotation;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.ClassGroup;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.Named;
-import net.runelite.asm.Type;
-import net.runelite.asm.attributes.Annotated;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.InstructionType;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.DLoad;
-import net.runelite.asm.attributes.code.instructions.FLoad;
-import net.runelite.asm.attributes.code.instructions.ILoad;
-import net.runelite.asm.attributes.code.instructions.IMul;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.LLoad;
-import net.runelite.asm.attributes.code.instructions.LMul;
-import net.runelite.asm.attributes.code.instructions.Return;
-import net.runelite.asm.attributes.code.instructions.VReturn;
-import net.runelite.asm.pool.Class;
-import net.runelite.asm.signature.Signature;
-import net.runelite.deob.DeobAnnotations;
-import net.runelite.deob.deobfuscators.arithmetic.DMath;
+import asm.Annotation;
+import asm.ClassFile;
+import asm.ClassGroup;
+import asm.Field;
+import asm.Method;
+import asm.Named;
+import asm.Type;
+import asm.attributes.Annotated;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.InstructionType;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.ALoad;
+import asm.attributes.code.instructions.DLoad;
+import asm.attributes.code.instructions.FLoad;
+import asm.attributes.code.instructions.ILoad;
+import asm.attributes.code.instructions.IMul;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.attributes.code.instructions.InvokeVirtual;
+import asm.attributes.code.instructions.LDC;
+import asm.attributes.code.instructions.LLoad;
+import asm.attributes.code.instructions.LMul;
+import asm.attributes.code.instructions.Return;
+import asm.attributes.code.instructions.VReturn;
+import asm.pool.Class;
+import asm.signature.Signature;
+import asm.DeobAnnotations;
+
 import org.jetbrains.annotations.Nullable;
 
 public interface InjectUtil
@@ -526,7 +528,7 @@ public interface InjectUtil
 		}
 	}
 
-	static Instruction createInvokeFor(Instructions instructions, net.runelite.asm.pool.Method method, boolean isStatic)
+	static Instruction createInvokeFor(Instructions instructions, asm.pool.Method method, boolean isStatic)
 	{
 		if (isStatic)
 		{
@@ -572,7 +574,7 @@ public interface InjectUtil
 	 */
 	static void injectObfuscatedSetter(Number getter, Instructions instrs, Consumer<Instruction> into)
 	{
-		injectObfuscatedGetter(DMath.modInverse(getter), instrs, into);
+		injectObfuscatedGetter(modInverse(getter), instrs, into);
 	}
 
 	private static List<Type> findArgs(final String str, final List<Type> ret, final int from, final int to)

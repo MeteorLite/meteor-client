@@ -7,7 +7,7 @@
  */
 package com.openosrs.injector.injectors;
 
-import net.runelite.asm.Named;
+import asm.Named;
 
 public interface Injector extends Named
 {

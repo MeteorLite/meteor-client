@@ -34,21 +34,21 @@ import com.openosrs.injector.InjectException;
 import com.openosrs.injector.InjectUtil;
 import com.openosrs.injector.rsapi.RSApiMethod;
 import java.util.List;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.BiPush;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.InvokeInterface;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.SiPush;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Method;
+import asm.Type;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.ALoad;
+import asm.attributes.code.instructions.BiPush;
+import asm.attributes.code.instructions.CheckCast;
+import asm.attributes.code.instructions.InvokeInterface;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.attributes.code.instructions.InvokeVirtual;
+import asm.attributes.code.instructions.LDC;
+import asm.attributes.code.instructions.SiPush;
+import asm.signature.Signature;
 
 public class InjectInvoke
 {

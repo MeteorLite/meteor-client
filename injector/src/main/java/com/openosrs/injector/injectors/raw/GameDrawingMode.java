@@ -4,13 +4,13 @@ import com.openosrs.injector.InjectUtil;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.ListIterator;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.PutStatic;
-import net.runelite.asm.pool.Field;
+import asm.ClassFile;
+import asm.Method;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.LDC;
+import asm.attributes.code.instructions.PutStatic;
+import asm.pool.Field;
 
 public class GameDrawingMode extends AbstractInjector
 {

@@ -12,11 +12,11 @@ import com.openosrs.injector.InjectUtil;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.ListIterator;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
+import asm.Method;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.attributes.code.instructions.InvokeVirtual;
 
 public class RenderDraw extends AbstractInjector
 {
@@ -30,7 +30,7 @@ public class RenderDraw extends AbstractInjector
 	@Override
 	public void inject()
 	{
-		final net.runelite.asm.pool.Method renderDraw = inject.toVanilla(inject.getDeobfuscated().findClass("Scene")).findMethod("renderDraw").getPoolMethod();
+		final asm.pool.Method renderDraw = inject.toVanilla(inject.getDeobfuscated().findClass("Scene")).findMethod("renderDraw").getPoolMethod();
 
 		int replaced = 0;
 
@@ -38,7 +38,7 @@ public class RenderDraw extends AbstractInjector
 		 * This class replaces entity draw invocation instructions
 		 * with the renderDraw method on drawcallbacks
 		 */
-		final net.runelite.asm.pool.Method draw = InjectUtil.findMethod(inject, "draw", "Renderable", null, true, false).getPoolMethod();
+		final asm.pool.Method draw = InjectUtil.findMethod(inject, "draw", "Renderable", null, true, false).getPoolMethod();
 
 		final Method drawTile = InjectUtil.findMethod(inject, "drawTile", "Scene", null, true, false);
 

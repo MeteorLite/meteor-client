@@ -13,18 +13,18 @@ import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.Label;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.IfEq;
-import net.runelite.asm.attributes.code.instructions.IfNe;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.execution.Execution;
-import net.runelite.asm.execution.InstructionContext;
-import net.runelite.asm.execution.MethodContext;
-import net.runelite.asm.pool.Field;
+import asm.Method;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.Label;
+import asm.attributes.code.instructions.GetStatic;
+import asm.attributes.code.instructions.IfEq;
+import asm.attributes.code.instructions.IfNe;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.execution.Execution;
+import asm.execution.InstructionContext;
+import asm.execution.MethodContext;
+import asm.pool.Field;
 
 public class DrawMenu extends AbstractInjector
 {
@@ -57,7 +57,7 @@ public class DrawMenu extends AbstractInjector
 		 * --------
 		 */
 
-		final net.runelite.asm.pool.Method drawMenu = inject.getVanilla().findClass("Client").findMethod("drawMenu").getPoolMethod();
+		final asm.pool.Method drawMenu = inject.getVanilla().findClass("Client").findMethod("drawMenu").getPoolMethod();
 		final Method drawLoggedIn = InjectUtil.findMethod(inject, "drawLoggedIn", "Client", null, true, false);
 		final Field gameDrawMode = InjectUtil.findField(inject, "gameDrawingMode", "Client").getPoolField();
 		final Field isMenuOpen = InjectUtil.findField(inject, "isMenuOpen", "Client").getPoolField();

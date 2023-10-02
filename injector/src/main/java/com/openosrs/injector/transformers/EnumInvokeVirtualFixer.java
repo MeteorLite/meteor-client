@@ -9,10 +9,10 @@ package com.openosrs.injector.transformers;
 
 import com.openosrs.injector.injection.InjectData;
 
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
+import asm.ClassFile;
+import asm.Method;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.instructions.InvokeVirtual;
 
 public class EnumInvokeVirtualFixer extends InjectTransformer
 {

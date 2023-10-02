@@ -38,20 +38,20 @@ import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.HashSet;
 import java.util.ListIterator;
 import java.util.Set;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.Label;
-import net.runelite.asm.attributes.code.instruction.types.JumpingInstruction;
-import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
-import net.runelite.asm.attributes.code.instructions.GetField;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.IMul;
-import net.runelite.asm.attributes.code.instructions.InvokeInterface;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Field;
+import asm.Method;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.Label;
+import asm.attributes.code.instruction.types.JumpingInstruction;
+import asm.attributes.code.instruction.types.PushConstantInstruction;
+import asm.attributes.code.instructions.GetField;
+import asm.attributes.code.instructions.GetStatic;
+import asm.attributes.code.instructions.IMul;
+import asm.attributes.code.instructions.InvokeInterface;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.signature.Signature;
 
 public class DrawAfterWidgets extends AbstractInjector
 {
@@ -115,7 +115,7 @@ public class DrawAfterWidgets extends AbstractInjector
 			throw new InjectException("Mapped method \"Rasterizer2D_resetClip\" could not be found.");
 		}
 
-		net.runelite.asm.pool.Method poolNoClip = noClip.getPoolMethod();
+		asm.pool.Method poolNoClip = noClip.getPoolMethod();
 
 		for (ClassFile c : inject.getVanilla())
 		{
@@ -241,8 +241,8 @@ public class DrawAfterWidgets extends AbstractInjector
 				for (Label l : labelsToInjectAfter)
 				{
 					InvokeInterface invoke = new InvokeInterface(instructions,
-						new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class(CALLBACKS),
+						new asm.pool.Method(
+							new asm.pool.Class(CALLBACKS),
 							"drawAfterWidgets",
 							new Signature("()V")
 						)

@@ -9,14 +9,14 @@ package com.openosrs.injector.injectors.raw;
 
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.VReturn;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Method;
+import asm.attributes.Code;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.ALoad;
+import asm.attributes.code.instructions.InvokeSpecial;
+import asm.attributes.code.instructions.VReturn;
+import asm.signature.Signature;
 
 public class GraphicsObject extends AbstractInjector
 {
@@ -50,7 +50,7 @@ public class GraphicsObject extends AbstractInjector
 		Instructions ins = code.getInstructions();
 
 		ins.addInstruction(new ALoad(ins, 0));
-		ins.addInstruction(new InvokeSpecial(ins, new net.runelite.asm.pool.Method(renderableVanilla.getPoolClass(), "<init>", new Signature("()V"))));
+		ins.addInstruction(new InvokeSpecial(ins, new asm.pool.Method(renderableVanilla.getPoolClass(), "<init>", new Signature("()V"))));
 		ins.addInstruction(new VReturn(ins));
 	}
 }

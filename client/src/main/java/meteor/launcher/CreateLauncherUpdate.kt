@@ -9,7 +9,7 @@ import java.util.zip.CRC32
 import kotlin.math.ceil
 
 object CreateLauncherUpdate {
-    private val releaseVersion = "292"
+    private val releaseVersion = "299"
     private val runtimeVersion = "17.0.2"
 
     private val release = LauncherUpdate()
@@ -27,14 +27,16 @@ object CreateLauncherUpdate {
             releaseDir.deleteRecursively()
             releaseDir.mkdir()
 
-        if (!clientBat.exists()) clientBat.createNewFile()
+        clientBat.createNewFile()
+        if(clientBat.exists()) {
             clientBat.writeText("\"%USERPROFILE%\\.meteor\\launcher\\client.exe\"\n" + "pause")
 
-        crawlDirectory(java.io.File("./client/build/compose/binaries/main/app/client/"))
+            crawlDirectory(java.io.File("./client/build/compose/binaries/main/app/client/"))
 
-        java.io.File("./client/build/release/release.json").writeText(gson.toJson(release))
+            java.io.File("./client/build/release/release.json").writeText(gson.toJson(release))
 
-        java.io.File("./client/build/release/runtime.version").writeText(runtimeVersion)
+            java.io.File("./client/build/release/runtime.version").writeText(runtimeVersion)
+        }
 
     }
 

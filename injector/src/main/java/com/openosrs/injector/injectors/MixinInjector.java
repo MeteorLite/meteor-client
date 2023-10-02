@@ -30,6 +30,7 @@
  */
 package com.openosrs.injector.injectors;
 
+import asm.util.JarUtil;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableMap;
 import com.openosrs.injector.InjectException;
@@ -44,35 +45,34 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.inject.Provider;
 import lombok.Value;
-import net.runelite.asm.Annotation;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
-import net.runelite.asm.attributes.Annotated;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instruction.types.FieldInstruction;
-import net.runelite.asm.attributes.code.instruction.types.GetFieldInstruction;
-import net.runelite.asm.attributes.code.instruction.types.InvokeInstruction;
-import net.runelite.asm.attributes.code.instruction.types.LVTInstruction;
-import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
-import net.runelite.asm.attributes.code.instruction.types.ReturnInstruction;
-import net.runelite.asm.attributes.code.instruction.types.SetFieldInstruction;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.ANewArray;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.GetField;
-import net.runelite.asm.attributes.code.instructions.InvokeDynamic;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.Pop;
-import net.runelite.asm.attributes.code.instructions.PutField;
-import net.runelite.asm.signature.Signature;
-import net.runelite.deob.DeobAnnotations;
-import net.runelite.deob.util.JarUtil;
+import asm.Annotation;
+import asm.ClassFile;
+import asm.Field;
+import asm.Method;
+import asm.Type;
+import asm.attributes.Annotated;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instruction.types.FieldInstruction;
+import asm.attributes.code.instruction.types.GetFieldInstruction;
+import asm.attributes.code.instruction.types.InvokeInstruction;
+import asm.attributes.code.instruction.types.LVTInstruction;
+import asm.attributes.code.instruction.types.PushConstantInstruction;
+import asm.attributes.code.instruction.types.ReturnInstruction;
+import asm.attributes.code.instruction.types.SetFieldInstruction;
+import asm.attributes.code.instructions.ALoad;
+import asm.attributes.code.instructions.ANewArray;
+import asm.attributes.code.instructions.CheckCast;
+import asm.attributes.code.instructions.GetField;
+import asm.attributes.code.instructions.InvokeDynamic;
+import asm.attributes.code.instructions.InvokeSpecial;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.attributes.code.instructions.LDC;
+import asm.attributes.code.instructions.Pop;
+import asm.attributes.code.instructions.PutField;
+import asm.signature.Signature;
+import asm.DeobAnnotations;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 
@@ -91,7 +91,7 @@ public class MixinInjector extends AbstractInjector
 
 	private int injectedInterfaces = 0;
 	private final Map<String, Field> injectedFields = new HashMap<>();
-	private final Map<net.runelite.asm.pool.Field, ShadowField> shadowFields = new HashMap<>();
+	private final Map<asm.pool.Field, ShadowField> shadowFields = new HashMap<>();
 	private int copied = 0, replaced = 0, injected = 0;
 
 	public MixinInjector(InjectData inject)
@@ -295,7 +295,7 @@ public class MixinInjector extends AbstractInjector
 			final ClassFile mixinClass = mixinProvider.get();
 
 			// Keeps mappings between methods annotated with @Copy -> the copied method within the vanilla pack
-			Map<net.runelite.asm.pool.Method, CopiedMethod> copiedMethods = new HashMap<>();
+			Map<asm.pool.Method, CopiedMethod> copiedMethods = new HashMap<>();
 
 			// Handle the copy mixins first, so all other mixins know of the copies
 			for (Method mixinMethod : mixinClass.getMethods())
@@ -582,7 +582,7 @@ public class MixinInjector extends AbstractInjector
 		}
 
 		newCode.getExceptions().getExceptions().addAll(sourceCode.getExceptions().getExceptions());
-		for (net.runelite.asm.attributes.code.Exception e : newCode.getExceptions().getExceptions())
+		for (asm.attributes.code.Exception e : newCode.getExceptions().getExceptions())
 		{
 			e.setExceptions(newCode.getExceptions());
 		}
@@ -590,7 +590,7 @@ public class MixinInjector extends AbstractInjector
 		targetMethod.setCode(newCode);
 	}
 
-	private void setOwnersToTargetClass(ClassFile mixinCf, ClassFile cf, Method method, Map<net.runelite.asm.pool.Method, CopiedMethod> copiedMethods)
+	private void setOwnersToTargetClass(ClassFile mixinCf, ClassFile cf, Method method, Map<asm.pool.Method, CopiedMethod> copiedMethods)
 	{
 		ListIterator<Instruction> iterator = method.getCode().getInstructions().listIterator();
 
@@ -630,8 +630,8 @@ public class MixinInjector extends AbstractInjector
 				}
 				else if (ii.getMethod().getClazz().getName().equals(mixinCf.getName()))
 				{
-					ii.setMethod(new net.runelite.asm.pool.Method(
-						new net.runelite.asm.pool.Class(cf.getName()),
+					ii.setMethod(new asm.pool.Method(
+						new asm.pool.Class(cf.getName()),
 						ii.getMethod().getName(),
 						ii.getMethod().getType()
 					));
@@ -664,8 +664,8 @@ public class MixinInjector extends AbstractInjector
 				}
 				else if (fi.getField().getClazz().getName().equals(mixinCf.getName()))
 				{
-					fi.setField(new net.runelite.asm.pool.Field(
-						new net.runelite.asm.pool.Class(cf.getName()),
+					fi.setField(new asm.pool.Field(
+						new asm.pool.Class(cf.getName()),
 						fi.getField().getName(),
 						fi.getField().getType()
 					));

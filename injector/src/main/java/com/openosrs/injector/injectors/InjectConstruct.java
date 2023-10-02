@@ -36,20 +36,20 @@ import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.rsapi.RSApiMethod;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.runelite.asm.Annotation;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Type;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.Dup;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.New;
-import net.runelite.asm.attributes.code.instructions.Return;
-import net.runelite.asm.pool.Class;
-import net.runelite.asm.pool.Method;
-import net.runelite.asm.signature.Signature;
+import asm.Annotation;
+import asm.ClassFile;
+import asm.Type;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.CheckCast;
+import asm.attributes.code.instructions.Dup;
+import asm.attributes.code.instructions.InvokeSpecial;
+import asm.attributes.code.instructions.New;
+import asm.attributes.code.instructions.Return;
+import asm.pool.Class;
+import asm.pool.Method;
+import asm.signature.Signature;
 
 import static com.openosrs.injector.Injector.report;
 import static com.openosrs.injector.rsapi.RSApi.CONSTRUCT;
@@ -106,14 +106,14 @@ public class InjectConstruct extends AbstractInjector
 			.setReturnType(Type.VOID)
 			.build();
 
-		final net.runelite.asm.Method constructor = classToConstruct.findMethod("<init>", constr);
+		final asm.Method constructor = classToConstruct.findMethod("<init>", constr);
 		if (constructor == null)
 		{
 			throw new InjectException("Unable to find constructor for " + classToConstruct.getName() + ".<init>" + constr);
 		}
 
 
-		net.runelite.asm.Method setterMethod = new net.runelite.asm.Method(targetClass, apiMethod.getName(), apiMethod.getType());
+		asm.Method setterMethod = new asm.Method(targetClass, apiMethod.getName(), apiMethod.getType());
 		setterMethod.setAccessFlags(ACC_PUBLIC);
 		targetClass.addMethod(setterMethod);
 

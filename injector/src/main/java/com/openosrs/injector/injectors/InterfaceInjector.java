@@ -8,10 +8,10 @@
 package com.openosrs.injector.injectors;
 
 import com.openosrs.injector.injection.InjectData;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Interfaces;
-import net.runelite.asm.pool.Class;
-import net.runelite.deob.DeobAnnotations;
+import asm.ClassFile;
+import asm.Interfaces;
+import asm.pool.Class;
+import asm.DeobAnnotations;
 
 import static com.openosrs.injector.Injector.report;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;

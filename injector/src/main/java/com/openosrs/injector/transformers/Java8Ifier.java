@@ -10,10 +10,10 @@ package com.openosrs.injector.transformers;
 import com.openosrs.injector.injection.InjectData;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Exception;
+import asm.ClassFile;
+import asm.Method;
+import asm.attributes.Code;
+import asm.attributes.code.Exception;
 import org.objectweb.asm.Opcodes;
 
 public class Java8Ifier extends InjectTransformer

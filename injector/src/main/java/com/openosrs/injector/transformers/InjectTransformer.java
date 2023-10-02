@@ -11,7 +11,7 @@ import com.google.common.base.Stopwatch;
 import com.openosrs.injector.injection.InjectData;
 import lombok.RequiredArgsConstructor;
 import meteor.Logger;
-import net.runelite.asm.Named;
+import asm.Named;
 
 @RequiredArgsConstructor
 public abstract class InjectTransformer implements Named

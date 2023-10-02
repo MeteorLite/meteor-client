@@ -40,31 +40,31 @@ import java.util.Map;
 import java.util.Set;
 import javax.inject.Provider;
 import lombok.AllArgsConstructor;
-import net.runelite.asm.Annotation;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.InstructionType;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instruction.types.DupInstruction;
-import net.runelite.asm.attributes.code.instruction.types.SetFieldInstruction;
-import net.runelite.asm.attributes.code.instructions.ArrayStore;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.Dup;
-import net.runelite.asm.attributes.code.instructions.IMul;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.LMul;
-import net.runelite.asm.attributes.code.instructions.PutField;
-import net.runelite.asm.attributes.code.instructions.Swap;
-import net.runelite.asm.execution.Execution;
-import net.runelite.asm.execution.InstructionContext;
-import net.runelite.asm.execution.StackContext;
-import net.runelite.asm.pool.Class;
-import net.runelite.asm.signature.Signature;
-import net.runelite.deob.DeobAnnotations;
+import asm.Annotation;
+import asm.ClassFile;
+import asm.Field;
+import asm.Method;
+import asm.Type;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.InstructionType;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instruction.types.DupInstruction;
+import asm.attributes.code.instruction.types.SetFieldInstruction;
+import asm.attributes.code.instructions.ArrayStore;
+import asm.attributes.code.instructions.CheckCast;
+import asm.attributes.code.instructions.Dup;
+import asm.attributes.code.instructions.IMul;
+import asm.attributes.code.instructions.LDC;
+import asm.attributes.code.instructions.LMul;
+import asm.attributes.code.instructions.PutField;
+import asm.attributes.code.instructions.Swap;
+import asm.execution.Execution;
+import asm.execution.InstructionContext;
+import asm.execution.StackContext;
+import asm.pool.Class;
+import asm.signature.Signature;
+import asm.DeobAnnotations;
 
 import static com.openosrs.injector.Injector.report;
 
@@ -402,7 +402,7 @@ public class InjectHook extends AbstractInjector
 		{
 			return InjectUtil.createInvokeFor(
 				instructions,
-				new net.runelite.asm.pool.Method(
+				new asm.pool.Method(
 					targetClass,
 					method.getName(),
 					method.getDescriptor()

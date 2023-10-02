@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.runelite.asm.Type;
-import net.runelite.asm.pool.Class;
+import asm.Type;
+import asm.pool.Class;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.ClassReader;
 

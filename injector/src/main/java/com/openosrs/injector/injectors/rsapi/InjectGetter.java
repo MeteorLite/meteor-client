@@ -34,16 +34,16 @@ import com.openosrs.injector.InjectException;
 import com.openosrs.injector.InjectUtil;
 import com.openosrs.injector.rsapi.RSApiMethod;
 import java.util.List;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.GetField;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Field;
+import asm.Method;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.ALoad;
+import asm.attributes.code.instructions.GetField;
+import asm.attributes.code.instructions.GetStatic;
+import asm.signature.Signature;
 
 public class InjectGetter
 {

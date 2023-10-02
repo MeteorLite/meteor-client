@@ -10,17 +10,17 @@ package com.openosrs.injector.injectors.raw;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
 import java.util.List;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.InstructionType;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.Dup;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.New;
-import net.runelite.asm.attributes.code.instructions.Return;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Method;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.InstructionType;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.Dup;
+import asm.attributes.code.instructions.InvokeSpecial;
+import asm.attributes.code.instructions.New;
+import asm.attributes.code.instructions.Return;
+import asm.signature.Signature;
 
 public class RuneliteObject extends AbstractInjector
 {
@@ -53,7 +53,7 @@ public class RuneliteObject extends AbstractInjector
 
 		ins.add(new New(instructions, runeliteObjectVanilla.getPoolClass()));
 		ins.add(new Dup(instructions));
-		ins.add(new InvokeSpecial(instructions, new net.runelite.asm.pool.Method(runeliteObjectVanilla.getPoolClass(), "<init>", new Signature("()V"))));
+		ins.add(new InvokeSpecial(instructions, new asm.pool.Method(runeliteObjectVanilla.getPoolClass(), "<init>", new Signature("()V"))));
 		ins.add(new Return(instructions, InstructionType.ARETURN));
 	}
 }

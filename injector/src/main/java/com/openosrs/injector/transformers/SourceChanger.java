@@ -8,7 +8,7 @@
 package com.openosrs.injector.transformers;
 
 import com.openosrs.injector.injection.InjectData;
-import net.runelite.asm.ClassFile;
+import asm.ClassFile;
 
 /**
  * This class changes the java source file debug information to the rs-client file name

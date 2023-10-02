@@ -37,16 +37,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import javax.inject.Provider;
-import net.runelite.asm.Annotation;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instruction.types.ReturnInstruction;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.signature.Signature;
+import asm.Annotation;
+import asm.ClassFile;
+import asm.Method;
+import asm.Type;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instruction.types.ReturnInstruction;
+import asm.attributes.code.instructions.ALoad;
+import asm.attributes.code.instructions.InvokeSpecial;
+import asm.signature.Signature;
 
 import static com.openosrs.injector.Injector.report;
 
@@ -101,7 +101,7 @@ public class InjectHookMethod extends AbstractInjector
 				final boolean notStatic = !mixinMethod.isStatic();
 				final Method targetMethod = InjectUtil.findMethod(inject, hookName, deobTarget.getName(), sig -> InjectUtil.argsMatch(sig, deobSig), notStatic, false);
 
-				final net.runelite.asm.pool.Method hookMethod = new net.runelite.asm.pool.Method(
+				final asm.pool.Method hookMethod = new asm.pool.Method(
 					targetClass.getPoolClass(),
 					mixinMethod.getName(),
 					mixinMethod.getDescriptor()
@@ -115,7 +115,7 @@ public class InjectHookMethod extends AbstractInjector
 		}
 	}
 
-	private void inject(final Method method, final net.runelite.asm.pool.Method hookMethod, boolean end)
+	private void inject(final Method method, final asm.pool.Method hookMethod, boolean end)
 	{
 		final Instructions ins = method.getCode().getInstructions();
 		final ListIterator<Instruction> it;
@@ -151,7 +151,7 @@ public class InjectHookMethod extends AbstractInjector
 		insertVoke(method, hookMethod, it);
 	}
 
-	private void insertVoke(final Method method, final net.runelite.asm.pool.Method hookMethod, ListIterator<Instruction> iterator)
+	private void insertVoke(final Method method, final asm.pool.Method hookMethod, ListIterator<Instruction> iterator)
 	{
 		final Instructions instructions = method.getCode().getInstructions();
 		int varIdx = 0;

@@ -11,39 +11,39 @@ import com.google.common.collect.Lists;
 import com.openosrs.injector.InjectUtil;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.AbstractInjector;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.InstructionType;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instruction.types.GetFieldInstruction;
-import net.runelite.asm.attributes.code.instruction.types.LVTInstruction;
-import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.IALoad;
-import net.runelite.asm.attributes.code.instructions.IAStore;
-import net.runelite.asm.attributes.code.instructions.IAdd;
-import net.runelite.asm.attributes.code.instructions.ILoad;
-import net.runelite.asm.attributes.code.instructions.IOr;
-import net.runelite.asm.attributes.code.instructions.IShR;
-import net.runelite.asm.attributes.code.instructions.ISub;
-import net.runelite.asm.attributes.code.instructions.IUShR;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.SiPush;
-import net.runelite.asm.execution.Execution;
-import net.runelite.asm.execution.InstructionContext;
-import net.runelite.asm.execution.MethodContext;
-import net.runelite.asm.execution.StackContext;
-import net.runelite.asm.execution.VariableContext;
-import net.runelite.asm.pool.Class;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Field;
+import asm.Method;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.InstructionType;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instruction.types.GetFieldInstruction;
+import asm.attributes.code.instruction.types.LVTInstruction;
+import asm.attributes.code.instruction.types.PushConstantInstruction;
+import asm.attributes.code.instructions.GetStatic;
+import asm.attributes.code.instructions.IALoad;
+import asm.attributes.code.instructions.IAStore;
+import asm.attributes.code.instructions.IAdd;
+import asm.attributes.code.instructions.ILoad;
+import asm.attributes.code.instructions.IOr;
+import asm.attributes.code.instructions.IShR;
+import asm.attributes.code.instructions.ISub;
+import asm.attributes.code.instructions.IUShR;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.attributes.code.instructions.LDC;
+import asm.attributes.code.instructions.SiPush;
+import asm.execution.Execution;
+import asm.execution.InstructionContext;
+import asm.execution.MethodContext;
+import asm.execution.StackContext;
+import asm.execution.VariableContext;
+import asm.pool.Class;
+import asm.signature.Signature;
 
 public class RasterizerAlpha extends AbstractInjector
 {
-	private static final net.runelite.asm.pool.Method DRAWALPHA = new net.runelite.asm.pool.Method(
+	private static final asm.pool.Method DRAWALPHA = new asm.pool.Method(
 			new Class("Client"),
 			"drawAlpha",
 			new Signature("([IIII)V")

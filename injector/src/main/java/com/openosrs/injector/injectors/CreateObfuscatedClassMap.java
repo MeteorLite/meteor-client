@@ -30,11 +30,12 @@
  */
 package com.openosrs.injector.injectors;
 
+import asm.DeobAnnotations;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.openosrs.injector.injection.InjectData;
-import net.runelite.asm.ClassFile;
-import net.runelite.deob.DeobAnnotations;
+import asm.ClassFile;
+
 
 import java.io.File;
 import java.io.FileWriter;

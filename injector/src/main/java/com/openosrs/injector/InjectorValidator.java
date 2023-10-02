@@ -13,8 +13,8 @@ import com.openosrs.injector.rsapi.RSApiClass;
 import com.openosrs.injector.rsapi.RSApiMethod;
 import lombok.RequiredArgsConstructor;
 import meteor.Logger;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.pool.Class;
+import asm.ClassFile;
+import asm.pool.Class;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;
 
 @RequiredArgsConstructor

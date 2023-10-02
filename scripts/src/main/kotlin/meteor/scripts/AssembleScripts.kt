@@ -50,7 +50,7 @@ class AssembleScripts private constructor(private val scriptDirectory: File, pri
         var count = 0
         val scriptOut = File(
             outputDirectory,
-            Integer.toString(IndexType.CLIENTSCRIPT.number)
+            IndexType.CLIENTSCRIPT.number.toString()
         )
         scriptOut.mkdirs()
 

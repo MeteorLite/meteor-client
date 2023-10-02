@@ -14,24 +14,24 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
-import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.code.Instruction;
-import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.GetField;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
-import net.runelite.asm.attributes.code.instructions.New;
-import net.runelite.asm.attributes.code.instructions.PutField;
-import net.runelite.asm.attributes.code.instructions.PutStatic;
-import net.runelite.asm.pool.Class;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.Field;
+import asm.Method;
+import asm.Type;
+import asm.attributes.Code;
+import asm.attributes.code.Instruction;
+import asm.attributes.code.Instructions;
+import asm.attributes.code.instructions.CheckCast;
+import asm.attributes.code.instructions.GetField;
+import asm.attributes.code.instructions.GetStatic;
+import asm.attributes.code.instructions.InvokeSpecial;
+import asm.attributes.code.instructions.InvokeStatic;
+import asm.attributes.code.instructions.InvokeVirtual;
+import asm.attributes.code.instructions.New;
+import asm.attributes.code.instructions.PutField;
+import asm.attributes.code.instructions.PutStatic;
+import asm.pool.Class;
+import asm.signature.Signature;
 import org.objectweb.asm.Opcodes;
 
 public class CopyRuneLiteClasses extends AbstractInjector
@@ -130,7 +130,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 
 				if (i instanceof PutField)
 				{
-					net.runelite.asm.pool.Field field = ((PutField) i).getField();
+					asm.pool.Field field = ((PutField) i).getField();
 					Field vanilla = findField(field);
 
 					if (vanilla != null)
@@ -145,7 +145,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 				}
 				else if (i instanceof GetField)
 				{
-					net.runelite.asm.pool.Field field = ((GetField) i).getField();
+					asm.pool.Field field = ((GetField) i).getField();
 					Field vanilla = findField(field);
 
 					if (vanilla != null)
@@ -160,7 +160,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 				}
 				else if (i instanceof PutStatic)
 				{
-					net.runelite.asm.pool.Field field = ((PutStatic) i).getField();
+					asm.pool.Field field = ((PutStatic) i).getField();
 					Field vanilla = findField(field);
 
 					if (vanilla != null)
@@ -175,7 +175,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 				}
 				else if (i instanceof GetStatic)
 				{
-					net.runelite.asm.pool.Field field = ((GetStatic) i).getField();
+					asm.pool.Field field = ((GetStatic) i).getField();
 					Field vanilla = findField(field);
 
 					if (method.getClassFile().getName().equals(field.getClazz().getName()) && field.getType().toString().contains("Lnet/runelite/rs/api/RS"))
@@ -199,7 +199,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 				}
 				else if (i instanceof InvokeSpecial)
 				{
-					net.runelite.asm.pool.Method meth = ((InvokeSpecial) i).getMethod();
+					asm.pool.Method meth = ((InvokeSpecial) i).getMethod();
 					Method vanilla = findMethod(meth, true);
 
 					if (vanilla != null)
@@ -214,7 +214,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 				}
 				else if (i instanceof InvokeStatic)
 				{
-					net.runelite.asm.pool.Method meth = ((InvokeStatic) i).getMethod();
+					asm.pool.Method meth = ((InvokeStatic) i).getMethod();
 					Method vanilla = findMethod(meth, false);
 
 					if (vanilla != null)
@@ -229,7 +229,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 				}
 				else if (i instanceof InvokeVirtual)
 				{
-					net.runelite.asm.pool.Method meth = ((InvokeVirtual) i).getMethod();
+					asm.pool.Method meth = ((InvokeVirtual) i).getMethod();
 					Method vanilla = findMethod(meth, true);
 
 					if (vanilla != null)
@@ -282,7 +282,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 		return InjectUtil.deobToVanilla(inject, type);
 	}
 
-	private Method findMethod(net.runelite.asm.pool.Method meth, boolean notStatic)
+	private Method findMethod(asm.pool.Method meth, boolean notStatic)
 	{
 		try
 		{
@@ -294,7 +294,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 		}
 	}
 
-	private Field findField(net.runelite.asm.pool.Field field)
+	private Field findField(asm.pool.Field field)
 	{
 		try
 		{

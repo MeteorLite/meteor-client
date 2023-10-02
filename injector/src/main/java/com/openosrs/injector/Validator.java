@@ -7,7 +7,7 @@
  */
 package com.openosrs.injector;
 
-import net.runelite.asm.Named;
+import asm.Named;
 
 public interface Validator extends Named
 {

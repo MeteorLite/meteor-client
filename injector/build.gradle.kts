@@ -14,7 +14,7 @@ repositories{
 dependencies{
     with(projects){
         implementation(annotations)
-        implementation(deobfuscator)
+        implementation(asm)
         implementation(apiRs)
         implementation(logger)
         implementation(cache)

@@ -7,6 +7,7 @@
  */
 package com.openosrs.injector;
 
+import asm.util.JarUtil;
 import com.google.common.hash.Hashing;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injection.InjectTaskHandler;
@@ -30,10 +31,11 @@ import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.util.EnumConverter;
 import meteor.Logger;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.ClassGroup;
-import net.runelite.deob.util.JarUtil;
-import static net.runelite.deob.util.JarUtil.load;
+import asm.ClassFile;
+import asm.ClassGroup;
+
+import static asm.util.JarUtil.load;
+
 
 public class Injector extends InjectData implements InjectTaskHandler
 {

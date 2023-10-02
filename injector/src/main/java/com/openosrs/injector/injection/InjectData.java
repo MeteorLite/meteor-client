@@ -16,12 +16,12 @@ import java.util.function.BiConsumer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.ClassGroup;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
-import net.runelite.asm.signature.Signature;
+import asm.ClassFile;
+import asm.ClassGroup;
+import asm.Field;
+import asm.Method;
+import asm.Type;
+import asm.signature.Signature;
 
 /**
  * Abstract class meant as the interface of {@link com.openosrs.injector.Injector injection} for injectors
