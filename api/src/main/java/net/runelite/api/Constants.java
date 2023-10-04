@@ -35,12 +35,12 @@ public class Constants
 	/**
 	 * The original width of the game when running in fixed mode.
 	 */
-	public static final int GAME_FIXED_WIDTH = 765;
+	public static final int GAME_FIXED_WIDTH = 511;
 
 	/**
 	 * The original height of the game when running in fixed mode.
 	 */
-	public static final int GAME_FIXED_HEIGHT = 503;
+	public static final int GAME_FIXED_HEIGHT = 343;
 
 	/**
 	 * Dimension representation of the width and height of the game in fixed mode.
@@ -127,7 +127,7 @@ public class Constants
 	/**
 	 * High alchemy = shop price * HIGH_ALCHEMY_MULTIPLIER
 	 *
-	 * @see ItemComposition#getPrice
+	 * @see //ItemComposition#getPrice
 	 */
 	public static final float HIGH_ALCHEMY_MULTIPLIER = 0.6f;
 

@@ -57,10 +57,10 @@ public class DrawMenu extends AbstractInjector
 		 * --------
 		 */
 
-		final net.runelite.asm.pool.Method drawMenu = inject.getVanilla().findClass("Client").findMethod("drawMenu").getPoolMethod();
-		final Method drawLoggedIn = InjectUtil.findMethod(inject, "drawLoggedIn", "Client", null, true, false);
-		final Field gameDrawMode = InjectUtil.findField(inject, "gameDrawingMode", "Client").getPoolField();
-		final Field isMenuOpen = InjectUtil.findField(inject, "isMenuOpen", "Client").getPoolField();
+		final net.runelite.asm.pool.Method drawMenu = inject.getVanilla().findClass("osrs/Client").findMethod("drawMenu").getPoolMethod();
+		final Method drawLoggedIn = InjectUtil.findMethod(inject, "drawLoggedIn", "osrs/Client", null, true, false);
+		final Field gameDrawMode = InjectUtil.findField(inject, "gameDrawingMode", "osrs/Client").getPoolField();
+		final Field isMenuOpen = InjectUtil.findField(inject, "isMenuOpen", "osrs/Client").getPoolField();
 
 		final Execution execution = new Execution(inject.getVanilla());
 		execution.noInvoke = true;

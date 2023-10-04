@@ -2,10 +2,7 @@ package meteor.util
 
 import meteor.Main
 import net.runelite.api.*
-import net.runelite.api.Point
-import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
-import net.runelite.api.vars.InterfaceTab
 import java.awt.*
 import java.awt.image.BufferedImage
 
@@ -64,6 +61,7 @@ object OverlayUtil {
             renderTextLocation(graphics, canvasCenterPoint, txtString, fontColor)
         }
     }
+/*
 
     fun renderActorOverlay(graphics: Graphics2D, actor: Actor, text: String, color: Color) {
         val poly = actor.canvasTilePoly
@@ -103,6 +101,8 @@ object OverlayUtil {
         }
         renderImageLocation(graphics, localLocation, image, 0)
     }
+*/
+/*
 
     fun renderImageLocation(
         graphics: Graphics2D,
@@ -129,6 +129,7 @@ object OverlayUtil {
         graphics.color = color
         graphics.fill(poly)
     }
+*/
 
     fun renderMinimapLocation(graphics: Graphics2D, mini: Point, color: Color) {
         graphics.color = Color.BLACK
@@ -146,6 +147,7 @@ object OverlayUtil {
             MINIMAP_DOT_RADIUS
         )
     }
+/*
 
     fun renderImageLocation(graphics: Graphics2D, imgLoc: Point, image: BufferedImage) {
         val x = imgLoc.x
@@ -166,6 +168,7 @@ object OverlayUtil {
         graphics.drawRect(center.x - width / 2, center.y - height / 2, width - 1, height - 1)
         graphics.rotate(-angle, center.x.toDouble(), center.y.toDouble())
     }
+*/
 
     fun renderHoverableArea(
         graphics: Graphics2D,
@@ -186,6 +189,7 @@ object OverlayUtil {
             graphics.fill(area)
         }
     }
+/*
 
     fun renderActorOverlayImage(
         graphics: Graphics2D,
@@ -215,6 +219,7 @@ object OverlayUtil {
         val poly = Perspective.getCanvasTilePoly(Main.client, lp) ?: return
         drawStrokeAndFillPoly(graphics, color, strokeWidth, outlineAlpha, fillAlpha, poly)
     }
+*/
 
     fun drawStrokeAndFillPoly(
         graphics: Graphics2D, color: Color, strokeWidth: Int,
@@ -226,16 +231,18 @@ object OverlayUtil {
         graphics.color = Color(color.red, color.green, color.blue, fillAlpha)
         graphics.fill(poly)
     }
+/*
 
     fun renderPrayerOverlay(graphics: Graphics2D, prayer: Prayer, color: Color): Rectangle? {
         val widget = Main.client.getWidget(prayer.widgetInfo)
-        if (widget == null || Main.client.getVarcIntValue(VarClientInt.INVENTORY_TAB.index) != InterfaceTab.PRAYER.id) {
+        if (widget == null || Main.client.getVarcIntValue(VarClientInt.INVENTORY_TAB) != InterfaceTab.PRAYER.id) {
             return null
         }
         val bounds = widget.bounds
         renderPolygon(graphics, rectangleToPolygon(bounds), color)
         return bounds
     }
+*/
 
     private fun rectangleToPolygon(rect: Rectangle): Polygon {
         val xpoints = intArrayOf(rect.x, rect.x + rect.width, rect.x + rect.width, rect.x)

@@ -22,10 +22,30 @@ import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-@Getter
-@Setter
+
 public class RSApiMethod extends MethodVisitor implements Annotated, Named
 {
+	public Method getMethod() {
+		return method;
+	}
+
+	public int getAccessFlags() {
+		return accessFlags;
+	}
+
+	@Override
+	public Map<Type, Annotation> getAnnotations() {
+		return annotations;
+	}
+
+	public boolean isInjected() {
+		return injected;
+	}
+
+	public void setInjected(boolean injected) {
+		this.injected = injected;
+	}
+
 	private final Method method;
 	private final int accessFlags;
 	private final Map<Type, Annotation> annotations = new HashMap<>();
@@ -65,7 +85,7 @@ public class RSApiMethod extends MethodVisitor implements Annotated, Named
 
 	public AnnotationVisitor visitAnnotation(String descriptor, boolean visible)
 	{
-		final var annotation = new Annotation(new Type(descriptor), visible);
+		final Annotation annotation = new Annotation(new Type(descriptor), visible);
 		this.addAnnotation(annotation);
 		return annotation;
 	}

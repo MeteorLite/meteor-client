@@ -29,14 +29,13 @@ import meteor.ui.components.ComponentConstants
 import meteor.ui.components.LayoutableRenderableEntity
 import meteor.ui.components.TextComponent
 import meteor.ui.overlay.BackgroundComponent
-import net.runelite.api.IndexedSprite
 import java.awt.*
 import java.util.regex.Pattern
 
 class TooltipComponent : LayoutableRenderableEntity {
     var text: String? = null
     var backgroundColor = Color(70, 61, 50, 156)
-    var modIcons: Array<IndexedSprite>? = null
+    //var modIcons: Array<IndexedSprite>? = null
 
     private var preferredLocationp: Point? = Point()
     private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
@@ -121,13 +120,13 @@ class TooltipComponent : LayoutableRenderableEntity {
                     } else if (subLine == "/col") {
                         nextColor = Color.WHITE
                     } else if (subLine.startsWith("img=")) {
-                        if (modIcons != null) {
+/*                        if (modIcons != null) {
                             val argument = subLine.substring(4)
                             val iconId = argument.toInt()
                             val modIcon = modIcons!![iconId]
                             renderModIcon(graphics, lineX, textY + i * textHeight - textDescent, modIcon)
                             lineX += modIcon.width
-                        }
+                        }*/
                     } else {
                         val textComponent = TextComponent()
                         textComponent.color = nextColor
@@ -152,7 +151,7 @@ class TooltipComponent : LayoutableRenderableEntity {
         return Dimension(tooltipWidth + OFFSET * 2, tooltipHeight + OFFSET * 2)
     }
 
-    private fun renderModIcon(graphics: Graphics2D, x: Int, y: Int, modIcon: IndexedSprite) {
+/*    private fun renderModIcon(graphics: Graphics2D, x: Int, y: Int, modIcon: IndexedSprite) {
         var sourceOffset = 0
         for (y2 in 0 until modIcon.height) {
             for (x2 in 0 until modIcon.width) {
@@ -163,7 +162,7 @@ class TooltipComponent : LayoutableRenderableEntity {
                 }
             }
         }
-    }
+    }*/
 
     companion object {
         private val BR = Pattern.compile("</br>")

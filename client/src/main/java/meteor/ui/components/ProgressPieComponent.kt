@@ -24,7 +24,6 @@
  */
 package meteor.ui.components
 
-import net.runelite.api.Point
 import java.awt.*
 import java.awt.geom.Arc2D
 

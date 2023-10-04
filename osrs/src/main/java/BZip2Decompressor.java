@@ -1,640 +1,527 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+// Decompiled by Jad v1.5.8c. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) nonlb 
 
-@ObfuscatedName("tt")
-@Implements("BZip2Decompressor")
-public final class BZip2Decompressor {
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "Lte;"
-	)
-	@Export("BZip2Decompressor_state")
-	static BZip2State BZip2Decompressor_state;
+import java.io.PrintStream;
 
-	static {
-		BZip2Decompressor_state = new BZip2State();
-	}
+public class BZip2Decompressor {
 
-	@ObfuscatedName("au")
-	@Export("BZip2Decompressor_decompress")
-	public static int BZip2Decompressor_decompress(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		synchronized(BZip2Decompressor_state) {
-			BZip2Decompressor_state.inputArray = var2;
-			BZip2Decompressor_state.nextByte = var4;
-			BZip2Decompressor_state.outputArray = var0;
-			BZip2Decompressor_state.next_out = 0;
-			BZip2Decompressor_state.outputLength = var1;
-			BZip2Decompressor_state.bsLive = 0;
-			BZip2Decompressor_state.bsBuff = 0;
-			BZip2Decompressor_state.nextBit_unused = 0;
-			BZip2Decompressor_state.field4182 = 0;
-			BZip2Decompressor_decompress(BZip2Decompressor_state);
-			var1 -= BZip2Decompressor_state.outputLength;
-			BZip2Decompressor_state.inputArray = null;
-			BZip2Decompressor_state.outputArray = null;
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(Lte;)V"
-	)
-	static void method2607(BZip2State var0) {
-		byte var2 = var0.out_char;
-		int var3 = var0.su_rNToGo;
-		int var4 = var0.nblocks_used;
-		int var5 = var0.su_ch2;
-		int[] var6 = class148.BZip2Decompressor_block;
-		int var7 = var0.field4179;
-		byte[] var8 = var0.outputArray;
-		int var9 = var0.next_out;
-		int var10 = var0.outputLength;
-		int var12 = var0.field4189 + 1;
-
-		label62:
-		while (true) {
-			if (var3 > 0) {
-				while (true) {
-					if (var10 == 0) {
-						break label62;
-					}
-
-					if (var3 == 1) {
-						if (var10 == 0) {
-							var3 = 1;
-							break label62;
-						}
-
-						var8[var9] = var2;
-						++var9;
-						--var10;
+	private static void method129(BZip2Block bzip2block) {
+		byte byte4 = bzip2block.aByte466;
+		int i = bzip2block.anInt467;
+		int j = bzip2block.anInt476;
+		int k = bzip2block.anInt475;
+		int ai[] = BZip2Block.anIntArray477;
+		int l = bzip2block.anInt474;
+		byte abyte0[] = bzip2block.aByteArray461;
+		int i1 = bzip2block.anInt462;
+		int j1 = bzip2block.anInt463;
+		int k1 = j1;
+		int l1 = bzip2block.anInt479 + 1;
+label0:
+		do {
+			if(i > 0) {
+				do {
+					if(j1 == 0)
+						break label0;
+					if(i == 1)
 						break;
-					}
-
-					var8[var9] = var2;
-					--var3;
-					++var9;
-					--var10;
-				}
-			}
-
-			while (var4 != var12) {
-				var2 = (byte)var5;
-				var7 = var6[var7];
-				byte var1 = (byte)var7;
-				var7 >>= 8;
-				++var4;
-				if (var1 != var5) {
-					var5 = var1;
-					if (var10 == 0) {
-						var3 = 1;
-						break label62;
-					}
-
-					var8[var9] = var2;
-					++var9;
-					--var10;
-				} else {
-					if (var4 != var12) {
-						var3 = 2;
-						var7 = var6[var7];
-						var1 = (byte)var7;
-						var7 >>= 8;
-						++var4;
-						if (var4 != var12) {
-							if (var1 != var5) {
-								var5 = var1;
-							} else {
-								var3 = 3;
-								var7 = var6[var7];
-								var1 = (byte)var7;
-								var7 >>= 8;
-								++var4;
-								if (var4 != var12) {
-									if (var1 != var5) {
-										var5 = var1;
-									} else {
-										var7 = var6[var7];
-										var1 = (byte)var7;
-										var7 >>= 8;
-										++var4;
-										var3 = (var1 & 255) + 4;
-										var7 = var6[var7];
-										var5 = (byte)var7;
-										var7 >>= 8;
-										++var4;
-									}
-								}
-							}
-						}
-						continue label62;
-					}
-
-					if (var10 == 0) {
-						var3 = 1;
-						break label62;
-					}
-
-					var8[var9] = var2;
-					++var9;
-					--var10;
-				}
-			}
-
-			var3 = 0;
-			break;
-		}
-
-		int var13 = var0.field4182;
-		var0.field4182 += var10 - var10;
-		if (var0.field4182 < var13) {
-		}
-
-		var0.out_char = var2;
-		var0.su_rNToGo = var3;
-		var0.nblocks_used = var4;
-		var0.su_ch2 = var5;
-		class148.BZip2Decompressor_block = var6;
-		var0.field4179 = var7;
-		var0.outputArray = var8;
-		var0.next_out = var9;
-		var0.outputLength = var10;
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(Lte;)V"
-	)
-	@Export("BZip2Decompressor_decompress")
-	static void BZip2Decompressor_decompress(BZip2State var0) {
-		boolean var4 = false;
-		boolean var5 = false;
-		boolean var6 = false;
-		boolean var7 = false;
-		boolean var8 = false;
-		boolean var9 = false;
-		boolean var10 = false;
-		boolean var11 = false;
-		boolean var12 = false;
-		boolean var13 = false;
-		boolean var14 = false;
-		boolean var15 = false;
-		boolean var16 = false;
-		boolean var17 = false;
-		boolean var18 = false;
-		boolean var19 = false;
-		boolean var20 = false;
-		boolean var21 = false;
-		int var22 = 0;
-		int[] var23 = null;
-		int[] var24 = null;
-		int[] var25 = null;
-		var0.blockSize100k = -1562387581;
-		if (class148.BZip2Decompressor_block == null) {
-			class148.BZip2Decompressor_block = new int[var0.blockSize100k * 731544800];
-		}
-
-		boolean var26 = true;
-
-		while (true) {
-			while (var26) {
-				byte var1 = BZip2Decompressor_readNextByte(var0);
-				if (var1 == 23) {
-					return;
-				}
-
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var1 = BZip2Decompressor_readNextBit(var0);
-				if (var1 != 0) {
-				}
-
-				var0.originalPointer = 0;
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var0.originalPointer = var0.originalPointer << 8 | var1 & 255;
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var0.originalPointer = var0.originalPointer << 8 | var1 & 255;
-				var1 = BZip2Decompressor_readNextByte(var0);
-				var0.originalPointer = var0.originalPointer << 8 | var1 & 255;
-
-				int var36;
-				for (var36 = 0; var36 < 16; ++var36) {
-					var1 = BZip2Decompressor_readNextBit(var0);
-					if (var1 == 1) {
-						var0.inUse16[var36] = true;
-					} else {
-						var0.inUse16[var36] = false;
-					}
-				}
-
-				for (var36 = 0; var36 < 256; ++var36) {
-					var0.inUse[var36] = false;
-				}
-
-				int var37;
-				for (var36 = 0; var36 < 16; ++var36) {
-					if (var0.inUse16[var36]) {
-						for (var37 = 0; var37 < 16; ++var37) {
-							var1 = BZip2Decompressor_readNextBit(var0);
-							if (var1 == 1) {
-								var0.inUse[var37 + var36 * 16] = true;
-							}
-						}
-					}
-				}
-
-				makeMaps(var0);
-				int var39 = var0.nInUse + 2;
-				int var40 = BZip2Decompressor_readBits(3, var0);
-				int var41 = BZip2Decompressor_readBits(15, var0);
-
-				for (var36 = 0; var36 < var41; ++var36) {
-					var37 = 0;
-
-					while (true) {
-						var1 = BZip2Decompressor_readNextBit(var0);
-						if (var1 == 0) {
-							var0.selectorMtf[var36] = (byte)var37;
-							break;
-						}
-
-						++var37;
-					}
-				}
-
-				byte[] var27 = new byte[6];
-
-				byte var29;
-				for (var29 = 0; var29 < var40; var27[var29] = var29++) {
-				}
-
-				for (var36 = 0; var36 < var41; ++var36) {
-					var29 = var0.selectorMtf[var36];
-
-					byte var28;
-					for (var28 = var27[var29]; var29 > 0; --var29) {
-						var27[var29] = var27[var29 - 1];
-					}
-
-					var27[0] = var28;
-					var0.selector[var36] = var28;
-				}
-
-				int var38;
-				for (var38 = 0; var38 < var40; ++var38) {
-					int var50 = BZip2Decompressor_readBits(5, var0);
-
-					for (var36 = 0; var36 < var39; ++var36) {
-						while (true) {
-							var1 = BZip2Decompressor_readNextBit(var0);
-							if (var1 == 0) {
-								var0.temp_charArray2d[var38][var36] = (byte)var50;
-								break;
-							}
-
-							var1 = BZip2Decompressor_readNextBit(var0);
-							if (var1 == 0) {
-								++var50;
-							} else {
-								--var50;
-							}
-						}
-					}
-				}
-
-				for (var38 = 0; var38 < var40; ++var38) {
-					byte var2 = 32;
-					byte var3 = 0;
-
-					for (var36 = 0; var36 < var39; ++var36) {
-						if (var0.temp_charArray2d[var38][var36] > var3) {
-							var3 = var0.temp_charArray2d[var38][var36];
-						}
-
-						if (var0.temp_charArray2d[var38][var36] < var2) {
-							var2 = var0.temp_charArray2d[var38][var36];
-						}
-					}
-
-					BZip2Decompressor_createHuffmanTables(var0.limit[var38], var0.base[var38], var0.perm[var38], var0.temp_charArray2d[var38], var2, var3, var39);
-					var0.minLens[var38] = var2;
-				}
-
-				int var42 = var0.nInUse + 1;
-				int var43 = -1;
-				byte var44 = 0;
-
-				for (var36 = 0; var36 <= 255; ++var36) {
-					var0.unzftab[var36] = 0;
-				}
-
-				int var56 = 4095;
-
-				int var35;
-				int var55;
-				for (var35 = 15; var35 >= 0; --var35) {
-					for (var55 = 15; var55 >= 0; --var55) {
-						var0.ll8[var56] = (byte)(var55 + var35 * 16);
-						--var56;
-					}
-
-					var0.getAndMoveToFrontDecode_yy[var35] = var56 + 1;
-				}
-
-				int var47 = 0;
-				byte var54;
-				if (var44 == 0) {
-					++var43;
-					var44 = 50;
-					var54 = var0.selector[var43];
-					var22 = var0.minLens[var54];
-					var23 = var0.limit[var54];
-					var25 = var0.perm[var54];
-					var24 = var0.base[var54];
-				}
-
-				int var45 = var44 - 1;
-				int var51 = var22;
-
-				int var52;
-				byte var53;
-				for (var52 = BZip2Decompressor_readBits(var22, var0); var52 > var23[var51]; var52 = var52 << 1 | var53) {
-					++var51;
-					var53 = BZip2Decompressor_readNextBit(var0);
-				}
-
-				int var46 = var25[var52 - var24[var51]];
-
-				while (true) {
-					int[] var10000;
-					int var10002;
-					while (var46 != var42) {
-						if (var46 != 0 && var46 != 1) {
-							int var33 = var46 - 1;
-							int var30;
-							if (var33 < 16) {
-								var30 = var0.getAndMoveToFrontDecode_yy[0];
-
-								for (var1 = var0.ll8[var30 + var33]; var33 > 3; var33 -= 4) {
-									int var34 = var30 + var33;
-									var0.ll8[var34] = var0.ll8[var34 - 1];
-									var0.ll8[var34 - 1] = var0.ll8[var34 - 2];
-									var0.ll8[var34 - 2] = var0.ll8[var34 - 3];
-									var0.ll8[var34 - 3] = var0.ll8[var34 - 4];
-								}
-
-								while (var33 > 0) {
-									var0.ll8[var30 + var33] = var0.ll8[var30 + var33 - 1];
-									--var33;
-								}
-
-								var0.ll8[var30] = var1;
-							} else {
-								int var31 = var33 / 16;
-								int var32 = var33 % 16;
-								var30 = var0.getAndMoveToFrontDecode_yy[var31] + var32;
-
-								for (var1 = var0.ll8[var30]; var30 > var0.getAndMoveToFrontDecode_yy[var31]; --var30) {
-									var0.ll8[var30] = var0.ll8[var30 - 1];
-								}
-
-								for (var10002 = var0.getAndMoveToFrontDecode_yy[var31]++; var31 > 0; --var31) {
-									var10002 = var0.getAndMoveToFrontDecode_yy[var31]--;
-									var0.ll8[var0.getAndMoveToFrontDecode_yy[var31]] = var0.ll8[var0.getAndMoveToFrontDecode_yy[var31 - 1] + 16 - 1];
-								}
-
-								var10002 = var0.getAndMoveToFrontDecode_yy[0]--;
-								var0.ll8[var0.getAndMoveToFrontDecode_yy[0]] = var1;
-								if (var0.getAndMoveToFrontDecode_yy[0] == 0) {
-									var56 = 4095;
-
-									for (var35 = 15; var35 >= 0; --var35) {
-										for (var55 = 15; var55 >= 0; --var55) {
-											var0.ll8[var56] = var0.ll8[var0.getAndMoveToFrontDecode_yy[var35] + var55];
-											--var56;
-										}
-
-										var0.getAndMoveToFrontDecode_yy[var35] = var56 + 1;
-									}
-								}
-							}
-
-							var10002 = var0.unzftab[var0.seqToUnseq[var1 & 255] & 255]++;
-							class148.BZip2Decompressor_block[var47] = var0.seqToUnseq[var1 & 255] & 255;
-							++var47;
-							if (var45 == 0) {
-								++var43;
-								var45 = 50;
-								var54 = var0.selector[var43];
-								var22 = var0.minLens[var54];
-								var23 = var0.limit[var54];
-								var25 = var0.perm[var54];
-								var24 = var0.base[var54];
-							}
-
-							--var45;
-							var51 = var22;
-
-							for (var52 = BZip2Decompressor_readBits(var22, var0); var52 > var23[var51]; var52 = var52 << 1 | var53) {
-								++var51;
-								var53 = BZip2Decompressor_readNextBit(var0);
-							}
-
-							var46 = var25[var52 - var24[var51]];
-						} else {
-							int var48 = -1;
-							int var49 = 1;
-
-							do {
-								if (var46 == 0) {
-									var48 += var49;
-								} else if (var46 == 1) {
-									var48 += var49 * 2;
-								}
-
-								var49 *= 2;
-								if (var45 == 0) {
-									++var43;
-									var45 = 50;
-									var54 = var0.selector[var43];
-									var22 = var0.minLens[var54];
-									var23 = var0.limit[var54];
-									var25 = var0.perm[var54];
-									var24 = var0.base[var54];
-								}
-
-								--var45;
-								var51 = var22;
-
-								for (var52 = BZip2Decompressor_readBits(var22, var0); var52 > var23[var51]; var52 = var52 << 1 | var53) {
-									++var51;
-									var53 = BZip2Decompressor_readNextBit(var0);
-								}
-
-								var46 = var25[var52 - var24[var51]];
-							} while(var46 == 0 || var46 == 1);
-
-							++var48;
-							var1 = var0.seqToUnseq[var0.ll8[var0.getAndMoveToFrontDecode_yy[0]] & 255];
-							var10000 = var0.unzftab;
-
-							for (var10000[var1 & 255] += var48; var48 > 0; --var48) {
-								class148.BZip2Decompressor_block[var47] = var1 & 255;
-								++var47;
-							}
-						}
-					}
-
-					var0.su_rNToGo = 0;
-					var0.out_char = 0;
-					var0.cftab[0] = 0;
-
-					for (var36 = 1; var36 <= 256; ++var36) {
-						var0.cftab[var36] = var0.unzftab[var36 - 1];
-					}
-
-					for (var36 = 1; var36 <= 256; ++var36) {
-						var10000 = var0.cftab;
-						var10000[var36] += var0.cftab[var36 - 1];
-					}
-
-					for (var36 = 0; var36 < var47; ++var36) {
-						var1 = (byte)(class148.BZip2Decompressor_block[var36] & 255);
-						var10000 = class148.BZip2Decompressor_block;
-						int var10001 = var0.cftab[var1 & 255];
-						var10000[var10001] |= var36 << 8;
-						var10002 = var0.cftab[var1 & 255]++;
-					}
-
-					var0.field4179 = class148.BZip2Decompressor_block[var0.originalPointer] >> 8;
-					var0.nblocks_used = 0;
-					var0.field4179 = class148.BZip2Decompressor_block[var0.field4179];
-					var0.su_ch2 = (byte)(var0.field4179 & 255);
-					var0.field4179 >>= 8;
-					++var0.nblocks_used;
-					var0.field4189 = var47;
-					method2607(var0);
-					if (var0.field4189 + 1 == var0.nblocks_used && var0.su_rNToGo == 0) {
-						var26 = true;
-						break;
-					}
-
-					var26 = false;
+					abyte0[i1] = byte4;
+					i--;
+					i1++;
+					j1--;
+				} while(true);
+				if(j1 == 0) {
+					i = 1;
 					break;
 				}
+				abyte0[i1] = byte4;
+				i1++;
+				j1--;
 			}
-
-			return;
-		}
-	}
-
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "(Lte;)B"
-	)
-	@Export("BZip2Decompressor_readNextByte")
-	static byte BZip2Decompressor_readNextByte(BZip2State var0) {
-		return (byte)BZip2Decompressor_readBits(8, var0);
-	}
-
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "(Lte;)B"
-	)
-	@Export("BZip2Decompressor_readNextBit")
-	static byte BZip2Decompressor_readNextBit(BZip2State var0) {
-		return (byte)BZip2Decompressor_readBits(1, var0);
-	}
-
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "(ILte;)I"
-	)
-	@Export("BZip2Decompressor_readBits")
-	static int BZip2Decompressor_readBits(int var0, BZip2State var1) {
-		while (var1.bsLive < var0) {
-			var1.bsBuff = var1.bsBuff << 8 | var1.inputArray[var1.nextByte] & 255;
-			var1.bsLive += 8;
-			++var1.nextByte;
-			++var1.nextBit_unused;
-			if (var1.nextBit_unused == 0) {
-			}
-		}
-
-		int var2 = var1.bsBuff >> var1.bsLive - var0 & (1 << var0) - 1;
-		var1.bsLive -= var0;
-		return var2;
-	}
-
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		descriptor = "(Lte;)V"
-	)
-	@Export("makeMaps")
-	static void makeMaps(BZip2State var0) {
-		var0.nInUse = 0;
-
-		for (int var1 = 0; var1 < 256; ++var1) {
-			if (var0.inUse[var1]) {
-				var0.seqToUnseq[var0.nInUse] = (byte)var1;
-				++var0.nInUse;
-			}
-		}
-
-	}
-
-	@ObfuscatedName("ap")
-	@Export("BZip2Decompressor_createHuffmanTables")
-	static void BZip2Decompressor_createHuffmanTables(int[] var0, int[] var1, int[] var2, byte[] var3, int var4, int var5, int var6) {
-		int var7 = 0;
-
-		int var8;
-		for (var8 = var4; var8 <= var5; ++var8) {
-			for (int var9 = 0; var9 < var6; ++var9) {
-				if (var8 == var3[var9]) {
-					var2[var7] = var9;
-					++var7;
+			boolean flag = true;
+			while(flag)  {
+				flag = false;
+				if(j == l1) {
+					i = 0;
+					break label0;
 				}
+				byte4 = (byte)k;
+				l = ai[l];
+				byte byte0 = (byte)(l & 0xff);
+				l >>= 8;
+				j++;
+				if(byte0 != k) {
+					k = byte0;
+					if(j1 == 0) {
+						i = 1;
+					} else {
+						abyte0[i1] = byte4;
+						i1++;
+						j1--;
+						flag = true;
+						continue;
+					}
+					break label0;
+				}
+				if(j != l1)
+					continue;
+				if(j1 == 0) {
+					i = 1;
+					break label0;
+				}
+				abyte0[i1] = byte4;
+				i1++;
+				j1--;
+				flag = true;
 			}
+			i = 2;
+			l = ai[l];
+			byte byte1 = (byte)(l & 0xff);
+			l >>= 8;
+			if(++j != l1)
+				if(byte1 != k) {
+					k = byte1;
+				} else {
+					i = 3;
+					l = ai[l];
+					byte byte2 = (byte)(l & 0xff);
+					l >>= 8;
+					if(++j != l1)
+						if(byte2 != k) {
+							k = byte2;
+						} else {
+							l = ai[l];
+							byte byte3 = (byte)(l & 0xff);
+							l >>= 8;
+							j++;
+							i = (byte3 & 0xff) + 4;
+							l = ai[l];
+							k = (byte)(l & 0xff);
+							l >>= 8;
+							j++;
+						}
+				}
+		} while(true);
+		int i2 = bzip2block.anInt464;
+		bzip2block.anInt464 += k1 - j1;
+		if(bzip2block.anInt464 < i2)
+			bzip2block.anInt465++;
+		bzip2block.aByte466 = byte4;
+		bzip2block.anInt467 = i;
+		bzip2block.anInt476 = j;
+		bzip2block.anInt475 = k;
+		BZip2Block.anIntArray477 = ai;
+		bzip2block.anInt474 = l;
+		bzip2block.aByteArray461 = abyte0;
+		bzip2block.anInt462 = i1;
+		bzip2block.anInt463 = j1;
+	}
+
+	private static void method130(int ai[], int ai1[], int ai2[], byte abyte0[], int i, int j, int k) {
+		int l = 0;
+		for(int i1 = i; i1 <= j; i1++) {
+			for(int l2 = 0; l2 < k; l2++)
+				if(abyte0[l2] == i1) {
+					ai2[l] = l2;
+					l++;
+				}
+
 		}
 
-		for (var8 = 0; var8 < 23; ++var8) {
-			var1[var8] = 0;
+		for(int j1 = 0; j1 < 23; j1++)
+			ai1[j1] = 0;
+
+		for(int k1 = 0; k1 < k; k1++)
+			ai1[abyte0[k1] + 1]++;
+
+		for(int l1 = 1; l1 < 23; l1++)
+			ai1[l1] += ai1[l1 - 1];
+
+		for(int i2 = 0; i2 < 23; i2++)
+			ai[i2] = 0;
+
+		int i3 = 0;
+		for(int j2 = i; j2 <= j; j2++) {
+			i3 += ai1[j2 + 1] - ai1[j2];
+			ai[j2] = i3 - 1;
+			i3 <<= 1;
 		}
 
-		for (var8 = 0; var8 < var6; ++var8) {
-			++var1[var3[var8] + 1];
+		for(int k2 = i + 1; k2 <= j; k2++)
+			ai1[k2] = (ai[k2 - 1] + 1 << 1) - ai1[k2];
+
+	}
+
+	private static int method131(int i, BZip2Block bzip2block) {
+		int j;
+		do {
+			if(bzip2block.anInt470 >= i) {
+				int k = bzip2block.anInt469 >> bzip2block.anInt470 - i & (1 << i) - 1;
+				bzip2block.anInt470 -= i;
+				j = k;
+				break;
+			}
+			bzip2block.anInt469 = bzip2block.anInt469 << 8 | bzip2block.aByteArray456[bzip2block.anInt457] & 0xff;
+			bzip2block.anInt470 += 8;
+			bzip2block.anInt457++;
+			bzip2block.anInt458--;
+			bzip2block.anInt459++;
+			if(bzip2block.anInt459 == 0)
+				bzip2block.anInt460++;
+		} while(true);
+		return j;
+	}
+
+	private static void method132(BZip2Block bzip2block) {
+		bzip2block.anInt478 = 0;
+		for(int i = 0; i < 256; i++)
+			if(bzip2block.aBooleanArray492[i]) {
+				bzip2block.aByteArray494[bzip2block.anInt478] = (byte)i;
+				bzip2block.anInt478++;
+			}
+
+	}
+
+	public static int method133(byte abyte0[], int i, byte abyte1[], int j, int k) {
+		BZip2Block bzip2block = new BZip2Block();
+		bzip2block.aByteArray456 = abyte1;
+		bzip2block.anInt457 = k;
+		bzip2block.aByteArray461 = abyte0;
+		bzip2block.anInt462 = 0;
+		bzip2block.anInt458 = j;
+		bzip2block.anInt463 = i;
+		bzip2block.anInt470 = 0;
+		bzip2block.anInt469 = 0;
+		bzip2block.anInt459 = 0;
+		bzip2block.anInt460 = 0;
+		bzip2block.anInt464 = 0;
+		bzip2block.anInt465 = 0;
+		bzip2block.anInt472 = 0;
+		method135(bzip2block);
+		i -= bzip2block.anInt463;
+		return i;
+	}
+
+	private static byte method134(BZip2Block bzip2block) {
+		return (byte)method131(8, bzip2block);
+	}
+
+	private static void method135(BZip2Block bzip2block) {
+		boolean flag = false;
+		boolean flag1 = false;
+		boolean flag2 = false;
+		boolean flag3 = false;
+		boolean flag4 = false;
+		boolean flag5 = false;
+		boolean flag6 = false;
+		boolean flag7 = false;
+		boolean flag8 = false;
+		boolean flag9 = false;
+		boolean flag10 = false;
+		boolean flag11 = false;
+		boolean flag12 = false;
+		boolean flag13 = false;
+		boolean flag14 = false;
+		boolean flag15 = false;
+		boolean flag16 = false;
+		boolean flag17 = false;
+		boolean flag18 = false;
+		int k8 = 0;
+		int ai[] = null;
+		int ai1[] = null;
+		int ai2[] = null;
+		bzip2block.anInt471 = 1;
+		if(BZip2Block.anIntArray477 == null)
+			BZip2Block.anIntArray477 = new int[bzip2block.anInt471 * 0x186a0];
+		boolean flag19 = true;
+		while(flag19)  {
+			byte byte0 = method134(bzip2block);
+			if(byte0 == 23)
+				return;
+			byte0 = method134(bzip2block);
+			byte0 = method134(bzip2block);
+			byte0 = method134(bzip2block);
+			byte0 = method134(bzip2block);
+			byte0 = method134(bzip2block);
+			bzip2block.anInt472++;
+			byte0 = method134(bzip2block);
+			byte0 = method134(bzip2block);
+			byte0 = method134(bzip2block);
+			byte0 = method134(bzip2block);
+			byte0 = method136(bzip2block);
+			if(byte0 != 0)
+				bzip2block.aBoolean468 = true;
+			else
+				bzip2block.aBoolean468 = false;
+			if(bzip2block.aBoolean468)
+				System.out.println("PANIC! RANDOMISED BLOCK!");
+			bzip2block.anInt473 = 0;
+			byte0 = method134(bzip2block);
+			bzip2block.anInt473 = bzip2block.anInt473 << 8 | byte0 & 0xff;
+			byte0 = method134(bzip2block);
+			bzip2block.anInt473 = bzip2block.anInt473 << 8 | byte0 & 0xff;
+			byte0 = method134(bzip2block);
+			bzip2block.anInt473 = bzip2block.anInt473 << 8 | byte0 & 0xff;
+			for(int j = 0; j < 16; j++) {
+				byte byte1 = method136(bzip2block);
+				if(byte1 == 1)
+					bzip2block.aBooleanArray493[j] = true;
+				else
+					bzip2block.aBooleanArray493[j] = false;
+			}
+
+			for(int k = 0; k < 256; k++)
+				bzip2block.aBooleanArray492[k] = false;
+
+			for(int l = 0; l < 16; l++)
+				if(bzip2block.aBooleanArray493[l]) {
+					for(int i3 = 0; i3 < 16; i3++) {
+						byte byte2 = method136(bzip2block);
+						if(byte2 == 1)
+							bzip2block.aBooleanArray492[l * 16 + i3] = true;
+					}
+
+				}
+
+			method132(bzip2block);
+			int i4 = bzip2block.anInt478 + 2;
+			int j4 = method131(3, bzip2block);
+			int k4 = method131(15, bzip2block);
+			for(int i1 = 0; i1 < k4; i1++) {
+				int j3 = 0;
+				do {
+					byte byte3 = method136(bzip2block);
+					if(byte3 == 0)
+						break;
+					j3++;
+				} while(true);
+				bzip2block.aByteArray498[i1] = (byte)j3;
+			}
+
+			byte abyte0[] = new byte[6];
+			for(byte byte16 = 0; byte16 < j4; byte16++)
+				abyte0[byte16] = byte16;
+
+			for(int j1 = 0; j1 < k4; j1++) {
+				byte byte17 = bzip2block.aByteArray498[j1];
+				byte byte15 = abyte0[byte17];
+				for(; byte17 > 0; byte17--)
+					abyte0[byte17] = abyte0[byte17 - 1];
+
+				abyte0[0] = byte15;
+				bzip2block.aByteArray497[j1] = byte15;
+			}
+
+			for(int k3 = 0; k3 < j4; k3++) {
+				int l6 = method131(5, bzip2block);
+				for(int k1 = 0; k1 < i4; k1++) {
+					do {
+						byte byte4 = method136(bzip2block);
+						if(byte4 == 0)
+							break;
+						byte4 = method136(bzip2block);
+						if(byte4 == 0)
+							l6++;
+						else
+							l6--;
+					} while(true);
+					bzip2block.aByteArrayArray499[k3][k1] = (byte)l6;
+				}
+
+			}
+
+			for(int l3 = 0; l3 < j4; l3++) {
+				byte byte8 = 32;
+				int i = 0;
+				for(int l1 = 0; l1 < i4; l1++) {
+					if(bzip2block.aByteArrayArray499[l3][l1] > i)
+						i = bzip2block.aByteArrayArray499[l3][l1];
+					if(bzip2block.aByteArrayArray499[l3][l1] < byte8)
+						byte8 = bzip2block.aByteArrayArray499[l3][l1];
+				}
+
+				method130(bzip2block.anIntArrayArray500[l3], bzip2block.anIntArrayArray501[l3], bzip2block.anIntArrayArray502[l3], bzip2block.aByteArrayArray499[l3], byte8, i, i4);
+				bzip2block.anIntArray503[l3] = byte8;
+			}
+
+			int l4 = bzip2block.anInt478 + 1;
+			int l5 = 0x186a0 * bzip2block.anInt471;
+			int i5 = -1;
+			int j5 = 0;
+			for(int i2 = 0; i2 <= 255; i2++)
+				bzip2block.anIntArray489[i2] = 0;
+
+			int j9 = 4095;
+			for(int l8 = 15; l8 >= 0; l8--) {
+				for(int i9 = 15; i9 >= 0; i9--) {
+					bzip2block.aByteArray495[j9] = (byte)(l8 * 16 + i9);
+					j9--;
+				}
+
+				bzip2block.anIntArray496[l8] = j9 + 1;
+			}
+
+			int i6 = 0;
+			if(j5 == 0) {
+				i5++;
+				j5 = 50;
+				byte byte12 = bzip2block.aByteArray497[i5];
+				k8 = bzip2block.anIntArray503[byte12];
+				ai = bzip2block.anIntArrayArray500[byte12];
+				ai2 = bzip2block.anIntArrayArray502[byte12];
+				ai1 = bzip2block.anIntArrayArray501[byte12];
+			}
+			j5--;
+			int i7 = k8;
+			int l7;
+			byte byte9;
+			for(l7 = method131(i7, bzip2block); l7 > ai[i7]; l7 = l7 << 1 | byte9) {
+				i7++;
+				byte9 = method136(bzip2block);
+			}
+
+			for(int k5 = ai2[l7 - ai1[i7]]; k5 != l4;)
+				if(k5 == 0 || k5 == 1) {
+					int j6 = -1;
+					int k6 = 1;
+					do {
+						if(k5 == 0)
+							j6 += k6;
+						else
+						if(k5 == 1)
+							j6 += 2 * k6;
+						k6 *= 2;
+						if(j5 == 0) {
+							i5++;
+							j5 = 50;
+							byte byte13 = bzip2block.aByteArray497[i5];
+							k8 = bzip2block.anIntArray503[byte13];
+							ai = bzip2block.anIntArrayArray500[byte13];
+							ai2 = bzip2block.anIntArrayArray502[byte13];
+							ai1 = bzip2block.anIntArrayArray501[byte13];
+						}
+						j5--;
+						int j7 = k8;
+						int i8;
+						byte byte10;
+						for(i8 = method131(j7, bzip2block); i8 > ai[j7]; i8 = i8 << 1 | byte10) {
+							j7++;
+							byte10 = method136(bzip2block);
+						}
+
+						k5 = ai2[i8 - ai1[j7]];
+					} while(k5 == 0 || k5 == 1);
+					j6++;
+					byte byte5 = bzip2block.aByteArray494[bzip2block.aByteArray495[bzip2block.anIntArray496[0]] & 0xff];
+					bzip2block.anIntArray489[byte5 & 0xff] += j6;
+					for(; j6 > 0; j6--) {
+						BZip2Block.anIntArray477[i6] = byte5 & 0xff;
+						i6++;
+					}
+
+				} else {
+					int j11 = k5 - 1;
+					byte byte6;
+					if(j11 < 16) {
+						int j10 = bzip2block.anIntArray496[0];
+						byte6 = bzip2block.aByteArray495[j10 + j11];
+						for(; j11 > 3; j11 -= 4) {
+							int k11 = j10 + j11;
+							bzip2block.aByteArray495[k11] = bzip2block.aByteArray495[k11 - 1];
+							bzip2block.aByteArray495[k11 - 1] = bzip2block.aByteArray495[k11 - 2];
+							bzip2block.aByteArray495[k11 - 2] = bzip2block.aByteArray495[k11 - 3];
+							bzip2block.aByteArray495[k11 - 3] = bzip2block.aByteArray495[k11 - 4];
+						}
+
+						for(; j11 > 0; j11--)
+							bzip2block.aByteArray495[j10 + j11] = bzip2block.aByteArray495[(j10 + j11) - 1];
+
+						bzip2block.aByteArray495[j10] = byte6;
+					} else {
+						int l10 = j11 / 16;
+						int i11 = j11 % 16;
+						int k10 = bzip2block.anIntArray496[l10] + i11;
+						byte6 = bzip2block.aByteArray495[k10];
+						for(; k10 > bzip2block.anIntArray496[l10]; k10--)
+							bzip2block.aByteArray495[k10] = bzip2block.aByteArray495[k10 - 1];
+
+						bzip2block.anIntArray496[l10]++;
+						for(; l10 > 0; l10--) {
+							bzip2block.anIntArray496[l10]--;
+							bzip2block.aByteArray495[bzip2block.anIntArray496[l10]] = bzip2block.aByteArray495[(bzip2block.anIntArray496[l10 - 1] + 16) - 1];
+						}
+
+						bzip2block.anIntArray496[0]--;
+						bzip2block.aByteArray495[bzip2block.anIntArray496[0]] = byte6;
+						if(bzip2block.anIntArray496[0] == 0) {
+							int i10 = 4095;
+							for(int k9 = 15; k9 >= 0; k9--) {
+								for(int l9 = 15; l9 >= 0; l9--) {
+									bzip2block.aByteArray495[i10] = bzip2block.aByteArray495[bzip2block.anIntArray496[k9] + l9];
+									i10--;
+								}
+
+								bzip2block.anIntArray496[k9] = i10 + 1;
+							}
+
+						}
+					}
+					bzip2block.anIntArray489[bzip2block.aByteArray494[byte6 & 0xff] & 0xff]++;
+					BZip2Block.anIntArray477[i6] = bzip2block.aByteArray494[byte6 & 0xff] & 0xff;
+					i6++;
+					if(j5 == 0) {
+						i5++;
+						j5 = 50;
+						byte byte14 = bzip2block.aByteArray497[i5];
+						k8 = bzip2block.anIntArray503[byte14];
+						ai = bzip2block.anIntArrayArray500[byte14];
+						ai2 = bzip2block.anIntArrayArray502[byte14];
+						ai1 = bzip2block.anIntArrayArray501[byte14];
+					}
+					j5--;
+					int k7 = k8;
+					int j8;
+					byte byte11;
+					for(j8 = method131(k7, bzip2block); j8 > ai[k7]; j8 = j8 << 1 | byte11) {
+						k7++;
+						byte11 = method136(bzip2block);
+					}
+
+					k5 = ai2[j8 - ai1[k7]];
+				}
+
+			bzip2block.anInt467 = 0;
+			bzip2block.aByte466 = 0;
+			bzip2block.anIntArray490[0] = 0;
+			for(int j2 = 1; j2 <= 256; j2++)
+				bzip2block.anIntArray490[j2] = bzip2block.anIntArray489[j2 - 1];
+
+			for(int k2 = 1; k2 <= 256; k2++)
+				bzip2block.anIntArray490[k2] += bzip2block.anIntArray490[k2 - 1];
+
+			for(int l2 = 0; l2 < i6; l2++) {
+				byte byte7 = (byte)(BZip2Block.anIntArray477[l2] & 0xff);
+				BZip2Block.anIntArray477[bzip2block.anIntArray490[byte7 & 0xff]] |= l2 << 8;
+				bzip2block.anIntArray490[byte7 & 0xff]++;
+			}
+
+			bzip2block.anInt474 = BZip2Block.anIntArray477[bzip2block.anInt473] >> 8;
+			bzip2block.anInt476 = 0;
+			bzip2block.anInt474 = BZip2Block.anIntArray477[bzip2block.anInt474];
+			bzip2block.anInt475 = (byte)(bzip2block.anInt474 & 0xff);
+			bzip2block.anInt474 >>= 8;
+			bzip2block.anInt476++;
+			bzip2block.anInt479 = i6;
+			method129(bzip2block);
+			if(bzip2block.anInt476 == bzip2block.anInt479 + 1 && bzip2block.anInt467 == 0)
+				flag19 = true;
+			else
+				flag19 = false;
 		}
+	}
 
-		for (var8 = 1; var8 < 23; ++var8) {
-			var1[var8] += var1[var8 - 1];
-		}
-
-		for (var8 = 0; var8 < 23; ++var8) {
-			var0[var8] = 0;
-		}
-
-		int var10 = 0;
-
-		for (var8 = var4; var8 <= var5; ++var8) {
-			var10 += var1[var8 + 1] - var1[var8];
-			var0[var8] = var10 - 1;
-			var10 <<= 1;
-		}
-
-		for (var8 = var4 + 1; var8 <= var5; ++var8) {
-			var1[var8] = (var0[var8 - 1] + 1 << 1) - var1[var8];
-		}
-
+	private static byte method136(BZip2Block bzip2block) {
+		return (byte)method131(1, bzip2block);
 	}
 }

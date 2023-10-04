@@ -59,7 +59,7 @@ public class CreateAnnotations extends AbstractInjector
 				continue;
 			}
 
-			deobClass.addAnnotation(DeobAnnotations.IMPLEMENTS, deobClass.getName());
+			//deobClass.addAnnotation(DeobAnnotations.IMPLEMENTS, deobClass.getName());
 		}
 	}
 

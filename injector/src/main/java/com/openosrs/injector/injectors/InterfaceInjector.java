@@ -30,11 +30,12 @@ public class InterfaceInjector extends AbstractInjector
 		// forEachPair performs actions on a deob-vanilla pair, which is what's needed here
 		inject.forEachPair(this::injectInterface);
 
-		report.add("Injected " + implemented + " class interfaces");
+		//System.out.println("Injected " + implemented + " class interfaces");
 	}
 
 	private void injectInterface(final ClassFile deobCf, final ClassFile vanillaCf)
 	{
+		//System.out.println(deobCf.getName());
 		final String impls = DeobAnnotations.getImplements(deobCf);
 
 		if (impls == null)
@@ -43,13 +44,14 @@ public class InterfaceInjector extends AbstractInjector
 		}
 
 		final String fullName = API_BASE + impls;
+		//System.out.println(fullName);
 		if (!inject.getRsApi().hasClass(fullName))
 		{
-			if (!fullName.contains("JSON") && !deobCf.getName().contains("jagex"))
+/*			if (!fullName.contains("JSON") && !deobCf.getName().contains("jagex"))
 				log.error("[DEBUG] Class {} implements nonexistent interface {}, skipping interface injection",
 					deobCf.getName(),
 					fullName
-				);
+				);*/
 
 			return;
 		}

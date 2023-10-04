@@ -25,15 +25,36 @@ import org.objectweb.asm.Opcodes;
 import static com.openosrs.injector.rsapi.RSApi.CONSTRUCT;
 import static com.openosrs.injector.rsapi.RSApi.IMPORT;
 
-@Getter
-@Setter
 public class RSApiClass extends ClassVisitor implements Iterable<RSApiMethod>
 {
+	public Class getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(Class clazz) {
+		this.clazz = clazz;
+	}
+
+	public List<Class> getInterfaces() {
+		return interfaces;
+	}
+
+	public List<RSApiMethod> getMethods() {
+		return methods;
+	}
+
+	public List<RSApiClass> getApiInterfaces() {
+		return apiInterfaces;
+	}
+
+	public Map<String, List<RSApiMethod>> getImports() {
+		return imports;
+	}
+
 	private Class clazz;
 	private final List<Class> interfaces = new ArrayList<>();
 	private final List<RSApiMethod> methods = new ArrayList<>();
 	private final List<RSApiClass> apiInterfaces = new ArrayList<>();
-
 	private final Map<String, List<RSApiMethod>> imports = new HashMap<>();
 
 	RSApiClass()

@@ -32,7 +32,7 @@ import net.runelite.asm.signature.Signature;
 
 public class RuneliteMenuEntry extends AbstractInjector
 {
-	private static final String RUNELITE_MENU_ENTRY = "RuneLiteMenuEntry";
+	private static final String RUNELITE_MENU_ENTRY = "osrs/RuneLiteMenuEntry";
 
 	public RuneliteMenuEntry(InjectData inject)
 	{
@@ -43,7 +43,7 @@ public class RuneliteMenuEntry extends AbstractInjector
 	{
 		addInvoke("newRuneliteMenuEntry", true);
 		addInvoke("newBareRuneliteMenuEntry", false);
-		addSwap(InjectUtil.findMethod(inject, "menu"), InjectUtil.findField(inject, "menuShiftClick", "Client"));
+		addSwap(InjectUtil.findMethod(inject, "menu"), InjectUtil.findField(inject, "menuShiftClick", "osrs/Client"));
 	}
 
 	private void addInvoke(String methodName, boolean iload)
@@ -52,7 +52,7 @@ public class RuneliteMenuEntry extends AbstractInjector
 
 		final ClassFile clientVanilla = inject.toVanilla(
 			inject.getDeobfuscated()
-				.findClass("Client")
+				.findClass("osrs/Client")
 		);
 
 		Method copy = clientVanilla.findMethod(methodName);
@@ -82,7 +82,7 @@ public class RuneliteMenuEntry extends AbstractInjector
 	{
 		final ClassFile clientVanilla = inject.toVanilla(
 			inject.getDeobfuscated()
-				.findClass("Client")
+				.findClass("osrs/Client")
 		);
 
 		Instructions ins = method.getCode().getInstructions();

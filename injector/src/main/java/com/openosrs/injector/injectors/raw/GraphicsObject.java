@@ -29,12 +29,12 @@ public class GraphicsObject extends AbstractInjector
 	{
 		final ClassFile graphicsObjectVanilla = inject.toVanilla(
 			inject.getDeobfuscated()
-				.findClass("GraphicsObject")
+				.findClass("osrs/GraphicsObject")
 		);
 
 		final ClassFile renderableVanilla = inject.toVanilla(
 			inject.getDeobfuscated()
-				.findClass("Renderable")
+				.findClass("osrs/Renderable")
 		);
 
 		graphicsObjectVanilla.clearFinal();

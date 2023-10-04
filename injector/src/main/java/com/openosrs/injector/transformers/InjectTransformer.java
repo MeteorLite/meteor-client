@@ -13,11 +13,14 @@ import lombok.RequiredArgsConstructor;
 import meteor.Logger;
 import net.runelite.asm.Named;
 
-@RequiredArgsConstructor
 public abstract class InjectTransformer implements Named
 {
+
+	public InjectTransformer(InjectData inject) {
+		this.inject = inject;
+	}
 	protected final InjectData inject;
-	protected final Logger log = new Logger("Injector");
+	protected final Logger log = new Logger(this.getClass().getName());
 	private Stopwatch stopwatch;
 
 	public final void transform()

@@ -26,6 +26,11 @@ public class InjectorValidator implements Validator
 
 	private int missing = 0, okay = 0, wtf = 0;
 
+	public InjectorValidator(Injector injector) {
+		inject = injector;
+		//validate();
+	}
+
 	public boolean validate()
 	{
 		final RSApi rsApi = inject.getRsApi();

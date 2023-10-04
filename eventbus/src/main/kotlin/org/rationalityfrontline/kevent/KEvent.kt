@@ -42,13 +42,8 @@ import kotlin.coroutines.CoroutineContext
  * @property isPostedSticky whether this event is posted as sticky event.
  */
 data class Event<T : Any>(
-    val type: Enum<*>,
-    val data: T,
-    val dispatchMode: EventDispatchMode,
-    val isSticky: Boolean = false,
-) {
-    fun isPostedSticky(kEvent: KEvent = KEVENT) : Boolean = kEvent.containsStickyEvent(this as Event<Any>)
-}
+    val data: T
+)
 
 
 /**
@@ -66,7 +61,7 @@ typealias EventConsumer<T> = (Event<T>) -> Unit
  * @param tag optional tag that is useful for unsubscription, see [KEvent.removeSubscribersByTag].
  */
 data class Subscriber<T : Any>(
-    val eventTypes: Set<Enum<*>>,
+    val eventTypes: Set<Class<*>>,
     val consumer: EventConsumer<T>,
     val threadMode: SubscriberThreadMode,
     val priority: Int = 0,
@@ -124,29 +119,6 @@ enum class SubscriberThreadMode {
      * * Subscribers are time consuming but there is no need to call subscribers concurrently and it's ok to block the event posting thread.
      */
     POSTING,
-
-    /**
-     * Subscriber will be called on background worker thread, see [Dispatchers.Default].
-     *
-     * Only compatible with [EventDispatchMode.CONCURRENT].
-     *
-     * Usage scenarios:
-     * * Single time consuming subscriber and the event posting thread must not be blocked (for example, UI thread).
-     * * Multiple time consuming subscribers and it's ok to run these subscribers concurrently.
-     */
-    BACKGROUND,
-
-    /**
-     * Subscriber will be called on UI thread, see [Dispatchers.Main].
-     *
-     * Only compatible with [EventDispatchMode.SEQUENTIAL].
-     *
-     * Usage scenarios:
-     * * The subscriber update UI components and thus must be called in the UI thread
-     * (this also means the subscriber must not be time consuming).
-     * If events are always posted from UI thread, please use [POSTING] for better performance.
-     */
-    UI,
 }
 
 val KEVENT = KEvent("DEFAULT")
@@ -168,51 +140,12 @@ class KEvent(
 
     private val scope = CoroutineScope(Dispatchers.Default + CoroutineName("KEvent") + SupervisorJob())
 
-    private val subscribersMap = ConcurrentHashMap<Enum<*>, MutableList<Subscriber<Any>>>()
-    private val subscribersReadOnlyMap = ConcurrentHashMap<Enum<*>, Array<Subscriber<Any>>>()
+    private val subscribersMap = ConcurrentHashMap<Class<*>, MutableList<Subscriber<Any>>>()
+    private val subscribersReadOnlyMap = ConcurrentHashMap<Class<*>, Array<Subscriber<Any>>>()
     private val eventChannel = Channel<Event<Any>>(Channel.Factory.UNLIMITED)
     private val stickyEvents = Collections.synchronizedList(mutableListOf<Event<Any>>())
     private val cancelledEvents = Collections.synchronizedSet(mutableSetOf<Event<Any>>())
     private val blockedEventTypeMap = ConcurrentHashMap<Enum<*>, Boolean>()
-
-    init {
-        scope.launch {
-            eventChannel.consumeAsFlow().collect { event ->
-                val subscriberList = subscribersReadOnlyMap[event.type]
-                if (subscriberList == null || subscriberList.isEmpty()) {
-                    //if (!event.isSticky) logger.warn { "No subscribers for event type \"${event.type.name}\"" }
-                } else {
-                    val e = if (event.isSticky) event.copy(isSticky = false) else event
-
-                    fun removeCancelledEvent() {
-                        cancelledEvents.remove(e)
-                        if (e != event) cancelledEvents.remove(event)
-                    }
-
-                    when (e.dispatchMode) {
-                        EventDispatchMode.CONCURRENT -> {
-                            // TODO: 2020/11/27 Improve performance, see https://github.com/Kotlin/kotlinx.coroutines/issues/2414
-                            subscriberList.forEach { subscriber ->
-                                if (!dispatchEventAsync(e, subscriber)) return@forEach
-                            }
-                            removeCancelledEvent()
-                        }
-                        EventDispatchMode.SEQUENTIAL -> {
-                            scope.launch {
-                                subscriberList.forEach { subscriber ->
-                                    if (!dispatchEventSync(e, subscriber)) return@forEach
-                                }
-                                removeCancelledEvent()
-                            }
-                        }
-                        EventDispatchMode.POSTING -> {
-                            logger.error("Failed to dispatch event \"$event\": unexpected dispatch mode in event channel (\"POSTING\")")
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     private inline fun isValidEvent(event: Event<Any>): Boolean {
         return !cancelledEvents.contains(event)
@@ -220,14 +153,6 @@ class KEvent(
 
     private inline fun getDispatchContext(subscriber: Subscriber<Any>, event: Event<Any>): CoroutineContext? {
         return when (subscriber.threadMode) {
-            SubscriberThreadMode.BACKGROUND -> scope.coroutineContext
-            SubscriberThreadMode.UI -> when (event.dispatchMode) {
-                EventDispatchMode.SEQUENTIAL -> Dispatchers.Main
-                else -> {
-                    logger.error("Error happened when dispatching event \"$event\": subscriber thread mode \"UI\" is only compatible with dispatch mode \"SEQUENTIAL\"")
-                    null
-                }
-            }
             SubscriberThreadMode.POSTING -> {
                 logger.error("Error happened when dispatching event \"$event\": subscriber thread mode \"POSTING\" is only compatible with dispatch mode \"POSTING\"")
                 null
@@ -270,26 +195,17 @@ class KEvent(
      * @return true if the event is valid and there exist any subscriber of this event type, else false.
      */
     fun <T : Any> post(event: Event<T>): Boolean {
-        if (blockedEventTypeMap.getOrDefault(event.type, false)) return false
         event as Event<Any>
-        if (event.dispatchMode == EventDispatchMode.POSTING) {
-            if (event.isSticky) {
-                logger.error("Event with dispatch mode ${EventDispatchMode.POSTING} can't be sticky: $event")
-                return false
+
+        val subscriberList = subscribersReadOnlyMap[event.data.javaClass]?.run {
+            filter { it.threadMode == SubscriberThreadMode.POSTING }
+        }
+        if (!subscriberList.isNullOrEmpty()) {
+            subscriberList.forEach { subscriber ->
+                if (!isValidEvent(event)) return@forEach
+                consumeEvent(subscriber, event)
             }
-            val subscriberList = subscribersReadOnlyMap[event.type]?.run {
-                filter { it.threadMode == SubscriberThreadMode.POSTING }
-            }
-            if (!subscriberList.isNullOrEmpty()) {
-                subscriberList.forEach { subscriber ->
-                    if (!isValidEvent(event)) return@forEach
-                    consumeEvent(subscriber, event)
-                }
-                cancelledEvents.remove(event)
-            }
-        } else {
-            if (event.isSticky) stickyEvents.add(event)
-            scope.launch { eventChannel.send(event) }
+            cancelledEvents.remove(event)
         }
         return true
     }
@@ -308,11 +224,8 @@ class KEvent(
      * @return true if the event is valid and there exist any subscriber of this event type, else false.
      */
     inline fun <T : Any> post(
-        type: Enum<*>,
-        data: T,
-        dispatchMode: EventDispatchMode = defaultDispatchMode,
-        isSticky: Boolean = false
-    ): Boolean = post(Event(type, data, dispatchMode, isSticky))
+        data: T
+    ): Boolean = post(Event(data))
 
     /**
      * Cancel further event dispatching, this function only works with [EventDispatchMode.SEQUENTIAL] and [EventDispatchMode.POSTING].
@@ -324,47 +237,13 @@ class KEvent(
         return cancelledEvents.add(event)
     }
 
-    /**
-     * Remove the sticky [event].
-     *
-     * @return true if the event get removed, false if the event doesn't exit.
-     */
-    fun <T : Any> removeStickyEvent(event: Event<T>): Boolean {
-        event as Event<Any>
-        if (event.isSticky) {
-            return stickyEvents.remove(event)
-        } else {
-            val e = event.copy(isSticky = true)
-            synchronized(stickyEvents) {
-                return stickyEvents.removeIf { it == e }
-            }
-        }
-    }
-
-    /**
-     * Whether there is a sticky [event].
-     */
-    fun <T : Any> containsStickyEvent(event: Event<T>): Boolean {
-        val e = if (event.isSticky) event else event.copy(isSticky = true)
-        synchronized(stickyEvents) {
-            return stickyEvents.find { it == e } != null
-        }
-    }
-
-    /**
-     * Clear all existing sticky events.
-     */
-    fun removeAllStickyEvents() {
-        stickyEvents.clear()
-    }
-
-    private inline fun updateSubscribersReadOnlyMap(type: Enum<*>) {
+    private inline fun updateSubscribersReadOnlyMap(type: Class<*>) {
         subscribersMap[type]?.run {
             subscribersReadOnlyMap[type] = toTypedArray()
         } ?: subscribersReadOnlyMap.remove(type)
     }
 
-    private fun addSubscriber(eventType: Enum<*>, subscriber: Subscriber<Any>): Boolean {
+    private fun addSubscriber(eventType: Class<*>, subscriber: Subscriber<Any>): Boolean {
         synchronized(subscribersMap) {
             subscribersMap.getOrPut(eventType) {
                 Collections.synchronizedList(mutableListOf())
@@ -393,13 +272,12 @@ class KEvent(
      * @param tag optional tag that is useful for unsubscription, see [KEvent.removeSubscribersByTag].
      * @return true if subscription is successful, else false.
      */
-    fun <T : Any> subscribe(
-        eventType: Enum<*>,
-        threadMode: SubscriberThreadMode = defaultThreadMode,
-        priority: Int = 0,
-        tag: String = "",
-        consumer: EventConsumer<T>
-    ): Boolean = subscribe(eventType, consumer, threadMode, priority, tag)
+    inline fun <reified T : Any> subscribe(
+            threadMode: SubscriberThreadMode = defaultThreadMode,
+            priority: Int = 0,
+            tag: String = "",
+            noinline consumer: EventConsumer<T>
+    ): Boolean = subscribe(T::class.java, consumer, threadMode, priority, tag)
 
     /**
      * Add a new subscriber. Subscribers with same [eventType] and [consumer] can only be added once.
@@ -412,7 +290,7 @@ class KEvent(
      * @return true if subscription is successful, else false.
      */
     fun <T : Any> subscribe(
-        eventType: Enum<*>,
+        eventType: Class<*>,
         consumer: EventConsumer<T>,
         threadMode: SubscriberThreadMode = defaultThreadMode,
         priority: Int = 0,
@@ -422,7 +300,7 @@ class KEvent(
         val added = addSubscriber(eventType, subscriber)
         if (added) {
             synchronized(stickyEvents) {
-                stickyEvents.filter { it.type == eventType }.forEach { event ->
+                stickyEvents.filter { it.data.javaClass == eventType }.forEach { event ->
                     dispatchEventAsync(event, subscriber)
                 }
             }
@@ -441,7 +319,7 @@ class KEvent(
      * @return true if subscription is successful, else false.
      */
     fun <T : Any> subscribeMultiple(
-        eventTypes: Collection<Enum<*>>,
+        eventTypes: Collection<Class<*>>,
         threadMode: SubscriberThreadMode = defaultThreadMode,
         priority: Int = 0,
         tag: String = "",
@@ -460,7 +338,7 @@ class KEvent(
      * @return true if subscription is successful, else false.
      */
     fun <T : Any> subscribeMultiple(
-        eventTypes: Collection<Enum<*>>,
+        eventTypes: Collection<Class<*>>,
         consumer: EventConsumer<T>,
         threadMode: SubscriberThreadMode = defaultThreadMode,
         priority: Int = 0,
@@ -468,7 +346,7 @@ class KEvent(
     ): Boolean {
         val subscriber = Subscriber(eventTypes.toSet(), consumer, threadMode, priority, tag) as Subscriber<Any>
         var added = false
-        val addedEventTypes = mutableSetOf<Enum<*>>()
+        val addedEventTypes = mutableSetOf<Class<*>>()
         eventTypes.forEach { eventType ->
             if (addSubscriber(eventType, subscriber)) {
                 added = true
@@ -476,7 +354,7 @@ class KEvent(
             }
         }
         synchronized(stickyEvents) {
-            stickyEvents.filter { it.type in addedEventTypes }.forEach { event ->
+            stickyEvents.filter { it.data.javaClass in addedEventTypes }.forEach { event ->
                 dispatchEventAsync(event, subscriber)
             }
         }
@@ -488,7 +366,7 @@ class KEvent(
      *
      * @return true if subscriber exists and unsubscription is successful, else false.
      */
-    fun <T : Any> unsubscribe(eventType: Enum<*>, consumer: EventConsumer<T>): Boolean {
+    fun <T : Any> unsubscribe(eventType: Class<*>, consumer: EventConsumer<T>): Boolean {
         subscribersMap[eventType]?.run {
             synchronized(this) {
                 if (removeIf { subscriber -> subscriber.consumer == consumer }) {
@@ -505,7 +383,7 @@ class KEvent(
      *
      * @return true if subscriber exists and any of the unsubscription is successful, else false.
      */
-    fun <T : Any> unsubscribeMultiple(eventTypes: Collection<Enum<*>>, consumer: EventConsumer<T>): Boolean {
+    fun <T : Any> unsubscribeMultiple(eventTypes: Collection<Class<*>>, consumer: EventConsumer<T>): Boolean {
         var removed = false
         eventTypes.forEach { eventType ->
             if (unsubscribe(eventType, consumer)) {
@@ -557,7 +435,7 @@ class KEvent(
     /**
      *  Get all subscribers with event type of [eventType].
      */
-    fun getSubscribersByEventType(eventType: Enum<*>): List<Subscriber<Any>> {
+    fun getSubscribersByEventType(eventType: Class<*>): List<Subscriber<Any>> {
         return subscribersReadOnlyMap[eventType]?.toList() ?: listOf()
     }
 
@@ -590,7 +468,7 @@ class KEvent(
      *
      * @return true if any subscriber gets removed, else false.
      */
-    fun removeSubscribersByEventType(eventType: Enum<*>): Boolean {
+    fun removeSubscribersByEventType(eventType: Class<*>): Boolean {
         return if (subscribersMap.remove(eventType) != null) { updateSubscribersReadOnlyMap(eventType); true } else false
     }
 
@@ -625,7 +503,6 @@ class KEvent(
      */
     fun clear() {
         removeAllSubscribers()
-        removeAllStickyEvents()
         unblockAllEventTypes()
         cancelledEvents.clear()
     }

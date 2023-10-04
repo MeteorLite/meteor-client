@@ -390,13 +390,20 @@ public class InjectHook extends AbstractInjector
 		ins.getInstructions().add(idx, invoke);
 	}
 
-	@AllArgsConstructor
+
 	static class HookInfo
 	{
 		final Class targetClass;
 		final Method method;
 		final boolean before;
 		final Number getter;
+
+		public HookInfo(Class targetClass, Method method, boolean before, Number getter) {
+			this.targetClass = targetClass;
+			this.method = method;
+			this.before = before;
+			this.getter = getter;
+		}
 
 		Instruction getInvoke(Instructions instructions)
 		{

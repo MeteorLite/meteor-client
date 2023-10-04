@@ -35,14 +35,30 @@ public abstract class InjectData
 	@Getter
 	public ClassGroup vanilla;
 
+	public ClassGroup getVanilla() {
+		return vanilla;
+	}
+
 	@Getter
 	public ClassGroup deobfuscated;
+
+	public ClassGroup getDeobfuscated() {
+		return deobfuscated;
+	}
 
 	@Getter
 	public ClassGroup mixins;
 
+	public ClassGroup getMixins() {
+		return mixins;
+	}
+
 	@Getter
 	public RSApi rsApi;
+
+	public RSApi getRsApi() {
+		return rsApi;
+	}
 
 	/**
 	 * Deobfuscated ClassFiles -> Vanilla ClassFiles
@@ -63,14 +79,13 @@ public abstract class InjectData
 	{
 		for (final ClassFile deobClass : deobfuscated)
 		{
-			if (deobClass.getName().startsWith("net/runelite/") || deobClass.getName().startsWith("netscape"))
-			{
-				continue;
-			}
 
 			final String obName = deobClass.getName();
 			if (obName != null)
 			{
+				if (deobClass.getName().contains("mudclient")) {
+					//System.out.println(deobClass.getName());
+				}
 				toDeob.put(obName, deobClass);
 
 				final ClassFile obClass = this.vanilla.findClass(obName);

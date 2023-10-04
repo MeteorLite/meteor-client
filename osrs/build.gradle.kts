@@ -14,6 +14,7 @@ dependencies {
         implementation(apiRs)
         implementation(annotations)
         implementation(logger)
+        implementation(eventbus)
     }
 
     with(libs) {

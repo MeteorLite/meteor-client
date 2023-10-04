@@ -29,9 +29,6 @@ import meteor.Main
 import meteor.plugins.EventSubscriber
 import meteor.ui.components.LayoutableRenderableEntity
 import meteor.util.ColorUtil
-import net.runelite.api.Perspective
-import net.runelite.api.coords.LocalPoint
-import net.runelite.api.widgets.WidgetInfo
 import java.awt.*
 import java.awt.image.BufferedImage
 import kotlin.math.abs
@@ -44,8 +41,6 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
 
     val client = Main.client
     val drawHooks: ArrayList<Int> = ArrayList()
-    open val menuEntries: ArrayList<OverlayMenuEntry> = ArrayList()
-
     var preferredPosition: OverlayPosition? = null
 
     var position = OverlayPosition.DETACHED
@@ -92,9 +87,9 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
         drawHooks.add(interfaceId shl 16 or 0xffff)
     }
 
-    protected fun drawAfterLayer(layer: WidgetInfo) {
+/*    protected fun drawAfterLayer(layer: WidgetInfo) {
         drawHooks.add(layer.packedId)
-    }
+    }*/
 
     fun onMouseOver() {}
     fun onMouseEnter() {}
@@ -126,14 +121,14 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
 
     open fun renderTextLocation(
         graphics: Graphics2D, txtString: String, fontSize: Int,
-        fontStyle: Int, fontColor: Color, canvasPoint: net.runelite.api.Point, shadows: Boolean, yOffset: Int
+        fontStyle: Int, fontColor: Color, canvasPoint: Point, shadows: Boolean, yOffset: Int
     ) {
         graphics.font = Font("Arial", fontStyle, fontSize)
-        val canvasCenterPoint = net.runelite.api.Point(
+        val canvasCenterPoint = Point(
             canvasPoint.x,
             canvasPoint.y + yOffset
         )
-        val canvasCenterPointShadow = net.runelite.api.Point(
+        val canvasCenterPointShadow = Point(
             canvasPoint.x + 1,
             canvasPoint.y + 1 + yOffset
         )
@@ -144,7 +139,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
     }
 
     open fun renderTextLocation(
-        graphics: Graphics2D, txtLoc: net.runelite.api.Point, text: String,
+        graphics: Graphics2D, txtLoc: Point, text: String,
         color: Color
     ) {
         if (Strings.isNullOrEmpty(text)) {
@@ -180,13 +175,13 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
         return filledImage
     }
 
-    open fun renderImageLocation(graphics: Graphics2D, imgLoc: net.runelite.api.Point, image: BufferedImage) {
+    open fun renderImageLocation(graphics: Graphics2D, imgLoc: Point, image: BufferedImage) {
         val x = imgLoc.x
         val y = imgLoc.y
         graphics.drawImage(image, x, y, null)
     }
 
-    open fun renderImageLocation(
+/*    open fun renderImageLocation(
         graphics: Graphics2D, localPoint: LocalPoint,
         image: BufferedImage, zOffset: Int
     ) {
@@ -195,7 +190,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
         if (imageLocation != null) {
             renderImageLocation(graphics, imageLocation, image)
         }
-    }
+    }*/
 
     open fun outlineImage(
         image: BufferedImage, color: Color,

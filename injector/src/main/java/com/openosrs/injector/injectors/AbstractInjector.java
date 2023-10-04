@@ -12,10 +12,12 @@ import com.openosrs.injector.injection.InjectData;
 import lombok.RequiredArgsConstructor;
 import meteor.Logger;
 
-@RequiredArgsConstructor
 public abstract class AbstractInjector implements Injector
 {
 	protected final InjectData inject;
+	public AbstractInjector(InjectData inject) {
+		this.inject = inject;
+	}
 	protected final Logger log = new Logger("Injector");
 	private Stopwatch stopwatch;
 

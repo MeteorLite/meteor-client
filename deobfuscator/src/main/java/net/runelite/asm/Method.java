@@ -158,7 +158,12 @@ public class Method implements Annotated, Named
 				}
 			}
 
-			visitor.visitMaxs(code.getMaxStack(), code.getMaxLocals());
+			try {
+				visitor.visitMaxs(code.getMaxStack(), code.getMaxLocals());
+			} catch (Exception e) {
+				System.out.println(code.getMethod().getClassFile().getName() + ":" + code.getMethod().getName());
+				e.printStackTrace();
+			}
 		}
 
 		visitor.visitEnd();

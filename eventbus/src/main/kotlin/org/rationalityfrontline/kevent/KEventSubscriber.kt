@@ -39,12 +39,11 @@ interface KEventSubscriber {
  * @param priority priority, bigger is higher.
  * @return true if subscription is successful, else false.
  */
-inline fun <T : Any> KEventSubscriber.subscribe(
-    eventType: Enum<*>,
+inline fun <reified T : Any> KEventSubscriber.subscribe(
     threadMode: SubscriberThreadMode = KEVENT_INSTANCE.defaultThreadMode,
     priority: Int = 0,
     noinline consumer: EventConsumer<T>
-): Boolean = KEVENT_INSTANCE.subscribe(eventType, threadMode, priority, SUBSCRIBER_TAG, consumer)
+): Boolean = KEVENT_INSTANCE.subscribe(threadMode, priority, SUBSCRIBER_TAG, consumer)
 
 /**
  * Add a new subscriber with tag of [KEventSubscriber.SUBSCRIBER_TAG]. Subscribers with same [eventType] and [consumer] can only be added once.
@@ -56,7 +55,7 @@ inline fun <T : Any> KEventSubscriber.subscribe(
  * @return true if subscription is successful, else false.
  */
 inline fun <T : Any> KEventSubscriber.subscribe(
-    eventType: Enum<*>,
+    eventType: Class<*>,
     noinline consumer: EventConsumer<T>,
     threadMode: SubscriberThreadMode = KEVENT_INSTANCE.defaultThreadMode,
     priority: Int = 0
@@ -72,7 +71,7 @@ inline fun <T : Any> KEventSubscriber.subscribe(
  * @return true if subscription is successful, else false.
  */
 inline fun <T : Any> KEventSubscriber.subscribeMultiple(
-    eventTypes: Collection<Enum<*>>,
+    eventTypes: Collection<Class<*>>,
     threadMode: SubscriberThreadMode = KEVENT_INSTANCE.defaultThreadMode,
     priority: Int = 0,
     noinline consumer: EventConsumer<T>
@@ -88,7 +87,7 @@ inline fun <T : Any> KEventSubscriber.subscribeMultiple(
  * @return true if subscription is successful, else false.
  */
 inline fun <T : Any> KEventSubscriber.subscribeMultiple(
-    eventTypes: Collection<Enum<*>>,
+    eventTypes: Collection<Class<*>>,
     noinline consumer: EventConsumer<T>,
     threadMode: SubscriberThreadMode = KEVENT_INSTANCE.defaultThreadMode,
     priority: Int = 0,
@@ -100,7 +99,7 @@ inline fun <T : Any> KEventSubscriber.subscribeMultiple(
  * @return true if subscriber exists and unsubscription is successful, else false.
  */
 inline fun <T : Any> KEventSubscriber.unsubscribe(
-    eventType: Enum<*>,
+    eventType: Class<*>,
     noinline consumer: EventConsumer<T>
 ): Boolean = KEVENT_INSTANCE.unsubscribe(eventType, consumer)
 
@@ -110,7 +109,7 @@ inline fun <T : Any> KEventSubscriber.unsubscribe(
  * @return true if subscriber exists and any of the unsubscription is successful, else false.
  */
 inline fun <T : Any> KEventSubscriber.unsubscribeMultiple(
-    eventTypes: Collection<Enum<*>>,
+    eventTypes: Collection<Class<*>>,
     noinline consumer: EventConsumer<T>
 ): Boolean = KEVENT_INSTANCE.unsubscribeMultiple(eventTypes, consumer)
 

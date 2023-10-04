@@ -13,7 +13,7 @@ import meteor.ui.composables.preferences.pluginPanelIsOpen
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.overlay.Overlay
 
-open class Plugin(override var daemon: Boolean = false) : EventSubscriber(daemon = daemon) {
+open class Plugin : EventSubscriber() {
     var configuration: Config? = null
 
     open var client = Main.client
@@ -49,6 +49,7 @@ open class Plugin(override var daemon: Boolean = false) : EventSubscriber(daemon
     }
 
     fun start() {
+        println("started ${getName()}")
         subscribe()
         eventListening = true
         for (overlay in overlays)

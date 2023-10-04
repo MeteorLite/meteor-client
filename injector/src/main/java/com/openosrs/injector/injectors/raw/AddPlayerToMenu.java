@@ -40,9 +40,9 @@ public class AddPlayerToMenu extends AbstractInjector
 
 	public void inject()
 	{
-		final Method addPlayerOptions = inject.toVanilla(inject.getDeobfuscated().findClass("Scene")).findMethod("copy$addPlayerToMenu");
+		final Method addPlayerOptions = inject.toVanilla(inject.getDeobfuscated().findClass("osrs/Scene")).findMethod("copy$addPlayerToMenu");
 		final net.runelite.asm.pool.Method shouldHideAttackOptionFor =
-			inject.getVanilla().findClass("Client").findMethod("shouldHideAttackOptionFor").getPoolMethod();
+			inject.getVanilla().findClass("osrs/Client").findMethod("shouldHideAttackOptionFor").getPoolMethod();
 //		final net.runelite.asm.pool.Method shouldDrawMethod =
 //			inject.getVanilla().findStaticMethod("shouldDraw").getPoolMethod();
 
@@ -88,8 +88,8 @@ public class AddPlayerToMenu extends AbstractInjector
 	private void injectHideAttack(Method addPlayerOptions, net.runelite.asm.pool.Method shouldHideAttackOptionFor)
 	{
 		final Field AttackOption_hidden =
-			InjectUtil.findField(inject, "AttackOption_hidden", "AttackOption").getPoolField();
-		final Field attackOption = InjectUtil.findField(inject, "playerAttackOption", "Client").getPoolField();
+			InjectUtil.findField(inject, "AttackOption_hidden", "osrs/AttackOption").getPoolField();
+		final Field attackOption = InjectUtil.findField(inject, "playerAttackOption", "osrs/Client").getPoolField();
 
 		// GETSTATIC					GETSTATIC
 		// GETSTATIC					GETSTATIC
@@ -191,7 +191,7 @@ public class AddPlayerToMenu extends AbstractInjector
 		// <--- Inject comparison here (duh)
 		//
 		// add option n such
-		final Field flags = InjectUtil.findField(inject, "selectedSpellFlags", "Client").getPoolField();
+		final Field flags = InjectUtil.findField(inject, "selectedSpellFlags", "osrs/Client").getPoolField();
 		Instructions ins = addPlayerOptions.getCode().getInstructions();
 		ListIterator<Instruction> iterator = ins.getInstructions().listIterator();
 		boolean b1, b2, iAnd, getstatic;

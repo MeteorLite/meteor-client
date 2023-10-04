@@ -1,6 +1,5 @@
 package meteor.plugins
 
-import eventbus.Events
 import eventbus.events.GameStateChanged
 import meteor.ui.overlay.Overlay
 import net.runelite.api.GameState
@@ -13,7 +12,7 @@ class ExamplePlugin : Plugin() {
     var exampleOverlay = overlay<ExampleOverlay>(ExampleOverlay)
 
     override fun onStart() {
-        EventBus.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) {
+        EventBus.subscribe<GameStateChanged> {
             when (it.data.gameState) {
                 GameState.LOGGING_IN, GameState.HOPPING -> {
                     //println("Shits pretty slick")

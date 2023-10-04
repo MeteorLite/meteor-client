@@ -128,7 +128,7 @@ fun plugins() {
                 Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(background)) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                        modifier = Modifier.fillMaxWidth(0.50f).height(32.dp).background(background)
+                        modifier = Modifier.fillMaxWidth(0.65f).height(32.dp).background(background)
                     ) {
                         IconButton(
                             onClick = {
@@ -198,21 +198,6 @@ fun plugins() {
                             .height(32.dp)
                             .background(background)
                     ) {
-                        if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
-                            IconButton(
-                                onClick = {
-                                    PluginManager.reloadExternal(plugin)
-                                    updatePluginsList()
-                                },
-                            ) {
-                                Icon(
-                                    Icons.Filled.Refresh,
-                                    contentDescription = "Reload plugin",
-                                    tint = uiColor.value
-                                )
-                            }
-                        }
-
                         if (plugin.configuration != null) {
                             IconButton(
                                 onClick = {

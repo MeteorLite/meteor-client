@@ -1,231 +1,186 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+// Decompiled by Jad v1.5.8c. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) nonlb 
 
-@ObfuscatedName("ux")
-@Implements("IsaacCipher")
+
 public final class IsaacCipher {
-	@ObfuscatedName("at")
-	@Export("valuesRemaining")
-	int valuesRemaining;
-	@ObfuscatedName("ac")
-	@Export("results")
-	int[] results;
-	@ObfuscatedName("ai")
-	@Export("mm")
-	int[] mm;
-	@ObfuscatedName("az")
-	@Export("aa")
-	int aa;
-	@ObfuscatedName("ap")
-	@Export("bb")
-	int bb;
-	@ObfuscatedName("aa")
-	@Export("cc")
-	int cc;
 
-	public IsaacCipher(int[] var1) {
-		this.mm = new int[256];
-		this.results = new int[256];
+	private final void method310() {
+		anInt504 += ++anInt505;
+		for(int i = 0; i < 256; i++) {
+			int j = anIntArray506[i];
+			switch(i & 3) {
+			case 0: // '\0'
+				anInt507 ^= anInt507 << 13;
+				break;
 
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			this.results[var2] = var1[var2];
-		}
+			case 1: // '\001'
+				anInt507 ^= anInt507 >>> 6;
+				break;
 
-		this.method2693();
-	}
+			case 2: // '\002'
+				anInt507 ^= anInt507 << 2;
+				break;
 
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-66287514"
-	)
-	@Export("nextInt")
-	public final int nextInt() {
-		if (this.valuesRemaining == 0) {
-			this.generateMoreResults();
-			this.valuesRemaining = 256;
-		}
-
-		return this.results[--this.valuesRemaining];
-	}
-
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1374032282"
-	)
-	public final int method2691() {
-		if (this.valuesRemaining == 0) {
-			this.generateMoreResults();
-			this.valuesRemaining = 256;
-		}
-
-		return this.results[this.valuesRemaining - 1];
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1084555952"
-	)
-	@Export("generateMoreResults")
-	final void generateMoreResults() {
-		this.bb += ++this.cc;
-
-		for (int var1 = 0; var1 < 256; ++var1) {
-			int var2 = this.mm[var1];
-			if ((var1 & 2) == 0) {
-				if ((var1 & 1) == 0) {
-					this.aa ^= this.aa << 13;
-				} else {
-					this.aa ^= this.aa >>> 6;
-				}
-			} else if ((var1 & 1) == 0) {
-				this.aa ^= this.aa << 2;
-			} else {
-				this.aa ^= this.aa >>> 16;
+			case 3: // '\003'
+				anInt507 ^= anInt507 >>> 16;
+				break;
 			}
-
-			this.aa += this.mm[var1 + 128 & 255];
-			int var3;
-			this.mm[var1] = var3 = this.mm[(var2 & 1020) >> 2] + this.bb + this.aa;
-			this.results[var1] = this.bb = this.mm[(var3 >> 8 & 1020) >> 2] + var2;
+			anInt507 += anIntArray506[i + 128 & 0xff];
+			int k;
+			anIntArray506[i] = k = anIntArray506[(j & 0x3fc) >> 2] + anInt507 + anInt504;
+			anIntArray508[i] = anInt504 = anIntArray506[(k >> 8 & 0x3fc) >> 2] + j;
 		}
 
 	}
 
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "4"
-	)
-	final void method2693() {
-		int var9 = -1640531527;
-		int var8 = -1640531527;
-		int var7 = -1640531527;
-		int var6 = -1640531527;
-		int var5 = -1640531527;
-		int var4 = -1640531527;
-		int var3 = -1640531527;
-		int var2 = -1640531527;
-
-		int var1;
-		for (var1 = 0; var1 < 4; ++var1) {
-			var2 ^= var3 << 11;
-			var5 += var2;
-			var3 += var4;
-			var3 ^= var4 >>> 2;
-			var6 += var3;
-			var4 += var5;
-			var4 ^= var5 << 8;
-			var7 += var4;
-			var5 += var6;
-			var5 ^= var6 >>> 16;
-			var8 += var5;
-			var6 += var7;
-			var6 ^= var7 << 10;
-			var9 += var6;
-			var7 += var8;
-			var7 ^= var8 >>> 4;
-			var2 += var7;
-			var8 += var9;
-			var8 ^= var9 << 8;
-			var3 += var8;
-			var9 += var2;
-			var9 ^= var2 >>> 9;
-			var4 += var9;
-			var2 += var3;
+	public final int method311() {
+		if(anInt509-- == 0) {
+			method310();
+			anInt509 = 255;
 		}
-
-		for (var1 = 0; var1 < 256; var1 += 8) {
-			var2 += this.results[var1];
-			var3 += this.results[var1 + 1];
-			var4 += this.results[var1 + 2];
-			var5 += this.results[var1 + 3];
-			var6 += this.results[var1 + 4];
-			var7 += this.results[var1 + 5];
-			var8 += this.results[var1 + 6];
-			var9 += this.results[var1 + 7];
-			var2 ^= var3 << 11;
-			var5 += var2;
-			var3 += var4;
-			var3 ^= var4 >>> 2;
-			var6 += var3;
-			var4 += var5;
-			var4 ^= var5 << 8;
-			var7 += var4;
-			var5 += var6;
-			var5 ^= var6 >>> 16;
-			var8 += var5;
-			var6 += var7;
-			var6 ^= var7 << 10;
-			var9 += var6;
-			var7 += var8;
-			var7 ^= var8 >>> 4;
-			var2 += var7;
-			var8 += var9;
-			var8 ^= var9 << 8;
-			var3 += var8;
-			var9 += var2;
-			var9 ^= var2 >>> 9;
-			var4 += var9;
-			var2 += var3;
-			this.mm[var1] = var2;
-			this.mm[var1 + 1] = var3;
-			this.mm[var1 + 2] = var4;
-			this.mm[var1 + 3] = var5;
-			this.mm[var1 + 4] = var6;
-			this.mm[var1 + 5] = var7;
-			this.mm[var1 + 6] = var8;
-			this.mm[var1 + 7] = var9;
-		}
-
-		for (var1 = 0; var1 < 256; var1 += 8) {
-			var2 += this.mm[var1];
-			var3 += this.mm[var1 + 1];
-			var4 += this.mm[var1 + 2];
-			var5 += this.mm[var1 + 3];
-			var6 += this.mm[var1 + 4];
-			var7 += this.mm[var1 + 5];
-			var8 += this.mm[var1 + 6];
-			var9 += this.mm[var1 + 7];
-			var2 ^= var3 << 11;
-			var5 += var2;
-			var3 += var4;
-			var3 ^= var4 >>> 2;
-			var6 += var3;
-			var4 += var5;
-			var4 ^= var5 << 8;
-			var7 += var4;
-			var5 += var6;
-			var5 ^= var6 >>> 16;
-			var8 += var5;
-			var6 += var7;
-			var6 ^= var7 << 10;
-			var9 += var6;
-			var7 += var8;
-			var7 ^= var8 >>> 4;
-			var2 += var7;
-			var8 += var9;
-			var8 ^= var9 << 8;
-			var3 += var8;
-			var9 += var2;
-			var9 ^= var2 >>> 9;
-			var4 += var9;
-			var2 += var3;
-			this.mm[var1] = var2;
-			this.mm[var1 + 1] = var3;
-			this.mm[var1 + 2] = var4;
-			this.mm[var1 + 3] = var5;
-			this.mm[var1 + 4] = var6;
-			this.mm[var1 + 5] = var7;
-			this.mm[var1 + 6] = var8;
-			this.mm[var1 + 7] = var9;
-		}
-
-		this.generateMoreResults();
-		this.valuesRemaining = 256;
+		return anIntArray508[anInt509];
 	}
+
+	private final void method312() {
+		int i1;
+		int j1;
+		int k1;
+		int l1;
+		int i2;
+		int j2;
+		int k2;
+		int l = i1 = j1 = k1 = l1 = i2 = j2 = k2 = 0x9e3779b9;
+		for(int i = 0; i < 4; i++) {
+			l ^= i1 << 11;
+			k1 += l;
+			i1 += j1;
+			i1 ^= j1 >>> 2;
+			l1 += i1;
+			j1 += k1;
+			j1 ^= k1 << 8;
+			i2 += j1;
+			k1 += l1;
+			k1 ^= l1 >>> 16;
+			j2 += k1;
+			l1 += i2;
+			l1 ^= i2 << 10;
+			k2 += l1;
+			i2 += j2;
+			i2 ^= j2 >>> 4;
+			l += i2;
+			j2 += k2;
+			j2 ^= k2 << 8;
+			i1 += j2;
+			k2 += l;
+			k2 ^= l >>> 9;
+			j1 += k2;
+			l += i1;
+		}
+
+		for(int j = 0; j < 256; j += 8) {
+			l += anIntArray508[j];
+			i1 += anIntArray508[j + 1];
+			j1 += anIntArray508[j + 2];
+			k1 += anIntArray508[j + 3];
+			l1 += anIntArray508[j + 4];
+			i2 += anIntArray508[j + 5];
+			j2 += anIntArray508[j + 6];
+			k2 += anIntArray508[j + 7];
+			l ^= i1 << 11;
+			k1 += l;
+			i1 += j1;
+			i1 ^= j1 >>> 2;
+			l1 += i1;
+			j1 += k1;
+			j1 ^= k1 << 8;
+			i2 += j1;
+			k1 += l1;
+			k1 ^= l1 >>> 16;
+			j2 += k1;
+			l1 += i2;
+			l1 ^= i2 << 10;
+			k2 += l1;
+			i2 += j2;
+			i2 ^= j2 >>> 4;
+			l += i2;
+			j2 += k2;
+			j2 ^= k2 << 8;
+			i1 += j2;
+			k2 += l;
+			k2 ^= l >>> 9;
+			j1 += k2;
+			l += i1;
+			anIntArray506[j] = l;
+			anIntArray506[j + 1] = i1;
+			anIntArray506[j + 2] = j1;
+			anIntArray506[j + 3] = k1;
+			anIntArray506[j + 4] = l1;
+			anIntArray506[j + 5] = i2;
+			anIntArray506[j + 6] = j2;
+			anIntArray506[j + 7] = k2;
+		}
+
+		for(int k = 0; k < 256; k += 8) {
+			l += anIntArray506[k];
+			i1 += anIntArray506[k + 1];
+			j1 += anIntArray506[k + 2];
+			k1 += anIntArray506[k + 3];
+			l1 += anIntArray506[k + 4];
+			i2 += anIntArray506[k + 5];
+			j2 += anIntArray506[k + 6];
+			k2 += anIntArray506[k + 7];
+			l ^= i1 << 11;
+			k1 += l;
+			i1 += j1;
+			i1 ^= j1 >>> 2;
+			l1 += i1;
+			j1 += k1;
+			j1 ^= k1 << 8;
+			i2 += j1;
+			k1 += l1;
+			k1 ^= l1 >>> 16;
+			j2 += k1;
+			l1 += i2;
+			l1 ^= i2 << 10;
+			k2 += l1;
+			i2 += j2;
+			i2 ^= j2 >>> 4;
+			l += i2;
+			j2 += k2;
+			j2 ^= k2 << 8;
+			i1 += j2;
+			k2 += l;
+			k2 ^= l >>> 9;
+			j1 += k2;
+			l += i1;
+			anIntArray506[k] = l;
+			anIntArray506[k + 1] = i1;
+			anIntArray506[k + 2] = j1;
+			anIntArray506[k + 3] = k1;
+			anIntArray506[k + 4] = l1;
+			anIntArray506[k + 5] = i2;
+			anIntArray506[k + 6] = j2;
+			anIntArray506[k + 7] = k2;
+		}
+
+		method310();
+		anInt509 = 256;
+	}
+
+	public IsaacCipher(int ai[]) {
+		anIntArray506 = new int[256];
+		anIntArray508 = new int[256];
+		for(int i = 0; i < ai.length; i++)
+			anIntArray508[i] = ai[i];
+
+		method312();
+	}
+
+	private int anInt504;
+	private int anInt505;
+	private int anIntArray506[];
+	private int anInt507;
+	private int anIntArray508[];
+	private int anInt509;
 }

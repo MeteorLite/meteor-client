@@ -25,8 +25,11 @@
  */
 package meteor.plugins.stretchedmode
 
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.WindowState
 import eventbus.events.ConfigChanged
-import eventbus.events.ResizeableChanged
+import meteor.Main
 import meteor.input.MouseManager
 import meteor.input.TranslateMouseListener
 import meteor.input.TranslateMouseWheelListener
@@ -56,13 +59,16 @@ class StretchedModePlugin : Plugin() {
     override fun onStop() {
         client.isStretchedEnabled = false
         client.invalidateStretching(true)
+        //Set absolute min window size
+        Main.windowSize.value = DpSize(1.dp, 1.dp)
+        Main.windowState.value = WindowState(size = Main.windowSize.value)
         mouseManager.unregisterMouseListener(mouseListener)
         mouseManager.unregisterMouseWheelListener(mouseWheelListener)
     }
 
-    override fun onResizeableChanged(it: ResizeableChanged) {
+/*    override fun onResizeableChanged(it: ResizeableChanged) {
         client.invalidateStretching(true)
-    }
+    }*/
 
     override fun onConfigChanged(it: ConfigChanged) {
         if (it.group == "stretchedmode")
@@ -70,10 +76,10 @@ class StretchedModePlugin : Plugin() {
     }
 
     fun updateConfig() {
-        client.setStretchedIntegerScaling(config.integerScaling())
-        client.setStretchedKeepAspectRatio(config.keepAspectRatio())
+        client.setStretchedIntegerScaling(false)
+        client.setStretchedKeepAspectRatio(false)
         client.isStretchedFast = config.increasedPerformance()
-        client.setScalingFactor(config.scalingFactor())
+        //client.setScalingFactor(config.scalingFactor())
         client.invalidateStretching(true)
     }
 }

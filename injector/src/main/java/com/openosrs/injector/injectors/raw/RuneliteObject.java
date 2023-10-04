@@ -24,7 +24,7 @@ import net.runelite.asm.signature.Signature;
 
 public class RuneliteObject extends AbstractInjector
 {
-	private static final String RUNELITE_OBJECT = "RuneLiteObject";
+	private static final String RUNELITE_OBJECT = "osrs/RuneLiteObject";
 
 	public RuneliteObject(InjectData inject)
 	{
@@ -37,7 +37,7 @@ public class RuneliteObject extends AbstractInjector
 
 		final ClassFile clientVanilla = inject.toVanilla(
 			inject.getDeobfuscated()
-				.findClass("Client")
+				.findClass("osrs/Client")
 		);
 
 		Method copy = new Method(clientVanilla, "createRuneLiteObject", new Signature("()Lnet/runelite/api/RuneLiteObject;"));

@@ -23,9 +23,9 @@ public class GameDrawingMode extends AbstractInjector
 	{
 		final ClassFile clientVanilla = inject.toVanilla(
 			inject.getDeobfuscated()
-				.findClass("Client")
+				.findClass("osrs/Client")
 		);
-		final Field gameDrawingMode = InjectUtil.findField(inject, "gameDrawingMode", "Client").getPoolField();
+		final Field gameDrawingMode = InjectUtil.findField(inject, "gameDrawingMode", "osrs/Client").getPoolField();
 
 		Method clinit = clientVanilla.findMethod("<clinit>");
 

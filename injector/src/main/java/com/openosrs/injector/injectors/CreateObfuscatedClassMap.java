@@ -62,7 +62,7 @@ public class CreateObfuscatedClassMap extends AbstractInjector
 		{
 			deobClass.getAnnotations().forEach((type, annotation) -> {
 				if (annotation.getType().equals(DeobAnnotations.OBFUSCATED_NAME)) {
-					mappingsBuilder.append("		INSTANCE.put(\"" + deobClass.getName() + "\", \"" + annotation.getValueString() + "\");\n");
+					mappingsBuilder.append("		INSTANCE.put(\"" + deobClass.getName().replace("/", ".") + "\", \"" + annotation.getValueString() + "\");\n");
 				}
 			});
 		}
@@ -90,7 +90,7 @@ public class CreateObfuscatedClassMap extends AbstractInjector
 	}
 
 	public void save(String obfuscatedClassMap) throws IOException {
-		String loc = "../osrs/src/main/java/net/runelite/rs/ObfuscatedClassMap.java";
+		String loc = "./osrs/src/main/java/net/runelite/rs/ObfuscatedClassMap.java";
 		new File(loc).delete();
 		try (PrintWriter output = new PrintWriter(loc)) {
 			output.print(obfuscatedClassMap);

@@ -10,6 +10,8 @@ package com.openosrs.injector;
 import com.openosrs.injector.injection.InjectData;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;
 import static com.openosrs.injector.rsapi.RSApi.RL_API_BASE;
+import static net.runelite.deob.DeobAnnotations.IMPLEMENTS;
+
 import com.openosrs.injector.rsapi.RSApiClass;
 import com.openosrs.injector.rsapi.RSApiMethod;
 import java.util.List;
@@ -78,6 +80,7 @@ public interface InjectUtil
 		return findMethod(data, name, classHint, sig, false, false);
 	}
 
+
 	/**
 	 * Finds a method in injectData's deobfuscated classes.
 	 *
@@ -93,6 +96,15 @@ public interface InjectUtil
 		throws InjectException
 	{
 		return findMethod(data, name, classHint, null, false, false);
+	}
+
+	static Method findStaticMethod(
+			InjectData data,
+			String name,
+			@Nullable String classHint)
+			throws InjectException
+	{
+		return findMethod(data, name, classHint, null, true, false);
 	}
 
 	/**
@@ -251,6 +263,8 @@ public interface InjectUtil
 			}
 		}
 
+		boolean foundPrivateStaticMatch = false;
+
 		for (ClassFile clazz : deob)
 		{
 			if (type == null)
@@ -264,8 +278,15 @@ public interface InjectUtil
 
 			if (field != null)
 			{
-				return field;
+				if (!field.isPublic()) {
+					foundPrivateStaticMatch = true;
+				} else return field;
 			}
+		}
+
+		if (foundPrivateStaticMatch) {
+			System.out.println("Only private static field matches were found, which is not allowed. ");
+			System.out.println("Consider making the field public or check your type!");
 		}
 
 		throw new InjectException(String.format("Static field %s doesn't exist", (type != null ? type + " " : "") + name));
@@ -357,7 +378,16 @@ public interface InjectUtil
 		final String internalName = api.getInternalName();
 		if (internalName.startsWith(API_BASE))
 		{
-			return Type.getType("L" + api.getInternalName().substring(API_BASE.length()) + ";", api.getDimensions());
+			String type = api.getInternalName().substring(API_BASE.length());
+			for (ClassFile cf : data.deobfuscated) {
+				Annotation imp = cf.findAnnotation(IMPLEMENTS);
+				if (imp != null) {
+					if (imp.getValueString().equals(api.getInternalName().substring(API_BASE.length()))) {
+						type = cf.getName();
+					}
+				}
+			}
+			return Type.getType("L" + type + ";", api.getDimensions());
 		}
 		else if (internalName.startsWith(RL_API_BASE))
 		{
@@ -575,7 +605,7 @@ public interface InjectUtil
 		injectObfuscatedGetter(DMath.modInverse(getter), instrs, into);
 	}
 
-	private static List<Type> findArgs(final String str, final List<Type> ret, final int from, final int to)
+	static List<Type> findArgs(final String str, final List<Type> ret, final int from, final int to)
 	{
 		if (from >= to)
 		{

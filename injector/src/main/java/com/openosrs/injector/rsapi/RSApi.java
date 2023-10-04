@@ -26,18 +26,24 @@ import net.runelite.asm.pool.Class;
 import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.ClassReader;
 
-@NoArgsConstructor
 public class RSApi implements Iterable<RSApiClass>
 {
-	public static final String API_BASE = "net/runelite/rs/api/RS";
+	public static final String API_BASE = "net/runelite/rs/api/";
 	public static final String RL_API_BASE = "net/runelite/api";
 	public static final Type CONSTRUCT = new Type("Lnet/runelite/mapping/Construct;");
 	public static final Type IMPORT = new Type("Lnet/runelite/mapping/Import;");
 
 	private final List<RSApiClass> classes = new ArrayList<>();
 
-	@Getter
 	private final List<RSApiMethod> constructs = new ArrayList<>();
+
+	public RSApi() {
+
+	}
+
+	public List<RSApiMethod> getConstructs() {
+		return constructs;
+	}
 
 	private ImmutableMap<String, RSApiClass> map;
 

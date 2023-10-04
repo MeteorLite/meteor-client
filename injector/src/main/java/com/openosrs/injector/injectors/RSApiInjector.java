@@ -44,16 +44,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.Field;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
+
+import net.runelite.asm.*;
 import net.runelite.asm.attributes.Annotated;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
 
 import static com.openosrs.injector.Injector.report;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;
+import static net.runelite.deob.DeobAnnotations.IMPLEMENTS;
 
 public class RSApiInjector extends AbstractInjector
 {
@@ -69,7 +68,16 @@ public class RSApiInjector extends AbstractInjector
 	{
 		for (final ClassFile deobClass : inject.getDeobfuscated())
 		{
-			final RSApiClass implementingClass = inject.getRsApi().findClass(API_BASE + deobClass.getName());
+			String type = null;
+			Annotation imp = deobClass.findAnnotation(IMPLEMENTS);
+			if (imp != null) {
+				for (RSApiClass rsapi : inject.rsApi.getClasses()) {
+					if (rsapi.getName().equals(API_BASE + imp.getValueString())) {
+						type = rsapi.getName();
+					}
+				}
+			}
+			final RSApiClass implementingClass = inject.getRsApi().findClass(type);
 
 			injectFields(deobClass, implementingClass);
 			injectMethods(deobClass, implementingClass);
@@ -101,6 +109,7 @@ public class RSApiInjector extends AbstractInjector
 
 				if (apiMethod.isInjected())
 				{
+
 					it.remove();
 					continue;
 				}
@@ -114,6 +123,7 @@ public class RSApiInjector extends AbstractInjector
 					if (deobApiTarget != deobClass &&
 						deobApiTarget.findField(deobField.getName()) != null)
 					{
+
 						it.remove();
 						continue;
 					}
@@ -146,10 +156,12 @@ public class RSApiInjector extends AbstractInjector
 
 			if (matching.size() == 0)
 			{
+
 				continue;
 			}
 			else if (matching.size() > 2)
 			{
+
 				retryFields.put(deobField, new ArrayList<>(matching));
 				continue;
 			}
@@ -172,11 +184,10 @@ public class RSApiInjector extends AbstractInjector
 		{
 			final List<RSApiMethod> matching = findImportsFor(deobMethod, deobMethod.isStatic(), implementingClass);
 
-			if (matching == null)
+			if (matching == null || matching.isEmpty())
 			{
 				continue;
 			}
-
 			final Signature deobSig = deobMethod.getDescriptor();
 
 			ListIterator<RSApiMethod> it = matching.listIterator();
@@ -254,7 +265,6 @@ public class RSApiInjector extends AbstractInjector
 		{
 			return null;
 		}
-
 		final List<RSApiMethod> matching = new ArrayList<>();
 
 		if (statik)
@@ -268,6 +278,7 @@ public class RSApiInjector extends AbstractInjector
 		{
 			implemented.fetchImported(matching, exportedName);
 		}
+
 
 		return matching;
 	}

@@ -30,7 +30,7 @@ public class RenderDraw extends AbstractInjector
 	@Override
 	public void inject()
 	{
-		final net.runelite.asm.pool.Method renderDraw = inject.toVanilla(inject.getDeobfuscated().findClass("Scene")).findMethod("renderDraw").getPoolMethod();
+		final net.runelite.asm.pool.Method renderDraw = inject.toVanilla(inject.getDeobfuscated().findClass("osrs/Scene")).findMethod("renderDraw").getPoolMethod();
 
 		int replaced = 0;
 
@@ -38,9 +38,9 @@ public class RenderDraw extends AbstractInjector
 		 * This class replaces entity draw invocation instructions
 		 * with the renderDraw method on drawcallbacks
 		 */
-		final net.runelite.asm.pool.Method draw = InjectUtil.findMethod(inject, "draw", "Renderable", null, true, false).getPoolMethod();
+		final net.runelite.asm.pool.Method draw = InjectUtil.findMethod(inject, "draw", "osrs/Renderable", null, true, false).getPoolMethod();
 
-		final Method drawTile = InjectUtil.findMethod(inject, "drawTile", "Scene", null, true, false);
+		final Method drawTile = InjectUtil.findMethod(inject, "drawTile", "osrs/Scene", null, true, false);
 
 		Instructions ins = drawTile.getCode().getInstructions();
 		for (ListIterator<Instruction> iterator = ins.listIterator(); iterator.hasNext(); )

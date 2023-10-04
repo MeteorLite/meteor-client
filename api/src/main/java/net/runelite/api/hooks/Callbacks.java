@@ -24,15 +24,11 @@
  */
 package net.runelite.api.hooks;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.util.List;
-import net.runelite.api.MainBufferProvider;
-import net.runelite.api.Renderable;
-import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetItem;
+import java.awt.image.BufferedImage;
 
 /**
  * Interface of callbacks the injected client uses to send events
@@ -44,14 +40,14 @@ public interface Callbacks
 	 *
 	 * @param event the event
 	 */
-	void post(Enum<?> type, Object event);
+	void post(Object event);
 
 	/**
 	 * Post a deferred event, which gets delayed until the next cycle.
 	 *
 	 * @param event the event
 	 */
-	void postDeferred(Enum<?> type, Object event);
+	void postDeferred(Object event);
 
 	/**
 	 * Called each tick
@@ -86,21 +82,21 @@ public interface Callbacks
 	 * @param x                  the x
 	 * @param y                  the y
 	 */
-	void draw(MainBufferProvider mainBufferProvider, Graphics graphics, int x, int y);
+	void draw(Image mainBufferProvider, int x, int y);
 
 	/**
 	 * Called after an interface has been drawn
 	 * @param interfaceId the interface id
 	 * @param widgetItems Widget items within the interface
 	 */
-	void drawInterface(int interfaceId, List<WidgetItem> widgetItems);
+	//void drawInterface(int interfaceId, List<WidgetItem> widgetItems);
 
 	/**
 	 * Called after a widget layer has been drawn
 	 * @param layer The layer
 	 * @param widgetItems Widget items within the layer
 	 */
-	void drawLayer(Widget layer, List<WidgetItem> widgetItems);
+	//void drawLayer(Widget layer, List<WidgetItem> widgetItems);
 
 	/**
 	 * Mouse pressed event. If this event will be consumed it will not be propagated further to client.
@@ -193,5 +189,5 @@ public interface Callbacks
 	 * @param drawingUi if this is the 2d ui, such as hp bars or hitsplats
 	 * @return false to prevent drawing
 	 */
-	boolean draw(Renderable renderable, boolean drawingUi);
+	//boolean draw(Renderable renderable, boolean drawingUi);
 }

@@ -2,8 +2,6 @@ package meteor.ui.overlay
 
 import com.google.common.base.MoreObjects
 import com.google.common.collect.ArrayListMultimap
-import net.runelite.api.widgets.WidgetID
-import net.runelite.api.widgets.WidgetItem
 import java.awt.Dimension
 import java.awt.Point
 import java.util.*
@@ -30,7 +28,6 @@ object OverlayManager {
     }
 
     val overlays: ArrayList<Overlay> = ArrayList()
-    var widgetItems: Collection<WidgetItem> = emptyList()
     private var overlayMap = ArrayListMultimap.create<Any, Overlay>()
 
     fun getLayer(layer: OverlayLayer): Collection<Overlay> {
@@ -158,22 +155,22 @@ object OverlayManager {
             if (overlay.getPreferredLocation() != null && overlay.preferredPosition == null) {
                 // When UNDER_WIDGET overlays are in preferred locations, move to
                 // ABOVE_WIDGETS so that it can draw over interfaces
-                if (layer == OverlayLayer.UNDER_WIDGETS && overlay !is WidgetOverlay) {
+/*                if (layer == OverlayLayer.UNDER_WIDGETS && overlay !is WidgetOverlay) {
                     layer = OverlayLayer.ABOVE_WIDGETS
-                }
+                }*/
             }
             when (layer) {
                 OverlayLayer.ABOVE_SCENE, OverlayLayer.UNDER_WIDGETS, OverlayLayer.ALWAYS_ON_TOP -> overlayMap.put(
                     layer,
                     overlay
                 )
-                OverlayLayer.ABOVE_WIDGETS -> {
+/*                OverlayLayer.ABOVE_WIDGETS -> {
                     // draw after each of the top level interfaces
                     overlayMap.put(WidgetID.FIXED_VIEWPORT_GROUP_ID shl 16 or 0xffff, overlay)
                     overlayMap
                         .put(WidgetID.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX_GROUP_ID shl 16 or 0xffff, overlay)
                     overlayMap.put(WidgetID.RESIZABLE_VIEWPORT_BOTTOM_LINE_GROUP_ID shl 16 or 0xffff, overlay)
-                }
+                }*/
                 else -> {}
             }
             for (drawHook in overlay.drawHooks) {

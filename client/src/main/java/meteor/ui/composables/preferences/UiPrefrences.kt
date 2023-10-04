@@ -10,15 +10,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.WindowState
 import compose.icons.LineAwesomeIcons
 import compose.icons.Octicons
 import compose.icons.lineawesomeicons.PlugSolid
 import compose.icons.octicons.Alert24
 import meteor.Main
 import meteor.config.descriptor.ConfigDescriptor
-import meteor.hiscore.HiscoreResult
 import meteor.plugins.Plugin
 import meteor.rs.Applet
 import meteor.ui.composables.PluginPanel
@@ -39,10 +40,9 @@ var error = mutableStateOf(false)
 var errorText = mutableStateOf("")
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 const val consoleHeight = 500
-const val minimumHeight = 542
+val minimumHeight = Applet().minimalHeight
 val totalClientWidth = Applet().clientWidth + Main.meteorConfig.toolbarWidth()
-val totalMinimalWidth = Applet().minimalWidth + Main.meteorConfig.toolbarWidth()
-var result: HiscoreResult? = null
+val totalMinimalWidth = Applet().minimalWidth
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var searchValue = mutableStateOf("")
 var lastButtonClicked : ToolbarButton? = null
@@ -104,13 +104,13 @@ fun ErrorDialog(){
         }
     }
 }
-fun setOpenValues(openValue: Boolean) {
+fun setOpenValues(pluginListShowing: Boolean) {
     pluginPanelIsOpen.value = false
     configOpen.value = false
-    pluginsOpen.value = openValue
+    pluginsOpen.value = pluginListShowing
 }
 
-
+var lastNormalWindowSize: DpSize? = null
 
 val pluginListButton = addButton(
     ToolbarButton(
@@ -129,6 +129,7 @@ val pluginListButton = addButton(
                 pluginsOpen.value = true
                 return@ToolbarButton
             }
+
             setOpenValues(!pluginsOpen.value)
         },
         position = 0)

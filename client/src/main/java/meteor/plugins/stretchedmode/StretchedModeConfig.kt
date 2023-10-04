@@ -29,14 +29,14 @@ import meteor.config.legacy.*
 
 @ConfigGroup("stretchedmode")
 interface StretchedModeConfig : Config {
-    @ConfigItem(
+/*    @ConfigItem(
         keyName = "keepAspectRatio",
         name = "Keep aspect ratio",
         description = "Keeps the aspect ratio when stretching."
     )
     fun keepAspectRatio(): Boolean {
         return true
-    }
+    }*/
 
     @ConfigItem(
         keyName = "increasedPerformance",
@@ -46,7 +46,7 @@ interface StretchedModeConfig : Config {
     fun increasedPerformance(): Boolean {
         return false
     }
-
+/*
     @ConfigItem(
         keyName = "integerScaling",
         name = "Integer Scaling",
@@ -65,5 +65,5 @@ interface StretchedModeConfig : Config {
     @Units(Units.PERCENT)
     fun scalingFactor(): Int {
         return 75
-    }
+    }*/
 }

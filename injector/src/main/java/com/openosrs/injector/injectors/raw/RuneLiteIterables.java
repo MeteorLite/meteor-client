@@ -25,9 +25,9 @@ import net.runelite.asm.signature.Signature;
 
 public class RuneLiteIterables extends AbstractInjector
 {
-	private static final String RUNELITE_ITERABLE_HASHTABLE = "RuneLiteIterableNodeHashTable";
-	private static final String RUNELITE_ITERABLE_NODE_DEQUE = "RuneLiteIterableNodeDeque";
-	private static final String RUNELITE_ITERABLE_LINK_DEQUE = "RuneLiteIterableLinkDeque";
+	private static final String RUNELITE_ITERABLE_HASHTABLE = "osrs/RuneLiteIterableNodeHashTable";
+	private static final String RUNELITE_ITERABLE_NODE_DEQUE = "osrs/RuneLiteIterableNodeDeque";
+	private static final String RUNELITE_ITERABLE_LINK_DEQUE = "osrs/RuneLiteIterableLinkDeque";
 
 	public RuneLiteIterables(InjectData inject)
 	{

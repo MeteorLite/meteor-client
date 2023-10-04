@@ -43,7 +43,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.inject.Provider;
-import lombok.Value;
+
 import net.runelite.asm.Annotation;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.Field;
@@ -90,7 +90,8 @@ public class MixinInjector extends AbstractInjector
 	private static final String MIXIN_BASE = "net/runelite/mixins/";
 
 	private int injectedInterfaces = 0;
-	private final Map<String, Field> injectedFields = new HashMap<>();
+	private final Map<String, Field> injectedStaticFields = new HashMap<>();
+	private int injectedFields = 0;
 	private final Map<net.runelite.asm.pool.Field, ShadowField> shadowFields = new HashMap<>();
 	private int copied = 0, replaced = 0, injected = 0;
 
@@ -121,7 +122,7 @@ public class MixinInjector extends AbstractInjector
 			injectFields(entry.getKey(), entry.getValue());
 		}
 
-		report.add("Injected " + injectedFields.size() + " mixin fields");
+		report.add("Injected " + (injectedFields + injectedStaticFields.size()) + " mixin fields");
 
 		for (Map.Entry<Provider<ClassFile>, List<ClassFile>> entry : mixinTargets.entrySet())
 		{
@@ -150,6 +151,8 @@ public class MixinInjector extends AbstractInjector
 		{
 			for (ClassFile mixinClass : inject.getMixins())
 			{
+				if (mixinClass.getName().endsWith("BuildConfig"))
+					continue;
 				final List<ClassFile> ret = getMixins(mixinClass);
 				builder.put(
 					(ret.size() > 1 ? mixinProvider(mixinClass) : () -> mixinClass),
@@ -177,7 +180,6 @@ public class MixinInjector extends AbstractInjector
 				{
 					if (targetClass.getInterfaces().addInterface(itf))
 					{
-
 						injectedInterfaces++;
 					}
 				});
@@ -199,8 +201,7 @@ public class MixinInjector extends AbstractInjector
 			{
 				for (Field field : mixinClass.getFields())
 				{
-					if (field.findAnnotation(INJECT) == null &&
-						(!ASSERTION_FIELD.equals(field.getName()) || targetClass.findField(ASSERTION_FIELD, Type.BOOLEAN) != null))
+					if (field.findAnnotation(INJECT) == null)
 					{
 						continue;
 					}
@@ -226,14 +227,16 @@ public class MixinInjector extends AbstractInjector
 					targetClass.addField(copy);
 
 					// We only need to save static fields in injected fields, cause only static fields can be shadowed
-					if (!field.isStatic())
+					if (!field.isStatic()) {
+						injectedFields++;
 						continue;
-					if (injectedFields.containsKey(field.getName()) && !ASSERTION_FIELD.equals(field.getName()))
+					}
+					if (injectedStaticFields.containsKey(field.getName()) && !ASSERTION_FIELD.equals(field.getName()))
 					{
 						throw new InjectException("Duplicate static field: " + field.getName());
 					}
 
-					injectedFields.put(field.getName(), copy);
+					injectedStaticFields.put(field.getName(), copy);
 				}
 			}
 		}
@@ -264,7 +267,7 @@ public class MixinInjector extends AbstractInjector
 
 			String shadowed = shadow.getValueString();
 
-			Field targetField = injectedFields.get(shadowed);
+			Field targetField = injectedStaticFields.get(shadowed);
 			Number getter = null;
 
 			if (targetField == null)
@@ -330,7 +333,7 @@ public class MixinInjector extends AbstractInjector
 				copy.setAccessFlags(sourceMethod.getAccessFlags());
 				copy.setPublic();
 				copy.getExceptions().getExceptions().addAll(sourceMethod.getExceptions().getExceptions());
-				for (var a : sourceMethod.getAnnotations().values())
+				for (Annotation a : sourceMethod.getAnnotations().values())
 				{
 					copy.addAnnotation(a);
 				}
@@ -773,44 +776,50 @@ public class MixinInjector extends AbstractInjector
 	@SuppressWarnings("unchecked")
 	private List<ClassFile> getMixins(Annotated from)
 	{
-		try {
-			final Annotation mixin = from.findAnnotation(MIXIN);
-			if (mixin != null)
-			{
-				return List.of(InjectUtil.getVanillaClassFromAnnotationString(inject, mixin));
-			}
-			final Annotation mixins = from.findAnnotation(MIXINS);
-			if (mixins != null)
-			{
-				return ((List<Annotation>) mixins.getValue()).stream()
-						.map(mix -> InjectUtil.getVanillaClassFromAnnotationString(inject, mix))
-						.collect(Collectors.toUnmodifiableList());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+
+		final Annotation mixin = from.findAnnotation(MIXIN);
+		if (mixin != null)
+		{
+			return List.of(InjectUtil.getVanillaClassFromAnnotationString(inject, mixin));
+		}
+		final Annotation mixins = from.findAnnotation(MIXINS);
+		if (mixins != null)
+		{
+			return ((List<Annotation>) mixins.getValue()).stream()
+				.map(mix -> InjectUtil.getVanillaClassFromAnnotationString(inject, mix))
+				.collect(Collectors.toUnmodifiableList());
 		}
 		throw new IllegalArgumentException("No MIXIN or MIXINS found on " + from.toString());
 	}
 
-	@Value
+
 	private static class CopiedMethod
 	{
 		@Nonnull
 		Method copy;
 		@Nullable Integer garbage;
+
+		public CopiedMethod(@Nonnull Method copy, @Nullable Integer garbage) {
+			this.copy = copy;
+			this.garbage = garbage;
+		}
 	}
 
-	@Value
 	private static class ShadowField
 	{
 		@Nonnull
 		Field targetField;
 		@Nullable Number obfuscatedGetter;
+
+		public ShadowField(@Nonnull Field targetField, @Nullable Number obfuscatedGetter) {
+			this.targetField = targetField;
+			this.obfuscatedGetter = obfuscatedGetter;
+		}
 	}
 
 	private static Provider<ClassFile> mixinProvider(ClassFile mixin)
 	{
-		return new Provider<>()
+		return new Provider<ClassFile>()
 		{
 			byte[] bytes = null;
 

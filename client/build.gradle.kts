@@ -53,14 +53,12 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
     implementation(compose.desktop.currentOs)
-    implementation(projects.osrs)
     with(projects) {
         implementation(apiRs)
         implementation(api)
         implementation(http)
         implementation(annotations)
         implementation(logger)
-        runtimeOnly(scripts)
     }
 
     with(libs) {
@@ -170,7 +168,6 @@ tasks {
     }
     processResources {
         dependsOn(":injector:inject")
-        dependsOn(":scripts:assembleScripts")
     }
     jar {
         archiveFileName.set("meteor-client-$majorRelease-r$release.jar")

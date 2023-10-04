@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import meteor.Main
-import meteor.plugins.infopanel.InfoPanel
 import meteor.ui.composables.preferences.*
 
 

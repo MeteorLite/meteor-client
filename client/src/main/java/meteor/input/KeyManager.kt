@@ -93,9 +93,6 @@ object KeyManager {
     }
 
     private fun shouldProcess(keyListener: KeyListener): Boolean {
-        val gameState = client.gameState
-        return if (gameState == GameState.LOGIN_SCREEN || gameState == GameState.LOGIN_SCREEN_AUTHENTICATOR) {
-            keyListener.isEnabledOnLoginScreen
-        } else true
+        return true
     }
 }

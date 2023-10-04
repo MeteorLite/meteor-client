@@ -25,19 +25,7 @@
  */
 package net.runelite.api.coords;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import lombok.Value;
-import net.runelite.api.Client;
-import static net.runelite.api.Constants.CHUNK_SIZE;
-import static net.runelite.api.Constants.REGION_SIZE;
-
-import net.runelite.api.Locatable;
-import net.runelite.api.Perspective;
-import net.runelite.api.Tile;
 
 /**
  * A three-dimensional point representing the coordinate of a Tile.
@@ -48,14 +36,6 @@ import net.runelite.api.Tile;
 @Value
 public class WorldPoint
 {
-	private static final int[] REGION_MIRRORS = {
-		// Prifddinas
-		12894, 8755,
-		12895, 8756,
-		13150, 9011,
-		13151, 9012
-	};
-
 	/**
 	 * X-axis coordinate.
 	 */
@@ -69,7 +49,7 @@ public class WorldPoint
 	/**
 	 * The plane level of the Tile, also referred as z-axis coordinate.
 	 *
-	 * @see Client#getPlane()
+	 * @see //Client#getPlane()
 	 */
 	public final int plane;
 
@@ -114,7 +94,7 @@ public class WorldPoint
 	 * @param y      the tiles y coordinate
 	 * @return true if the tile is in the scene, false otherwise
 	 */
-	public static boolean isInScene(Client client, int x, int y)
+/*	public static boolean isInScene(Client client, int x, int y)
 	{
 		int baseX = client.getBaseX();
 		int baseY = client.getBaseY();
@@ -123,7 +103,7 @@ public class WorldPoint
 		int maxY = baseY + Perspective.SCENE_SIZE;
 
 		return x >= baseX && x < maxX && y >= baseY && y < maxY;
-	}
+	}*/
 
 	/**
 	 * Checks whether this tile is located in the current scene.
@@ -131,10 +111,12 @@ public class WorldPoint
 	 * @param client the client
 	 * @return true if this tile is in the scene, false otherwise
 	 */
+/*
 	public boolean isInScene(Client client)
 	{
 		return client.getPlane() == plane && isInScene(client, x, y);
 	}
+*/
 
 	/**
 	 * Gets the coordinate of the tile that contains the passed local point.
@@ -143,10 +125,10 @@ public class WorldPoint
 	 * @param local  the local coordinate
 	 * @return the tile coordinate containing the local point
 	 */
-	public static WorldPoint fromLocal(Client client, LocalPoint local)
+/*	public static WorldPoint fromLocal(Client client, LocalPoint local)
 	{
 		return fromLocal(client, local.getX(), local.getY(), client.getPlane());
-	}
+	}*/
 
 	/**
 	 * Gets the coordinate of the tile that contains the passed local point.
@@ -157,29 +139,29 @@ public class WorldPoint
 	 * @param plane  the plane
 	 * @return the tile coordinate containing the local point
 	 */
-	public static WorldPoint fromLocal(Client client, int x, int y, int plane)
+/*	public static WorldPoint fromLocal(Client client, int x, int y, int plane)
 	{
 		return new WorldPoint(
 			(x >>> Perspective.LOCAL_COORD_BITS) + client.getBaseX(),
 			(y >>> Perspective.LOCAL_COORD_BITS) + client.getBaseY(),
 			plane
 		);
-	}
-
-	/**
+	}*/
+/*
+	*//**
 	 * Gets the coordinate of the tile that contains the passed local point,
 	 * accounting for instances.
 	 *
 	 * @param client the client
 	 * @param localPoint the local coordinate
 	 * @return the tile coordinate containing the local point
-	 */
+	 *//*
 	public static WorldPoint fromLocalInstance(Client client, LocalPoint localPoint)
 	{
 		return fromLocalInstance(client, localPoint, client.getPlane());
 	}
 
-	/**
+	*//**
 	 * Gets the coordinate of the tile that contains the passed local point,
 	 * accounting for instances.
 	 *
@@ -187,7 +169,7 @@ public class WorldPoint
 	 * @param localPoint the local coordinate
 	 * @param plane the plane for the returned point, if it is not an instance
 	 * @return the tile coordinate containing the local point
-	 */
+	 *//*
 	public static WorldPoint fromLocalInstance(Client client, LocalPoint localPoint, int plane)
 	{
 		if (client.isInInstancedRegion())
@@ -222,14 +204,14 @@ public class WorldPoint
 		}
 	}
 
-	/**
+	*//**
 	 * Get occurrences of a tile on the scene, accounting for instances. There may be
 	 * more than one if the same template chunk occurs more than once on the scene.
 	 *
 	 * @param client
 	 * @param worldPoint
 	 * @return
-	 */
+	 *//*
 	public static Collection<WorldPoint> toLocalInstance(Client client, WorldPoint worldPoint)
 	{
 		if (!client.isInInstancedRegion())
@@ -263,23 +245,23 @@ public class WorldPoint
 		return worldPoints;
 	}
 
-	/**
+	*//**
 	 * Converts a WorldPoint to a 1x1 WorldArea.
 	 *
 	 * @return Returns a 1x1 WorldArea
-	 */
+	 *//*
 	public WorldArea toWorldArea()
 	{
 		return new WorldArea(x, y, 1, 1, plane);
 	}
 
-	/**
+	*//**
 	 * Rotate the coordinates in the chunk according to chunk rotation
 	 *
 	 * @param point    point
 	 * @param rotation rotation
 	 * @return world point
-	 */
+	 *//*
 	private static WorldPoint rotate(WorldPoint point, int rotation)
 	{
 		int chunkX = point.getX() & ~(CHUNK_SIZE - 1);
@@ -298,16 +280,16 @@ public class WorldPoint
 		return point;
 	}
 
-	/**
+	*//**
 	 * Gets the shortest distance from this point to a WorldArea.
 	 *
 	 * @param other the world area
 	 * @return the shortest distance
-	 */
+	 *//*
 	public int distanceTo(WorldArea other)
 	{
 		return new WorldArea(this, 1, 1).distanceTo(other);
-	}
+	}*/
 
 	/**
 	 * Gets the distance between this point and another.
@@ -380,14 +362,14 @@ public class WorldPoint
 	/**
 	 * Converts the passed scene coordinates to a world space
 	 */
-	public static WorldPoint fromScene(Client client, int x, int y, int plane)
+/*	public static WorldPoint fromScene(Client client, int x, int y, int plane)
 	{
 		return new WorldPoint(
 			x + client.getBaseX(),
 			y + client.getBaseY(),
 			plane
 		);
-	}
+	}*/
 
 	/**
 	 * Gets the ID of the region containing this tile.
@@ -428,26 +410,26 @@ public class WorldPoint
 			plane);
 	}
 
-	/**
+/*	*//**
 	 * Gets the X-axis coordinate of the region coordinate
-	 */
+	 *//*
 	public int getRegionX()
 	{
 		return getRegionOffset(x);
 	}
 
-	/**
+	*//**
 	 * Gets the Y-axis coordinate of the region coordinate
-	 */
+	 *//*
 	public int getRegionY()
 	{
 		return getRegionOffset(y);
-	}
+	}*/
 
-	private static int getRegionOffset(final int position)
+/*	private static int getRegionOffset(final int position)
 	{
 		return position & (REGION_SIZE - 1);
-	}
+	}*/
 
 	/**
 	 * Determine the checkpoint tiles of a server-sided path from this WorldPoint to another WorldPoint.
@@ -462,7 +444,7 @@ public class WorldPoint
 	 * @param other The other WorldPoint to compare with
 	 * @return Returns the checkpoint tiles of the path
 	 */
-	public List<WorldPoint> pathTo(Client client, WorldPoint other)
+	/*public List<WorldPoint> pathTo(Client client, WorldPoint other)
 	{
 		if (plane != other.getPlane())
 		{
@@ -500,7 +482,7 @@ public class WorldPoint
 			checkpointWPs.add(checkpointTile.getWorldLocation());
 		}
 		return checkpointWPs;
-	}
+	}*/
 
 	/**
 	 * Gets the path distance from this point to a WorldPoint.
@@ -511,7 +493,7 @@ public class WorldPoint
 	 * @param other
 	 * @return Returns the path distance
 	 */
-	public int distanceToPath(Client client, WorldPoint other)
+	/*public int distanceToPath(Client client, WorldPoint other)
 	{
 		List<WorldPoint> checkpointWPs = this.pathTo(client, other);
 		if (checkpointWPs == null)
@@ -536,13 +518,13 @@ public class WorldPoint
 		return distance;
 	}
 
-	/**
+	*//**
 	 * Translate a coordinate either between overworld and real, or real and overworld
 	 *
 	 * @param worldPoint
 	 * @param toOverworld whether to convert to overworld coordinates, or to real coordinates
 	 * @return
-	 */
+	 *//*
 	public static WorldPoint getMirrorPoint(WorldPoint worldPoint, boolean toOverworld)
 	{
 		int region = worldPoint.getRegionID();
@@ -561,12 +543,12 @@ public class WorldPoint
 		return worldPoint;
 	}
 
-	/**
+	*//**
 	 * Checks whether this tile is located within any of the given areas.
 	 *
 	 * @param worldAreas areas to check within
 	 * @return {@code true} if any area contains this point, {@code false} otherwise.
-	 */
+	 *//*
 	public boolean isInArea(WorldArea... worldAreas)
 	{
 		for (WorldArea area : worldAreas)
@@ -579,12 +561,12 @@ public class WorldPoint
 		return false;
 	}
 
-	/**
+	*//**
 	 * Checks whether this tile is located within any of the given areas, disregarding any plane differences.
 	 *
 	 * @param worldAreas areas to check within
 	 * @return {@code true} if any area contains this point, {@code false} otherwise.
-	 */
+	 *//*
 	public boolean isInArea2D(WorldArea... worldAreas)
 	{
 		for (WorldArea area : worldAreas)
@@ -595,9 +577,9 @@ public class WorldPoint
 			}
 		}
 		return false;
-	}
+	}*/
 
-	public void outline(Client client, Graphics2D graphics2D, Color color)
+	/*public void outline(Client client, Graphics2D graphics2D, Color color)
 	{
 		outline(client, graphics2D, color, null);
 	}
@@ -642,5 +624,5 @@ public class WorldPoint
 	public WorldArea createWorldArea(int width, int height)
 	{
 		return new WorldArea(this, width, height);
-	}
+	}*/
 }

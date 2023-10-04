@@ -1,11 +1,11 @@
 package mixins;
 
-import java.awt.Container;
-import java.awt.Dimension;
 import net.runelite.api.Constants;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSClient;
+
+import java.awt.*;
 
 @Mixin(RSClient.class)
 public abstract class StretchedModeMixin implements RSClient
@@ -193,7 +193,31 @@ public abstract class StretchedModeMixin implements RSClient
 				and we still want the game's canvas to resize
 				with regards to the new maximum bounds.
 			 */
-			setResizeCanvasNextFrame(true);
+			resizeCanvas();
+		}
+	}
+
+	@Inject
+	public void resizeCanvas()
+	{
+		if (isStretchedEnabled())
+		{
+			invalidateStretching(false);
+
+			if (isResized())
+			{
+				Dimension realDimensions = getRealDimensions();
+				int width = realDimensions.width;
+				if (width <= 0)
+					width = 1280;
+
+				int height = realDimensions.height;
+				if (height <= 0)
+					height = 720;
+
+				setMaxCanvasWidth(width);
+				setMaxCanvasHeight(height);
+			}
 		}
 	}
 }

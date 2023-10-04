@@ -4,12 +4,11 @@ package meteor.config
 
 import meteor.Main
 import com.google.common.base.Strings
-import eventbus.Events
 import meteor.Configuration.CONFIG_FILE
 import meteor.config.legacy.*
-import eventbus.events.ConfigChanged
 import meteor.Configuration.METEOR_DIR
 import meteor.config.descriptor.*
+import eventbus.events.ConfigChanged
 import meteor.plugins.Plugin
 import net.runelite.api.coords.WorldPoint
 import org.rationalityfrontline.kevent.KEVENT as EventBus
@@ -37,7 +36,7 @@ object ConfigManager {
     private const val KEY_SPLITTER_KEY = 1
     var loaded = false
 
-    fun setPlayerConfiguration(attribute: String, value: Any) {
+/*    fun setPlayerConfiguration(attribute: String, value: Any) {
         Main.client.localPlayer?.let {
             it.name?.let { name ->
                 if (name.isNotEmpty())
@@ -63,7 +62,7 @@ object ConfigManager {
             }
         }
         return null
-    }
+    }*/
 
     fun stringToObject(str: String, type: Class<*>): Any? {
         if (type == Boolean::class.javaPrimitiveType || type == Boolean::class.java) {
@@ -268,7 +267,7 @@ object ConfigManager {
         configChanged.group = groupName
         configChanged.key = key
         configChanged.oldValue = oldValue
-        EventBus.post(Events.CONFIG_CHANGED, configChanged)
+        EventBus.post(configChanged)
     }
 
     fun getAllDeclaredInterfaceFields(clazz: Class<*>): Collection<Field> {
@@ -400,7 +399,7 @@ object ConfigManager {
         configChanged.key = key
         configChanged.oldValue = oldValue
         configChanged.newValue = objectToString(value)
-        EventBus.post(Events.CONFIG_CHANGED, configChanged)
+        EventBus.post(configChanged)
 
         saveProperties()
     }

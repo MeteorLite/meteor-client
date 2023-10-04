@@ -28,7 +28,7 @@ public class Class
 {
 	private String name;
 
-	public void fixEnum() {
+	public void fixEnumDimensions() {
 		name = "[L" + name + ";";
 	}
 

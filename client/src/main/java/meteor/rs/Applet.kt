@@ -1,9 +1,9 @@
 package meteor.rs
 
-import eventbus.Events
-import eventbus.events.AppletLoaded
+
 import meteor.Main
 import net.runelite.api.Client
+import net.runelite.rs.api.RSGameShell
 import java.applet.Applet
 import java.applet.AppletContext
 import java.applet.AppletStub
@@ -14,7 +14,6 @@ import java.awt.Image
 import java.io.InputStream
 import java.net.URL
 import java.util.*
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 class Applet : AppletStub, AppletContext {
 
@@ -25,7 +24,7 @@ class Applet : AppletStub, AppletContext {
         var clientThread: Thread? = null
 
         fun asClient(applet: Applet): Client {
-            return applet as Client
+            return (applet as RSGameShell).`client$api`
         }
     }
 
@@ -34,18 +33,17 @@ class Applet : AppletStub, AppletContext {
                 panelSize + Main.meteorConfig.toolbarWidth()
     }
     val minimalWidth by lazy { applet.minimumSize.size.width + Main.meteorConfig.toolbarWidth() }
+    val minimalHeight by lazy { applet.minimumSize.size.height }
     private var properties: Map<String, String> = AppletConfiguration.properties
     private var parameters: Map<String, String> = AppletConfiguration.parameters
 
     fun init() {
         applet = configureApplet()
         applet.size = applet.minimumSize
-        EventBus.post(Events.APPLET_LOADED, AppletLoaded())
-
     }
 
     private fun configureApplet(): Applet {
-        val applet = ClassLoader.getSystemClassLoader().loadClass("Client").newInstance() as Applet
+        val applet = ClassLoader.getSystemClassLoader().loadClass("GameShell").newInstance() as Applet
         applet.setStub(this)
         applet.maximumSize = appletMaxSize()
         applet.minimumSize = appletMinSize()
@@ -54,7 +52,7 @@ class Applet : AppletStub, AppletContext {
     }
 
     private fun appletMinSize(): Dimension {
-        return Dimension(properties["applet_minwidth"]!!.toInt(), properties["applet_minheight"]!!.toInt())
+        return Dimension(542, 381)
     }
 
     private fun appletMaxSize(): Dimension {

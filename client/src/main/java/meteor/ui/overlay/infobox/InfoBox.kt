@@ -25,7 +25,6 @@
 package meteor.ui.overlay.infobox
 
 import meteor.plugins.Plugin
-import meteor.ui.overlay.OverlayMenuEntry
 import java.awt.Color
 import java.awt.image.BufferedImage
 
@@ -41,8 +40,6 @@ abstract class InfoBox(
     var priority: InfoBoxPriority? = null
 
     open var tooltip: String? = null
-
-    var menuEntries = ArrayList<OverlayMenuEntry>()
 
     init {
         this.image = (image)

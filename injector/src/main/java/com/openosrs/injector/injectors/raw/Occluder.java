@@ -34,7 +34,7 @@ public class Occluder extends AbstractInjector
 		 */
 		final Method occlude = inject.toVanilla(
 			inject.getDeobfuscated()
-				.findClass("Scene")
+				.findClass("osrs/Scene")
 				.findMethod("occlude")
 		);
 

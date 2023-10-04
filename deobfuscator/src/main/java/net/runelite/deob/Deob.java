@@ -70,67 +70,67 @@ public class Deob
 
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		ClassGroup group = JarUtil.load(new File("./deobfuscator/star-215.jar"), true);
+		ClassGroup group = JarUtil.load(new File("./deobfuscator/rsclassic-1091943135.jar"), true);
 
 		// remove except RuntimeException
-		run(group, new RuntimeExceptions());
+		//run(group, new RuntimeExceptions());
 
-		run(group, new ControlFlowDeobfuscator());
+		//run(group, new ControlFlowDeobfuscator());
 
 		run(group, new RenameUnique());
 
 		// remove unused methods - this leaves Code with no instructions,
 		// which is not valid, so unused methods is run after
-		run(group, new UnreachedCode());
-		run(group, new UnusedMethods());
+		//run(group, new UnreachedCode());
+		//run(group, new UnusedMethods());
 
 		// remove illegal state exceptions, frees up some parameters
-		run(group, new IllegalStateExceptions());
+		//run(group, new IllegalStateExceptions());
 
 		// remove constant logically dead parameters
-		run(group, new ConstantParameter());
+		//run(group, new ConstantParameter());
 
 		// remove unhit blocks
-		run(group, new UnreachedCode());
-		run(group, new UnusedMethods());
+		//run(group, new UnreachedCode());
+		//run(group, new UnusedMethods());
 
 		// remove unused parameters
-		run(group, new UnusedParameters());
+		//run(group, new UnusedParameters());
 
 		// remove unused fields
-		run(group, new UnusedFields());
+		//run(group, new UnusedFields());
 
-		run(group, new FieldInliner());
+		//run(group, new FieldInliner());
 
 		// order uses class name order for sorting fields/methods,
 		// so run it before removing classes below
-		run(group, new Order());
+		//run(group, new Order());
 
-		run(group, new UnusedClass());
+		//run(group, new UnusedClass());
 
 		//runMath(group);
 
-		run(group, new ExprArgOrder());
+		//run(group, new ExprArgOrder());
 
-		run(group, new Lvt());
+		//run(group, new Lvt());
 
-		run(group, new CastNull());
+		//run(group, new CastNull());
 
-		run(group, new EnumDeobfuscator());
+		//run(group, new EnumDeobfuscator());
 
-		new OpcodesTransformer().transform(group);
+		//new OpcodesTransformer().transform(group);
 		//run(group, new PacketHandlerOrder());
 		//run(group, new PacketWriteDeobfuscator());
 
-		run(group, new MenuActionDeobfuscator());
+		//run(group, new MenuActionDeobfuscator());
 
-		new GetPathTransformer().transform(group);
-		new ClientErrorTransformer().transform(group);
-		new ReflectionTransformer().transform(group);
+		//new GetPathTransformer().transform(group);
+		//new ClientErrorTransformer().transform(group);
+		//new ReflectionTransformer().transform(group);
 		//new MaxMemoryTransformer().transform(group);
 		//new RuneliteBufferTransformer().transform(group);
 
-		JarUtil.save(group, new File("./deobfuscator/deob-215.jar"));
+		JarUtil.save(group, new File("./deobfuscator/rsc-deob.jar"));
 
 		stopwatch.stop();
 		logger.info("Done in {}", stopwatch);

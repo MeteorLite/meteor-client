@@ -29,8 +29,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.Objects;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
@@ -93,6 +95,28 @@ public class JarUtil
 		ClassFileVisitor cv = new ClassFileVisitor();
 		reader.accept(cv, ClassReader.SKIP_FRAMES);
 		return cv.getClassFile();
+	}
+
+	public static ClassGroup loadRecursively(File crawlDirectory, ArrayList<File> classes) throws IOException {
+		if (classes == null)
+			classes = new ArrayList<>();
+
+		ArrayList<File> dirs = new ArrayList<>();
+
+		for (File current : Objects.requireNonNull(crawlDirectory.listFiles())) {
+			if (current.isDirectory()) {
+				dirs.add(current);
+			}
+			else {
+				classes.add(current);
+			}
+		}
+
+		for (File dir : dirs) {
+			loadRecursively(dir, classes);
+		}
+
+		return loadClasses(classes);
 	}
 
 	public static ClassGroup loadClasses(Collection<File> files) throws IOException

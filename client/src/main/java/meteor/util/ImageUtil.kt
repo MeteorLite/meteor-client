@@ -2,8 +2,6 @@ package meteor.util
 
 import com.google.common.primitives.Ints
 import meteor.Main
-import net.runelite.api.IndexedSprite
-import net.runelite.api.SpritePixels
 import java.awt.Image
 import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp
@@ -87,7 +85,7 @@ object ImageUtil {
         g2d.dispose()
         return dimg
     }
-
+/*
     fun getImageSpritePixels(image: BufferedImage): SpritePixels {
         val pixels = IntArray(image.width * image.height)
         try {
@@ -108,9 +106,9 @@ object ImageUtil {
         } catch (ignore: InterruptedException) {
         }
         return Main.client.createSpritePixels(pixels, image.width, image.height)
-    }
+    }*/
 
-    /**
+/*    *//**
      * Converts an image into an `IndexedSprite` instance.
      *
      * The passed in image can only have at max 255 different colors.
@@ -118,23 +116,23 @@ object ImageUtil {
      * @param image  The image to be converted
      * @param client Current client instance
      * @return         The image as an `IndexedSprite`
-     */
+     *//*
     fun getImageIndexedSprite(image: BufferedImage): IndexedSprite? {
         val pixels = ByteArray(image.width * image.height)
         val palette: MutableList<Int> = ArrayList()
-        /*
+        *//*
 			When drawing the indexed sprite, palette idx 0 is seen as fully transparent,
 			so pad the palette out so that our colors start at idx 1.
-		 */palette.add(0)
+		 *//*palette.add(0)
         val sourcePixels = image.getRGB(
                 0, 0,
                 image.width, image.height,
                 null, 0, image.width
         )
 
-        /*
+        *//*
 			Build a color palette and assign the pixels to positions in the palette.
-		 */for (j in sourcePixels.indices) {
+		 *//*for (j in sourcePixels.indices) {
             val argb = sourcePixels[j]
             val a = argb shr 24 and 0xFF
             val rgb = argb and 0xFFFFFF
@@ -168,7 +166,7 @@ object ImageUtil {
         sprite.offsetX = 0
         sprite.offsetY = 0
         return sprite
-    }
+    }*/
 
     fun rotateImage(image: BufferedImage, theta: Double): BufferedImage {
         val transform = AffineTransform()
