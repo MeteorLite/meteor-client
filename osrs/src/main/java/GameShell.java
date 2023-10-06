@@ -18,23 +18,23 @@ public class GameShell extends Applet
 
 	protected final void method1(int i, String s) {
 		try {
-			int j = (anInt1 - 281) / 2;
-			int k = (anInt2 - 148) / 2;
+			int j = (appletWidth - 281) / 2;
+			int k = (appletHeight - 148) / 2;
 			j += 2;
 			k += 90;
 			anInt3 = i;
-			aString4 = s;
+			loadingProgressText = s;
 			int l = (277 * i) / 100;
-			aGraphics5.setColor(new Color(132, 132, 132));
-			if(aBoolean6)
-				aGraphics5.setColor(new Color(220, 0, 0));
-			aGraphics5.fillRect(j, k, l, 20);
-			aGraphics5.setColor(Color.black);
-			aGraphics5.fillRect(j + l, k, 277 - l, 20);
-			aGraphics5.setColor(new Color(198, 198, 198));
-			if(aBoolean6)
-				aGraphics5.setColor(new Color(255, 255, 255));
-			method8(aGraphics5, s, aFont7, j + 138, k + 10);
+			graphics.setColor(new Color(132, 132, 132));
+			if(hasRefererLogoNotused)
+				graphics.setColor(new Color(220, 0, 0));
+			graphics.fillRect(j, k, l, 20);
+			graphics.setColor(Color.black);
+			graphics.fillRect(j + l, k, 277 - l, 20);
+			graphics.setColor(new Color(198, 198, 198));
+			if(hasRefererLogoNotused)
+				graphics.setColor(new Color(255, 255, 255));
+			method8(graphics, s, fontTimesRoman, j + 138, k + 10);
 			return;
 		}
 		catch(Exception _ex) {
@@ -45,14 +45,14 @@ public class GameShell extends Applet
 	protected void method2() {
 	}
 
-	protected synchronized void method3() {
+	protected synchronized void draw() {
 	}
 
 	protected void method4() {
 	}
 
-	private final void method5() {
-		anInt8 = -2;
+	private final void exitApplication() {
+		stopTimeout = -2;
 		System.out.println("Closing program");
 		method2();
 		try {
@@ -68,37 +68,37 @@ public class GameShell extends Applet
 	protected void method6(int i, int j, int k) {
 	}
 
-	private final void method7(int i, String s) {
+	private final void drawLoadingScreen(int i, String s) {
 		try {
-			int j = (anInt1 - 281) / 2;
-			int k = (anInt2 - 148) / 2;
-			aGraphics5.setColor(Color.black);
-			aGraphics5.fillRect(0, 0, anInt1, anInt2);
-			if(!aBoolean6)
-				aGraphics5.drawImage(gameImage, j, k, this);
+			int j = (appletWidth - 281) / 2;
+			int k = (appletHeight - 148) / 2;
+			graphics.setColor(Color.black);
+			graphics.fillRect(0, 0, appletWidth, appletHeight);
+			if(!hasRefererLogoNotused)
+				graphics.drawImage(logoImage, j, k, this);
 			j += 2;
 			k += 90;
 			anInt3 = i;
-			aString4 = s;
-			aGraphics5.setColor(new Color(132, 132, 132));
-			if(aBoolean6)
-				aGraphics5.setColor(new Color(220, 0, 0));
-			aGraphics5.drawRect(j - 2, k - 2, 280, 23);
-			aGraphics5.fillRect(j, k, (277 * i) / 100, 20);
-			aGraphics5.setColor(new Color(198, 198, 198));
-			if(aBoolean6)
-				aGraphics5.setColor(new Color(255, 255, 255));
-			method8(aGraphics5, s, aFont7, j + 138, k + 10);
-			if(!aBoolean6) {
-				method8(aGraphics5, "Created by JAGeX - visit www.jagex.com", aFont12, j + 138, k + 30);
-				method8(aGraphics5, "\2512001-2002 Andrew Gower and Jagex Ltd", aFont12, j + 138, k + 44);
+			loadingProgressText = s;
+			graphics.setColor(new Color(132, 132, 132));
+			if(hasRefererLogoNotused)
+				graphics.setColor(new Color(220, 0, 0));
+			graphics.drawRect(j - 2, k - 2, 280, 23);
+			graphics.fillRect(j, k, (277 * i) / 100, 20);
+			graphics.setColor(new Color(198, 198, 198));
+			if(hasRefererLogoNotused)
+				graphics.setColor(new Color(255, 255, 255));
+			method8(graphics, s, fontTimesRoman, j + 138, k + 10);
+			if(!hasRefererLogoNotused) {
+				method8(graphics, "Created by JAGeX - visit www.jagex.com", fontHelvetica13b, j + 138, k + 30);
+				method8(graphics, "\2512001-2002 Andrew Gower and Jagex Ltd", fontHelvetica13b, j + 138, k + 44);
 			} else {
-				aGraphics5.setColor(new Color(132, 132, 152));
-				method8(aGraphics5, "\2512001-2002 Andrew Gower and Jagex Ltd", aFont13, j + 138, anInt2 - 20);
+				graphics.setColor(new Color(132, 132, 152));
+				method8(graphics, "\2512001-2002 Andrew Gower and Jagex Ltd", fontHelvetica12, j + 138, appletHeight - 20);
 			}
 			if(aString14 != null) {
-				aGraphics5.setColor(Color.white);
-				method8(aGraphics5, aString14, aFont12, j + 138, k - 120);
+				graphics.setColor(Color.white);
+				method8(graphics, aString14, fontHelvetica13b, j + 138, k - 120);
 				return;
 			}
 		}
@@ -120,7 +120,7 @@ public class GameShell extends Applet
 	protected synchronized void method9() {
 	}
 
-	private final void method10() {
+	private final void loadJagex() {
 		while (getGraphics() == null) {
 			try {
 				Thread.sleep(100);
@@ -128,16 +128,15 @@ public class GameShell extends Applet
 				throw new RuntimeException(e);
 			}
 		}
-		aGraphics5 = getGraphics();
-		aGraphics5.setColor(Color.black);
-		aGraphics5.fillRect(0, 0, anInt1, anInt2);
-		byte abyte0[] = method19("jagex.jag", "Jagex library", 0);
-		if(abyte0 == null) {
-			System.out.println("Shouldnt happen");
+		graphics = getGraphics();
+		graphics.setColor(Color.black);
+		graphics.fillRect(0, 0, appletWidth, appletHeight);
+		byte buffer[] = readDataFile("jagex.jag", "Jagex library", 0);
+		if(buffer == null) {
 			return;
 		} else {
-			byte abyte1[] = DataUtils.method352("logo.tga", 0, abyte0);
-			gameImage = drawGameImage(abyte1);
+			byte abyte1[] = DataUtils.loadData("logo.tga", 0, buffer);
+			logoImage = createImage(abyte1);
 			/* XXX modified
 			Surface.method259("h11p", 0, this);
 			Surface.method259("h12b", 1, this);
@@ -149,19 +148,19 @@ public class GameShell extends Applet
 			Surface.method259("h24b", 7, this);
 			*/
 			// XXX: restore non-broken font rendering pre-2004
-			Surface.aByteArrayArray334[0] = DataUtils.method352("h11p.jf", 0, abyte0);
-			Surface.aByteArrayArray334[1] = DataUtils.method352("h12b.jf", 0, abyte0);
-			Surface.aByteArrayArray334[2] = DataUtils.method352("h12p.jf", 0, abyte0);
-			Surface.aByteArrayArray334[3] = DataUtils.method352("h13b.jf", 0, abyte0);
-			Surface.aByteArrayArray334[4] = DataUtils.method352("h14b.jf", 0, abyte0);
-			Surface.aByteArrayArray334[5] = DataUtils.method352("h16b.jf", 0, abyte0);
-			Surface.aByteArrayArray334[6] = DataUtils.method352("h20b.jf", 0, abyte0);
-			Surface.aByteArrayArray334[7] = DataUtils.method352("h24b.jf", 0, abyte0);
+			Surface.fonts[0] = DataUtils.loadData("h11p.jf", 0, buffer);
+			Surface.fonts[1] = DataUtils.loadData("h12b.jf", 0, buffer);
+			Surface.fonts[2] = DataUtils.loadData("h12p.jf", 0, buffer);
+			Surface.fonts[3] = DataUtils.loadData("h13b.jf", 0, buffer);
+			Surface.fonts[4] = DataUtils.loadData("h14b.jf", 0, buffer);
+			Surface.fonts[5] = DataUtils.loadData("h16b.jf", 0, buffer);
+			Surface.fonts[6] = DataUtils.loadData("h20b.jf", 0, buffer);
+			Surface.fonts[7] = DataUtils.loadData("h24b.jf", 0, buffer);
 			return;
 		}
 	}
 
-	private final Image drawGameImage(byte abyte0[]) {
+	private final Image createImage(byte abyte0[]) {
 		int i = abyte0[13] * 256 + abyte0[12];
 		int j = abyte0[15] * 256 + abyte0[14];
 		byte abyte1[] = new byte[256];
@@ -200,116 +199,117 @@ public class GameShell extends Applet
 
 	protected final void method13() {
 		for(int i = 0; i < 10; i++)
-			aLongArray15[i] = 0L;
+			timings[i] = 0L;
 
 	}
 
 	public final void run() {
 
-		if(anInt16 == 1) {
-			anInt16 = 2;
-			method10();
-			method7(0, "Loading...");
-			method20();
-			anInt16 = 0;
+		if(loadingState == 1) {
+			loadingState = 2;
+			loadJagex();
+			drawLoadingScreen(0, "Loading...");
+			startGame();
+			loadingState = 0;
 		}
 		int i = 0;
 		int j = 256;
-		int k = 1;
+		int sleep = 1;
 		int i1 = 0;
 		for(int j1 = 0; j1 < 10; j1++)
-			aLongArray15[j1] = System.currentTimeMillis();
+			timings[j1] = System.currentTimeMillis();
 
-		long l = System.currentTimeMillis();
-		while(anInt8 >= 0)  {
-			if(anInt8 > 0) {
-				anInt8--;
-				if(anInt8 == 0) {
-					method5();
-					aThread17 = null;
+		//Unused anyways so why create it
+		//long l = System.currentTimeMillis();
+		while(stopTimeout >= 0)  {
+			if(stopTimeout > 0) {
+				stopTimeout--;
+				if(stopTimeout == 0) {
+					exitApplication();
+					clientThread = null;
 					return;
 				}
 			}
 			int k1 = j;
-			int i2 = k;
+			int lastSleep = sleep;
 			j = 300;
-			k = 1;
-			long l1 = System.currentTimeMillis();
-			if(aLongArray15[i] == 0L) {
+			sleep = 1;
+			long time = System.currentTimeMillis();
+			if(timings[i] == 0L) {
 				j = k1;
-				k = i2;
+				sleep = lastSleep;
 			} else
-			if(l1 > aLongArray15[i])
-				j = (int)((long)(2560 * anInt18) / (l1 - aLongArray15[i]));
+			if(time > timings[i])
+				j = (int)((long)(2560 * targetFPS) / (time - timings[i]));
 			if(j < 25)
 				j = 25;
 			if(j > 256) {
 				j = 256;
-				k = (int)((long)anInt18 - (l1 - aLongArray15[i]) / 10L);
-				if(k < anInt19)
-					k = anInt19;
+				sleep = (int)((long) targetFPS - (time - timings[i]) / 10L);
+				if(sleep < threadSleep)
+					sleep = threadSleep;
 			}
 			try {
-				Thread.sleep(k);
+				Thread.sleep(sleep);
 			}
 			catch(InterruptedException _ex) { }
-			aLongArray15[i] = l1;
+			timings[i] = time;
 			i = (i + 1) % 10;
-			if(k > 1) {
+			if(sleep > 1) {
 				for(int j2 = 0; j2 < 10; j2++)
-					if(aLongArray15[j2] != 0L)
-						aLongArray15[j2] += k;
+					if(timings[j2] != 0L)
+						timings[j2] += sleep;
 
 			}
 			int k2 = 0;
 			while(i1 < 256)  {
 				method9();
 				i1 += j;
-				if(++k2 > anInt20) {
+				if(++k2 > maxDrawTime) {
 					i1 = 0;
-					anInt21 += 6;
-					if(anInt21 > 25) {
-						anInt21 = 0;
-						aBoolean22 = true;
+					interlaceTimer += 6;
+					if(interlaceTimer > 25) {
+						interlaceTimer = 0;
+						interlace = true;
 					}
 					break;
 				}
 			}
-			anInt21--;
+			interlaceTimer--;
 			i1 &= 0xff;
-			method3();
+			draw();
 		}
-		if(anInt8 == -1)
-			method5();
-		aThread17 = null;
+		if(stopTimeout == -1)
+			exitApplication();
+		clientThread = null;
 	}
 
 	public GameShell() {
-		anInt1 = 512;
-		anInt2 = 384;
-		anInt18 = 20;
-		anInt20 = 1000;
-		aLongArray15 = new long[10];
-		anInt16 = 1;
-		aBoolean6 = false;
-		aString4 = "Loading";
-		aFont7 = new Font("TimesRoman", 0, 15);
-		aFont12 = new Font("Helvetica", 1, 13);
-		aFont13 = new Font("Helvetica", 0, 12);
-		aBoolean32 = false;
-		aBoolean33 = false;
-		aBoolean26 = false;
-		aBoolean27 = false;
-		aBoolean28 = false;
-		aBoolean29 = false;
-		aBoolean30 = false;
-		aBoolean31 = false;
-		anInt19 = 1;
-		aBoolean22 = false;
-		aString35 = "";
-		aString37 = "";
-		aString36 = "";
-		aString38 = "";
+		appletWidth = 512;
+		appletHeight = 384;
+		targetFPS = 20;
+		maxDrawTime = 1000;
+		timings = new long[10];
+		loadingState = 1;
+		hasRefererLogoNotused = false;
+		loadingProgressText = "Loading";
+		fontTimesRoman = new Font("TimesRoman", 0, 15);
+		fontHelvetica13b = new Font("Helvetica", 1, 13);
+		fontHelvetica12 = new Font("Helvetica", 0, 12);
+		keyLsb = false;
+		keyRsb = false;
+		keyLeft = false;
+		keyRight = false;
+		keyUp = false;
+		keyDown = false;
+		keySpace = false;
+		keyNm = false;
+		threadSleep = 1;
+		interlace = false;
+		inputTextCurrent = "";
+		inputTextFinal = "";
+		inputPmCurrent = "";
+		inputPmFinal = "";
 	}
 
 	public Image createImage(int i, int j) {
@@ -320,17 +320,17 @@ public class GameShell extends Applet
 	}
 
 	public final void destroy() {
-		anInt8 = -1;
+		stopTimeout = -1;
 		try {
 			Thread.sleep(5000L);
 		}
 		catch(Exception _ex) { }
-		if(anInt8 == -1) {
+		if(stopTimeout == -1) {
 			System.out.println("5 seconds expired, forcing kill");
-			method5();
-			if(aThread17 != null) {
-				aThread17.stop();
-				aThread17 = null;
+			exitApplication();
+			if(clientThread != null) {
+				clientThread.stop();
+				clientThread = null;
 			}
 		}
 	}
@@ -361,9 +361,9 @@ public class GameShell extends Applet
 	public final void init() {
 		aBoolean10 = true;
 		System.out.println("Started applet");
-		anInt1 = 512;
-		anInt2 = 344;
-		anInt16 = 1;
+		appletWidth = 512;
+		appletHeight = 344;
+		loadingState = 1;
 		try {
 			DataUtils.anURL542 = new File("data/").toURI().toURL();
 		} catch (MalformedURLException e) {
@@ -378,25 +378,25 @@ public class GameShell extends Applet
 		anInt24 = i;
 		anInt25 = 0;
 		if(i == 1006)
-			aBoolean26 = true;
+			keyLeft = true;
 		if(i == 1007)
-			aBoolean27 = true;
+			keyRight = true;
 		if(i == 1004)
-			aBoolean28 = true;
+			keyUp = true;
 		if(i == 1005)
-			aBoolean29 = true;
+			keyDown = true;
 		if((char)i == ' ')
-			aBoolean30 = true;
+			keySpace = true;
 		if((char)i == 'n' || (char)i == 'm')
-			aBoolean31 = true;
+			keyNm = true;
 		if((char)i == 'N' || (char)i == 'M')
-			aBoolean31 = true;
+			keyNm = true;
 		if((char)i == '{')
-			aBoolean32 = true;
+			keyLsb = true;
 		if((char)i == '}')
-			aBoolean33 = true;
+			keyRsb = true;
 		if((char)i == '\u03F0')
-			aBoolean22 = !aBoolean22;
+			interlace = !interlace;
 		boolean flag = false;
 		for(int j = 0; j < aString34.length(); j++) {
 			if(i != aString34.charAt(j))
@@ -405,17 +405,17 @@ public class GameShell extends Applet
 			break;
 		}
 
-		if(flag && aString35.length() < 20)
-			aString35 += (char)i;
-		if(flag && aString36.length() < 80)
-			aString36 += (char)i;
-		if(i == 8 && aString35.length() > 0)
-			aString35 = aString35.substring(0, aString35.length() - 1);
-		if(i == 8 && aString36.length() > 0)
-			aString36 = aString36.substring(0, aString36.length() - 1);
+		if(flag && inputTextCurrent.length() < 20)
+			inputTextCurrent += (char)i;
+		if(flag && inputPmCurrent.length() < 80)
+			inputPmCurrent += (char)i;
+		if(i == 8 && inputTextCurrent.length() > 0)
+			inputTextCurrent = inputTextCurrent.substring(0, inputTextCurrent.length() - 1);
+		if(i == 8 && inputPmCurrent.length() > 0)
+			inputPmCurrent = inputPmCurrent.substring(0, inputPmCurrent.length() - 1);
 		if(i == 10 || i == 13) {
-			aString37 = aString35;
-			aString38 = aString36;
+			inputTextFinal = inputTextCurrent;
+			inputPmFinal = inputPmCurrent;
 		}
 		return true;
 	}
@@ -423,23 +423,23 @@ public class GameShell extends Applet
 	public final synchronized boolean keyUp(Event event, int i) {
 		anInt23 = 0;
 		if(i == 1006)
-			aBoolean26 = false;
+			keyLeft = false;
 		if(i == 1007)
-			aBoolean27 = false;
+			keyRight = false;
 		if(i == 1004)
-			aBoolean28 = false;
+			keyUp = false;
 		if(i == 1005)
-			aBoolean29 = false;
+			keyDown = false;
 		if((char)i == ' ')
-			aBoolean30 = false;
+			keySpace = false;
 		if((char)i == 'n' || (char)i == 'm')
-			aBoolean31 = false;
+			keyNm = false;
 		if((char)i == 'N' || (char)i == 'M')
-			aBoolean31 = false;
+			keyNm = false;
 		if((char)i == '{')
-			aBoolean32 = false;
+			keyLsb = false;
 		if((char)i == '}')
-			aBoolean33 = false;
+			keyRsb = false;
 		return true;
 	}
 
@@ -482,22 +482,22 @@ public class GameShell extends Applet
 	}
 
 	public final void paint(Graphics g) {
-		if(anInt16 == 2 && gameImage != null) {
-			method7(anInt3, aString4);
+		if(loadingState == 2 && logoImage != null) {
+			drawLoadingScreen(anInt3, loadingProgressText);
 			return;
 		}
-		if(anInt16 == 0)
+		if(loadingState == 0)
 			method4();
 	}
 
 	public final void start() {
-		if(anInt8 >= 0)
-			anInt8 = 0;
+		if(stopTimeout >= 0)
+			stopTimeout = 0;
 	}
 
 	public final void stop() {
-		if(anInt8 >= 0)
-			anInt8 = 4000 / anInt18;
+		if(stopTimeout >= 0)
+			stopTimeout = 4000 / targetFPS;
 	}
 
 	public final void update(Graphics g) {
@@ -519,20 +519,20 @@ public class GameShell extends Applet
 
 	protected final void method17(int i, int j, String s, boolean flag) {
 		aBoolean10 = false;
-		anInt1 = i;
-		anInt2 = j;
+		appletWidth = i;
+		appletHeight = j;
 		gameWindow = new GameWindow(this, i, j, s, flag, false);
-		anInt16 = 1;
-		aThread17 = new Thread(this);
-		aThread17.start();
-		aThread17.setPriority(1);
+		loadingState = 1;
+		clientThread = new Thread(this);
+		clientThread.start();
+		clientThread.setPriority(1);
 	}
 
 	protected final void method18(int i) {
-		anInt18 = 1000 / i;
+		targetFPS = 1000 / i;
 	}
 
-	protected byte[] method19(String s, String s1, int i) {
+	protected byte[] readDataFile(String s, String s1, int i) {
 		int j = 0;
 		int k = 0;
 		byte abyte0[] = null;
@@ -568,47 +568,47 @@ public class GameShell extends Applet
 		}
 	}
 
-	protected void method20() {
+	protected void startGame() {
 	}
 
-	private int anInt1;
-	private int anInt2;
+	private int appletWidth;
+	private int appletHeight;
 	private int anInt3;
-	private String aString4;
-	private Graphics aGraphics5;
-	private boolean aBoolean6;
-	private Font aFont7;
-	private int anInt8;
+	private String loadingProgressText;
+	private Graphics graphics;
+	private boolean hasRefererLogoNotused;
+	private Font fontTimesRoman;
+	private int stopTimeout;
 	public static GameWindow gameWindow = null;
 	private boolean aBoolean10;
-	private Image gameImage;
-	private Font aFont12;
-	private Font aFont13;
+	private Image logoImage;
+	private Font fontHelvetica13b;
+	private Font fontHelvetica12;
 	public String aString14;
-	private long aLongArray15[];
-	public int anInt16;
-	private Thread aThread17;
-	private int anInt18;
-	public int anInt19;
-	private int anInt20;
-	private int anInt21;
-	public boolean aBoolean22;
+	private long timings[];
+	public int loadingState;
+	private Thread clientThread;
+	private int targetFPS;
+	public int threadSleep;
+	private int maxDrawTime;
+	private int interlaceTimer;
+	public boolean interlace;
 	public int anInt23;
 	public int anInt24;
 	public int anInt25;
-	public boolean aBoolean26;
-	public boolean aBoolean27;
-	public boolean aBoolean28;
-	public boolean aBoolean29;
-	public boolean aBoolean30;
-	public boolean aBoolean31;
-	public boolean aBoolean32;
-	public boolean aBoolean33;
+	public boolean keyLeft;
+	public boolean keyRight;
+	public boolean keyUp;
+	public boolean keyDown;
+	public boolean keySpace;
+	public boolean keyNm;
+	public boolean keyLsb;
+	public boolean keyRsb;
 	private static String aString34 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"\243$%^&*()-_=+[{]};:'@#~,<.>/?\\| ";
-	public String aString35;
-	public String aString36;
-	public String aString37;
-	public String aString38;
+	public String inputTextCurrent;
+	public String inputPmCurrent;
+	public String inputTextFinal;
+	public String inputPmFinal;
 	public int anInt39;
 	public int anInt40;
 	public int anInt41;

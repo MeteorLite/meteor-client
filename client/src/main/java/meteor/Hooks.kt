@@ -3,10 +3,12 @@ package meteor
 import eventbus.events.InventoryUpdated
 import events.UpdateInventoryPacket
 import meteor.Main.client
+import meteor.Main.overlayRenderer
 import meteor.input.KeyManager
 import meteor.input.MouseManager
 import meteor.ui.composables.ui.canvas
 import meteor.ui.composables.ui.gamePanel
+import meteor.ui.overlay.OverlayLayer
 import net.runelite.api.InventoryItem
 import net.runelite.api.hooks.Callbacks
 import org.rationalityfrontline.kevent.KEVENT
@@ -83,16 +85,18 @@ class Hooks : Callbacks {
         }
         //TODO: Do this in a better place, we shouldn't be calling it every frame
         client.invalidateStretching(true)
-        val graphics2d: Graphics2D = canvas.graphics as Graphics2D
 
-/*        try {
+        gameImage = copy(mainBufferProvider)
+
+        val graphics2d: Graphics2D = gameImage.graphics as Graphics2D
+
+        try {
             overlayRenderer.renderOverlayLayer(graphics2d, OverlayLayer.ALWAYS_ON_TOP)
         } catch (ex: java.lang.Exception) {
             ex.printStackTrace()
-        }*/
+        }
 
         // Stretch the game image if the user has that enabled
-        gameImage = mainBufferProvider
         if (client.isStretchedEnabled) {
             val gc: GraphicsConfiguration = gamePanel.graphicsConfiguration
             val stretchedDimensions: Dimension = client.stretchedDimensions

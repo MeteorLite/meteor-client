@@ -32,6 +32,7 @@ import meteor.util.RuntimeConfigLoader
 import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
 import meteor.ui.composables.preferences.uiColor
+import meteor.ui.overlay.OverlayRenderer
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
 import org.jetbrains.skiko.OS
@@ -66,6 +67,7 @@ object Main : ApplicationScope, EventSubscriber() {
     val eventBus = EventBus
     val httpClient = OkHttpClient()
     val overlayManager = OverlayManager
+    val overlayRenderer = OverlayRenderer()
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     lateinit var applet: Applet

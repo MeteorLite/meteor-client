@@ -3,7 +3,7 @@
 // Decompiler options: packimports(3) nonlb 
 
 
-public class RsConfig {
+public class Definitions {
 
 	public static int method123() {
 		int i = aByteArray56[anInt57] & 0xff;
@@ -44,12 +44,12 @@ public class RsConfig {
 	}
 
 	public static void method128(byte abyte0[], boolean flag) {
-		aByteArray58 = DataUtils.method352("string.dat", 0, abyte0);
+		aByteArray58 = DataUtils.loadData("string.dat", 0, abyte0);
 		anInt59 = 0;
-		aByteArray56 = DataUtils.method352("integer.dat", 0, abyte0);
+		aByteArray56 = DataUtils.loadData("integer.dat", 0, abyte0);
 		anInt57 = 0;
 		anInt62 = method124();
-		aStringArray63 = new String[anInt62];
+		itemNames = new String[anInt62];
 		aStringArray64 = new String[anInt62];
 		aStringArray65 = new String[anInt62];
 		anIntArray66 = new int[anInt62];
@@ -61,7 +61,7 @@ public class RsConfig {
 		anIntArray72 = new int[anInt62];
 		anIntArray73 = new int[anInt62];
 		for(int i = 0; i < anInt62; i++)
-			aStringArray63[i] = method126();
+			itemNames[i] = method126();
 
 		for(int j = 0; j < anInt62; j++)
 			aStringArray64[j] = method126();
@@ -98,7 +98,7 @@ public class RsConfig {
 
 		for(int l2 = 0; l2 < anInt62; l2++)
 			if(!flag && anIntArray73[l2] == 1) {
-				aStringArray63[l2] = "Members object";
+				itemNames[l2] = "Members object";
 				aStringArray64[l2] = "You need to be a member to use this object";
 				anIntArray67[l2] = 0;
 				aStringArray65[l2] = "";
@@ -388,7 +388,7 @@ public class RsConfig {
 	public static String aStringArray60[] = new String[5000];
 	public static int anInt61;
 	public static int anInt62;
-	public static String aStringArray63[];
+	public static String itemNames[];
 	public static String aStringArray64[];
 	public static String aStringArray65[];
 	public static int anIntArray66[];

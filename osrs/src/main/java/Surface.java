@@ -152,7 +152,7 @@ public class Surface
 
 	public int method212(String s, int i) {
 		int j = 0;
-		byte abyte0[] = aByteArrayArray334[i];
+		byte abyte0[] = fonts[i];
 		for(int k = 0; k < s.length(); k++)
 			if(s.charAt(k) == '@' && k + 4 < s.length() && s.charAt(k + 4) == '@')
 				k += 4;
@@ -216,9 +216,9 @@ public class Surface
 
 	public int method215(int i) {
 		if(i == 0)
-			return aByteArrayArray334[i][8] - 2;
+			return fonts[i][8] - 2;
 		else
-			return aByteArrayArray334[i][8] - 1;
+			return fonts[i][8] - 1;
 	}
 
 	public void method216(String s, int i, int j, int k, int l) {
@@ -1257,7 +1257,7 @@ public class Surface
 	public void method239(String s, int i, int j, int k, int l, int i1) {
 		try {
 			int j1 = 0;
-			byte abyte0[] = aByteArrayArray334[k];
+			byte abyte0[] = fonts[k];
 			int k1 = 0;
 			int l1 = 0;
 			for(int i2 = 0; i2 < s.length(); i2++) {
@@ -1822,7 +1822,7 @@ label3:
 
 	public void method254(String s, int i, int j, int k, int l) {
 		try {
-			byte abyte0[] = aByteArrayArray334[k];
+			byte abyte0[] = fonts[k];
 			for(int i1 = 0; i1 < s.length(); i1++)
 				if(s.charAt(i1) == '@' && i1 + 4 < s.length() && s.charAt(i1 + 4) == '@') {
 					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("red"))
@@ -2012,9 +2012,9 @@ label3:
 		for(int l = 0; l < 95; l++)
 			method240(font, fontmetrics, s1.charAt(l), l, gameshell, i, flag1);
 
-		aByteArrayArray334[i] = new byte[anInt347];
+		fonts[i] = new byte[anInt347];
 		for(int i1 = 0; i1 < anInt347; i1++)
-			aByteArrayArray334[i][i1] = aByteArray346[i1];
+			fonts[i][i1] = aByteArray346[i1];
 
 		if(j == 1 && aBooleanArray348[i]) {
 			aBooleanArray348[i] = false;
@@ -2190,7 +2190,7 @@ label3:
 	public int anIntArray331[];
 	public int anIntArray332[];
 	public boolean aBooleanArray333[];
-	static byte aByteArrayArray334[][] = new byte[50][];
+	static byte fonts[][] = new byte[50][];
 	static int anIntArray335[];
 	int anIntArray336[];
 	public static int anInt337;

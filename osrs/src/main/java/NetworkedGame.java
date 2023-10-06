@@ -9,9 +9,9 @@ import java.math.BigInteger;
 public class NetworkedGame extends GameShell {
 
 	protected final void method21(long l) {
-		aClientStream601.createPacket(167);
-		aClientStream601.method332(l);
-		aClientStream601.endPacket();
+		packetStream.createPacket(167);
+		packetStream.method332(l);
+		packetStream.endPacket();
 		for(int i = 0; i < anInt603; i++) {
 			if(aLongArray602[i] != l)
 				continue;
@@ -46,9 +46,9 @@ public class NetworkedGame extends GameShell {
 	}
 
 	protected final void method23(long l) {
-		aClientStream601.createPacket(241);
-		aClientStream601.method332(l);
-		aClientStream601.endPacket();
+		packetStream.createPacket(241);
+		packetStream.method332(l);
+		packetStream.endPacket();
 		for(int i = 0; i < anInt606; i++)
 			if(aLongArray605[i] == l) {
 				anInt606--;
@@ -69,23 +69,23 @@ public class NetworkedGame extends GameShell {
 	}
 
 	protected final void method27(long l, byte abyte0[], int i) {
-		aClientStream601.createPacket(218);
-		aClientStream601.method332(l);
-		aClientStream601.method325(abyte0, 0, i);
-		aClientStream601.endPacket();
+		packetStream.createPacket(218);
+		packetStream.method332(l);
+		packetStream.method325(abyte0, 0, i);
+		packetStream.endPacket();
 	}
 
 	protected final void method28() {
 		long l = System.currentTimeMillis();
-		if(aClientStream601.method331())
+		if(packetStream.method331())
 			aLong607 = l;
 		if(l - aLong607 > 5000L) {
 			aLong607 = l;
-			aClientStream601.createPacket(67);
-			aClientStream601.endPacket();
+			packetStream.createPacket(67);
+			packetStream.endPacket();
 		}
 		try {
-			aClientStream601.method328(20);
+			packetStream.method328(20);
 		}
 		catch(IOException _ex) {
 			method37();
@@ -93,15 +93,15 @@ public class NetworkedGame extends GameShell {
 		}
 		if(!method26())
 			return;
-		int i = aClientStream601.method336(aByteArray608);
+		int i = packetStream.method336(aByteArray608);
 		if(i > 0)
 			method34(aByteArray608[0] & 0xff, i);
 	}
 
 	protected final void method29(String s) {
-		aClientStream601.createPacket(195);
-		aClientStream601.method332(DataUtils.method356(s));
-		aClientStream601.endPacket();
+		packetStream.createPacket(195);
+		packetStream.method332(DataUtils.method356(s));
+		packetStream.endPacket();
 		long l = DataUtils.method356(s);
 		for(int i = 0; i < anInt603; i++)
 			if(aLongArray602[i] == l)
@@ -134,22 +134,22 @@ public class NetworkedGame extends GameShell {
 	}
 
 	protected final void method32(byte abyte0[], int i) {
-		aClientStream601.createPacket(216);
-		aClientStream601.method325(abyte0, 0, i);
-		aClientStream601.endPacket();
+		packetStream.createPacket(216);
+		packetStream.method325(abyte0, 0, i);
+		packetStream.endPacket();
 	}
 
 	protected final void method33(int i, int j, int k, int l) {
-		aClientStream601.createPacket(64);
-		aClientStream601.put1(i);
-		aClientStream601.put1(j);
-		aClientStream601.put1(k);
-		aClientStream601.put1(l);
-		aClientStream601.endPacket();
+		packetStream.createPacket(64);
+		packetStream.putByte(i);
+		packetStream.putByte(j);
+		packetStream.putByte(k);
+		packetStream.putByte(l);
+		packetStream.endPacket();
 	}
 
 	private final void method34(int i, int j) {
-		i = aClientStream601.method322(i);
+		i = packetStream.method322(i);
 		if(i == 131) {
 			String s = new String(aByteArray608, 1, j - 1);
 			method44(s);
@@ -214,7 +214,7 @@ public class NetworkedGame extends GameShell {
 
 			anIntArray613[anInt614] = k1;
 			anInt614 = (anInt614 + 1) % 100;
-			String s1 = ChatFilter.method380(ChatEncoding.method388(aByteArray608, 13, j - 13));
+			String s1 = ChatEncoding.method388(aByteArray608, 13, j - 13);
 			method44("@pri@" + DataUtils.method351(l1) + ": tells you " + s1);
 			return;
 		} else {
@@ -224,16 +224,16 @@ public class NetworkedGame extends GameShell {
 	}
 
 	protected final void method35(String s) {
-		aClientStream601.createPacket(38);
-		aClientStream601.method329(s);
-		aClientStream601.endPacket();
+		packetStream.createPacket(38);
+		packetStream.method329(s);
+		packetStream.endPacket();
 	}
 
 	protected final void method36() {
-		if(aClientStream601 != null)
+		if(packetStream != null)
 			try {
-				aClientStream601.createPacket(31);
-				aClientStream601.method335();
+				packetStream.createPacket(31);
+				packetStream.method335();
 			}
 			catch(IOException _ex) { }
 		aString615 = "";
@@ -286,13 +286,13 @@ public class NetworkedGame extends GameShell {
 				method30("Connection lost! Please wait...", "Attempting to re-establish");
 			else
 				method41("Please wait...", "Connecting to server");
-			aClientStream601 = new ClientStream(method12(aString619, anInt620), this);
-			aClientStream601.anInt538 = anInt621;
+			packetStream = new ClientStream(method12(aString619, anInt620), this);
+			packetStream.anInt538 = anInt621;
 			long l = DataUtils.method356(s);
-			aClientStream601.createPacket(32);
-			aClientStream601.put1((int)(l >> 16 & 31L));
-			aClientStream601.method335();
-			long l1 = aClientStream601.method326();
+			packetStream.createPacket(32);
+			packetStream.putByte((int)(l >> 16 & 31L));
+			packetStream.method335();
+			long l1 = packetStream.method326();
 			System.out.println("Session ID: " + l1);
 			sessionID = l1;
 			if(l1 == 0L) {
@@ -324,17 +324,17 @@ public class NetworkedGame extends GameShell {
 			bytebuffer.method320(s);
 			bytebuffer.method320(s1);
 			bytebuffer.method319(aBigInteger623, aBigInteger624);
-			aClientStream601.createPacket(0);
+			packetStream.createPacket(0);
 			if(flag)
-				aClientStream601.put1(1);
+				packetStream.putByte(1);
 			else
-				aClientStream601.put1(0);
-			aClientStream601.put2(anInt625);
-			aClientStream601.put1(i);
-			aClientStream601.method325(bytebuffer.aByteArray512, 0, bytebuffer.anInt513);
-			aClientStream601.method335();
-			aClientStream601.method334(ai);
-			int j = aClientStream601.method324();
+				packetStream.putByte(0);
+			packetStream.putShort(anInt625);
+			packetStream.putByte(i);
+			packetStream.method325(bytebuffer.aByteArray512, 0, bytebuffer.anInt513);
+			packetStream.method335();
+			packetStream.method334(ai);
+			int j = packetStream.method324();
 			if(j == 25) {
 				anInt626 = 1;
 				anInt617 = 0;
@@ -461,9 +461,9 @@ public class NetworkedGame extends GameShell {
 
 	protected final void method40(String s) {
 		long l = DataUtils.method356(s);
-		aClientStream601.createPacket(132);
-		aClientStream601.method332(l);
-		aClientStream601.endPacket();
+		packetStream.createPacket(132);
+		packetStream.method332(l);
+		packetStream.endPacket();
 		for(int i = 0; i < anInt606; i++)
 			if(aLongArray605[i] == l)
 				return;
@@ -489,7 +489,7 @@ public class NetworkedGame extends GameShell {
 	}
 
 	private final int anInt600 = 100;
-	public ClientStream aClientStream601;
+	public ClientStream packetStream;
 	public long aLongArray602[];
 	public int anInt603;
 	public int anIntArray604[];

@@ -9,20 +9,20 @@ public class RsWorld {
 	public void method390(int i, int j, int k) {
 		if(i < 0 || j < 0 || i >= 95 || j >= 95)
 			return;
-		if(RsConfig.anIntArray112[k] == 1 || RsConfig.anIntArray112[k] == 2) {
+		if(Definitions.anIntArray112[k] == 1 || Definitions.anIntArray112[k] == 2) {
 			int l = method407(i, j);
 			int i1;
 			int j1;
 			if(l == 0 || l == 4) {
-				i1 = RsConfig.anIntArray110[k];
-				j1 = RsConfig.anIntArray111[k];
+				i1 = Definitions.anIntArray110[k];
+				j1 = Definitions.anIntArray111[k];
 			} else {
-				j1 = RsConfig.anIntArray110[k];
-				i1 = RsConfig.anIntArray111[k];
+				j1 = Definitions.anIntArray110[k];
+				i1 = Definitions.anIntArray111[k];
 			}
 			for(int k1 = i; k1 < i + i1; k1++) {
 				for(int l1 = j; l1 < j + j1; l1++)
-					if(RsConfig.anIntArray112[k] == 1)
+					if(Definitions.anIntArray112[k] == 1)
 						anIntArrayArray573[k1][l1] &= 0xffbf;
 					else
 					if(l == 0) {
@@ -55,7 +55,7 @@ public class RsWorld {
 	public void method391(int i, int j, int k, int l) {
 		if(i < 0 || j < 0 || i >= 95 || j >= 95)
 			return;
-		if(RsConfig.anIntArray122[l] == 1) {
+		if(Definitions.anIntArray122[l] == 1) {
 			if(k == 0) {
 				anIntArrayArray573[i][j] &= 0xfffe;
 				if(j > 0)
@@ -92,9 +92,9 @@ public class RsWorld {
 	public void method393(Model model, int i, int j, int k, int l, int i1) {
 		method403(j, k, 40);
 		method403(l, i1, 40);
-		int j1 = RsConfig.anIntArray119[i];
-		int k1 = RsConfig.anIntArray120[i];
-		int l1 = RsConfig.anIntArray121[i];
+		int j1 = Definitions.anIntArray119[i];
+		int k1 = Definitions.anIntArray120[i];
+		int l1 = Definitions.anIntArray121[i];
 		int i2 = j * 128;
 		int j2 = k * 128;
 		int k2 = l * 128;
@@ -107,7 +107,7 @@ public class RsWorld {
 			i3, j3, k3, l3
 		};
 		int i4 = model.method184(4, ai, k1, l1);
-		if(RsConfig.anIntArray123[i] == 5) {
+		if(Definitions.anIntArray123[i] == 5) {
 			model.anIntArray265[i4] = 30000 + i;
 			return;
 		} else {
@@ -324,20 +324,20 @@ public class RsWorld {
 	public void method400(int i, int j, int k) {
 		if(i < 0 || j < 0 || i >= 95 || j >= 95)
 			return;
-		if(RsConfig.anIntArray112[k] == 1 || RsConfig.anIntArray112[k] == 2) {
+		if(Definitions.anIntArray112[k] == 1 || Definitions.anIntArray112[k] == 2) {
 			int l = method407(i, j);
 			int i1;
 			int j1;
 			if(l == 0 || l == 4) {
-				i1 = RsConfig.anIntArray110[k];
-				j1 = RsConfig.anIntArray111[k];
+				i1 = Definitions.anIntArray110[k];
+				j1 = Definitions.anIntArray111[k];
 			} else {
-				j1 = RsConfig.anIntArray110[k];
-				i1 = RsConfig.anIntArray111[k];
+				j1 = Definitions.anIntArray110[k];
+				i1 = Definitions.anIntArray111[k];
 			}
 			for(int k1 = i; k1 < i + i1; k1++) {
 				for(int l1 = j; l1 < j + j1; l1++)
-					if(RsConfig.anIntArray112[k] == 1)
+					if(Definitions.anIntArray112[k] == 1)
 						anIntArrayArray573[k1][l1] |= 0x40;
 					else
 					if(l == 0) {
@@ -370,7 +370,7 @@ public class RsWorld {
 	public void method401(int i, int j, int k, int l) {
 		if(i < 0 || j < 0 || i >= 95 || j >= 95)
 			return;
-		if(RsConfig.anIntArray122[l] == 1) {
+		if(Definitions.anIntArray122[l] == 1) {
 			if(k == 0) {
 				anIntArrayArray573[i][j] |= 1;
 				if(j > 0)
@@ -399,14 +399,14 @@ public class RsWorld {
 					int i1;
 					int j1;
 					if(l == 0 || l == 4) {
-						i1 = RsConfig.anIntArray110[k];
-						j1 = RsConfig.anIntArray111[k];
+						i1 = Definitions.anIntArray110[k];
+						j1 = Definitions.anIntArray111[k];
 					} else {
-						j1 = RsConfig.anIntArray110[k];
-						i1 = RsConfig.anIntArray111[k];
+						j1 = Definitions.anIntArray110[k];
+						i1 = Definitions.anIntArray111[k];
 					}
 					method400(i, j, k);
-					Model model = amodel[RsConfig.anIntArray109[k]].method192(false, true, false, false);
+					Model model = amodel[Definitions.anIntArray109[k]].method192(false, true, false, false);
 					int k1 = ((i + i + i1) * 128) / 2;
 					int i2 = ((j + j + j1) * 128) / 2;
 					model.method197(k1, -method410(k1, i2), i2);
@@ -604,11 +604,11 @@ public class RsWorld {
 		if(i1 == 0)
 			return l;
 		else
-			return RsConfig.anIntArray128[i1 - 1];
+			return Definitions.anIntArray128[i1 - 1];
 	}
 
 	public void method414(int i, int j, int k, int l, int i1) {
-		int j1 = RsConfig.anIntArray119[i];
+		int j1 = Definitions.anIntArray119[i];
 		if(anIntArrayArray574[j][k] < 0x13880)
 			anIntArrayArray574[j][k] += 0x13880 + j1;
 		if(anIntArrayArray574[l][i1] < 0x13880)
@@ -620,9 +620,9 @@ public class RsWorld {
 		int i1;
 		try {
 			if(aByteArray586 != null) {
-				byte abyte0[] = DataUtils.method352(s + ".hei", 0, aByteArray586);
+				byte abyte0[] = DataUtils.loadData(s + ".hei", 0, aByteArray586);
 				if(abyte0 == null && aByteArray587 != null)
-					abyte0 = DataUtils.method352(s + ".hei", 0, aByteArray587);
+					abyte0 = DataUtils.loadData(s + ".hei", 0, aByteArray587);
 				if(abyte0 != null && abyte0.length > 0) {
 					int j1 = 0;
 					int k2 = 0;
@@ -678,9 +678,9 @@ public class RsWorld {
 					}
 
 				}
-				abyte0 = DataUtils.method352(s + ".dat", 0, aByteArray588);
+				abyte0 = DataUtils.loadData(s + ".dat", 0, aByteArray588);
 				if(abyte0 == null && aByteArray589 != null)
-					abyte0 = DataUtils.method352(s + ".dat", 0, aByteArray589);
+					abyte0 = DataUtils.loadData(s + ".dat", 0, aByteArray589);
 				if(abyte0 == null || abyte0.length == 0)
 					throw new IOException();
 				int l1 = 0;
@@ -734,7 +734,7 @@ public class RsWorld {
 					}
 				}
 
-				abyte0 = DataUtils.method352(s + ".loc", 0, aByteArray588);
+				abyte0 = DataUtils.loadData(s + ".loc", 0, aByteArray588);
 				if(abyte0 != null && abyte0.length > 0) {
 					int i2 = 0;
 					for(int l10 = 0; l10 < 2304;) {
@@ -891,13 +891,13 @@ public class RsWorld {
 			for(int j2 = 0; j2 < 96; j2++) {
 				for(int i3 = 0; i3 < 96; i3++) {
 					int i4 = -method395(j2, i3);
-					if(method417(j2, i3, k) > 0 && RsConfig.anIntArray129[method417(j2, i3, k) - 1] == 4)
+					if(method417(j2, i3, k) > 0 && Definitions.anIntArray129[method417(j2, i3, k) - 1] == 4)
 						i4 = 0;
-					if(method417(j2 - 1, i3, k) > 0 && RsConfig.anIntArray129[method417(j2 - 1, i3, k) - 1] == 4)
+					if(method417(j2 - 1, i3, k) > 0 && Definitions.anIntArray129[method417(j2 - 1, i3, k) - 1] == 4)
 						i4 = 0;
-					if(method417(j2, i3 - 1, k) > 0 && RsConfig.anIntArray129[method417(j2, i3 - 1, k) - 1] == 4)
+					if(method417(j2, i3 - 1, k) > 0 && Definitions.anIntArray129[method417(j2, i3 - 1, k) - 1] == 4)
 						i4 = 0;
-					if(method417(j2 - 1, i3 - 1, k) > 0 && RsConfig.anIntArray129[method417(j2 - 1, i3 - 1, k) - 1] == 4)
+					if(method417(j2 - 1, i3 - 1, k) > 0 && Definitions.anIntArray129[method417(j2 - 1, i3 - 1, k) - 1] == 4)
 						i4 = 0;
 					int j5 = model.method198(j2 * 128, i4, i3 * 128);
 					int j7 = (int)(Math.random() * 10D) - 5;
@@ -920,9 +920,9 @@ public class RsWorld {
 					}
 					if(method417(j3, j4, k) > 0) {
 						int l16 = method417(j3, j4, k);
-						int l5 = RsConfig.anIntArray129[l16 - 1];
+						int l5 = Definitions.anIntArray129[l16 - 1];
 						int i19 = method421(j3, j4, k);
-						k7 = i10 = RsConfig.anIntArray128[l16 - 1];
+						k7 = i10 = Definitions.anIntArray128[l16 - 1];
 						if(l5 == 4) {
 							k7 = 1;
 							i10 = 1;
@@ -967,9 +967,9 @@ public class RsWorld {
 								k7 = k12;
 								l14 = 1;
 							}
-						if(RsConfig.anIntArray130[l16 - 1] != 0)
+						if(Definitions.anIntArray130[l16 - 1] != 0)
 							anIntArrayArray573[j3][j4] |= 0x40;
-						if(RsConfig.anIntArray129[l16 - 1] == 2)
+						if(Definitions.anIntArray129[l16 - 1] == 2)
 							anIntArrayArray573[j3][j4] |= 0x80;
 					}
 					method394(j3, j4, l14, k7, i10);
@@ -1034,8 +1034,8 @@ public class RsWorld {
 
 			for(int k4 = 1; k4 < 95; k4++) {
 				for(int i6 = 1; i6 < 95; i6++)
-					if(method417(k4, i6, k) > 0 && RsConfig.anIntArray129[method417(k4, i6, k) - 1] == 4) {
-						int l7 = RsConfig.anIntArray128[method417(k4, i6, k) - 1];
+					if(method417(k4, i6, k) > 0 && Definitions.anIntArray129[method417(k4, i6, k) - 1] == 4) {
+						int l7 = Definitions.anIntArray128[method417(k4, i6, k) - 1];
 						int j10 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
 						int l12 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 						int i15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
@@ -1049,9 +1049,9 @@ public class RsWorld {
 						model.anIntArray265[i20] = 0x30d40 + i20;
 						method394(k4, i6, 0, l7, l7);
 					} else
-					if(method417(k4, i6, k) == 0 || RsConfig.anIntArray129[method417(k4, i6, k) - 1] != 3) {
-						if(method417(k4, i6 + 1, k) > 0 && RsConfig.anIntArray129[method417(k4, i6 + 1, k) - 1] == 4) {
-							int i8 = RsConfig.anIntArray128[method417(k4, i6 + 1, k) - 1];
+					if(method417(k4, i6, k) == 0 || Definitions.anIntArray129[method417(k4, i6, k) - 1] != 3) {
+						if(method417(k4, i6 + 1, k) > 0 && Definitions.anIntArray129[method417(k4, i6 + 1, k) - 1] == 4) {
+							int i8 = Definitions.anIntArray128[method417(k4, i6 + 1, k) - 1];
 							int k10 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
 							int i13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int j15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
@@ -1065,8 +1065,8 @@ public class RsWorld {
 							model.anIntArray265[j20] = 0x30d40 + j20;
 							method394(k4, i6, 0, i8, i8);
 						}
-						if(method417(k4, i6 - 1, k) > 0 && RsConfig.anIntArray129[method417(k4, i6 - 1, k) - 1] == 4) {
-							int j8 = RsConfig.anIntArray128[method417(k4, i6 - 1, k) - 1];
+						if(method417(k4, i6 - 1, k) > 0 && Definitions.anIntArray129[method417(k4, i6 - 1, k) - 1] == 4) {
+							int j8 = Definitions.anIntArray128[method417(k4, i6 - 1, k) - 1];
 							int l10 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
 							int j13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int k15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
@@ -1080,8 +1080,8 @@ public class RsWorld {
 							model.anIntArray265[k20] = 0x30d40 + k20;
 							method394(k4, i6, 0, j8, j8);
 						}
-						if(method417(k4 + 1, i6, k) > 0 && RsConfig.anIntArray129[method417(k4 + 1, i6, k) - 1] == 4) {
-							int k8 = RsConfig.anIntArray128[method417(k4 + 1, i6, k) - 1];
+						if(method417(k4 + 1, i6, k) > 0 && Definitions.anIntArray129[method417(k4 + 1, i6, k) - 1] == 4) {
+							int k8 = Definitions.anIntArray128[method417(k4 + 1, i6, k) - 1];
 							int i11 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
 							int k13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int l15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
@@ -1095,8 +1095,8 @@ public class RsWorld {
 							model.anIntArray265[l20] = 0x30d40 + l20;
 							method394(k4, i6, 0, k8, k8);
 						}
-						if(method417(k4 - 1, i6, k) > 0 && RsConfig.anIntArray129[method417(k4 - 1, i6, k) - 1] == 4) {
-							int l8 = RsConfig.anIntArray128[method417(k4 - 1, i6, k) - 1];
+						if(method417(k4 - 1, i6, k) > 0 && Definitions.anIntArray129[method417(k4 - 1, i6, k) - 1] == 4) {
+							int l8 = Definitions.anIntArray128[method417(k4 - 1, i6, k) - 1];
 							int j11 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
 							int l13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int i16 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
@@ -1131,9 +1131,9 @@ public class RsWorld {
 		for(int i2 = 0; i2 < 95; i2++) {
 			for(int k2 = 0; k2 < 95; k2++) {
 				int k3 = method409(i2, k2);
-				if(k3 > 0 && (RsConfig.anIntArray123[k3 - 1] == 0 || aBoolean595)) {
+				if(k3 > 0 && (Definitions.anIntArray123[k3 - 1] == 0 || aBoolean595)) {
 					method393(aModel591, k3 - 1, i2, k2, i2 + 1, k2);
-					if(flag && RsConfig.anIntArray122[k3 - 1] != 0) {
+					if(flag && Definitions.anIntArray122[k3 - 1] != 0) {
 						anIntArrayArray573[i2][k2] |= 1;
 						if(k2 > 0)
 							method412(i2, k2 - 1, 4);
@@ -1142,9 +1142,9 @@ public class RsWorld {
 						aSurface576.method251(i2 * 3, k2 * 3, 3, k1);
 				}
 				k3 = method406(i2, k2);
-				if(k3 > 0 && (RsConfig.anIntArray123[k3 - 1] == 0 || aBoolean595)) {
+				if(k3 > 0 && (Definitions.anIntArray123[k3 - 1] == 0 || aBoolean595)) {
 					method393(aModel591, k3 - 1, i2, k2, i2, k2 + 1);
-					if(flag && RsConfig.anIntArray122[k3 - 1] != 0) {
+					if(flag && Definitions.anIntArray122[k3 - 1] != 0) {
 						anIntArrayArray573[i2][k2] |= 2;
 						if(i2 > 0)
 							method412(i2 - 1, k2, 8);
@@ -1153,9 +1153,9 @@ public class RsWorld {
 						aSurface576.method217(i2 * 3, k2 * 3, 3, k1);
 				}
 				k3 = method419(i2, k2);
-				if(k3 > 0 && k3 < 12000 && (RsConfig.anIntArray123[k3 - 1] == 0 || aBoolean595)) {
+				if(k3 > 0 && k3 < 12000 && (Definitions.anIntArray123[k3 - 1] == 0 || aBoolean595)) {
 					method393(aModel591, k3 - 1, i2, k2, i2 + 1, k2 + 1);
-					if(flag && RsConfig.anIntArray122[k3 - 1] != 0)
+					if(flag && Definitions.anIntArray122[k3 - 1] != 0)
 						anIntArrayArray573[i2][k2] |= 0x20;
 					if(flag) {
 						aSurface576.method247(i2 * 3, k2 * 3, k1);
@@ -1163,9 +1163,9 @@ public class RsWorld {
 						aSurface576.method247(i2 * 3 + 2, k2 * 3 + 2, k1);
 					}
 				}
-				if(k3 > 12000 && k3 < 24000 && (RsConfig.anIntArray123[k3 - 12001] == 0 || aBoolean595)) {
+				if(k3 > 12000 && k3 < 24000 && (Definitions.anIntArray123[k3 - 12001] == 0 || aBoolean595)) {
 					method393(aModel591, k3 - 12001, i2 + 1, k2, i2, k2 + 1);
-					if(flag && RsConfig.anIntArray122[k3 - 12001] != 0)
+					if(flag && Definitions.anIntArray122[k3 - 12001] != 0)
 						anIntArrayArray573[i2][k2] |= 0x10;
 					if(flag) {
 						aSurface576.method247(i2 * 3 + 2, k2 * 3, k1);
@@ -1282,7 +1282,7 @@ public class RsWorld {
 					int k27 = anIntArrayArray574[l18][k19];
 					int l27 = anIntArrayArray574[k21][i23];
 					int i28 = anIntArrayArray574[k23][i24];
-					int j28 = RsConfig.anIntArray125[i12 - 1];
+					int j28 = Definitions.anIntArray125[i12 - 1];
 					if(method416(j14, k16) && j27 < 0x13880) {
 						j27 += j28 + 0x13880;
 						anIntArrayArray574[j14][k16] = j27;
@@ -1340,7 +1340,7 @@ public class RsWorld {
 						i27 -= byte0;
 					if(!method420(k23, i24 + 1))
 						i27 += byte0;
-					i12 = RsConfig.anIntArray126[i12 - 1];
+					i12 = Definitions.anIntArray126[i12 - 1];
 					j27 = -j27;
 					k27 = -k27;
 					l27 = -l27;
@@ -1467,7 +1467,7 @@ public class RsWorld {
 		int l = method417(i, j, k);
 		if(l == 0)
 			return -1;
-		int i1 = RsConfig.anIntArray129[l - 1];
+		int i1 = Definitions.anIntArray129[l - 1];
 		return i1 != 2 ? 0 : 1;
 	}
 

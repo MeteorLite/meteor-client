@@ -96,4 +96,8 @@ public interface Client
 	void setResizeCanvasNextFrame(boolean resizeCanvasNextFrame);
 
 	void resizeCanvas();
+
+	boolean isLoggedIn();
+
+	boolean isClientThread();
 }

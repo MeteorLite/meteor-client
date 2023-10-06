@@ -58,4 +58,13 @@ public interface RSClient extends Client
 
 	@Import("inventoryItemsQuantities")
 	int[] getInventoryItemsQuantities();
+
+	@Import("loggedIn")
+	int getRSCLoggedIn();
+
+	@Import("loggedIn")
+	int getGamePanelWidth();
+
+	@Import("loggedIn")
+	int getGamePanelHeight();
 }

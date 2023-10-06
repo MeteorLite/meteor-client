@@ -7,6 +7,7 @@ import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
 import meteor.plugins.meteor.Meteor
+import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 
 import org.apache.commons.lang3.time.StopWatch
@@ -30,6 +31,7 @@ object PluginManager {
             init<ExamplePlugin>()
             init<InventoryItemsPlugin>()
             init<StretchedModePlugin>()
+            init<StatusBarsPlugin>()
         }
     }
 

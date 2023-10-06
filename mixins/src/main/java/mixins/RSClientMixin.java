@@ -157,4 +157,20 @@ public abstract class RSClientMixin implements RSClient {
 		int maxHeight = getCanvas().getMaximumSize().height;
 		getCanvas().setMaximumSize(new Dimension(maxWidth, maxHeight));
 	}
+
+	@Inject
+	@Override
+	public boolean isLoggedIn() {
+		return getRSCLoggedIn() == 1;
+	}
+
+	@Inject
+	private Thread thread;
+
+	@Inject
+	@Override
+	public boolean isClientThread()
+	{
+		return thread == Thread.currentThread();
+	}
 }

@@ -561,8 +561,9 @@ public class ChatFilter {
 
 	}
 
+	//This method crashes Meteor, and its a weird ass error, so all uses have been disabled
 	public static String method380(String s) {
-		char ac[] = s.toLowerCase().toCharArray();
+		char[] ac = s.toLowerCase().toCharArray();
 		method368(ac);
 		method383(ac);
 		method371(ac);

@@ -40,7 +40,7 @@ public class Stream {
 		buffer[ptr++] = (byte)i;
 	}
 
-	public void put2(int i) {
+	public void putShort(int i) {
 		buffer[ptr++] = (byte)(i >> 8);
 		buffer[ptr++] = (byte)i;
 	}
@@ -87,7 +87,7 @@ public class Stream {
 		return (l << 48) + (l1 << 32) + (l2 << 16) + l3;
 	}
 
-	public void put1(int i) {
+	public void putByte(int i) {
 		buffer[ptr++] = (byte)i;
 	}
 

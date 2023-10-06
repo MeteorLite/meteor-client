@@ -148,7 +148,7 @@ public class DataUtils {
 		return s;
 	}
 
-	public static byte[] method352(String s, int i, byte abyte0[]) {
+	public static byte[] loadData(String s, int i, byte abyte0[]) {
 		return method342(s, i, abyte0, null);
 	}
 
