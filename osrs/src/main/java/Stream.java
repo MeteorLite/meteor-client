@@ -73,7 +73,7 @@ public class Stream {
 		return 0;
 	}
 
-	public void method325(byte abyte0[], int i, int j) {
+	public void method325(byte[] abyte0, int i, int j) {
 		for(int k = 0; k < j; k++)
 			buffer[ptr++] = abyte0[i + k];
 
@@ -131,7 +131,7 @@ public class Stream {
 		put4((int)(l & -1L));
 	}
 
-	public void method333(int i, int j, byte abyte0[]) throws IOException {
+	public void method333(int i, int j, byte[] abyte0) throws IOException {
 	}
 
 	public Stream() {
@@ -143,7 +143,7 @@ public class Stream {
 		if(!DataUtils.aBoolean540);
 	}
 
-	public void method334(int ai[]) {
+	public void method334(int[] ai) {
 		isaacIn = new IsaacCipher(ai);
 		isaacOut = new IsaacCipher(ai);
 	}
@@ -153,7 +153,7 @@ public class Stream {
 		method328(0);
 	}
 
-	public int method336(byte abyte0[]) {
+	public int method336(byte[] abyte0) {
 		try {
 			anInt537++;
 			if(anInt538 > 0 && anInt537 > anInt538) {
@@ -188,17 +188,17 @@ public class Stream {
 		return 0;
 	}
 
-	public void method337(int i, byte abyte0[]) throws IOException {
+	public void method337(int i, byte[] abyte0) throws IOException {
 		method333(i, 0, abyte0);
 	}
 
-	public void method338(byte abyte0[], int i, int j) throws IOException {
+	public void method338(byte[] abyte0, int i, int j) throws IOException {
 	}
 
 	public void method339() {
 	}
 
-	private static int anIntArray514[] = {
+	private static final int[] anIntArray514 = {
 		0, 1, 3, 7, 15, 31, 63, 127, 255, 511, 
 		1023, 2047, 4095, 8191, 16383, 32767, 65535, 0x1ffff, 0x3ffff, 0x7ffff, 
 		0xfffff, 0x1fffff, 0x3fffff, 0x7fffff, 0xffffff, 0x1ffffff, 0x3ffffff, 0x7ffffff, 0xfffffff, 0x1fffffff, 
@@ -216,19 +216,19 @@ public class Stream {
 	final int anInt524 = 32;
 	final int anInt525 = 124;
 	final int anInt526 = 34;
-	static char aCharArray527[];
+	static char[] aCharArray527;
 	public static int anInt528;
 	public IsaacCipher isaacIn;
 	public int anInt529;
 	protected int anInt530;
 	protected boolean aBoolean531;
 	protected String aString532;
-	public byte buffer[];
+	public byte[] buffer;
 	private int ptr;
 	private int anInt533;
 	public IsaacCipher isaacOut;
-	public static int anIntArray534[] = new int[256];
-	public static int anIntArray535[] = new int[256];
+	public static int[] anIntArray534 = new int[256];
+	public static int[] anIntArray535 = new int[256];
 	protected int anInt536;
 	public int anInt537;
 	public int anInt538;

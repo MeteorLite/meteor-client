@@ -6,7 +6,7 @@ import java.io.*;
 
 public class Model {
 
-	public int method174(byte abyte0[]) {
+	public int method174(byte[] abyte0) {
 		for(; abyte0[anInt232] == 10 || abyte0[anInt232] == 13; anInt232++);
 		int i = anIntArray233[abyte0[anInt232++] & 0xff];
 		int j = anIntArray233[abyte0[anInt232++] & 0xff];
@@ -17,7 +17,7 @@ public class Model {
 		return l;
 	}
 
-	public void method175(Model amodel[], int i, boolean flag) {
+	public void method175(Model[] amodel, int i, boolean flag) {
 		int j = 0;
 		int k = 0;
 		for(int l = 0; l < i; l++) {
@@ -38,8 +38,8 @@ public class Model {
 			anInt242 = model.anInt242;
 			anInt243 = model.anInt243;
 			for(int j1 = 0; j1 < model.anInt235; j1++) {
-				int ai[] = new int[model.anIntArray244[j1]];
-				int ai1[] = model.anIntArrayArray245[j1];
+				int[] ai = new int[model.anIntArray244[j1]];
+				int[] ai1 = model.anIntArrayArray245[j1];
 				for(int k1 = 0; k1 < model.anIntArray244[j1]; k1++)
 					ai[k1] = method198(model.anIntArray246[ai1[k1]], model.anIntArray247[ai1[k1]], model.anIntArray248[ai1[k1]]);
 
@@ -51,13 +51,11 @@ public class Model {
 					if(i > 1) {
 						anIntArrayArray237[l1] = new int[model.anIntArrayArray237[j1].length + 1];
 						anIntArrayArray237[l1][0] = i1;
-						for(int i2 = 0; i2 < model.anIntArrayArray237[j1].length; i2++)
-							anIntArrayArray237[l1][i2 + 1] = model.anIntArrayArray237[j1][i2];
+                        System.arraycopy(model.anIntArrayArray237[j1], 0, anIntArrayArray237[l1], 1, model.anIntArrayArray237[j1].length);
 
 					} else {
 						anIntArrayArray237[l1] = new int[model.anIntArrayArray237[j1].length];
-						for(int j2 = 0; j2 < model.anIntArrayArray237[j1].length; j2++)
-							anIntArrayArray237[l1][j2] = model.anIntArrayArray237[j1][j2];
+                        System.arraycopy(model.anIntArrayArray237[j1], 0, anIntArrayArray237[l1], 0, model.anIntArrayArray237[j1].length);
 
 					}
 			}
@@ -107,8 +105,8 @@ public class Model {
 		anInt236 = 0;
 	}
 
-	public void method179(Model model, int ai[], int i, int j) {
-		int ai1[] = new int[i];
+	public void method179(Model model, int[] ai, int i, int j) {
+		int[] ai1 = new int[i];
 		for(int k = 0; k < i; k++) {
 			int l = ai1[k] = model.method198(anIntArray246[ai[k]], anIntArray247[ai[k]], anIntArray248[ai[k]]);
 			model.anIntArray262[l] = anIntArray262[ai[k]];
@@ -133,7 +131,7 @@ public class Model {
 	}
 
 	public Model method181() {
-		Model amodel[] = new Model[1];
+		Model[] amodel = new Model[1];
 		amodel[0] = this;
 		Model model = new Model(amodel, 1);
 		model.anInt266 = anInt266;
@@ -216,7 +214,7 @@ public class Model {
 
 	}
 
-	public int method184(int i, int ai[], int j, int k) {
+	public int method184(int i, int[] ai, int j, int k) {
 		if(anInt235 >= anInt294) {
 			return -1;
 		} else {
@@ -309,18 +307,16 @@ public class Model {
 		}
 		if(anInt259 != 0 || anInt260 != 0 || anInt261 != 0) {
 			anInt280 = 1;
-			return;
-		} else {
+        } else {
 			anInt280 = 0;
-			return;
-		}
+        }
 	}
 
 	public void method188() {
 		if(aBoolean298 && aBoolean299)
 			return;
 		for(int i = 0; i < anInt235; i++) {
-			int ai[] = anIntArrayArray245[i];
+			int[] ai = anIntArrayArray245[i];
 			int j = anIntArray257[ai[0]];
 			int k = anIntArray256[ai[0]];
 			int l = anIntArray258[ai[0]];
@@ -358,10 +354,10 @@ public class Model {
 			if(anIntArray251[j] != anInt234)
 				anIntArray251[j] = (anIntArray300[j] * anInt240 + anIntArray301[j] * anInt241 + anIntArray302[j] * anInt242) / i;
 
-		int ai[] = new int[anInt236];
-		int ai1[] = new int[anInt236];
-		int ai2[] = new int[anInt236];
-		int ai3[] = new int[anInt236];
+		int[] ai = new int[anInt236];
+		int[] ai1 = new int[anInt236];
+		int[] ai2 = new int[anInt236];
+		int[] ai3 = new int[anInt236];
 		for(int k = 0; k < anInt236; k++) {
 			ai[k] = 0;
 			ai1[k] = 0;
@@ -415,7 +411,7 @@ public class Model {
 	}
 
 	public Model method192(boolean flag, boolean flag1, boolean flag2, boolean flag3) {
-		Model amodel[] = new Model[1];
+		Model[] amodel = new Model[1];
 		amodel[0] = this;
 		Model model = new Model(amodel, 1, flag, flag1, flag2, flag3);
 		model.anInt266 = anInt266;
@@ -484,15 +480,13 @@ public class Model {
 		anInt238 = 256 - i * 4;
 		anInt239 = (64 - j) * 16 + 128;
 		if(aBoolean298) {
-			return;
-		} else {
+        } else {
 			anInt240 = k;
 			anInt241 = l;
 			anInt242 = i1;
 			anInt243 = (int)Math.sqrt(k * k + l * l + i1 * i1);
 			method189();
-			return;
-		}
+        }
 	}
 
 	public void method200() {
@@ -532,8 +526,8 @@ public class Model {
 	public Model[] method201(int i, int j, int k, int l, int i1, int j1, int k1, 
 			boolean flag) {
 		method182();
-		int ai[] = new int[j1];
-		int ai1[] = new int[j1];
+		int[] ai = new int[j1];
+		int[] ai1 = new int[j1];
 		for(int l1 = 0; l1 < j1; l1++) {
 			ai[l1] = 0;
 			ai1[l1] = 0;
@@ -543,7 +537,7 @@ public class Model {
 			int j2 = 0;
 			int k2 = 0;
 			int i3 = anIntArray244[i2];
-			int ai2[] = anIntArrayArray245[i2];
+			int[] ai2 = anIntArrayArray245[i2];
 			for(int i4 = 0; i4 < i3; i4++) {
 				j2 += anIntArray246[ai2[i4]];
 				k2 += anIntArray248[ai2[i4]];
@@ -554,7 +548,7 @@ public class Model {
 			ai1[k4]++;
 		}
 
-		Model amodel[] = new Model[j1];
+		Model[] amodel = new Model[j1];
 		for(int l2 = 0; l2 < j1; l2++) {
 			if(ai[l2] > k1)
 				ai[l2] = k1;
@@ -567,7 +561,7 @@ public class Model {
 			int k3 = 0;
 			int j4 = 0;
 			int l4 = anIntArray244[j3];
-			int ai3[] = anIntArrayArray245[j3];
+			int[] ai3 = anIntArrayArray245[j3];
 			for(int i5 = 0; i5 < l4; i5++) {
 				k3 += anIntArray246[ai3[i5]];
 				j4 += anIntArray248[ai3[i5]];
@@ -585,18 +579,16 @@ public class Model {
 
 	public void method202(int i, int j, int k) {
 		if(aBoolean298) {
-			return;
-		} else {
+        } else {
 			anInt240 = i;
 			anInt241 = j;
 			anInt242 = k;
 			anInt243 = (int)Math.sqrt(i * i + j * j + k * k);
 			method189();
-			return;
-		}
+        }
 	}
 
-	public Model(byte abyte0[], int i, boolean flag) {
+	public Model(byte[] abyte0, int i, boolean flag) {
 		anInt254 = 1;
 		aBoolean287 = true;
 		aBoolean226 = true;
@@ -680,7 +672,7 @@ public class Model {
 		anInt254 = 1;
 	}
 
-	public Model(Model amodel[], int i) {
+	public Model(Model[] amodel, int i) {
 		anInt254 = 1;
 		aBoolean287 = true;
 		aBoolean226 = true;
@@ -704,7 +696,7 @@ public class Model {
 		method175(amodel, i, true);
 	}
 
-	public Model(Model amodel[], int i, boolean flag, boolean flag1, boolean flag2, boolean flag3) {
+	public Model(Model[] amodel, int i, boolean flag, boolean flag1, boolean flag2, boolean flag3) {
 		anInt254 = 1;
 		aBoolean287 = true;
 		aBoolean226 = true;
@@ -812,7 +804,7 @@ public class Model {
 		anInt238 = 32;
 		boolean flag = false;
 		boolean flag1 = false;
-		byte abyte0[] = null;
+		byte[] abyte0 = null;
 		try {
 			java.io.InputStream inputstream = DataUtils.method353(s);
 			DataInputStream datainputstream = new DataInputStream(inputstream);
@@ -852,11 +844,11 @@ public class Model {
 			anInt239 = method174(abyte0);
 			anInt238 = method174(abyte0);
 			int i3 = method174(abyte0);
-			int ai[] = new int[i2];
+			int[] ai = new int[i2];
 			for(int l3 = 0; l3 < i2; l3++)
 				ai[l3] = method174(abyte0);
 
-			int ai1[] = new int[l2];
+			int[] ai1 = new int[l2];
 			for(int i4 = 0; i4 < l2; i4++)
 				ai1[i4] = method174(abyte0);
 
@@ -909,7 +901,7 @@ public class Model {
 		anInt283 = anInt285 = anInt281 = 0xf423f;
 		anInt310 = anInt284 = anInt286 = anInt282 = 0xfff0bdc1;
 		for(int i = 0; i < anInt235; i++) {
-			int ai[] = anIntArrayArray245[i];
+			int[] ai = anIntArrayArray245[i];
 			int k = ai[0];
 			int i1 = anIntArray244[i];
 			int j1;
@@ -970,43 +962,43 @@ public class Model {
 	public boolean aBoolean226;
 	public boolean aBoolean227;
 	public int anInt228;
-	private static byte aByteArray229[];
-	private int anInt230;
+	private static final byte[] aByteArray229;
+	private final int anInt230;
 	private int anInt231;
 	private int anInt232;
-	private static int anIntArray233[];
-	private int anInt234;
+	private static final int[] anIntArray233;
+	private final int anInt234;
 	public int anInt235;
 	public int anInt236;
-	private int anIntArrayArray237[][];
+	private int[][] anIntArrayArray237;
 	protected int anInt238;
 	protected int anInt239;
 	private int anInt240;
 	private int anInt241;
 	private int anInt242;
 	private int anInt243;
-	public int anIntArray244[];
-	public int anIntArrayArray245[][];
-	public int anIntArray246[];
-	public int anIntArray247[];
-	public int anIntArray248[];
-	public int anIntArray249[];
-	public int anIntArray250[];
-	public int anIntArray251[];
-	public int anIntArray252[];
-	public int anIntArray253[];
+	public int[] anIntArray244;
+	public int[][] anIntArrayArray245;
+	public int[] anIntArray246;
+	public int[] anIntArray247;
+	public int[] anIntArray248;
+	public int[] anIntArray249;
+	public int[] anIntArray250;
+	public int[] anIntArray251;
+	public int[] anIntArray252;
+	public int[] anIntArray253;
 	public int anInt254;
-	private static int anIntArray255[];
-	public int anIntArray256[];
-	public int anIntArray257[];
-	public int anIntArray258[];
+	private static final int[] anIntArray255;
+	public int[] anIntArray256;
+	public int[] anIntArray257;
+	public int[] anIntArray258;
 	private int anInt259;
 	private int anInt260;
 	private int anInt261;
-	public int anIntArray262[];
-	public byte aByteArray263[];
+	public int[] anIntArray262;
+	public byte[] aByteArray263;
 	public boolean aBoolean264;
-	public int anIntArray265[];
+	public int[] anIntArray265;
 	public int anInt266;
 	public boolean aBoolean267;
 	private int anInt268;
@@ -1029,27 +1021,27 @@ public class Model {
 	public int anInt285;
 	public int anInt286;
 	public boolean aBoolean287;
-	private static int anIntArray288[];
-	public int anIntArray289[];
-	public int anIntArray290[];
-	public int anIntArray291[];
-	public int anIntArray292[];
-	public int anIntArray293[];
+	private static final int[] anIntArray288;
+	public int[] anIntArray289;
+	public int[] anIntArray290;
+	public int[] anIntArray291;
+	public int[] anIntArray292;
+	public int[] anIntArray293;
 	private int anInt294;
 	public boolean aBoolean295;
-	public byte aByteArray296[];
+	public byte[] aByteArray296;
 	private boolean aBoolean297;
 	public boolean aBoolean298;
 	public boolean aBoolean299;
-	public int anIntArray300[];
-	public int anIntArray301[];
-	public int anIntArray302[];
-	private int anIntArray303[];
-	private int anIntArray304[];
-	private int anIntArray305[];
-	private int anIntArray306[];
-	private int anIntArray307[];
-	private int anIntArray308[];
+	public int[] anIntArray300;
+	public int[] anIntArray301;
+	public int[] anIntArray302;
+	private int[] anIntArray303;
+	private int[] anIntArray304;
+	private int[] anIntArray305;
+	private int[] anIntArray306;
+	private int[] anIntArray307;
+	private int[] anIntArray308;
 	public int anInt309;
 	private int anInt310;
 

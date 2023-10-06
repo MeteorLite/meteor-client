@@ -4,7 +4,7 @@
 
 public class ChatFilter {
 
-	public static void method357(char ac[]) {
+	public static void method357(char[] ac) {
 		int i = 0;
 		int j = 0;
 		int k = 0;
@@ -37,7 +37,7 @@ public class ChatFilter {
 		}
 	}
 
-	public static int method358(char ac[], char ac1[], int i) {
+	public static int method358(char[] ac, char[] ac1, int i) {
 		if(i + 1 == ac.length)
 			return 2;
 		for(int j = i + 1; j < ac.length; j++) {
@@ -60,7 +60,7 @@ public class ChatFilter {
 		return !method363(ac[i + 1]) ? 0 : 1;
 	}
 
-	public static void method359(char ac[]) {
+	public static void method359(char[] ac) {
 		boolean flag = true;
 		for(int i = 0; i < ac.length; i++) {
 			char c = ac[i];
@@ -78,7 +78,7 @@ public class ChatFilter {
 
 	}
 
-	public static int method360(char ac[], char ac1[], int i) {
+	public static int method360(char[] ac, char[] ac1, int i) {
 		if(i == 0)
 			return 2;
 		for(int j = i - 1; j >= 0; j--) {
@@ -120,11 +120,13 @@ public class ChatFilter {
 		return !method369(c) && !method374(c);
 	}
 
-	public static boolean method364(char ac[]) {
+	public static boolean method364(char[] ac) {
 		boolean flag = true;
 		for(int i = 0; i < ac.length; i++)
-			if(!method374(ac[i]) && ac[i] != 0)
-				flag = false;
+            if (!method374(ac[i]) && ac[i] != 0) {
+                flag = false;
+                break;
+            }
 
 		if(flag)
 			return true;
@@ -149,14 +151,14 @@ public class ChatFilter {
 		return c >= 'A' && c <= 'Z';
 	}
 
-	public static void method366(ByteBuffer bytebuffer, char ac[][], byte abyte0[][][]) {
+	public static void method366(ByteBuffer bytebuffer, char[][] ac, byte[][][] abyte0) {
 		for(int i = 0; i < ac.length; i++) {
-			char ac1[] = new char[bytebuffer.method313()];
+			char[] ac1 = new char[bytebuffer.method313()];
 			for(int j = 0; j < ac1.length; j++)
 				ac1[j] = (char)bytebuffer.method313();
 
 			ac[i] = ac1;
-			byte abyte1[][] = new byte[bytebuffer.method316()][2];
+			byte[][] abyte1 = new byte[bytebuffer.method316()][2];
 			for(int k = 0; k < abyte1.length; k++) {
 				abyte1[k][0] = (byte)bytebuffer.method313();
 				abyte1[k][1] = (byte)bytebuffer.method313();
@@ -175,14 +177,14 @@ public class ChatFilter {
 		method384(bytebuffer3);
 	}
 
-	public static void method368(char ac[]) {
-		char ac1[] = (char[])ac.clone();
-		char ac2[] = {
+	public static void method368(char[] ac) {
+		char[] ac1 = ac.clone();
+		char[] ac2 = {
 			'd', 'o', 't'
 		};
 		method377(ac1, ac2, null);
-		char ac3[] = (char[])ac.clone();
-		char ac4[] = {
+		char[] ac3 = ac.clone();
+		char[] ac4 = {
 			's', 'l', 'a', 's', 'h'
 		};
 		method377(ac3, ac4, null);
@@ -202,13 +204,13 @@ public class ChatFilter {
 		method366(bytebuffer, aCharArrayArray547, aByteArrayArrayArray548);
 	}
 
-	public static void method371(char ac[]) {
+	public static void method371(char[] ac) {
 		for(int i = aCharArrayArray549.length - 1; i >= 0; i--)
 			method377(ac, aCharArrayArray549[i], aByteArrayArrayArray550[i]);
 
 	}
 
-	public static int method372(char ac[], int i) {
+	public static int method372(char[] ac, int i) {
 		for(int j = i; j < ac.length && j >= 0; j++)
 			if(ac[j] < '0' || ac[j] > '9')
 				return j;
@@ -326,7 +328,7 @@ public class ChatFilter {
 		return c >= '0' && c <= '9';
 	}
 
-	public static boolean method375(byte abyte0[][], byte byte0, byte byte1) {
+	public static boolean method375(byte[][] abyte0, byte byte0, byte byte1) {
 		int i = 0;
 		if(abyte0[i][0] == byte0 && abyte0[i][1] == byte1)
 			return true;
@@ -345,7 +347,7 @@ public class ChatFilter {
 		return false;
 	}
 
-	public static void method376(char ac[], char ac1[], char ac2[], char ac3[], int i) {
+	public static void method376(char[] ac, char[] ac1, char[] ac2, char[] ac3, int i) {
 		if(ac3.length > ac.length)
 			return;
 		for(int j = 0; j <= ac.length - ac3.length; j++) {
@@ -455,7 +457,7 @@ public class ChatFilter {
 
 	}
 
-	public static void method377(char ac[], char ac1[], byte abyte0[][]) {
+	public static void method377(char[] ac, char[] ac1, byte[][] abyte0) {
 		if(ac1.length > ac.length)
 			return;
 		for(int i = 0; i <= ac.length - ac1.length; i++) {
@@ -514,7 +516,7 @@ public class ChatFilter {
 							j1 = i;
 						for(; !flag4 && j1 < j; j1++)
 							if(j1 >= 0 && (!method363(ac[j1]) || ac[j1] == '\'')) {
-								char ac2[] = new char[3];
+								char[] ac2 = new char[3];
 								int k1;
 								for(k1 = 0; k1 < 3; k1++) {
 									if(j1 + k1 >= ac.length || method363(ac[j1 + k1]) && ac[j1 + k1] != '\'')
@@ -522,10 +524,8 @@ public class ChatFilter {
 									ac2[k1] = ac[j1 + k1];
 								}
 
-								boolean flag5 = true;
-								if(k1 == 0)
-									flag5 = false;
-								if(k1 < 3 && j1 - 1 >= 0 && (!method363(ac[j1 - 1]) || ac[j1 - 1] == '\''))
+								boolean flag5 = k1 != 0;
+                                if(k1 < 3 && j1 - 1 >= 0 && (!method363(ac[j1 - 1]) || ac[j1 - 1] == '\''))
 									flag5 = false;
 								if(flag5 && !method364(ac2))
 									flag4 = true;
@@ -547,7 +547,7 @@ public class ChatFilter {
 
 	}
 
-	public static void method378(char ac[], char ac1[]) {
+	public static void method378(char[] ac, char[] ac1) {
 		for(int i = 0; i < ac.length; i++)
 			if(ac1[i] != '*' && method365(ac[i]))
 				ac1[i] = ac[i];
@@ -568,15 +568,14 @@ public class ChatFilter {
 		method383(ac);
 		method371(ac);
 		method357(ac);
-		for(int i = 0; i < aStringArray553.length; i++) {
-			for(int j = -1; (j = s.indexOf(aStringArray553[i], j + 1)) != -1;) {
-				char ac1[] = aStringArray553[i].toCharArray();
-				for(int k = 0; k < ac1.length; k++)
-					ac[k + j] = ac1[k];
+        for (String string : aStringArray553) {
+            for (int j = -1; (j = s.indexOf(string, j + 1)) != -1; ) {
+                char[] ac1 = string.toCharArray();
+                System.arraycopy(ac1, 0, ac, 0 + j, ac1.length);
 
-			}
+            }
 
-		}
+        }
 
 		if(aBoolean554) {
 			method378(s.toCharArray(), ac);
@@ -611,7 +610,7 @@ public class ChatFilter {
 		return c != 'g' || c1 != '9' ? 0 : 1;
 	}
 
-	public static void method383(char ac[]) {
+	public static void method383(char[] ac) {
 		for(int i = 0; i < 2; i++) {
 			for(int j = aCharArrayArray547.length - 1; j >= 0; j--)
 				method377(ac, aCharArrayArray547[j], aByteArrayArrayArray548[j]);
@@ -626,7 +625,7 @@ public class ChatFilter {
 		anIntArray546 = new int[i];
 		for(int j = 0; j < i; j++) {
 			anIntArray546[j] = bytebuffer.method313();
-			char ac[] = new char[bytebuffer.method313()];
+			char[] ac = new char[bytebuffer.method313()];
 			for(int k = 0; k < ac.length; k++)
 				ac[k] = (char)bytebuffer.method313();
 
@@ -635,7 +634,7 @@ public class ChatFilter {
 
 	}
 
-	public static int method385(char ac[]) {
+	public static int method385(char[] ac) {
 		if(ac.length > 6)
 			return 0;
 		int i = 0;
@@ -660,7 +659,7 @@ public class ChatFilter {
 		return i;
 	}
 
-	public static int method386(char ac[], int i) {
+	public static int method386(char[] ac, int i) {
 		for(int j = i; j < ac.length && j >= 0; j++)
 			if(ac[j] >= '0' && ac[j] <= '9')
 				return j;
@@ -676,16 +675,16 @@ public class ChatFilter {
 	}
 
 	static int anInt543 = 3;
-	static int anIntArray544[];
-	static char aCharArrayArray545[][];
-	static int anIntArray546[];
-	static char aCharArrayArray547[][];
-	static byte aByteArrayArrayArray548[][][];
-	static char aCharArrayArray549[][];
-	static byte aByteArrayArrayArray550[][][];
+	static int[] anIntArray544;
+	static char[][] aCharArrayArray545;
+	static int[] anIntArray546;
+	static char[][] aCharArrayArray547;
+	static byte[][][] aByteArrayArrayArray548;
+	static char[][] aCharArrayArray549;
+	static byte[][][] aByteArrayArrayArray550;
 	static boolean aBoolean551;
 	static boolean aBoolean552;
-	static String aStringArray553[] = {
+	static String[] aStringArray553 = {
 		"cook", "cook's", "cooks", "seeks", "sheet"
 	};
 	static boolean aBoolean554 = true;

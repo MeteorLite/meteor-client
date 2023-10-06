@@ -43,9 +43,9 @@ final class RsCharacter {
 	public int anInt171;
 	public int anInt172;
 	public int anInt173;
-	public int anIntArray174[];
-	public int anIntArray175[];
-	public int anIntArray176[];
+	public int[] anIntArray174;
+	public int[] anIntArray175;
+	public int[] anIntArray176;
 	public int anInt177;
 	public boolean aBoolean178;
 	public int anInt179;

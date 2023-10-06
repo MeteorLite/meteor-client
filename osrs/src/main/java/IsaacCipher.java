@@ -5,7 +5,7 @@
 
 public final class IsaacCipher {
 
-	private final void method310() {
+	private void method310() {
 		anInt504 += ++anInt505;
 		for(int i = 0; i < 256; i++) {
 			int j = anIntArray506[i];
@@ -34,7 +34,7 @@ public final class IsaacCipher {
 
 	}
 
-	public final int method311() {
+	public int method311() {
 		if(anInt509-- == 0) {
 			method310();
 			anInt509 = 255;
@@ -42,7 +42,7 @@ public final class IsaacCipher {
 		return anIntArray508[anInt509];
 	}
 
-	private final void method312() {
+	private void method312() {
 		int i1;
 		int j1;
 		int k1;
@@ -168,19 +168,18 @@ public final class IsaacCipher {
 		anInt509 = 256;
 	}
 
-	public IsaacCipher(int ai[]) {
+	public IsaacCipher(int[] ai) {
 		anIntArray506 = new int[256];
 		anIntArray508 = new int[256];
-		for(int i = 0; i < ai.length; i++)
-			anIntArray508[i] = ai[i];
+        System.arraycopy(ai, 0, anIntArray508, 0, ai.length);
 
 		method312();
 	}
 
 	private int anInt504;
 	private int anInt505;
-	private int anIntArray506[];
+	private final int[] anIntArray506;
 	private int anInt507;
-	private int anIntArray508[];
+	private final int[] anIntArray508;
 	private int anInt509;
 }

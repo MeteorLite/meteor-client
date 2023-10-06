@@ -20,7 +20,7 @@ public final class mudclient extends NetworkedGame {
 	//This will be modified via mixins if we are running injected
 	public static boolean injected = false;
 
-	private final void method45() {
+	private void method45() {
 		if((anInt652 & 1) == 1 && method66(anInt652))
 			return;
 		if((anInt652 & 1) == 0 && method66(anInt652)) {
@@ -32,7 +32,7 @@ public final class mudclient extends NetworkedGame {
 				anInt652 = anInt652 + 7 & 7;
 			return;
 		}
-		int ai[] = {
+		int[] ai = {
 			1, -1, 2, -2, 3, -3, 4
 		};
 		for(int i = 0; i < 7; i++) {
@@ -49,13 +49,11 @@ public final class mudclient extends NetworkedGame {
 			}
 			if(method66(anInt652 + 7 & 7))
 				anInt652 = anInt652 + 7 & 7;
-			return;
-		} else {
-			return;
-		}
+        } else {
+        }
 	}
 
-	private final void method46() {
+	private void method46() {
 		if(anInt653 != 0) {
 			for(int i = 0; i < anInt655; i++) {
 				if(super.anInt39 >= surface.method212(menuOptions[i], 1) || super.anInt41 <= i * 12 || super.anInt41 >= 12 + i * 12)
@@ -79,7 +77,7 @@ public final class mudclient extends NetworkedGame {
 
 	}
 
-	private final void method47() {
+	private void method47() {
 		int i = 0;
 		byte byte0 = 50;
 		byte byte1 = 50;
@@ -164,7 +162,7 @@ public final class mudclient extends NetworkedGame {
 		surface.method235(anInt658 + 10);
 	}
 
-	final void method48(int i, int j, int k, int l, int i1, int j1, int k1) {
+	void method48(int i, int j, int k, int l, int i1, int j1, int k1) {
 		int l1 = anIntArray660[i1];
 		int i2 = teleportBubbleTime[i1];
 		if(l1 == 0) {
@@ -177,7 +175,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method49() {
+	private void method49() {
 		anInt663 = anInt662;
 		for(int i = 0; i < anInt662; i++) {
 			anIntArray664[i] = anIntArray665[i];
@@ -205,7 +203,7 @@ public final class mudclient extends NetworkedGame {
 
 	}
 
-	protected final void method6(int i, int j, int k) {
+	protected void method6(int i, int j, int k) {
 		anIntArray671[anInt672] = j;
 		anIntArray673[anInt672] = k;
 		anInt672 = anInt672 + 1 & 0x1fff;
@@ -231,7 +229,7 @@ public final class mudclient extends NetworkedGame {
 
 	}
 
-	private final Model method50(int i, int j, int k, int l, int i1) {
+	private Model method50(int i, int j, int k, int l, int i1) {
 		int j1 = i;
 		int k1 = j;
 		int l1 = i;
@@ -260,7 +258,7 @@ public final class mudclient extends NetworkedGame {
 		int j3 = model.method198(j1, -world.method410(j1, k1) - l2, k1);
 		int k3 = model.method198(l1, -world.method410(l1, i2) - l2, i2);
 		int l3 = model.method198(l1, -world.method410(l1, i2), i2);
-		int ai[] = {
+		int[] ai = {
 			i3, j3, k3, l3
 		};
 		model.method184(4, ai, j2, k2);
@@ -271,7 +269,7 @@ public final class mudclient extends NetworkedGame {
 		return model;
 	}
 
-	final void method51(int i, int j, int k, int l, int i1, int j1, int k1) {
+	void method51(int i, int j, int k, int l, int i1, int j1, int k1) {
 		RsCharacter rscharacter = aRsCharacterArray677[i1];
 		int l1 = rscharacter.anInt153 + (anInt678 + 16) / 32 & 7;
 		boolean flag = false;
@@ -314,9 +312,9 @@ public final class mudclient extends NetworkedGame {
 					k4 += 15;
 				if(i2 != 5 || Definitions.anIntArray101[k3] == 1) {
 					int l4 = k4 + Definitions.anIntArray103[k3];
-					i4 = (i4 * k) / ((Surface) (surface)).anIntArray331[l4];
-					j4 = (j4 * l) / ((Surface) (surface)).anIntArray332[l4];
-					int i5 = (k * ((Surface) (surface)).anIntArray331[l4]) / ((Surface) (surface)).anIntArray331[Definitions.anIntArray103[k3]];
+					i4 = (i4 * k) / surface.anIntArray331[l4];
+					j4 = (j4 * l) / surface.anIntArray332[l4];
+					int i5 = (k * surface.anIntArray331[l4]) / surface.anIntArray331[Definitions.anIntArray103[k3]];
 					i4 -= (i5 - k) / 2;
 					int j5 = Definitions.anIntArray99[k3];
 					int k5 = 0;
@@ -372,7 +370,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	final void method52(int i, int j, int k, int l, int i1, int j1, int k1) {
+	void method52(int i, int j, int k, int l, int i1, int j1, int k1) {
 		RsCharacter rscharacter = aRsCharacterArray694[i1];
 		if(rscharacter.anInt167 == 255)
 			return;
@@ -449,9 +447,9 @@ public final class mudclient extends NetworkedGame {
 					}
 				if(i2 != 5 || Definitions.anIntArray101[l3] == 1) {
 					int k5 = j5 + Definitions.anIntArray103[l3];
-					k4 = (k4 * k) / ((Surface) (surface)).anIntArray331[k5];
-					i5 = (i5 * l) / ((Surface) (surface)).anIntArray332[k5];
-					int l5 = (k * ((Surface) (surface)).anIntArray331[k5]) / ((Surface) (surface)).anIntArray331[Definitions.anIntArray103[l3]];
+					k4 = (k4 * k) / surface.anIntArray331[k5];
+					i5 = (i5 * l) / surface.anIntArray332[k5];
+					int l5 = (k * surface.anIntArray331[k5]) / surface.anIntArray331[Definitions.anIntArray103[l3]];
 					k4 -= (l5 - k) / 2;
 					int i6 = Definitions.anIntArray99[l3];
 					int j6 = anIntArray695[rscharacter.anInt168];
@@ -520,7 +518,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	protected final void method9() {
+	protected void method9() {
 		if(aBoolean703)
 			return;
 		if(aBoolean704)
@@ -564,8 +562,7 @@ public final class mudclient extends NetworkedGame {
 				anInt714--;
 			if(anInt715 > 0) {
 				anInt715--;
-				return;
-			}
+            }
 		}
 		catch(OutOfMemoryError _ex) {
 			method88();
@@ -573,7 +570,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final RsCharacter method53(int i, int j, int k, int l, int i1) {
+	private RsCharacter method53(int i, int j, int k, int l, int i1) {
 		if(aRsCharacterArray716[i] == null) {
 			aRsCharacterArray716[i] = new RsCharacter();
 			aRsCharacterArray716[i].anInt147 = i;
@@ -610,7 +607,7 @@ public final class mudclient extends NetworkedGame {
 		return rscharacter;
 	}
 
-	private final void method54() {
+	private void method54() {
 		if(anInt653 != 0) {
 			for(int i = 0; i < anInt724; i++) {
 				int k = anInt720 + 2;
@@ -642,7 +639,7 @@ public final class mudclient extends NetworkedGame {
 
 	}
 
-	private static final String method55(int i) {
+	private static String method55(int i) {
 		String s = String.valueOf(i);
 		for(int j = s.length() - 3; j > 0; j -= 3)
 			s = s.substring(0, j) + "," + s.substring(j);
@@ -655,7 +652,7 @@ public final class mudclient extends NetworkedGame {
 		return s;
 	}
 
-	private final void method56() {
+	private void method56() {
 		aPanel729.method142(super.anInt39, super.anInt41, super.anInt43, super.anInt42);
 		if(aPanel729.method159(anInt730))
 			do
@@ -701,7 +698,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method57(int i, int j, int k) {
+	private void method57(int i, int j, int k) {
 		surface.method247(i, j, k);
 		surface.method247(i - 1, j, k);
 		surface.method247(i + 1, j, k);
@@ -709,21 +706,19 @@ public final class mudclient extends NetworkedGame {
 		surface.method247(i, j + 1, k);
 	}
 
-	private final void method58(int i, int j, int k) {
+	private void method58(int i, int j, int k) {
 		if(k == 0) {
 			method69(sceneX, sceneY, i, j - 1, i, j, false, true);
 			return;
 		}
 		if(k == 1) {
 			method69(sceneX, sceneY, i - 1, j, i, j, false, true);
-			return;
-		} else {
+        } else {
 			method69(sceneX, sceneY, i, j, i, j, true, true);
-			return;
-		}
+        }
 	}
 
-	private final void method59(int i, int j, int k, int l) {
+	private void method59(int i, int j, int k, int l) {
 		int i1;
 		int j1;
 		if(k == 0 || k == 4) {
@@ -747,15 +742,13 @@ public final class mudclient extends NetworkedGame {
 				j1++;
 			}
 			method69(sceneX, sceneY, i, j, (i + i1) - 1, (j + j1) - 1, false, true);
-			return;
-		} else {
+        } else {
 			method69(sceneX, sceneY, i, j, (i + i1) - 1, (j + j1) - 1, true, true);
-			return;
-		}
+        }
 	}
 
-	private final void method60(boolean flag) {
-		int i = ((Surface) (surface)).anInt320 - 199;
+	private void method60(boolean flag) {
+		int i = surface.anInt320 - 199;
 		char c = '\234';
 		char c2 = '\230';
 		surface.method246(i - 49, 3, anInt658 + 2);
@@ -823,14 +816,14 @@ public final class mudclient extends NetworkedGame {
 		surface.method253(0, 0, anInt764, anInt765 + 12);
 		if(!flag)
 			return;
-		i = super.anInt39 - (((Surface) (surface)).anInt320 - 199);
+		i = super.anInt39 - (surface.anInt320 - 199);
 		int i8 = super.anInt41 - 36;
 		if(i >= 40 && i8 >= 0 && i < 196 && i8 < 152) {
 			char c1 = '\234';
 			char c3 = '\230';
 			int l = 192 + anInt754;
 			int j1 = anInt678 + anInt755 & 0xff;
-			int j = ((Surface) (surface)).anInt320 - 199;
+			int j = surface.anInt320 - 199;
 			j += 40;
 			int l2 = ((super.anInt39 - (j + c1 / 2)) * 16384) / (3 * l);
 			int j4 = ((super.anInt41 - (36 + c3 / 2)) * 16384) / (3 * l);
@@ -847,7 +840,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void doCycleLoggedOut() {
+	private void doCycleLoggedOut() {
 		if(super.anInt618 > 0)
 			super.anInt618--;
 		if(loginState == 0) {
@@ -860,15 +853,13 @@ public final class mudclient extends NetworkedGame {
 				aPanel770.method168(anInt772, "");
 				aPanel770.method168(anInt773, "");
 				aPanel770.method170(anInt772);
-				return;
-			}
+            }
 		} else
 		if(loginState == 1) {
 			aPanel774.method142(super.anInt39, super.anInt41, super.anInt43, super.anInt42);
 			if(aPanel774.method159(anInt775)) {
 				loginState = 0;
-				return;
-			}
+            }
 		} else
 		if(loginState == 2) {
 			aPanel770.method142(super.anInt39, super.anInt41, super.anInt43, super.anInt42);
@@ -884,61 +875,60 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method62() {
-		if(showUiTab == 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 && super.anInt41 < 35)
+	private void method62() {
+		if(showUiTab == 0 && super.anInt39 >= surface.anInt320 - 35 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 && super.anInt41 < 35)
 			showUiTab = 1;
-		if(showUiTab == 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 33 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 33 && super.anInt41 < 35) {
+		if(showUiTab == 0 && super.anInt39 >= surface.anInt320 - 35 - 33 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 33 && super.anInt41 < 35) {
 			showUiTab = 2;
 			anInt755 = (int)(Math.random() * 13D) - 6;
 			anInt754 = (int)(Math.random() * 23D) - 11;
 		}
-		if(showUiTab == 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 66 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 66 && super.anInt41 < 35)
+		if(showUiTab == 0 && super.anInt39 >= surface.anInt320 - 35 - 66 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 66 && super.anInt41 < 35)
 			showUiTab = 3;
-		if(showUiTab == 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 99 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 99 && super.anInt41 < 35)
+		if(showUiTab == 0 && super.anInt39 >= surface.anInt320 - 35 - 99 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 99 && super.anInt41 < 35)
 			showUiTab = 4;
-		if(showUiTab == 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 132 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 132 && super.anInt41 < 35)
+		if(showUiTab == 0 && super.anInt39 >= surface.anInt320 - 35 - 132 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 132 && super.anInt41 < 35)
 			showUiTab = 5;
-		if(showUiTab == 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 165 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 165 && super.anInt41 < 35)
+		if(showUiTab == 0 && super.anInt39 >= surface.anInt320 - 35 - 165 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 165 && super.anInt41 < 35)
 			showUiTab = 6;
-		if(showUiTab != 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 && super.anInt41 < 26)
+		if(showUiTab != 0 && super.anInt39 >= surface.anInt320 - 35 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 && super.anInt41 < 26)
 			showUiTab = 1;
-		if(showUiTab != 0 && showUiTab != 2 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 33 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 33 && super.anInt41 < 26) {
+		if(showUiTab != 0 && showUiTab != 2 && super.anInt39 >= surface.anInt320 - 35 - 33 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 33 && super.anInt41 < 26) {
 			showUiTab = 2;
 			anInt755 = (int)(Math.random() * 13D) - 6;
 			anInt754 = (int)(Math.random() * 23D) - 11;
 		}
-		if(showUiTab != 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 66 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 66 && super.anInt41 < 26)
+		if(showUiTab != 0 && super.anInt39 >= surface.anInt320 - 35 - 66 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 66 && super.anInt41 < 26)
 			showUiTab = 3;
-		if(showUiTab != 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 99 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 99 && super.anInt41 < 26)
+		if(showUiTab != 0 && super.anInt39 >= surface.anInt320 - 35 - 99 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 99 && super.anInt41 < 26)
 			showUiTab = 4;
-		if(showUiTab != 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 132 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 132 && super.anInt41 < 26)
+		if(showUiTab != 0 && super.anInt39 >= surface.anInt320 - 35 - 132 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 132 && super.anInt41 < 26)
 			showUiTab = 5;
-		if(showUiTab != 0 && super.anInt39 >= ((Surface) (surface)).anInt320 - 35 - 165 && super.anInt41 >= 3 && super.anInt39 < ((Surface) (surface)).anInt320 - 3 - 165 && super.anInt41 < 26)
+		if(showUiTab != 0 && super.anInt39 >= surface.anInt320 - 35 - 165 && super.anInt41 >= 3 && super.anInt39 < surface.anInt320 - 3 - 165 && super.anInt41 < 26)
 			showUiTab = 6;
-		if(showUiTab == 1 && (super.anInt39 < ((Surface) (surface)).anInt320 - 248 || super.anInt41 > 36 + (inventoryMaxItemCount / 5) * 34))
+		if(showUiTab == 1 && (super.anInt39 < surface.anInt320 - 248 || super.anInt41 > 36 + (inventoryMaxItemCount / 5) * 34))
 			showUiTab = 0;
-		if(showUiTab == 3 && (super.anInt39 < ((Surface) (surface)).anInt320 - 199 || super.anInt41 > 316))
+		if(showUiTab == 3 && (super.anInt39 < surface.anInt320 - 199 || super.anInt41 > 316))
 			showUiTab = 0;
-		if((showUiTab == 2 || showUiTab == 4 || showUiTab == 5) && (super.anInt39 < ((Surface) (surface)).anInt320 - 199 || super.anInt41 > 240))
+		if((showUiTab == 2 || showUiTab == 4 || showUiTab == 5) && (super.anInt39 < surface.anInt320 - 199 || super.anInt41 > 240))
 			showUiTab = 0;
-		if(showUiTab == 6 && (super.anInt39 < ((Surface) (surface)).anInt320 - 199 || super.anInt41 > 311))
+		if(showUiTab == 6 && (super.anInt39 < surface.anInt320 - 199 || super.anInt41 > 311))
 			showUiTab = 0;
 	}
 
-	protected final byte[] readDataFile(String s, String s1, int i) {
+	protected byte[] readDataFile(String s, String s1, int i) {
 		if(!aBoolean782)
 			s = "data/" + s;
-		byte abyte0[] = link.getjag(s);
+		byte[] abyte0 = link.getjag(s);
 		if(abyte0 != null) {
 			int j = ((abyte0[0] & 0xff) << 16) + ((abyte0[1] & 0xff) << 8) + (abyte0[2] & 0xff);
 			int k = ((abyte0[3] & 0xff) << 16) + ((abyte0[4] & 0xff) << 8) + (abyte0[5] & 0xff);
-			byte abyte1[] = new byte[abyte0.length - 6];
-			for(int l = 0; l < abyte0.length - 6; l++)
-				abyte1[l] = abyte0[l + 6];
+			byte[] abyte1 = new byte[abyte0.length - 6];
+            System.arraycopy(abyte0, 6, abyte1, 0, abyte0.length - 6);
 
 			method1(i, "Unpacking " + s1);
 			if(k != j) {
-				byte abyte2[] = new byte[j];
+				byte[] abyte2 = new byte[j];
 				BZip2Decompressor.method133(abyte2, j, abyte1, k, 0);
 				return abyte2;
 			} else {
@@ -949,7 +939,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method64() {
+	private void method64() {
 		for(int i = 0; i < anInt685; i++) {
 			int j = surface.method238(1);
 			int l = receivedMessageX[i];
@@ -994,7 +984,7 @@ public final class mudclient extends NetworkedGame {
 
 	}
 
-	private final void method65(int i, String s) {
+	private void method65(int i, String s) {
 		int j = anIntArray757[i];
 		int k = anIntArray758[i];
 		int l = j - localPlayer.anInt149 / 128;
@@ -1012,7 +1002,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final boolean method66(int i) {
+	private boolean method66(int i) {
 		int j = localPlayer.anInt149 / 128;
 		int k = localPlayer.anInt150 / 128;
 		for(int l = 2; l >= 1; l--) {
@@ -1037,7 +1027,7 @@ public final class mudclient extends NetworkedGame {
 		return true;
 	}
 
-	private final void method67() {
+	private void method67() {
 		char c = '\u0190';
 		char c1 = 'd';
 		if(aBoolean788) {
@@ -1061,7 +1051,7 @@ public final class mudclient extends NetworkedGame {
 		anInt653 = 0;
 	}
 
-	protected final void method15(int i) {
+	protected void method15(int i) {
 		if(loggedIn == 0) {
 			if(loginState == 0)
 				aPanel767.method169(i);
@@ -1080,7 +1070,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final int method68(int i) {
+	private int method68(int i) {
 		int j = 0;
 		for(int k = 0; k < inventorySize; k++)
 			if(inventoryItemsIDs[k] == i)
@@ -1092,8 +1082,8 @@ public final class mudclient extends NetworkedGame {
 		return j;
 	}
 
-	private final boolean method69(int i, int j, int k, int l, int i1, int j1, boolean flag, 
-			boolean flag1) {
+	private boolean method69(int i, int j, int k, int l, int i1, int j1, boolean flag,
+                             boolean flag1) {
 		int k1 = world.method398(i, j, k, l, i1, j1, anIntArray796, anIntArray797, flag);
 		if(k1 == -1)
 			if(flag1) {
@@ -1127,14 +1117,14 @@ public final class mudclient extends NetworkedGame {
 		return true;
 	}
 
-	protected final void method24() {
+	protected void method24() {
 		anInt803 = 0;
 		loginState = 0;
 		loggedIn = 0;
 		anInt675 = 0;
 	}
 
-	protected final void method41(String s, String s1) {
+	protected void method41(String s, String s1) {
 		if(loginState == 1)
 			aPanel774.method168(anInt804, s + " " + s1);
 		if(loginState == 2)
@@ -1144,7 +1134,7 @@ public final class mudclient extends NetworkedGame {
 		method13();
 	}
 
-	private final RsCharacter method70(int i, int j, int k, int l) {
+	private RsCharacter method70(int i, int j, int k, int l) {
 		if(aRsCharacterArray806[i] == null) {
 			aRsCharacterArray806[i] = new RsCharacter();
 			aRsCharacterArray806[i].anInt147 = i;
@@ -1180,7 +1170,7 @@ public final class mudclient extends NetworkedGame {
 		return rscharacter;
 	}
 
-	private final void method71() {
+	private void method71() {
 		surface.aBoolean321 = false;
 		surface.method244();
 		aPanel729.method150();
@@ -1201,7 +1191,7 @@ public final class mudclient extends NetworkedGame {
 		surface.drawSurface(aGraphics809, 0, 0);
 	}
 
-	private final void method72() {
+	private void method72() {
 		if(anInt675 != 0)
 			method94();
 		else
@@ -1271,7 +1261,7 @@ public final class mudclient extends NetworkedGame {
 		anInt653 = 0;
 	}
 
-	private final void method73() {
+	private void method73() {
 		aBoolean818 = false;
 		surface.aBoolean321 = false;
 		surface.method244();
@@ -1302,7 +1292,7 @@ public final class mudclient extends NetworkedGame {
 		surface.drawSurface(aGraphics809, 0, 0);
 	}
 
-	protected final void method31() {
+	protected void method31() {
 		anInt803 = 0;
 		anInt819 = 0;
 		anInt675 = 0;
@@ -1350,7 +1340,7 @@ public final class mudclient extends NetworkedGame {
 		super.anInt603 = 0;
 	}
 
-	protected final void method44(String s) {
+	protected void method44(String s) {
 		if(s.startsWith("@bor@")) {
 			method79(s, 4);
 			return;
@@ -1361,19 +1351,17 @@ public final class mudclient extends NetworkedGame {
 		}
 		if(s.startsWith("@pri@")) {
 			method79(s, 6);
-			return;
-		} else {
+        } else {
 			method79(s, 3);
-			return;
-		}
+        }
 	}
 
-	protected final void method25() {
+	protected void method25() {
 		anInt675 = 0;
 		method79("@cya@Sorry, you can't logout at the moment", 3);
 	}
 
-	private final void method74() {
+	private void method74() {
 		if(loggedIn == 0)
 			return;
 		if(anInt674 > 450) {
@@ -1382,16 +1370,14 @@ public final class mudclient extends NetworkedGame {
 		}
 		if(anInt674 > 0) {
 			method79("@cya@You can't logout for 10 seconds after combat", 3);
-			return;
-		} else {
+        } else {
 			super.packetStream.createPacket(102);
 			super.packetStream.endPacket();
 			anInt675 = 1000;
-			return;
-		}
+        }
 	}
 
-	private final void method75() {
+	private void method75() {
 		int i = 2203 - (sceneY + anInt828 + baseY);
 		if(sceneX + anInt829 + baseX >= 2640)
 			i = -50;
@@ -1403,8 +1389,8 @@ public final class mudclient extends NetworkedGame {
 			aBooleanArray831[l] = false;
 
 		int i1 = scene.method298();
-		Model amodel[] = scene.method301();
-		int ai[] = scene.method307();
+		Model[] amodel = scene.method301();
+		int[] ai = scene.method307();
 		for(int j1 = 0; j1 < i1; j1++) {
 			if(anInt724 > 200)
 				break;
@@ -1748,8 +1734,7 @@ public final class mudclient extends NetworkedGame {
 					menuItemY[anInt724] = world.anIntArray594[l1];
 					menuItemIDs[anInt724] = selectedSpell;
 					anInt724++;
-					return;
-				}
+                }
 			} else
 			if(selectedItemSlot < 0) {
 				aStringArray727[anInt724] = "Walk here";
@@ -1762,7 +1747,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method76() {
+	private void method76() {
 		surface.method246(0, anInt765 - 4, anInt658 + 23);
 		int i = Surface.method222(200, 200, 255);
 		if(anInt845 == 0)
@@ -1791,7 +1776,7 @@ public final class mudclient extends NetworkedGame {
 		surface.method216("Report abuse", 457, anInt765 + 6, 0, 0xffffff);
 	}
 
-	private final void method77() {
+	private void method77() {
 		char c = '\u0198';
 		char c1 = '\u014E';
 		if(anInt846 > 0 && anInt663 <= 48)
@@ -2106,7 +2091,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method78() {
+	private void method78() {
 		if(anInt653 != 0) {
 			anInt653 = 0;
 			int i = super.anInt39 - 52;
@@ -2231,7 +2216,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method79(String s, int i) {
+	private void method79(String s, int i) {
 		if(i == 2 || i == 4 || i == 6) {
 			for(; s.length() > 5 && s.charAt(0) == '@' && s.charAt(4) == '@'; s = s.substring(5));
 			int j = s.indexOf(":");
@@ -2272,15 +2257,9 @@ public final class mudclient extends NetworkedGame {
 		aStringArray856[0] = s;
 		anIntArray857[0] = 300;
 		if(i == 2)
-			if(aPanel794.anIntArray200[anInt858] == aPanel794.anIntArray195[anInt858] - 4)
-				aPanel794.method141(anInt858, s, true);
-			else
-				aPanel794.method141(anInt858, s, false);
+            aPanel794.method141(anInt858, s, aPanel794.anIntArray200[anInt858] == aPanel794.anIntArray195[anInt858] - 4);
 		if(i == 5)
-			if(aPanel794.anIntArray200[anInt859] == aPanel794.anIntArray195[anInt859] - 4)
-				aPanel794.method141(anInt859, s, true);
-			else
-				aPanel794.method141(anInt859, s, false);
+            aPanel794.method141(anInt859, s, aPanel794.anIntArray200[anInt859] == aPanel794.anIntArray195[anInt859] - 4);
 		if(i == 6) {
 			if(aPanel794.anIntArray200[anInt860] == aPanel794.anIntArray195[anInt860] - 4) {
 				aPanel794.method141(anInt860, s, true);
@@ -2290,7 +2269,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method80() {
+	private void method80() {
 		if(selectedSpell >= 0 || selectedItemSlot >= 0) {
 			aStringArray727[anInt724] = "Cancel";
 			aStringArray728[anInt724] = "";
@@ -2370,7 +2349,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method81() {
+	private void method81() {
 		aPanel767 = new Panel(surface, 50);
 		int i = 40;
 		aPanel767.method153(256, 200 + i, "Click on an option", 5, true);
@@ -2423,29 +2402,27 @@ public final class mudclient extends NetworkedGame {
 		aPanel770.method170(anInt772);
 	}
 
-	private final void method82() {
-		byte abyte0[] = readDataFile("config" + Versions.anInt560 + ".jag", "Configuration", 10);
+	private void method82() {
+		byte[] abyte0 = readDataFile("config" + Versions.anInt560 + ".jag", "Configuration", 10);
 		if(abyte0 == null) {
 			aBoolean705 = true;
 			return;
 		}
 		Definitions.method128(abyte0, isMembers);
-		byte abyte1[] = readDataFile("filter" + Versions.anInt567 + ".jag", "Chat system", 15);
+		byte[] abyte1 = readDataFile("filter" + Versions.anInt567 + ".jag", "Chat system", 15);
 		if(abyte1 == null) {
 			aBoolean705 = true;
-			return;
-		} else {
-			byte abyte2[] = DataUtils.loadData("fragmentsenc.txt", 0, abyte1);
-			byte abyte3[] = DataUtils.loadData("badenc.txt", 0, abyte1);
-			byte abyte4[] = DataUtils.loadData("hostenc.txt", 0, abyte1);
-			byte abyte5[] = DataUtils.loadData("tldlist.txt", 0, abyte1);
+        } else {
+			byte[] abyte2 = DataUtils.loadData("fragmentsenc.txt", 0, abyte1);
+			byte[] abyte3 = DataUtils.loadData("badenc.txt", 0, abyte1);
+			byte[] abyte4 = DataUtils.loadData("hostenc.txt", 0, abyte1);
+			byte[] abyte5 = DataUtils.loadData("tldlist.txt", 0, abyte1);
 			//TODO: check
 			//ChatFilter.method367(new ByteBuffer(abyte2), new ByteBuffer(abyte3), new ByteBuffer(abyte4), new ByteBuffer(abyte5));
-			return;
-		}
+        }
 	}
 
-	private final void menuAction(int idx) {
+	private void menuAction(int idx) {
 		int localX = menuItemX[idx];
 		int localY = menuItemY[idx];
 		int id = menuItemIDs[idx];
@@ -2714,7 +2691,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private final void method84() {
+	private void method84() {
 		if(anInt653 != 0) {
 			anInt653 = 0;
 			if(anInt791 == 1 && (super.anInt39 < 106 || super.anInt41 < 145 || super.anInt39 > 406 || super.anInt41 > 215)) {
@@ -2792,17 +2769,17 @@ public final class mudclient extends NetworkedGame {
 		surface.method216("Cancel", 256, 208, 1, j);
 	}
 
-	private final void method85() {
-		byte abyte0[] = null;
-		byte abyte1[] = null;
+	private void method85() {
+		byte[] abyte0 = null;
+		byte[] abyte1 = null;
 		abyte0 = readDataFile("entity" + Versions.anInt565 + ".jag", "people and monsters", 30);
 		if(abyte0 == null) {
 			aBoolean705 = true;
 			return;
 		}
 		abyte1 = DataUtils.loadData("index.dat", 0, abyte0);
-		byte abyte2[] = null;
-		byte abyte3[] = null;
+		byte[] abyte2 = null;
+		byte[] abyte3 = null;
 		if(isMembers) {
 			abyte2 = readDataFile("entity" + Versions.anInt565 + ".mem", "member graphics", 45);
 			if(abyte2 == null) {
@@ -2824,8 +2801,8 @@ label0:
 				continue label0;
 			}
 
-			byte abyte7[] = DataUtils.loadData(s + ".dat", 0, abyte0);
-			byte abyte4[] = abyte1;
+			byte[] abyte7 = DataUtils.loadData(s + ".dat", 0, abyte0);
+			byte[] abyte4 = abyte1;
 			if(abyte7 == null && isMembers) {
 				abyte7 = DataUtils.loadData(s + ".dat", 0, abyte2);
 				abyte4 = abyte3;
@@ -2834,8 +2811,8 @@ label0:
 				surface.method211(anInt865, abyte7, abyte4, 15);
 				i += 15;
 				if(Definitions.anIntArray101[j] == 1) {
-					byte abyte8[] = DataUtils.loadData(s + "a.dat", 0, abyte0);
-					byte abyte5[] = abyte1;
+					byte[] abyte8 = DataUtils.loadData(s + "a.dat", 0, abyte0);
+					byte[] abyte5 = abyte1;
 					if(abyte8 == null && isMembers) {
 						abyte8 = DataUtils.loadData(s + "a.dat", 0, abyte2);
 						abyte5 = abyte3;
@@ -2844,8 +2821,8 @@ label0:
 					i += 3;
 				}
 				if(Definitions.anIntArray102[j] == 1) {
-					byte abyte9[] = DataUtils.loadData(s + "f.dat", 0, abyte0);
-					byte abyte6[] = abyte1;
+					byte[] abyte9 = DataUtils.loadData(s + "f.dat", 0, abyte0);
+					byte[] abyte6 = abyte1;
 					if(abyte9 == null && isMembers) {
 						abyte9 = DataUtils.loadData(s + "f.dat", 0, abyte2);
 						abyte6 = abyte3;
@@ -2864,7 +2841,7 @@ label0:
 		}
 	}
 
-	private final boolean method86(int i, int j) {
+	private boolean method86(int i, int j) {
 		if(i == 31 && (method115(197) || method115(615) || method115(682)))
 			return true;
 		if(i == 32 && (method115(102) || method115(616) || method115(683)))
@@ -2876,8 +2853,8 @@ label0:
 		return method68(i) >= j;
 	}
 
-	private final void method87(boolean flag) {
-		int i = ((Surface) (surface)).anInt320 - 199;
+	private void method87(boolean flag) {
+		int i = surface.anInt320 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 5);
 		char c = '\304';
@@ -2961,10 +2938,10 @@ label0:
 		}
 		if(!flag)
 			return;
-		i = super.anInt39 - (((Surface) (surface)).anInt320 - 199);
+		i = super.anInt39 - (surface.anInt320 - 199);
 		j = super.anInt41 - 36;
 		if(i >= 0 && j >= 0 && i < 196 && j < 182) {
-			aPanel867.method142(i + (((Surface) (surface)).anInt320 - 199), j + 36, super.anInt43, super.anInt42);
+			aPanel867.method142(i + (surface.anInt320 - 199), j + 36, super.anInt43, super.anInt42);
 			if(j <= 24 && anInt653 == 1)
 				if(i < 98 && anInt866 == 1) {
 					anInt866 = 0;
@@ -3006,7 +2983,7 @@ label0:
 		}
 	}
 
-	private final void method88() {
+	private void method88() {
 		try {
 			if(surface != null) {
 				surface.method249();
@@ -3033,15 +3010,13 @@ label0:
 				world = null;
 			}
 			System.gc();
-			return;
-		}
+        }
 		catch(Exception _ex) {
-			return;
-		}
+        }
 	}
 
-	private final void method89(boolean flag) {
-		int i = ((Surface) (surface)).anInt320 - 199;
+	private void method89(boolean flag) {
+		int i = surface.anInt320 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 6);
 		char c = '\304';
@@ -3118,10 +3093,10 @@ label0:
 		surface.method254("Click here to logout", i + 3, i1, 1, k1);
 		if(!flag)
 			return;
-		i = super.anInt39 - (((Surface) (surface)).anInt320 - 199);
+		i = super.anInt39 - (surface.anInt320 - 199);
 		j = super.anInt41 - 36;
 		if(i >= 0 && j >= 0 && i < 196 && j < 265) {
-			int l1 = ((Surface) (surface)).anInt320 - 199;
+			int l1 = surface.anInt320 - 199;
 			byte byte0 = 36;
 			char c1 = '\304';
 			int l = l1 + 3;
@@ -3185,14 +3160,14 @@ label0:
 		}
 	}
 
-	private final String method90(int i) {
+	private String method90(int i) {
 		if(link.mainapp != null)
 			return link.gethostname(DataUtils.method349(i));
 		else
 			return DataUtils.method349(i);
 	}
 
-	private final void method91() {
+	private void method91() {
 		aPanel794 = new Panel(surface, 10);
 		anInt858 = aPanel794.method172(5, 269, 502, 56, 1, 20, true);
 		anInt870 = aPanel794.method163(7, 324, 498, 14, 1, 80, false, true);
@@ -3201,23 +3176,20 @@ label0:
 		aPanel794.method170(anInt870);
 	}
 
-	protected final void method37() {
+	protected void method37() {
 		anInt803 = 0;
 		if(anInt675 != 0) {
 			method24();
-			return;
-		} else {
+        } else {
 			super.method37();
-			return;
-		}
+        }
 	}
 
-	protected final void method43(int i, int j, byte buffer[]) {
+	protected void method43(int i, int j, byte[] buffer) {
 		try {
 			if(i == 191) {
 				anInt808 = playerCount;
-				for(int k = 0; k < anInt808; k++)
-					aRsCharacterArray807[k] = aRsCharacterArray694[k];
+                if (anInt808 >= 0) System.arraycopy(aRsCharacterArray694, 0, aRsCharacterArray807, 0, anInt808);
 
 				int k7 = 8;
 				sceneX = DataUtils.method350(buffer, k7, 11);
@@ -3507,8 +3479,10 @@ label0:
 							//String s2 = ChatFilter.method380(ChatEncoding.method388(abyte0, i9, byte7)); TODO: check
 							boolean flag3 = false;
 							for(int k40 = 0; k40 < super.anInt606; k40++)
-								if(super.aLongArray605[k40] == rscharacter.aLong145)
-									flag3 = true;
+                                if (super.aLongArray605[k40] == rscharacter.aLong145) {
+                                    flag3 = true;
+                                    break;
+                                }
 
 							if(!flag3) {
 								rscharacter.anInt158 = 150;
@@ -3674,8 +3648,7 @@ label0:
 			if(i == 79) {
 				anInt718 = npcCount;
 				npcCount = 0;
-				for(int i2 = 0; i2 < anInt718; i2++)
-					aRsCharacterArray717[i2] = aRsCharacterArray677[i2];
+                if (anInt718 >= 0) System.arraycopy(aRsCharacterArray677, 0, aRsCharacterArray717, 0, anInt718);
 
 				int l9 = 8;
 				int j16 = DataUtils.method350(buffer, l9, 8);
@@ -4120,22 +4093,10 @@ label0:
 				return;
 			}
 			if(i == 30) {
-				if(buffer[1] == 1)
-					aBoolean897 = true;
-				else
-					aBoolean897 = false;
-				if(buffer[2] == 1)
-					aBoolean898 = true;
-				else
-					aBoolean898 = false;
-				if(buffer[3] == 1)
-					aBoolean899 = true;
-				else
-					aBoolean899 = false;
-				if(buffer[4] == 1)
-					aBoolean900 = true;
-				else
-					aBoolean900 = false;
+                aBoolean897 = buffer[1] == 1;
+                aBoolean898 = buffer[2] == 1;
+                aBoolean899 = buffer[3] == 1;
+                aBoolean900 = buffer[4] == 1;
 				aBoolean895 = false;
 				aBoolean896 = false;
 				return;
@@ -4328,8 +4289,7 @@ label0:
 			}
 			if(i == 52) {
 				anInt803 = DataUtils.method344(buffer, 1) * 32;
-				return;
-			}
+            }
 		}
 		catch(RuntimeException runtimeexception) {
 			if(anInt935 < 3) {
@@ -4354,13 +4314,13 @@ label0:
 		}
 	}
 
-	protected final void method2() {
+	protected void method2() {
 		method36();
 		method88();
 	}
 
-	private final boolean method92(int i, int j, int k, int l, int i1, int j1, boolean flag, 
-			boolean flag1) {
+	private boolean method92(int i, int j, int k, int l, int i1, int j1, boolean flag,
+                             boolean flag1) {
 		int k1 = world.method398(i, j, k, l, i1, j1, anIntArray796, anIntArray797, flag);
 		if(k1 == -1)
 			return false;
@@ -4388,7 +4348,7 @@ label0:
 		return true;
 	}
 
-	private final boolean method93(int i, int j) {
+	private boolean method93(int i, int j) {
 		if(anInt883 != 0) {
 			world.aBoolean572 = false;
 			return false;
@@ -4503,13 +4463,13 @@ label0:
 		return true;
 	}
 
-	private final void method94() {
+	private void method94() {
 		surface.method207(126, 137, 260, 60, 0);
 		surface.method214(126, 137, 260, 60, 0xffffff);
 		surface.method216("Logging out...", 256, 173, 5, 0xffffff);
 	}
 
-	private final void method95() {
+	private void method95() {
 		world.aByteArray588 = readDataFile("maps" + Versions.anInt561 + ".jag", "map", 70);
 		if(isMembers)
 			world.aByteArray589 = readDataFile("maps" + Versions.anInt561 + ".mem", "members map", 75);
@@ -4518,13 +4478,13 @@ label0:
 			world.aByteArray587 = readDataFile("land" + Versions.anInt561 + ".mem", "members landscape", 85);
 	}
 
-	private final void method96() {
-		byte abyte0[] = readDataFile("media" + Versions.anInt562 + ".jag", "2d graphics", 20);
+	private void method96() {
+		byte[] abyte0 = readDataFile("media" + Versions.anInt562 + ".jag", "2d graphics", 20);
 		if(abyte0 == null) {
 			aBoolean705 = true;
 			return;
 		}
-		byte abyte1[] = DataUtils.loadData("index.dat", 0, abyte0);
+		byte[] abyte1 = DataUtils.loadData("index.dat", 0, abyte0);
 		surface.method211(anInt658, DataUtils.loadData("inv1.dat", 0, abyte0), abyte1, 1);
 		surface.method211(anInt658 + 1, DataUtils.loadData("inv2.dat", 0, abyte0), abyte1, 6);
 		surface.method211(anInt658 + 9, DataUtils.loadData("bubble.dat", 0, abyte0), abyte1, 1);
@@ -4561,20 +4521,18 @@ label0:
 
 	}
 
-	protected final int method38() {
+	protected int method38() {
 		return link.uid;
 	}
 
-	private final void walkToGroundItem(int i, int j, int k, int l, boolean flag) {
+	private void walkToGroundItem(int i, int j, int k, int l, boolean flag) {
 		if(method92(i, j, k, l, k, l, false, flag)) {
-			return;
-		} else {
+        } else {
 			method69(i, j, k, l, k, l, true, flag);
-			return;
-		}
+        }
 	}
 
-	private final void method98() {
+	private void method98() {
 		if(super.inputTextFinal.length() > 0) {
 			String s = super.inputTextFinal.trim();
 			super.inputTextCurrent = "";
@@ -4623,7 +4581,7 @@ label0:
 		}
 	}
 
-	private final void method99() {
+	private void method99() {
 		if(anInt883 != 0) {
 			surface.method209();
 			surface.method216("Oh dear! You are dead...", anInt764 / 2, anInt765 / 2, 7, 0xff0000);
@@ -4890,14 +4848,14 @@ label0:
 		Panel.anInt216 = 2;
 		aPanel794.method150();
 		Panel.anInt216 = 0;
-		surface.method260(((Surface) (surface)).anInt320 - 3 - 197, 3, anInt658, 128);
+		surface.method260(surface.anInt320 - 3 - 197, 3, anInt658, 128);
 		method72();
 		surface.aBoolean352 = false;
 		method76();
 		surface.drawSurface(aGraphics809, 0, 0);
 	}
 
-	protected final Socket method12(String s, int i) throws IOException {
+	protected Socket method12(String s, int i) throws IOException {
 		if(link.mainapp != null) {
 			Socket socket = link.opensocket(i);
 			if(socket == null)
@@ -5085,7 +5043,7 @@ label0:
 
 	public Image gameImage = null;
 
-	public final Image createImage(int i, int j) {
+	public Image createImage(int i, int j) {
 		if(GameShell.gameWindow != null) {
 			gameImage = GameShell.gameWindow.createImage(i, j);
 			return gameImage;
@@ -5100,21 +5058,21 @@ label0:
 		}
 	}
 
-	public final URL getCodeBase() {
+	public URL getCodeBase() {
 		if(link.mainapp != null)
 			return link.mainapp.getCodeBase();
 		else
 			return super.getCodeBase();
 	}
 
-	public final URL getDocumentBase() {
+	public URL getDocumentBase() {
 		if(link.mainapp != null)
 			return link.mainapp.getDocumentBase();
 		else
 			return super.getDocumentBase();
 	}
 
-	public final Graphics getGraphics() {
+	public Graphics getGraphics() {
 		if(GameShell.gameWindow != null)
 			return GameShell.gameWindow.getGraphics();
 		if(link.mainapp != null)
@@ -5123,7 +5081,7 @@ label0:
 			return super.getGraphics();
 	}
 
-	public final String getParameter(String s) {
+	public String getParameter(String s) {
 		if(link.mainapp != null)
 			return link.mainapp.getParameter(s);
 		else
@@ -5132,7 +5090,7 @@ label0:
 
 	public static mudclient mudClient = new mudclient();
 
-	public static final void main(String args[]) {
+	public static void main(String[] args) {
 
 		mudClient.aBoolean782 = false;
 		if(args.length > 0 && args[0].equals("members"))
@@ -5149,7 +5107,7 @@ label0:
 		mudClient.threadSleep = 10;
 	}
 
-	private final void method100() {
+	private void method100() {
 		byte byte0 = 22;
 		byte byte1 = 36;
 		surface.method207(byte0, byte1, 468, 16, 192);
@@ -5219,7 +5177,7 @@ label0:
 		}
 	}
 
-	private final void method101() {
+	private void method101() {
 		byte byte0 = 22;
 		byte byte1 = 36;
 		surface.method207(byte0, byte1, 468, 16, 192);
@@ -5275,7 +5233,7 @@ label0:
 		}
 	}
 
-	private final void method102() {
+	private void method102() {
 		aPanel729 = new Panel(surface, 100);
 		aPanel729.method153(256, 10, "Please design Your Character", 4, true);
 		int i = 140;
@@ -5337,7 +5295,7 @@ label0:
 		anInt749 = aPanel729.method173(i, j, 200, 30);
 	}
 
-	private final void method103() {
+	private void method103() {
 		loggedIn = 0;
 		loginState = 0;
 		aString778 = "";
@@ -5348,8 +5306,8 @@ label0:
 		npcCount = 0;
 	}
 
-	private final void method104(boolean flag) {
-		int i = ((Surface) (surface)).anInt320 - 199;
+	private void method104(boolean flag) {
+		int i = surface.anInt320 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 4);
 		char c = '\304';
@@ -5432,10 +5390,10 @@ label0:
 		}
 		if(!flag)
 			return;
-		i = super.anInt39 - (((Surface) (surface)).anInt320 - 199);
+		i = super.anInt39 - (surface.anInt320 - 199);
 		j = super.anInt41 - 36;
 		if(i >= 0 && j >= 0 && i < 196 && j < 182) {
-			aPanel959.method142(i + (((Surface) (surface)).anInt320 - 199), j + 36, super.anInt43, super.anInt42);
+			aPanel959.method142(i + (surface.anInt320 - 199), j + 36, super.anInt43, super.anInt42);
 			if(j <= 24 && anInt653 == 1)
 				if(i < 98 && anInt958 == 1) {
 					anInt958 = 0;
@@ -5498,8 +5456,8 @@ label0:
 		}
 	}
 
-	private final void method105(boolean flag) {
-		int i = ((Surface) (surface)).anInt320 - 248;
+	private void method105(boolean flag) {
+		int i = surface.anInt320 - 248;
 		surface.method246(i, 3, anInt658 + 1);
 		for(int j = 0; j < inventoryMaxItemCount; j++) {
 			int k = i + (j % 5) * 49;
@@ -5523,7 +5481,7 @@ label0:
 
 		if(!flag)
 			return;
-		i = super.anInt39 - (((Surface) (surface)).anInt320 - 248);
+		i = super.anInt39 - (surface.anInt320 - 248);
 		int k1 = super.anInt41 - 36;
 		if(i >= 0 && k1 >= 0 && i < 248 && k1 < (inventoryMaxItemCount / 5) * 34) {
 			int l1 = i / 49 + (k1 / 34) * 5;
@@ -5537,8 +5495,7 @@ label0:
 						menuItemIDs[anInt724] = l1;
 						menuItemSourceIdxs[anInt724] = selectedSpell;
 						anInt724++;
-						return;
-					}
+                    }
 				} else {
 					if(selectedItemSlot >= 0) {
 						aStringArray727[anInt724] = "Use " + selectedItemName + " with";
@@ -5593,11 +5550,11 @@ label0:
 		}
 	}
 
-	private final void method106(int i, int j, int k, int l, boolean flag) {
+	private void method106(int i, int j, int k, int l, boolean flag) {
 		method69(i, j, k, l, k, l, false, flag);
 	}
 
-	private final void method107() {
+	private void method107() {
 		byte byte0 = 7;
 		byte byte1 = 15;
 		char c = '\257';
@@ -5630,7 +5587,7 @@ label0:
 		surface.method216("Defensive  (+3 defense)", byte0 + c / 2, byte1 + 96, 3, 0);
 	}
 
-	protected final void draw() {
+	protected void draw() {
 		if(aBoolean705) {
 			Graphics g = getGraphics();
 			g.setColor(Color.black);
@@ -5690,8 +5647,7 @@ label0:
 			if(loggedIn == 1) {
 				surface.aBoolean352 = true;
 				method99();
-				return;
-			}
+            }
 		}
 		catch(OutOfMemoryError _ex) {
 			method88();
@@ -5699,32 +5655,29 @@ label0:
 		}
 	}
 
-	private final void method108() {
+	private void method108() {
 		try {
 			//Don't load sounds because of dogshit ulaw format support in jdk17, we play wav conversions
 			//aByteArray785 = method19("sounds" + Versions.anInt566 + ".mem", "Sound effects", 90);
 			aSunAudioPlayer783 = new SoundPlayer();
-			return;
-		}
+        }
 		catch(Throwable throwable) {
 			System.out.println("Unable to init sounds:" + throwable);
 		}
 	}
 
-	protected final void method16(Runnable runnable) {
+	protected void method16(Runnable runnable) {
 		if(link.mainapp != null) {
 			link.startthread(runnable);
-			return;
-		} else {
+        } else {
 			Thread thread = new Thread(runnable);
 			thread.setDaemon(true);
 			thread.start();
-			return;
-		}
+        }
 	}
 
-	private final void method109(boolean flag) {
-		int i = ((Surface) (surface)).anInt320 - 199;
+	private void method109(boolean flag) {
+		int i = surface.anInt320 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 3);
 		char c = '\304';
@@ -5812,11 +5765,11 @@ label0:
 		}
 		if(!flag)
 			return;
-		i = super.anInt39 - (((Surface) (surface)).anInt320 - 199);
+		i = super.anInt39 - (surface.anInt320 - 199);
 		j = super.anInt41 - 36;
 		if(i >= 0 && j >= 0 && i < c && j < c1) {
 			if(anInt961 == 1)
-				aPanel966.method142(i + (((Surface) (surface)).anInt320 - 199), j + 36, super.anInt43, super.anInt42);
+				aPanel966.method142(i + (surface.anInt320 - 199), j + 36, super.anInt43, super.anInt42);
 			if(j <= 24 && anInt653 == 1) {
 				if(i < 98) {
 					anInt961 = 0;
@@ -5828,40 +5781,40 @@ label0:
 		}
 	}
 
-	private final void method110() {
-		byte abyte0[] = readDataFile("textures" + Versions.anInt564 + ".jag", "Textures", 50);
+	private void method110() {
+		byte[] abyte0 = readDataFile("textures" + Versions.anInt564 + ".jag", "Textures", 50);
 		if(abyte0 == null) {
 			aBoolean705 = true;
 			return;
 		}
-		byte abyte1[] = DataUtils.loadData("index.dat", 0, abyte0);
+		byte[] abyte1 = DataUtils.loadData("index.dat", 0, abyte0);
 		scene.method287(Definitions.anInt94, 7, 11);
 		for(int i = 0; i < Definitions.anInt94; i++) {
 			String s = Definitions.aStringArray95[i];
-			byte abyte2[] = DataUtils.loadData(s + ".dat", 0, abyte0);
+			byte[] abyte2 = DataUtils.loadData(s + ".dat", 0, abyte0);
 			surface.method211(anInt933, abyte2, abyte1, 1);
 			surface.method207(0, 0, 128, 128, 0xff00ff);
 			surface.method246(0, 0, anInt933);
-			int j = ((Surface) (surface)).anIntArray331[anInt933];
+			int j = surface.anIntArray331[anInt933];
 			String s1 = Definitions.aStringArray96[i];
 			if(s1 != null && s1.length() > 0) {
-				byte abyte3[] = DataUtils.loadData(s1 + ".dat", 0, abyte0);
+				byte[] abyte3 = DataUtils.loadData(s1 + ".dat", 0, abyte0);
 				surface.method211(anInt933, abyte3, abyte1, 1);
 				surface.method246(0, 0, anInt933);
 			}
 			surface.method252(anInt969 + i, 0, 0, j, j);
 			int k = j * j;
 			for(int l = 0; l < k; l++)
-				if(((Surface) (surface)).anIntArrayArray328[anInt969 + i][l] == 65280)
-					((Surface) (surface)).anIntArrayArray328[anInt969 + i][l] = 0xff00ff;
+				if(surface.anIntArrayArray328[anInt969 + i][l] == 65280)
+					surface.anIntArrayArray328[anInt969 + i][l] = 0xff00ff;
 
 			surface.method235(anInt969 + i);
-			scene.method299(i, ((Surface) (surface)).aByteArrayArray324[anInt969 + i], ((Surface) (surface)).anIntArrayArray327[anInt969 + i], j / 64 - 1);
+			scene.method299(i, surface.aByteArrayArray324[anInt969 + i], surface.anIntArrayArray327[anInt969 + i], j / 64 - 1);
 		}
 
 	}
 
-	private final void method111() {
+	private void method111() {
 		anInt943 = 0;
 		int i = 135;
 		for(int j = 0; j < 12; j++) {
@@ -6007,7 +5960,7 @@ label0:
 		surface.method216("Click here to cancel", 256, i, 1, k);
 	}
 
-	private final void method112() {
+	private void method112() {
 		if(anInt653 != 0 && anInt970 == 0)
 			anInt970 = 1;
 		if(anInt970 > 0) {
@@ -6238,7 +6191,7 @@ label0:
 
 	}
 
-	private final void method113() {
+	private void method113() {
 		if(anInt653 != 0 && anInt970 == 0)
 			anInt970 = 1;
 		if(anInt970 > 0) {
@@ -6419,7 +6372,7 @@ label0:
 
 	}
 
-	protected final void startGame() {
+	protected void startGame() {
 		//checkHost
 /*		if(aBoolean782) {
 			String s = getDocumentBase().getHost().toLowerCase();
@@ -6478,7 +6431,7 @@ label0:
 		Panel.aBoolean190 = false;
 		Panel.anInt191 = anInt941;
 		aPanel959 = new Panel(surface, 5);
-		int l = ((Surface) (surface)).anInt320 - 199;
+		int l = surface.anInt320 - 199;
 		byte byte0 = 36;
 		anInt960 = aPanel959.method152(l, byte0 + 24, 196, 90, 1, 500, true);
 		aPanel867 = new Panel(surface, 5);
@@ -6512,8 +6465,7 @@ label0:
 		if(isMembers)
 			method108();
 		if(aBoolean705) {
-			return;
-		} else {
+        } else {
 			loadSounds();
 			method1(100, "Starting game...");
 			method91();
@@ -6522,8 +6474,7 @@ label0:
 			method103();
 			method4();
 			method47();
-			return;
-		}
+        }
 	}
 
 	public static HashMap<String, File> soundCache = new HashMap<String, File>();
@@ -6531,7 +6482,7 @@ label0:
 	private void loadSounds() {
 		try {
 			File folder;
-			if (mudClient.injected)
+			if (injected)
 				folder = new File("../data/audio/");
 			else
 				folder = new File("./data/audio");
@@ -6546,7 +6497,7 @@ label0:
 		}
 	}
 
-	private final void method114() {
+	private void method114() {
 		Definitions.method127("torcha2");
 		Definitions.method127("torcha3");
 		Definitions.method127("torcha4");
@@ -6568,7 +6519,7 @@ label0:
 		Definitions.method127("spellcharge2");
 		Definitions.method127("spellcharge3");
 		/*XXX modified if(method14()) {*/if(true) {
-			byte abyte0[] = readDataFile("models" + Versions.anInt563 + ".jag", "3d models", 60);
+			byte[] abyte0 = readDataFile("models" + Versions.anInt563 + ".jag", "3d models", 60);
 			if(abyte0 == null) {
 				aBoolean705 = true;
 				return;
@@ -6594,7 +6545,7 @@ label0:
 
 	}
 
-	private final boolean method115(int i) {
+	private boolean method115(int i) {
 		for(int j = 0; j < inventorySize; j++)
 			if(inventoryItemsIDs[j] == i && inventoryItemsEquipped[j] == 1)
 				return true;
@@ -6602,7 +6553,7 @@ label0:
 		return false;
 	}
 
-	private final void method116() {
+	private void method116() {
 		int i = 97;
 		surface.method207(86, 77, 340, 180, 0);
 		surface.method214(86, 77, 340, 180, 0xffffff);
@@ -6635,7 +6586,7 @@ label0:
 		}
 	}
 
-	private final void method117() {
+	private void method117() {
 		int i = 65;
 		if(anInt928 != 201)
 			i += 60;
@@ -6718,13 +6669,13 @@ label0:
 		anInt653 = 0;
 	}
 
-	final void method118(int i, int j, int k, int l, int i1, int j1, int k1) {
+	void method118(int i, int j, int k, int l, int i1, int j1, int k1) {
 		int l1 = Definitions.anIntArray66[i1] + anInt786;
 		int i2 = Definitions.anIntArray71[i1];
 		surface.method221(i, j, k, l, l1, i2, 0, 0, false);
 	}
 
-	private final void method119() {
+	private void method119() {
 		if(anInt803 > 1)
 			anInt803--;
 		method28();
@@ -7163,7 +7114,7 @@ label0:
 
 	}
 
-	private final void method120() {
+	private void method120() {
 		super.inputPmCurrent = "";
 		super.inputPmFinal = "";
 	}
@@ -7180,54 +7131,54 @@ label0:
 	private final int anInt645 = 4000;
 	private final int anInt646 = 500;
 	private final int anInt647 = 8000;
-	private String aString648;
-	private String aString649;
-	private int anInt650;
-	private final String aStringArray651[] = {
+	private final String aString648;
+	private final String aString649;
+	private final int anInt650;
+	private final String[] aStringArray651 = {
 		"Where were you born?", "What was your first teachers name?", "What is your fathers middle name?", "Who was your first best friend?", "What is your favourite vacation spot?", "What is your mothers middle name?", "What was your first pets name?", "What was the name of your first school?", "What is your mothers maiden name?", "Who was your first boyfriend/girlfriend?", 
 		"What was the first computer game you purchased?", "Who is your favourite actor/actress?", "Who is your favourite author?", "Who is your favourite musician?", "Who is your favourite cartoon character?", "What is your favourite book?", "What is your favourite food?", "What is your favourite movie?"
 	};
 	private int anInt652;
 	private int anInt653;
 	private SpriteSurface surface;
-	private String menuOptions[];
+	private final String[] menuOptions;
 	private int anInt655;
 	private boolean aBoolean656;
 	private RsWorld world;
-	private Model aModelArray657[];
+	private Model[] aModelArray657;
 	private Scene scene;
 	private int anInt658;
 	private int anInt659;
-	private int anIntArray660[];
-	private int teleportBubbleTime[];
+	private final int[] anIntArray660;
+	private final int[] teleportBubbleTime;
 	private int anInt662;
 	private int anInt663;
-	private int anIntArray664[];
-	private int anIntArray665[];
-	private int anIntArray666[];
-	private int anIntArray667[];
+	private final int[] anIntArray664;
+	private final int[] anIntArray665;
+	private final int[] anIntArray666;
+	private final int[] anIntArray667;
 	private int bankItemsMax;
-	private int inventoryItemsIDs[];
+	private final int[] inventoryItemsIDs;
 	private int inventorySize;
-	int anIntArray671[];
+	int[] anIntArray671;
 	private int anInt672;
-	int anIntArray673[];
+	int[] anIntArray673;
 	private int anInt674;
 	private int anInt675;
-	private int anInt676;
-	private RsCharacter aRsCharacterArray677[];
+	private final int anInt676;
+	private RsCharacter[] aRsCharacterArray677;
 	private int anInt678;
-	private int anIntArray679[] = {
+	private final int[] anIntArray679 = {
 		0, 1, 2, 1
 	};
-	private int anIntArray680[] = {
+	private final int[] anIntArray680 = {
 		0, 1, 2, 1, 0, 0, 0, 0
 	};
 	private int anInt681;
-	private int anIntArray682[] = {
+	private final int[] anIntArray682 = {
 		0, 0, 0, 0, 0, 1, 2, 1
 	};
-	private int anIntArrayArray683[][] = {
+	private final int[][] anIntArrayArray683 = {
 		{
 			11, 2, 9, 7, 1, 6, 10, 0, 5, 8, 
 			3, 4
@@ -7254,33 +7205,33 @@ label0:
 			4, 3
 		}
 	};
-	private int recievedMessageMidPoint[];
+	private final int[] recievedMessageMidPoint;
 	private int anInt685;
-	private int revievedMessageHeight[];
-	private int receivedMessageX[];
-	private int receivedMessageY[];
-	String aStringArray689[];
-	private int anIntArray690[];
+	private final int[] revievedMessageHeight;
+	private final int[] receivedMessageX;
+	private final int[] receivedMessageY;
+	String[] aStringArray689;
+	private final int[] anIntArray690;
 	private int anInt691;
-	private int anIntArray692[];
-	private int anIntArray693[];
-	private RsCharacter aRsCharacterArray694[];
-	private final int anIntArray695[] = {
+	private final int[] anIntArray692;
+	private final int[] anIntArray693;
+	private RsCharacter[] aRsCharacterArray694;
+	private final int[] anIntArray695 = {
 		0xecded0, 0xccb366, 0xb38c40, 0x997326, 0x906020
 	};
-	private final int anIntArray696[] = {
+	private final int[] anIntArray696 = {
 		0xffc030, 0xffa040, 0x805030, 0x604020, 0x303030, 0xff6020, 0xff4000, 0xffffff, 65280, 65535
 	};
-	private final int anIntArray697[] = {
+	private final int[] anIntArray697 = {
 		0xff0000, 0xff8000, 0xffe000, 0xa0e000, 57344, 32768, 41088, 45311, 33023, 12528, 
 		0xe000e0, 0x303030, 0x604000, 0x805000, 0xffffff
 	};
-	private int anIntArray698[];
+	private final int[] anIntArray698;
 	private int anInt699;
-	private int anIntArray700[];
-	private int anIntArray701[];
-	private int anIntArray702[];
-	private boolean aBoolean703;
+	private final int[] anIntArray700;
+	private final int[] anIntArray701;
+	private final int[] anIntArray702;
+	private final boolean aBoolean703;
 	private boolean aBoolean704;
 	private boolean aBoolean705;
 	private int loggedIn;
@@ -7293,19 +7244,19 @@ label0:
 	private int anInt713;
 	private int anInt714;
 	private int anInt715;
-	private RsCharacter aRsCharacterArray716[];
-	private RsCharacter aRsCharacterArray717[];
+	private RsCharacter[] aRsCharacterArray716;
+	private final RsCharacter[] aRsCharacterArray717;
 	private int anInt718;
 	private int npcCount;
 	private int anInt720;
 	private int anInt721;
 	private int anInt722;
-	private int menuIdxs[];
+	private final int[] menuIdxs;
 	private int anInt724;
 	private boolean aBoolean725;
 	private int anInt726;
-	private String aStringArray727[];
-	private String aStringArray728[];
+	private final String[] aStringArray727;
+	private final String[] aStringArray728;
 	private Panel aPanel729;
 	private int anInt730;
 	private int anInt731;
@@ -7327,18 +7278,18 @@ label0:
 	private int anInt747;
 	private int anInt748;
 	private int anInt749;
-	private int anInt750;
+	private final int anInt750;
 	private boolean aBoolean751;
 	int sceneX;
 	int sceneY;
 	private int anInt754;
 	private int anInt755;
 	private RsCharacter localPlayer;
-	private int anIntArray757[];
-	private int anIntArray758[];
+	private final int[] anIntArray757;
+	private final int[] anIntArray758;
 	private int anInt759;
-	private int anIntArray760[];
-	private int anIntArray761[];
+	private final int[] anIntArray760;
+	private final int[] anIntArray761;
 	private int anInt762;
 	private int playerCount;
 	int anInt764;
@@ -7359,13 +7310,13 @@ label0:
 	private String aString778;
 	private String aString779;
 	private int showUiTab;
-	private int inventoryMaxItemCount;
+	private final int inventoryMaxItemCount;
 	private boolean aBoolean782;
 	private SoundPlayer aSunAudioPlayer783;
 	private boolean aBoolean784;
-	private byte aByteArray785[];
+	private byte[] aByteArray785;
 	private int anInt786;
-	private Model aModelArray787[];
+	private Model[] aModelArray787;
 	private boolean aBoolean788;
 	private String aString789;
 	private boolean aBoolean790;
@@ -7373,9 +7324,9 @@ label0:
 	private int anInt792;
 	private boolean aBoolean793;
 	private Panel aPanel794;
-	private int inventoryItemsQuantities[];
-	private int anIntArray796[];
-	private int anIntArray797[];
+	private final int[] inventoryItemsQuantities;
+	private final int[] anIntArray796;
+	private final int[] anIntArray797;
 	private int baseX;
 	private int baseY;
 	private int anInt800;
@@ -7384,8 +7335,8 @@ label0:
 	private int anInt803;
 	private int anInt804;
 	private String aString805;
-	private RsCharacter aRsCharacterArray806[];
-	private RsCharacter aRsCharacterArray807[];
+	private RsCharacter[] aRsCharacterArray806;
+	private final RsCharacter[] aRsCharacterArray807;
 	private int anInt808;
 	private Graphics aGraphics809;
 	private boolean aBoolean810;
@@ -7398,44 +7349,44 @@ label0:
 	private boolean aBoolean817;
 	private boolean aBoolean818;
 	private int anInt819;
-	private int anIntArray820[];
-	private Model aModelArray821[];
-	private int anIntArray822[];
-	private int anIntArray823[];
-	private int wallObjectDirection[];
-	private int wallObjectID[];
+	private final int[] anIntArray820;
+	private Model[] aModelArray821;
+	private final int[] anIntArray822;
+	private final int[] anIntArray823;
+	private final int[] wallObjectDirection;
+	private final int[] wallObjectID;
 	private int anInt826;
-	private boolean aBooleanArray827[];
+	private final boolean[] aBooleanArray827;
 	private int anInt828;
 	private int anInt829;
-	private boolean aBooleanArray830[];
-	private boolean aBooleanArray831[];
+	private final boolean[] aBooleanArray830;
+	private final boolean[] aBooleanArray831;
 	private int selectedSpell;
-	private int menuItemOpcodes[];
-	private int menuItemX[];
-	private int menuItemY[];
-	private int menuItemIDs[];
-	private int menuItemSourceIdxs[];
+	private final int[] menuItemOpcodes;
+	private final int[] menuItemX;
+	private final int[] menuItemY;
+	private final int[] menuItemIDs;
+	private final int[] menuItemSourceIdxs;
 	private int selectedItemSlot;
 	String selectedItemName;
 	private boolean isMembers;
-	private int anIntArray841[];
-	private int anIntArray842[];
-	private int anIntArray843[];
-	private int menuItemTargerIdxs[];
+	private final int[] anIntArray841;
+	private final int[] anIntArray842;
+	private final int[] anIntArray843;
+	private final int[] menuItemTargerIdxs;
 	int anInt845;
 	private int anInt846;
 	private int anInt847;
 	private int anInt848;
-	private int anIntArray849[];
+	private final int[] anIntArray849;
 	private int anInt850;
 	private int anInt851;
-	private int anIntArray852[];
+	private final int[] anIntArray852;
 	private int anInt853;
-	private int anIntArray854[];
+	private final int[] anIntArray854;
 	private int anInt855;
-	private String aStringArray856[];
-	private int anIntArray857[];
+	private final String[] aStringArray856;
+	private final int[] anIntArray857;
 	int anInt858;
 	int anInt859;
 	int anInt860;
@@ -7450,26 +7401,26 @@ label0:
 	private boolean aBoolean869;
 	int anInt870;
 	int localPlayerServerIdx;
-	private int anIntArray872[];
-	private int anIntArray873[];
-	private int inventoryItemsEquipped[];
-	private int anIntArray875[];
-	private int anInt876;
+	private final int[] anIntArray872;
+	private final int[] anIntArray873;
+	private final int[] inventoryItemsEquipped;
+	private final int[] anIntArray875;
+	private final int anInt876;
 	private boolean aBoolean877;
 	private int anInt878;
 	private int anInt879;
-	private int anIntArray880[];
+	private final int[] anIntArray880;
 	private int anInt881;
-	private int anIntArray882[];
+	private final int[] anIntArray882;
 	private int anInt883;
 	private String aString884;
 	private boolean aBoolean885;
 	private boolean aBoolean886;
 	private int anInt887;
 	private int anInt888;
-	private int anIntArray889[];
-	private int anIntArray890[];
-	private boolean aBooleanArray891[];
+	private final int[] anIntArray889;
+	private final int[] anIntArray890;
+	private final boolean[] aBooleanArray891;
 	private String aString892;
 	private int anInt893;
 	private int anInt894;
@@ -7482,28 +7433,28 @@ label0:
 	private boolean tradeConfirmAccepted;
 	private long aLong902;
 	private int anInt903;
-	private int anIntArray904[];
-	private int anIntArray905[];
+	private final int[] anIntArray904;
+	private final int[] anIntArray905;
 	private int anInt906;
-	private int anIntArray907[];
-	private int anIntArray908[];
-	private int anIntArray909[];
-	private int anIntArray910[];
+	private final int[] anIntArray907;
+	private final int[] anIntArray908;
+	private final int[] anIntArray909;
+	private final int[] anIntArray910;
 	private boolean aBoolean911;
 	private long aLong912;
 	private int anInt913;
-	private int anIntArray914[];
-	private int anIntArray915[];
+	private final int[] anIntArray914;
+	private final int[] anIntArray915;
 	private int anInt916;
-	private int anIntArray917[];
-	private int anIntArray918[];
+	private final int[] anIntArray917;
+	private final int[] anIntArray918;
 	private int anInt919;
 	private int anInt920;
 	private int anInt921;
 	private int anInt922;
 	private int anInt923;
-	private int anIntArray924[];
-	private int anIntArray925[];
+	private final int[] anIntArray924;
+	private final int[] anIntArray925;
 	private int anInt926;
 	private int anInt927;
 	private int anInt928;
@@ -7531,7 +7482,7 @@ label0:
 	private int anInt950;
 	private int anInt951;
 	private int anInt952;
-	private boolean cameraAutoAngleDebug;
+	private final boolean cameraAutoAngleDebug;
 	private int anInt954;
 	private int anInt955;
 	private int anInt956;
@@ -7540,21 +7491,21 @@ label0:
 	private Panel aPanel959;
 	int anInt960;
 	int anInt961;
-	private final String aStringArray962[] = {
+	private final String[] aStringArray962 = {
 		"Attack", "Defense", "Strength", "Hits", "Ranged", "Prayer", "Magic", "Cooking", "Woodcut", "Fletching", 
 		"Fishing", "Firemaking", "Crafting", "Smithing", "Mining", "Herblaw", "Agility", "Thieving"
 	};
-	private final String aStringArray963[] = {
+	private final String[] aStringArray963 = {
 		"Armour", "WeaponAim", "WeaponPower", "Magic", "Prayer"
 	};
-	private final String aStringArray964[] = {
+	private final String[] aStringArray964 = {
 		"Attack", "Defense", "Strength", "Hits", "Ranged", "Prayer", "Magic", "Cooking", "Woodcutting", "Fletching", 
 		"Fishing", "Firemaking", "Crafting", "Smithing", "Mining", "Herblaw", "Agility", "Thieving"
 	};
-	private int anIntArray965[];
+	private final int[] anIntArray965;
 	private Panel aPanel966;
 	int anInt967;
-	private final String aStringArray968[] = {
+	private final String[] aStringArray968 = {
 		"Black knight's fortress", "Cook's assistant", "Demon slayer", "Doric's quest", "The restless ghost", "Goblin diplomacy", "Ernest the chicken", "Imp catcher", "Pirate's treasure", "Prince Ali rescue", 
 		"Romeo & Juliet", "Sheep shearer", "Shield of Arrav", "The knight's sword", "Vampire slayer", "Witch's potion", "Dragon slayer", "Witch's house (members)", "Lost city (members)", "Hero's quest (members)", 
 		"Druidic ritual (members)", "Merlin's crystal (members)", "Scorpion catcher (members)", "Family crest (members)", "Tribal totem (members)", "Fishing contest (members)", "Monk's friend (members)", "Temple of Ikov (members)", "Clock tower (members)", "The Holy Grail (members)", 
@@ -7563,12 +7514,12 @@ label0:
 	};
 	private int anInt969;
 	private int anInt970;
-	private int anIntArray971[];
-	private int anIntArray972[];
+	private final int[] anIntArray971;
+	private final int[] anIntArray972;
 	private int anInt973;
-	private int anIntArray974[];
-	private int anIntArray975[];
-	private int anInt976;
+	private final int[] anIntArray974;
+	private final int[] anIntArray975;
+	private final int anInt976;
 	private int anInt977;
 	private int anInt978;
 	private boolean aBoolean979;

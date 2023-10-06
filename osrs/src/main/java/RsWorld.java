@@ -103,17 +103,15 @@ public class RsWorld {
 		int j3 = model.method198(i2, -anIntArrayArray574[j][k] - j1, j2);
 		int k3 = model.method198(k2, -anIntArrayArray574[l][i1] - j1, l2);
 		int l3 = model.method198(k2, -anIntArrayArray574[l][i1], l2);
-		int ai[] = {
+		int[] ai = {
 			i3, j3, k3, l3
 		};
 		int i4 = model.method184(4, ai, k1, l1);
 		if(Definitions.anIntArray123[i] == 5) {
 			model.anIntArray265[i4] = 30000 + i;
-			return;
-		} else {
+        } else {
 			model.anIntArray265[i4] = 0;
-			return;
-		}
+        }
 	}
 
 	public void method394(int i, int j, int k, int l, int i1) {
@@ -186,8 +184,8 @@ public class RsWorld {
 
 	}
 
-	public int method398(int i, int j, int k, int l, int i1, int j1, int ai[], 
-			int ai1[], boolean flag) {
+	public int method398(int i, int j, int k, int l, int i1, int j1, int[] ai,
+                         int[] ai1, boolean flag) {
 		for(int k1 = 0; k1 < 96; k1++) {
 			for(int l1 = 0; l1 < 96; l1++)
 				anIntArrayArray579[k1][l1] = 0;
@@ -390,7 +388,7 @@ public class RsWorld {
 		}
 	}
 
-	public void method402(Model amodel[]) {
+	public void method402(Model[] amodel) {
 		for(int i = 0; i < 94; i++) {
 			for(int j = 0; j < 94; j++)
 				if(method419(i, j) > 48000 && method419(i, j) < 60000) {
@@ -620,7 +618,7 @@ public class RsWorld {
 		int i1;
 		try {
 			if(aByteArray586 != null) {
-				byte abyte0[] = DataUtils.loadData(s + ".hei", 0, aByteArray586);
+				byte[] abyte0 = DataUtils.loadData(s + ".hei", 0, aByteArray586);
 				if(abyte0 == null && aByteArray587 != null)
 					abyte0 = DataUtils.loadData(s + ".hei", 0, aByteArray587);
 				if(abyte0 != null && abyte0.length > 0) {
@@ -748,7 +746,7 @@ public class RsWorld {
 					return;
 				}
 			} else {
-				byte abyte1[] = new byte[20736];
+				byte[] abyte1 = new byte[20736];
 				DataUtils.method354("../gamedata/maps/" + s + ".jm", abyte1, 20736);
 				int j2 = 0;
 				int i3 = 0;
@@ -975,8 +973,8 @@ public class RsWorld {
 					method394(j3, j4, l14, k7, i10);
 					int i17 = ((method395(j3 + 1, j4 + 1) - method395(j3 + 1, j4)) + method395(j3, j4 + 1)) - method395(j3, j4);
 					if(k7 != i10 || i17 != 0) {
-						int ai[] = new int[3];
-						int ai7[] = new int[3];
+						int[] ai = new int[3];
+						int[] ai7 = new int[3];
 						if(l14 == 0) {
 							if(k7 != 0xbc614e) {
 								ai[0] = j4 + j3 * 96 + 96;
@@ -1018,7 +1016,7 @@ public class RsWorld {
 						}
 					} else
 					if(k7 != 0xbc614e) {
-						int ai1[] = new int[4];
+						int[] ai1 = new int[4];
 						ai1[0] = j4 + j3 * 96 + 96;
 						ai1[1] = j4 + j3 * 96;
 						ai1[2] = j4 + j3 * 96 + 1;
@@ -1040,7 +1038,7 @@ public class RsWorld {
 						int l12 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 						int i15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
 						int j17 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
-						int ai2[] = {
+						int[] ai2 = {
 							j10, l12, i15, j17
 						};
 						int i20 = model.method184(4, ai2, l7, 0xbc614e);
@@ -1056,7 +1054,7 @@ public class RsWorld {
 							int i13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int j15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
 							int k17 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
-							int ai3[] = {
+							int[] ai3 = {
 								k10, i13, j15, k17
 							};
 							int j20 = model.method184(4, ai3, i8, 0xbc614e);
@@ -1071,7 +1069,7 @@ public class RsWorld {
 							int j13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int k15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
 							int l17 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
-							int ai4[] = {
+							int[] ai4 = {
 								l10, j13, k15, l17
 							};
 							int k20 = model.method184(4, ai4, j8, 0xbc614e);
@@ -1086,7 +1084,7 @@ public class RsWorld {
 							int k13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int l15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
 							int i18 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
-							int ai5[] = {
+							int[] ai5 = {
 								i11, k13, l15, i18
 							};
 							int l20 = model.method184(4, ai5, k8, 0xbc614e);
@@ -1101,7 +1099,7 @@ public class RsWorld {
 							int l13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
 							int i16 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
 							int j18 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
-							int ai6[] = {
+							int[] ai6 = {
 								j11, l13, i16, j18
 							};
 							int i21 = model.method184(4, ai6, l8, 0xbc614e);
@@ -1346,35 +1344,35 @@ public class RsWorld {
 					l27 = -l27;
 					i28 = -i28;
 					if(method419(i7, k9) > 12000 && method419(i7, k9) < 24000 && method423(i7 - 1, k9 - 1) == 0) {
-						int ai8[] = new int[3];
+						int[] ai8 = new int[3];
 						ai8[0] = aModel591.method198(l26, l27, i26);
 						ai8[1] = aModel591.method198(j26, i28, i27);
 						ai8[2] = aModel591.method198(k25, k27, k26);
 						aModel591.method184(3, ai8, i12, 0xbc614e);
 					} else
 					if(method419(i7, k9) > 12000 && method419(i7, k9) < 24000 && method423(i7 + 1, k9 + 1) == 0) {
-						int ai9[] = new int[3];
+						int[] ai9 = new int[3];
 						ai9[0] = aModel591.method198(k24, j27, i25);
 						ai9[1] = aModel591.method198(k25, k27, k26);
 						ai9[2] = aModel591.method198(j26, i28, i27);
 						aModel591.method184(3, ai9, i12, 0xbc614e);
 					} else
 					if(method419(i7, k9) > 0 && method419(i7, k9) < 12000 && method423(i7 + 1, k9 - 1) == 0) {
-						int ai10[] = new int[3];
+						int[] ai10 = new int[3];
 						ai10[0] = aModel591.method198(j26, i28, i27);
 						ai10[1] = aModel591.method198(k24, j27, i25);
 						ai10[2] = aModel591.method198(l26, l27, i26);
 						aModel591.method184(3, ai10, i12, 0xbc614e);
 					} else
 					if(method419(i7, k9) > 0 && method419(i7, k9) < 12000 && method423(i7 - 1, k9 + 1) == 0) {
-						int ai11[] = new int[3];
+						int[] ai11 = new int[3];
 						ai11[0] = aModel591.method198(k25, k27, k26);
 						ai11[1] = aModel591.method198(l26, l27, i26);
 						ai11[2] = aModel591.method198(k24, j27, i25);
 						aModel591.method184(3, ai11, i12, 0xbc614e);
 					} else
 					if(j27 == k27 && l27 == i28) {
-						int ai12[] = new int[4];
+						int[] ai12 = new int[4];
 						ai12[0] = aModel591.method198(k24, j27, i25);
 						ai12[1] = aModel591.method198(k25, k27, k26);
 						ai12[2] = aModel591.method198(l26, l27, i26);
@@ -1382,36 +1380,34 @@ public class RsWorld {
 						aModel591.method184(4, ai12, i12, 0xbc614e);
 					} else
 					if(j27 == i28 && k27 == l27) {
-						int ai13[] = new int[4];
+						int[] ai13 = new int[4];
 						ai13[0] = aModel591.method198(j26, i28, i27);
 						ai13[1] = aModel591.method198(k24, j27, i25);
 						ai13[2] = aModel591.method198(k25, k27, k26);
 						ai13[3] = aModel591.method198(l26, l27, i26);
 						aModel591.method184(4, ai13, i12, 0xbc614e);
 					} else {
-						boolean flag1 = true;
-						if(method423(i7 - 1, k9 - 1) > 0)
-							flag1 = false;
-						if(method423(i7 + 1, k9 + 1) > 0)
+						boolean flag1 = method423(i7 - 1, k9 - 1) <= 0;
+                        if(method423(i7 + 1, k9 + 1) > 0)
 							flag1 = false;
 						if(!flag1) {
-							int ai14[] = new int[3];
+							int[] ai14 = new int[3];
 							ai14[0] = aModel591.method198(k25, k27, k26);
 							ai14[1] = aModel591.method198(l26, l27, i26);
 							ai14[2] = aModel591.method198(k24, j27, i25);
 							aModel591.method184(3, ai14, i12, 0xbc614e);
-							int ai16[] = new int[3];
+							int[] ai16 = new int[3];
 							ai16[0] = aModel591.method198(j26, i28, i27);
 							ai16[1] = aModel591.method198(k24, j27, i25);
 							ai16[2] = aModel591.method198(l26, l27, i26);
 							aModel591.method184(3, ai16, i12, 0xbc614e);
 						} else {
-							int ai15[] = new int[3];
+							int[] ai15 = new int[3];
 							ai15[0] = aModel591.method198(k24, j27, i25);
 							ai15[1] = aModel591.method198(k25, k27, k26);
 							ai15[2] = aModel591.method198(j26, i28, i27);
 							aModel591.method184(3, ai15, i12, 0xbc614e);
-							int ai17[] = new int[3];
+							int[] ai17 = new int[3];
 							ai17[0] = aModel591.method198(l26, l27, i26);
 							ai17[1] = aModel591.method198(j26, i28, i27);
 							ai17[2] = aModel591.method198(k25, k27, k26);
@@ -1512,31 +1508,31 @@ public class RsWorld {
 	final int anInt570 = 0xbc614e;
 	final int anInt571 = 128;
 	boolean aBoolean572;
-	int anIntArrayArray573[][];
-	int anIntArrayArray574[][];
+	int[][] anIntArrayArray573;
+	int[][] anIntArrayArray574;
 	Scene aScene575;
 	Surface aSurface576;
-	byte aByteArrayArray577[][];
-	Model aModelArray578[];
-	int anIntArrayArray579[][];
-	int anIntArrayArray580[][];
-	byte aByteArrayArray581[][];
-	byte aByteArrayArray582[][];
-	byte aByteArrayArray583[][];
-	byte aByteArrayArray584[][];
-	byte aByteArrayArray585[][];
-	byte aByteArray586[];
-	byte aByteArray587[];
-	byte aByteArray588[];
-	byte aByteArray589[];
-	byte aByteArrayArray590[][];
+	byte[][] aByteArrayArray577;
+	Model[] aModelArray578;
+	int[][] anIntArrayArray579;
+	int[][] anIntArrayArray580;
+	byte[][] aByteArrayArray581;
+	byte[][] aByteArrayArray582;
+	byte[][] aByteArrayArray583;
+	byte[][] aByteArrayArray584;
+	byte[][] aByteArrayArray585;
+	byte[] aByteArray586;
+	byte[] aByteArray587;
+	byte[] aByteArray588;
+	byte[] aByteArray589;
+	byte[][] aByteArrayArray590;
 	Model aModel591;
-	int anIntArray592[];
-	int anIntArray593[];
-	int anIntArray594[];
+	int[] anIntArray592;
+	int[] anIntArray593;
+	int[] anIntArray594;
 	boolean aBoolean595;
 	int anInt596;
-	Model aModelArrayArray597[][];
-	Model aModelArrayArray598[][];
+	Model[][] aModelArrayArray597;
+	Model[][] aModelArrayArray598;
 	boolean aBoolean599;
 }

@@ -5,7 +5,7 @@
 
 public class Panel {
 
-	protected void method137(int i, int j, int k, int l, String as[]) {
+	protected void method137(int i, int j, int k, int l, String[] as) {
 		int i1 = 0;
 		int j1 = as.length;
 		for(int k1 = 0; k1 < j1; k1++) {
@@ -147,7 +147,7 @@ public class Panel {
 		}
 	}
 
-	protected void method145(int i, int j, int k, int l, String as[]) {
+	protected void method145(int i, int j, int k, int l, String[] as) {
 		int i1 = as.length;
 		int j1 = k - (aSurface181.method238(l) * (i1 - 1)) / 2;
 		for(int k1 = 0; k1 < i1; k1++) {
@@ -191,8 +191,8 @@ public class Panel {
 		aSurface181.method217(k1 + 2 + 8, i1 + j + 14, j1, anInt214);
 	}
 
-	protected void method147(int i, int j, int k, int l, int i1, int j1, String as[], 
-			int k1, int l1) {
+	protected void method147(int i, int j, int k, int l, int i1, int j1, String[] as,
+                             int k1, int l1) {
 		int i2 = i1 / aSurface181.method238(j1);
 		if(l1 > k1 - i2)
 			l1 = k1 - i2;
@@ -240,8 +240,8 @@ public class Panel {
 
 	}
 
-	protected void method148(int i, int j, int k, int l, int i1, int j1, String as[], 
-			int k1, int l1) {
+	protected void method148(int i, int j, int k, int l, int i1, int j1, String[] as,
+                             int k1, int l1) {
 		int i2 = i1 / aSurface181.method238(j1);
 		if(i2 < k1) {
 			int j2 = (j + l) - 12;
@@ -570,8 +570,7 @@ public class Panel {
 				do
 					anInt225 = (anInt225 + 1) % anInt208;
 				while(anIntArray203[anInt225] != 5 && anIntArray203[anInt225] != 6);
-				return;
-			}
+            }
 		}
 	}
 
@@ -632,32 +631,32 @@ public class Panel {
 
 	int anInt180;
 	protected Surface aSurface181;
-	boolean aBooleanArray182[];
+	boolean[] aBooleanArray182;
 	int anInt183;
 	int anInt184;
 	int anInt185;
-	public int anIntArray186[];
-	public boolean aBooleanArray187[];
+	public int[] anIntArray186;
+	public boolean[] aBooleanArray187;
 	int anInt188;
 	int anInt189;
 	public static boolean aBoolean190 = true;
 	public static int anInt191;
 	int anInt192;
 	int anInt193;
-	String aStringArrayArray194[][];
-	public int anIntArray195[];
+	String[][] aStringArrayArray194;
+	public int[] anIntArray195;
 	int anInt196;
 	int anInt197;
 	int anInt198;
-	int anIntArray199[];
-	public int anIntArray200[];
+	int[] anIntArray199;
+	public int[] anIntArray200;
 	int anInt201;
-	public boolean aBooleanArray202[];
-	int anIntArray203[];
-	int anIntArray204[];
-	int anIntArray205[];
-	int anIntArray206[];
-	int anIntArray207[];
+	public boolean[] aBooleanArray202;
+	int[] anIntArray203;
+	int[] anIntArray204;
+	int[] anIntArray205;
+	int[] anIntArray206;
+	int[] anIntArray207;
 	int anInt208;
 	int anInt209;
 	int anInt210;
@@ -665,16 +664,16 @@ public class Panel {
 	int anInt212;
 	int anInt213;
 	int anInt214;
-	public boolean aBooleanArray215[];
+	public boolean[] aBooleanArray215;
 	public static int anInt216;
-	public int anIntArray217[];
+	public int[] anIntArray217;
 	public boolean aBoolean218;
 	public static int anInt219 = 114;
 	public static int anInt220 = 114;
 	public static int anInt221 = 176;
-	String aStringArray222[];
-	int anIntArray223[];
-	public boolean aBooleanArray224[];
+	String[] aStringArray222;
+	int[] anIntArray223;
+	public boolean[] aBooleanArray224;
 	int anInt225;
 
 }

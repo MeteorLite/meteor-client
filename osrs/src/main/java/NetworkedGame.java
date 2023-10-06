@@ -68,7 +68,7 @@ public class NetworkedGame extends GameShell {
 		return true;
 	}
 
-	protected final void method27(long l, byte abyte0[], int i) {
+	protected final void method27(long l, byte[] abyte0, int i) {
 		packetStream.createPacket(218);
 		packetStream.method332(l);
 		packetStream.method325(abyte0, 0, i);
@@ -108,13 +108,11 @@ public class NetworkedGame extends GameShell {
 				return;
 
 		if(anInt603 >= 100) {
-			return;
-		} else {
+        } else {
 			aLongArray602[anInt603] = l;
 			anIntArray604[anInt603] = 0;
 			anInt603++;
-			return;
-		}
+        }
 	}
 
 	protected final void method30(String s, String s1) {
@@ -133,7 +131,7 @@ public class NetworkedGame extends GameShell {
 	protected void method31() {
 	}
 
-	protected final void method32(byte abyte0[], int i) {
+	protected final void method32(byte[] abyte0, int i) {
 		packetStream.createPacket(216);
 		packetStream.method325(abyte0, 0, i);
 		packetStream.endPacket();
@@ -216,11 +214,9 @@ public class NetworkedGame extends GameShell {
 			anInt614 = (anInt614 + 1) % 100;
 			String s1 = ChatEncoding.method388(aByteArray608, 13, j - 13);
 			method44("@pri@" + DataUtils.method351(l1) + ": tells you " + s1);
-			return;
-		} else {
+        } else {
 			method43(i, j, aByteArray608);
-			return;
-		}
+        }
 	}
 
 	protected final void method35(String s) {
@@ -308,7 +304,7 @@ public class NetworkedGame extends GameShell {
 				}
 			}
 			catch(Exception _ex) { }
-			int ai[] = new int[4];
+			int[] ai = new int[4];
 			ai[0] = (int)(Math.random() * 99999999D);
 			ai[1] = (int)(Math.random() * 99999999D);
 			ai[2] = (int)(l1 >> 32);
@@ -469,11 +465,9 @@ public class NetworkedGame extends GameShell {
 				return;
 
 		if(anInt606 >= 100) {
-			return;
-		} else {
+        } else {
 			aLongArray605[anInt606++] = l;
-			return;
-		}
+        }
 	}
 
 	protected void method41(String s, String s1) {
@@ -482,7 +476,7 @@ public class NetworkedGame extends GameShell {
 	protected void method42() {
 	}
 
-	protected void method43(int i, int j, byte abyte0[]) {
+	protected void method43(int i, int j, byte[] abyte0) {
 	}
 
 	protected void method44(String s) {
@@ -490,18 +484,18 @@ public class NetworkedGame extends GameShell {
 
 	private final int anInt600 = 100;
 	public ClientStream packetStream;
-	public long aLongArray602[];
+	public long[] aLongArray602;
 	public int anInt603;
-	public int anIntArray604[];
-	public long aLongArray605[];
+	public int[] anIntArray604;
+	public long[] aLongArray605;
 	public int anInt606;
 	long aLong607;
-	byte aByteArray608[];
+	byte[] aByteArray608;
 	public int anInt609;
 	public int anInt610;
 	public int anInt611;
 	public int anInt612;
-	private int anIntArray613[];
+	private final int[] anIntArray613;
 	private int anInt614;
 	String aString615;
 	String aString616;
@@ -511,8 +505,8 @@ public class NetworkedGame extends GameShell {
 	public int anInt620;
 	public static int anInt621;
 	public long sessionID;
-	private static BigInteger aBigInteger623 = new BigInteger("65537");
-	private static BigInteger aBigInteger624 = new BigInteger("7112866275597968156550007489163685737528267584779959617759901583041864787078477876689003422509099353805015177703670715380710894892460637136582066351659813");
+	private static final BigInteger aBigInteger623 = new BigInteger("65537");
+	private static final BigInteger aBigInteger624 = new BigInteger("7112866275597968156550007489163685737528267584779959617759901583041864787078477876689003422509099353805015177703670715380710894892460637136582066351659813");
 	public static int anInt625 = 1;
 	public int anInt626;
 

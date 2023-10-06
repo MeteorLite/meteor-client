@@ -44,8 +44,8 @@ public class Surface
 
 	}
 
-	private void method208(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1, int i2) {
+	private void method208(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1, int i2) {
 		int j2 = 256 - i2;
 		for(int k2 = -i1; k2 < 0; k2 += l1) {
 			for(int l2 = -l; l2 < 0; l2++) {
@@ -77,9 +77,9 @@ public class Surface
 		if(aByteArrayArray324[i] == null)
 			return;
 		int j = anIntArray325[i] * anIntArray326[i];
-		byte abyte0[] = aByteArrayArray324[i];
-		int ai[] = anIntArrayArray327[i];
-		int ai1[] = new int[j];
+		byte[] abyte0 = aByteArrayArray324[i];
+		int[] ai = anIntArrayArray327[i];
+		int[] ai1 = new int[j];
 		for(int k = 0; k < j; k++) {
 			int l = ai[abyte0[k] & 0xff];
 			if(l == 0)
@@ -95,14 +95,14 @@ public class Surface
 		anIntArrayArray327[i] = null;
 	}
 
-	public void method211(int i, byte abyte0[], byte abyte1[], int j) {
+	public void method211(int i, byte[] abyte0, byte[] abyte1, int j) {
 		int k = DataUtils.method344(abyte0, 0);
 		int l = DataUtils.method344(abyte1, k);
 		k += 2;
 		int i1 = DataUtils.method344(abyte1, k);
 		k += 2;
 		int j1 = abyte1[k++] & 0xff;
-		int ai[] = new int[j1];
+		int[] ai = new int[j1];
 		ai[0] = 0xff00ff;
 		for(int k1 = 0; k1 < j1 - 1; k1++) {
 			ai[k1 + 1] = ((abyte1[k] & 0xff) << 16) + ((abyte1[k + 1] & 0xff) << 8) + (abyte1[k + 2] & 0xff);
@@ -124,9 +124,7 @@ public class Surface
 			anIntArray331[i2] = l;
 			anIntArray332[i2] = i1;
 			anIntArrayArray328[i2] = null;
-			aBooleanArray333[i2] = false;
-			if(anIntArray329[i2] != 0 || anIntArray330[i2] != 0)
-				aBooleanArray333[i2] = true;
+            aBooleanArray333[i2] = anIntArray329[i2] != 0 || anIntArray330[i2] != 0;
 			if(j2 == 0) {
 				for(int l2 = 0; l2 < k2; l2++) {
 					aByteArrayArray324[i2][l2] = abyte0[l1++];
@@ -152,7 +150,7 @@ public class Surface
 
 	public int method212(String s, int i) {
 		int j = 0;
-		byte abyte0[] = fonts[i];
+		byte[] abyte0 = fonts[i];
 		for(int k = 0; k < s.length(); k++)
 			if(s.charAt(k) == '@' && k + 4 < s.length() && s.charAt(k + 4) == '@')
 				k += 4;
@@ -165,7 +163,7 @@ public class Surface
 		return j;
 	}
 
-	private void method213(int i, int j, int k, int l, byte abyte0[], boolean flag) {
+	private void method213(int i, int j, int k, int l, byte[] abyte0, boolean flag) {
 		int i1 = j + abyte0[i + 5];
 		int j1 = k - abyte0[i + 6];
 		int k1 = abyte0[i + 3];
@@ -240,8 +238,8 @@ public class Surface
 
 	}
 
-	private void method218(int ai[], byte abyte0[], int i, int j, int k, int l, int i1, 
-			int j1, int k1) {
+	private void method218(int[] ai, byte[] abyte0, int i, int j, int k, int l, int i1,
+                           int j1, int k1) {
 		for(int l1 = -i1; l1 < 0; l1++) {
 			for(int i2 = -l; i2 < 0; i2++) {
 				int j2 = abyte0[j++] & 0xff;
@@ -263,8 +261,8 @@ public class Surface
 
 	}
 
-	private void method219(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1) {
+	private void method219(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1) {
 		int i2 = -(l >> 2);
 		l = -(l & 3);
 		for(int j2 = -i1; j2 < 0; j2 += l1) {
@@ -386,11 +384,9 @@ public class Surface
 				}
 			if(!flag) {
 				method227(anIntArray322, aByteArrayArray324[i1], anIntArrayArray327[i1], 0, k2, l2, j4, k, l, j3, k3, i2, j1, k1, i3, l3, i5);
-				return;
-			} else {
+            } else {
 				method227(anIntArray322, aByteArrayArray324[i1], anIntArrayArray327[i1], 0, (anIntArray325[i1] << 16) - k2 - 1, l2, j4, k, l, -j3, k3, i2, j1, k1, i3, l3, i5);
-				return;
-			}
+            }
 		}
 		catch(Exception _ex) {
 			System.out.println("error in sprite clipping routine");
@@ -514,9 +510,9 @@ public class Surface
 
 	}
 
-	private void method227(int ai[], byte abyte0[], int ai1[], int i, int j, int k, int l, 
-			int i1, int j1, int k1, int l1, int i2, int j2, int k2, 
-			int l2, int i3, int j3) {
+	private void method227(int[] ai, byte[] abyte0, int[] ai1, int i, int j, int k, int l,
+                           int i1, int j1, int k1, int l1, int i2, int j2, int k2,
+                           int l2, int i3, int j3) {
 		int j4 = j2 >> 16 & 0xff;
 		int k4 = j2 >> 8 & 0xff;
 		int l4 = j2 & 0xff;
@@ -566,16 +562,15 @@ public class Surface
 				l2 += i3;
 			}
 
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in transparent sprite plot routine");
 		}
 	}
 
-	private void method228(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1, int i2, int j2, int k2, int l2, 
-			int i3, int j3) {
+	private void method228(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1, int i2, int j2, int k2, int l2,
+                           int i3, int j3) {
 		int j4 = j2 >> 16 & 0xff;
 		int k4 = j2 >> 8 & 0xff;
 		int l4 = j2 & 0xff;
@@ -624,16 +619,15 @@ public class Surface
 				l2 += i3;
 			}
 
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in transparent sprite plot routine");
 		}
 	}
 
-	private void method229(int ai[], byte abyte0[], int ai1[], int i, int j, int k, int l, 
-			int i1, int j1, int k1, int l1, int i2, int j2, int k2, 
-			int l2, int i3) {
+	private void method229(int[] ai, byte[] abyte0, int[] ai1, int i, int j, int k, int l,
+                           int i1, int j1, int k1, int l1, int i2, int j2, int k2,
+                           int l2, int i3) {
 		int i4 = j2 >> 16 & 0xff;
 		int j4 = j2 >> 8 & 0xff;
 		int k4 = j2 & 0xff;
@@ -677,15 +671,14 @@ public class Surface
 				k2 += l2;
 			}
 
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in transparent sprite plot routine");
 		}
 	}
 
-	private void method230(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1, int i2, int j2, int k2, int l2) {
+	private void method230(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1, int i2, int j2, int k2, int l2) {
 		int i3 = l2 >> 16 & 0xff;
 		int j3 = l2 >> 8 & 0xff;
 		int k3 = l2 & 0xff;
@@ -714,16 +707,15 @@ public class Surface
 				l += i1;
 			}
 
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in plot_scale");
 		}
 	}
 
-	private void method231(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1, int i2, int j2, int k2, int l2, 
-			int i3) {
+	private void method231(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1, int i2, int j2, int k2, int l2,
+                           int i3) {
 		int i4 = j2 >> 16 & 0xff;
 		int j4 = j2 >> 8 & 0xff;
 		int k4 = j2 & 0xff;
@@ -766,15 +758,14 @@ public class Surface
 				k2 += l2;
 			}
 
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in transparent sprite plot routine");
 		}
 	}
 
-	private void method232(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1, int i2, int j2, int k2) {
+	private void method232(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1, int i2, int j2, int k2) {
 		try {
 			int l2 = j;
 			for(int i3 = -k1; i3 < 0; i3 += k2) {
@@ -793,15 +784,14 @@ public class Surface
 				l += i1;
 			}
 
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in plot_scale");
 		}
 	}
 
-	private void method233(int ai[], byte abyte0[], int ai1[], int i, int j, int k, int l, 
-			int i1, int j1, int k1) {
+	private void method233(int[] ai, byte[] abyte0, int[] ai1, int i, int j, int k, int l,
+                           int i1, int j1, int k1) {
 		int l1 = -(k >> 2);
 		k = -(k & 3);
 		for(int i2 = -l; i2 < 0; i2 += k1) {
@@ -842,8 +832,8 @@ public class Surface
 
 	}
 
-	public void method234(int i, byte abyte0[]) {
-		int ai[] = anIntArrayArray328[i] = new int[10200];
+	public void method234(int i, byte[] abyte0) {
+		int[] ai = anIntArrayArray328[i] = new int[10200];
 		anIntArray325[i] = 255;
 		anIntArray326[i] = 40;
 		anIntArray329[i] = 0;
@@ -884,16 +874,16 @@ public class Surface
 
 	public void method235(int i) {
 		int j = anIntArray325[i] * anIntArray326[i];
-		int ai[] = anIntArrayArray328[i];
-		int ai1[] = new int[32768];
+		int[] ai = anIntArrayArray328[i];
+		int[] ai1 = new int[32768];
 		for(int k = 0; k < j; k++) {
 			int l = ai[k];
 			ai1[((l & 0xf80000) >> 9) + ((l & 0xf800) >> 6) + ((l & 0xf8) >> 3)]++;
 		}
 
-		int ai2[] = new int[256];
+		int[] ai2 = new int[256];
 		ai2[0] = 0xff00ff;
-		int ai3[] = new int[256];
+		int[] ai3 = new int[256];
 		for(int i1 = 0; i1 < 32768; i1++) {
 			int j1 = ai1[i1];
 			if(j1 > ai3[255]) {
@@ -914,7 +904,7 @@ public class Surface
 			ai1[i1] = -1;
 		}
 
-		byte abyte0[] = new byte[j];
+		byte[] abyte0 = new byte[j];
 		for(int l1 = 0; l1 < j; l1++) {
 			int j2 = ai[l1];
 			int k2 = ((j2 & 0xf80000) >> 9) + ((j2 & 0xf800) >> 6) + ((j2 & 0xf8) >> 3);
@@ -1185,7 +1175,7 @@ public class Surface
 		}
 
 		int l10 = k6 * j1;
-		int ai[] = anIntArrayArray328[k];
+		int[] ai = anIntArrayArray328[k];
 		for(int i11 = k6; i11 < l6; i11++) {
 			int j11 = anIntArray340[i11] >> 8;
 			int k11 = anIntArray341[i11] >> 8;
@@ -1257,7 +1247,7 @@ public class Surface
 	public void method239(String s, int i, int j, int k, int l, int i1) {
 		try {
 			int j1 = 0;
-			byte abyte0[] = fonts[k];
+			byte[] abyte0 = fonts[k];
 			int k1 = 0;
 			int l1 = 0;
 			for(int i2 = 0; i2 < s.length(); i2++) {
@@ -1286,8 +1276,7 @@ public class Surface
 
 			if(j1 > 0) {
 				method216(s.substring(k1), i, j, k, l);
-				return;
-			}
+            }
 		}
 		catch(Exception exception) {
 			System.out.println("centrepara: " + exception);
@@ -1318,7 +1307,7 @@ public class Surface
 		g.drawString(String.valueOf(c), 0, i1);
 		if(flag)
 			g.drawString(String.valueOf(c), 1, i1);
-		int ai[] = new int[k * j1];
+		int[] ai = new int[k * j1];
 		PixelGrabber pixelgrabber = new PixelGrabber(image, 0, 0, k, j1, ai, 0, k);
 		try {
 			pixelgrabber.grabPixels();
@@ -1406,8 +1395,8 @@ label3:
 		g.drawImage(gameImage, i, j, this);
 	}
 
-	private void method242(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1, int i2, int j2, int k2, int l2) {
+	private void method242(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1, int i2, int j2, int k2, int l2) {
 		int i3 = 256 - l2;
 		try {
 			int j3 = j;
@@ -1429,8 +1418,7 @@ label3:
 				l += i1;
 			}
 
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in tran_scale");
 		}
@@ -1515,8 +1503,7 @@ label3:
 				}
 			}
 			method232(anIntArray322, anIntArrayArray328[i1], 0, l1, i2, i3, k3, k, l, j2, k2, j1, byte0);
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in sprite clipping routine");
 		}
@@ -1571,20 +1558,16 @@ label3:
 		}
 		if(anIntArrayArray328[k] == null) {
 			method233(anIntArray322, aByteArrayArray324[k], anIntArrayArray327[k], i1, l, k1, j1, l1, i2, byte0);
-			return;
-		} else {
+        } else {
 			method219(anIntArray322, anIntArrayArray328[k], 0, i1, l, k1, j1, l1, i2, byte0);
-			return;
-		}
+        }
 	}
 
 	public void method247(int i, int j, int k) {
 		if(i < anInt316 || j < anInt317 || i >= anInt318 || j >= anInt319) {
-			return;
-		} else {
+        } else {
 			anIntArray322[i + j * anInt320] = k;
-			return;
-		}
+        }
 	}
 
 	public void method248(int i, int j, int k, int l, int i1, int j1) {
@@ -1644,8 +1627,7 @@ label3:
 				}
 			}
 			method230(anIntArray322, anIntArrayArray328[i1], 0, i2, j2, j3, l3, k, l, k2, l2, k1, byte0, j1);
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in sprite clipping routine");
 		}
@@ -1727,8 +1709,8 @@ label3:
 		addConsumer(imageconsumer);
 	}
 
-	private void method250(int ai[], byte abyte0[], int i, int j, int k, int l, int i1, 
-			int j1, int k1) {
+	private void method250(int[] ai, byte[] abyte0, int i, int j, int k, int l, int i1,
+                           int j1, int k1) {
 		try {
 			int l1 = -(l >> 2);
 			l = -(l & 3);
@@ -1762,13 +1744,11 @@ label3:
 				j += k1;
 			}
 
-			return;
-		}
+        }
 		catch(Exception exception) {
 			System.out.println("plotletter: " + exception);
 			exception.printStackTrace();
-			return;
-		}
+        }
 	}
 
 	public void method251(int i, int j, int k, int l) {
@@ -1822,7 +1802,7 @@ label3:
 
 	public void method254(String s, int i, int j, int k, int l) {
 		try {
-			byte abyte0[] = fonts[k];
+			byte[] abyte0 = fonts[k];
 			for(int i1 = 0; i1 < s.length(); i1++)
 				if(s.charAt(i1) == '@' && i1 + 4 < s.length() && s.charAt(i1 + 4) == '@') {
 					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("red"))
@@ -1897,17 +1877,15 @@ label3:
 					i += abyte0[j1 + 7];
 				}
 
-			return;
-		}
+        }
 		catch(Exception exception) {
 			System.out.println("drawstring: " + exception);
 			exception.printStackTrace();
-			return;
-		}
+        }
 	}
 
-	private void method255(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1) {
+	private void method255(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1) {
 		for(i = k1; i < 0; i++) {
 			anIntArray322[j++] = ai1[(k >> 17) + (l >> 17) * l1];
 			k += i1;
@@ -1918,16 +1896,14 @@ label3:
 
 	public synchronized void method256() {
 		if(anImageConsumer350 == null) {
-			return;
-		} else {
+        } else {
 			anImageConsumer350.setPixels(0, 0, anInt320, anInt323, aColorModel351, anIntArray322, 0, anInt320);
 			anImageConsumer350.imageComplete(2);
-			return;
-		}
+        }
 	}
 
-	private void method257(int ai[], int ai1[], int i, int j, int k, int l, int i1, 
-			int j1, int k1, int l1) {
+	private void method257(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
+                           int j1, int k1, int l1) {
 		for(int i2 = k1; i2 < 0; i2++) {
 			i = ai1[(k >> 17) + (l >> 17) * l1];
 			if(i != 0)
@@ -2013,8 +1989,7 @@ label3:
 			method240(font, fontmetrics, s1.charAt(l), l, gameshell, i, flag1);
 
 		fonts[i] = new byte[anInt347];
-		for(int i1 = 0; i1 < anInt347; i1++)
-			fonts[i][i1] = aByteArray346[i1];
+        if (anInt347 >= 0) System.arraycopy(aByteArray346, 0, fonts[i], 0, anInt347);
 
 		if(j == 1 && aBooleanArray348[i]) {
 			aBooleanArray348[i] = false;
@@ -2075,15 +2050,13 @@ label3:
 		}
 		if(anIntArrayArray328[k] == null) {
 			method261(anIntArray322, aByteArrayArray324[k], anIntArrayArray327[k], j1, i1, l1, k1, i2, j2, byte0, l);
-			return;
-		} else {
+        } else {
 			method208(anIntArray322, anIntArrayArray328[k], 0, j1, i1, l1, k1, i2, j2, byte0, l);
-			return;
-		}
+        }
 	}
 
-	private void method261(int ai[], byte abyte0[], int ai1[], int i, int j, int k, int l, 
-			int i1, int j1, int k1, int l1) {
+	private void method261(int[] ai, byte[] abyte0, int[] ai1, int i, int j, int k, int l,
+                           int i1, int j1, int k1, int l1) {
 		int i2 = 256 - l1;
 		for(int j2 = -l; j2 < 0; j2 += k1) {
 			for(int k2 = -k; k2 < 0; k2++) {
@@ -2160,8 +2133,7 @@ label3:
 				}
 			}
 			method242(anIntArray322, anIntArrayArray328[i1], 0, i2, j2, j3, l3, k, l, k2, l2, k1, byte0, j1);
-			return;
-		}
+        }
 		catch(Exception _ex) {
 			System.out.println("error in sprite clipping routine");
 		}
@@ -2170,7 +2142,7 @@ label3:
 	public int anInt311;
 	public int anInt312;
 	public int anInt313;
-	private Component aComponent314;
+	private final Component aComponent314;
 	public static int anInt315;
 	private int anInt316;
 	private int anInt317;
@@ -2178,33 +2150,33 @@ label3:
 	private int anInt319;
 	public int anInt320;
 	public boolean aBoolean321;
-	public int anIntArray322[];
+	public int[] anIntArray322;
 	public int anInt323;
-	public byte aByteArrayArray324[][];
-	public int anIntArray325[];
-	public int anIntArray326[];
-	public int anIntArrayArray327[][];
-	public int anIntArrayArray328[][];
-	public int anIntArray329[];
-	public int anIntArray330[];
-	public int anIntArray331[];
-	public int anIntArray332[];
-	public boolean aBooleanArray333[];
-	static byte fonts[][] = new byte[50][];
-	static int anIntArray335[];
-	int anIntArray336[];
+	public byte[][] aByteArrayArray324;
+	public int[] anIntArray325;
+	public int[] anIntArray326;
+	public int[][] anIntArrayArray327;
+	public int[][] anIntArrayArray328;
+	public int[] anIntArray329;
+	public int[] anIntArray330;
+	public int[] anIntArray331;
+	public int[] anIntArray332;
+	public boolean[] aBooleanArray333;
+	static byte[][] fonts = new byte[50][];
+	static int[] anIntArray335;
+	int[] anIntArray336;
 	public static int anInt337;
 	public static int anInt338;
 	public static int anInt339;
-	int anIntArray340[];
-	int anIntArray341[];
-	int anIntArray342[];
-	int anIntArray343[];
-	int anIntArray344[];
-	int anIntArray345[];
-	private static byte aByteArray346[] = new byte[0x186a0];
+	int[] anIntArray340;
+	int[] anIntArray341;
+	int[] anIntArray342;
+	int[] anIntArray343;
+	int[] anIntArray344;
+	int[] anIntArray345;
+	private static final byte[] aByteArray346 = new byte[0x186a0];
 	private static int anInt347;
-	private static boolean aBooleanArray348[] = new boolean[12];
+	private static final boolean[] aBooleanArray348 = new boolean[12];
 	public Image gameImage;
 	ImageConsumer anImageConsumer350;
 	ColorModel aColorModel351;

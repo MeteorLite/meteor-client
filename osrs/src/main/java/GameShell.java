@@ -35,11 +35,9 @@ public class GameShell extends Applet
 			if(hasRefererLogoNotused)
 				graphics.setColor(new Color(255, 255, 255));
 			method8(graphics, s, fontTimesRoman, j + 138, k + 10);
-			return;
-		}
+        }
 		catch(Exception _ex) {
-			return;
-		}
+        }
 	}
 
 	protected void method2() {
@@ -99,8 +97,7 @@ public class GameShell extends Applet
 			if(aString14 != null) {
 				graphics.setColor(Color.white);
 				method8(graphics, aString14, fontHelvetica13b, j + 138, k - 120);
-				return;
-			}
+            }
 		}
 		catch(Exception _ex) { }
 	}
@@ -131,11 +128,10 @@ public class GameShell extends Applet
 		graphics = getGraphics();
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, appletWidth, appletHeight);
-		byte buffer[] = readDataFile("jagex.jag", "Jagex library", 0);
+		byte[] buffer = readDataFile("jagex.jag", "Jagex library", 0);
 		if(buffer == null) {
-			return;
-		} else {
-			byte abyte1[] = DataUtils.loadData("logo.tga", 0, buffer);
+        } else {
+			byte[] abyte1 = DataUtils.loadData("logo.tga", 0, buffer);
 			logoImage = createImage(abyte1);
 			/* XXX modified
 			Surface.method259("h11p", 0, this);
@@ -156,16 +152,15 @@ public class GameShell extends Applet
 			Surface.fonts[5] = DataUtils.loadData("h16b.jf", 0, buffer);
 			Surface.fonts[6] = DataUtils.loadData("h20b.jf", 0, buffer);
 			Surface.fonts[7] = DataUtils.loadData("h24b.jf", 0, buffer);
-			return;
-		}
+        }
 	}
 
-	private final Image createImage(byte abyte0[]) {
+	private final Image createImage(byte[] abyte0) {
 		int i = abyte0[13] * 256 + abyte0[12];
 		int j = abyte0[15] * 256 + abyte0[14];
-		byte abyte1[] = new byte[256];
-		byte abyte2[] = new byte[256];
-		byte abyte3[] = new byte[256];
+		byte[] abyte1 = new byte[256];
+		byte[] abyte2 = new byte[256];
+		byte[] abyte3 = new byte[256];
 		for(int k = 0; k < 256; k++) {
 			abyte1[k] = abyte0[20 + k * 3];
 			abyte2[k] = abyte0[19 + k * 3];
@@ -173,7 +168,7 @@ public class GameShell extends Applet
 		}
 
 		IndexColorModel indexcolormodel = new IndexColorModel(8, 256, abyte1, abyte2, abyte3);
-		byte abyte4[] = new byte[i * j];
+		byte[] abyte4 = new byte[i * j];
 		int l = 0;
 		for(int i1 = j - 1; i1 >= 0; i1--) {
 			for(int j1 = 0; j1 < i; j1++)
@@ -240,7 +235,7 @@ public class GameShell extends Applet
 				sleep = lastSleep;
 			} else
 			if(time > timings[i])
-				j = (int)((long)(2560 * targetFPS) / (time - timings[i]));
+				j = (int)((long)(2560L * targetFPS) / (time - timings[i]));
 			if(j < 25)
 				j = 25;
 			if(j > 256) {
@@ -535,12 +530,12 @@ public class GameShell extends Applet
 	protected byte[] readDataFile(String s, String s1, int i) {
 		int j = 0;
 		int k = 0;
-		byte abyte0[] = null;
+		byte[] abyte0 = null;
 		try {
 			method1(i, "Loading " + s1 + " - 0%");
 			java.io.InputStream inputstream = DataUtils.method353(s);
 			DataInputStream datainputstream = new DataInputStream(inputstream);
-			byte abyte2[] = new byte[6];
+			byte[] abyte2 = new byte[6];
 			datainputstream.readFully(abyte2, 0, 6);
 			j = ((abyte2[0] & 0xff) << 16) + ((abyte2[1] & 0xff) << 8) + (abyte2[2] & 0xff);
 			k = ((abyte2[3] & 0xff) << 16) + ((abyte2[4] & 0xff) << 8) + (abyte2[5] & 0xff);
@@ -560,7 +555,7 @@ public class GameShell extends Applet
 		catch(IOException _ex) { _ex.printStackTrace(); }
 		method1(i, "Unpacking " + s1);
 		if(k != j) {
-			byte abyte1[] = new byte[j];
+			byte[] abyte1 = new byte[j];
 			BZip2Decompressor.method133(abyte1, j, abyte0, k, 0);
 			return abyte1;
 		} else {
@@ -576,21 +571,21 @@ public class GameShell extends Applet
 	private int anInt3;
 	private String loadingProgressText;
 	private Graphics graphics;
-	private boolean hasRefererLogoNotused;
-	private Font fontTimesRoman;
+	private final boolean hasRefererLogoNotused;
+	private final Font fontTimesRoman;
 	private int stopTimeout;
 	public static GameWindow gameWindow = null;
 	private boolean aBoolean10;
 	private Image logoImage;
-	private Font fontHelvetica13b;
-	private Font fontHelvetica12;
+	private final Font fontHelvetica13b;
+	private final Font fontHelvetica12;
 	public String aString14;
-	private long timings[];
+	private final long[] timings;
 	public int loadingState;
 	private Thread clientThread;
 	private int targetFPS;
 	public int threadSleep;
-	private int maxDrawTime;
+	private final int maxDrawTime;
 	private int interlaceTimer;
 	public boolean interlace;
 	public int anInt23;
@@ -604,7 +599,7 @@ public class GameShell extends Applet
 	public boolean keyNm;
 	public boolean keyLsb;
 	public boolean keyRsb;
-	private static String aString34 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"\243$%^&*()-_=+[{]};:'@#~,<.>/?\\| ";
+	private static final String aString34 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"\243$%^&*()-_=+[{]};:'@#~,<.>/?\\| ";
 	public String inputTextCurrent;
 	public String inputPmCurrent;
 	public String inputTextFinal;

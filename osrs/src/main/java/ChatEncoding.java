@@ -5,7 +5,7 @@
 
 public class ChatEncoding {
 
-	public static String method388(byte abyte0[], int i, int j) {
+	public static String method388(byte[] abyte0, int i, int j) {
 		try {
 			int k = 0;
 			int l = -1;
@@ -93,8 +93,8 @@ public class ChatEncoding {
 		return i;
 	}
 
-	public static char aCharArray555[] = new char[100];
-	private static char aCharArray556[] = {
+	public static char[] aCharArray555 = new char[100];
+	private static final char[] aCharArray556 = {
 		' ', 'e', 't', 'a', 'o', 'i', 'h', 'n', 's', 'r', 
 		'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 
 		'b', 'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', 
@@ -103,6 +103,6 @@ public class ChatEncoding {
 		'\'', '@', '#', '+', '=', '\243', '$', '%', '"', '[', 
 		']'
 	};
-	public static byte aByteArray557[] = new byte[100];
+	public static byte[] aByteArray557 = new byte[100];
 
 }

@@ -48,7 +48,7 @@ public class Scene {
 			c = '@';
 		else
 			c = '\200';
-		int ai[] = anIntArrayArray387[i];
+		int[] ai = anIntArrayArray387[i];
 		int j = 0;
 		for(int k = 0; k < c; k++) {
 			for(int l = 0; l < c; l++) {
@@ -82,7 +82,7 @@ public class Scene {
 			anInt391 = 0;
 	}
 
-	public boolean method266(int ai[], int ai1[], int ai2[], int ai3[]) {
+	public boolean method266(int[] ai, int[] ai1, int[] ai2, int[] ai3) {
 		int i = ai.length;
 		int j = ai2.length;
 		byte byte0 = 0;
@@ -323,7 +323,7 @@ public class Scene {
 		return method300(j6, k10, k15, flag);
 	}
 
-	public boolean method267(Polygon apolygon[], int i, int j) {
+	public boolean method267(Polygon[] apolygon, int i, int j) {
 		do {
 			Polygon polygon = apolygon[i];
 			for(int k = i + 1; k <= j; k++) {
@@ -427,7 +427,7 @@ public class Scene {
 	public void method270(int i) {
 		if(anIntArrayArray387[i] == null)
 			return;
-		int ai[] = anIntArrayArray387[i];
+		int[] ai = anIntArrayArray387[i];
 		for(int j = 0; j < 64; j++) {
 			int k = j + 4032;
 			int l = ai[k];
@@ -462,7 +462,7 @@ public class Scene {
 
 	}
 
-	private void method272(Polygon apolygon[], int i, int j) {
+	private void method272(Polygon[] apolygon, int i, int j) {
 		if(i < j) {
 			int k = i - 1;
 			int l = j + 1;
@@ -489,8 +489,8 @@ public class Scene {
 		}
 	}
 
-	private void method273(int i, int j, int k, int l, int i1, int ai[], int ai1[], 
-			int ai2[], Model model, int j1) {
+	private void method273(int i, int j, int k, int l, int i1, int[] ai, int[] ai1,
+                           int[] ai2, Model model, int j1) {
 		if(i1 == 3) {
 			int k1 = ai1[0] + anInt404;
 			int k2 = ai1[1] + anInt404;
@@ -982,7 +982,7 @@ public class Scene {
 		Polygon polygon = aPolygonArray416[i];
 		Model model = polygon.aModel359;
 		int j = polygon.anInt360;
-		int ai[] = model.anIntArrayArray245[j];
+		int[] ai = model.anIntArrayArray245[j];
 		int l = 0;
 		int i1 = 0;
 		int j1 = 1;
@@ -1044,7 +1044,7 @@ public class Scene {
 		aModel392.aByteArray296[i] = 1;
 	}
 
-	private static void method278(int ai[], int i, int j, int k, int ai1[], int l, int i1) {
+	private static void method278(int[] ai, int i, int j, int k, int[] ai1, int l, int i1) {
 		if(i >= 0)
 			return;
 		i1 <<= 1;
@@ -1081,8 +1081,8 @@ public class Scene {
 
 	}
 
-	private static void method279(int ai[], int ai1[], int i, int j, int k, int l, int i1, int j1, 
-			int k1, int l1, int i2, int j2, int k2, int l2) {
+	private static void method279(int[] ai, int[] ai1, int i, int j, int k, int l, int i1, int j1,
+                                  int k1, int l1, int i2, int j2, int k2, int l2) {
 		if(i2 <= 0)
 			return;
 		int i3 = 0;
@@ -1190,8 +1190,8 @@ public class Scene {
 
 	}
 
-	private static void method280(int ai[], int i, int j, int k, int ai1[], int l, int i1, int j1, 
-			int k1, int l1, int i2, int j2, int k2, int l2, int i3) {
+	private static void method280(int[] ai, int i, int j, int k, int[] ai1, int l, int i1, int j1,
+                                  int k1, int l1, int i2, int j2, int k2, int l2, int i3) {
 		if(j2 <= 0)
 			return;
 		int j3 = 0;
@@ -1333,7 +1333,7 @@ public class Scene {
 
 	}
 
-	private static void method281(int ai[], int i, int j, int k, int ai1[], int l, int i1) {
+	private static void method281(int[] ai, int i, int j, int k, int[] ai1, int l, int i1) {
 		if(i >= 0)
 			return;
 		i1 <<= 2;
@@ -1379,7 +1379,7 @@ public class Scene {
 
 	}
 
-	private static void method282(int ai[], int i, int j, int k, int ai1[], int l, int i1) {
+	private static void method282(int[] ai, int i, int j, int k, int[] ai1, int l, int i1) {
 		if(i >= 0)
 			return;
 		i1 <<= 2;
@@ -1424,8 +1424,8 @@ public class Scene {
 
 	}
 
-	private static void method283(int ai[], int ai1[], int i, int j, int k, int l, int i1, int j1, 
-			int k1, int l1, int i2, int j2, int k2, int l2) {
+	private static void method283(int[] ai, int[] ai1, int i, int j, int k, int l, int i1, int j1,
+                                  int k1, int l1, int i2, int j2, int k2, int l2) {
 		if(i2 <= 0)
 			return;
 		int i3 = 0;
@@ -1544,8 +1544,8 @@ public class Scene {
 
 	}
 
-	private static void method284(int ai[], int ai1[], int i, int j, int k, int l, int i1, int j1, 
-			int k1, int l1, int i2, int j2, int k2, int l2) {
+	private static void method284(int[] ai, int[] ai1, int i, int j, int k, int l, int i1, int j1,
+                                  int k1, int l1, int i2, int j2, int k2, int l2) {
 		if(i2 <= 0)
 			return;
 		int i3 = 0;
@@ -1664,7 +1664,7 @@ public class Scene {
 
 	}
 
-	public void method285(int i, Polygon apolygon[], int j) {
+	public void method285(int i, Polygon[] apolygon, int j) {
 		for(int k = 0; k <= j; k++) {
 			apolygon[k].aBoolean368 = false;
 			apolygon[k].anInt367 = k;
@@ -1753,7 +1753,7 @@ public class Scene {
 			if(model.aBoolean287) {
 				for(int j = 0; j < model.anInt235; j++) {
 					int l3 = model.anIntArray244[j];
-					int ai1[] = model.anIntArrayArray245[j];
+					int[] ai1 = model.anIntArrayArray245[j];
 					boolean flag = false;
 					for(int k4 = 0; k4 < l3; k4++) {
 						int i1 = model.anIntArray293[ai1[k4]];
@@ -1818,7 +1818,7 @@ public class Scene {
 		Model model1 = aModel392;
 		if(model1.aBoolean287) {
 			for(int k = 0; k < model1.anInt235; k++) {
-				int ai[] = model1.anIntArrayArray245[k];
+				int[] ai = model1.anIntArrayArray245[k];
 				int j4 = ai[0];
 				int l4 = model1.anIntArray289[j4];
 				int l5 = model1.anIntArray290[j4];
@@ -1848,7 +1848,7 @@ public class Scene {
 			Model model2 = polygon.aModel359;
 			int l = polygon.anInt360;
 			if(model2 == aModel392) {
-				int ai2[] = model2.anIntArrayArray245[l];
+				int[] ai2 = model2.anIntArrayArray245[l];
 				int i6 = ai2[0];
 				int j7 = model2.anIntArray289[i6];
 				int j8 = model2.anIntArray290[i6];
@@ -1873,7 +1873,7 @@ public class Scene {
 				int k8 = 0;
 				int j10 = 0;
 				int l10 = model2.anIntArray244[l];
-				int ai3[] = model2.anIntArrayArray245[l];
+				int[] ai3 = model2.anIntArrayArray245[l];
 				if(model2.anIntArray251[l] != 0xbc614e)
 					if(polygon.anInt365 < 0)
 						j10 = model2.anInt238 - model2.anIntArray251[l];
@@ -2008,7 +2008,7 @@ public class Scene {
 		anIntArray435[anInt391] = 0;
 		int l1 = aModel392.method194(j, k, l);
 		int i2 = aModel392.method194(j, k - j1, l);
-		int ai[] = {
+		int[] ai = {
 			l1, i2
 		};
 		aModel392.method184(2, ai, 0, 0);
@@ -2034,8 +2034,8 @@ public class Scene {
 		Model model1 = polygon1.aModel359;
 		int i = polygon.anInt360;
 		int j = polygon1.anInt360;
-		int ai[] = model.anIntArrayArray245[i];
-		int ai1[] = model1.anIntArrayArray245[j];
+		int[] ai = model.anIntArrayArray245[i];
+		int[] ai1 = model1.anIntArrayArray245[j];
 		int k = model.anIntArray244[i];
 		int l = model1.anIntArray244[j];
 		int k2 = model1.anIntArray291[ai1[0]];
@@ -2078,8 +2078,8 @@ public class Scene {
 
 		if(!flag)
 			return true;
-		int ai2[];
-		int ai3[];
+		int[] ai2;
+		int[] ai3;
 		if(k == 2) {
 			ai2 = new int[4];
 			ai3 = new int[4];
@@ -2101,8 +2101,8 @@ public class Scene {
 			}
 
 		}
-		int ai4[];
-		int ai5[];
+		int[] ai4;
+		int[] ai5;
 		if(l == 2) {
 			ai4 = new int[4];
 			ai5 = new int[4];
@@ -2144,8 +2144,8 @@ public class Scene {
 		anIntArray435[i] = j;
 	}
 
-	private static void method294(int ai[], int ai1[], int i, int j, int k, int l, int i1, int j1, 
-			int k1, int l1, int i2, int j2, int k2, int l2) {
+	private static void method294(int[] ai, int[] ai1, int i, int j, int k, int l, int i1, int j1,
+                                  int k1, int l1, int i2, int j2, int k2, int l2) {
 		if(i2 <= 0)
 			return;
 		int i3 = 0;
@@ -2253,8 +2253,8 @@ public class Scene {
 
 	}
 
-	private static void method295(int ai[], int i, int j, int k, int ai1[], int l, int i1, int j1, 
-			int k1, int l1, int i2, int j2, int k2, int l2, int i3) {
+	private static void method295(int[] ai, int i, int j, int k, int[] ai1, int l, int i1, int j1,
+                                  int k1, int l1, int i2, int j2, int k2, int l2, int i3) {
 		if(j2 <= 0)
 			return;
 		int j3 = 0;
@@ -2401,8 +2401,8 @@ public class Scene {
 		Model model1 = polygon1.aModel359;
 		int i = polygon.anInt360;
 		int j = polygon1.anInt360;
-		int ai[] = model.anIntArrayArray245[i];
-		int ai1[] = model1.anIntArrayArray245[j];
+		int[] ai = model.anIntArrayArray245[i];
+		int[] ai1 = model1.anIntArrayArray245[j];
 		int k = model.anIntArray244[i];
 		int l = model1.anIntArray244[j];
 		int i2 = model1.anIntArray291[ai1[0]];
@@ -2531,7 +2531,7 @@ public class Scene {
 		if(!DataUtils.aBoolean540);
 	}
 
-	public void method299(int i, byte abyte0[], int ai[], int j) {
+	public void method299(int i, byte[] abyte0, int[] ai, int j) {
 		aByteArrayArray389[i] = abyte0;
 		anIntArrayArray388[i] = ai;
 		anIntArray386[i] = j;
@@ -2557,8 +2557,8 @@ public class Scene {
 		return aModelArray414;
 	}
 
-	private void method302(int i, int j, int k, int ai[], int ai1[], int ai2[], int l, 
-			Model model) {
+	private void method302(int i, int j, int k, int[] ai, int[] ai1, int[] ai2, int l,
+                           Model model) {
 		if(l == -2)
 			return;
 		if(l >= 0) {
@@ -2977,7 +2977,7 @@ public class Scene {
 		Polygon polygon = aPolygonArray416[i];
 		Model model = polygon.aModel359;
 		int j = polygon.anInt360;
-		int ai[] = model.anIntArrayArray245[j];
+		int[] ai = model.anIntArrayArray245[j];
 		int k = model.anIntArray244[j];
 		int l = model.anIntArray252[j];
 		int j1 = model.anIntArray291[ai[0]];
@@ -3082,23 +3082,23 @@ public class Scene {
 
 	}
 
-	private static int anIntArray374[] = new int[512];
+	private static final int[] anIntArray374 = new int[512];
 	public double aDouble375;
 	public int anInt376;
-	private static byte aByteArray377[];
-	private static int anIntArray378[] = new int[256];
+	private static byte[] aByteArray377;
+	private static final int[] anIntArray378 = new int[256];
 	private int anInt379;
 	private int anInt380;
 	private int anInt381;
-	public static int anIntArray382[] = new int[2048];
+	public static int[] anIntArray382 = new int[2048];
 	private int anInt383;
 	private int anInt384;
 	private int anInt385;
-	int anIntArray386[];
-	int anIntArrayArray387[][];
-	int anIntArrayArray388[][];
-	byte aByteArrayArray389[][];
-	boolean aBooleanArray390[];
+	int[] anIntArray386;
+	int[][] anIntArrayArray387;
+	int[][] anIntArrayArray388;
+	byte[][] aByteArrayArray389;
+	boolean[] aBooleanArray390;
 	private int anInt391;
 	public Model aModel392;
 	int anInt393;
@@ -3109,28 +3109,28 @@ public class Scene {
 	static int anInt398;
 	static int anInt399;
 	static int anInt400;
-	public Model aModelArray401[];
+	public Model[] aModelArray401;
 	public int anInt402;
-	private int anIntArray403[];
+	private final int[] anIntArray403;
 	private int anInt404;
 	private int anInt405;
 	int anInt406;
 	int anInt407;
-	Scanline aScanlineArray408[];
+	Scanline[] aScanlineArray408;
 	private boolean aBoolean409;
 	private int anInt410;
-	private int anInt411;
+	private final int anInt411;
 	private int anInt412;
 	private int anInt413;
-	private Model aModelArray414[];
-	private int anIntArray415[];
-	private Polygon aPolygonArray416[];
+	private final Model[] aModelArray414;
+	private final int[] anIntArray415;
+	private final Polygon[] aPolygonArray416;
 	private int anInt417;
 	int anInt418;
-	long aLongArray419[];
+	long[] aLongArray419;
 	private static long aLong420;
-	int anIntArrayArray421[][];
-	int anIntArrayArray422[][];
+	int[][] anIntArrayArray421;
+	int[][] anIntArrayArray422;
 	Surface aSurface423;
 	boolean aBoolean424;
 	private int anInt425;
@@ -3139,30 +3139,30 @@ public class Scene {
 	public int anInt428;
 	private int anInt429;
 	public int anInt430;
-	private int anIntArray431[];
-	private int anIntArray432[];
+	private final int[] anIntArray431;
+	private final int[] anIntArray432;
 	public int anInt433;
-	private int anIntArray434[];
-	private int anIntArray435[];
-	int anIntArray436[];
-	int anIntArray437[];
-	int anIntArray438[];
-	int anIntArray439[];
-	int anIntArray440[];
-	int anIntArray441[];
+	private final int[] anIntArray434;
+	private final int[] anIntArray435;
+	int[] anIntArray436;
+	int[] anIntArray437;
+	int[] anIntArray438;
+	int[] anIntArray439;
+	int[] anIntArray440;
+	int[] anIntArray441;
 	public int anInt442;
 	public int anInt443;
-	private int anIntArray444[];
-	private int anIntArray445[];
-	private int anIntArray446[];
+	private final int[] anIntArray444;
+	private final int[] anIntArray445;
+	private final int[] anIntArray446;
 	private int anInt447;
-	public int anIntArray448[];
-	int anIntArray449[];
-	int anIntArrayArray450[][];
-	int anIntArray451[];
+	public int[] anIntArray448;
+	int[] anIntArray449;
+	int[][] anIntArrayArray450;
+	int[] anIntArray451;
 	int anInt452;
 	public boolean aBoolean453;
-	private int anInt454;
+	private final int anInt454;
 	public int anInt455;
 
 }

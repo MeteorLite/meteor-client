@@ -38,7 +38,7 @@ public class link {
 		return s;
 	}
 
-	public static final void putjag(String s1, byte abyte0[]) {
+	public static final void putjag(String s1, byte[] abyte0) {
 		name[numfile] = s1;
 		buf[numfile] = abyte0;
 		numfile++;
@@ -57,8 +57,8 @@ public class link {
 	public static int uid;
 	static String iplookup = null;
 	static String host;
-	private static String name[] = new String[50];
-	private static byte buf[][] = new byte[50][];
+	private static final String[] name = new String[50];
+	private static final byte[][] buf = new byte[50][];
 	static int numfile;
 	static int socketport;
 	static Socket s;

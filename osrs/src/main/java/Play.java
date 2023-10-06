@@ -8,7 +8,7 @@ public class Play {
                 LineEvent.Type type = le.getType();
                 System.out.println(type);
             }
-        };
+        }
 
         try {
 

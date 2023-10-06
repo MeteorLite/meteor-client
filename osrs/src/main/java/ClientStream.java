@@ -15,7 +15,7 @@ public class ClientStream extends Stream
 			return anInputStream629.available();
 	}
 
-	public void method338(byte abyte0[], int i, int j) throws IOException {
+	public void method338(byte[] abyte0, int i, int j) throws IOException {
 		if(aBoolean628)
 			return;
 		if(aByteArray630 == null)
@@ -53,7 +53,7 @@ public class ClientStream extends Stream
 		aByteArray630 = null;
 	}
 
-	public void method333(int i, int j, byte abyte0[]) throws IOException {
+	public void method333(int i, int j, byte[] abyte0) throws IOException {
 		if(aBoolean628)
 			return;
 		int k = 0;
@@ -123,11 +123,11 @@ public class ClientStream extends Stream
 	}
 
 	private boolean aBoolean628;
-	private InputStream anInputStream629;
-	private byte aByteArray630[];
+	private final InputStream anInputStream629;
+	private byte[] aByteArray630;
 	private int anInt631;
 	private int anInt632;
-	private OutputStream anOutputStream633;
-	private Socket aSocket634;
+	private final OutputStream anOutputStream633;
+	private final Socket aSocket634;
 	private boolean aBoolean635;
 }

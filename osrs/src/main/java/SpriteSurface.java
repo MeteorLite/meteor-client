@@ -6,7 +6,7 @@ import java.awt.Component;
 
 public final class SpriteSurface extends Surface {
 
-	public final void method220(int i, int j, int k, int l, int i1, int j1, int k1) {
+	public void method220(int i, int j, int k, int l, int i1, int j1, int k1) {
 		if(i1 >= 50000) {
 			aMudclient627.method48(i, j, k, l, i1 - 50000, j1, k1);
 			return;
@@ -21,11 +21,9 @@ public final class SpriteSurface extends Surface {
 		}
 		if(i1 >= 5000) {
 			aMudclient627.method52(i, j, k, l, i1 - 5000, j1, k1);
-			return;
-		} else {
+        } else {
 			super.method245(i, j, k, l, i1);
-			return;
-		}
+        }
 	}
 
 	public SpriteSurface(int i, int j, int k, Component component) {

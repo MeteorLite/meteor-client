@@ -11,14 +11,14 @@ public class DataUtils {
 		return byte0 & 0xff;
 	}
 
-	public static int method341(byte abyte0[], int i) {
+	public static int method341(byte[] abyte0, int i) {
 		if((abyte0[i] & 0xff) < 128)
 			return abyte0[i];
 		else
 			return ((abyte0[i] & 0xff) - 128 << 24) + ((abyte0[i + 1] & 0xff) << 16) + ((abyte0[i + 2] & 0xff) << 8) + (abyte0[i + 3] & 0xff);
 	}
 
-	public static byte[] method342(String s, int i, byte abyte0[], byte abyte1[]) {
+	public static byte[] method342(String s, int i, byte[] abyte0, byte[] abyte1) {
 		int j = (abyte0[0] & 0xff) * 256 + (abyte0[1] & 0xff);
 		int k = 0;
 		s = s.toUpperCase();
@@ -36,8 +36,7 @@ public class DataUtils {
 				if(l1 != i2) {
 					BZip2Decompressor.method133(abyte1, l1, abyte0, i2, i1);
 				} else {
-					for(int j2 = 0; j2 < l1; j2++)
-						abyte1[j2] = abyte0[i1 + j2];
+                    System.arraycopy(abyte0, i1 + 0, abyte1, 0, l1);
 
 				}
 				return abyte1;
@@ -48,22 +47,22 @@ public class DataUtils {
 		return null;
 	}
 
-	public static int method343(byte abyte0[], int i) {
+	public static int method343(byte[] abyte0, int i) {
 		return ((abyte0[i] & 0xff) << 24) + ((abyte0[i + 1] & 0xff) << 16) + ((abyte0[i + 2] & 0xff) << 8) + (abyte0[i + 3] & 0xff);
 	}
 
-	public static int method344(byte abyte0[], int i) {
+	public static int method344(byte[] abyte0, int i) {
 		return ((abyte0[i] & 0xff) << 8) + (abyte0[i + 1] & 0xff);
 	}
 
-	public static int method345(byte abyte0[], int i) {
+	public static int method345(byte[] abyte0, int i) {
 		int j = method340(abyte0[i]) * 256 + method340(abyte0[i + 1]);
 		if(j > 32767)
 			j -= 0x10000;
 		return j;
 	}
 
-	public static int method346(String s, byte abyte0[]) {
+	public static int method346(String s, byte[] abyte0) {
 		int i = method344(abyte0, 0);
 		int j = 0;
 		s = s.toUpperCase();
@@ -83,7 +82,7 @@ public class DataUtils {
 		return 0;
 	}
 
-	public static int method347(String s, byte abyte0[]) {
+	public static int method347(String s, byte[] abyte0) {
 		int i = method344(abyte0, 0);
 		int j = 0;
 		s = s.toUpperCase();
@@ -102,7 +101,7 @@ public class DataUtils {
 		return 0;
 	}
 
-	public static long method348(byte abyte0[], int i) {
+	public static long method348(byte[] abyte0, int i) {
 		return (((long)method343(abyte0, i) & 0xffffffffL) << 32) + ((long)method343(abyte0, i + 4) & 0xffffffffL);
 	}
 
@@ -110,7 +109,7 @@ public class DataUtils {
 		return (i >> 24 & 0xff) + "." + (i >> 16 & 0xff) + "." + (i >> 8 & 0xff) + "." + (i & 0xff);
 	}
 
-	public static int method350(byte abyte0[], int i, int j) {
+	public static int method350(byte[] abyte0, int i, int j) {
 		int k = i >> 3;
 		int l = 8 - (i & 7);
 		int i1 = 0;
@@ -148,7 +147,7 @@ public class DataUtils {
 		return s;
 	}
 
-	public static byte[] loadData(String s, int i, byte abyte0[]) {
+	public static byte[] loadData(String s, int i, byte[] abyte0) {
 		return method342(s, i, abyte0, null);
 	}
 
@@ -166,7 +165,7 @@ public class DataUtils {
 		return ((InputStream) (obj));
 	}
 
-	public static void method354(String s, byte abyte0[], int i) throws IOException {
+	public static void method354(String s, byte[] abyte0, int i) throws IOException {
 		InputStream inputstream = method353(s);
 		DataInputStream datainputstream = new DataInputStream(inputstream);
 		try {
@@ -232,7 +231,7 @@ public class DataUtils {
 	}
 
 	public static boolean aBoolean540;
-	private static int anIntArray541[] = {
+	private static final int[] anIntArray541 = {
 		0, 1, 3, 7, 15, 31, 63, 127, 255, 511, 
 		1023, 2047, 4095, 8191, 16383, 32767, 65535, 0x1ffff, 0x3ffff, 0x7ffff, 
 		0xfffff, 0x1fffff, 0x3fffff, 0x7fffff, 0xffffff, 0x1ffffff, 0x3ffffff, 0x7ffffff, 0xfffffff, 0x1fffffff, 

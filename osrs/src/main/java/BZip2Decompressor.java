@@ -11,9 +11,9 @@ public class BZip2Decompressor {
 		int i = bzip2block.anInt467;
 		int j = bzip2block.anInt476;
 		int k = bzip2block.anInt475;
-		int ai[] = BZip2Block.anIntArray477;
+		int[] ai = BZip2Block.anIntArray477;
 		int l = bzip2block.anInt474;
-		byte abyte0[] = bzip2block.aByteArray461;
+		byte[] abyte0 = bzip2block.aByteArray461;
 		int i1 = bzip2block.anInt462;
 		int j1 = bzip2block.anInt463;
 		int k1 = j1;
@@ -118,7 +118,7 @@ label0:
 		bzip2block.anInt463 = j1;
 	}
 
-	private static void method130(int ai[], int ai1[], int ai2[], byte abyte0[], int i, int j, int k) {
+	private static void method130(int[] ai, int[] ai1, int[] ai2, byte[] abyte0, int i, int j, int k) {
 		int l = 0;
 		for(int i1 = i; i1 <= j; i1++) {
 			for(int l2 = 0; l2 < k; l2++)
@@ -183,7 +183,7 @@ label0:
 
 	}
 
-	public static int method133(byte abyte0[], int i, byte abyte1[], int j, int k) {
+	public static int method133(byte[] abyte0, int i, byte[] abyte1, int j, int k) {
 		BZip2Block bzip2block = new BZip2Block();
 		bzip2block.aByteArray456 = abyte1;
 		bzip2block.anInt457 = k;
@@ -228,9 +228,9 @@ label0:
 		boolean flag17 = false;
 		boolean flag18 = false;
 		int k8 = 0;
-		int ai[] = null;
-		int ai1[] = null;
-		int ai2[] = null;
+		int[] ai = null;
+		int[] ai1 = null;
+		int[] ai2 = null;
 		bzip2block.anInt471 = 1;
 		if(BZip2Block.anIntArray477 == null)
 			BZip2Block.anIntArray477 = new int[bzip2block.anInt471 * 0x186a0];
@@ -250,10 +250,7 @@ label0:
 			byte0 = method134(bzip2block);
 			byte0 = method134(bzip2block);
 			byte0 = method136(bzip2block);
-			if(byte0 != 0)
-				bzip2block.aBoolean468 = true;
-			else
-				bzip2block.aBoolean468 = false;
+            bzip2block.aBoolean468 = byte0 != 0;
 			if(bzip2block.aBoolean468)
 				System.out.println("PANIC! RANDOMISED BLOCK!");
 			bzip2block.anInt473 = 0;
@@ -265,10 +262,7 @@ label0:
 			bzip2block.anInt473 = bzip2block.anInt473 << 8 | byte0 & 0xff;
 			for(int j = 0; j < 16; j++) {
 				byte byte1 = method136(bzip2block);
-				if(byte1 == 1)
-					bzip2block.aBooleanArray493[j] = true;
-				else
-					bzip2block.aBooleanArray493[j] = false;
+                bzip2block.aBooleanArray493[j] = byte1 == 1;
 			}
 
 			for(int k = 0; k < 256; k++)
@@ -299,7 +293,7 @@ label0:
 				bzip2block.aByteArray498[i1] = (byte)j3;
 			}
 
-			byte abyte0[] = new byte[6];
+			byte[] abyte0 = new byte[6];
 			for(byte byte16 = 0; byte16 < j4; byte16++)
 				abyte0[byte16] = byte16;
 
@@ -494,8 +488,7 @@ label0:
 			bzip2block.anInt467 = 0;
 			bzip2block.aByte466 = 0;
 			bzip2block.anIntArray490[0] = 0;
-			for(int j2 = 1; j2 <= 256; j2++)
-				bzip2block.anIntArray490[j2] = bzip2block.anIntArray489[j2 - 1];
+            System.arraycopy(bzip2block.anIntArray489, 0, bzip2block.anIntArray490, 1, 256);
 
 			for(int k2 = 1; k2 <= 256; k2++)
 				bzip2block.anIntArray490[k2] += bzip2block.anIntArray490[k2 - 1];
@@ -514,10 +507,7 @@ label0:
 			bzip2block.anInt476++;
 			bzip2block.anInt479 = i6;
 			method129(bzip2block);
-			if(bzip2block.anInt476 == bzip2block.anInt479 + 1 && bzip2block.anInt467 == 0)
-				flag19 = true;
-			else
-				flag19 = false;
+            flag19 = bzip2block.anInt476 == bzip2block.anInt479 + 1 && bzip2block.anInt467 == 0;
 		}
 	}
 

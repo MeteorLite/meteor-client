@@ -23,12 +23,12 @@ class BZip2Block {
 		anIntArray503 = new int[6];
 	}
 
-	byte aByteArray456[];
+	byte[] aByteArray456;
 	int anInt457;
 	int anInt458;
 	int anInt459;
 	int anInt460;
-	byte aByteArray461[];
+	byte[] aByteArray461;
 	int anInt462;
 	int anInt463;
 	int anInt464;
@@ -44,7 +44,7 @@ class BZip2Block {
 	int anInt474;
 	int anInt475;
 	int anInt476;
-	public static int anIntArray477[];
+	public static int[] anIntArray477;
 	int anInt478;
 	int anInt479;
 	final int anInt480 = 4096;
@@ -56,19 +56,19 @@ class BZip2Block {
 	final int anInt486 = 50;
 	final int anInt487 = 4;
 	final int anInt488 = 18002;
-	int anIntArray489[];
-	int anIntArray490[];
-	int anIntArray491[];
-	boolean aBooleanArray492[];
-	boolean aBooleanArray493[];
-	byte aByteArray494[];
-	byte aByteArray495[];
-	int anIntArray496[];
-	byte aByteArray497[];
-	byte aByteArray498[];
-	byte aByteArrayArray499[][];
-	int anIntArrayArray500[][];
-	int anIntArrayArray501[][];
-	int anIntArrayArray502[][];
-	int anIntArray503[];
+	int[] anIntArray489;
+	int[] anIntArray490;
+	int[] anIntArray491;
+	boolean[] aBooleanArray492;
+	boolean[] aBooleanArray493;
+	byte[] aByteArray494;
+	byte[] aByteArray495;
+	int[] anIntArray496;
+	byte[] aByteArray497;
+	byte[] aByteArray498;
+	byte[][] aByteArrayArray499;
+	int[][] anIntArrayArray500;
+	int[][] anIntArrayArray501;
+	int[][] anIntArrayArray502;
+	int[] anIntArray503;
 }
