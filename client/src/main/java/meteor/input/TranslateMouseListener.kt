@@ -35,7 +35,7 @@ object TranslateMouseListener : MouseListener {
     }
 
     override fun mousePressed(mouseEvent: MouseEvent): MouseEvent {
-        return translateEvent(mouseEvent)
+        return translateEvent(mouseEvent, true)
     }
 
     override fun mouseReleased(mouseEvent: MouseEvent): MouseEvent {
@@ -58,7 +58,7 @@ object TranslateMouseListener : MouseListener {
         return translateEvent(mouseEvent)
     }
 
-    private fun translateEvent(e: MouseEvent): MouseEvent {
+    private fun translateEvent(e: MouseEvent, debug: Boolean = false): MouseEvent {
         if (!client.isStretchedEnabled) {
             return e
         }
@@ -66,6 +66,11 @@ object TranslateMouseListener : MouseListener {
         val realDimensions = client.realDimensions
         val newX = (e.x / (stretchedDimensions.width / realDimensions.getWidth())).toInt()
         val newY = (e.y / (stretchedDimensions.height / realDimensions.getHeight())).toInt()
+        if (debug) {
+            System.out.println("newX: " + newX)
+            System.out.println("newY: " + newY)
+        }
+
         val mouseEvent = MouseEvent(
             client.canvas, e.id, e.getWhen(),
             e.modifiersEx,

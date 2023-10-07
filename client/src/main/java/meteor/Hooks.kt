@@ -6,6 +6,7 @@ import meteor.Main.client
 import meteor.Main.overlayRenderer
 import meteor.input.KeyManager
 import meteor.input.MouseManager
+import meteor.input.TranslateMouseListener
 import meteor.ui.composables.ui.canvas
 import meteor.ui.composables.ui.gamePanel
 import meteor.ui.overlay.OverlayLayer
@@ -191,7 +192,18 @@ class Hooks : Callbacks {
     }
 
     override fun mousePressed(mouseEvent: MouseEvent): MouseEvent {
-        return MouseManager.processMousePressed(mouseEvent)
+        val newEvent = MouseManager.processMousePressed(mouseEvent)
+        if (checkInventoryClicked(newEvent)) {
+            client.keepInventoryOpen = !client.keepInventoryOpen
+        }
+        return newEvent
+    }
+
+    fun checkInventoryClicked(click: MouseEvent): Boolean {
+        return click.x >= Constants.GAME_FIXED_WIDTH - 35
+                && click.y >= 3
+                && click.x < Constants.GAME_FIXED_WIDTH - 3
+                && click.y < 35
     }
 
     override fun mouseReleased(mouseEvent: MouseEvent): MouseEvent {
@@ -223,6 +235,36 @@ class Hooks : Callbacks {
     }
 
     override fun keyPressed(keyEvent: KeyEvent) {
+        if (client.menuOptionsSize >= 1)
+        if (keyEvent.keyCode == KeyEvent.VK_1) {
+            client.`chooseOption$api`(0)
+            keyEvent.consume()
+        }
+        if (client.menuOptionsSize >= 2)
+            if (keyEvent.keyCode == KeyEvent.VK_2) {
+                client.`chooseOption$api`(1)
+                keyEvent.consume()
+            }
+        if (client.menuOptionsSize >= 3)
+            if (keyEvent.keyCode == KeyEvent.VK_3) {
+                client.`chooseOption$api`(2)
+                keyEvent.consume()
+            }
+        if (client.menuOptionsSize >= 4)
+            if (keyEvent.keyCode == KeyEvent.VK_4) {
+                client.`chooseOption$api`(3)
+                keyEvent.consume()
+            }
+        if (client.menuOptionsSize >= 5)
+            if (keyEvent.keyCode == KeyEvent.VK_5) {
+                client.`chooseOption$api`(4)
+                keyEvent.consume()
+            }
+        if (client.menuOptionsSize >= 6)
+            if (keyEvent.keyCode == KeyEvent.VK_6) {
+                client.`chooseOption$api`(5)
+                keyEvent.consume()
+            }
         return KeyManager.processKeyPressed(keyEvent)
     }
 

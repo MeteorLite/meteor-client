@@ -46,6 +46,7 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
     private var fatigueIcon: Image? = null
     private var woodcutIcon: Image? = null
     private var fletchingIcon: Image? = null
+    private var strengthIcon: Image? = null
 
     private val barRenderers: EnumMap<BarMode, BarRenderer> = EnumMap<BarMode, BarRenderer>(
             BarMode::class.java
@@ -59,6 +60,7 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
         fatigueIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.AGILITY, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
         woodcutIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.WOODCUT, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
         fletchingIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.FLETCHING, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        strengthIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.STRENGTH, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
 
         initRenderers()
     }
@@ -110,6 +112,22 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
             healColorSupplier = {Color.BLACK},
             iconSupplier = {fletchingIcon!!},
             {Skill.FLETCHING})
+        barRenderers[BarMode.STRENGTHXP] = BarRenderer(
+            maxValueSupplier = {getXPMax(Skill.STRENGTH)},
+            currentValueSupplier = {getXPCurrent(Skill.STRENGTH)},
+            healSupplier = { 0 },
+            colorSupplier = {SkillColor.STRENGTH.color},
+            healColorSupplier = {Color.BLACK},
+            iconSupplier = {strengthIcon!!},
+            {Skill.STRENGTH})
+        barRenderers[BarMode.HITSXP] = BarRenderer(
+            maxValueSupplier = {getXPMax(Skill.HITS)},
+            currentValueSupplier = {getXPCurrent(Skill.HITS)},
+            healSupplier = { 0 },
+            colorSupplier = {SkillColor.FLETCHING.color},
+            healColorSupplier = {Color.BLACK},
+            iconSupplier = {heartIcon!!},
+            {Skill.FLETCHING})
     }
 
     override fun render(g: Graphics2D): Dimension? {
@@ -125,30 +143,44 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
         val fatigueBar = barRenderers[BarMode.FATIGUE]
         val woodcutXPBar = barRenderers[BarMode.WOODCUTXP]
         val fletchingXPBar = barRenderers[BarMode.FLETCHINGXP]
+        val strengthXPBar = barRenderers[BarMode.STRENGTHXP]
+        val hitsXPBar = barRenderers[BarMode.HITSXP]
 
-        var offsetX = 400
-        val offsetY = 45
+        var offsetX = 480
+        var offsetY = 45
+        if (client.showingInventory())
+            offsetY += 205
         if (renderHits) {
             hitsBar?.renderBar(config, g, offsetX, offsetY, width, height)
-            offsetX+=20
+            offsetX-=20
         }
         if (renderPrayer) {
             prayerBar?.renderBar(config, g, offsetX, offsetY, width, height)
-            offsetX+=20
+            offsetX-=20
         }
         if (renderFatigue) {
             fatigueBar?.renderBar(config, g, offsetX, offsetY, width, height)
-            offsetX+=20
+            offsetX-=40
         }
 
         if (renderWoodcutXP) {
             woodcutXPBar?.renderBar(config, g, offsetX, offsetY, width, height)
-            offsetX+=20
+            offsetX-=20
         }
 
         if (renderFletchingXP) {
             fletchingXPBar?.renderBar(config, g, offsetX, offsetY, width, height)
-            offsetX+=20
+            offsetX-=20
+        }
+
+        if (renderStrengthXP) {
+            strengthXPBar?.renderBar(config, g, offsetX, offsetY, width, height)
+            offsetX-=20
+        }
+
+        if (renderHitsXP) {
+            hitsXPBar?.renderBar(config, g, offsetX, offsetY, width, height)
+            offsetX-=20
         }
 
         return null
@@ -160,6 +192,9 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
         var renderFatigue = true
         var renderWoodcutXP = true
         var renderFletchingXP = true
+        var renderStrengthXP = true
+        var renderHitsXP = true
+
         private val PRAYER_COLOR = Color(50, 200, 200, 175)
         private val ACTIVE_PRAYER_COLOR = Color(57, 255, 186, 225)
         private val HEALTH_COLOR = Color(225, 35, 0, 125)

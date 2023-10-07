@@ -52,22 +52,27 @@ public final class mudclient extends NetworkedGame {
         }
 	}
 
+	private void chooseOption(int optionIdx) {
+		super.packetStream.createPacket(116);
+		super.packetStream.putByte(optionIdx);
+		super.packetStream.endPacket();
+	}
+
+
 	private void method46() {
 		if(mouseButtonClick != 0) {
-			for(int i = 0; i < anInt655; i++) {
+			for(int i = 0; i < optionMenuCount; i++) {
 				if(super.mouseX >= surface.method212(menuOptions[i], 1) || super.mouseY <= i * 12 || super.mouseY >= 12 + i * 12)
 					continue;
-				super.packetStream.createPacket(116);
-				super.packetStream.putByte(i);
-				super.packetStream.endPacket();
+				chooseOption(i);
 				break;
 			}
 
 			mouseButtonClick = 0;
-			aBoolean656 = false;
+			showOptionMenu = false;
 			return;
 		}
-		for(int j = 0; j < anInt655; j++) {
+		for(int j = 0; j < optionMenuCount; j++) {
 			int k = 65535;
 			if(super.mouseX < surface.method212(menuOptions[j], 1) && super.mouseY > j * 12 && super.mouseY < 12 + j * 12)
 				k = 0xff0000;
@@ -606,9 +611,9 @@ public final class mudclient extends NetworkedGame {
 		return rscharacter;
 	}
 
-	private void method54() {
+	private void drawRightClickMenu() {
 		if(mouseButtonClick != 0) {
-			for(int i = 0; i < anInt724; i++) {
+			for(int i = 0; i < menuItemsCount; i++) {
 				int k = anInt720 + 2;
 				int i1 = anInt721 + 27 + i * 15;
 				if(super.mouseX <= k - 2 || super.mouseY <= i1 - 12 || super.mouseY >= i1 + 4 || super.mouseX >= (k - 3) + anInt722)
@@ -618,16 +623,16 @@ public final class mudclient extends NetworkedGame {
 			}
 
 			mouseButtonClick = 0;
-			aBoolean725 = false;
+			showRightClickMenu = false;
 			return;
 		}
 		if(super.mouseX < anInt720 - 10 || super.mouseY < anInt721 - 10 || super.mouseX > anInt720 + anInt722 + 10 || super.mouseY > anInt721 + anInt726 + 10) {
-			aBoolean725 = false;
+			showRightClickMenu = false;
 			return;
 		}
 		surface.method224(anInt720, anInt721, anInt722, anInt726, 0xd0d0d0, 160);
 		surface.drawString("Choose option", anInt720 + 2, anInt721 + 12, 1, 65535);
-		for(int j = 0; j < anInt724; j++) {
+		for(int j = 0; j < menuItemsCount; j++) {
 			int l = anInt720 + 2;
 			int j1 = anInt721 + 27 + j * 15;
 			int k1 = 0xffffff;
@@ -746,7 +751,7 @@ public final class mudclient extends NetworkedGame {
         }
 	}
 
-	private void method60(boolean flag) {
+	private void drawUiTabMinimap(boolean flag) {
 		int i = surface.width2 - 199;
 		char c = '\234';
 		char c2 = '\230';
@@ -874,7 +879,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private void method62() {
+	private void setActiveUiTab() {
 		if(showUiTab == 0 && super.mouseX >= surface.width2 - 35 && super.mouseY >= 3 && super.mouseX < surface.width2 - 3 && super.mouseY < 35)
 			showUiTab = 1;
 		if(showUiTab == 0 && super.mouseX >= surface.width2 - 35 - 33 && super.mouseY >= 3 && super.mouseX < surface.width2 - 3 - 33 && super.mouseY < 35) {
@@ -1230,32 +1235,32 @@ public final class mudclient extends NetworkedGame {
 		if(anInt791 != 0) {
 			method84();
 		} else {
-			if(aBoolean656)
+			if(showOptionMenu)
 				method46();
 			if(localPlayer.animation == 8 || localPlayer.animation == 9)
 				method107();
-			method62();
-			boolean flag = !aBoolean656 && !aBoolean725;
+			setActiveUiTab();
+			boolean flag = !showOptionMenu && !showRightClickMenu;
 			if(flag)
-				anInt724 = 0;
+				menuItemsCount = 0;
 			if(showUiTab == 0 && flag)
 				method75();
 			if(showUiTab == 1)
-				method105(flag);
+				drawUiTabInventory(flag);
 			if(showUiTab == 2)
-				method60(flag);
+				drawUiTabMinimap(flag);
 			if(showUiTab == 3)
-				method109(flag);
+				drawUiTabPlayerInfo(flag);
 			if(showUiTab == 4)
-				method104(flag);
+				drawUiTabMagic(flag);
 			if(showUiTab == 5)
-				method87(flag);
+				drawUiTabSocial(flag);
 			if(showUiTab == 6)
-				method89(flag);
-			if(!aBoolean725 && !aBoolean656)
-				method80();
-			if(aBoolean725 && !aBoolean656)
-				method54();
+				drawUiTabOptions(flag);
+			if(!showRightClickMenu && !showOptionMenu)
+				createTopMouseMenu();
+			if(showRightClickMenu && !showOptionMenu)
+				drawRightClickMenu();
 		}
 		mouseButtonClick = 0;
 	}
@@ -1391,7 +1396,7 @@ public final class mudclient extends NetworkedGame {
 		Model[] amodel = scene.method301();
 		int[] ai = scene.method307();
 		for(int j1 = 0; j1 < i1; j1++) {
-			if(anInt724 > 200)
+			if(menuItemsCount > 200)
 				break;
 			int k1 = ai[j1];
 			Model model = amodel[j1];
@@ -1423,94 +1428,94 @@ public final class mudclient extends NetworkedGame {
 						s = " " + s + "(level-" + players[i2].combatLevel + ")";
 						if(selectedSpell >= 0) {
 							if(Definitions.anIntArray137[selectedSpell] == 1 || Definitions.anIntArray137[selectedSpell] == 2) {
-								aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
-								aStringArray728[anInt724] = "@whi@" + players[i2].name + s;
-								menuItemOpcodes[anInt724] = 800;
-								menuItemX[anInt724] = players[i2].currentX;
-								menuItemY[anInt724] = players[i2].currentY;
-								menuItemIDs[anInt724] = players[i2].serverIndex;
-								menuItemSourceIdxs[anInt724] = selectedSpell;
-								anInt724++;
+								aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
+								aStringArray728[menuItemsCount] = "@whi@" + players[i2].name + s;
+								menuItemOpcodes[menuItemsCount] = 800;
+								menuItemX[menuItemsCount] = players[i2].currentX;
+								menuItemY[menuItemsCount] = players[i2].currentY;
+								menuItemIDs[menuItemsCount] = players[i2].serverIndex;
+								menuItemSourceIdxs[menuItemsCount] = selectedSpell;
+								menuItemsCount++;
 							}
 						} else
 						if(selectedItemSlot >= 0) {
-							aStringArray727[anInt724] = "Use " + selectedItemName + " with";
-							aStringArray728[anInt724] = "@whi@" + players[i2].name + s;
-							menuItemOpcodes[anInt724] = 810;
-							menuItemX[anInt724] = players[i2].currentX;
-							menuItemY[anInt724] = players[i2].currentY;
-							menuItemIDs[anInt724] = players[i2].serverIndex;
-							menuItemSourceIdxs[anInt724] = selectedItemSlot;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Use " + selectedItemName + " with";
+							aStringArray728[menuItemsCount] = "@whi@" + players[i2].name + s;
+							menuItemOpcodes[menuItemsCount] = 810;
+							menuItemX[menuItemsCount] = players[i2].currentX;
+							menuItemY[menuItemsCount] = players[i2].currentY;
+							menuItemIDs[menuItemsCount] = players[i2].serverIndex;
+							menuItemSourceIdxs[menuItemsCount] = selectedItemSlot;
+							menuItemsCount++;
 						} else {
 							if(i > 0 && (players[i2].currentY - 64) / magicLoc + anInt828 + baseY < 2203) {
-								aStringArray727[anInt724] = "Attack";
-								aStringArray728[anInt724] = "@whi@" + players[i2].name + s;
+								aStringArray727[menuItemsCount] = "Attack";
+								aStringArray728[menuItemsCount] = "@whi@" + players[i2].name + s;
 								if(k3 >= 0 && k3 < 5)
-									menuItemOpcodes[anInt724] = 805;
+									menuItemOpcodes[menuItemsCount] = 805;
 								else
-									menuItemOpcodes[anInt724] = 2805;
-								menuItemX[anInt724] = players[i2].currentX;
-								menuItemY[anInt724] = players[i2].currentY;
-								menuItemIDs[anInt724] = players[i2].serverIndex;
-								anInt724++;
+									menuItemOpcodes[menuItemsCount] = 2805;
+								menuItemX[menuItemsCount] = players[i2].currentX;
+								menuItemY[menuItemsCount] = players[i2].currentY;
+								menuItemIDs[menuItemsCount] = players[i2].serverIndex;
+								menuItemsCount++;
 							} else
 							if(isMembers) {
-								aStringArray727[anInt724] = "Duel with";
-								aStringArray728[anInt724] = "@whi@" + players[i2].name + s;
-								menuItemX[anInt724] = players[i2].currentX;
-								menuItemY[anInt724] = players[i2].currentY;
-								menuItemOpcodes[anInt724] = 2806;
-								menuItemIDs[anInt724] = players[i2].serverIndex;
-								anInt724++;
+								aStringArray727[menuItemsCount] = "Duel with";
+								aStringArray728[menuItemsCount] = "@whi@" + players[i2].name + s;
+								menuItemX[menuItemsCount] = players[i2].currentX;
+								menuItemY[menuItemsCount] = players[i2].currentY;
+								menuItemOpcodes[menuItemsCount] = 2806;
+								menuItemIDs[menuItemsCount] = players[i2].serverIndex;
+								menuItemsCount++;
 							}
-							aStringArray727[anInt724] = "Trade with";
-							aStringArray728[anInt724] = "@whi@" + players[i2].name + s;
-							menuItemOpcodes[anInt724] = 2810;
-							menuItemIDs[anInt724] = players[i2].serverIndex;
-							anInt724++;
-							aStringArray727[anInt724] = "Follow";
-							aStringArray728[anInt724] = "@whi@" + players[i2].name + s;
-							menuItemOpcodes[anInt724] = 2820;
-							menuItemIDs[anInt724] = players[i2].serverIndex;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Trade with";
+							aStringArray728[menuItemsCount] = "@whi@" + players[i2].name + s;
+							menuItemOpcodes[menuItemsCount] = 2810;
+							menuItemIDs[menuItemsCount] = players[i2].serverIndex;
+							menuItemsCount++;
+							aStringArray727[menuItemsCount] = "Follow";
+							aStringArray728[menuItemsCount] = "@whi@" + players[i2].name + s;
+							menuItemOpcodes[menuItemsCount] = 2820;
+							menuItemIDs[menuItemsCount] = players[i2].serverIndex;
+							menuItemsCount++;
 						}
 					} else
 					if(l2 == 2) {
 						if(selectedSpell >= 0) {
 							if(Definitions.anIntArray137[selectedSpell] == 3) {
-								aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
-								aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
-								menuItemOpcodes[anInt724] = 200;
-								menuItemX[anInt724] = anIntArray760[i2];
-								menuItemY[anInt724] = anIntArray761[i2];
-								menuItemIDs[anInt724] = anIntArray841[i2];
-								menuItemSourceIdxs[anInt724] = selectedSpell;
-								anInt724++;
+								aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
+								aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
+								menuItemOpcodes[menuItemsCount] = 200;
+								menuItemX[menuItemsCount] = anIntArray760[i2];
+								menuItemY[menuItemsCount] = anIntArray761[i2];
+								menuItemIDs[menuItemsCount] = anIntArray841[i2];
+								menuItemSourceIdxs[menuItemsCount] = selectedSpell;
+								menuItemsCount++;
 							}
 						} else
 						if(selectedItemSlot >= 0) {
-							aStringArray727[anInt724] = "Use " + selectedItemName + " with";
-							aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
-							menuItemOpcodes[anInt724] = 210;
-							menuItemX[anInt724] = anIntArray760[i2];
-							menuItemY[anInt724] = anIntArray761[i2];
-							menuItemIDs[anInt724] = anIntArray841[i2];
-							menuItemSourceIdxs[anInt724] = selectedItemSlot;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Use " + selectedItemName + " with";
+							aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
+							menuItemOpcodes[menuItemsCount] = 210;
+							menuItemX[menuItemsCount] = anIntArray760[i2];
+							menuItemY[menuItemsCount] = anIntArray761[i2];
+							menuItemIDs[menuItemsCount] = anIntArray841[i2];
+							menuItemSourceIdxs[menuItemsCount] = selectedItemSlot;
+							menuItemsCount++;
 						} else {
-							aStringArray727[anInt724] = "Take";
-							aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
-							menuItemOpcodes[anInt724] = 220;
-							menuItemX[anInt724] = anIntArray760[i2];
-							menuItemY[anInt724] = anIntArray761[i2];
-							menuItemIDs[anInt724] = anIntArray841[i2];
-							anInt724++;
-							aStringArray727[anInt724] = "Examine";
-							aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
-							menuItemOpcodes[anInt724] = 3200;
-							menuItemIDs[anInt724] = anIntArray841[i2];
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Take";
+							aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
+							menuItemOpcodes[menuItemsCount] = 220;
+							menuItemX[menuItemsCount] = anIntArray760[i2];
+							menuItemY[menuItemsCount] = anIntArray761[i2];
+							menuItemIDs[menuItemsCount] = anIntArray841[i2];
+							menuItemsCount++;
+							aStringArray727[menuItemsCount] = "Examine";
+							aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[anIntArray841[i2]];
+							menuItemOpcodes[menuItemsCount] = 3200;
+							menuItemIDs[menuItemsCount] = anIntArray841[i2];
+							menuItemsCount++;
 						}
 					} else
 					if(l2 == 3) {
@@ -1542,59 +1547,59 @@ public final class mudclient extends NetworkedGame {
 						}
 						if(selectedSpell >= 0) {
 							if(Definitions.anIntArray137[selectedSpell] == 2) {
-								aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
-								aStringArray728[anInt724] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
-								menuItemOpcodes[anInt724] = 700;
-								menuItemX[anInt724] = npcs[i2].currentX;
-								menuItemY[anInt724] = npcs[i2].currentY;
-								menuItemIDs[anInt724] = npcs[i2].serverIndex;
-								menuItemSourceIdxs[anInt724] = selectedSpell;
-								anInt724++;
+								aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
+								aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+								menuItemOpcodes[menuItemsCount] = 700;
+								menuItemX[menuItemsCount] = npcs[i2].currentX;
+								menuItemY[menuItemsCount] = npcs[i2].currentY;
+								menuItemIDs[menuItemsCount] = npcs[i2].serverIndex;
+								menuItemSourceIdxs[menuItemsCount] = selectedSpell;
+								menuItemsCount++;
 							}
 						} else
 						if(selectedItemSlot >= 0) {
-							aStringArray727[anInt724] = "Use " + selectedItemName + " with";
-							aStringArray728[anInt724] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
-							menuItemOpcodes[anInt724] = 710;
-							menuItemX[anInt724] = npcs[i2].currentX;
-							menuItemY[anInt724] = npcs[i2].currentY;
-							menuItemIDs[anInt724] = npcs[i2].serverIndex;
-							menuItemSourceIdxs[anInt724] = selectedItemSlot;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Use " + selectedItemName + " with";
+							aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+							menuItemOpcodes[menuItemsCount] = 710;
+							menuItemX[menuItemsCount] = npcs[i2].currentX;
+							menuItemY[menuItemsCount] = npcs[i2].currentY;
+							menuItemIDs[menuItemsCount] = npcs[i2].serverIndex;
+							menuItemSourceIdxs[menuItemsCount] = selectedItemSlot;
+							menuItemsCount++;
 						} else {
 							if(Definitions.anIntArray83[i4] > 0) {
-								aStringArray727[anInt724] = "Attack";
-								aStringArray728[anInt724] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID] + s1;
+								aStringArray727[menuItemsCount] = "Attack";
+								aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID] + s1;
 								if(l3 >= 0)
-									menuItemOpcodes[anInt724] = 715;
+									menuItemOpcodes[menuItemsCount] = 715;
 								else
-									menuItemOpcodes[anInt724] = 2715;
-								menuItemX[anInt724] = npcs[i2].currentX;
-								menuItemY[anInt724] = npcs[i2].currentY;
-								menuItemIDs[anInt724] = npcs[i2].serverIndex;
-								anInt724++;
+									menuItemOpcodes[menuItemsCount] = 2715;
+								menuItemX[menuItemsCount] = npcs[i2].currentX;
+								menuItemY[menuItemsCount] = npcs[i2].currentY;
+								menuItemIDs[menuItemsCount] = npcs[i2].serverIndex;
+								menuItemsCount++;
 							}
-							aStringArray727[anInt724] = "Talk-to";
-							aStringArray728[anInt724] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
-							menuItemOpcodes[anInt724] = 720;
-							menuItemX[anInt724] = npcs[i2].currentX;
-							menuItemY[anInt724] = npcs[i2].currentY;
-							menuItemIDs[anInt724] = npcs[i2].serverIndex;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Talk-to";
+							aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+							menuItemOpcodes[menuItemsCount] = 720;
+							menuItemX[menuItemsCount] = npcs[i2].currentX;
+							menuItemY[menuItemsCount] = npcs[i2].currentY;
+							menuItemIDs[menuItemsCount] = npcs[i2].serverIndex;
+							menuItemsCount++;
 							if(!Definitions.aStringArray78[i4].equals("")) {
-								aStringArray727[anInt724] = Definitions.aStringArray78[i4];
-								aStringArray728[anInt724] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
-								menuItemOpcodes[anInt724] = 725;
-								menuItemX[anInt724] = npcs[i2].currentX;
-								menuItemY[anInt724] = npcs[i2].currentY;
-								menuItemIDs[anInt724] = npcs[i2].serverIndex;
-								anInt724++;
+								aStringArray727[menuItemsCount] = Definitions.aStringArray78[i4];
+								aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+								menuItemOpcodes[menuItemsCount] = 725;
+								menuItemX[menuItemsCount] = npcs[i2].currentX;
+								menuItemY[menuItemsCount] = npcs[i2].currentY;
+								menuItemIDs[menuItemsCount] = npcs[i2].serverIndex;
+								menuItemsCount++;
 							}
-							aStringArray727[anInt724] = "Examine";
-							aStringArray728[anInt724] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
-							menuItemOpcodes[anInt724] = 3700;
-							menuItemIDs[anInt724] = npcs[i2].npcID;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Examine";
+							aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+							menuItemOpcodes[menuItemsCount] = 3700;
+							menuItemIDs[menuItemsCount] = npcs[i2].npcID;
+							menuItemsCount++;
 						}
 					}
 				} else
@@ -1604,49 +1609,49 @@ public final class mudclient extends NetworkedGame {
 					if(!aBooleanArray831[j2]) {
 						if(selectedSpell >= 0) {
 							if(Definitions.anIntArray137[selectedSpell] == 4) {
-								aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
-								aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray115[i3];
-								menuItemOpcodes[anInt724] = 300;
-								menuItemX[anInt724] = anIntArray822[j2];
-								menuItemY[anInt724] = anIntArray823[j2];
-								menuItemIDs[anInt724] = wallObjectDirection[j2];
-								menuItemSourceIdxs[anInt724] = selectedSpell;
-								anInt724++;
+								aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
+								aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray115[i3];
+								menuItemOpcodes[menuItemsCount] = 300;
+								menuItemX[menuItemsCount] = anIntArray822[j2];
+								menuItemY[menuItemsCount] = anIntArray823[j2];
+								menuItemIDs[menuItemsCount] = wallObjectDirection[j2];
+								menuItemSourceIdxs[menuItemsCount] = selectedSpell;
+								menuItemsCount++;
 							}
 						} else
 						if(selectedItemSlot >= 0) {
-							aStringArray727[anInt724] = "Use " + selectedItemName + " with";
-							aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray115[i3];
-							menuItemOpcodes[anInt724] = 310;
-							menuItemX[anInt724] = anIntArray822[j2];
-							menuItemY[anInt724] = anIntArray823[j2];
-							menuItemIDs[anInt724] = wallObjectDirection[j2];
-							menuItemSourceIdxs[anInt724] = selectedItemSlot;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Use " + selectedItemName + " with";
+							aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray115[i3];
+							menuItemOpcodes[menuItemsCount] = 310;
+							menuItemX[menuItemsCount] = anIntArray822[j2];
+							menuItemY[menuItemsCount] = anIntArray823[j2];
+							menuItemIDs[menuItemsCount] = wallObjectDirection[j2];
+							menuItemSourceIdxs[menuItemsCount] = selectedItemSlot;
+							menuItemsCount++;
 						} else {
 							if(!Definitions.aStringArray117[i3].equalsIgnoreCase("WalkTo")) {
-								aStringArray727[anInt724] = Definitions.aStringArray117[i3];
-								aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray115[i3];
-								menuItemOpcodes[anInt724] = 320;
-								menuItemX[anInt724] = anIntArray822[j2];
-								menuItemY[anInt724] = anIntArray823[j2];
-								menuItemIDs[anInt724] = wallObjectDirection[j2];
-								anInt724++;
+								aStringArray727[menuItemsCount] = Definitions.aStringArray117[i3];
+								aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray115[i3];
+								menuItemOpcodes[menuItemsCount] = 320;
+								menuItemX[menuItemsCount] = anIntArray822[j2];
+								menuItemY[menuItemsCount] = anIntArray823[j2];
+								menuItemIDs[menuItemsCount] = wallObjectDirection[j2];
+								menuItemsCount++;
 							}
 							if(!Definitions.aStringArray118[i3].equalsIgnoreCase("Examine")) {
-								aStringArray727[anInt724] = Definitions.aStringArray118[i3];
-								aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray115[i3];
-								menuItemOpcodes[anInt724] = 2300;
-								menuItemX[anInt724] = anIntArray822[j2];
-								menuItemY[anInt724] = anIntArray823[j2];
-								menuItemIDs[anInt724] = wallObjectDirection[j2];
-								anInt724++;
+								aStringArray727[menuItemsCount] = Definitions.aStringArray118[i3];
+								aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray115[i3];
+								menuItemOpcodes[menuItemsCount] = 2300;
+								menuItemX[menuItemsCount] = anIntArray822[j2];
+								menuItemY[menuItemsCount] = anIntArray823[j2];
+								menuItemIDs[menuItemsCount] = wallObjectDirection[j2];
+								menuItemsCount++;
 							}
-							aStringArray727[anInt724] = "Examine";
-							aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray115[i3];
-							menuItemOpcodes[anInt724] = 3300;
-							menuItemIDs[anInt724] = i3;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Examine";
+							aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray115[i3];
+							menuItemOpcodes[menuItemsCount] = 3300;
+							menuItemIDs[menuItemsCount] = i3;
+							menuItemsCount++;
 						}
 						aBooleanArray831[j2] = true;
 					}
@@ -1657,53 +1662,53 @@ public final class mudclient extends NetworkedGame {
 					if(!aBooleanArray830[k2]) {
 						if(selectedSpell >= 0) {
 							if(Definitions.anIntArray137[selectedSpell] == 5) {
-								aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
-								aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray105[j3];
-								menuItemOpcodes[anInt724] = 400;
-								menuItemX[anInt724] = objectX[k2];
-								menuItemY[anInt724] = objectY[k2];
-								menuItemIDs[anInt724] = anIntArray843[k2];
-								menuItemSourceIdxs[anInt724] = objectID[k2];
-								menuItemTargerIdxs[anInt724] = selectedSpell;
-								anInt724++;
+								aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
+								aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray105[j3];
+								menuItemOpcodes[menuItemsCount] = 400;
+								menuItemX[menuItemsCount] = objectX[k2];
+								menuItemY[menuItemsCount] = objectY[k2];
+								menuItemIDs[menuItemsCount] = anIntArray843[k2];
+								menuItemSourceIdxs[menuItemsCount] = objectID[k2];
+								menuItemTargerIdxs[menuItemsCount] = selectedSpell;
+								menuItemsCount++;
 							}
 						} else
 						if(selectedItemSlot >= 0) {
-							aStringArray727[anInt724] = "Use " + selectedItemName + " with";
-							aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray105[j3];
-							menuItemOpcodes[anInt724] = 410;
-							menuItemX[anInt724] = objectX[k2];
-							menuItemY[anInt724] = objectY[k2];
-							menuItemIDs[anInt724] = anIntArray843[k2];
-							menuItemSourceIdxs[anInt724] = objectID[k2];
-							menuItemTargerIdxs[anInt724] = selectedItemSlot;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Use " + selectedItemName + " with";
+							aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray105[j3];
+							menuItemOpcodes[menuItemsCount] = 410;
+							menuItemX[menuItemsCount] = objectX[k2];
+							menuItemY[menuItemsCount] = objectY[k2];
+							menuItemIDs[menuItemsCount] = anIntArray843[k2];
+							menuItemSourceIdxs[menuItemsCount] = objectID[k2];
+							menuItemTargerIdxs[menuItemsCount] = selectedItemSlot;
+							menuItemsCount++;
 						} else {
 							if(!Definitions.aStringArray107[j3].equalsIgnoreCase("WalkTo")) {
-								aStringArray727[anInt724] = Definitions.aStringArray107[j3];
-								aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray105[j3];
-								menuItemOpcodes[anInt724] = 420;
-								menuItemX[anInt724] = objectX[k2];
-								menuItemY[anInt724] = objectY[k2];
-								menuItemIDs[anInt724] = anIntArray843[k2];
-								menuItemSourceIdxs[anInt724] = objectID[k2];
-								anInt724++;
+								aStringArray727[menuItemsCount] = Definitions.aStringArray107[j3];
+								aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray105[j3];
+								menuItemOpcodes[menuItemsCount] = 420;
+								menuItemX[menuItemsCount] = objectX[k2];
+								menuItemY[menuItemsCount] = objectY[k2];
+								menuItemIDs[menuItemsCount] = anIntArray843[k2];
+								menuItemSourceIdxs[menuItemsCount] = objectID[k2];
+								menuItemsCount++;
 							}
 							if(!Definitions.aStringArray108[j3].equalsIgnoreCase("Examine")) {
-								aStringArray727[anInt724] = Definitions.aStringArray108[j3];
-								aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray105[j3];
-								menuItemOpcodes[anInt724] = 2400;
-								menuItemX[anInt724] = objectX[k2];
-								menuItemY[anInt724] = objectY[k2];
-								menuItemIDs[anInt724] = anIntArray843[k2];
-								menuItemSourceIdxs[anInt724] = objectID[k2];
-								anInt724++;
+								aStringArray727[menuItemsCount] = Definitions.aStringArray108[j3];
+								aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray105[j3];
+								menuItemOpcodes[menuItemsCount] = 2400;
+								menuItemX[menuItemsCount] = objectX[k2];
+								menuItemY[menuItemsCount] = objectY[k2];
+								menuItemIDs[menuItemsCount] = anIntArray843[k2];
+								menuItemSourceIdxs[menuItemsCount] = objectID[k2];
+								menuItemsCount++;
 							}
-							aStringArray727[anInt724] = "Examine";
-							aStringArray728[anInt724] = "@cya@" + Definitions.aStringArray105[j3];
-							menuItemOpcodes[anInt724] = 3400;
-							menuItemIDs[anInt724] = j3;
-							anInt724++;
+							aStringArray727[menuItemsCount] = "Examine";
+							aStringArray728[menuItemsCount] = "@cya@" + Definitions.aStringArray105[j3];
+							menuItemOpcodes[menuItemsCount] = 3400;
+							menuItemIDs[menuItemsCount] = j3;
+							menuItemsCount++;
 						}
 						aBooleanArray830[k2] = true;
 					}
@@ -1716,32 +1721,32 @@ public final class mudclient extends NetworkedGame {
 		}
 
 		if(selectedSpell >= 0 && Definitions.anIntArray137[selectedSpell] <= 1) {
-			aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on self";
-			aStringArray728[anInt724] = "";
-			menuItemOpcodes[anInt724] = 1000;
-			menuItemIDs[anInt724] = selectedSpell;
-			anInt724++;
+			aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on self";
+			aStringArray728[menuItemsCount] = "";
+			menuItemOpcodes[menuItemsCount] = 1000;
+			menuItemIDs[menuItemsCount] = selectedSpell;
+			menuItemsCount++;
 		}
 		if(j != -1) {
 			int l1 = j;
 			if(selectedSpell >= 0) {
 				if(Definitions.anIntArray137[selectedSpell] == 6) {
-					aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on ground";
-					aStringArray728[anInt724] = "";
-					menuItemOpcodes[anInt724] = 900;
-					menuItemX[anInt724] = world.anIntArray593[l1];
-					menuItemY[anInt724] = world.anIntArray594[l1];
-					menuItemIDs[anInt724] = selectedSpell;
-					anInt724++;
+					aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on ground";
+					aStringArray728[menuItemsCount] = "";
+					menuItemOpcodes[menuItemsCount] = 900;
+					menuItemX[menuItemsCount] = world.anIntArray593[l1];
+					menuItemY[menuItemsCount] = world.anIntArray594[l1];
+					menuItemIDs[menuItemsCount] = selectedSpell;
+					menuItemsCount++;
                 }
 			} else
 			if(selectedItemSlot < 0) {
-				aStringArray727[anInt724] = "Walk here";
-				aStringArray728[anInt724] = "";
-				menuItemOpcodes[anInt724] = 920;
-				menuItemX[anInt724] = world.anIntArray593[l1];
-				menuItemY[anInt724] = world.anIntArray594[l1];
-				anInt724++;
+				aStringArray727[menuItemsCount] = "Walk here";
+				aStringArray728[menuItemsCount] = "";
+				menuItemOpcodes[menuItemsCount] = 920;
+				menuItemX[menuItemsCount] = world.anIntArray593[l1];
+				menuItemY[menuItemsCount] = world.anIntArray594[l1];
+				menuItemsCount++;
 			}
 		}
 	}
@@ -2268,19 +2273,19 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private void method80() {
+	private void createTopMouseMenu() {
 		if(selectedSpell >= 0 || selectedItemSlot >= 0) {
-			aStringArray727[anInt724] = "Cancel";
-			aStringArray728[anInt724] = "";
-			menuItemOpcodes[anInt724] = 4000;
-			anInt724++;
+			aStringArray727[menuItemsCount] = "Cancel";
+			aStringArray728[menuItemsCount] = "";
+			menuItemOpcodes[menuItemsCount] = 4000;
+			menuItemsCount++;
 		}
-		for(int i = 0; i < anInt724; i++)
+		for(int i = 0; i < menuItemsCount; i++)
 			menuIdxs[i] = i;
 
 		for(boolean flag = false; !flag;) {
 			flag = true;
-			for(int j = 0; j < anInt724 - 1; j++) {
+			for(int j = 0; j < menuItemsCount - 1; j++) {
 				int l = menuIdxs[j];
 				int j1 = menuIdxs[j + 1];
 				if(menuItemOpcodes[l] > menuItemOpcodes[j1]) {
@@ -2292,11 +2297,11 @@ public final class mudclient extends NetworkedGame {
 
 		}
 
-		if(anInt724 > 20)
-			anInt724 = 20;
-		if(anInt724 > 0) {
+		if(menuItemsCount > 20)
+			menuItemsCount = 20;
+		if(menuItemsCount > 0) {
 			int k = -1;
-			for(int i1 = 0; i1 < anInt724; i1++) {
+			for(int i1 = 0; i1 < menuItemsCount; i1++) {
 				if(aStringArray728[menuIdxs[i1]] == null || aStringArray728[menuIdxs[i1]].length() <= 0)
 					continue;
 				k = i1;
@@ -2304,29 +2309,29 @@ public final class mudclient extends NetworkedGame {
 			}
 
 			String s = null;
-			if((selectedItemSlot >= 0 || selectedSpell >= 0) && anInt724 == 1)
+			if((selectedItemSlot >= 0 || selectedSpell >= 0) && menuItemsCount == 1)
 				s = "Choose a target";
 			else
-			if((selectedItemSlot >= 0 || selectedSpell >= 0) && anInt724 > 1)
+			if((selectedItemSlot >= 0 || selectedSpell >= 0) && menuItemsCount > 1)
 				s = "@whi@" + aStringArray727[menuIdxs[0]] + " " + aStringArray728[menuIdxs[0]];
 			else
 			if(k != -1)
 				s = aStringArray728[menuIdxs[k]] + ": @whi@" + aStringArray727[menuIdxs[0]];
-			if(anInt724 == 2 && s != null)
+			if(menuItemsCount == 2 && s != null)
 				s = s + "@whi@ / 1 more option";
-			if(anInt724 > 2 && s != null)
-				s = s + "@whi@ / " + (anInt724 - 1) + " more options";
+			if(menuItemsCount > 2 && s != null)
+				s = s + "@whi@ / " + (menuItemsCount - 1) + " more options";
 			if(s != null)
 				surface.drawString(s, 6, 14, 1, 0xffff00);
-			if(!aBoolean861 && mouseButtonClick == 1 || aBoolean861 && mouseButtonClick == 1 && anInt724 == 1) {
+			if(!aBoolean861 && mouseButtonClick == 1 || aBoolean861 && mouseButtonClick == 1 && menuItemsCount == 1) {
 				menuAction(menuIdxs[0]);
 				mouseButtonClick = 0;
 				return;
 			}
 			if(!aBoolean861 && mouseButtonClick == 2 || aBoolean861 && mouseButtonClick == 1) {
-				anInt726 = (anInt724 + 1) * 15;
+				anInt726 = (menuItemsCount + 1) * 15;
 				anInt722 = surface.method212("Choose option", 1) + 5;
-				for(int k1 = 0; k1 < anInt724; k1++) {
+				for(int k1 = 0; k1 < menuItemsCount; k1++) {
 					int l1 = surface.method212(aStringArray727[k1] + " " + aStringArray728[k1], 1) + 5;
 					if(l1 > anInt722)
 						anInt722 = l1;
@@ -2334,7 +2339,7 @@ public final class mudclient extends NetworkedGame {
 
 				anInt720 = super.mouseX - anInt722 / 2;
 				anInt721 = super.mouseY - 7;
-				aBoolean725 = true;
+				showRightClickMenu = true;
 				if(anInt720 < 0)
 					anInt720 = 0;
 				if(anInt721 < 0)
@@ -2852,7 +2857,7 @@ label0:
 		return method68(i) >= j;
 	}
 
-	private void method87(boolean flag) {
+	private void drawUiTabSocial(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 5);
@@ -3014,7 +3019,7 @@ label0:
         }
 	}
 
-	private void method89(boolean flag) {
+	private void drawUiTabOptions(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 6);
@@ -3755,9 +3760,10 @@ label0:
 				return;
 			}
 			if(i == 245) {
-				aBoolean656 = true;
+				System.out.println("Show optionMenu");
+				showOptionMenu = true;
 				int k2 = DataUtils.method340(buffer[1]);
-				anInt655 = k2;
+				optionMenuCount = k2;
 				int j10 = 2;
 				for(int l16 = 0; l16 < k2; l16++) {
 					int j21 = DataUtils.method340(buffer[j10]);
@@ -3769,7 +3775,7 @@ label0:
 				return;
 			}
 			if(i == 252) {
-				aBoolean656 = false;
+				showOptionMenu = false;
 				return;
 			}
 			if(i == 25) {
@@ -4913,7 +4919,7 @@ label0:
 		cameraAngle = 1;
 		isMembers = false;
 		aBoolean784 = false;
-		aBoolean725 = false;
+		showRightClickMenu = false;
 		cameraRotationYIncrement = 2;
 		aBooleanArray830 = new boolean[1500];
 		aStringArray727 = new String[250];
@@ -4956,7 +4962,7 @@ label0:
 		anIntArray908 = new int[14];
 		aString884 = "";
 		selectedSpell = -1;
-		aBoolean656 = false;
+		showOptionMenu = false;
 		boostedSkillLevels = new int[18];
 		teleportBubbleType = new int[50];
 		errorLoadingCodebase = false;
@@ -5313,7 +5319,7 @@ label0:
 		npcCount = 0;
 	}
 
-	private void method104(boolean flag) {
+	private void drawUiTabMagic(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 4);
@@ -5463,7 +5469,7 @@ label0:
 		}
 	}
 
-	private void method105(boolean flag) {
+	private void drawUiTabInventory(boolean flag) {
 		int i = surface.width2 - 248;
 		surface.method246(i, 3, anInt658 + 1);
 		for(int j = 0; j < inventoryMaxItemCount; j++) {
@@ -5496,62 +5502,62 @@ label0:
 				int i2 = inventoryItemsIDs[l1];
 				if(selectedSpell >= 0) {
 					if(Definitions.anIntArray137[selectedSpell] == 3) {
-						aStringArray727[anInt724] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
-						aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-						menuItemOpcodes[anInt724] = 600;
-						menuItemIDs[anInt724] = l1;
-						menuItemSourceIdxs[anInt724] = selectedSpell;
-						anInt724++;
+						aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
+						aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+						menuItemOpcodes[menuItemsCount] = 600;
+						menuItemIDs[menuItemsCount] = l1;
+						menuItemSourceIdxs[menuItemsCount] = selectedSpell;
+						menuItemsCount++;
                     }
 				} else {
 					if(selectedItemSlot >= 0) {
-						aStringArray727[anInt724] = "Use " + selectedItemName + " with";
-						aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-						menuItemOpcodes[anInt724] = 610;
-						menuItemIDs[anInt724] = l1;
-						menuItemSourceIdxs[anInt724] = selectedItemSlot;
-						anInt724++;
+						aStringArray727[menuItemsCount] = "Use " + selectedItemName + " with";
+						aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+						menuItemOpcodes[menuItemsCount] = 610;
+						menuItemIDs[menuItemsCount] = l1;
+						menuItemSourceIdxs[menuItemsCount] = selectedItemSlot;
+						menuItemsCount++;
 						return;
 					}
 					if(inventoryItemsEquipped[l1] == 1) {
-						aStringArray727[anInt724] = "Remove";
-						aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-						menuItemOpcodes[anInt724] = 620;
-						menuItemIDs[anInt724] = l1;
-						anInt724++;
+						aStringArray727[menuItemsCount] = "Remove";
+						aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+						menuItemOpcodes[menuItemsCount] = 620;
+						menuItemIDs[menuItemsCount] = l1;
+						menuItemsCount++;
 					} else
 					if(Definitions.anIntArray70[i2] != 0) {
 						if((Definitions.anIntArray70[i2] & 0x18) != 0)
-							aStringArray727[anInt724] = "Wield";
+							aStringArray727[menuItemsCount] = "Wield";
 						else
-							aStringArray727[anInt724] = "Wear";
-						aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-						menuItemOpcodes[anInt724] = 630;
-						menuItemIDs[anInt724] = l1;
-						anInt724++;
+							aStringArray727[menuItemsCount] = "Wear";
+						aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+						menuItemOpcodes[menuItemsCount] = 630;
+						menuItemIDs[menuItemsCount] = l1;
+						menuItemsCount++;
 					}
 					if(!Definitions.aStringArray65[i2].equals("")) {
-						aStringArray727[anInt724] = Definitions.aStringArray65[i2];
-						aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-						menuItemOpcodes[anInt724] = 640;
-						menuItemIDs[anInt724] = l1;
-						anInt724++;
+						aStringArray727[menuItemsCount] = Definitions.aStringArray65[i2];
+						aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+						menuItemOpcodes[menuItemsCount] = 640;
+						menuItemIDs[menuItemsCount] = l1;
+						menuItemsCount++;
 					}
-					aStringArray727[anInt724] = "Use";
-					aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-					menuItemOpcodes[anInt724] = 650;
-					menuItemIDs[anInt724] = l1;
-					anInt724++;
-					aStringArray727[anInt724] = "Drop";
-					aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-					menuItemOpcodes[anInt724] = 660;
-					menuItemIDs[anInt724] = l1;
-					anInt724++;
-					aStringArray727[anInt724] = "Examine";
-					aStringArray728[anInt724] = "@lre@" + Definitions.itemNames[i2];
-					menuItemOpcodes[anInt724] = 3600;
-					menuItemIDs[anInt724] = i2;
-					anInt724++;
+					aStringArray727[menuItemsCount] = "Use";
+					aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+					menuItemOpcodes[menuItemsCount] = 650;
+					menuItemIDs[menuItemsCount] = l1;
+					menuItemsCount++;
+					aStringArray727[menuItemsCount] = "Drop";
+					aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+					menuItemOpcodes[menuItemsCount] = 660;
+					menuItemIDs[menuItemsCount] = l1;
+					menuItemsCount++;
+					aStringArray727[menuItemsCount] = "Examine";
+					aStringArray728[menuItemsCount] = "@lre@" + Definitions.itemNames[i2];
+					menuItemOpcodes[menuItemsCount] = 3600;
+					menuItemIDs[menuItemsCount] = i2;
+					menuItemsCount++;
 				}
 			}
 		}
@@ -5683,7 +5689,7 @@ label0:
         }
 	}
 
-	private void method109(boolean flag) {
+	private void drawUiTabPlayerInfo(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
 		surface.method246(i - 49, 3, anInt658 + 3);
@@ -7149,8 +7155,8 @@ label0:
 	private int mouseButtonClick;
 	private SpriteSurface surface;
 	private final String[] menuOptions;
-	private int anInt655;
-	private boolean aBoolean656;
+	private int optionMenuCount;
+	private boolean showOptionMenu;
 	private RsWorld world;
 	private Model[] aModelArray657;
 	private Scene scene;
@@ -7259,8 +7265,8 @@ label0:
 	private int anInt721;
 	private int anInt722;
 	private final int[] menuIdxs;
-	private int anInt724;
-	private boolean aBoolean725;
+	private int menuItemsCount;
+	private boolean showRightClickMenu;
 	private int anInt726;
 	private final String[] aStringArray727;
 	private final String[] aStringArray728;

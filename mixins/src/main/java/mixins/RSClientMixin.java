@@ -244,4 +244,53 @@ public abstract class RSClientMixin implements RSClient {
 	public void beforeDrawUI(){
 		client.getCallbacks().drawScene(pixels);
 	}
+
+	@Inject
+	boolean keepInventoryOpen = false;
+
+	@Inject
+	@Override
+	public boolean getKeepInventoryOpen() {
+		return keepInventoryOpen;
+	}
+
+	@Inject
+	@Override
+	public void setKeepInventoryOpen(boolean keepInventoryOpen) {
+		this.keepInventoryOpen = keepInventoryOpen;
+	}
+
+	@Inject
+	public int lastUITab = -1;
+
+	@Inject
+	public boolean showingInventory = false;
+
+	@Inject
+	@Override
+	public boolean showingInventory() {
+		return showingInventory;
+	}
+
+	@Inject
+	@FieldHook("showUiTab")
+	public void onShowUiTabChanged(int idx) {
+		boolean keptInventory = false;
+		if (getShowUITab() != 1) {
+			if (lastUITab == 1) {
+				if (keepInventoryOpen) {
+					setShowUITab(1);
+					keptInventory = true;
+				}
+			}
+		}
+		if (!keptInventory)
+			lastUITab = getShowUITab();
+
+		if (getShowUITab() == 0) {
+			showingInventory = false;
+		}
+		else if (getShowUITab() == 1)
+			showingInventory = true;
+	}
 }

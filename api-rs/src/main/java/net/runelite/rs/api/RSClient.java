@@ -92,4 +92,16 @@ public interface RSClient extends Client
 
 	@Import("surface")
 	RSSpriteSurface getSurface();
+
+	@Import("showUiTab")
+	int getShowUITab();
+
+	@Import("showUiTab")
+	void setShowUITab(int tab);
+
+	@Import("optionMenuCount")
+	int getMenuOptionsSize();
+
+	@Import("chooseOption")
+	void chooseOption$api(int optionIdx);
 }

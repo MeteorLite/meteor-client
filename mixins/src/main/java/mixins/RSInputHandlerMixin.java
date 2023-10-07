@@ -4,11 +4,11 @@ import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSGameShell;
 
-import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 @Mixin(RSGameShell.class)
-public abstract class RSMouseHandlerMixin implements RSGameShell
+public abstract class RSInputHandlerMixin implements RSGameShell
 {
 	@Shadow("mudClient")
 	private static RSClient client;
@@ -167,35 +167,39 @@ public abstract class RSMouseHandlerMixin implements RSGameShell
 		}
 	}
 
-
-/*	@Override
-	@Inject
-	public synchronized void sendClick(int x, int y, int button)
+	@Override
+	@Copy("keyPressed")
+	@Replace("keyPressed")
+	public final synchronized void keyPressed(KeyEvent keyEvent)
 	{
-		long time = System.currentTimeMillis();
-		Canvas canvas = client.getCanvas();
-		canvas.dispatchEvent(new MouseEvent(canvas, MouseEvent.MOUSE_PRESSED, time, 0, x, y, 1, false, button));
-		canvas.dispatchEvent(new MouseEvent(canvas, MouseEvent.MOUSE_RELEASED, time, 0, x, y, 1, false, button));
+		client.getCallbacks().keyPressed(keyEvent);
+		if (!keyEvent.isConsumed())
+		{
+			keyPressed(keyEvent);
+		}
 	}
 
 	@Override
-	@Inject
-	public synchronized void sendMovement(int x, int y)
+	@Copy("keyReleased")
+	@Replace("keyReleased")
+	public final synchronized void keyReleased(KeyEvent keyEvent)
 	{
-		long time = System.currentTimeMillis();
-		Canvas canvas = client.getCanvas();
-//		if (!canvas.contains(getCurrentX(), getCurrentY()) && canvas.contains(x, y))
-//		{
-//			canvas.dispatchEvent(new MouseEvent(canvas, MouseEvent.MOUSE_ENTERED, client.getCurrentTime(), 0, x, y, 0, false));
-//		}
+		client.getCallbacks().keyReleased(keyEvent);
+		if (!keyEvent.isConsumed())
+		{
+			keyReleased(keyEvent);
+		}
+	}
 
-		canvas.dispatchEvent(new MouseEvent(canvas, MouseEvent.MOUSE_MOVED, time, 0, x, y, 0, false));
-
-//		int currX = getCurrentX();
-//		int currY = getCurrentY();
-//		if (!canvas.contains(currX, currY))
-//		{
-//			canvas.dispatchEvent(new MouseEvent(canvas, MouseEvent.MOUSE_EXITED, client.getCurrentTime(), 0, currX, currY, 0, false));
-//		}
-	}*/
+	@Override
+	@Copy("keyTyped")
+	@Replace("keyTyped")
+	public final void keyTyped(KeyEvent keyEvent)
+	{
+		client.getCallbacks().keyTyped(keyEvent);
+		if (!keyEvent.isConsumed())
+		{
+			keyTyped(keyEvent);
+		}
+	}
 }

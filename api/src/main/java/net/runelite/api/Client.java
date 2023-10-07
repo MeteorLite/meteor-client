@@ -121,4 +121,14 @@ public interface Client
 	int getXPUntilLevel(Skill skill);
 
 	int[] getSkillXPs();
+
+	boolean getKeepInventoryOpen();
+
+	void setKeepInventoryOpen(boolean keepInventoryOpen);
+
+	boolean showingInventory();
+
+	int getMenuOptionsSize();
+
+	void chooseOption$api(int optionIdx);
 }

@@ -27,5 +27,5 @@ package meteor.plugins.statusbars.config
 enum class BarMode {
     DISABLED, HITPOINTS, PRAYER,
     RUN_ENERGY, SPECIAL_ATTACK, FATIGUE,
-    WOODCUTXP, FLETCHINGXP
+    WOODCUTXP, FLETCHINGXP, STRENGTHXP, HITSXP
 }
