@@ -4797,10 +4797,7 @@ label0:
 		}
 		scene.method288();
 		method64();
-		if(mouseClickXStep > 0)
-			surface.method246(anInt801 - 8, anInt802 - 8, anInt658 + 14 + (24 - mouseClickXStep) / 6);
-		if(mouseClickXStep < 0)
-			surface.method246(anInt801 - 8, anInt802 - 8, anInt658 + 18 + (24 + mouseClickXStep) / 6);
+		drawMouseClick(false);
 		if(systemUpdateTimer != 0) {
 			int i6 = systemUpdateTimer / 50;
 			int j8 = i6 / 60;
@@ -4849,9 +4846,20 @@ label0:
 		Panel.anInt216 = 0;
 		surface.method260(surface.width2 - 3 - 197, 3, anInt658, 128);
 		drawUI();
+		drawMouseClick(true);
 		surface.aBoolean352 = false;
 		method76();
 		surface.drawSurface(graphics, 0, 0);
+	}
+
+	//Draw mouse later if injected so clicks show properly over map etc, but keep normal behavior in vanilla
+	public void drawMouseClick(boolean afterUI) {
+		if (!injected || afterUI) {
+			if(mouseClickXStep > 0)
+				surface.method246(anInt801 - 8, anInt802 - 8, anInt658 + 14 + (24 - mouseClickXStep) / 6);
+			if(mouseClickXStep < 0)
+				surface.method246(anInt801 - 8, anInt802 - 8, anInt658 + 18 + (24 + mouseClickXStep) / 6);
+		}
 	}
 
 	protected Socket method12(String s, int i) throws IOException {
