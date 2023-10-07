@@ -9,6 +9,7 @@ import meteor.input.MouseManager
 import meteor.ui.composables.ui.canvas
 import meteor.ui.composables.ui.gamePanel
 import meteor.ui.overlay.OverlayLayer
+import net.runelite.api.Constants
 import net.runelite.api.InventoryItem
 import net.runelite.api.hooks.Callbacks
 import org.rationalityfrontline.kevent.KEVENT
@@ -16,8 +17,7 @@ import java.awt.*
 import java.awt.event.KeyEvent
 import java.awt.event.MouseEvent
 import java.awt.event.MouseWheelEvent
-import java.awt.image.BufferedImage
-import java.awt.image.VolatileImage
+import java.awt.image.*
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 
@@ -68,9 +68,44 @@ class Hooks : Callbacks {
 
     }
 
-    override fun drawScene() {
+    val sceneOverlays = createRSBufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
+    val transparent = Color(5,5,5)
 
+    override fun drawScene(pixels: IntArray) {
+        val graphics2d = sceneOverlays.graphics as Graphics2D
+        graphics2d.color = transparent;
+        graphics2d.fillRect(0, 0, sceneOverlays.width, sceneOverlays.height);
+        try {
+            overlayRenderer.renderOverlayLayer(graphics2d, OverlayLayer.ABOVE_SCENE)
+        } catch (ex: java.lang.Exception) {
+            ex.printStackTrace()
+        }
+        for (y in 0..<sceneOverlays.height) {
+            for (x in 0..<sceneOverlays.width) {
+                val color = sceneOverlays.getRGB(x, y)
+                if (color != transparent.rgb)
+                setPixel(pixels, sceneOverlays.width+1, sceneOverlays.height+1, x, y,
+                    sceneOverlays.getRGB(x, y))
+            }
+        }
     }
+
+    private fun createRSBufferedImage(width: Int, height: Int): BufferedImage {
+        val colorModel = DirectColorModel(32, 0xff0000, 65280, 255);
+        val raster: WritableRaster = colorModel.createCompatibleWritableRaster(width, height)
+        return BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied, null)
+    }
+
+    fun setPixel(
+        pixels: IntArray,
+        rw: Int, rh: Int,
+        x: Int, y: Int, colour: Int
+    ) {
+        if (x >= 0 && y >= 0 && x < rw && y < rh) {
+            pixels[x + y * rw] = colour
+        }
+    }
+
 
     override fun drawAboveOverheads() {
 

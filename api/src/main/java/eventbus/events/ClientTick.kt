@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
- * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,27 +22,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package mixins;
+package eventbus.events
 
-import eventbus.events.DrawGameImage;
-import net.runelite.api.mixins.*;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSGameShell;
-import net.runelite.rs.api.RSSurface;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-@Mixin(RSSurface.class)
-public abstract class RSSurfaceMixin implements RSSurface {
-	@Shadow("mudClient")
-	public static RSClient client;
-
-	@MethodHook("drawSurface")
-	@Inject
-	public void onDrawSurface(Graphics g, int x, int y)
-	{
-		if (getGameImage() != null)
-			client.getCallbacks().draw(getGameImage(), x, y);
-	}
-}
+/**
+ * An event fired at the end of every mudclient.doCycle()
+ */
+object ClientTick

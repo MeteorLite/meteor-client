@@ -62,9 +62,34 @@ public interface RSClient extends Client
 	@Import("loggedIn")
 	int getRSCLoggedIn();
 
-	@Import("loggedIn")
-	int getGamePanelWidth();
+	@Import("fogOfWar")
+	void setFogOfWar(boolean fogOfWar);
 
-	@Import("loggedIn")
-	int getGamePanelHeight();
+	@Import("localPlayer")
+	@Override
+	RSCharacter getLocalPlayer();
+
+	@Import("skillNamesShort")
+	String[] getSkillNamesShort();
+
+	@Import("boostedSkillLevels")
+	int[] getBoostedSkillLevels();
+
+	@Import("realSkillLevels")
+	int[] getRealSkillLevels();
+
+	@Import("statFatigue")
+	int getFatigue();
+
+	@Import("levelXPs")
+	int[] getLevelXPs();
+
+	@Import("skillXPs")
+	int[] getSkillXPs();
+
+	@Import("graphics")
+	Graphics getGraphics$api();
+
+	@Import("surface")
+	RSSpriteSurface getSurface();
 }

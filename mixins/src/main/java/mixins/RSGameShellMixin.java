@@ -25,25 +25,20 @@
  */
 package mixins;
 
-import eventbus.events.DrawGameImage;
 import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSGameShell;
-import net.runelite.rs.api.RSSurface;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
-@Mixin(RSSurface.class)
-public abstract class RSSurfaceMixin implements RSSurface {
+@Mixin(RSGameShell.class)
+public abstract class RSGameShellMixin implements RSGameShell {
+
 	@Shadow("mudClient")
 	public static RSClient client;
 
-	@MethodHook("drawSurface")
 	@Inject
-	public void onDrawSurface(Graphics g, int x, int y)
-	{
-		if (getGameImage() != null)
-			client.getCallbacks().draw(getGameImage(), x, y);
+	@FieldHook(value = "mouseIdleCycles")
+	void onMouseIdleCycleIncreased(int idx) {
+		setMouseIdleCycles(0);
 	}
 }

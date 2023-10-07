@@ -31,51 +31,85 @@ import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
 import meteor.util.ImageUtil
-import net.runelite.api.*
-import java.awt.*
+import meteor.util.SkillColor
+import net.runelite.api.Skill
+import java.awt.Color
+import java.awt.Dimension
+import java.awt.Graphics2D
+import java.awt.Image
 import java.util.*
 
 internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: StatusBarsConfig) : Overlay() {
 
     private val prayerIcon: Image
     private var heartIcon: Image? = null
-    private var energyIcon: Image? = null
+    private var fatigueIcon: Image? = null
+    private var woodcutIcon: Image? = null
+    private var fletchingIcon: Image? = null
+
     private val barRenderers: EnumMap<BarMode, BarRenderer> = EnumMap<BarMode, BarRenderer>(
             BarMode::class.java
     )
 
     init {
         position = (OverlayPosition.DYNAMIC)
-        layer = (OverlayLayer.ALWAYS_ON_TOP)
+        layer = (OverlayLayer.ABOVE_SCENE)
         prayerIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.PRAYER, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
-        heartIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.HITPOINTS, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
-        energyIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.AGILITY, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        heartIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.HITS, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        fatigueIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.AGILITY, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        woodcutIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.WOODCUT, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        fletchingIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.FLETCHING, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+
         initRenderers()
+    }
+
+    fun getXPMax(skill: Skill): Int {
+        return client.getNextLevelXP(skill) - client.getCurrentLevelXP(skill)
+    }
+
+    fun getXPCurrent(skill: Skill): Int {
+        return client.getXP(skill) - client.getCurrentLevelXP(skill)
     }
 
     private fun initRenderers() {
         barRenderers[BarMode.DISABLED] = null
         barRenderers[BarMode.HITPOINTS] = BarRenderer(
-            maxValueSupplier = {99},
-            currentValueSupplier = {99},
+            maxValueSupplier = {client.getRealLevel(Skill.HITS)},
+            currentValueSupplier = {client.getBoostedLevel(Skill.HITS)},
             healSupplier = { 0 },
             colorSupplier = {HEALTH_COLOR},
             healColorSupplier = {HEAL_COLOR},
             iconSupplier = {heartIcon!!})
         barRenderers[BarMode.PRAYER] = BarRenderer(
-            maxValueSupplier = {99},
-            currentValueSupplier = {99},
+            maxValueSupplier = {client.getRealLevel(Skill.PRAYER)},
+            currentValueSupplier = {client.getBoostedLevel(Skill.PRAYER)},
             healSupplier = { 0 },
             colorSupplier = {PRAYER_COLOR},
             healColorSupplier = { PRAYER_HEAL_COLOR},
             iconSupplier = {prayerIcon})
         barRenderers[BarMode.FATIGUE] = BarRenderer(
             maxValueSupplier = {100},
-            currentValueSupplier = {15},
+            currentValueSupplier = {client.fatiguePercentage},
             healSupplier = { 0 },
             colorSupplier = {Color.YELLOW},
             healColorSupplier = {Color.BLACK},
-            iconSupplier = {energyIcon!!})
+            iconSupplier = {fatigueIcon!!})
+        barRenderers[BarMode.WOODCUTXP] = BarRenderer(
+            maxValueSupplier = {getXPMax(Skill.WOODCUT)},
+            currentValueSupplier = {getXPCurrent(Skill.WOODCUT)},
+            healSupplier = { 0 },
+            colorSupplier = {SkillColor.WOODCUT.color},
+            healColorSupplier = {Color.BLACK},
+            iconSupplier = {woodcutIcon!!},
+            {Skill.WOODCUT})
+        barRenderers[BarMode.FLETCHINGXP] = BarRenderer(
+            maxValueSupplier = {getXPMax(Skill.FLETCHING)},
+            currentValueSupplier = {getXPCurrent(Skill.FLETCHING)},
+            healSupplier = { 0 },
+            colorSupplier = {SkillColor.FLETCHING.color},
+            healColorSupplier = {Color.BLACK},
+            iconSupplier = {fletchingIcon!!},
+            {Skill.FLETCHING})
     }
 
     override fun render(g: Graphics2D): Dimension? {
@@ -86,16 +120,46 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
         val width: Int = BarRenderer.DEFAULT_WIDTH
         val height: Int = HEIGHT
 
-        val left = barRenderers[BarMode.HITPOINTS]
-        val middle = barRenderers[BarMode.PRAYER]
-        val right = barRenderers[BarMode.FATIGUE]
-        left?.renderBar(config, g, 5, 30, width, height)
-        middle?.renderBar(config, g, 25, 30, width, height)
-        right?.renderBar(config, g, 45, 30, width, height)
+        val hitsBar = barRenderers[BarMode.HITPOINTS]
+        val prayerBar = barRenderers[BarMode.PRAYER]
+        val fatigueBar = barRenderers[BarMode.FATIGUE]
+        val woodcutXPBar = barRenderers[BarMode.WOODCUTXP]
+        val fletchingXPBar = barRenderers[BarMode.FLETCHINGXP]
+
+        var offsetX = 400
+        val offsetY = 45
+        if (renderHits) {
+            hitsBar?.renderBar(config, g, offsetX, offsetY, width, height)
+            offsetX+=20
+        }
+        if (renderPrayer) {
+            prayerBar?.renderBar(config, g, offsetX, offsetY, width, height)
+            offsetX+=20
+        }
+        if (renderFatigue) {
+            fatigueBar?.renderBar(config, g, offsetX, offsetY, width, height)
+            offsetX+=20
+        }
+
+        if (renderWoodcutXP) {
+            woodcutXPBar?.renderBar(config, g, offsetX, offsetY, width, height)
+            offsetX+=20
+        }
+
+        if (renderFletchingXP) {
+            fletchingXPBar?.renderBar(config, g, offsetX, offsetY, width, height)
+            offsetX+=20
+        }
+
         return null
     }
 
     companion object {
+        var renderHits = true
+        var renderPrayer = true
+        var renderFatigue = true
+        var renderWoodcutXP = true
+        var renderFletchingXP = true
         private val PRAYER_COLOR = Color(50, 200, 200, 175)
         private val ACTIVE_PRAYER_COLOR = Color(57, 255, 186, 225)
         private val HEALTH_COLOR = Color(225, 35, 0, 125)

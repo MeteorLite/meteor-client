@@ -28,7 +28,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.awt.image.BufferedImage;
 
 /**
  * Interface of callbacks the injected client uses to send events
@@ -67,7 +66,7 @@ public interface Callbacks
 	/**
 	 * Called after the scene is drawn.
 	 */
-	void drawScene();
+	void drawScene(int[] pixels);
 
 	/**
 	 * Called after logic that is drawing 2D objects is processed.

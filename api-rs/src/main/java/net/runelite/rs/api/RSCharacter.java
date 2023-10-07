@@ -24,12 +24,51 @@
  */
 package net.runelite.rs.api;
 
+import net.runelite.api.Character;
+import net.runelite.api.Client;
 import net.runelite.mapping.Import;
 
-import java.awt.*;
-
-public interface RSSurface
+public interface RSCharacter extends Character
 {
-    @Import("image")
-    Image getGameImage();
+    @Import("hash")
+    long getHash();
+
+    @Import("name")
+    String getName();
+
+    @Import("serverIndex")
+    int getServerIndex();
+
+    @Import("serverID")
+    int getServerID();
+
+    @Import("currentX")
+    int getCurrentX();
+
+    @Import("currentY")
+    int getCurrentY();
+
+    @Import("npcID")
+    int getNPCID();
+
+    @Import("animation")
+    int getAnimation();
+
+    @Import("message")
+    String getMessage();
+
+    @Import("bubbleItem")
+    int getBubbleItem();
+
+    @Import("bubbleItem")
+    void setBubbleItem(int itemID);
+
+    @Import("currentHealth")
+    int getCurrentHealth();
+
+    @Import("maxHealth")
+    int getMaxHealth();
+
+    @Import("combatLevel")
+    int getCombatLevel();
 }

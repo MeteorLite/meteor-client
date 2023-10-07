@@ -46,51 +46,56 @@ class TextComponent : RenderableEntity {
             originalFont = graphics.font
             graphics.font = font
         }
+        var width = 0
+        var height = 0
         val fontMetrics = graphics.fontMetrics
-        if (COL_TAG_PATTERN_W_LOOKAHEAD.matcher(text).find()) {
-            val parts = COL_TAG_PATTERN_W_LOOKAHEAD.split(text)
-            var x = position.x
-            for (textSplitOnCol in parts) {
-                val textWithoutCol = Text.removeTags(textSplitOnCol)
-                val colColor = textSplitOnCol
-                    .substring(textSplitOnCol.indexOf("=") + 1, textSplitOnCol.indexOf(">"))
+        text?.let {
+            if (COL_TAG_PATTERN_W_LOOKAHEAD.matcher(text).find()) {
+                val parts = COL_TAG_PATTERN_W_LOOKAHEAD.split(text)
+                var x = position.x
+                for (textSplitOnCol in parts) {
+                    val textWithoutCol = Text.removeTags(textSplitOnCol)
+                    val colColor = textSplitOnCol
+                        .substring(textSplitOnCol.indexOf("=") + 1, textSplitOnCol.indexOf(">"))
+                    graphics.color = Color.BLACK
+                    if (outline) {
+                        graphics.drawString(textWithoutCol, x, position.y + 1)
+                        graphics.drawString(textWithoutCol, x, position.y - 1)
+                        graphics.drawString(textWithoutCol, x + 1, position.y)
+                        graphics.drawString(textWithoutCol, x - 1, position.y)
+                    } else {
+                        // shadow
+                        graphics.drawString(textWithoutCol, x + 1, position.y + 1)
+                    }
+
+                    // actual text
+                    graphics.color = Color.decode("#$colColor")
+                    graphics.drawString(textWithoutCol, x, position.y)
+                    x += fontMetrics.stringWidth(textWithoutCol)
+                }
+            } else {
                 graphics.color = Color.BLACK
                 if (outline) {
-                    graphics.drawString(textWithoutCol, x, position.y + 1)
-                    graphics.drawString(textWithoutCol, x, position.y - 1)
-                    graphics.drawString(textWithoutCol, x + 1, position.y)
-                    graphics.drawString(textWithoutCol, x - 1, position.y)
+                    graphics.drawString(text, position.x, position.y + 1)
+                    graphics.drawString(text, position.x, position.y - 1)
+                    graphics.drawString(text, position.x + 1, position.y)
+                    graphics.drawString(text, position.x - 1, position.y)
                 } else {
                     // shadow
-                    graphics.drawString(textWithoutCol, x + 1, position.y + 1)
+                    graphics.drawString(text, position.x + 1, position.y + 1)
                 }
 
                 // actual text
-                graphics.color = Color.decode("#$colColor")
-                graphics.drawString(textWithoutCol, x, position.y)
-                x += fontMetrics.stringWidth(textWithoutCol)
+                graphics.color = colorWithAlpha(color, 0xFF)
+                graphics.drawString(text, position.x, position.y)
             }
-        } else {
-            graphics.color = Color.BLACK
-            if (outline) {
-                graphics.drawString(text, position.x, position.y + 1)
-                graphics.drawString(text, position.x, position.y - 1)
-                graphics.drawString(text, position.x + 1, position.y)
-                graphics.drawString(text, position.x - 1, position.y)
-            } else {
-                // shadow
-                graphics.drawString(text, position.x + 1, position.y + 1)
+            width = fontMetrics.stringWidth(text)
+            height = fontMetrics.height
+            if (originalFont != null) {
+                graphics.font = originalFont
             }
+        }
 
-            // actual text
-            graphics.color = colorWithAlpha(color, 0xFF)
-            graphics.drawString(text, position.x, position.y)
-        }
-        val width = fontMetrics.stringWidth(text)
-        val height = fontMetrics.height
-        if (originalFont != null) {
-            graphics.font = originalFont
-        }
         return Dimension(width, height)
     }
 

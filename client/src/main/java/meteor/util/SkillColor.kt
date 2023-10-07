@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
- * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
+ * Copyright (c) 2018, Psikoi <https://github.com/psikoi>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,27 +22,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package mixins;
+package meteor.util
 
-import eventbus.events.DrawGameImage;
-import net.runelite.api.mixins.*;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSGameShell;
-import net.runelite.rs.api.RSSurface;
+import net.runelite.api.Skill
+import java.awt.Color
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
+enum class SkillColor(red: Int, green: Int, blue: Int) {
+    ATTACK(155, 32, 7), DEFENCE(98, 119, 190), STRENGTH(4, 149, 90), HITPOINTS(131, 126, 126), RANGED(
+        109,
+        144,
+        23
+    ),
+    PRAYER(159, 147, 35), MAGIC(50, 80, 193), COOKING(112, 35, 134), WOODCUT(52, 140, 37), FLETCHING(
+        3,
+        141,
+        125
+    ),
+    FISHING(106, 132, 164), FIREMAKING(189, 120, 25), CRAFTING(151, 110, 77), SMITHING(108, 107, 82), MINING(
+        93,
+        143,
+        167
+    ),
+    HERBLAW(7, 133, 9), AGILITY(58, 60, 137), THIEVING(108, 52, 87);
 
-@Mixin(RSSurface.class)
-public abstract class RSSurfaceMixin implements RSSurface {
-	@Shadow("mudClient")
-	public static RSClient client;
+    val color: Color
 
-	@MethodHook("drawSurface")
-	@Inject
-	public void onDrawSurface(Graphics g, int x, int y)
-	{
-		if (getGameImage() != null)
-			client.getCallbacks().draw(getGameImage(), x, y);
-	}
+    companion object {
+        /**
+         * Finds the corresponding SkillColor for a given Skill.
+         */
+        fun find(skill: Skill): SkillColor {
+            return values()[skill.ordinal]
+        }
+    }
+
+    init {
+        color = Color(red, green, blue)
+    }
 }

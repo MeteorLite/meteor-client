@@ -75,7 +75,7 @@ public class NetworkedGame extends GameShell {
 		packetStream.endPacket();
 	}
 
-	protected final void method28() {
+	protected final void checkConnection() {
 		long l = System.currentTimeMillis();
 		if(packetStream.method331())
 			aLong607 = l;
@@ -88,7 +88,7 @@ public class NetworkedGame extends GameShell {
 			packetStream.method328(20);
 		}
 		catch(IOException _ex) {
-			method37();
+			lostConnection();
 			return;
 		}
 		if(!method26())
@@ -131,7 +131,7 @@ public class NetworkedGame extends GameShell {
 	protected void method31() {
 	}
 
-	protected final void method32(byte[] abyte0, int i) {
+	protected final void sendChatMessagePacket(byte[] abyte0, int i) {
 		packetStream.createPacket(216);
 		packetStream.method325(abyte0, 0, i);
 		packetStream.endPacket();
@@ -153,7 +153,7 @@ public class NetworkedGame extends GameShell {
 			method44(s);
 		}
 		if(i == 4)
-			method36();
+			closeConnection();
 		if(i == 183) {
 			method25();
 			return;
@@ -219,13 +219,13 @@ public class NetworkedGame extends GameShell {
         }
 	}
 
-	protected final void method35(String s) {
+	protected final void sendCommandString(String s) {
 		packetStream.createPacket(38);
 		packetStream.method329(s);
 		packetStream.endPacket();
 	}
 
-	protected final void method36() {
+	protected final void closeConnection() {
 		if(packetStream != null)
 			try {
 				packetStream.createPacket(31);
@@ -237,7 +237,7 @@ public class NetworkedGame extends GameShell {
 		method24();
 	}
 
-	protected void method37() {
+	protected void lostConnection() {
 		System.out.println("Lost connection");
 		anInt617 = 10;
 		method39(aString615, aString616, true);

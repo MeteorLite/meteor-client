@@ -38,4 +38,13 @@ public interface RSGameShell extends MouseListener, MouseMotionListener, KeyList
 
 	@Import("gameWindow")
 	RSGameWindow getGameWindow();
+
+	@Import("mouseIdleCycles")
+	void setMouseIdleCycles(int mouseIdleCycles);
+
+	@Import("appletWidth")
+	int getAppletWidth();
+
+	@Import("appletHeight")
+	int getAppletHeight();
 }

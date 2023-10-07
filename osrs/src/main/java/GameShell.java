@@ -114,7 +114,7 @@ public class GameShell extends Applet
 		g.drawString(s, i - fontmetrics.stringWidth(s) / 2, j + fontmetrics.getHeight() / 4);
 	}
 
-	protected synchronized void method9() {
+	protected synchronized void doCycle() {
 	}
 
 	private final void loadJagex() {
@@ -258,7 +258,7 @@ public class GameShell extends Applet
 			}
 			int k2 = 0;
 			while(i1 < 256)  {
-				method9();
+				doCycle();
 				i1 += j;
 				if(++k2 > maxDrawTime) {
 					i1 = 0;
@@ -371,7 +371,7 @@ public class GameShell extends Applet
 		method15(i);
 		anInt23 = i;
 		anInt24 = i;
-		anInt25 = 0;
+		mouseIdleCycles = 0;
 		if(i == 1006)
 			keyLeft = true;
 		if(i == 1007)
@@ -439,40 +439,40 @@ public class GameShell extends Applet
 	}
 
 	public final synchronized boolean mouseDown(boolean metaDown, int i, int j) {
-		anInt39 = i;
-		anInt41 = j + anInt40;
+		mouseX = i;
+		mouseY = j + anInt40;
 		if(metaDown)
-			anInt42 = 2;
+			mouseButtonDown = 2;
 		else
-			anInt42 = 1;
-		anInt43 = anInt42;
-		anInt25 = 0;
-		method6(anInt42, i, j);
+			mouseButtonDown = 1;
+		lastMouseButtonDown = mouseButtonDown;
+		mouseIdleCycles = 0;
+		method6(mouseButtonDown, i, j);
 		return true;
 	}
 
 	public final synchronized boolean mouseDrag(boolean metaDown, int i, int j) {
-		anInt39 = i;
-		anInt41 = j + anInt40;
+		mouseX = i;
+		mouseY = j + anInt40;
 		if(metaDown)
-			anInt42 = 2;
+			mouseButtonDown = 2;
 		else
-			anInt42 = 1;
+			mouseButtonDown = 1;
 		return true;
 	}
 
 	public final synchronized boolean mouseMove(Event event, int i, int j) {
-		anInt39 = i;
-		anInt41 = j + anInt40;
-		anInt42 = 0;
-		anInt25 = 0;
+		mouseX = i;
+		mouseY = j + anInt40;
+		mouseButtonDown = 0;
+		mouseIdleCycles = 0;
 		return true;
 	}
 
 	public final synchronized boolean mouseUp(Event event, int i, int j) {
-		anInt39 = i;
-		anInt41 = j + anInt40;
-		anInt42 = 0;
+		mouseX = i;
+		mouseY = j + anInt40;
+		mouseButtonDown = 0;
 		return true;
 	}
 
@@ -590,7 +590,7 @@ public class GameShell extends Applet
 	public boolean interlace;
 	public int anInt23;
 	public int anInt24;
-	public int anInt25;
+	public int mouseIdleCycles;
 	public boolean keyLeft;
 	public boolean keyRight;
 	public boolean keyUp;
@@ -604,11 +604,11 @@ public class GameShell extends Applet
 	public String inputPmCurrent;
 	public String inputTextFinal;
 	public String inputPmFinal;
-	public int anInt39;
+	public int mouseX;
 	public int anInt40;
-	public int anInt41;
-	public int anInt42;
-	public int anInt43;
+	public int mouseY;
+	public int mouseButtonDown;
+	public int lastMouseButtonDown;
 
 	@Override
 	public void keyTyped(KeyEvent e) {

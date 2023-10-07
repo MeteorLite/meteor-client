@@ -871,7 +871,7 @@ public class Model {
 		anInt254 = 1;
 	}
 
-	public void method204(int i, int j, int k) {
+	public void rotate(int i, int j, int k) {
 		anInt270 = anInt270 + i & 0xff;
 		anInt269 = anInt269 + j & 0xff;
 		anInt268 = anInt268 + k & 0xff;

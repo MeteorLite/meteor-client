@@ -24,12 +24,7 @@
  */
 package net.runelite.rs.api;
 
-import net.runelite.mapping.Import;
-
-import java.awt.*;
-
-public interface RSSurface
+public interface RSSpriteSurface extends RSSurface
 {
-    @Import("image")
-    Image getGameImage();
+
 }

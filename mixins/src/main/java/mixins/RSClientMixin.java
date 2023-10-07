@@ -25,14 +25,18 @@
  */
 package mixins;
 
-import eventbus.events.DrawGameImage;
+import eventbus.events.ClientTick;
+import net.runelite.api.Constants;
 import net.runelite.api.InventoryItem;
+import net.runelite.api.Skill;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.util.ArrayList;
 
 @Mixin(RSClient.class)
@@ -172,5 +176,72 @@ public abstract class RSClientMixin implements RSClient {
 	public boolean isClientThread()
 	{
 		return thread == Thread.currentThread();
+	}
+
+	@Inject
+	@FieldHook(value = "cycle")
+	void onCycle(int idx) {
+		client.getCallbacks().post(ClientTick.INSTANCE);
+	}
+
+	@Inject
+	@Override
+	public int getRealLevel(Skill skill) {
+		return client.getRealSkillLevels()[skill.ordinal()];
+	}
+
+	@Inject
+	@Override
+	public int getBoostedLevel(Skill skill) {
+		return client.getBoostedSkillLevels()[skill.ordinal()];
+	}
+
+	@Inject
+	@Override
+	public int getFatiguePercentage() {
+		return (getFatigue() * 100) / 750;
+	}
+
+	@Inject
+	@Override
+	public int getNextLevelXP(Skill skill) {
+		int nextLevelXP = getLevelXPs()[0];
+		for(int level = 0; level < 98; level++)
+			if(getXP(skill) >= getLevelXPs()[level])
+				nextLevelXP = getLevelXPs()[level + 1];
+		return nextLevelXP;
+	}
+
+	@Inject
+	@Override
+	public int getCurrentLevelXP(Skill skill) {
+		int nextLevelXP = getLevelXPs()[0];
+		for(int level = 0; level < 98; level++)
+			if(getXP(skill) >= getLevelXPs()[level])
+				nextLevelXP = getLevelXPs()[level];
+		return nextLevelXP;
+	}
+
+	@Inject
+	@Override
+	public int getXPUntilLevel(Skill skill) {
+		int nextLevelXP = getNextLevelXP(skill);
+		return nextLevelXP - getXP(skill);
+	}
+
+
+	@Inject
+	@Override
+	public int getXP(Skill skill) {
+		return getSkillXPs()[skill.ordinal()];
+	}
+
+	@Shadow("pixels")
+	public static int[] pixels;
+
+	@Inject
+	@MethodHook("drawUI")
+	public void beforeDrawUI(){
+		client.getCallbacks().drawScene(pixels);
 	}
 }

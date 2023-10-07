@@ -8,12 +8,12 @@ public enum Skill
 	ATTACK("Attack"),
 	DEFENCE("Defence"),
 	STRENGTH("Strength"),
-	HITPOINTS("Hitpoints"),
+	HITS("Hits"),
 	RANGED("Ranged"),
 	PRAYER("Prayer"),
 	MAGIC("Magic"),
 	COOKING("Cooking"),
-	WOODCUTTING("Woodcutting"),
+	WOODCUT("Woodcut"),
 	FLETCHING("Fletching"),
 	FISHING("Fishing"),
 	FIREMAKING("Firemaking"),
@@ -23,11 +23,7 @@ public enum Skill
 	HERBLAW("Herblaw"),
 	AGILITY("Agility"),
 	THIEVING("Thieving"),
-	//SLAYER("Slayer"),
-	//FARMING("Farming"),
-	//RUNECRAFT("Runecraft"),
-	//HUNTER("Hunter"),
-	//CONSTRUCTION("Construction"),
+
 	/**
 	 * The level of all skills added together.
 	 */

@@ -25,14 +25,15 @@
  */
 package meteor.plugins.statusbars
 
+import meteor.Main
 import meteor.game.FontManager
 import meteor.ui.overlay.components.TextComponent
+import net.runelite.api.Skill
 import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.Image
 import java.awt.Point
 import java.util.function.Supplier
-import kotlin.math.roundToInt
 
 
 internal class BarRenderer(var maxValueSupplier: Supplier<Int>? = null,
@@ -40,7 +41,8 @@ internal class BarRenderer(var maxValueSupplier: Supplier<Int>? = null,
                            val healSupplier: Supplier<Int>? = null,
                            val colorSupplier: Supplier<Color>? = null,
                            val healColorSupplier: Supplier<Color>? = null,
-                           val iconSupplier: Supplier<Image>? = null) {
+                           val iconSupplier: Supplier<Image>? = null,
+                           val skillSupplier: Supplier<Skill>? = null,) {
     private var maxValue = 0
     private var currentValue = 0
     private fun refreshSkills() {
@@ -92,7 +94,9 @@ internal class BarRenderer(var maxValueSupplier: Supplier<Int>? = null,
         }
         if (config.enableCounter()) {
             graphics.font = FontManager.runescapeSmallFont
-            val counterText = currentValue.toString()
+            var counterText = currentValue.toString()
+            if (skillSupplier != null)
+                counterText = ("${Main.client.getRealLevel(skillSupplier.get())}")
             val widthOfCounter = graphics.fontMetrics.stringWidth(counterText)
             val centerText = width / 2 - widthOfCounter / 2
             val yOffset = if (skillIconEnabled) SKILL_ICON_HEIGHT else COUNTER_ICON_HEIGHT

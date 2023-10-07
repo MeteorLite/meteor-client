@@ -2,8 +2,6 @@
 // Jad home page: http://www.geocities.com/kpdus/jad.html
 // Decompiler options: packimports(3) nonlb 
 
-import java.io.PrintStream;
-
 public class Scene {
 
 	public void method263(int i, int j, int k, int l, int i1, int j1, int k1) {
@@ -424,7 +422,7 @@ public class Scene {
 		}
 	}
 
-	public void method270(int i) {
+	public void handleFountains(int i) {
 		if(anIntArrayArray387[i] == null)
 			return;
 		int[] ai = anIntArrayArray387[i];
@@ -1697,7 +1695,7 @@ public class Scene {
 		} while(true);
 	}
 
-	public void method286(int i, int j) {
+	public void setMouseLocation(int i, int j) {
 		anInt413 = i - anInt417;
 		anInt412 = j;
 		anInt410 = 0;
@@ -2489,9 +2487,9 @@ public class Scene {
 		anIntArray438 = new int[40];
 		aBoolean424 = false;
 		aSurface423 = surface;
-		anInt425 = surface.anInt320 / 2;
-		anInt405 = surface.anInt323 / 2;
-		anIntArray448 = surface.anIntArray322;
+		anInt425 = surface.width2 / 2;
+		anInt405 = surface.height2 / 2;
+		anIntArray448 = surface.pixels;
 		anInt402 = 0;
 		anInt455 = i;
 		aModelArray401 = new Model[anInt455];

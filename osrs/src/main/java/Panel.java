@@ -37,7 +37,7 @@ public class Panel {
 					k2 = 0xff0000;
 				else
 					k2 = 0xc00000;
-			aSurface181.method254(as[j2], l1, i2, l, k2);
+			aSurface181.drawString(as[j2], l1, i2, l, k2);
 			l1 += aSurface181.method212(as[j2] + "  ", l);
 		}
 
@@ -97,7 +97,7 @@ public class Panel {
 		}
 		aStringArrayArray194[i][j] = s;
 		if(flag)
-			anIntArray200[i] = 0xf423f;
+			controlFlashText[i] = 0xf423f;
 	}
 
 	public void method142(int i, int j, int k, int l) {
@@ -172,7 +172,7 @@ public class Panel {
 					l1 = 0xff0000;
 				else
 					l1 = 0xc00000;
-			aSurface181.method254(as[k1], j - i2 / 2, j1, l, l1);
+			aSurface181.drawString(as[k1], j - i2 / 2, j1, l, l1);
 			j1 += aSurface181.method238(l);
 		}
 
@@ -198,7 +198,7 @@ public class Panel {
 			l1 = k1 - i2;
 		if(l1 < 0)
 			l1 = 0;
-		anIntArray200[i] = l1;
+		controlFlashText[i] = l1;
 		if(i2 < k1) {
 			int j2 = (j + l) - 12;
 			int l2 = ((i1 - 27) * i2) / k1;
@@ -210,7 +210,7 @@ public class Panel {
 					l1--;
 				if(anInt184 > (k + i1) - 12 && anInt184 < k + i1 && l1 < k1 - i2)
 					l1++;
-				anIntArray200[i] = l1;
+				controlFlashText[i] = l1;
 			}
 			if(anInt201 == 1 && (anInt183 >= j2 && anInt183 <= j2 + 12 || anInt183 >= j2 - 12 && anInt183 <= j2 + 24 && aBooleanArray215[i])) {
 				if(anInt184 > k + 12 && anInt184 < (k + i1) - 12) {
@@ -221,7 +221,7 @@ public class Panel {
 						l1 = k1 - i2;
 					if(l1 < 0)
 						l1 = 0;
-					anIntArray200[i] = l1;
+					controlFlashText[i] = l1;
 				}
 			} else {
 				aBooleanArray215[i] = false;
@@ -254,7 +254,7 @@ public class Panel {
 					l1--;
 				if(anInt184 > (k + i1) - 12 && anInt184 < k + i1 && l1 < k1 - i2)
 					l1++;
-				anIntArray200[i] = l1;
+				controlFlashText[i] = l1;
 			}
 			if(anInt201 == 1 && (anInt183 >= j2 && anInt183 <= j2 + 12 || anInt183 >= j2 - 12 && anInt183 <= j2 + 24 && aBooleanArray215[i])) {
 				if(anInt184 > k + 12 && anInt184 < (k + i1) - 12) {
@@ -265,7 +265,7 @@ public class Panel {
 						l1 = 0;
 					if(l1 > k1 - i2)
 						l1 = k1 - i2;
-					anIntArray200[i] = l1;
+					controlFlashText[i] = l1;
 				}
 			} else {
 				aBooleanArray215[i] = false;
@@ -274,7 +274,7 @@ public class Panel {
 			method146(j, k, l, i1, j3, l2);
 		} else {
 			l1 = 0;
-			anIntArray200[i] = 0;
+			controlFlashText[i] = 0;
 		}
 		anIntArray217[i] = -1;
 		int k2 = i1 - i2 * aSurface181.method238(j1);
@@ -298,7 +298,7 @@ public class Panel {
 			}
 			if(anIntArray186[i] == k3 && aBoolean218)
 				i4 = 0xff0000;
-			aSurface181.method254(as[k3], j + 2, i3, j1, i4);
+			aSurface181.drawString(as[k3], j + 2, i3, j1, i4);
 			i3 += aSurface181.method238(j1);
 			if(i3 >= k + i1)
 				return;
@@ -326,7 +326,7 @@ public class Panel {
 					method143(anIntArray204[i], anIntArray205[i], anIntArray206[i]);
 				else
 				if(anIntArray203[i] == 4)
-					method147(i, anIntArray204[i], anIntArray205[i], anIntArray206[i], anIntArray207[i], anIntArray223[i], aStringArrayArray194[i], anIntArray195[i], anIntArray200[i]);
+					method147(i, anIntArray204[i], anIntArray205[i], anIntArray206[i], anIntArray207[i], anIntArray223[i], aStringArrayArray194[i], anIntArray195[i], controlFlashText[i]);
 				else
 				if(anIntArray203[i] == 5 || anIntArray203[i] == 6)
 					method171(i, anIntArray204[i], anIntArray205[i], anIntArray206[i], anIntArray207[i], aStringArray222[i], anIntArray223[i]);
@@ -338,7 +338,7 @@ public class Panel {
 					method145(i, anIntArray204[i], anIntArray205[i], anIntArray223[i], aStringArrayArray194[i]);
 				else
 				if(anIntArray203[i] == 9)
-					method148(i, anIntArray204[i], anIntArray205[i], anIntArray206[i], anIntArray207[i], anIntArray223[i], aStringArrayArray194[i], anIntArray195[i], anIntArray200[i]);
+					method148(i, anIntArray204[i], anIntArray205[i], anIntArray206[i], anIntArray207[i], anIntArray223[i], aStringArrayArray194[i], anIntArray195[i], controlFlashText[i]);
 				else
 				if(anIntArray203[i] == 11)
 					method140(anIntArray204[i], anIntArray205[i], anIntArray206[i], anIntArray207[i]);
@@ -370,7 +370,7 @@ public class Panel {
 		anIntArray199[anInt208] = j1;
 		aStringArrayArray194[anInt208] = new String[j1];
 		anIntArray195[anInt208] = 0;
-		anIntArray200[anInt208] = 0;
+		controlFlashText[anInt208] = 0;
 		anIntArray186[anInt208] = -1;
 		anIntArray217[anInt208] = -1;
 		return anInt208++;
@@ -438,7 +438,7 @@ public class Panel {
 		return anInt208++;
 	}
 
-	public boolean method159(int i) {
+	public boolean isClicked(int i) {
 		if(aBooleanArray202[i] && aBooleanArray187[i]) {
 			aBooleanArray187[i] = false;
 			return true;
@@ -453,7 +453,7 @@ public class Panel {
 			i1 = 0xffffff;
 		else
 			i1 = 0;
-		aSurface181.method254(s, j, k, l, i1);
+		aSurface181.drawString(s, j, k, l, i1);
 	}
 
 	public void method161(int i) {
@@ -461,7 +461,7 @@ public class Panel {
 	}
 
 	public void method162(int i) {
-		anIntArray200[i] = 0;
+		controlFlashText[i] = 0;
 		anIntArray217[i] = -1;
 	}
 
@@ -491,7 +491,7 @@ public class Panel {
 		aSurface181.method246(i, j, k);
 	}
 
-	public String method166(int i) {
+	public String getText(int i) {
 		if(aStringArray222[i] == null)
 			return "null";
 		else
@@ -519,7 +519,7 @@ public class Panel {
 		aBooleanArray224 = new boolean[i];
 		aBooleanArray187 = new boolean[i];
 		aBooleanArray182 = new boolean[i];
-		anIntArray200 = new int[i];
+		controlFlashText = new int[i];
 		anIntArray195 = new int[i];
 		anIntArray186 = new int[i];
 		anIntArray217 = new int[i];
@@ -546,7 +546,7 @@ public class Panel {
 		anInt188 = method149(84, 93, 120);
 	}
 
-	public void method168(int i, String s) {
+	public void updateText(int i, String s) {
 		aStringArray222[i] = s;
 	}
 
@@ -613,7 +613,7 @@ public class Panel {
 		anIntArray223[anInt208] = i1;
 		anIntArray199[anInt208] = j1;
 		anIntArray195[anInt208] = 0;
-		anIntArray200[anInt208] = 0;
+		controlFlashText[anInt208] = 0;
 		aStringArrayArray194[anInt208] = new String[j1];
 		return anInt208++;
 	}
@@ -649,7 +649,7 @@ public class Panel {
 	int anInt197;
 	int anInt198;
 	int[] anIntArray199;
-	public int[] anIntArray200;
+	public int[] controlFlashText;
 	int anInt201;
 	public boolean[] aBooleanArray202;
 	int[] anIntArray203;

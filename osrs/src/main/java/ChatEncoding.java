@@ -55,7 +55,7 @@ public class ChatEncoding {
 		}
 	}
 
-	public static int method389(String s) {
+	public static int scramble(String s) {
 		if(s.length() > 80)
 			s = s.substring(0, 80);
 		s = s.toLowerCase();
@@ -77,19 +77,19 @@ public class ChatEncoding {
 				if(l < 13)
 					j = l;
 				else
-					aByteArray557[i++] = (byte)l;
+					scrambledbytes[i++] = (byte)l;
 			} else
 			if(l < 13) {
-				aByteArray557[i++] = (byte)((j << 4) + l);
+				scrambledbytes[i++] = (byte)((j << 4) + l);
 				j = -1;
 			} else {
-				aByteArray557[i++] = (byte)((j << 4) + (l >> 4));
+				scrambledbytes[i++] = (byte)((j << 4) + (l >> 4));
 				j = l & 0xf;
 			}
 		}
 
 		if(j != -1)
-			aByteArray557[i++] = (byte)(j << 4);
+			scrambledbytes[i++] = (byte)(j << 4);
 		return i;
 	}
 
@@ -103,6 +103,6 @@ public class ChatEncoding {
 		'\'', '@', '#', '+', '=', '\243', '$', '%', '"', '[', 
 		']'
 	};
-	public static byte[] aByteArray557 = new byte[100];
+	public static byte[] scrambledbytes = new byte[100];
 
 }

@@ -25,7 +25,6 @@
 package net.runelite.api;
 
 import net.runelite.api.hooks.Callbacks;
-import net.runelite.mapping.Import;
 
 import javax.swing.*;
 import java.awt.*;
@@ -100,4 +99,26 @@ public interface Client
 	boolean isLoggedIn();
 
 	boolean isClientThread();
+
+	Character getLocalPlayer();
+
+	String[] getSkillNamesShort();
+
+	int getRealLevel(Skill skill);
+
+	int getBoostedLevel(Skill skill);
+
+	int getFatigue();
+
+	int getFatiguePercentage();
+
+	int getNextLevelXP(Skill skill);
+
+	int getCurrentLevelXP(Skill skill);
+
+	int getXP(Skill skill);
+
+	int getXPUntilLevel(Skill skill);
+
+	int[] getSkillXPs();
 }

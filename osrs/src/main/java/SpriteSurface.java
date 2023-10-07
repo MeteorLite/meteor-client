@@ -2,8 +2,11 @@
 // Jad home page: http://www.geocities.com/kpdus/jad.html
 // Decompiler options: packimports(3) nonlb 
 
+import net.runelite.mapping.Implements;
+
 import java.awt.Component;
 
+@Implements("RSSpriteSurface")
 public final class SpriteSurface extends Surface {
 
 	public void method220(int i, int j, int k, int l, int i1, int j1, int k1) {
