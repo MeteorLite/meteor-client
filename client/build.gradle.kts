@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.7.21"
-    id("org.jetbrains.compose") version "1.5.0"
+    id("org.jetbrains.compose") version "1.5.10-beta02"
     id("org.jetbrains.dokka") version "1.7.20"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
@@ -59,6 +59,7 @@ dependencies {
         implementation(http)
         implementation(annotations)
         implementation(logger)
+        implementation(eventbus)
     }
 
     with(libs) {
@@ -97,7 +98,6 @@ dependencies {
 
         //Util
         implementation(json)
-        implementation(projects.eventbus)
         implementation(commons.lang3)
         implementation(okhttp)
         implementation(guava)
@@ -214,14 +214,14 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
 }
 
 tasks.compileJava {
-    sourceCompatibility = JavaVersion.VERSION_17.toString()
-    targetCompatibility = JavaVersion.VERSION_17.toString()
+    sourceCompatibility = JavaVersion.VERSION_20.toString()
+    targetCompatibility = JavaVersion.VERSION_20.toString()
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         languageVersion = "2.0"
-        jvmTarget = "17"
+        jvmTarget = "20"
         freeCompilerArgs = listOf(
             "-Xjvm-default=all",
             "-Xbackend-threads=4"

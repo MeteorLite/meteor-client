@@ -29,7 +29,7 @@ dependencies {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         languageVersion = "2.0"
-        jvmTarget = "17"
+        jvmTarget = "20"
         freeCompilerArgs = listOf(
             "-Xjvm-default=all",
             "-Xbackend-threads=4"
@@ -42,6 +42,6 @@ tasks.test {
 }
 
 tasks.compileJava {
-    sourceCompatibility = JavaVersion.VERSION_17.toString()
-    targetCompatibility = JavaVersion.VERSION_17.toString()
+    sourceCompatibility = JavaVersion.VERSION_20.toString()
+    targetCompatibility = JavaVersion.VERSION_20.toString()
 }

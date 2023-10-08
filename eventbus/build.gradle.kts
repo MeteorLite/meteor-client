@@ -24,8 +24,8 @@ dependencies {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         apiVersion = "1.8"
-        languageVersion = "1.8"
-        jvmTarget = "17"
+        languageVersion = "2.0"
+        jvmTarget = "20"
     }
 }
 
