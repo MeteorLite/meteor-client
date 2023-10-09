@@ -3,7 +3,7 @@ package meteor
 import java.io.File
 
 object Configuration {
-    val METEOR_DIR = File(System.getProperty("user.home"), ".meteor")
+    val METEOR_DIR = File(System.getProperty("user.home"), ".meteor-rsc")
     val EXTERNALS_DIR = File(METEOR_DIR, "externals")
     var CONFIG_FILE = File(METEOR_DIR, "settings.properties")
     val rspsConfigFile = File(METEOR_DIR, "rsps.json")

@@ -26,7 +26,7 @@
 package mixins;
 
 import eventbus.events.ClientTick;
-import net.runelite.api.Constants;
+import eventbus.events.ExperienceGained;
 import net.runelite.api.InventoryItem;
 import net.runelite.api.Skill;
 import net.runelite.api.hooks.Callbacks;
@@ -35,9 +35,11 @@ import net.runelite.rs.api.RSClient;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient {
@@ -278,5 +280,87 @@ public abstract class RSClientMixin implements RSClient {
 	@MethodHook(value = "chooseOption", end = true)
 	void chooseOption$tail(int optionIdx){
 		setShowUITab(0);
+	}
+
+	@Inject
+	HashMap<Skill, Integer> lastXPs = new HashMap<>();
+
+	@Inject
+	@FieldHook("loggedIn")
+	public void onLoggedInChanged(int idx) {
+		if (!isLoggedIn())
+			lastXPs = null;
+	}
+
+	@Inject
+	@FieldHook("skillXPs")
+	public void onSkillXPChanged(int idx) {
+		if (lastXPs == null)
+			lastXPs = new HashMap<>();
+
+		for (Skill skillChanged : Skill.values()) {
+			if (skillChanged == Skill.OVERALL)
+				continue;
+			int newXP = getSkillXPs()[skillChanged.ordinal()];
+
+			if (lastXPs.get(skillChanged) != null) {
+				int lastXP = lastXPs.get(skillChanged);
+
+				//Only post if it skill already initialized after login
+				if (lastXP != 0 && lastXP != -1 && lastXP != newXP) {
+
+					client.getCallbacks().post(new ExperienceGained(skillChanged));
+				}
+			}
+
+			lastXPs.put(skillChanged, newXP);
+		}
+	}
+
+	@Inject
+	public int lastCombatStyle = 0;
+
+	@Inject
+	public File meteorDir;
+
+	@Inject
+	public File lastCombatStyleFile;
+
+	@Inject
+	@FieldHook("combatStyle")
+	public void onCombatStyleChanged(int idx) {
+		if (isLoggedIn()) {
+			try {
+				Files.writeString(lastCombatStyleFile.toPath(), String.valueOf(getCombatStyle()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Replace(value = "getDefaultCombatStyle")
+	public int getDefaultCombatStyle(){
+		int combatStyle = 0;
+
+		//TODO: This should be initialized in a better place
+		if (meteorDir == null)
+			meteorDir = new File(System.getProperty("user.home"), ".meteor-rsc");
+		if (lastCombatStyleFile == null)
+			lastCombatStyleFile = new File(meteorDir, "lastCombatStyle.txt");
+
+		if (!lastCombatStyleFile.exists()) {
+			try {
+				Files.writeString(lastCombatStyleFile.toPath(), String.valueOf(0));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			combatStyle = Integer.parseInt(Files.readString(lastCombatStyleFile.toPath()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return combatStyle;
 	}
 }

@@ -24,9 +24,11 @@
  */
 package meteor.plugins.statusbars
 
+import eventbus.events.ExperienceGained
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
+import net.runelite.api.Skill
 
 @PluginDescriptor(
     name = "Status Bars",
@@ -36,6 +38,7 @@ class StatusBarsPlugin : Plugin() {
     val config = configuration<StatusBarsConfig>()
     private val overlay = overlay(StatusBarsOverlay(this, config))
     private val clientThread = ClientThread
+    var lastSkillXPUpdates = HashMap<Skill, Long>()
 
     var barsDisplayed = false
     var lastCombatActionTickCount = 0
@@ -46,6 +49,10 @@ class StatusBarsPlugin : Plugin() {
 
     override fun onStop() {
         barsDisplayed = false
+    }
+
+    override fun onExperienceGained(it: ExperienceGained) {
+        lastSkillXPUpdates[it.skill] = System.currentTimeMillis()
     }
 
 /*    override fun onGameTick(it: GameTick) {

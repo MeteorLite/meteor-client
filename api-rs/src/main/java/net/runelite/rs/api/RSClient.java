@@ -107,4 +107,10 @@ public interface RSClient extends Client
 
 	@Import("selectedItemSlot")
 	int getSelectedItemSlot();
+
+	@Import("combatStyle")
+	int getCombatStyle();
+
+	@Import("combatStyle")
+	void setCombatStyle(int idx);
 }

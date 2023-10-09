@@ -1296,9 +1296,13 @@ public final class mudclient extends NetworkedGame {
 		surface.drawSurface(graphics, 0, 0);
 	}
 
+	public int getDefaultCombatStyle() {
+		return -1;
+	}
+
 	protected void method31() {
 		systemUpdateTimer = 0;
-		anInt819 = 0;
+		combatStyle = getDefaultCombatStyle();
 		logoutTimeout = 0;
 		loginState = 0;
 		loggedIn = 1;
@@ -4877,7 +4881,7 @@ label0:
 				return socket;
 		}
 		Socket socket1;
-		socket1 = new Socket(InetAddress.getByName("game.openrsc.com"), 43596);
+		socket1 = new Socket(InetAddress.getByName("206.251.222.229"), 43596);
 		socket1.setSoTimeout(30000);
 		socket1.setTcpNoDelay(true);
 		return socket1;
@@ -5575,17 +5579,17 @@ label0:
 			for(int i = 0; i < 5; i++) {
 				if(i <= 0 || super.mouseX <= byte0 || super.mouseX >= byte0 + c || super.mouseY <= byte1 + i * 20 || super.mouseY >= byte1 + i * 20 + 20)
 					continue;
-				anInt819 = i - 1;
+				combatStyle = i - 1;
 				mouseButtonClick = 0;
 				super.packetStream.createPacket(29);
-				super.packetStream.putByte(anInt819);
+				super.packetStream.putByte(combatStyle);
 				super.packetStream.endPacket();
 				break;
 			}
 
 		}
 		for(int j = 0; j < 5; j++) {
-			if(j == anInt819 + 1)
+			if(j == combatStyle + 1)
 				surface.method224(byte0, byte1 + j * 20, c, 20, Surface.method222(255, 0, 0), 128);
 			else
 				surface.method224(byte0, byte1 + j * 20, c, 20, Surface.method222(190, 190, 190), 128);
@@ -6494,11 +6498,9 @@ label0:
 
 	private void loadSounds() {
 		try {
-			File folder;
-			if (injected)
-				folder = new File("../data/audio/");
-			else
-				folder = new File("./data/audio");
+			File folder = new File("./data/audio");
+			if (!folder.exists())
+				folder = new File("../data/audio");
 			File[] listOfFiles = folder.listFiles();
 
             for (File listOfFile : listOfFiles)
@@ -7361,7 +7363,7 @@ label0:
 	private boolean aBoolean816;
 	private boolean showDialogDuel;
 	private boolean aBoolean818;
-	private int anInt819;
+	private int combatStyle;
 	private final int[] objectID;
 	private Model[] aModelArray821;
 	private final int[] anIntArray822;

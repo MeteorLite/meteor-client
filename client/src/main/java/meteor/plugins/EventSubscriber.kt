@@ -14,6 +14,7 @@ open class EventSubscriber() : KEventSubscriber {
     open fun onPluginChanged(it: PluginChanged) {}
     open fun onInventoryUpdated(it: InventoryUpdated) {}
     open fun onClientTick(it: ClientTick) {}
+    open fun onExperienceGained(it: ExperienceGained) {}
 
     @OptIn(DelicateCoroutinesApi::class)
     open fun executeIfListening(unit: () -> (Unit)) {
@@ -27,6 +28,7 @@ open class EventSubscriber() : KEventSubscriber {
         subscribeEvent<PluginChanged> { executeIfListening { onPluginChanged(it) } }
         subscribeEvent<InventoryUpdated> { executeIfListening { onInventoryUpdated(it) } }
         subscribeEvent<ClientTick> { executeIfListening { onClientTick(it) } }
+        subscribeEvent<ExperienceGained> { executeIfListening { onExperienceGained(it) } }
     }
 
     private inline fun <reified T : Any> subscribeEvent(noinline unit: (T) -> Unit) {
