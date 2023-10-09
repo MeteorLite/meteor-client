@@ -33,7 +33,8 @@ class Hooks : Callbacks {
                     client.inventoryItemsIDs[slot],
                     client.inventoryItemsQuantities[slot],
                     client.inventoryItemsEquipped[slot],
-                    client.inventoryItemsQuantities[slot]))
+                    client.inventoryItemsQuantities[slot],
+                    slot))
             }
             client.inventoryItems = inventoryItems
             KEVENT.post(InventoryUpdated(inventoryItems))
@@ -72,6 +73,7 @@ class Hooks : Callbacks {
     val sceneOverlays = createRSBufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
     val transparent = Color(5,5,5)
 
+    @OptIn(ExperimentalStdlibApi::class)
     override fun drawScene(pixels: IntArray) {
         val graphics2d = sceneOverlays.graphics as Graphics2D
         graphics2d.color = transparent;
@@ -193,9 +195,6 @@ class Hooks : Callbacks {
 
     override fun mousePressed(mouseEvent: MouseEvent): MouseEvent {
         val newEvent = MouseManager.processMousePressed(mouseEvent)
-        if (checkInventoryClicked(newEvent)) {
-            client.keepInventoryOpen = !client.keepInventoryOpen
-        }
         return newEvent
     }
 

@@ -104,4 +104,7 @@ public interface RSClient extends Client
 
 	@Import("chooseOption")
 	void chooseOption$api(int optionIdx);
+
+	@Import("selectedItemSlot")
+	int getSelectedItemSlot();
 }

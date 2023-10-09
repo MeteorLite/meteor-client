@@ -246,29 +246,37 @@ public abstract class RSClientMixin implements RSClient {
 	}
 
 	@Inject
-	boolean keepInventoryOpen = false;
-
-	@Inject
-	@Override
-	public boolean getKeepInventoryOpen() {
-		return keepInventoryOpen;
-	}
-
-	@Inject
-	@Override
-	public void setKeepInventoryOpen(boolean keepInventoryOpen) {
-		this.keepInventoryOpen = keepInventoryOpen;
-	}
-
-	@Inject
 	public int lastUITab = -1;
-
-	@Inject
-	public boolean showingInventory = false;
 
 	@Inject
 	@Override
 	public boolean showingInventory() {
-		return showingInventory;
+		return getShowUITab() == 1;
+	}
+
+	@Inject
+	@FieldHook("showUiTab")
+	public void onShowUiTabChanged(int idx) {
+		boolean keptInventory = false;
+		if (getShowUITab() != 1) {
+			if (lastUITab == 1) {
+				//prevent inventory from closing when "Use"ing an item
+				//this behavior exists on mobile preservation
+				if (getSelectedItemSlot() != -1) {
+					setShowUITab(1);
+					keptInventory = true;
+				}
+			}
+		}
+		if (!keptInventory)
+			lastUITab = getShowUITab();
+	}
+
+	//force close inventory after an item on item menu selection
+	//this behavior exists on mobile preservation
+	@Inject
+	@MethodHook(value = "chooseOption", end = true)
+	void chooseOption$tail(int optionIdx){
+		setShowUITab(0);
 	}
 }

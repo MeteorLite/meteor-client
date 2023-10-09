@@ -122,10 +122,6 @@ public interface Client
 
 	int[] getSkillXPs();
 
-	boolean getKeepInventoryOpen();
-
-	void setKeepInventoryOpen(boolean keepInventoryOpen);
-
 	boolean showingInventory();
 
 	int getMenuOptionsSize();
