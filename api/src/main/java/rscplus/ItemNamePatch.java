@@ -1,23 +1,18 @@
 package rscplus;
 
 public class ItemNamePatch {
-  static String[] item_name_original;
-  static String[] item_name_patch1;
-  static String[] item_name_patch2;
-  static String[] item_name_patch3;
 
-  private static boolean initialized = false;
+  public static String[] item_name_original;
+  public static String[] item_name_patch1;
+  public static String[] item_name_patch2;
+  public static String[] item_name_patch3;
 
-  public static void init() {
-    if (initialized) {
-      return;
-    }
-
-    //item_name_original = Item.item_name.clone();
+  public static void init(String[] originalNames) {
+    item_name_original = originalNames;
+    item_name_patch1 = item_name_original.clone();
 
     // item_name_patch1 is for "Purely Practical" name changes
     // e.g. potion dosages, identified herbs, and unfinished potions
-    item_name_patch1 = item_name_original.clone();
     item_name_patch1[165] = "Guam leaf (unidentified)";
     item_name_patch1[221] = "Strength Potion (4)";
     item_name_patch1[222] = "Strength Potion (3)";
@@ -997,7 +992,5 @@ public class ItemNamePatch {
     item_name_patch3[1082] = "Water skin (mostly full)";
     item_name_patch3[1083] = "Water skin (mostly empty)";
     item_name_patch3[1084] = "Water skin (mouthful left)";
-
-    initialized = true;
   }
 }

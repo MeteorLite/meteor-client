@@ -25,6 +25,7 @@
 package net.runelite.api;
 
 import net.runelite.api.hooks.Callbacks;
+import rscplus.ItemNamePatchLevel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -127,4 +128,12 @@ public interface Client
 	int getMenuOptionsSize();
 
 	void chooseOption$api(int optionIdx);
+
+	ItemNamePatchLevel getItemPatchLevel();
+
+	void setItemPatchLevel(ItemNamePatchLevel itemPatchLevel);
+
+	void setItemNames(String[] itemNames);
+
+	String[] getItemNames();
 }

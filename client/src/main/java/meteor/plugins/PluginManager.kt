@@ -2,36 +2,27 @@ package meteor.plugins
 
 import androidx.compose.runtime.mutableStateListOf
 import meteor.Configuration
-import meteor.Main
 import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
 import meteor.plugins.meteor.Meteor
 import meteor.plugins.statusbars.StatusBarsPlugin
+import meteor.plugins.itemnamepatch.ItemNamePatchPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 
-import org.apache.commons.lang3.time.StopWatch
 import java.io.File
-import java.net.JarURLConnection
-import java.net.URL
 import java.net.URLClassLoader
-import java.util.concurrent.TimeUnit
-import java.util.jar.Manifest
-import kotlin.system.exitProcess
 
 
 object PluginManager {
     var plugins = mutableStateListOf<Plugin>()
-    val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
     val runningMap = HashMap<Plugin, Boolean>()
-    val classLoaders = HashMap<String, URLClassLoader>();
     init {
         init<Meteor>()
         if (pluginsEnabled) {
-            init<ExamplePlugin>()
-            init<InventoryItemsPlugin>()
-            init<StretchedModePlugin>()
+            init<ItemNamePatchPlugin>()
             init<StatusBarsPlugin>()
+            init<StretchedModePlugin>()
         }
     }
 

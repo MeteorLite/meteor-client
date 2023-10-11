@@ -27,11 +27,15 @@ package mixins;
 
 import eventbus.events.ClientTick;
 import eventbus.events.ExperienceGained;
+import eventbus.events.GameStateChanged;
+import net.runelite.api.GameState;
 import net.runelite.api.InventoryItem;
 import net.runelite.api.Skill;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
+import rscplus.ItemNamePatch;
+import rscplus.ItemNamePatchLevel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -290,6 +294,7 @@ public abstract class RSClientMixin implements RSClient {
 	public void onLoggedInChanged(int idx) {
 		if (!isLoggedIn())
 			lastXPs = null;
+		client.getCallbacks().post(new GameStateChanged(GameState.of(getRSCLoggedIn())));
 	}
 
 	@Inject
@@ -362,5 +367,41 @@ public abstract class RSClientMixin implements RSClient {
 			e.printStackTrace();
 		}
 		return combatStyle;
+	}
+
+	@Inject
+	private ItemNamePatchLevel itemPatchLevel = ItemNamePatchLevel.DISABLED;
+
+	@Inject
+	@Override
+	public  void setItemPatchLevel(ItemNamePatchLevel itemPatchLevel) {
+		this.itemPatchLevel = itemPatchLevel;
+	}
+
+	@Inject
+	@Override
+	public ItemNamePatchLevel getItemPatchLevel() {
+		return itemPatchLevel;
+	}
+
+	@Shadow("itemNames")
+	public static String[] itemNames;
+
+	@Inject
+	@MethodHook(value = "loadData", end = true)
+	void loadData$tail(){
+		ItemNamePatch.init(itemNames);
+	}
+
+	@Inject
+	@Override
+	public String[] getItemNames() {
+		return itemNames;
+	}
+
+	@Inject
+	@Override
+	public void setItemNames(String[] itemNames) {
+		this.itemNames = itemNames;
 	}
 }

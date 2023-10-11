@@ -1,7 +1,6 @@
 // Decompiled by Jad v1.5.8c. Copyright 2001 Pavel Kouznetsov.
 // Jad home page: http://www.geocities.com/kpdus/jad.html
-// Decompiler options: packimports(3) nonlb 
-
+// Decompiler options: packimports(3) nonlb
 
 public class Definitions {
 
@@ -25,7 +24,7 @@ public class Definitions {
 		return i;
 	}
 
-	public static String method126() {
+	public static String readString() {
 		String s;
 		for(s = ""; aByteArray58[anInt59] != 0; s = s + (char)aByteArray58[anInt59++]);
 		anInt59++;
@@ -48,55 +47,55 @@ public class Definitions {
 		anInt59 = 0;
 		aByteArray56 = DataUtils.loadData("integer.dat", 0, abyte0);
 		anInt57 = 0;
-		anInt62 = method124();
-		itemNames = new String[anInt62];
-		aStringArray64 = new String[anInt62];
-		aStringArray65 = new String[anInt62];
-		anIntArray66 = new int[anInt62];
-		anIntArray67 = new int[anInt62];
-		inventoryItemsStackable = new int[anInt62];
-		anIntArray69 = new int[anInt62];
-		anIntArray70 = new int[anInt62];
-		anIntArray71 = new int[anInt62];
-		anIntArray72 = new int[anInt62];
-		anIntArray73 = new int[anInt62];
-		for(int i = 0; i < anInt62; i++)
-			itemNames[i] = method126();
+		itemsSize = method124();
+		itemNames = new String[itemsSize];
+		aStringArray64 = new String[itemsSize];
+		aStringArray65 = new String[itemsSize];
+		anIntArray66 = new int[itemsSize];
+		anIntArray67 = new int[itemsSize];
+		inventoryItemsStackable = new int[itemsSize];
+		anIntArray69 = new int[itemsSize];
+		anIntArray70 = new int[itemsSize];
+		anIntArray71 = new int[itemsSize];
+		anIntArray72 = new int[itemsSize];
+		anIntArray73 = new int[itemsSize];
+		for(int i = 0; i < itemsSize; i++)
+			itemNames[i] = readString();
 
-		for(int j = 0; j < anInt62; j++)
-			aStringArray64[j] = method126();
+		for(int j = 0; j < itemsSize; j++)
+			aStringArray64[j] = readString();
 
-		for(int k = 0; k < anInt62; k++)
-			aStringArray65[k] = method126();
+		for(int k = 0; k < itemsSize; k++)
+			aStringArray65[k] = readString();
 
-		for(int l = 0; l < anInt62; l++) {
+		for(int l = 0; l < itemsSize; l++) {
 			anIntArray66[l] = method124();
 			if(anIntArray66[l] + 1 > anInt74)
 				anInt74 = anIntArray66[l] + 1;
 		}
 
-		for(int i1 = 0; i1 < anInt62; i1++)
+		for(int i1 = 0; i1 < itemsSize; i1++)
 			anIntArray67[i1] = method125();
 
-		for(int j1 = 0; j1 < anInt62; j1++)
+		for(int j1 = 0; j1 < itemsSize; j1++)
 			inventoryItemsStackable[j1] = method123();
 
-		for(int k1 = 0; k1 < anInt62; k1++)
+		for(int k1 = 0; k1 < itemsSize; k1++)
 			anIntArray69[k1] = method123();
 
-		for(int l1 = 0; l1 < anInt62; l1++)
+		for(int l1 = 0; l1 < itemsSize; l1++)
 			anIntArray70[l1] = method124();
 
-		for(int i2 = 0; i2 < anInt62; i2++)
+		for(int i2 = 0; i2 < itemsSize; i2++)
 			anIntArray71[i2] = method125();
 
-		for(int j2 = 0; j2 < anInt62; j2++)
+		for(int j2 = 0; j2 < itemsSize; j2++)
 			anIntArray72[j2] = method123();
 
-		for(int k2 = 0; k2 < anInt62; k2++)
+		for(int k2 = 0; k2 < itemsSize; k2++)
 			anIntArray73[k2] = method123();
 
-		for(int l2 = 0; l2 < anInt62; l2++)
+		for(int l2 = 0; l2 < itemsSize; l2++)
 			if(!flag && anIntArray73[l2] == 1) {
 				itemNames[l2] = "Members object";
 				aStringArray64[l2] = "You need to be a member to use this object";
@@ -127,10 +126,10 @@ public class Definitions {
 		anIntArray92 = new int[anInt75];
 		anIntArray93 = new int[anInt75];
 		for(int i3 = 0; i3 < anInt75; i3++)
-			aStringArray76[i3] = method126();
+			aStringArray76[i3] = readString();
 
 		for(int j3 = 0; j3 < anInt75; j3++)
-			aStringArray77[j3] = method126();
+			aStringArray77[j3] = readString();
 
 		for(int k3 = 0; k3 < anInt75; k3++)
 			anIntArray79[k3] = method123();
@@ -184,16 +183,16 @@ public class Definitions {
 			anIntArray93[j7] = method123();
 
 		for(int k7 = 0; k7 < anInt75; k7++)
-			aStringArray78[k7] = method126();
+			aStringArray78[k7] = readString();
 
 		anInt94 = method124();
 		aStringArray95 = new String[anInt94];
 		aStringArray96 = new String[anInt94];
 		for(int l7 = 0; l7 < anInt94; l7++)
-			aStringArray95[l7] = method126();
+			aStringArray95[l7] = readString();
 
 		for(int i8 = 0; i8 < anInt94; i8++)
-			aStringArray96[i8] = method126();
+			aStringArray96[i8] = readString();
 
 		anInt97 = method124();
 		aStringArray98 = new String[anInt97];
@@ -203,7 +202,7 @@ public class Definitions {
 		anIntArray102 = new int[anInt97];
 		anIntArray103 = new int[anInt97];
 		for(int j8 = 0; j8 < anInt97; j8++)
-			aStringArray98[j8] = method126();
+			aStringArray98[j8] = readString();
 
 		for(int k8 = 0; k8 < anInt97; k8++)
 			anIntArray99[k8] = method125();
@@ -231,19 +230,19 @@ public class Definitions {
 		anIntArray112 = new int[anInt104];
 		anIntArray113 = new int[anInt104];
 		for(int l9 = 0; l9 < anInt104; l9++)
-			aStringArray105[l9] = method126();
+			aStringArray105[l9] = readString();
 
 		for(int i10 = 0; i10 < anInt104; i10++)
-			aStringArray106[i10] = method126();
+			aStringArray106[i10] = readString();
 
 		for(int j10 = 0; j10 < anInt104; j10++)
-			aStringArray107[j10] = method126();
+			aStringArray107[j10] = readString();
 
 		for(int k10 = 0; k10 < anInt104; k10++)
-			aStringArray108[k10] = method126();
+			aStringArray108[k10] = readString();
 
 		for(int l10 = 0; l10 < anInt104; l10++)
-			anIntArray109[l10] = method127(method126());
+			anIntArray109[l10] = method127(readString());
 
 		for(int i11 = 0; i11 < anInt104; i11++)
 			anIntArray110[i11] = method123();
@@ -268,16 +267,16 @@ public class Definitions {
 		anIntArray122 = new int[anInt114];
 		anIntArray123 = new int[anInt114];
 		for(int i12 = 0; i12 < anInt114; i12++)
-			aStringArray115[i12] = method126();
+			aStringArray115[i12] = readString();
 
 		for(int j12 = 0; j12 < anInt114; j12++)
-			aStringArray116[j12] = method126();
+			aStringArray116[j12] = readString();
 
 		for(int k12 = 0; k12 < anInt114; k12++)
-			aStringArray117[k12] = method126();
+			aStringArray117[k12] = readString();
 
 		for(int l12 = 0; l12 < anInt114; l12++)
-			aStringArray118[l12] = method126();
+			aStringArray118[l12] = readString();
 
 		for(int i13 = 0; i13 < anInt114; i13++)
 			anIntArray119[i13] = method124();
@@ -326,10 +325,10 @@ public class Definitions {
 		anIntArrayArray138 = new int[anInt132][];
 		anIntArrayArray139 = new int[anInt132][];
 		for(int k15 = 0; k15 < anInt132; k15++)
-			aStringArray133[k15] = method126();
+			aStringArray133[k15] = readString();
 
 		for(int l15 = 0; l15 < anInt132; l15++)
-			aStringArray134[l15] = method126();
+			aStringArray134[l15] = readString();
 
 		for(int i16 = 0; i16 < anInt132; i16++)
 			anIntArray135[i16] = method123();
@@ -362,10 +361,10 @@ public class Definitions {
 		anIntArray143 = new int[anInt140];
 		anIntArray144 = new int[anInt140];
 		for(int i18 = 0; i18 < anInt140; i18++)
-			aStringArray141[i18] = method126();
+			aStringArray141[i18] = readString();
 
 		for(int k18 = 0; k18 < anInt140; k18++)
-			aStringArray142[k18] = method126();
+			aStringArray142[k18] = readString();
 
 		for(int l18 = 0; l18 < anInt140; l18++)
 			anIntArray143[l18] = method123();
@@ -387,7 +386,7 @@ public class Definitions {
 	static int anInt59;
 	public static String[] aStringArray60 = new String[5000];
 	public static int anInt61;
-	public static int anInt62;
+	public static int itemsSize;
 	public static String[] itemNames;
 	public static String[] aStringArray64;
 	public static String[] aStringArray65;

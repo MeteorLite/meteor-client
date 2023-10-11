@@ -35,6 +35,7 @@ import meteor.input.TranslateMouseListener
 import meteor.input.TranslateMouseWheelListener
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.itemnamepatch.ItemNamePatchConfig
 
 @PluginDescriptor(
     name = "Stretched Mode", configGroup = "stretchedmode",

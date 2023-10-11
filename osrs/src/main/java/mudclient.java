@@ -2410,7 +2410,7 @@ public final class mudclient extends NetworkedGame {
 		aPanel770.method170(anInt772);
 	}
 
-	private void method82() {
+	private void loadData() {
 		byte[] abyte0 = readDataFile("config" + Versions.anInt560 + ".jag", "Configuration", 10);
 		if(abyte0 == null) {
 			errorLoadingData = true;
@@ -6430,7 +6430,7 @@ label0:
 			System.out.println("Offset: " + k1);
 		}
 		catch(Exception _ex) { }
-		method82();
+		loadData();
 		if(errorLoadingData)
 			return;
 		anInt658 = 2000;

@@ -9,7 +9,7 @@ Version 3, 29 June 2007
 Copyright (c) RSCPlus <https://github.com/RSCPlus>
 
 Modifications:
-All code used from RSCPlus is currently located in the osrs module under java/rscplus
+All code used from RSCPlus is currently located in the api module under java/rscplus
 with necessary changes to integrate into Meteor
 
 Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>

@@ -203,34 +203,6 @@ object Main : ApplicationScope, EventSubscriber() {
     }
 
     fun initApi() {
-/*        KEVENT.subscribe<Interact> {
-            ClientThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
-        }
-        KEVENT.subscribe<ClickPacket> {
-            ClientThread.invoke { ClientPackets.queueClickPacket(it.data.clickPoint) }
-        }
-        KEVENT.subscribe<MenuOptionClicked>{
-            //These are api onClicks (before client code is usable)
-            for (menuEntry in AutomatedMenu.onClicks.keys) {
-                if (it.data.menuEntry == menuEntry) {
-                    AutomatedMenu.onClicks[menuEntry]?.accept(menuEntry)
-                }
-            }
-            // These are regular menu onClick()
-            for (menuEntry in onClicks.keys) {
-                if (it.data.menuEntry == menuEntry) {
-                    onClicks[menuEntry]?.accept(menuEntry)
-                }
-            }
-            //These are from MenuManager's managed menus
-            //For whatever reason, this fails a concurrency modification check, so we clone it.
-            val copy: HashMap<WidgetMenuOption, Consumer<MenuEntry>> = onClicksWidget.clone() as HashMap<WidgetMenuOption, Consumer<MenuEntry>>
-            for (menuEntry in copy.keys) {
-                if (it.data.menuEntry.option == menuEntry.menuOption) {
-                    onClicksWidget[menuEntry]?.accept(it.data.menuEntry)
-                }
-            }
-        }*/
         KEVENT.subscribe<ConfigChanged> {
             if (it.data.group == Configuration.MASTER_GROUP)
                 if (it.data.key == "fullscreen") {
