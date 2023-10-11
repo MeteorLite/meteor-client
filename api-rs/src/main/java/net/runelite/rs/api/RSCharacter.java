@@ -71,4 +71,16 @@ public interface RSCharacter extends Character
 
     @Import("combatLevel")
     int getCombatLevel();
+
+    @Import("screenX")
+    int getScreenX();
+
+    @Import("screenY")
+    int getScreenY();
+
+    @Import("combatTimer")
+    int getCombatTimer();
+
+    @Import("damageTaken")
+    int getDamageTaken();
 }

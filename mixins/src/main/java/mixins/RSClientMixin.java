@@ -31,8 +31,10 @@ import eventbus.events.GameStateChanged;
 import net.runelite.api.GameState;
 import net.runelite.api.InventoryItem;
 import net.runelite.api.Skill;
+import net.runelite.api.SpriteID;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.mixins.*;
+import net.runelite.rs.api.RSCharacter;
 import net.runelite.rs.api.RSClient;
 import rscplus.ItemNamePatch;
 import rscplus.ItemNamePatchLevel;
@@ -248,7 +250,19 @@ public abstract class RSClientMixin implements RSClient {
 	@Inject
 	@MethodHook("drawUI")
 	public void beforeDrawUI(){
+		if (client.isHitsplatsAboveScene())
+			drawHitsplats();
 		client.getCallbacks().drawScene(pixels);
+	}
+
+	@Inject
+	public void drawHitsplats() {
+		for (RSCharacter npc : client.getNPCs())
+			if (npc != null)
+				npc.drawHitSplat(SpriteID.HITSPLAT_BLUE);
+		for (RSCharacter player : client.getPlayers())
+			if (player != null)
+				player.drawHitSplat(SpriteID.HITSPLAT_RED);
 	}
 
 	@Inject
@@ -403,5 +417,20 @@ public abstract class RSClientMixin implements RSClient {
 	@Override
 	public void setItemNames(String[] itemNames) {
 		this.itemNames = itemNames;
+	}
+
+	@Inject
+	boolean correctHitsplats = false;
+
+	@Inject
+	@Override
+	public boolean isCorrectHitsplats() {
+		return correctHitsplats;
+	}
+
+	@Inject
+	@Override
+	public void setCorrectHitsplats(boolean correctHitsplats) {
+		this.correctHitsplats = correctHitsplats;
 	}
 }

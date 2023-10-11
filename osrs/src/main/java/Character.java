@@ -47,4 +47,9 @@ final class Character {
 	public int[] waypointsY;
 	public int[] equipment;
 	public int combatLevel;
+
+	//Added
+
+	public int screenX;
+	public int screenY;
 }

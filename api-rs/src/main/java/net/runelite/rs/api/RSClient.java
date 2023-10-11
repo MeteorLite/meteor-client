@@ -113,4 +113,18 @@ public interface RSClient extends Client
 
 	@Import("combatStyle")
 	void setCombatStyle(int idx);
+
+	@Import("npcs")
+	RSCharacter[] getNPCs();
+
+	@Import("players")
+	RSCharacter[] getPlayers();
+
+	@Import("drawHitsplatsAboveScene")
+	@Override
+	void setHitsplatsAboveScene(boolean hitsplatsAboveScene);
+
+	@Import("drawHitsplatsAboveScene")
+	@Override
+	boolean isHitsplatsAboveScene();
 }

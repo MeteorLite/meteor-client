@@ -80,10 +80,10 @@ public class Panel {
 		aSurface181.method214(i, j, k, l, anInt196);
 		aSurface181.method214(i + 1, j + 1, k - 2, l - 2, anInt197);
 		aSurface181.method214(i + 2, j + 2, k - 4, l - 4, anInt198);
-		aSurface181.method246(i, j, 2 + anInt191);
-		aSurface181.method246((i + k) - 7, j, 3 + anInt191);
-		aSurface181.method246(i, (j + l) - 7, 4 + anInt191);
-		aSurface181.method246((i + k) - 7, (j + l) - 7, 5 + anInt191);
+		aSurface181.drawSprite(i, j, 2 + anInt191);
+		aSurface181.drawSprite((i + k) - 7, j, 3 + anInt191);
+		aSurface181.drawSprite(i, (j + l) - 7, 4 + anInt191);
+		aSurface181.drawSprite((i + k) - 7, (j + l) - 7, 5 + anInt191);
 	}
 
 	public void method141(int i, String s, boolean flag) {
@@ -181,8 +181,8 @@ public class Panel {
 	protected void method146(int i, int j, int k, int l, int i1, int j1) {
 		int k1 = (i + k) - 12;
 		aSurface181.method214(k1, j, 12, l, 0);
-		aSurface181.method246(k1 + 1, j + 1, anInt191);
-		aSurface181.method246(k1 + 1, (j + l) - 12, 1 + anInt191);
+		aSurface181.drawSprite(k1 + 1, j + 1, anInt191);
+		aSurface181.drawSprite(k1 + 1, (j + l) - 12, 1 + anInt191);
 		aSurface181.method251(k1, j + 13, 12, 0);
 		aSurface181.method251(k1, (j + l) - 13, 12, 0);
 		aSurface181.method226(k1 + 1, j + 14, 11, l - 27, anInt210, anInt211);
@@ -488,7 +488,7 @@ public class Panel {
 	}
 
 	protected void method165(int i, int j, int k) {
-		aSurface181.method246(i, j, k);
+		aSurface181.drawSprite(i, j, k);
 	}
 
 	public String getText(int i) {

@@ -18,6 +18,8 @@ public final class mudclient extends NetworkedGame {
 
 	//This will be modified via mixins if we are running injected
 	public static boolean injected = false;
+	//Used so we can modify hitsplat easily
+	boolean drawHitsplatsAboveScene = false;
 
 	private void method45() {
 		if((cameraAngle & 1) == 1 && isValidCameraAngle(cameraAngle))
@@ -107,7 +109,7 @@ public final class mudclient extends NetworkedGame {
 		for(int k = 6; k >= 1; k--)
 			surface.method225(0, k, 0, 194 - k, 512, 8);
 
-		surface.method246(15, 15, anInt658 + 10);
+		surface.drawSprite(15, 15, anInt658 + 10);
 		surface.method252(anInt659, 0, 0, 512, 200);
 		surface.method235(anInt659);
 		c = '\u2400';
@@ -130,7 +132,7 @@ public final class mudclient extends NetworkedGame {
 		for(int i1 = 6; i1 >= 1; i1--)
 			surface.method225(0, i1, 0, 194 - i1, 512, 8);
 
-		surface.method246(15, 15, anInt658 + 10);
+		surface.drawSprite(15, 15, anInt658 + 10);
 		surface.method252(anInt659 + 1, 0, 0, 512, 200);
 		surface.method235(anInt659 + 1);
 		for(int j1 = 0; j1 < 64; j1++) {
@@ -161,7 +163,7 @@ public final class mudclient extends NetworkedGame {
 		for(int l1 = 6; l1 >= 1; l1--)
 			surface.method225(0, l1, 0, 194, 512, 8);
 
-		surface.method246(15, 15, anInt658 + 10);
+		surface.drawSprite(15, 15, anInt658 + 10);
 		surface.method252(anInt658 + 10, 0, 0, 512, 200);
 		surface.method235(anInt658 + 10);
 	}
@@ -273,7 +275,7 @@ public final class mudclient extends NetworkedGame {
 		return model;
 	}
 
-	void method51(int i, int j, int k, int l, int i1, int j1, int k1) {
+	void method51(int x, int y, int width, int height, int i1, int j1, int k1) {
 		Character rscharacter = npcs[i1];
 		int l1 = rscharacter.animation + (cameraRotation + 16) / 32 & 7;
 		boolean flag = false;
@@ -295,14 +297,14 @@ public final class mudclient extends NetworkedGame {
 			i2 = 5;
 			l1 = 2;
 			flag = false;
-			i -= (Definitions.anIntArray93[rscharacter.npcID] * k1) / 100;
+			x -= (Definitions.anIntArray93[rscharacter.npcID] * k1) / 100;
 			j2 = i2 * 3 + anIntArray680[(cycle / (Definitions.anIntArray92[rscharacter.npcID] - 1)) % 8];
 		} else
 		if(rscharacter.animation == 9) {
 			i2 = 5;
 			l1 = 2;
 			flag = true;
-			i += (Definitions.anIntArray93[rscharacter.npcID] * k1) / 100;
+			x += (Definitions.anIntArray93[rscharacter.npcID] * k1) / 100;
 			j2 = i2 * 3 + anIntArray682[(cycle / Definitions.anIntArray92[rscharacter.npcID]) % 8];
 		}
 		for(int k2 = 0; k2 < 12; k2++) {
@@ -316,10 +318,10 @@ public final class mudclient extends NetworkedGame {
 					k4 += 15;
 				if(i2 != 5 || Definitions.anIntArray101[k3] == 1) {
 					int l4 = k4 + Definitions.anIntArray103[k3];
-					i4 = (i4 * k) / surface.anIntArray331[l4];
-					j4 = (j4 * l) / surface.anIntArray332[l4];
-					int i5 = (k * surface.anIntArray331[l4]) / surface.anIntArray331[Definitions.anIntArray103[k3]];
-					i4 -= (i5 - k) / 2;
+					i4 = (i4 * width) / surface.anIntArray331[l4];
+					j4 = (j4 * height) / surface.anIntArray332[l4];
+					int i5 = (width * surface.anIntArray331[l4]) / surface.anIntArray331[Definitions.anIntArray103[k3]];
+					i4 -= (i5 - width) / 2;
 					int j5 = Definitions.anIntArray99[k3];
 					int k5 = 0;
 					if(j5 == 1) {
@@ -334,7 +336,7 @@ public final class mudclient extends NetworkedGame {
 						j5 = Definitions.anIntArray87[rscharacter.npcID];
 						k5 = Definitions.anIntArray88[rscharacter.npcID];
 					}
-					surface.method221(i + i4, j + j4, i5, l, l4, j5, k5, j1, flag);
+					surface.method221(x + i4, y + j4, i5, height, l4, j5, k5, j1, flag);
 				}
 			}
 		}
@@ -344,32 +346,39 @@ public final class mudclient extends NetworkedGame {
 			if(recievedMessageMidPoint[anInt685] > 150)
 				recievedMessageMidPoint[anInt685] = 150;
 			revievedMessageHeight[anInt685] = (surface.method212(rscharacter.message, 1) / 300) * surface.method238(1);
-			receivedMessageX[anInt685] = i + k / 2;
-			receivedMessageY[anInt685] = j;
+			receivedMessageX[anInt685] = x + width / 2;
+			receivedMessageY[anInt685] = y;
 			aStringArray689[anInt685++] = rscharacter.message;
 		}
 		if(rscharacter.animation == 8 || rscharacter.animation == 9 || rscharacter.combatTimer != 0) {
 			if(rscharacter.combatTimer > 0) {
-				int i3 = i;
+				int i3 = x;
 				if(rscharacter.animation == 8)
 					i3 -= (20 * k1) / 100;
 				else
 				if(rscharacter.animation == 9)
 					i3 += (20 * k1) / 100;
 				int l3 = (rscharacter.currentHealth * 30) / rscharacter.maxHealth;
-				anIntArray690[anInt691] = i3 + k / 2;
-				anIntArray692[anInt691] = j;
+				anIntArray690[anInt691] = i3 + width / 2;
+				anIntArray692[anInt691] = y;
 				anIntArray693[anInt691++] = l3;
 			}
 			if(rscharacter.combatTimer > 150) {
-				int j3 = i;
+				int x1 = x;
 				if(rscharacter.animation == 8)
-					j3 -= (10 * k1) / 100;
+					x1 -= (10 * k1) / 100;
 				else
 				if(rscharacter.animation == 9)
-					j3 += (10 * k1) / 100;
-				surface.method246((j3 + k / 2) - 12, (j + l / 2) - 12, anInt658 + 12);
-				surface.method216(String.valueOf(rscharacter.damageTaken), (j3 + k / 2) - 1, j + l / 2 + 5, 3, 0xffffff);
+					x1 += (10 * k1) / 100;
+
+				//draw hitsplat. in meteor, we do this after scene so it's not hidden by models
+				rscharacter.screenX = x1 + width / 2;
+				rscharacter.screenY = y + height / 2;
+
+				if (!drawHitsplatsAboveScene) {
+					surface.drawSprite(rscharacter.screenX - 12, rscharacter.screenY - 12, anInt658 + 12);
+					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenX - 1, rscharacter.screenY + 5, 3, 0xffffff);
+				}
 			}
 		}
 	}
@@ -505,10 +514,17 @@ public final class mudclient extends NetworkedGame {
 				else
 				if(rscharacter.animation == 9)
 					j3 += (10 * k1) / 100;
-				surface.method246((j3 + k / 2) - 12, (j + l / 2) - 12, anInt658 + 11);
-				surface.method216(String.valueOf(rscharacter.damageTaken), (j3 + k / 2) - 1, j + l / 2 + 5, 3, 0xffffff);
+				//draw hitsplat. in meteor, we do this after scene so it's not hidden by models
+				rscharacter.screenX = j3 + k / 2;
+				rscharacter.screenY = j + l / 2;
+
+				if (!drawHitsplatsAboveScene) {
+					surface.drawSprite(rscharacter.screenX - 12, rscharacter.screenY - 12, anInt658 + 11);
+					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenX - 1, rscharacter.screenY + 5, 3, 0xffffff);
+				}
 			}
 		}
+
 		if(rscharacter.skullVisible == 1 && rscharacter.bubbleTimeout == 0) {
 			int k3 = j1 + i + k / 2;
 			if(rscharacter.animation == 8)
@@ -755,7 +771,7 @@ public final class mudclient extends NetworkedGame {
 		int i = surface.width2 - 199;
 		char c = '\234';
 		char c2 = '\230';
-		surface.method246(i - 49, 3, anInt658 + 2);
+		surface.drawSprite(i - 49, 3, anInt658 + 2);
 		i += 40;
 		surface.method207(i, 36, c, c2, 0);
 		surface.method253(i, 36, i + c, 36 + c2);
@@ -1045,7 +1061,7 @@ public final class mudclient extends NetworkedGame {
 		int j = 0xffffff;
 		if(super.mouseY > i - 12 && super.mouseY <= i && super.mouseX > 106 && super.mouseX < 406)
 			j = 0xff0000;
-		surface.method216("Click here to close window", 256, i, 1, j);
+		surface.drawStringCenter("Click here to close window", 256, i, 1, j);
 		if(mouseButtonClick == 1) {
 			if(j == 0xff0000)
 				aBoolean790 = false;
@@ -1191,7 +1207,7 @@ public final class mudclient extends NetworkedGame {
 		surface.method248((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt750] + 12, anIntArray697[anInt747]);
 		surface.method221((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt739] + 12, anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
 		surface.method221((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt731] + 12, anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
-		surface.method246(0, gameHeight, anInt658 + 22);
+		surface.drawSprite(0, gameHeight, anInt658 + 22);
 		surface.drawSurface(graphics, 0, 0);
 	}
 
@@ -1272,16 +1288,16 @@ public final class mudclient extends NetworkedGame {
 		if(loginState == 0 || loginState == 1 || loginState == 2 || loginState == 3) {
 			int i = (cycle * 2) % 3072;
 			if(i < 1024) {
-				surface.method246(0, 10, anInt659);
+				surface.drawSprite(0, 10, anInt659);
 				if(i > 768)
 					surface.method260(0, 10, anInt659 + 1, i - 768);
 			} else
 			if(i < 2048) {
-				surface.method246(0, 10, anInt659 + 1);
+				surface.drawSprite(0, 10, anInt659 + 1);
 				if(i > 1792)
 					surface.method260(0, 10, anInt658 + 10, i - 1792);
 			} else {
-				surface.method246(0, 10, anInt658 + 10);
+				surface.drawSprite(0, 10, anInt658 + 10);
 				if(i > 2816)
 					surface.method260(0, 10, anInt659, i - 2816);
 			}
@@ -1292,7 +1308,7 @@ public final class mudclient extends NetworkedGame {
 			aPanel774.method150();
 		if(loginState == 2)
 			aPanel770.method150();
-		surface.method246(0, gameHeight, anInt658 + 22);
+		surface.drawSprite(0, gameHeight, anInt658 + 22);
 		surface.drawSurface(graphics, 0, 0);
 	}
 
@@ -1756,32 +1772,32 @@ public final class mudclient extends NetworkedGame {
 	}
 
 	private void method76() {
-		surface.method246(0, gameHeight - 4, anInt658 + 23);
+		surface.drawSprite(0, gameHeight - 4, anInt658 + 23);
 		int i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 0)
 			i = Surface.method222(255, 200, 50);
 		if(messageTabFlashAll % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.method216("All messages", 54, gameHeight + 6, 0, i);
+		surface.drawStringCenter("All messages", 54, gameHeight + 6, 0, i);
 		i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 1)
 			i = Surface.method222(255, 200, 50);
 		if(messageTabFlashHistory % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.method216("Chat history", 155, gameHeight + 6, 0, i);
+		surface.drawStringCenter("Chat history", 155, gameHeight + 6, 0, i);
 		i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 2)
 			i = Surface.method222(255, 200, 50);
 		if(messtageTabFlashQuest % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.method216("Quest history", 255, gameHeight + 6, 0, i);
+		surface.drawStringCenter("Quest history", 255, gameHeight + 6, 0, i);
 		i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 3)
 			i = Surface.method222(255, 200, 50);
 		if(messageTabFlashPrivate % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.method216("Private history", 355, gameHeight + 6, 0, i);
-		surface.method216("Report abuse", 457, gameHeight + 6, 0, 0xffffff);
+		surface.drawStringCenter("Private history", 355, gameHeight + 6, 0, i);
+		surface.drawStringCenter("Report abuse", 457, gameHeight + 6, 0, 0xffffff);
 	}
 
 	private void method77() {
@@ -2010,7 +2026,7 @@ public final class mudclient extends NetworkedGame {
 
 		surface.method251(j + 5, l + 256, 398, 0);
 		if(anInt847 == -1) {
-			surface.method216("Select an object to withdraw or deposit", j + 204, l + 248, 3, 0xffff00);
+			surface.drawStringCenter("Select an object to withdraw or deposit", j + 204, l + 248, 3, 0xffff00);
 			return;
 		}
 		int k8;
@@ -2190,7 +2206,7 @@ public final class mudclient extends NetworkedGame {
 
 		surface.method251(byte0 + 5, byte1 + 222, 398, 0);
 		if(anInt850 == -1) {
-			surface.method216("Select an object to buy or sell", byte0 + 204, byte1 + 214, 3, 0xffff00);
+			surface.drawStringCenter("Select an object to buy or sell", byte0 + 204, byte1 + 214, 3, 0xffff00);
 			return;
 		}
 		int i5 = anIntArray849[anInt850];
@@ -2206,7 +2222,7 @@ public final class mudclient extends NetworkedGame {
 					k1 = 0xff0000;
 				surface.method243("Click here to buy", byte0 + 405, byte1 + 214, 3, k1);
 			} else {
-				surface.method216("This item is not currently available to buy", byte0 + 204, byte1 + 214, 3, 0xffff00);
+				surface.drawStringCenter("This item is not currently available to buy", byte0 + 204, byte1 + 214, 3, 0xffff00);
 			}
 			if(method68(i5) > 0) {
 				int l5 = anInt855 + anIntArray854[anInt850];
@@ -2220,7 +2236,7 @@ public final class mudclient extends NetworkedGame {
 				surface.drawString("Click here to sell", byte0 + 2, byte1 + 239, 3, l1);
 				return;
 			}
-			surface.method216("You do not have any of this item to sell", byte0 + 204, byte1 + 239, 3, 0xffff00);
+			surface.drawStringCenter("You do not have any of this item to sell", byte0 + 204, byte1 + 239, 3, 0xffff00);
 		}
 	}
 
@@ -2724,9 +2740,9 @@ public final class mudclient extends NetworkedGame {
 			surface.method207(106, i, 300, 70, 0);
 			surface.method214(106, i, 300, 70, 0xffffff);
 			i += 20;
-			surface.method216("Enter name to add to friends list", 256, i, 4, 0xffffff);
+			surface.drawStringCenter("Enter name to add to friends list", 256, i, 4, 0xffffff);
 			i += 20;
-			surface.method216(super.inputTextCurrent + "*", 256, i, 4, 0xffffff);
+			surface.drawStringCenter(super.inputTextCurrent + "*", 256, i, 4, 0xffffff);
 			if(super.inputTextFinal.length() > 0) {
 				String s = super.inputTextFinal.trim();
 				super.inputTextCurrent = "";
@@ -2740,9 +2756,9 @@ public final class mudclient extends NetworkedGame {
 			surface.method207(6, i, 500, 70, 0);
 			surface.method214(6, i, 500, 70, 0xffffff);
 			i += 20;
-			surface.method216("Enter message to send to " + DataUtils.method351(aLong863), 256, i, 4, 0xffffff);
+			surface.drawStringCenter("Enter message to send to " + DataUtils.method351(aLong863), 256, i, 4, 0xffffff);
 			i += 20;
-			surface.method216(super.inputPmCurrent + "*", 256, i, 4, 0xffffff);
+			surface.drawStringCenter(super.inputPmCurrent + "*", 256, i, 4, 0xffffff);
 			if(super.inputPmFinal.length() > 0) {
 				String s1 = super.inputPmFinal;
 				super.inputPmCurrent = "";
@@ -2759,9 +2775,9 @@ public final class mudclient extends NetworkedGame {
 			surface.method207(106, i, 300, 70, 0);
 			surface.method214(106, i, 300, 70, 0xffffff);
 			i += 20;
-			surface.method216("Enter name to add to ignore list", 256, i, 4, 0xffffff);
+			surface.drawStringCenter("Enter name to add to ignore list", 256, i, 4, 0xffffff);
 			i += 20;
-			surface.method216(super.inputTextCurrent + "*", 256, i, 4, 0xffffff);
+			surface.drawStringCenter(super.inputTextCurrent + "*", 256, i, 4, 0xffffff);
 			if(super.inputTextFinal.length() > 0) {
 				String s2 = super.inputTextFinal.trim();
 				super.inputTextCurrent = "";
@@ -2774,7 +2790,7 @@ public final class mudclient extends NetworkedGame {
 		int j = 0xffffff;
 		if(super.mouseX > 236 && super.mouseX < 276 && super.mouseY > 193 && super.mouseY < 213)
 			j = 0xffff00;
-		surface.method216("Cancel", 256, 208, 1, j);
+		surface.drawStringCenter("Cancel", 256, 208, 1, j);
 	}
 
 	private void method85() {
@@ -2864,7 +2880,7 @@ label0:
 	private void drawUiTabSocial(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
-		surface.method246(i - 49, 3, anInt658 + 5);
+		surface.drawSprite(i - 49, 3, anInt658 + 5);
 		char c = '\304';
 		char c1 = '\266';
 		int l;
@@ -2879,8 +2895,8 @@ label0:
 		surface.method251(i, j + 24, c, 0);
 		surface.method217(i + c / 2, j, 24, 0);
 		surface.method251(i, (j + c1) - 16, c, 0);
-		surface.method216("Friends", i + c / 4, j + 16, 4, 0);
-		surface.method216("Ignore", i + c / 4 + c / 2, j + 16, 4, 0);
+		surface.drawStringCenter("Friends", i + c / 4, j + 16, 4, 0);
+		surface.drawStringCenter("Ignore", i + c / 4 + c / 2, j + 16, 4, 0);
 		aPanel867.method154(anInt868);
 		if(anInt866 == 0) {
 			for(int i1 = 0; i1 < super.anInt603; i1++) {
@@ -2906,43 +2922,43 @@ label0:
 			int k1 = aPanel867.method164(anInt868);
 			if(k1 >= 0 && super.mouseX < 489) {
 				if(super.mouseX > 429)
-					surface.method216("Click to remove " + DataUtils.method351(super.aLongArray602[k1]), i + c / 2, j + 35, 1, 0xffffff);
+					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.aLongArray602[k1]), i + c / 2, j + 35, 1, 0xffffff);
 				else
 				if(super.anIntArray604[k1] == 255)
-					surface.method216("Click to message " + DataUtils.method351(super.aLongArray602[k1]), i + c / 2, j + 35, 1, 0xffffff);
+					surface.drawStringCenter("Click to message " + DataUtils.method351(super.aLongArray602[k1]), i + c / 2, j + 35, 1, 0xffffff);
 				else
 				if(super.anIntArray604[k1] > 0) {
 					if(super.anIntArray604[k1] < 200)
-						surface.method216(DataUtils.method351(super.aLongArray602[k1]) + " is on world " + (super.anIntArray604[k1] - 9), i + c / 2, j + 35, 1, 0xffffff);
+						surface.drawStringCenter(DataUtils.method351(super.aLongArray602[k1]) + " is on world " + (super.anIntArray604[k1] - 9), i + c / 2, j + 35, 1, 0xffffff);
 					else
-						surface.method216(DataUtils.method351(super.aLongArray602[k1]) + " is on classic " + (super.anIntArray604[k1] - 219), i + c / 2, j + 35, 1, 0xffffff);
+						surface.drawStringCenter(DataUtils.method351(super.aLongArray602[k1]) + " is on classic " + (super.anIntArray604[k1] - 219), i + c / 2, j + 35, 1, 0xffffff);
 				} else {
-					surface.method216(DataUtils.method351(super.aLongArray602[k1]) + " is offline", i + c / 2, j + 35, 1, 0xffffff);
+					surface.drawStringCenter(DataUtils.method351(super.aLongArray602[k1]) + " is offline", i + c / 2, j + 35, 1, 0xffffff);
 				}
 			} else {
-				surface.method216("Click a name to send a message", i + c / 2, j + 35, 1, 0xffffff);
+				surface.drawStringCenter("Click a name to send a message", i + c / 2, j + 35, 1, 0xffffff);
 			}
 			int k2;
 			if(super.mouseX > i && super.mouseX < i + c && super.mouseY > (j + c1) - 16 && super.mouseY < j + c1)
 				k2 = 0xffff00;
 			else
 				k2 = 0xffffff;
-			surface.method216("Click here to add a friend", i + c / 2, (j + c1) - 3, 1, k2);
+			surface.drawStringCenter("Click here to add a friend", i + c / 2, (j + c1) - 3, 1, k2);
 		}
 		if(anInt866 == 1) {
 			int l1 = aPanel867.method164(anInt868);
 			if(l1 >= 0 && super.mouseX < 489 && super.mouseX > 429) {
 				if(super.mouseX > 429)
-					surface.method216("Click to remove " + DataUtils.method351(super.aLongArray605[l1]), i + c / 2, j + 35, 1, 0xffffff);
+					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.aLongArray605[l1]), i + c / 2, j + 35, 1, 0xffffff);
 			} else {
-				surface.method216("Blocking messages from:", i + c / 2, j + 35, 1, 0xffffff);
+				surface.drawStringCenter("Blocking messages from:", i + c / 2, j + 35, 1, 0xffffff);
 			}
 			int l2;
 			if(super.mouseX > i && super.mouseX < i + c && super.mouseY > (j + c1) - 16 && super.mouseY < j + c1)
 				l2 = 0xffff00;
 			else
 				l2 = 0xffffff;
-			surface.method216("Click here to add a name", i + c / 2, (j + c1) - 3, 1, l2);
+			surface.drawStringCenter("Click here to add a name", i + c / 2, (j + c1) - 3, 1, l2);
 		}
 		if(!flag)
 			return;
@@ -3026,7 +3042,7 @@ label0:
 	private void drawUiTabOptions(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
-		surface.method246(i - 49, 3, anInt658 + 6);
+		surface.drawSprite(i - 49, 3, anInt658 + 6);
 		char c = '\304';
 		surface.method224(i, 36, c, 65, Surface.method222(181, 181, 181), 160);
 		surface.method224(i, 101, c, 65, Surface.method222(201, 201, 201), 160);
@@ -4369,7 +4385,7 @@ label0:
 			world.aBoolean572 = true;
 			return false;
 		}
-		surface.method216("Loading... Please wait", 256, 192, 1, 0xffffff);
+		surface.drawStringCenter("Loading... Please wait", 256, 192, 1, 0xffffff);
 		method76();
 		surface.drawSurface(graphics, 0, 0);
 		int k = baseX;
@@ -4475,7 +4491,7 @@ label0:
 	private void method94() {
 		surface.method207(126, 137, 260, 60, 0);
 		surface.method214(126, 137, 260, 60, 0xffffff);
-		surface.method216("Logging out...", 256, 173, 5, 0xffffff);
+		surface.drawStringCenter("Logging out...", 256, 173, 5, 0xffffff);
 	}
 
 	private void method95() {
@@ -4560,15 +4576,15 @@ label0:
 		surface.method207(56, 130, 400, 100, 0);
 		surface.method214(56, 130, 400, 100, 0xffffff);
 		int i = 160;
-		surface.method216("Now type the name of the offending player, and press enter", 256, i, 1, 0xffff00);
+		surface.drawStringCenter("Now type the name of the offending player, and press enter", 256, i, 1, 0xffff00);
 		i += 18;
-		surface.method216("Name: " + super.inputTextCurrent + "*", 256, i, 4, 0xffffff);
+		surface.drawStringCenter("Name: " + super.inputTextCurrent + "*", 256, i, 4, 0xffffff);
 		if(super.anInt626 > 0) {
 			i = 207;
 			if(aBoolean944)
-				surface.method216("Moderator option: Mute player for 48 hours: <ON>", 256, i, 1, 0xff8000);
+				surface.drawStringCenter("Moderator option: Mute player for 48 hours: <ON>", 256, i, 1, 0xff8000);
 			else
-				surface.method216("Moderator option: Mute player for 48 hours: <OFF>", 256, i, 1, 0xffffff);
+				surface.drawStringCenter("Moderator option: Mute player for 48 hours: <OFF>", 256, i, 1, 0xffffff);
 			if(super.mouseX > 106 && super.mouseX < 406 && super.mouseY > i - 13 && super.mouseY < i + 2 && mouseButtonClick == 1) {
 				mouseButtonClick = 0;
 				aBoolean944 = !aBoolean944;
@@ -4583,7 +4599,7 @@ label0:
 				showDialogReportAbuseStep = 0;
 			}
 		}
-		surface.method216("Click here to cancel", 256, i, 1, j);
+		surface.drawStringCenter("Click here to cancel", 256, i, 1, j);
 		if(mouseButtonClick == 1 && (super.mouseX < 56 || super.mouseX > 456 || super.mouseY < 130 || super.mouseY > 230)) {
 			mouseButtonClick = 0;
 			showDialogReportAbuseStep = 0;
@@ -4593,7 +4609,7 @@ label0:
 	private void drawGame() {
 		if(deathScreenTimeout != 0) {
 			surface.fadeToBlack();
-			surface.method216("Oh dear! You are dead...", anInt764 / 2, gameHeight / 2, 7, 0xff0000);
+			surface.drawStringCenter("Oh dear! You are dead...", anInt764 / 2, gameHeight / 2, 7, 0xff0000);
 			method76();
 			surface.drawSurface(graphics, 0, 0);
 			return;
@@ -4605,23 +4621,23 @@ label0:
 		if(isSleeping) {
 			surface.fadeToBlack();
 			if(Math.random() < 0.14999999999999999D)
-				surface.method216("ZZZ", (int)(Math.random() * 80D), (int)(Math.random() * 334D), 5, (int)(Math.random() * 16777215D));
+				surface.drawStringCenter("ZZZ", (int)(Math.random() * 80D), (int)(Math.random() * 334D), 5, (int)(Math.random() * 16777215D));
 			if(Math.random() < 0.14999999999999999D)
-				surface.method216("ZZZ", 512 - (int)(Math.random() * 80D), (int)(Math.random() * 334D), 5, (int)(Math.random() * 16777215D));
+				surface.drawStringCenter("ZZZ", 512 - (int)(Math.random() * 80D), (int)(Math.random() * 334D), 5, (int)(Math.random() * 16777215D));
 			surface.method207(anInt764 / 2 - 100, 160, 200, 40, 0);
-			surface.method216("You are sleeping", anInt764 / 2, 50, 7, 0xffff00);
-			surface.method216("Fatigue: " + (anInt932 * 100) / 750 + "%", anInt764 / 2, 90, 7, 0xffff00);
-			surface.method216("When you want to wake up just use your", anInt764 / 2, 140, 5, 0xffffff);
-			surface.method216("keyboard to type the word in the box below", anInt764 / 2, 160, 5, 0xffffff);
-			surface.method216(super.inputTextCurrent + "*", anInt764 / 2, 180, 5, 65535);
+			surface.drawStringCenter("You are sleeping", anInt764 / 2, 50, 7, 0xffff00);
+			surface.drawStringCenter("Fatigue: " + (anInt932 * 100) / 750 + "%", anInt764 / 2, 90, 7, 0xffff00);
+			surface.drawStringCenter("When you want to wake up just use your", anInt764 / 2, 140, 5, 0xffffff);
+			surface.drawStringCenter("keyboard to type the word in the box below", anInt764 / 2, 160, 5, 0xffffff);
+			surface.drawStringCenter(super.inputTextCurrent + "*", anInt764 / 2, 180, 5, 65535);
 			if(sleepingStatusText == null)
-				surface.method246(anInt764 / 2 - 127, 230, anInt933 + 1);
+				surface.drawSprite(anInt764 / 2 - 127, 230, anInt933 + 1);
 			else
-				surface.method216(sleepingStatusText, anInt764 / 2, 260, 5, 0xff0000);
+				surface.drawStringCenter(sleepingStatusText, anInt764 / 2, 260, 5, 0xff0000);
 			surface.method214(anInt764 / 2 - 128, 229, 257, 42, 0xffffff);
 			method76();
-			surface.method216("If you can't read the word", anInt764 / 2, 290, 1, 0xffffff);
-			surface.method216("@yel@click here@whi@ to get a different one", anInt764 / 2, 305, 1, 0xffffff);
+			surface.drawStringCenter("If you can't read the word", anInt764 / 2, 290, 1, 0xffffff);
+			surface.drawStringCenter("@yel@click here@whi@ to get a different one", anInt764 / 2, 305, 1, 0xffffff);
 			surface.drawSurface(graphics, 0, 0);
 			return;
 		}
@@ -4813,9 +4829,9 @@ label0:
 			int j8 = i6 / 60;
 			i6 %= 60;
 			if(i6 < 10)
-				surface.method216("System update in: " + j8 + ":0" + i6, 256, gameHeight - 7, 1, 0xffff00);
+				surface.drawStringCenter("System update in: " + j8 + ":0" + i6, 256, gameHeight - 7, 1, 0xffff00);
 			else
-				surface.method216("System update in: " + j8 + ":" + i6, 256, gameHeight - 7, 1, 0xffff00);
+				surface.drawStringCenter("System update in: " + j8 + ":" + i6, 256, gameHeight - 7, 1, 0xffff00);
 		}
 		if(!aBoolean877) {
 			int j6 = 2203 - (sceneY + anInt828 + baseY);
@@ -4823,9 +4839,9 @@ label0:
 				j6 = -50;
 			if(j6 > 0) {
 				int k8 = 1 + j6 / 6;
-				surface.method246(453, gameHeight - 56, anInt658 + 13);
-				surface.method216("Wilderness", 465, gameHeight - 20, 1, 0xffff00);
-				surface.method216("Level: " + k8, 465, gameHeight - 7, 1, 0xffff00);
+				surface.drawSprite(453, gameHeight - 56, anInt658 + 13);
+				surface.drawStringCenter("Wilderness", 465, gameHeight - 20, 1, 0xffff00);
+				surface.drawStringCenter("Level: " + k8, 465, gameHeight - 7, 1, 0xffff00);
 				if(anInt811 == 0)
 					anInt811 = 2;
 			}
@@ -4866,9 +4882,9 @@ label0:
 	public void drawMouseClick(boolean afterUI) {
 		if (!injected || afterUI) {
 			if(mouseClickXStep > 0)
-				surface.method246(anInt801 - 8, anInt802 - 8, anInt658 + 14 + (24 - mouseClickXStep) / 6);
+				surface.drawSprite(anInt801 - 8, anInt802 - 8, anInt658 + 14 + (24 - mouseClickXStep) / 6);
 			if(mouseClickXStep < 0)
-				surface.method246(anInt801 - 8, anInt802 - 8, anInt658 + 18 + (24 + mouseClickXStep) / 6);
+				surface.drawSprite(anInt801 - 8, anInt802 - 8, anInt658 + 18 + (24 + mouseClickXStep) / 6);
 		}
 	}
 
@@ -5130,49 +5146,49 @@ label0:
 		surface.method207(byte0, byte1, 468, 16, 192);
 		int i = 0x989898;
 		surface.method224(byte0, byte1 + 16, 468, 246, i, 160);
-		surface.method216("Please confirm your duel with @yel@" + DataUtils.method351(aLong912), byte0 + 234, byte1 + 12, 1, 0xffffff);
-		surface.method216("Your stake:", byte0 + 117, byte1 + 30, 1, 0xffff00);
+		surface.drawStringCenter("Please confirm your duel with @yel@" + DataUtils.method351(aLong912), byte0 + 234, byte1 + 12, 1, 0xffffff);
+		surface.drawStringCenter("Your stake:", byte0 + 117, byte1 + 30, 1, 0xffff00);
 		for(int j = 0; j < anInt916; j++) {
 			String s = Definitions.itemNames[anIntArray917[j]];
 			if(Definitions.inventoryItemsStackable[anIntArray917[j]] == 0)
 				s = s + " x " + method55(anIntArray918[j]);
-			surface.method216(s, byte0 + 117, byte1 + 42 + j * 12, 1, 0xffffff);
+			surface.drawStringCenter(s, byte0 + 117, byte1 + 42 + j * 12, 1, 0xffffff);
 		}
 
 		if(anInt916 == 0)
-			surface.method216("Nothing!", byte0 + 117, byte1 + 42, 1, 0xffffff);
-		surface.method216("Your opponent's stake:", byte0 + 351, byte1 + 30, 1, 0xffff00);
+			surface.drawStringCenter("Nothing!", byte0 + 117, byte1 + 42, 1, 0xffffff);
+		surface.drawStringCenter("Your opponent's stake:", byte0 + 351, byte1 + 30, 1, 0xffff00);
 		for(int k = 0; k < anInt913; k++) {
 			String s1 = Definitions.itemNames[anIntArray914[k]];
 			if(Definitions.inventoryItemsStackable[anIntArray914[k]] == 0)
 				s1 = s1 + " x " + method55(anIntArray915[k]);
-			surface.method216(s1, byte0 + 351, byte1 + 42 + k * 12, 1, 0xffffff);
+			surface.drawStringCenter(s1, byte0 + 351, byte1 + 42 + k * 12, 1, 0xffffff);
 		}
 
 		if(anInt913 == 0)
-			surface.method216("Nothing!", byte0 + 351, byte1 + 42, 1, 0xffffff);
+			surface.drawStringCenter("Nothing!", byte0 + 351, byte1 + 42, 1, 0xffffff);
 		if(anInt919 == 0)
-			surface.method216("You can retreat from this duel", byte0 + 234, byte1 + 180, 1, 65280);
+			surface.drawStringCenter("You can retreat from this duel", byte0 + 234, byte1 + 180, 1, 65280);
 		else
-			surface.method216("No retreat is possible!", byte0 + 234, byte1 + 180, 1, 0xff0000);
+			surface.drawStringCenter("No retreat is possible!", byte0 + 234, byte1 + 180, 1, 0xff0000);
 		if(anInt920 == 0)
-			surface.method216("Magic may be used", byte0 + 234, byte1 + 192, 1, 65280);
+			surface.drawStringCenter("Magic may be used", byte0 + 234, byte1 + 192, 1, 65280);
 		else
-			surface.method216("Magic cannot be used", byte0 + 234, byte1 + 192, 1, 0xff0000);
+			surface.drawStringCenter("Magic cannot be used", byte0 + 234, byte1 + 192, 1, 0xff0000);
 		if(anInt921 == 0)
-			surface.method216("Prayer may be used", byte0 + 234, byte1 + 204, 1, 65280);
+			surface.drawStringCenter("Prayer may be used", byte0 + 234, byte1 + 204, 1, 65280);
 		else
-			surface.method216("Prayer cannot be used", byte0 + 234, byte1 + 204, 1, 0xff0000);
+			surface.drawStringCenter("Prayer cannot be used", byte0 + 234, byte1 + 204, 1, 0xff0000);
 		if(anInt922 == 0)
-			surface.method216("Weapons may be used", byte0 + 234, byte1 + 216, 1, 65280);
+			surface.drawStringCenter("Weapons may be used", byte0 + 234, byte1 + 216, 1, 65280);
 		else
-			surface.method216("Weapons cannot be used", byte0 + 234, byte1 + 216, 1, 0xff0000);
-		surface.method216("If you are sure click 'Accept' to begin the duel", byte0 + 234, byte1 + 230, 1, 0xffffff);
+			surface.drawStringCenter("Weapons cannot be used", byte0 + 234, byte1 + 216, 1, 0xff0000);
+		surface.drawStringCenter("If you are sure click 'Accept' to begin the duel", byte0 + 234, byte1 + 230, 1, 0xffffff);
 		if(!aBoolean911) {
-			surface.method246((byte0 + 118) - 35, byte1 + 238, anInt658 + 25);
-			surface.method246((byte0 + 352) - 35, byte1 + 238, anInt658 + 26);
+			surface.drawSprite((byte0 + 118) - 35, byte1 + 238, anInt658 + 25);
+			surface.drawSprite((byte0 + 352) - 35, byte1 + 238, anInt658 + 26);
 		} else {
-			surface.method216("Waiting for other player...", byte0 + 234, byte1 + 250, 1, 0xffff00);
+			surface.drawStringCenter("Waiting for other player...", byte0 + 234, byte1 + 250, 1, 0xffff00);
 		}
 		if(mouseButtonClick == 1) {
 			if(super.mouseX < byte0 || super.mouseY < byte1 || super.mouseX > byte0 + 468 || super.mouseY > byte1 + 262) {
@@ -5200,35 +5216,35 @@ label0:
 		surface.method207(byte0, byte1, 468, 16, 192);
 		int i = 0x989898;
 		surface.method224(byte0, byte1 + 16, 468, 246, i, 160);
-		surface.method216("Please confirm your trade with @yel@" + DataUtils.method351(aLong902), byte0 + 234, byte1 + 12, 1, 0xffffff);
-		surface.method216("You are about to give:", byte0 + 117, byte1 + 30, 1, 0xffff00);
+		surface.drawStringCenter("Please confirm your trade with @yel@" + DataUtils.method351(aLong902), byte0 + 234, byte1 + 12, 1, 0xffffff);
+		surface.drawStringCenter("You are about to give:", byte0 + 117, byte1 + 30, 1, 0xffff00);
 		for(int j = 0; j < anInt906; j++) {
 			String s = Definitions.itemNames[anIntArray907[j]];
 			if(Definitions.inventoryItemsStackable[anIntArray907[j]] == 0)
 				s = s + " x " + method55(anIntArray908[j]);
-			surface.method216(s, byte0 + 117, byte1 + 42 + j * 12, 1, 0xffffff);
+			surface.drawStringCenter(s, byte0 + 117, byte1 + 42 + j * 12, 1, 0xffffff);
 		}
 
 		if(anInt906 == 0)
-			surface.method216("Nothing!", byte0 + 117, byte1 + 42, 1, 0xffffff);
-		surface.method216("In return you will receive:", byte0 + 351, byte1 + 30, 1, 0xffff00);
+			surface.drawStringCenter("Nothing!", byte0 + 117, byte1 + 42, 1, 0xffffff);
+		surface.drawStringCenter("In return you will receive:", byte0 + 351, byte1 + 30, 1, 0xffff00);
 		for(int k = 0; k < anInt903; k++) {
 			String s1 = Definitions.itemNames[anIntArray904[k]];
 			if(Definitions.inventoryItemsStackable[anIntArray904[k]] == 0)
 				s1 = s1 + " x " + method55(anIntArray905[k]);
-			surface.method216(s1, byte0 + 351, byte1 + 42 + k * 12, 1, 0xffffff);
+			surface.drawStringCenter(s1, byte0 + 351, byte1 + 42 + k * 12, 1, 0xffffff);
 		}
 
 		if(anInt903 == 0)
-			surface.method216("Nothing!", byte0 + 351, byte1 + 42, 1, 0xffffff);
-		surface.method216("Are you sure you want to do this?", byte0 + 234, byte1 + 200, 4, 65535);
-		surface.method216("There is NO WAY to reverse a trade if you change your mind.", byte0 + 234, byte1 + 215, 1, 0xffffff);
-		surface.method216("Remember that not all players are trustworthy", byte0 + 234, byte1 + 230, 1, 0xffffff);
+			surface.drawStringCenter("Nothing!", byte0 + 351, byte1 + 42, 1, 0xffffff);
+		surface.drawStringCenter("Are you sure you want to do this?", byte0 + 234, byte1 + 200, 4, 65535);
+		surface.drawStringCenter("There is NO WAY to reverse a trade if you change your mind.", byte0 + 234, byte1 + 215, 1, 0xffffff);
+		surface.drawStringCenter("Remember that not all players are trustworthy", byte0 + 234, byte1 + 230, 1, 0xffffff);
 		if(!tradeConfirmAccepted) {
-			surface.method246((byte0 + 118) - 35, byte1 + 238, anInt658 + 25);
-			surface.method246((byte0 + 352) - 35, byte1 + 238, anInt658 + 26);
+			surface.drawSprite((byte0 + 118) - 35, byte1 + 238, anInt658 + 25);
+			surface.drawSprite((byte0 + 352) - 35, byte1 + 238, anInt658 + 26);
 		} else {
-			surface.method216("Waiting for other player...", byte0 + 234, byte1 + 250, 1, 0xffff00);
+			surface.drawStringCenter("Waiting for other player...", byte0 + 234, byte1 + 250, 1, 0xffff00);
 		}
 		if(mouseButtonClick == 1) {
 			if(super.mouseX < byte0 || super.mouseY < byte1 || super.mouseX > byte0 + 468 || super.mouseY > byte1 + 262) {
@@ -5326,7 +5342,7 @@ label0:
 	private void drawUiTabMagic(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
-		surface.method246(i - 49, 3, anInt658 + 4);
+		surface.drawSprite(i - 49, 3, anInt658 + 4);
 		char c = '\304';
 		char c1 = '\266';
 		int l;
@@ -5342,8 +5358,8 @@ label0:
 		surface.method251(i, j + 24, c, 0);
 		surface.method217(i + c / 2, j, 24, 0);
 		surface.method251(i, j + 113, c, 0);
-		surface.method216("Magic", i + c / 4, j + 16, 4, 0);
-		surface.method216("Prayers", i + c / 4 + c / 2, j + 16, 4, 0);
+		surface.drawStringCenter("Magic", i + c / 4, j + 16, 4, 0);
+		surface.drawStringCenter("Prayers", i + c / 4 + c / 2, j + 16, 4, 0);
 		if(anInt958 == 0) {
 			aPanel959.method154(anInt960);
 			int i1 = 0;
@@ -5370,7 +5386,7 @@ label0:
 				surface.drawString(Definitions.aStringArray134[i3], i + 2, j + 136, 0, 0xffffff);
 				for(int i4 = 0; i4 < Definitions.anIntArray136[i3]; i4++) {
 					int i5 = Definitions.anIntArrayArray138[i3][i4];
-					surface.method246(i + 2 + i4 * 44, j + 150, anInt786 + Definitions.anIntArray66[i5]);
+					surface.drawSprite(i + 2 + i4 * 44, j + 150, anInt786 + Definitions.anIntArray66[i5]);
 					int j5 = method68(i5);
 					int k5 = Definitions.anIntArrayArray139[i3][i4];
 					String s2 = "@red@";
@@ -5398,9 +5414,9 @@ label0:
 			aPanel959.method150();
 			int j3 = aPanel959.method164(anInt960);
 			if(j3 != -1) {
-				surface.method216("Level " + Definitions.anIntArray143[j3] + ": " + Definitions.aStringArray141[j3], i + c / 2, j + 130, 1, 0xffff00);
-				surface.method216(Definitions.aStringArray142[j3], i + c / 2, j + 145, 0, 0xffffff);
-				surface.method216("Drain rate: " + Definitions.anIntArray144[j3], i + c / 2, j + 160, 1, 0);
+				surface.drawStringCenter("Level " + Definitions.anIntArray143[j3] + ": " + Definitions.aStringArray141[j3], i + c / 2, j + 130, 1, 0xffff00);
+				surface.drawStringCenter(Definitions.aStringArray142[j3], i + c / 2, j + 145, 0, 0xffffff);
+				surface.drawStringCenter("Drain rate: " + Definitions.anIntArray144[j3], i + c / 2, j + 160, 1, 0);
 			} else {
 				surface.drawString("Point at a prayer for a description", i + 2, j + 124, 1, 0);
 			}
@@ -5475,7 +5491,7 @@ label0:
 
 	private void drawUiTabInventory(boolean flag) {
 		int i = surface.width2 - 248;
-		surface.method246(i, 3, anInt658 + 1);
+		surface.drawSprite(i, 3, anInt658 + 1);
 		for(int j = 0; j < inventoryMaxItemCount; j++) {
 			int k = i + (j % 5) * 49;
 			int i1 = 36 + (j / 5) * 34;
@@ -5597,11 +5613,11 @@ label0:
 			surface.method251(byte0, byte1 + j * 20 + 20, c, 0);
 		}
 
-		surface.method216("Select combat style", byte0 + c / 2, byte1 + 16, 3, 0xffffff);
-		surface.method216("Controlled (+1 of each)", byte0 + c / 2, byte1 + 36, 3, 0);
-		surface.method216("Aggressive (+3 strength)", byte0 + c / 2, byte1 + 56, 3, 0);
-		surface.method216("Accurate   (+3 attack)", byte0 + c / 2, byte1 + 76, 3, 0);
-		surface.method216("Defensive  (+3 defense)", byte0 + c / 2, byte1 + 96, 3, 0);
+		surface.drawStringCenter("Select combat style", byte0 + c / 2, byte1 + 16, 3, 0xffffff);
+		surface.drawStringCenter("Controlled (+1 of each)", byte0 + c / 2, byte1 + 36, 3, 0);
+		surface.drawStringCenter("Aggressive (+3 strength)", byte0 + c / 2, byte1 + 56, 3, 0);
+		surface.drawStringCenter("Accurate   (+3 attack)", byte0 + c / 2, byte1 + 76, 3, 0);
+		surface.drawStringCenter("Defensive  (+3 defense)", byte0 + c / 2, byte1 + 96, 3, 0);
 	}
 
 	protected void draw() {
@@ -5696,7 +5712,7 @@ label0:
 	private void drawUiTabPlayerInfo(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
-		surface.method246(i - 49, 3, anInt658 + 3);
+		surface.drawSprite(i - 49, 3, anInt658 + 3);
 		char c = '\304';
 		char c1 = '\u0113';
 		int l;
@@ -5710,8 +5726,8 @@ label0:
 		surface.method224(i, j + 24, c, c1 - 24, Surface.method222(220, 220, 220), 128);
 		surface.method251(i, j + 24, c, 0);
 		surface.method217(i + c / 2, j, 24, 0);
-		surface.method216("Stats", i + c / 4, j + 16, 4, 0);
-		surface.method216("Quests", i + c / 4 + c / 2, j + 16, 4, 0);
+		surface.drawStringCenter("Stats", i + c / 4, j + 16, 4, 0);
+		surface.drawStringCenter("Quests", i + c / 4 + c / 2, j + 16, 4, 0);
 		if(anInt961 == 0) {
 			int i1 = 72;
 			int skill = -1;
@@ -5811,13 +5827,13 @@ label0:
 			byte[] abyte2 = DataUtils.loadData(s + ".dat", 0, abyte0);
 			surface.method211(anInt933, abyte2, abyte1, 1);
 			surface.method207(0, 0, 128, 128, 0xff00ff);
-			surface.method246(0, 0, anInt933);
+			surface.drawSprite(0, 0, anInt933);
 			int j = surface.anIntArray331[anInt933];
 			String s1 = Definitions.aStringArray96[i];
 			if(s1 != null && s1.length() > 0) {
 				byte[] abyte3 = DataUtils.loadData(s1 + ".dat", 0, abyte0);
 				surface.method211(anInt933, abyte3, abyte1, 1);
-				surface.method246(0, 0, anInt933);
+				surface.drawSprite(0, 0, anInt933);
 			}
 			surface.method252(anInt969 + i, 0, 0, j, j);
 			int k = j * j;
@@ -5862,16 +5878,16 @@ label0:
 		surface.method207(56, 35, 400, 290, 0);
 		surface.method214(56, 35, 400, 290, 0xffffff);
 		i = 50;
-		surface.method216("This form is for reporting players who are breaking our rules", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("This form is for reporting players who are breaking our rules", 256, i, 1, 0xffffff);
 		i += 15;
-		surface.method216("Using it sends a snapshot of the last 60 secs of activity to us", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("Using it sends a snapshot of the last 60 secs of activity to us", 256, i, 1, 0xffffff);
 		i += 15;
-		surface.method216("If you misuse this form, you will be banned.", 256, i, 1, 0xff8000);
+		surface.drawStringCenter("If you misuse this form, you will be banned.", 256, i, 1, 0xff8000);
 		i += 15;
 		i += 10;
-		surface.method216("First indicate which of our 12 rules is being broken. For a detailed", 256, i, 1, 0xffff00);
+		surface.drawStringCenter("First indicate which of our 12 rules is being broken. For a detailed", 256, i, 1, 0xffff00);
 		i += 15;
-		surface.method216("explanation of each rule please read the manual on our website.", 256, i, 1, 0xffff00);
+		surface.drawStringCenter("explanation of each rule please read the manual on our website.", 256, i, 1, 0xffff00);
 		i += 15;
 		int k;
 		if(reportAbuseOffence == 1) {
@@ -5880,7 +5896,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("1: Offensive language", 256, i, 1, k);
+		surface.drawStringCenter("1: Offensive language", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 2) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5888,7 +5904,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("2: Item scamming", 256, i, 1, k);
+		surface.drawStringCenter("2: Item scamming", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 3) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5896,7 +5912,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("3: Password scamming", 256, i, 1, k);
+		surface.drawStringCenter("3: Password scamming", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 4) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5904,7 +5920,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("4: Bug abuse", 256, i, 1, k);
+		surface.drawStringCenter("4: Bug abuse", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 5) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5912,7 +5928,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("5: Jagex Staff impersonation", 256, i, 1, k);
+		surface.drawStringCenter("5: Jagex Staff impersonation", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 6) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5920,7 +5936,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("6: Account sharing/trading", 256, i, 1, k);
+		surface.drawStringCenter("6: Account sharing/trading", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 7) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5928,7 +5944,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("7: Macroing", 256, i, 1, k);
+		surface.drawStringCenter("7: Macroing", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 8) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5936,7 +5952,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("8: Mutiple logging in", 256, i, 1, k);
+		surface.drawStringCenter("8: Mutiple logging in", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 9) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5944,7 +5960,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("9: Encouraging others to break rules", 256, i, 1, k);
+		surface.drawStringCenter("9: Encouraging others to break rules", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 10) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5952,7 +5968,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("10: Misuse of customer support", 256, i, 1, k);
+		surface.drawStringCenter("10: Misuse of customer support", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 11) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5960,7 +5976,7 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("11: Advertising / website", 256, i, 1, k);
+		surface.drawStringCenter("11: Advertising / website", 256, i, 1, k);
 		i += 14;
 		if(reportAbuseOffence == 12) {
 			surface.method214(66, i - 12, 380, 15, 0xffffff);
@@ -5968,13 +5984,13 @@ label0:
 		} else {
 			k = 0xffffff;
 		}
-		surface.method216("12: Real world item trading", 256, i, 1, k);
+		surface.drawStringCenter("12: Real world item trading", 256, i, 1, k);
 		i += 14;
 		i += 15;
 		k = 0xffffff;
 		if(super.mouseX > 196 && super.mouseX < 316 && super.mouseY > i - 15 && super.mouseY < i + 5)
 			k = 0xffff00;
-		surface.method216("Click here to cancel", 256, i, 1, k);
+		surface.drawStringCenter("Click here to cancel", 256, i, 1, k);
 	}
 
 	private void method112() {
@@ -6168,15 +6184,15 @@ label0:
 		if(aBoolean900)
 			surface.method207(byte0 + 193, byte1 + 215 + 27, 7, 7, 0xffff00);
 		if(!aBoolean896)
-			surface.method246(byte0 + 217, byte1 + 238, anInt658 + 25);
-		surface.method246(byte0 + 394, byte1 + 238, anInt658 + 26);
+			surface.drawSprite(byte0 + 217, byte1 + 238, anInt658 + 25);
+		surface.drawSprite(byte0 + 394, byte1 + 238, anInt658 + 26);
 		if(aBoolean895) {
-			surface.method216("Other player", byte0 + 341, byte1 + 246, 1, 0xffffff);
-			surface.method216("has accepted", byte0 + 341, byte1 + 256, 1, 0xffffff);
+			surface.drawStringCenter("Other player", byte0 + 341, byte1 + 246, 1, 0xffffff);
+			surface.drawStringCenter("has accepted", byte0 + 341, byte1 + 256, 1, 0xffffff);
 		}
 		if(aBoolean896) {
-			surface.method216("Waiting for", byte0 + 217 + 35, byte1 + 246, 1, 0xffffff);
-			surface.method216("other player", byte0 + 217 + 35, byte1 + 256, 1, 0xffffff);
+			surface.drawStringCenter("Waiting for", byte0 + 217 + 35, byte1 + 246, 1, 0xffffff);
+			surface.drawStringCenter("other player", byte0 + 217 + 35, byte1 + 256, 1, 0xffffff);
 		}
 		for(int l4 = 0; l4 < inventorySize; l4++) {
 			int i5 = 217 + byte0 + (l4 % 5) * 49;
@@ -6349,15 +6365,15 @@ label0:
 		surface.drawString("Opponent's Offer", byte0 + 9, byte1 + 152, 4, 0xffffff);
 		surface.drawString("Your Inventory", byte0 + 216, byte1 + 27, 4, 0xffffff);
 		if(!aBoolean886)
-			surface.method246(byte0 + 217, byte1 + 238, anInt658 + 25);
-		surface.method246(byte0 + 394, byte1 + 238, anInt658 + 26);
+			surface.drawSprite(byte0 + 217, byte1 + 238, anInt658 + 25);
+		surface.drawSprite(byte0 + 394, byte1 + 238, anInt658 + 26);
 		if(aBoolean885) {
-			surface.method216("Other player", byte0 + 341, byte1 + 246, 1, 0xffffff);
-			surface.method216("has accepted", byte0 + 341, byte1 + 256, 1, 0xffffff);
+			surface.drawStringCenter("Other player", byte0 + 341, byte1 + 246, 1, 0xffffff);
+			surface.drawStringCenter("has accepted", byte0 + 341, byte1 + 256, 1, 0xffffff);
 		}
 		if(aBoolean886) {
-			surface.method216("Waiting for", byte0 + 217 + 35, byte1 + 246, 1, 0xffffff);
-			surface.method216("other player", byte0 + 217 + 35, byte1 + 256, 1, 0xffffff);
+			surface.drawStringCenter("Waiting for", byte0 + 217 + 35, byte1 + 246, 1, 0xffffff);
+			surface.drawStringCenter("other player", byte0 + 217 + 35, byte1 + 256, 1, 0xffffff);
 		}
 		for(int l4 = 0; l4 < inventorySize; l4++) {
 			int i5 = 217 + byte0 + (l4 % 5) * 49;
@@ -6572,26 +6588,26 @@ label0:
 		int i = 97;
 		surface.method207(86, 77, 340, 180, 0);
 		surface.method214(86, 77, 340, 180, 0xffffff);
-		surface.method216("Warning! Proceed with caution", 256, i, 4, 0xff0000);
+		surface.drawStringCenter("Warning! Proceed with caution", 256, i, 4, 0xff0000);
 		i += 26;
-		surface.method216("If you go much further north you will enter the", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("If you go much further north you will enter the", 256, i, 1, 0xffffff);
 		i += 13;
-		surface.method216("wilderness. This a very dangerous area where", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("wilderness. This a very dangerous area where", 256, i, 1, 0xffffff);
 		i += 13;
-		surface.method216("other players can attack you!", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("other players can attack you!", 256, i, 1, 0xffffff);
 		i += 22;
-		surface.method216("The further north you go the more dangerous it", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("The further north you go the more dangerous it", 256, i, 1, 0xffffff);
 		i += 13;
-		surface.method216("becomes, but the more treasure you will find.", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("becomes, but the more treasure you will find.", 256, i, 1, 0xffffff);
 		i += 22;
-		surface.method216("In the wilderness an indicator at the bottom-right", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("In the wilderness an indicator at the bottom-right", 256, i, 1, 0xffffff);
 		i += 13;
-		surface.method216("of the screen will show the current level of danger", 256, i, 1, 0xffffff);
+		surface.drawStringCenter("of the screen will show the current level of danger", 256, i, 1, 0xffffff);
 		i += 22;
 		int j = 0xffffff;
 		if(super.mouseY > i - 12 && super.mouseY <= i && super.mouseX > 181 && super.mouseX < 331)
 			j = 0xff0000;
-		surface.method216("Click here to close window", 256, i, 1, j);
+		surface.drawStringCenter("Click here to close window", 256, i, 1, j);
 		if(mouseButtonClick != 0) {
 			if(super.mouseY > i - 12 && super.mouseY <= i && super.mouseX > 181 && super.mouseX < 331)
 				anInt811 = 2;
@@ -6613,7 +6629,7 @@ label0:
 		surface.method207(56, 167 - i / 2, 400, i, 0);
 		surface.method214(56, 167 - i / 2, 400, i, 0xffffff);
 		j += 20;
-		surface.method216("Welcome to RuneScape " + aString778, 256, j, 4, 0xffff00);
+		surface.drawStringCenter("Welcome to RuneScape " + aString778, 256, j, 4, 0xffff00);
 		j += 30;
 		String s;
 		if(anInt927 == 0)
@@ -6624,34 +6640,34 @@ label0:
 		else
 			s = anInt927 + " days ago";
 		if(anInt926 != 0) {
-			surface.method216("You last logged in " + s, 256, j, 1, 0xffffff);
+			surface.drawStringCenter("You last logged in " + s, 256, j, 1, 0xffffff);
 			j += 15;
 			if(aString930 == null)
 				aString930 = method90(anInt926);
-			surface.method216("from: " + aString930, 256, j, 1, 0xffffff);
+			surface.drawStringCenter("from: " + aString930, 256, j, 1, 0xffffff);
 			j += 15;
 			j += 15;
 		}
 		if(anInt929 > 0) {
 			int k = 0xffffff;
-			surface.method216("Jagex staff will NEVER email you. We use the", 256, j, 1, k);
+			surface.drawStringCenter("Jagex staff will NEVER email you. We use the", 256, j, 1, k);
 			j += 15;
-			surface.method216("message-centre on this website instead.", 256, j, 1, k);
+			surface.drawStringCenter("message-centre on this website instead.", 256, j, 1, k);
 			j += 15;
 			if(anInt929 == 1)
-				surface.method216("You have @yel@0@whi@ unread messages in your message-centre", 256, j, 1, 0xffffff);
+				surface.drawStringCenter("You have @yel@0@whi@ unread messages in your message-centre", 256, j, 1, 0xffffff);
 			else
-				surface.method216("You have @gre@" + (anInt929 - 1) + " unread messages @whi@in your message-centre", 256, j, 1, 0xffffff);
+				surface.drawStringCenter("You have @gre@" + (anInt929 - 1) + " unread messages @whi@in your message-centre", 256, j, 1, 0xffffff);
 			j += 15;
 			j += 15;
 		}
 		if(anInt928 != 201) {
 			if(anInt928 == 200) {
-				surface.method216("You have not yet set any password recovery questions.", 256, j, 1, 0xff8000);
+				surface.drawStringCenter("You have not yet set any password recovery questions.", 256, j, 1, 0xff8000);
 				j += 15;
-				surface.method216("We strongly recommend you do so now to secure your account.", 256, j, 1, 0xff8000);
+				surface.drawStringCenter("We strongly recommend you do so now to secure your account.", 256, j, 1, 0xff8000);
 				j += 15;
-				surface.method216("Do this from the 'account management' area on our front webpage", 256, j, 1, 0xff8000);
+				surface.drawStringCenter("Do this from the 'account management' area on our front webpage", 256, j, 1, 0xff8000);
 				j += 15;
 			} else {
 				String s1;
@@ -6662,11 +6678,11 @@ label0:
 					s1 = "Yesterday";
 				else
 					s1 = anInt928 + " days ago";
-				surface.method216(s1 + " you changed your recovery questions", 256, j, 1, 0xff8000);
+				surface.drawStringCenter(s1 + " you changed your recovery questions", 256, j, 1, 0xff8000);
 				j += 15;
-				surface.method216("If you do not remember making this change then cancel it immediately", 256, j, 1, 0xff8000);
+				surface.drawStringCenter("If you do not remember making this change then cancel it immediately", 256, j, 1, 0xff8000);
 				j += 15;
-				surface.method216("Do this from the 'account management' area on our front webpage", 256, j, 1, 0xff8000);
+				surface.drawStringCenter("Do this from the 'account management' area on our front webpage", 256, j, 1, 0xff8000);
 				j += 15;
 			}
 			j += 15;
@@ -6674,7 +6690,7 @@ label0:
 		int l = 0xffffff;
 		if(super.mouseY > j - 12 && super.mouseY <= j && super.mouseX > 106 && super.mouseX < 406)
 			l = 0xff0000;
-		surface.method216("Click here to close window", 256, j, 1, l);
+		surface.drawStringCenter("Click here to close window", 256, j, 1, l);
 		if(mouseButtonClick == 1) {
 			if(l == 0xff0000)
 				aBoolean810 = false;

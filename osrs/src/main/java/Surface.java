@@ -219,7 +219,7 @@ public class Surface
 			return fonts[i][8] - 1;
 	}
 
-	public void method216(String s, int i, int j, int k, int l) {
+	public void drawStringCenter(String s, int i, int j, int k, int l) {
 		drawString(s, i - method212(s, k) / 2, j, k, l);
 	}
 
@@ -1267,7 +1267,7 @@ public class Surface
 				if(j1 > i1) {
 					if(l1 <= k1)
 						l1 = i2;
-					method216(s.substring(k1, l1), i, j, k, l);
+					drawStringCenter(s.substring(k1, l1), i, j, k, l);
 					j1 = 0;
 					k1 = i2 = l1 + 1;
 					j += method238(k);
@@ -1275,7 +1275,7 @@ public class Surface
 			}
 
 			if(j1 > 0) {
-				method216(s.substring(k1), i, j, k, l);
+				drawStringCenter(s.substring(k1), i, j, k, l);
             }
 		}
 		catch(Exception exception) {
@@ -1511,7 +1511,7 @@ label3:
 		}
 	}
 
-	public void method246(int i, int j, int k) {
+	public void drawSprite(int i, int j, int k) {
 		if(aBooleanArray333[k]) {
 			i += anIntArray329[k];
 			j += anIntArray330[k];

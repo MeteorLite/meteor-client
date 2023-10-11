@@ -136,4 +136,12 @@ public interface Client
 	void setItemNames(String[] itemNames);
 
 	String[] getItemNames();
+
+	boolean isCorrectHitsplats();
+
+	void setCorrectHitsplats(boolean correctHitsplats);
+
+	void setHitsplatsAboveScene(boolean hitsplatsAboveScene);
+
+	boolean isHitsplatsAboveScene();
 }

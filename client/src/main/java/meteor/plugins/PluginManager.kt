@@ -5,6 +5,7 @@ import meteor.Configuration
 import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
+import meteor.plugins.hitsplats.HitSplatsPlugin
 import meteor.plugins.meteor.Meteor
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.itemnamepatch.ItemNamePatchPlugin
@@ -21,6 +22,7 @@ object PluginManager {
         init<Meteor>()
         if (pluginsEnabled) {
             init<ItemNamePatchPlugin>()
+            init<HitSplatsPlugin>()
             init<StatusBarsPlugin>()
             init<StretchedModePlugin>()
         }

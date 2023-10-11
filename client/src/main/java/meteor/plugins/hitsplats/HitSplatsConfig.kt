@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Lotto <https://github.com/devLotto>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
  * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
+ *   list of conditions and the following disclaimer.
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -22,20 +23,27 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.rs.api;
+package meteor.plugins.hitsplats
 
-import net.runelite.mapping.Import;
+import meteor.config.legacy.*
 
-import java.awt.*;
+@ConfigGroup("hitsplats")
+interface HitSplatsConfig : Config {
+    @ConfigItem(
+        keyName = "drawabovescene",
+        name = "Draw Above Scene",
+        description = "Renders hitsplats above all scenery but under UIs"
+    )
+    fun drawAboveScene(): Boolean {
+        return true
+    }
 
-public interface RSSurface
-{
-    @Import("image")
-    Image getGameImage();
-
-    @Import("drawSprite")
-    void drawSprite$api(int x, int y, int spriteID);
-
-    @Import("drawStringCenter")
-    void drawStringCenter$api(String text, int x, int y, int font, int color);
+    @ConfigItem(
+            keyName = "correctColors",
+            name = "Correct Colors",
+            description = "Render blue for 0, red for 1+"
+    )
+    fun correctColors(): Boolean {
+        return true
+    }
 }

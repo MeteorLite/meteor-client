@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,25 +23,37 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package mixins;
 
-public interface Character
-{
+import net.runelite.api.SpriteID;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSCharacter;
+import net.runelite.rs.api.RSClient;
 
-    long getHash();
-    String getName();
-    int getServerIndex();
-    int getServerID();
-    int getCurrentX();
-    int getCurrentY();
-    int getNPCID();
-    int getAnimation();
-    String getMessage();
-    int getBubbleItem();
-    void setBubbleItem(int itemID);
-    int getCurrentHealth();
-    int getMaxHealth();
-    int getCombatLevel();
 
-    void drawHitSplat(int spriteID);
+@Mixin(RSCharacter.class)
+public abstract class RSCharacterMixin implements RSCharacter {
+
+	@Shadow("mudClient")
+	public static RSClient client;
+
+	@Inject
+	@Override
+	public void drawHitSplat(int spriteID) {
+		int sprite = spriteID;
+		if (getCombatTimer() > 150) {
+			if (client.isCorrectHitsplats()) {
+				if (sprite == SpriteID.HITSPLAT_BLUE)
+					if (getDamageTaken() > 0)
+						sprite = SpriteID.HITSPLAT_RED;
+				if (sprite == SpriteID.HITSPLAT_RED)
+					if (getDamageTaken() == 0)
+						sprite = SpriteID.HITSPLAT_BLUE;
+			}
+			client.getSurface().drawSprite$api(getScreenX() - 12, getScreenY() - 12, sprite);
+			client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenX() - 1, getScreenY() + 5, 3, 0xffffff);
+		}
+	}
 }
