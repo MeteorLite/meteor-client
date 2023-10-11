@@ -35,3 +35,8 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.compileJava {
+    sourceCompatibility = JavaVersion.VERSION_20.toString()
+    targetCompatibility = JavaVersion.VERSION_20.toString()
+}

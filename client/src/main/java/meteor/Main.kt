@@ -13,8 +13,6 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import eventbus.events.ConfigChanged
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import meteor.Configuration.EXTERNALS_DIR
 import meteor.config.ConfigManager
 import meteor.plugins.EventSubscriber
@@ -28,7 +26,6 @@ import meteor.ui.overlay.TooltipManager
 import meteor.ui.themes.MeteorliteTheme
 import meteor.util.ExecutorServiceExceptionLogger
 import meteor.util.Proxy
-import meteor.util.RuntimeConfigLoader
 import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
 import meteor.ui.composables.preferences.uiColor
@@ -40,7 +37,6 @@ import org.rationalityfrontline.kevent.KEVENT
 
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import java.util.function.Consumer
 import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
@@ -196,10 +192,6 @@ object Main : ApplicationScope, EventSubscriber() {
         initApi()
         //initOverlays()
         initManagers()
-        RuntimeConfigLoader.get()
-        if (pluginsEnabled) {
-            //xpTrackerService = XpTrackerService(PluginManager.get())
-        }
         //SessionManager.start()
         startupTimer.stop()
 

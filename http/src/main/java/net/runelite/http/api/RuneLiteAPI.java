@@ -64,13 +64,9 @@ public class RuneLiteAPI {
   public static String userAgent;
   private static String version;
 
-  private static final String MAVEN_METADATA = "https://repo.runelite.net/net/runelite/runelite-parent/maven-metadata.xml";
-  private static String upstreamVersion = "1.8.19-SNAPSHOT";
 
   static {
-    parseMavenVersion();
-    version = upstreamVersion;
-    userAgent = "RuneLite/" + version + "-";
+    userAgent = "Meteor-RSC";
     OkHttpClient.Builder builder = new OkHttpClient.Builder();
     List<ConnectionSpec> specs = new ArrayList<>();
     specs.add(ConnectionSpec.CLEARTEXT);
@@ -115,36 +111,6 @@ public class RuneLiteAPI {
     return HttpUrl.parse(METEOR_SESSION);
   }
 
-  public static HttpUrl getApiBase() {
-    final String prop = System.getProperty("runelite.http-service.url");
-
-    if (prop != null && !prop.isEmpty()) {
-      return HttpUrl.parse(prop);
-    }
-
-    return HttpUrl.parse(BASE + "/runelite-" + getVersion());
-  }
-
-  public static HttpUrl getStaticBase() {
-    final String prop = System.getProperty("runelite.static.url");
-
-    if (prop != null && !prop.isEmpty()) {
-      return HttpUrl.parse(prop);
-    }
-
-    return HttpUrl.parse(STATICBASE);
-  }
-
-  public static HttpUrl getWsEndpoint() {
-    final String prop = System.getProperty("runelite.ws.url");
-
-    if (prop != null && !prop.isEmpty()) {
-      return HttpUrl.parse(prop);
-    }
-
-    return HttpUrl.parse(WSBASE);
-  }
-
   public static String getVersion() {
     return version;
   }
@@ -153,30 +119,6 @@ public class RuneLiteAPI {
     RuneLiteAPI.version = version;
   }
 
-  private static void parseMavenVersion()
-  {
-    try (ByteArrayInputStream fis = new ByteArrayInputStream(downloadUrl(new URL(MAVEN_METADATA))))
-    {
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      factory.setValidating(false);
-      factory.setIgnoringElementContentWhitespace(true);
-      DocumentBuilder builder = factory.newDocumentBuilder();
-      Document doc = builder.parse(fis);
-      NodeList versionList = doc.getElementsByTagName("version");
-      for (int i = 0; i != versionList.getLength(); i++)
-      {
-        Node node = versionList.item(i);
-        if (node.getTextContent() != null && !node.getTextContent().endsWith("SNAPSHOT"))
-        {
-          upstreamVersion = node.getTextContent();
-        }
-      }
-    }
-    catch (ParserConfigurationException | IOException | SAXException ex)
-    {
-      ex.printStackTrace();
-    }
-  }
 
   private static byte[] downloadUrl(URL toDownload)
   {
