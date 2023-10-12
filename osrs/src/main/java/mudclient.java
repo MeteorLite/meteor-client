@@ -5127,8 +5127,8 @@ label0:
 	public static void main(String[] args) {
 
 		mudClient.aBoolean782 = false;
-		if(args.length > 0 && args[0].equals("members"))
-			mudClient.isMembers = true;
+		//Default to members with option to specify f2p (members areas load with water terrain if using f2p)
+        mudClient.isMembers = args.length == 0 || !args[0].equals("f2p");
 		if(args.length > 1)
 			mudClient.aString619 = args[1];
 		if(args.length > 2)
