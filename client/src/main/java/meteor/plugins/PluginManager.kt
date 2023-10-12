@@ -1,7 +1,6 @@
 package meteor.plugins
 
 import androidx.compose.runtime.mutableStateListOf
-import meteor.Configuration
 import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
@@ -9,10 +8,9 @@ import meteor.plugins.hitsplats.HitSplatsPlugin
 import meteor.plugins.meteor.Meteor
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.itemnamepatch.ItemNamePatchPlugin
+import meteor.plugins.inventorycount.InventoryCountPlugin
+import meteor.plugins.perspectivetest.DevelopPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
-
-import java.io.File
-import java.net.URLClassLoader
 
 
 object PluginManager {
@@ -23,6 +21,8 @@ object PluginManager {
         if (pluginsEnabled) {
             init<ItemNamePatchPlugin>()
             init<HitSplatsPlugin>()
+            init<InventoryCountPlugin>()
+            init<DevelopPlugin>()
             init<StatusBarsPlugin>()
             init<StretchedModePlugin>()
         }

@@ -433,4 +433,75 @@ public abstract class RSClientMixin implements RSClient {
 	public void setCorrectHitsplats(boolean correctHitsplats) {
 		this.correctHitsplats = correctHitsplats;
 	}
+
+	//This is a placeholder. for now ;p
+	@Inject
+	@Override
+	public boolean isGPU() {
+		return false;
+	}
+
+	@Shadow("tileHeights")
+	public static byte[][] tileHeights;
+
+	@Inject
+	@Override
+	public byte[][] getTileHeights() {
+		return tileHeights;
+	}
+
+	@Inject
+	@Override
+	public int getCameraX() {
+		return getScene().getCameraX();
+	}
+
+	@Inject
+	@Override
+	public int getCameraY() {
+		return getScene().getCameraY();
+	}
+
+	@Inject
+	@Override
+	public int getCameraZ() {
+		return getScene().getCameraZ();
+	}
+
+	@Inject
+	@Override
+	public int getCameraPitch() {
+		return getScene().getCameraPitch();
+	}
+
+	@Inject
+	@Override
+	public int getCameraYaw() {
+		return getScene().getCameraYaw();
+	}
+
+	//Prevent camera from zooming in slowly whil in buildings etc
+	@Inject
+	@FieldHook("fogOfWar")
+	public void onFogOfWarChanged(int idx) {
+		setFogOfWar(false);
+	}
+
+	@Inject
+	@MethodHook(value = "drawPlayer")
+	void drawPlayer$head(int screenX, int screenY, int width, int height, int idx, int j1, int k1){
+		getPlayers()[idx].setScreenX(screenX);
+		getPlayers()[idx].setScreenY(screenY);
+		getPlayers()[idx].setScreenWidth(width);
+		getPlayers()[idx].setScreenHeight(height);
+	}
+
+	@Shadow("username")
+	public static String username;
+
+	@Inject
+	@Override
+	public String getUsername() {
+		return username;
+	}
 }

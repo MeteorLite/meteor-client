@@ -26,6 +26,8 @@
 package net.runelite.api.coords;
 
 import lombok.Value;
+import net.runelite.api.Client;
+import net.runelite.api.Perspective;
 
 /**
  * A three-dimensional point representing the coordinate of a Tile.
@@ -94,7 +96,7 @@ public class WorldPoint
 	 * @param y      the tiles y coordinate
 	 * @return true if the tile is in the scene, false otherwise
 	 */
-/*	public static boolean isInScene(Client client, int x, int y)
+	public static boolean isInScene(Client client, int x, int y)
 	{
 		int baseX = client.getBaseX();
 		int baseY = client.getBaseY();
@@ -103,7 +105,7 @@ public class WorldPoint
 		int maxY = baseY + Perspective.SCENE_SIZE;
 
 		return x >= baseX && x < maxX && y >= baseY && y < maxY;
-	}*/
+	}
 
 	/**
 	 * Checks whether this tile is located in the current scene.

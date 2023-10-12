@@ -1,15 +1,16 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Lotto <https://github.com/devLotto>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
  * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
+ *   list of conditions and the following disclaimer.
+ *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -22,30 +23,22 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.rs.api;
+package meteor.plugins.inventorycount
 
-import net.runelite.mapping.Import;
+import meteor.plugins.Plugin
+import meteor.plugins.PluginDescriptor
 
-import java.awt.*;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelListener;
+@PluginDescriptor(
+    name = "Inventory Count", configGroup = "asdasf",
+    description = "",
+    enabledByDefault = true
+)
+class InventoryCountPlugin : Plugin() {
 
-public interface RSGameShell extends MouseListener, MouseWheelListener, MouseMotionListener, KeyListener
-{
-	@Import("mudClient")
-	RSClient getClient$api();
+    val overlay = overlay(InventoryCountOverlay())
+    override fun onStart() {
+    }
 
-	@Import("gameWindow")
-	RSGameWindow getGameWindow();
-
-	@Import("mouseIdleCycles")
-	void setMouseIdleCycles(int mouseIdleCycles);
-
-	@Import("appletWidth")
-	int getAppletWidth();
-
-	@Import("appletHeight")
-	int getAppletHeight();
+    override fun onStop() {
+    }
 }

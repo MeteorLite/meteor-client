@@ -64,7 +64,7 @@ public final class mudclient extends NetworkedGame {
 	private void method46() {
 		if(mouseButtonClick != 0) {
 			for(int i = 0; i < optionMenuCount; i++) {
-				if(super.mouseX >= surface.method212(menuOptions[i], 1) || super.mouseY <= i * 12 || super.mouseY >= 12 + i * 12)
+				if(super.mouseX >= surface.textWidth(menuOptions[i], 1) || super.mouseY <= i * 12 || super.mouseY >= 12 + i * 12)
 					continue;
 				chooseOption(i);
 				break;
@@ -76,7 +76,7 @@ public final class mudclient extends NetworkedGame {
 		}
 		for(int j = 0; j < optionMenuCount; j++) {
 			int k = 65535;
-			if(super.mouseX < surface.method212(menuOptions[j], 1) && super.mouseY > j * 12 && super.mouseY < 12 + j * 12)
+			if(super.mouseX < surface.textWidth(menuOptions[j], 1) && super.mouseY > j * 12 && super.mouseY < 12 + j * 12)
 				k = 0xff0000;
 			surface.drawString(menuOptions[j], 6, 12 + j * 12, 1, k);
 		}
@@ -93,12 +93,12 @@ public final class mudclient extends NetworkedGame {
 		char c1 = '\u1900';
 		char c2 = '\u044C';
 		char c3 = '\u0378';
-		scene.anInt426 = 4100;
-		scene.anInt430 = 4100;
-		scene.anInt443 = 1;
-		scene.anInt442 = 4000;
-		scene.method263(c, -world.method410(c, c1), c1, 912, c3, 0, c2 * 2);
-		scene.method288();
+		scene.clipFar3d = 4100;
+		scene.clipFar2d = 4100;
+		scene.fogZFalloff = 1;
+		scene.fogZDistance = 4000;
+		scene.setCamera(c, -world.method410(c, c1), c1, 912, c3, 0, c2 * 2);
+		scene.render();
 		surface.fadeToBlack();
 		surface.fadeToBlack();
 		surface.method207(0, 0, 512, 6, 0);
@@ -116,12 +116,12 @@ public final class mudclient extends NetworkedGame {
 		c1 = '\u2400';
 		c2 = '\u044C';
 		c3 = '\u0378';
-		scene.anInt426 = 4100;
-		scene.anInt430 = 4100;
-		scene.anInt443 = 1;
-		scene.anInt442 = 4000;
-		scene.method263(c, -world.method410(c, c1), c1, 912, c3, 0, c2 * 2);
-		scene.method288();
+		scene.clipFar3d = 4100;
+		scene.clipFar2d = 4100;
+		scene.fogZFalloff = 1;
+		scene.fogZDistance = 4000;
+		scene.setCamera(c, -world.method410(c, c1), c1, 912, c3, 0, c2 * 2);
+		scene.render();
 		surface.fadeToBlack();
 		surface.fadeToBlack();
 		surface.method207(0, 0, 512, 6, 0);
@@ -147,12 +147,12 @@ public final class mudclient extends NetworkedGame {
 		c1 = '\u2880';
 		c2 = '\u01F4';
 		c3 = '\u0178';
-		scene.anInt426 = 4100;
-		scene.anInt430 = 4100;
-		scene.anInt443 = 1;
-		scene.anInt442 = 4000;
-		scene.method263(c, -world.method410(c, c1), c1, 912, c3, 0, c2 * 2);
-		scene.method288();
+		scene.clipFar3d = 4100;
+		scene.clipFar2d = 4100;
+		scene.fogZFalloff = 1;
+		scene.fogZDistance = 4000;
+		scene.setCamera(c, -world.method410(c, c1), c1, 912, c3, 0, c2 * 2);
+		scene.render();
 		surface.fadeToBlack();
 		surface.fadeToBlack();
 		surface.method207(0, 0, 512, 6, 0);
@@ -267,7 +267,7 @@ public final class mudclient extends NetworkedGame {
 		int[] ai = {
 			i3, j3, k3, l3
 		};
-		model.method184(4, ai, j2, k2);
+		model.createFace(4, ai, j2, k2);
 		model.method205(false, 60, 24, -50, -10, -50);
 		if(i >= 0 && j >= 0 && i < 96 && j < 96)
 			scene.method305(model);
@@ -342,10 +342,10 @@ public final class mudclient extends NetworkedGame {
 		}
 
 		if(rscharacter.messageTimeout > 0) {
-			recievedMessageMidPoint[anInt685] = surface.method212(rscharacter.message, 1) / 2;
+			recievedMessageMidPoint[anInt685] = surface.textWidth(rscharacter.message, 1) / 2;
 			if(recievedMessageMidPoint[anInt685] > 150)
 				recievedMessageMidPoint[anInt685] = 150;
-			revievedMessageHeight[anInt685] = (surface.method212(rscharacter.message, 1) / 300) * surface.method238(1);
+			revievedMessageHeight[anInt685] = (surface.textWidth(rscharacter.message, 1) / 300) * surface.method238(1);
 			receivedMessageX[anInt685] = x + width / 2;
 			receivedMessageY[anInt685] = y;
 			aStringArray689[anInt685++] = rscharacter.message;
@@ -372,19 +372,19 @@ public final class mudclient extends NetworkedGame {
 					x1 += (10 * k1) / 100;
 
 				//draw hitsplat. in meteor, we do this after scene so it's not hidden by models
-				rscharacter.screenX = x1 + width / 2;
-				rscharacter.screenY = y + height / 2;
+				rscharacter.screenCenterX = x1 + width / 2;
+				rscharacter.screenCenterY = y + height / 2;
 
 				if (!drawHitsplatsAboveScene) {
-					surface.drawSprite(rscharacter.screenX - 12, rscharacter.screenY - 12, anInt658 + 12);
-					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenX - 1, rscharacter.screenY + 5, 3, 0xffffff);
+					surface.drawSprite(rscharacter.screenCenterX - 12, rscharacter.screenCenterY - 12, anInt658 + 12);
+					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenCenterX - 1, rscharacter.screenCenterY + 5, 3, 0xffffff);
 				}
 			}
 		}
 	}
 
-	void method52(int i, int j, int k, int l, int i1, int j1, int k1) {
-		Character rscharacter = players[i1];
+	void drawPlayer(int x, int y, int width, int height, int idx, int j1, int k1) {
+		Character rscharacter = players[idx];
 		if(rscharacter.bottomColor == 255)
 			return;
 		int l1 = rscharacter.animation + (cameraRotation + 16) / 32 & 7;
@@ -407,14 +407,14 @@ public final class mudclient extends NetworkedGame {
 			i2 = 5;
 			l1 = 2;
 			flag = false;
-			i -= (5 * k1) / 100;
+			x -= (5 * k1) / 100;
 			j2 = i2 * 3 + anIntArray680[(cycle / 5) % 8];
 		} else
 		if(rscharacter.animation == 9) {
 			i2 = 5;
 			l1 = 2;
 			flag = true;
-			i += (5 * k1) / 100;
+			x += (5 * k1) / 100;
 			j2 = i2 * 3 + anIntArray682[(cycle / 6) % 8];
 		}
 		for(int k2 = 0; k2 < 12; k2++) {
@@ -460,10 +460,10 @@ public final class mudclient extends NetworkedGame {
 					}
 				if(i2 != 5 || Definitions.anIntArray101[l3] == 1) {
 					int k5 = j5 + Definitions.anIntArray103[l3];
-					k4 = (k4 * k) / surface.anIntArray331[k5];
-					i5 = (i5 * l) / surface.anIntArray332[k5];
-					int l5 = (k * surface.anIntArray331[k5]) / surface.anIntArray331[Definitions.anIntArray103[l3]];
-					k4 -= (l5 - k) / 2;
+					k4 = (k4 * width) / surface.anIntArray331[k5];
+					i5 = (i5 * height) / surface.anIntArray332[k5];
+					int l5 = (width * surface.anIntArray331[k5]) / surface.anIntArray331[Definitions.anIntArray103[l3]];
+					k4 -= (l5 - width) / 2;
 					int i6 = Definitions.anIntArray99[l3];
 					int j6 = anIntArray695[rscharacter.skinColor];
 					if(i6 == 1)
@@ -474,59 +474,59 @@ public final class mudclient extends NetworkedGame {
 					else
 					if(i6 == 3)
 						i6 = anIntArray697[rscharacter.bottomColor];
-					surface.method221(i + k4, j + i5, l5, l, k5, i6, j6, j1, flag);
+					surface.method221(x + k4, y + i5, l5, height, k5, i6, j6, j1, flag);
 				}
 			}
 		}
 
 		if(rscharacter.messageTimeout > 0) {
-			recievedMessageMidPoint[anInt685] = surface.method212(rscharacter.message, 1) / 2;
+			recievedMessageMidPoint[anInt685] = surface.textWidth(rscharacter.message, 1) / 2;
 			if(recievedMessageMidPoint[anInt685] > 150)
 				recievedMessageMidPoint[anInt685] = 150;
-			revievedMessageHeight[anInt685] = (surface.method212(rscharacter.message, 1) / 300) * surface.method238(1);
-			receivedMessageX[anInt685] = i + k / 2;
-			receivedMessageY[anInt685] = j;
+			revievedMessageHeight[anInt685] = (surface.textWidth(rscharacter.message, 1) / 300) * surface.method238(1);
+			receivedMessageX[anInt685] = x + width / 2;
+			receivedMessageY[anInt685] = y;
 			aStringArray689[anInt685++] = rscharacter.message;
 		}
 		if(rscharacter.bubbleTimeout > 0) {
-			anIntArray698[anInt699] = i + k / 2;
-			anIntArray700[anInt699] = j;
+			anIntArray698[anInt699] = x + width / 2;
+			anIntArray700[anInt699] = y;
 			anIntArray701[anInt699] = k1;
 			anIntArray702[anInt699++] = rscharacter.bubbleItem;
 		}
 		if(rscharacter.animation == 8 || rscharacter.animation == 9 || rscharacter.combatTimer != 0) {
 			if(rscharacter.combatTimer > 0) {
-				int i3 = i;
+				int i3 = x;
 				if(rscharacter.animation == 8)
 					i3 -= (20 * k1) / 100;
 				else
 				if(rscharacter.animation == 9)
 					i3 += (20 * k1) / 100;
 				int i4 = (rscharacter.currentHealth * 30) / rscharacter.maxHealth;
-				anIntArray690[anInt691] = i3 + k / 2;
-				anIntArray692[anInt691] = j;
+				anIntArray690[anInt691] = i3 + width / 2;
+				anIntArray692[anInt691] = y;
 				anIntArray693[anInt691++] = i4;
 			}
 			if(rscharacter.combatTimer > 150) {
-				int j3 = i;
+				int j3 = x;
 				if(rscharacter.animation == 8)
 					j3 -= (10 * k1) / 100;
 				else
 				if(rscharacter.animation == 9)
 					j3 += (10 * k1) / 100;
 				//draw hitsplat. in meteor, we do this after scene so it's not hidden by models
-				rscharacter.screenX = j3 + k / 2;
-				rscharacter.screenY = j + l / 2;
+				rscharacter.screenCenterX = j3 + width / 2;
+				rscharacter.screenCenterY = y + height / 2;
 
 				if (!drawHitsplatsAboveScene) {
-					surface.drawSprite(rscharacter.screenX - 12, rscharacter.screenY - 12, anInt658 + 11);
-					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenX - 1, rscharacter.screenY + 5, 3, 0xffffff);
+					surface.drawSprite(rscharacter.screenCenterX - 12, rscharacter.screenCenterY - 12, anInt658 + 11);
+					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenCenterX - 1, rscharacter.screenCenterY + 5, 3, 0xffffff);
 				}
 			}
 		}
 
 		if(rscharacter.skullVisible == 1 && rscharacter.bubbleTimeout == 0) {
-			int k3 = j1 + i + k / 2;
+			int k3 = j1 + x + width / 2;
 			if(rscharacter.animation == 8)
 				k3 -= (20 * k1) / 100;
 			else
@@ -534,7 +534,7 @@ public final class mudclient extends NetworkedGame {
 				k3 += (20 * k1) / 100;
 			int j4 = (16 * k1) / 100;
 			int l4 = (16 * k1) / 100;
-			surface.method245(k3 - j4 / 2, j - l4 / 2 - (10 * k1) / 100, j4, l4, anInt658 + 13);
+			surface.method245(k3 - j4 / 2, y - l4 / 2 - (10 * k1) / 100, j4, l4, anInt658 + 13);
 		}
 	}
 
@@ -822,7 +822,7 @@ public final class mudclient extends NetworkedGame {
 			k2 = k6;
 			int j8 = 0xffffff;
 			for(int k8 = 0; k8 < super.anInt603; k8++) {
-				if(rscharacter1.hash != super.aLongArray602[k8] || super.anIntArray604[k8] != 255)
+				if(rscharacter1.hash != super.friendListHashes[k8] || super.friendListOnline[k8] != 255)
 					continue;
 				j8 = 65280;
 				break;
@@ -1420,10 +1420,10 @@ public final class mudclient extends NetworkedGame {
 				break;
 			int k1 = ai[j1];
 			Model model = amodel[j1];
-			if(model.anIntArray265[k1] <= 65535 || model.anIntArray265[k1] >= 0x30d40 && model.anIntArray265[k1] <= 0x493e0)
-				if(model == scene.aModel392) {
-					int i2 = model.anIntArray265[k1] % 10000;
-					int l2 = model.anIntArray265[k1] / 10000;
+			if(model.faceTag[k1] <= 65535 || model.faceTag[k1] >= 0x30d40 && model.faceTag[k1] <= 0x493e0)
+				if(model == scene.view) {
+					int i2 = model.faceTag[k1] % 10000;
+					int l2 = model.faceTag[k1] / 10000;
 					if(l2 == 1) {
 						String s = "";
 						int k3 = 0;
@@ -1734,7 +1734,7 @@ public final class mudclient extends NetworkedGame {
 					}
 				} else {
 					if(k1 >= 0)
-						k1 = model.anIntArray265[k1] - 0x30d40;
+						k1 = model.faceTag[k1] - 0x30d40;
 					if(k1 >= 0)
 						j = k1;
 				}
@@ -2248,7 +2248,7 @@ public final class mudclient extends NetworkedGame {
 				String s1 = s.substring(0, j);
 				long l = DataUtils.method356(s1);
 				for(int i1 = 0; i1 < super.anInt606; i1++)
-					if(super.aLongArray605[i1] == l)
+					if(super.ignoreList[i1] == l)
 						return;
 
 			}
@@ -2350,9 +2350,9 @@ public final class mudclient extends NetworkedGame {
 			}
 			if(!aBoolean861 && mouseButtonClick == 2 || aBoolean861 && mouseButtonClick == 1) {
 				anInt726 = (menuItemsCount + 1) * 15;
-				anInt722 = surface.method212("Choose option", 1) + 5;
+				anInt722 = surface.textWidth("Choose option", 1) + 5;
 				for(int k1 = 0; k1 < menuItemsCount; k1++) {
-					int l1 = surface.method212(aStringArray727[k1] + " " + aStringArray728[k1], 1) + 5;
+					int l1 = surface.textWidth(aStringArray727[k1] + " " + aStringArray728[k1], 1) + 5;
 					if(l1 > anInt722)
 						anInt722 = l1;
 				}
@@ -2901,20 +2901,20 @@ label0:
 		if(anInt866 == 0) {
 			for(int i1 = 0; i1 < super.anInt603; i1++) {
 				String s;
-				if(super.anIntArray604[i1] == 255)
+				if(super.friendListOnline[i1] == 255)
 					s = "@gre@";
 				else
-				if(super.anIntArray604[i1] > 0)
+				if(super.friendListOnline[i1] > 0)
 					s = "@yel@";
 				else
 					s = "@red@";
-				aPanel867.method139(anInt868, i1, s + DataUtils.method351(super.aLongArray602[i1]) + "~439~@whi@Remove         WWWWWWWWWW");
+				aPanel867.method139(anInt868, i1, s + DataUtils.method351(super.friendListHashes[i1]) + "~439~@whi@Remove         WWWWWWWWWW");
 			}
 
 		}
 		if(anInt866 == 1) {
 			for(int j1 = 0; j1 < super.anInt606; j1++)
-				aPanel867.method139(anInt868, j1, "@yel@" + DataUtils.method351(super.aLongArray605[j1]) + "~439~@whi@Remove         WWWWWWWWWW");
+				aPanel867.method139(anInt868, j1, "@yel@" + DataUtils.method351(super.ignoreList[j1]) + "~439~@whi@Remove         WWWWWWWWWW");
 
 		}
 		aPanel867.method150();
@@ -2922,18 +2922,18 @@ label0:
 			int k1 = aPanel867.method164(anInt868);
 			if(k1 >= 0 && super.mouseX < 489) {
 				if(super.mouseX > 429)
-					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.aLongArray602[k1]), i + c / 2, j + 35, 1, 0xffffff);
+					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.friendListHashes[k1]), i + c / 2, j + 35, 1, 0xffffff);
 				else
-				if(super.anIntArray604[k1] == 255)
-					surface.drawStringCenter("Click to message " + DataUtils.method351(super.aLongArray602[k1]), i + c / 2, j + 35, 1, 0xffffff);
+				if(super.friendListOnline[k1] == 255)
+					surface.drawStringCenter("Click to message " + DataUtils.method351(super.friendListHashes[k1]), i + c / 2, j + 35, 1, 0xffffff);
 				else
-				if(super.anIntArray604[k1] > 0) {
-					if(super.anIntArray604[k1] < 200)
-						surface.drawStringCenter(DataUtils.method351(super.aLongArray602[k1]) + " is on world " + (super.anIntArray604[k1] - 9), i + c / 2, j + 35, 1, 0xffffff);
+				if(super.friendListOnline[k1] > 0) {
+					if(super.friendListOnline[k1] < 200)
+						surface.drawStringCenter(DataUtils.method351(super.friendListHashes[k1]) + " is on world " + (super.friendListOnline[k1] - 9), i + c / 2, j + 35, 1, 0xffffff);
 					else
-						surface.drawStringCenter(DataUtils.method351(super.aLongArray602[k1]) + " is on classic " + (super.anIntArray604[k1] - 219), i + c / 2, j + 35, 1, 0xffffff);
+						surface.drawStringCenter(DataUtils.method351(super.friendListHashes[k1]) + " is on classic " + (super.friendListOnline[k1] - 219), i + c / 2, j + 35, 1, 0xffffff);
 				} else {
-					surface.drawStringCenter(DataUtils.method351(super.aLongArray602[k1]) + " is offline", i + c / 2, j + 35, 1, 0xffffff);
+					surface.drawStringCenter(DataUtils.method351(super.friendListHashes[k1]) + " is offline", i + c / 2, j + 35, 1, 0xffffff);
 				}
 			} else {
 				surface.drawStringCenter("Click a name to send a message", i + c / 2, j + 35, 1, 0xffffff);
@@ -2949,7 +2949,7 @@ label0:
 			int l1 = aPanel867.method164(anInt868);
 			if(l1 >= 0 && super.mouseX < 489 && super.mouseX > 429) {
 				if(super.mouseX > 429)
-					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.aLongArray605[l1]), i + c / 2, j + 35, 1, 0xffffff);
+					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.ignoreList[l1]), i + c / 2, j + 35, 1, 0xffffff);
 			} else {
 				surface.drawStringCenter("Blocking messages from:", i + c / 2, j + 35, 1, 0xffffff);
 			}
@@ -2979,11 +2979,11 @@ label0:
 				int i2 = aPanel867.method164(anInt868);
 				if(i2 >= 0 && super.mouseX < 489)
 					if(super.mouseX > 429)
-						method21(super.aLongArray602[i2]);
+						method21(super.friendListHashes[i2]);
 					else
-					if(super.anIntArray604[i2] != 0) {
+					if(super.friendListOnline[i2] != 0) {
 						anInt791 = 2;
-						aLong863 = super.aLongArray602[i2];
+						aLong863 = super.friendListHashes[i2];
 						super.inputPmCurrent = "";
 						super.inputPmFinal = "";
 					}
@@ -2991,7 +2991,7 @@ label0:
 			if(mouseButtonClick == 1 && anInt866 == 1) {
 				int j2 = aPanel867.method164(anInt868);
 				if(j2 >= 0 && super.mouseX < 489 && super.mouseX > 429)
-					method23(super.aLongArray605[j2]);
+					method23(super.ignoreList[j2]);
 			}
 			if(j > 166 && mouseButtonClick == 1 && anInt866 == 0) {
 				anInt791 = 1;
@@ -3503,7 +3503,7 @@ label0:
 							//String s2 = ChatFilter.method380(ChatEncoding.method388(abyte0, i9, byte7)); TODO: check
 							boolean flag3 = false;
 							for(int k40 = 0; k40 < super.anInt606; k40++)
-                                if (super.aLongArray605[k40] == rscharacter.hash) {
+                                if (super.ignoreList[k40] == rscharacter.hash) {
                                     flag3 = true;
                                     break;
                                 }
@@ -4381,7 +4381,7 @@ label0:
 		aBoolean877 = false;
 		i += anInt829;
 		j += anInt828;
-		if(anInt936 == anInt878 && i > anInt937 && i < anInt938 && j > anInt939 && j < anInt940) {
+		if(plane == anInt878 && i > anInt937 && i < anInt938 && j > anInt939 && j < anInt940) {
 			world.aBoolean572 = true;
 			return false;
 		}
@@ -4392,14 +4392,14 @@ label0:
 		int l = baseY;
 		int i1 = (i + 24) / 48;
 		int j1 = (j + 24) / 48;
-		anInt936 = anInt878;
+		plane = anInt878;
 		baseX = i1 * 48 - 48;
 		baseY = j1 * 48 - 48;
 		anInt937 = i1 * 48 - 32;
 		anInt939 = j1 * 48 - 32;
 		anInt938 = i1 * 48 + 32;
 		anInt940 = j1 * 48 + 32;
-		world.method399(i, j, anInt936);
+		world.method399(i, j, plane);
 		baseX -= anInt829;
 		baseY -= anInt828;
 		int k1 = baseX - k;
@@ -4644,17 +4644,17 @@ label0:
 		if(!world.aBoolean572)
 			return;
 		for(int i = 0; i < 64; i++) {
-			scene.method271(world.aModelArrayArray598[anInt936][i]);
-			if(anInt936 == 0) {
+			scene.method271(world.aModelArrayArray598[plane][i]);
+			if(plane == 0) {
 				scene.method271(world.aModelArrayArray597[1][i]);
 				scene.method271(world.aModelArrayArray598[1][i]);
 				scene.method271(world.aModelArrayArray597[2][i]);
 				scene.method271(world.aModelArrayArray598[2][i]);
 			}
 			fogOfWar = true;
-			if(anInt936 == 0 && (world.anIntArrayArray573[localPlayer.currentX / 128][localPlayer.currentY / 128] & 0x80) == 0) {
-				scene.method305(world.aModelArrayArray598[anInt936][i]);
-				if(anInt936 == 0) {
+			if(plane == 0 && (world.anIntArrayArray573[localPlayer.currentX / 128][localPlayer.currentY / 128] & 0x80) == 0) {
+				scene.method305(world.aModelArrayArray598[plane][i]);
+				if(plane == 0) {
 					scene.method305(world.aModelArrayArray597[1][i]);
 					scene.method305(world.aModelArrayArray598[1][i]);
 					scene.method305(world.aModelArrayArray597[2][i]);
@@ -4700,19 +4700,20 @@ label0:
 		scene.method265(anInt952);
 		anInt952 = 0;
 		for(int i1 = 0; i1 < playerCount; i1++) {
-			Character rscharacter = players[i1];
-			if(rscharacter.bottomColor != 255) {
-				int k1 = rscharacter.currentX;
-				int i2 = rscharacter.currentY;
-				int k2 = -world.method410(k1, i2);
-				int l3 = scene.method290(5000 + i1, k1, k2, i2, 145, 220, i1 + 10000);
+			Character character = players[i1];
+			if(character.bottomColor != 255) {
+				int x = character.currentX;
+				int y = character.currentY;
+
+				int plane = -world.method410(x, y);
+				int id = scene.addSprite(5000 + i1, x, plane, y, 145, 220, i1 + 10000);
 				anInt952++;
-				if(rscharacter == localPlayer)
-					scene.method277(l3);
-				if(rscharacter.animation == 8)
-					scene.method293(l3, -30);
-				if(rscharacter.animation == 9)
-					scene.method293(l3, 30);
+				if(character == localPlayer)
+					scene.setLocalPlayer(id);
+				if(character.animation == 8)
+					scene.setSpriteTranslateX(id, -30);
+				if(character.animation == 9)
+					scene.setSpriteTranslateX(id, 30);
 			}
 		}
 
@@ -4735,7 +4736,7 @@ label0:
 					int i10 = (l2 * rscharacter1.projectileRange + l8 * (anInt876 - rscharacter1.projectileRange)) / anInt876;
 					int j10 = (l6 * rscharacter1.projectileRange + l9 * (anInt876 - rscharacter1.projectileRange)) / anInt876;
 					int k10 = (i4 * rscharacter1.projectileRange + k9 * (anInt876 - rscharacter1.projectileRange)) / anInt876;
-					scene.method290(anInt942 + rscharacter1.incomingProjectileSprite, i10, j10, k10, 32, 32, 0);
+					scene.addSprite(anInt942 + rscharacter1.incomingProjectileSprite, i10, j10, k10, 32, 32, 0);
 					anInt952++;
 				}
 			}
@@ -4746,18 +4747,18 @@ label0:
 			int i3 = rscharacter3.currentX;
 			int j4 = rscharacter3.currentY;
 			int i7 = -world.method410(i3, j4);
-			int i9 = scene.method290(20000 + l1, i3, i7, j4, Definitions.anIntArray89[rscharacter3.npcID], Definitions.anIntArray90[rscharacter3.npcID], l1 + 30000);
+			int i9 = scene.addSprite(20000 + l1, i3, i7, j4, Definitions.anIntArray89[rscharacter3.npcID], Definitions.anIntArray90[rscharacter3.npcID], l1 + 30000);
 			anInt952++;
 			if(rscharacter3.animation == 8)
-				scene.method293(i9, -30);
+				scene.setSpriteTranslateX(i9, -30);
 			if(rscharacter3.animation == 9)
-				scene.method293(i9, 30);
+				scene.setSpriteTranslateX(i9, 30);
 		}
 
 		for(int j2 = 0; j2 < anInt762; j2++) {
 			int j3 = anIntArray760[j2] * magicLoc + 64;
 			int k4 = anIntArray761[j2] * magicLoc + 64;
-			scene.method290(40000 + anIntArray841[j2], j3, -world.method410(j3, k4) - anIntArray873[j2], k4, 96, 64, j2 + 20000);
+			scene.addSprite(40000 + anIntArray841[j2], j3, -world.method410(j3, k4) - anIntArray873[j2], k4, 96, 64, j2 + 20000);
 			anInt952++;
 		}
 
@@ -4766,11 +4767,11 @@ label0:
 			int j7 = teleportBubbleY[k3] * magicLoc + 64;
 			int j9 = teleportBubbleType[k3];
 			if(j9 == 0) {
-				scene.method290(50000 + k3, l4, -world.method410(l4, j7), j7, 128, 256, k3 + 50000);
+				scene.addSprite(50000 + k3, l4, -world.method410(l4, j7), j7, 128, 256, k3 + 50000);
 				anInt952++;
 			}
 			if(j9 == 1) {
-				scene.method290(50000 + k3, l4, -world.method410(l4, j7), j7, 128, 64, k3 + 50000);
+				scene.addSprite(50000 + k3, l4, -world.method410(l4, j7), j7, 128, 64, k3 + 50000);
 				anInt952++;
 			}
 		}
@@ -4778,7 +4779,7 @@ label0:
 		surface.aBoolean321 = false;
 		surface.method244();
 		surface.aBoolean321 = super.interlace;
-		if(anInt936 == 3) {
+		if(plane == 3) {
 			int i5 = 40 + (int)(Math.random() * 3D);
 			int k7 = 40 + (int)(Math.random() * 7D);
 			scene.method297(i5, k7, -50, -10, -50);
@@ -4795,33 +4796,33 @@ label0:
 					cameraAutoRotatePlayerY = localPlayer.currentY;
 				}
 			}
-			scene.anInt426 = 3000;
-			scene.anInt430 = 3000;
-			scene.anInt443 = 1;
-			scene.anInt442 = 2800;
+			scene.clipFar3d = 3000;
+			scene.clipFar2d = 3000;
+			scene.fogZFalloff = 1;
+			scene.fogZDistance = 2800;
 			cameraRotation = cameraAngle * 32;
 			int k5 = cameraAutoRotatePlayerX + cameraRotationX;
 			int l7 = cameraAutoRotatePlayerY + cameraRotationY;
-			scene.method263(k5, -world.method410(k5, l7), l7, 912, cameraRotation * 4, 0, 2000);
+			scene.setCamera(k5, -world.method410(k5, l7), l7, 912, cameraRotation * 4, 0, 2000);
 		} else {
 			if(optionCameraModeAuto && !fogOfWar)
 				method45();
 			if(!super.interlace) {
-				scene.anInt426 = 2400;
-				scene.anInt430 = 2400;
-				scene.anInt443 = 1;
-				scene.anInt442 = 2300;
+				scene.clipFar3d = 2400;
+				scene.clipFar2d = 2400;
+				scene.fogZFalloff = 1;
+				scene.fogZDistance = 2300;
 			} else {
-				scene.anInt426 = 2200;
-				scene.anInt430 = 2200;
-				scene.anInt443 = 1;
-				scene.anInt442 = 2100;
+				scene.clipFar3d = 2200;
+				scene.clipFar2d = 2200;
+				scene.fogZFalloff = 1;
+				scene.fogZDistance = 2100;
 			}
 			int l5 = cameraAutoRotatePlayerX + cameraRotationX;
 			int i8 = cameraAutoRotatePlayerY + cameraRotationY;
-			scene.method263(l5, -world.method410(l5, i8), i8, 912, cameraRotation * 4, 0, cameraZoom * 2);
+			scene.setCamera(l5, -world.method410(l5, i8), i8, 912, cameraRotation * 4, 0, cameraZoom * 2);
 		}
-		scene.method288();
+		scene.render();
 		method64();
 		drawMouseClick(false);
 		if(systemUpdateTimer != 0) {
@@ -5033,7 +5034,7 @@ label0:
 		cameraZoom = 550;
 		anIntArray974 = new int[14];
 		anIntArray975 = new int[14];
-		anInt936 = -1;
+		plane = -1;
 		anInt650 = 0xbc614e;
 		aBoolean897 = false;
 		aBoolean898 = false;
@@ -6479,12 +6480,12 @@ label0:
 			return;
 		scene = new Scene(surface, 15000, 15000, 1000);
 		scene.method292(anInt764 / 2, gameHeight / 2, anInt764 / 2, gameHeight / 2, anInt764, anInt976);
-		scene.anInt426 = 2400;
-		scene.anInt430 = 2400;
-		scene.anInt443 = 1;
-		scene.anInt442 = 2300;
+		scene.clipFar3d = 2400;
+		scene.clipFar2d = 2400;
+		scene.fogZFalloff = 1;
+		scene.fogZDistance = 2300;
 		scene.method309(-50, -10, -50);
-		world = new RsWorld(scene, surface);
+		world = new World(scene, surface);
 		world.anInt596 = anInt658;
 		method110();
 		if(errorLoadingData)
@@ -7175,7 +7176,7 @@ label0:
 	private final String[] menuOptions;
 	private int optionMenuCount;
 	private boolean showOptionMenu;
-	private RsWorld world;
+	private World world;
 	private Model[] aModelArray657;
 	private Scene scene;
 	private int anInt658;
@@ -7496,7 +7497,7 @@ label0:
 	private int anInt933;
 	private String sleepingStatusText;
 	private int anInt935;
-	private int anInt936;
+	private static int plane;
 	private int anInt937;
 	private int anInt938;
 	private int anInt939;

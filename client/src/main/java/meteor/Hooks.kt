@@ -6,7 +6,6 @@ import meteor.Main.client
 import meteor.Main.overlayRenderer
 import meteor.input.KeyManager
 import meteor.input.MouseManager
-import meteor.input.TranslateMouseListener
 import meteor.ui.composables.ui.canvas
 import meteor.ui.composables.ui.gamePanel
 import meteor.ui.overlay.OverlayLayer
@@ -94,7 +93,7 @@ class Hooks : Callbacks {
     }
 
     private fun createRSBufferedImage(width: Int, height: Int): BufferedImage {
-        val colorModel = DirectColorModel(32, 0xff0000, 65280, 255);
+        val colorModel = DirectColorModel(32, 0xff0000, 65280, 255, 1);
         val raster: WritableRaster = colorModel.createCompatibleWritableRaster(width, height)
         return BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied, null)
     }
@@ -230,6 +229,11 @@ class Hooks : Callbacks {
     }
 
     override fun mouseWheelMoved(mouseEvent: MouseWheelEvent): MouseWheelEvent {
+        val newScale = client.scale + mouseEvent.wheelRotation * 40
+        if (newScale > 4000 || newScale < 300)
+            return MouseManager.processMouseWheelMoved(mouseEvent)
+        client.scale = newScale
+        println("zoom change: ${client.scale}")
         return MouseManager.processMouseWheelMoved(mouseEvent)
     }
 

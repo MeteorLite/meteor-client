@@ -23,7 +23,7 @@ public final class SpriteSurface extends Surface {
 			return;
 		}
 		if(i1 >= 5000) {
-			aMudclient627.method52(i, j, k, l, i1 - 5000, j1, k1);
+			aMudclient627.drawPlayer(i, j, k, l, i1 - 5000, j1, k1);
         } else {
 			super.method245(i, j, k, l, i1);
         }

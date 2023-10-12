@@ -53,6 +53,7 @@ fun OSRSPanel() {
                                 canvas.addKeyListener((applet as RSGameShell).gameWindow.`gameShell$api`)
                                 canvas.addMouseListener((applet as RSGameShell).gameWindow.`gameShell$api`)
                                 canvas.addMouseMotionListener((applet as RSGameShell).gameWindow.`gameShell$api`)
+                                canvas.addMouseWheelListener((applet as RSGameShell).gameWindow.`gameShell$api`)
                                 loaded = true
                                 Main.finishStartup()
                             }

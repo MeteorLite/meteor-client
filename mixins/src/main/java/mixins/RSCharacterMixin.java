@@ -42,6 +42,8 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	@Inject
 	@Override
 	public void drawHitSplat(int spriteID) {
+		if (getScreenX() <= 0 || getScreenY() <= 0)
+			return;
 		int sprite = spriteID;
 		if (getCombatTimer() > 150) {
 			if (client.isCorrectHitsplats()) {
@@ -55,5 +57,63 @@ public abstract class RSCharacterMixin implements RSCharacter {
 			client.getSurface().drawSprite$api(getScreenX() - 12, getScreenY() - 12, sprite);
 			client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenX() - 1, getScreenY() + 5, 3, 0xffffff);
 		}
+	}
+
+	@Inject
+	public int screenX;
+
+	@Inject
+	public int screenY;
+
+	@Inject
+	public int screenWidth;
+
+	@Inject
+	public int screenHeight;
+
+	@Inject
+	@Override
+	public void setScreenX(int screenX) {
+		this.screenX = screenX;
+	}
+
+	@Inject
+	@Override
+	public void setScreenY(int screenY) {
+		this.screenY = screenY;
+	}
+
+	@Inject
+	@Override
+	public int getScreenX() {
+		return this.screenX;
+	}
+
+	@Inject
+	@Override
+	public int getScreenY() {return this.screenY;}
+
+	@Inject
+	@Override
+	public void setScreenWidth(int screenWidth) {
+		this.screenWidth = screenWidth;
+	}
+
+	@Inject
+	@Override
+	public void setScreenHeight(int screenHeight) {
+		this.screenHeight = screenHeight;
+	}
+
+	@Inject
+	@Override
+	public int getScreenWidth() {
+		return this.screenWidth;
+	}
+
+	@Inject
+	@Override
+	public int getScreenHeight() {
+		return this.screenHeight;
 	}
 }

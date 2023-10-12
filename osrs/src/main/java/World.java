@@ -4,7 +4,7 @@
 
 import java.io.IOException;
 
-public class RsWorld {
+public class World {
 
 	public void method390(int i, int j, int k) {
 		if(i < 0 || j < 0 || i >= 95 || j >= 95)
@@ -106,11 +106,11 @@ public class RsWorld {
 		int[] ai = {
 			i3, j3, k3, l3
 		};
-		int i4 = model.method184(4, ai, k1, l1);
+		int i4 = model.createFace(4, ai, k1, l1);
 		if(Definitions.anIntArray123[i] == 5) {
-			model.anIntArray265[i4] = 30000 + i;
+			model.faceTag[i4] = 30000 + i;
         } else {
-			model.anIntArray265[i4] = 0;
+			model.faceTag[i4] = 0;
         }
 	}
 
@@ -138,24 +138,24 @@ public class RsWorld {
 		}
 	}
 
-	public int method395(int i, int j) {
-		if(i < 0 || i >= 96 || j < 0 || j >= 96)
+	public int getTileHeight(int x, int y) {
+		if(x < 0 || x >= 96 || y < 0 || y >= 96)
 			return 0;
 		byte byte0 = 0;
-		if(i >= 48 && j < 48) {
+		if(x >= 48 && y < 48) {
 			byte0 = 1;
-			i -= 48;
+			x -= 48;
 		} else
-		if(i < 48 && j >= 48) {
+		if(x < 48 && y >= 48) {
 			byte0 = 2;
-			j -= 48;
+			y -= 48;
 		} else
-		if(i >= 48 && j >= 48) {
+		if(x >= 48 && y >= 48) {
 			byte0 = 3;
-			i -= 48;
-			j -= 48;
+			x -= 48;
+			y -= 48;
 		}
-		return (aByteArrayArray577[byte0][i * 48 + j] & 0xff) * 3;
+		return (tileHeights[byte0][x * 48 + y] & 0xff) * 3;
 	}
 
 	public void method396(int i, int j, int k, int l, int i1) {
@@ -559,13 +559,13 @@ public class RsWorld {
 		int l1;
 		int i2;
 		if(i1 <= 128 - j1) {
-			k1 = method395(k, l);
-			l1 = method395(k + 1, l) - k1;
-			i2 = method395(k, l + 1) - k1;
+			k1 = getTileHeight(k, l);
+			l1 = getTileHeight(k + 1, l) - k1;
+			i2 = getTileHeight(k, l + 1) - k1;
 		} else {
-			k1 = method395(k + 1, l + 1);
-			l1 = method395(k, l + 1) - k1;
-			i2 = method395(k + 1, l) - k1;
+			k1 = getTileHeight(k + 1, l + 1);
+			l1 = getTileHeight(k, l + 1) - k1;
+			i2 = getTileHeight(k + 1, l) - k1;
 			i1 = 128 - i1;
 			j1 = 128 - j1;
 		}
@@ -613,8 +613,8 @@ public class RsWorld {
 			anIntArrayArray574[l][i1] += 0x13880 + j1;
 	}
 
-	public void method415(int i, int j, int k, int l) {
-		String s = "m" + k + i / 10 + i % 10 + j / 10 + j % 10;
+	public void method415(int i, int j, int plane, int l) {
+		String s = "m" + plane + i / 10 + i % 10 + j / 10 + j % 10;
 		int i1;
 		try {
 			if(aByteArray586 != null) {
@@ -627,12 +627,12 @@ public class RsWorld {
 					for(int j3 = 0; j3 < 2304;) {
 						int i4 = abyte0[j1++] & 0xff;
 						if(i4 < 128) {
-							aByteArrayArray577[l][j3++] = (byte)i4;
+							tileHeights[l][j3++] = (byte)i4;
 							k2 = i4;
 						}
 						if(i4 >= 128) {
 							for(int i5 = 0; i5 < i4 - 128; i5++)
-								aByteArrayArray577[l][j3++] = (byte)k2;
+								tileHeights[l][j3++] = (byte)k2;
 
 						}
 					}
@@ -640,8 +640,8 @@ public class RsWorld {
 					k2 = 64;
 					for(int j4 = 0; j4 < 48; j4++) {
 						for(int j5 = 0; j5 < 48; j5++) {
-							k2 = aByteArrayArray577[l][j5 * 48 + j4] + k2 & 0x7f;
-							aByteArrayArray577[l][j5 * 48 + j4] = (byte)(k2 * 2);
+							k2 = tileHeights[l][j5 * 48 + j4] + k2 & 0x7f;
+							tileHeights[l][j5 * 48 + j4] = (byte)(k2 * 2);
 						}
 
 					}
@@ -671,7 +671,7 @@ public class RsWorld {
 
 				} else {
 					for(int k1 = 0; k1 < 2304; k1++) {
-						aByteArrayArray577[l][k1] = 0;
+						tileHeights[l][k1] = 0;
 						aByteArrayArray581[l][k1] = 0;
 					}
 
@@ -752,7 +752,7 @@ public class RsWorld {
 				int i3 = 0;
 				for(int l3 = 0; l3 < 2304; l3++) {
 					j2 = j2 + abyte1[i3++] & 0xff;
-					aByteArrayArray577[l][l3] = (byte)j2;
+					tileHeights[l][l3] = (byte)j2;
 				}
 
 				j2 = 0;
@@ -788,16 +788,16 @@ public class RsWorld {
 			i1 = 0;
 		}
 		for(; i1 < 2304; i1++) {
-			aByteArrayArray577[l][i1] = 0;
+			tileHeights[l][i1] = 0;
 			aByteArrayArray581[l][i1] = 0;
 			aByteArrayArray582[l][i1] = 0;
 			aByteArrayArray584[l][i1] = 0;
 			anIntArrayArray580[l][i1] = 0;
 			aByteArrayArray590[l][i1] = 0;
 			aByteArrayArray585[l][i1] = 0;
-			if(k == 0)
+			if(plane == 0)
 				aByteArrayArray585[l][i1] = -6;
-			if(k == 3)
+			if(plane == 3)
 				aByteArrayArray585[l][i1] = 8;
 			aByteArrayArray583[l][i1] = 0;
 		}
@@ -828,7 +828,7 @@ public class RsWorld {
 		return aByteArrayArray585[byte0][i * 48 + j] & 0xff;
 	}
 
-	public RsWorld(Scene scene, Surface surface) {
+	public World(Scene scene, Surface surface) {
 		aBoolean599 = true;
 		anIntArrayArray573 = new int[96][96];
 		aByteArrayArray583 = new byte[4][2304];
@@ -836,7 +836,7 @@ public class RsWorld {
 		anIntArray592 = new int[256];
 		aByteArrayArray582 = new byte[4][2304];
 		aByteArrayArray590 = new byte[4][2304];
-		aByteArrayArray577 = new byte[4][2304];
+		tileHeights = new byte[4][2304];
 		aModelArrayArray598 = new Model[4][64];
 		aByteArrayArray581 = new byte[4][2304];
 		anIntArray594 = new int[18432];
@@ -888,7 +888,7 @@ public class RsWorld {
 			model.method178();
 			for(int j2 = 0; j2 < 96; j2++) {
 				for(int i3 = 0; i3 < 96; i3++) {
-					int i4 = -method395(j2, i3);
+					int i4 = -getTileHeight(j2, i3);
 					if(method417(j2, i3, k) > 0 && Definitions.anIntArray129[method417(j2, i3, k) - 1] == 4)
 						i4 = 0;
 					if(method417(j2 - 1, i3, k) > 0 && Definitions.anIntArray129[method417(j2 - 1, i3, k) - 1] == 4)
@@ -971,7 +971,7 @@ public class RsWorld {
 							anIntArrayArray573[j3][j4] |= 0x80;
 					}
 					method394(j3, j4, l14, k7, i10);
-					int i17 = ((method395(j3 + 1, j4 + 1) - method395(j3 + 1, j4)) + method395(j3, j4 + 1)) - method395(j3, j4);
+					int i17 = ((getTileHeight(j3 + 1, j4 + 1) - getTileHeight(j3 + 1, j4)) + getTileHeight(j3, j4 + 1)) - getTileHeight(j3, j4);
 					if(k7 != i10 || i17 != 0) {
 						int[] ai = new int[3];
 						int[] ai7 = new int[3];
@@ -980,38 +980,38 @@ public class RsWorld {
 								ai[0] = j4 + j3 * 96 + 96;
 								ai[1] = j4 + j3 * 96;
 								ai[2] = j4 + j3 * 96 + 1;
-								int l21 = model.method184(3, ai, 0xbc614e, k7);
+								int l21 = model.createFace(3, ai, 0xbc614e, k7);
 								anIntArray593[l21] = j3;
 								anIntArray594[l21] = j4;
-								model.anIntArray265[l21] = 0x30d40 + l21;
+								model.faceTag[l21] = 0x30d40 + l21;
 							}
 							if(i10 != 0xbc614e) {
 								ai7[0] = j4 + j3 * 96 + 1;
 								ai7[1] = j4 + j3 * 96 + 96 + 1;
 								ai7[2] = j4 + j3 * 96 + 96;
-								int i22 = model.method184(3, ai7, 0xbc614e, i10);
+								int i22 = model.createFace(3, ai7, 0xbc614e, i10);
 								anIntArray593[i22] = j3;
 								anIntArray594[i22] = j4;
-								model.anIntArray265[i22] = 0x30d40 + i22;
+								model.faceTag[i22] = 0x30d40 + i22;
 							}
 						} else {
 							if(k7 != 0xbc614e) {
 								ai[0] = j4 + j3 * 96 + 1;
 								ai[1] = j4 + j3 * 96 + 96 + 1;
 								ai[2] = j4 + j3 * 96;
-								int j22 = model.method184(3, ai, 0xbc614e, k7);
+								int j22 = model.createFace(3, ai, 0xbc614e, k7);
 								anIntArray593[j22] = j3;
 								anIntArray594[j22] = j4;
-								model.anIntArray265[j22] = 0x30d40 + j22;
+								model.faceTag[j22] = 0x30d40 + j22;
 							}
 							if(i10 != 0xbc614e) {
 								ai7[0] = j4 + j3 * 96 + 96;
 								ai7[1] = j4 + j3 * 96;
 								ai7[2] = j4 + j3 * 96 + 96 + 1;
-								int k22 = model.method184(3, ai7, 0xbc614e, i10);
+								int k22 = model.createFace(3, ai7, 0xbc614e, i10);
 								anIntArray593[k22] = j3;
 								anIntArray594[k22] = j4;
-								model.anIntArray265[k22] = 0x30d40 + k22;
+								model.faceTag[k22] = 0x30d40 + k22;
 							}
 						}
 					} else
@@ -1021,10 +1021,10 @@ public class RsWorld {
 						ai1[1] = j4 + j3 * 96;
 						ai1[2] = j4 + j3 * 96 + 1;
 						ai1[3] = j4 + j3 * 96 + 96 + 1;
-						int l19 = model.method184(4, ai1, 0xbc614e, k7);
+						int l19 = model.createFace(4, ai1, 0xbc614e, k7);
 						anIntArray593[l19] = j3;
 						anIntArray594[l19] = j4;
-						model.anIntArray265[l19] = 0x30d40 + l19;
+						model.faceTag[l19] = 0x30d40 + l19;
 					}
 				}
 
@@ -1034,78 +1034,78 @@ public class RsWorld {
 				for(int i6 = 1; i6 < 95; i6++)
 					if(method417(k4, i6, k) > 0 && Definitions.anIntArray129[method417(k4, i6, k) - 1] == 4) {
 						int l7 = Definitions.anIntArray128[method417(k4, i6, k) - 1];
-						int j10 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
-						int l12 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
-						int i15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
-						int j17 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
+						int j10 = model.method198(k4 * 128, -getTileHeight(k4, i6), i6 * 128);
+						int l12 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6), i6 * 128);
+						int i15 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6 + 1), (i6 + 1) * 128);
+						int j17 = model.method198(k4 * 128, -getTileHeight(k4, i6 + 1), (i6 + 1) * 128);
 						int[] ai2 = {
 							j10, l12, i15, j17
 						};
-						int i20 = model.method184(4, ai2, l7, 0xbc614e);
+						int i20 = model.createFace(4, ai2, l7, 0xbc614e);
 						anIntArray593[i20] = k4;
 						anIntArray594[i20] = i6;
-						model.anIntArray265[i20] = 0x30d40 + i20;
+						model.faceTag[i20] = 0x30d40 + i20;
 						method394(k4, i6, 0, l7, l7);
 					} else
 					if(method417(k4, i6, k) == 0 || Definitions.anIntArray129[method417(k4, i6, k) - 1] != 3) {
 						if(method417(k4, i6 + 1, k) > 0 && Definitions.anIntArray129[method417(k4, i6 + 1, k) - 1] == 4) {
 							int i8 = Definitions.anIntArray128[method417(k4, i6 + 1, k) - 1];
-							int k10 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
-							int i13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
-							int j15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
-							int k17 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
+							int k10 = model.method198(k4 * 128, -getTileHeight(k4, i6), i6 * 128);
+							int i13 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6), i6 * 128);
+							int j15 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6 + 1), (i6 + 1) * 128);
+							int k17 = model.method198(k4 * 128, -getTileHeight(k4, i6 + 1), (i6 + 1) * 128);
 							int[] ai3 = {
 								k10, i13, j15, k17
 							};
-							int j20 = model.method184(4, ai3, i8, 0xbc614e);
+							int j20 = model.createFace(4, ai3, i8, 0xbc614e);
 							anIntArray593[j20] = k4;
 							anIntArray594[j20] = i6;
-							model.anIntArray265[j20] = 0x30d40 + j20;
+							model.faceTag[j20] = 0x30d40 + j20;
 							method394(k4, i6, 0, i8, i8);
 						}
 						if(method417(k4, i6 - 1, k) > 0 && Definitions.anIntArray129[method417(k4, i6 - 1, k) - 1] == 4) {
 							int j8 = Definitions.anIntArray128[method417(k4, i6 - 1, k) - 1];
-							int l10 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
-							int j13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
-							int k15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
-							int l17 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
+							int l10 = model.method198(k4 * 128, -getTileHeight(k4, i6), i6 * 128);
+							int j13 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6), i6 * 128);
+							int k15 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6 + 1), (i6 + 1) * 128);
+							int l17 = model.method198(k4 * 128, -getTileHeight(k4, i6 + 1), (i6 + 1) * 128);
 							int[] ai4 = {
 								l10, j13, k15, l17
 							};
-							int k20 = model.method184(4, ai4, j8, 0xbc614e);
+							int k20 = model.createFace(4, ai4, j8, 0xbc614e);
 							anIntArray593[k20] = k4;
 							anIntArray594[k20] = i6;
-							model.anIntArray265[k20] = 0x30d40 + k20;
+							model.faceTag[k20] = 0x30d40 + k20;
 							method394(k4, i6, 0, j8, j8);
 						}
 						if(method417(k4 + 1, i6, k) > 0 && Definitions.anIntArray129[method417(k4 + 1, i6, k) - 1] == 4) {
 							int k8 = Definitions.anIntArray128[method417(k4 + 1, i6, k) - 1];
-							int i11 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
-							int k13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
-							int l15 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
-							int i18 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
+							int i11 = model.method198(k4 * 128, -getTileHeight(k4, i6), i6 * 128);
+							int k13 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6), i6 * 128);
+							int l15 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6 + 1), (i6 + 1) * 128);
+							int i18 = model.method198(k4 * 128, -getTileHeight(k4, i6 + 1), (i6 + 1) * 128);
 							int[] ai5 = {
 								i11, k13, l15, i18
 							};
-							int l20 = model.method184(4, ai5, k8, 0xbc614e);
+							int l20 = model.createFace(4, ai5, k8, 0xbc614e);
 							anIntArray593[l20] = k4;
 							anIntArray594[l20] = i6;
-							model.anIntArray265[l20] = 0x30d40 + l20;
+							model.faceTag[l20] = 0x30d40 + l20;
 							method394(k4, i6, 0, k8, k8);
 						}
 						if(method417(k4 - 1, i6, k) > 0 && Definitions.anIntArray129[method417(k4 - 1, i6, k) - 1] == 4) {
 							int l8 = Definitions.anIntArray128[method417(k4 - 1, i6, k) - 1];
-							int j11 = model.method198(k4 * 128, -method395(k4, i6), i6 * 128);
-							int l13 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6), i6 * 128);
-							int i16 = model.method198((k4 + 1) * 128, -method395(k4 + 1, i6 + 1), (i6 + 1) * 128);
-							int j18 = model.method198(k4 * 128, -method395(k4, i6 + 1), (i6 + 1) * 128);
+							int j11 = model.method198(k4 * 128, -getTileHeight(k4, i6), i6 * 128);
+							int l13 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6), i6 * 128);
+							int i16 = model.method198((k4 + 1) * 128, -getTileHeight(k4 + 1, i6 + 1), (i6 + 1) * 128);
+							int j18 = model.method198(k4 * 128, -getTileHeight(k4, i6 + 1), (i6 + 1) * 128);
 							int[] ai6 = {
 								j11, l13, i16, j18
 							};
-							int i21 = model.method184(4, ai6, l8, 0xbc614e);
+							int i21 = model.createFace(4, ai6, l8, 0xbc614e);
 							anIntArray593[i21] = k4;
 							anIntArray594[i21] = i6;
-							model.anIntArray265[i21] = 0x30d40 + i21;
+							model.faceTag[i21] = 0x30d40 + i21;
 							method394(k4, i6, 0, l8, l8);
 						}
 					}
@@ -1119,7 +1119,7 @@ public class RsWorld {
 
 			for(int i9 = 0; i9 < 96; i9++) {
 				for(int k11 = 0; k11 < 96; k11++)
-					anIntArrayArray574[i9][k11] = method395(i9, k11);
+					anIntArrayArray574[i9][k11] = getTileHeight(i9, k11);
 
 			}
 
@@ -1348,28 +1348,28 @@ public class RsWorld {
 						ai8[0] = aModel591.method198(l26, l27, i26);
 						ai8[1] = aModel591.method198(j26, i28, i27);
 						ai8[2] = aModel591.method198(k25, k27, k26);
-						aModel591.method184(3, ai8, i12, 0xbc614e);
+						aModel591.createFace(3, ai8, i12, 0xbc614e);
 					} else
 					if(method419(i7, k9) > 12000 && method419(i7, k9) < 24000 && method423(i7 + 1, k9 + 1) == 0) {
 						int[] ai9 = new int[3];
 						ai9[0] = aModel591.method198(k24, j27, i25);
 						ai9[1] = aModel591.method198(k25, k27, k26);
 						ai9[2] = aModel591.method198(j26, i28, i27);
-						aModel591.method184(3, ai9, i12, 0xbc614e);
+						aModel591.createFace(3, ai9, i12, 0xbc614e);
 					} else
 					if(method419(i7, k9) > 0 && method419(i7, k9) < 12000 && method423(i7 + 1, k9 - 1) == 0) {
 						int[] ai10 = new int[3];
 						ai10[0] = aModel591.method198(j26, i28, i27);
 						ai10[1] = aModel591.method198(k24, j27, i25);
 						ai10[2] = aModel591.method198(l26, l27, i26);
-						aModel591.method184(3, ai10, i12, 0xbc614e);
+						aModel591.createFace(3, ai10, i12, 0xbc614e);
 					} else
 					if(method419(i7, k9) > 0 && method419(i7, k9) < 12000 && method423(i7 - 1, k9 + 1) == 0) {
 						int[] ai11 = new int[3];
 						ai11[0] = aModel591.method198(k25, k27, k26);
 						ai11[1] = aModel591.method198(l26, l27, i26);
 						ai11[2] = aModel591.method198(k24, j27, i25);
-						aModel591.method184(3, ai11, i12, 0xbc614e);
+						aModel591.createFace(3, ai11, i12, 0xbc614e);
 					} else
 					if(j27 == k27 && l27 == i28) {
 						int[] ai12 = new int[4];
@@ -1377,7 +1377,7 @@ public class RsWorld {
 						ai12[1] = aModel591.method198(k25, k27, k26);
 						ai12[2] = aModel591.method198(l26, l27, i26);
 						ai12[3] = aModel591.method198(j26, i28, i27);
-						aModel591.method184(4, ai12, i12, 0xbc614e);
+						aModel591.createFace(4, ai12, i12, 0xbc614e);
 					} else
 					if(j27 == i28 && k27 == l27) {
 						int[] ai13 = new int[4];
@@ -1385,7 +1385,7 @@ public class RsWorld {
 						ai13[1] = aModel591.method198(k24, j27, i25);
 						ai13[2] = aModel591.method198(k25, k27, k26);
 						ai13[3] = aModel591.method198(l26, l27, i26);
-						aModel591.method184(4, ai13, i12, 0xbc614e);
+						aModel591.createFace(4, ai13, i12, 0xbc614e);
 					} else {
 						boolean flag1 = method423(i7 - 1, k9 - 1) <= 0;
                         if(method423(i7 + 1, k9 + 1) > 0)
@@ -1395,23 +1395,23 @@ public class RsWorld {
 							ai14[0] = aModel591.method198(k25, k27, k26);
 							ai14[1] = aModel591.method198(l26, l27, i26);
 							ai14[2] = aModel591.method198(k24, j27, i25);
-							aModel591.method184(3, ai14, i12, 0xbc614e);
+							aModel591.createFace(3, ai14, i12, 0xbc614e);
 							int[] ai16 = new int[3];
 							ai16[0] = aModel591.method198(j26, i28, i27);
 							ai16[1] = aModel591.method198(k24, j27, i25);
 							ai16[2] = aModel591.method198(l26, l27, i26);
-							aModel591.method184(3, ai16, i12, 0xbc614e);
+							aModel591.createFace(3, ai16, i12, 0xbc614e);
 						} else {
 							int[] ai15 = new int[3];
 							ai15[0] = aModel591.method198(k24, j27, i25);
 							ai15[1] = aModel591.method198(k25, k27, k26);
 							ai15[2] = aModel591.method198(j26, i28, i27);
-							aModel591.method184(3, ai15, i12, 0xbc614e);
+							aModel591.createFace(3, ai15, i12, 0xbc614e);
 							int[] ai17 = new int[3];
 							ai17[0] = aModel591.method198(l26, l27, i26);
 							ai17[1] = aModel591.method198(j26, i28, i27);
 							ai17[2] = aModel591.method198(k25, k27, k26);
-							aModel591.method184(3, ai17, i12, 0xbc614e);
+							aModel591.createFace(3, ai17, i12, 0xbc614e);
 						}
 					}
 				}
@@ -1512,7 +1512,7 @@ public class RsWorld {
 	int[][] anIntArrayArray574;
 	Scene aScene575;
 	Surface aSurface576;
-	byte[][] aByteArrayArray577;
+	public static byte[][] tileHeights;
 	Model[] aModelArray578;
 	int[][] anIntArrayArray579;
 	int[][] anIntArrayArray580;

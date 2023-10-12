@@ -13,12 +13,12 @@ public class NetworkedGame extends GameShell {
 		packetStream.method332(l);
 		packetStream.endPacket();
 		for(int i = 0; i < anInt603; i++) {
-			if(aLongArray602[i] != l)
+			if(friendListHashes[i] != l)
 				continue;
 			anInt603--;
 			for(int j = i; j < anInt603; j++) {
-				aLongArray602[j] = aLongArray602[j + 1];
-				anIntArray604[j] = anIntArray604[j + 1];
+				friendListHashes[j] = friendListHashes[j + 1];
+				friendListOnline[j] = friendListOnline[j + 1];
 			}
 
 			break;
@@ -32,13 +32,13 @@ public class NetworkedGame extends GameShell {
 		while(flag)  {
 			flag = false;
 			for(int i = 0; i < anInt603 - 1; i++)
-				if(anIntArray604[i] != 255 && anIntArray604[i + 1] == 255 || anIntArray604[i] == 0 && anIntArray604[i + 1] != 0) {
-					int j = anIntArray604[i];
-					anIntArray604[i] = anIntArray604[i + 1];
-					anIntArray604[i + 1] = j;
-					long l = aLongArray602[i];
-					aLongArray602[i] = aLongArray602[i + 1];
-					aLongArray602[i + 1] = l;
+				if(friendListOnline[i] != 255 && friendListOnline[i + 1] == 255 || friendListOnline[i] == 0 && friendListOnline[i + 1] != 0) {
+					int j = friendListOnline[i];
+					friendListOnline[i] = friendListOnline[i + 1];
+					friendListOnline[i + 1] = j;
+					long l = friendListHashes[i];
+					friendListHashes[i] = friendListHashes[i + 1];
+					friendListHashes[i + 1] = l;
 					flag = true;
 				}
 
@@ -50,10 +50,10 @@ public class NetworkedGame extends GameShell {
 		packetStream.method332(l);
 		packetStream.endPacket();
 		for(int i = 0; i < anInt606; i++)
-			if(aLongArray605[i] == l) {
+			if(ignoreList[i] == l) {
 				anInt606--;
 				for(int j = i; j < anInt606; j++)
-					aLongArray605[j] = aLongArray605[j + 1];
+					ignoreList[j] = ignoreList[j + 1];
 				return;
 			}
 	}
@@ -93,9 +93,9 @@ public class NetworkedGame extends GameShell {
 		}
 		if(!method26())
 			return;
-		int i = packetStream.method336(aByteArray608);
+		int i = packetStream.method336(incomingPacket);
 		if(i > 0)
-			method34(aByteArray608[0] & 0xff, i);
+			method34(incomingPacket[0] & 0xff, i);
 	}
 
 	protected final void method29(String s) {
@@ -104,13 +104,13 @@ public class NetworkedGame extends GameShell {
 		packetStream.endPacket();
 		long l = DataUtils.method356(s);
 		for(int i = 0; i < anInt603; i++)
-			if(aLongArray602[i] == l)
+			if(friendListHashes[i] == l)
 				return;
 
 		if(anInt603 >= 100) {
         } else {
-			aLongArray602[anInt603] = l;
-			anIntArray604[anInt603] = 0;
+			friendListHashes[anInt603] = l;
+			friendListOnline[anInt603] = 0;
 			anInt603++;
         }
 	}
@@ -149,7 +149,7 @@ public class NetworkedGame extends GameShell {
 	private final void method34(int i, int j) {
 		i = packetStream.method322(i);
 		if(i == 131) {
-			String s = new String(aByteArray608, 1, j - 1);
+			String s = new String(incomingPacket, 1, j - 1);
 			method44(s);
 		}
 		if(i == 4)
@@ -159,63 +159,63 @@ public class NetworkedGame extends GameShell {
 			return;
 		}
 		if(i == 71) {
-			anInt603 = DataUtils.method340(aByteArray608[1]);
+			anInt603 = DataUtils.method340(incomingPacket[1]);
 			for(int k = 0; k < anInt603; k++) {
-				aLongArray602[k] = DataUtils.method348(aByteArray608, 2 + k * 9);
-				anIntArray604[k] = DataUtils.method340(aByteArray608[10 + k * 9]);
+				friendListHashes[k] = DataUtils.method348(incomingPacket, 2 + k * 9);
+				friendListOnline[k] = DataUtils.method340(incomingPacket[10 + k * 9]);
 			}
 
 			method22();
 			return;
 		}
 		if(i == 149) {
-			long l = DataUtils.method348(aByteArray608, 1);
-			int j1 = aByteArray608[9] & 0xff;
+			long l = DataUtils.method348(incomingPacket, 1);
+			int j1 = incomingPacket[9] & 0xff;
 			for(int i2 = 0; i2 < anInt603; i2++)
-				if(aLongArray602[i2] == l) {
-					if(anIntArray604[i2] == 0 && j1 != 0)
+				if(friendListHashes[i2] == l) {
+					if(friendListOnline[i2] == 0 && j1 != 0)
 						method44("@pri@" + DataUtils.method351(l) + " has logged in");
-					if(anIntArray604[i2] != 0 && j1 == 0)
+					if(friendListOnline[i2] != 0 && j1 == 0)
 						method44("@pri@" + DataUtils.method351(l) + " has logged out");
-					anIntArray604[i2] = j1;
+					friendListOnline[i2] = j1;
 					j = 0;
 					method22();
 					return;
 				}
 
-			aLongArray602[anInt603] = l;
-			anIntArray604[anInt603] = j1;
+			friendListHashes[anInt603] = l;
+			friendListOnline[anInt603] = j1;
 			anInt603++;
 			method22();
 			return;
 		}
 		if(i == 109) {
-			anInt606 = DataUtils.method340(aByteArray608[1]);
+			anInt606 = DataUtils.method340(incomingPacket[1]);
 			for(int i1 = 0; i1 < anInt606; i1++)
-				aLongArray605[i1] = DataUtils.method348(aByteArray608, 2 + i1 * 8);
+				ignoreList[i1] = DataUtils.method348(incomingPacket, 2 + i1 * 8);
 
 			return;
 		}
 		if(i == 51) {
-			anInt609 = aByteArray608[1];
-			anInt610 = aByteArray608[2];
-			anInt611 = aByteArray608[3];
-			anInt612 = aByteArray608[4];
+			anInt609 = incomingPacket[1];
+			anInt610 = incomingPacket[2];
+			anInt611 = incomingPacket[3];
+			anInt612 = incomingPacket[4];
 			return;
 		}
 		if(i == 120) {
-			long l1 = DataUtils.method348(aByteArray608, 1);
-			int k1 = DataUtils.method343(aByteArray608, 9);
+			long l1 = DataUtils.method348(incomingPacket, 1);
+			int k1 = DataUtils.method343(incomingPacket, 9);
 			for(int j2 = 0; j2 < 100; j2++)
 				if(anIntArray613[j2] == k1)
 					return;
 
 			anIntArray613[anInt614] = k1;
 			anInt614 = (anInt614 + 1) % 100;
-			String s1 = ChatEncoding.method388(aByteArray608, 13, j - 13);
+			String s1 = ChatEncoding.method388(incomingPacket, 13, j - 13);
 			method44("@pri@" + DataUtils.method351(l1) + ": tells you " + s1);
         } else {
-			method43(i, j, aByteArray608);
+			method43(i, j, incomingPacket);
         }
 	}
 
@@ -232,15 +232,15 @@ public class NetworkedGame extends GameShell {
 				packetStream.method335();
 			}
 			catch(IOException _ex) { }
-		aString615 = "";
-		aString616 = "";
+		username = "";
+		password = "";
 		method24();
 	}
 
 	protected void lostConnection() {
 		System.out.println("Lost connection");
 		anInt617 = 10;
-		method39(aString615, aString616, true);
+		method39(username, password, true);
 	}
 
 	protected int method38() {
@@ -250,12 +250,12 @@ public class NetworkedGame extends GameShell {
 	public NetworkedGame() {
 		aString619 = "206.251.222.229";
 		anInt620 = 43596;
-		aString615 = "";
-		aString616 = "";
-		aByteArray608 = new byte[5000];
-		aLongArray602 = new long[200];
-		anIntArray604 = new int[200];
-		aLongArray605 = new long[100];
+		username = "";
+		password = "";
+		incomingPacket = new byte[5000];
+		friendListHashes = new long[200];
+		friendListOnline = new int[200];
+		ignoreList = new long[100];
 		anIntArray613 = new int[100];
 	}
 
@@ -270,9 +270,9 @@ public class NetworkedGame extends GameShell {
 			return;
 		}
 		try {
-			aString615 = s;
+			username = s;
 			s = DataUtils.method355(s, 20);
-			aString616 = s1;
+			password = s1;
 			s1 = DataUtils.method355(s1, 20);
 			if(s.trim().length() == 0) {
 				method41("You must enter both a username", "and a password - Please try again");
@@ -444,11 +444,11 @@ public class NetworkedGame extends GameShell {
 			}
 			catch(Exception _ex) { }
 			anInt617--;
-			method39(aString615, aString616, flag);
+			method39(username, password, flag);
 		}
 		if(flag) {
-			aString615 = "";
-			aString616 = "";
+			username = "";
+			password = "";
 			method24();
 		} else {
 			method41("Sorry! Unable to connect.", "Check internet settings or try another world");
@@ -461,12 +461,12 @@ public class NetworkedGame extends GameShell {
 		packetStream.method332(l);
 		packetStream.endPacket();
 		for(int i = 0; i < anInt606; i++)
-			if(aLongArray605[i] == l)
+			if(ignoreList[i] == l)
 				return;
 
 		if(anInt606 >= 100) {
         } else {
-			aLongArray605[anInt606++] = l;
+			ignoreList[anInt606++] = l;
         }
 	}
 
@@ -484,21 +484,21 @@ public class NetworkedGame extends GameShell {
 
 	private final int anInt600 = 100;
 	public ClientStream packetStream;
-	public long[] aLongArray602;
+	public long[] friendListHashes;
 	public int anInt603;
-	public int[] anIntArray604;
-	public long[] aLongArray605;
+	public int[] friendListOnline;
+	public long[] ignoreList;
 	public int anInt606;
 	long aLong607;
-	byte[] aByteArray608;
+	byte[] incomingPacket;
 	public int anInt609;
 	public int anInt610;
 	public int anInt611;
 	public int anInt612;
 	private final int[] anIntArray613;
 	private int anInt614;
-	String aString615;
-	String aString616;
+	public static String username;
+	public static String password;
 	int anInt617;
 	public int anInt618;
 	public String aString619;

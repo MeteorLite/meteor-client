@@ -6,6 +6,7 @@ import net.runelite.rs.api.RSGameShell;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 @Mixin(RSGameShell.class)
 public abstract class RSInputHandlerMixin implements RSGameShell
@@ -200,6 +201,18 @@ public abstract class RSInputHandlerMixin implements RSGameShell
 		if (!keyEvent.isConsumed())
 		{
 			keyTyped(keyEvent);
+		}
+	}
+
+	@Override
+	@Copy("mouseWheelMoved")
+	@Replace("mouseWheelMoved")
+	public void mouseWheelMoved(MouseWheelEvent event)
+	{
+		event = client.getCallbacks().mouseWheelMoved(event);
+		if (!event.isConsumed())
+		{
+			mouseWheelMoved(event);
 		}
 	}
 }

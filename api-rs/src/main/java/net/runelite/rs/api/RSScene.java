@@ -24,69 +24,46 @@
  */
 package net.runelite.rs.api;
 
-import net.runelite.api.Character;
-import net.runelite.api.Client;
 import net.runelite.mapping.Import;
 
-public interface RSCharacter extends Character
+import java.awt.*;
+
+public interface RSScene
 {
-    @Import("hash")
-    long getHash();
+    @Import("cameraX")
+    int getCameraX();
+    @Import("cameraY")
+    int getCameraY();
+    @Import("cameraZ")
+    int getCameraZ();
+    @Import("cameraYaw")
+    int getCameraYaw();
+    @Import("cameraPitch")
+    int getCameraPitch();
+    @Import("cameraRoll")
+    int getCameraRoll();
 
-    @Import("name")
-    String getName();
+    @Import("fogZDistance")
+    int getFogDistance();
 
-    @Import("serverIndex")
-    int getServerIndex();
+    @Import("fogZDistance")
+    void setFogDistance(int fogDistance);
 
-    @Import("serverID")
-    int getServerID();
+    @Import("clipFar2d")
+    int getClipFar2D();
 
-    @Import("currentX")
-    int getCurrentX();
+    @Import("clipFar2d")
+    void setClipFar2D(int clipFar2d);
 
-    @Import("currentY")
-    int getCurrentY();
+    @Import("clipFar3d")
+    int getClipFar3D();
 
-    @Import("npcID")
-    int getNPCID();
+    @Import("clipFar3d")
+    void setClipFar3D(int clipFar3d);
 
-    @Import("animation")
-    int getAnimation();
+    @Import("viewDistance")
+    int getViewDistance();
 
-    @Import("message")
-    String getMessage();
-
-    @Import("bubbleItem")
-    int getBubbleItem();
-
-    @Import("bubbleItem")
-    void setBubbleItem(int itemID);
-
-    @Import("currentHealth")
-    int getCurrentHealth();
-
-    @Import("maxHealth")
-    int getMaxHealth();
-
-    @Import("combatLevel")
-    int getCombatLevel();
-
-    @Import("screenX")
-    int getScreenX();
-
-    @Import("screenX")
-    void setScreenX(int screenX);
-
-    @Import("screenY")
-    int getScreenY();
-
-    @Import("screenY")
-    void setScreenY(int screenY);
-
-    @Import("combatTimer")
-    int getCombatTimer();
-
-    @Import("damageTaken")
-    int getDamageTaken();
+    @Import("viewDistance")
+    void setViewDistance(int viewDistance);
 }

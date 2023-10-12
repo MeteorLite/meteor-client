@@ -9,9 +9,9 @@ public class Panel {
 		int i1 = 0;
 		int j1 = as.length;
 		for(int k1 = 0; k1 < j1; k1++) {
-			i1 += aSurface181.method212(as[k1], l);
+			i1 += aSurface181.textWidth(as[k1], l);
 			if(k1 < j1 - 1)
-				i1 += aSurface181.method212("  ", l);
+				i1 += aSurface181.textWidth("  ", l);
 		}
 
 		int l1 = j - i1 / 2;
@@ -22,7 +22,7 @@ public class Panel {
 				k2 = 0xffffff;
 			else
 				k2 = 0;
-			if(anInt183 >= l1 && anInt183 <= l1 + aSurface181.method212(as[j2], l) && anInt184 <= i2 && anInt184 > i2 - aSurface181.method238(l)) {
+			if(anInt183 >= l1 && anInt183 <= l1 + aSurface181.textWidth(as[j2], l) && anInt184 <= i2 && anInt184 > i2 - aSurface181.method238(l)) {
 				if(aBooleanArray182[i])
 					k2 = 0x808080;
 				else
@@ -38,7 +38,7 @@ public class Panel {
 				else
 					k2 = 0xc00000;
 			aSurface181.drawString(as[j2], l1, i2, l, k2);
-			l1 += aSurface181.method212(as[j2] + "  ", l);
+			l1 += aSurface181.textWidth(as[j2] + "  ", l);
 		}
 
 	}
@@ -156,7 +156,7 @@ public class Panel {
 				l1 = 0xffffff;
 			else
 				l1 = 0;
-			int i2 = aSurface181.method212(as[k1], l);
+			int i2 = aSurface181.textWidth(as[k1], l);
 			if(anInt183 >= j - i2 / 2 && anInt183 <= j + i2 / 2 && anInt184 - 2 <= j1 && anInt184 - 2 > j1 - aSurface181.method238(l)) {
 				if(aBooleanArray182[i])
 					l1 = 0x808080;
@@ -285,7 +285,7 @@ public class Panel {
 				i4 = 0xffffff;
 			else
 				i4 = 0;
-			if(anInt183 >= j + 2 && anInt183 <= j + 2 + aSurface181.method212(as[k3], j1) && anInt184 - 2 <= i3 && anInt184 - 2 > i3 - aSurface181.method238(j1)) {
+			if(anInt183 >= j + 2 && anInt183 <= j + 2 + aSurface181.textWidth(as[k3], j1) && anInt184 - 2 <= i3 && anInt184 - 2 > i3 - aSurface181.method238(j1)) {
 				if(aBooleanArray182[i])
 					i4 = 0x808080;
 				else
@@ -317,7 +317,7 @@ public class Panel {
 					method151(i, anIntArray204[i], anIntArray205[i], aStringArray222[i], anIntArray223[i]);
 				else
 				if(anIntArray203[i] == 1)
-					method151(i, anIntArray204[i] - aSurface181.method212(aStringArray222[i], anIntArray223[i]) / 2, anIntArray205[i], aStringArray222[i], anIntArray223[i]);
+					method151(i, anIntArray204[i] - aSurface181.textWidth(aStringArray222[i], anIntArray223[i]) / 2, anIntArray205[i], aStringArray222[i], anIntArray223[i]);
 				else
 				if(anIntArray203[i] == 2)
 					method138(anIntArray204[i], anIntArray205[i], anIntArray206[i], anIntArray207[i]);
@@ -593,7 +593,7 @@ public class Panel {
 		if(anIntArray203[i] == 6) {
 			if(anInt185 == 1 && anInt183 >= j - l / 2 && anInt184 >= k - i1 / 2 && anInt183 <= j + l / 2 && anInt184 <= k + i1 / 2)
 				anInt225 = i;
-			j -= aSurface181.method212(s, j1) / 2;
+			j -= aSurface181.textWidth(s, j1) / 2;
 		}
 		if(anInt225 == i)
 			s = s + "*";

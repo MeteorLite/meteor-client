@@ -2,15 +2,18 @@
 // Jad home page: http://www.geocities.com/kpdus/jad.html
 // Decompiler options: packimports(3) nonlb 
 
+import net.runelite.mapping.Implements;
+
+@Implements("RSScene")
 public class Scene {
 
-	public void method263(int i, int j, int k, int l, int i1, int j1, int k1) {
+	public void setCamera(int i, int j, int k, int l, int i1, int j1, int k1) {
 		l &= 0x3ff;
 		i1 &= 0x3ff;
 		j1 &= 0x3ff;
-		anInt379 = 1024 - l & 0x3ff;
-		anInt380 = 1024 - i1 & 0x3ff;
-		anInt381 = 1024 - j1 & 0x3ff;
+		cameraYaw = 1024 - l & 0x3ff;
+		cameraPitch = 1024 - i1 & 0x3ff;
+		cameraRoll = 1024 - j1 & 0x3ff;
 		int l1 = 0;
 		int i2 = 0;
 		int j2 = k1;
@@ -35,9 +38,9 @@ public class Scene {
 			i2 = i2 * l3 - l1 * i3 >> 15;
 			l1 = k4;
 		}
-		anInt383 = i - l1;
-		anInt384 = j - i2;
-		anInt385 = k - j2;
+		cameraX = i - l1;
+		cameraY = j - i2;
+		cameraZ = k - j2;
 	}
 
 	private void method264(int i) {
@@ -74,10 +77,10 @@ public class Scene {
 	}
 
 	public void method265(int i) {
-		anInt391 -= i;
-		aModel392.method180(i, i * 2);
-		if(anInt391 < 0)
-			anInt391 = 0;
+		spriteCount -= i;
+		view.method180(i, i * 2);
+		if(spriteCount < 0)
+			spriteCount = 0;
 	}
 
 	public boolean method266(int[] ai, int[] ai1, int[] ai2, int[] ai3) {
@@ -367,9 +370,9 @@ public class Scene {
 	}
 
 	public void method268(int i, int j, int k) {
-		int l = -anInt379 + 1024 & 0x3ff;
-		int i1 = -anInt380 + 1024 & 0x3ff;
-		int j1 = -anInt381 + 1024 & 0x3ff;
+		int l = -cameraYaw + 1024 & 0x3ff;
+		int i1 = -cameraPitch + 1024 & 0x3ff;
+		int j1 = -cameraRoll + 1024 & 0x3ff;
 		if(j1 != 0) {
 			int k1 = anIntArray382[j1];
 			int j2 = anIntArray382[j1 + 1024];
@@ -968,7 +971,7 @@ public class Scene {
 		}
 		if(aBoolean409 && anInt410 < anInt411 && anInt412 >= anInt406 && anInt412 < anInt407) {
 			Scanline scanline1 = aScanlineArray408[anInt412];
-			if(anInt413 >= scanline1.anInt370 >> 8 && anInt413 <= scanline1.anInt371 >> 8 && scanline1.anInt370 <= scanline1.anInt371 && !model.aBoolean264 && model.aByteArray296[j1] == 0) {
+			if(anInt413 >= scanline1.anInt370 >> 8 && anInt413 <= scanline1.anInt371 >> 8 && scanline1.anInt370 <= scanline1.anInt371 && !model.aBoolean264 && model.isLocalPlayer[j1] == 0) {
 				aModelArray414[anInt410] = model;
 				anIntArray415[anInt410] = j1;
 				anInt410++;
@@ -1034,12 +1037,12 @@ public class Scene {
 	}
 
 	public void method276() {
-		anInt391 = 0;
-		aModel392.method178();
+		spriteCount = 0;
+		view.method178();
 	}
 
-	public void method277(int i) {
-		aModel392.aByteArray296[i] = 1;
+	public void setLocalPlayer(int i) {
+		view.isLocalPlayer[i] = 1;
 	}
 
 	private static void method278(int[] ai, int i, int j, int k, int[] ai1, int l, int i1) {
@@ -1715,36 +1718,36 @@ public class Scene {
 		anIntArrayArray422 = new int[k][];
 	}
 
-	public void method288() {
+	public void render() {
 		aBoolean424 = aSurface423.aBoolean321;
-		int i3 = anInt425 * anInt426 >> anInt427;
-		int j3 = anInt405 * anInt426 >> anInt427;
+		int i3 = anInt425 * clipFar3d >> viewDistance;
+		int j3 = anInt405 * clipFar3d >> viewDistance;
 		anInt395 = 0;
 		anInt396 = 0;
 		anInt397 = 0;
 		anInt398 = 0;
 		anInt399 = 0;
 		anInt400 = 0;
-		method268(-i3, -j3, anInt426);
-		method268(-i3, j3, anInt426);
-		method268(i3, -j3, anInt426);
-		method268(i3, j3, anInt426);
+		method268(-i3, -j3, clipFar3d);
+		method268(-i3, j3, clipFar3d);
+		method268(i3, -j3, clipFar3d);
+		method268(i3, j3, clipFar3d);
 		method268(-anInt425, -anInt405, 0);
 		method268(-anInt425, anInt405, 0);
 		method268(anInt425, -anInt405, 0);
 		method268(anInt425, anInt405, 0);
-		anInt395 += anInt383;
-		anInt396 += anInt383;
-		anInt397 += anInt384;
-		anInt398 += anInt384;
-		anInt399 += anInt385;
-		anInt400 += anInt385;
-		aModelArray401[anInt402] = aModel392;
-		aModel392.anInt254 = 2;
+		anInt395 += cameraX;
+		anInt396 += cameraX;
+		anInt397 += cameraY;
+		anInt398 += cameraY;
+		anInt399 += cameraZ;
+		anInt400 += cameraZ;
+		aModelArray401[anInt402] = view;
+		view.anInt254 = 2;
 		for(int i = 0; i < anInt402; i++)
-			aModelArray401[i].method183(anInt383, anInt384, anInt385, anInt379, anInt380, anInt381, anInt427, anInt428);
+			aModelArray401[i].method183(cameraX, cameraY, cameraZ, cameraYaw, cameraPitch, cameraRoll, viewDistance, anInt428);
 
-		aModelArray401[anInt402].method183(anInt383, anInt384, anInt385, anInt379, anInt380, anInt381, anInt427, anInt428);
+		aModelArray401[anInt402].method183(cameraX, cameraY, cameraZ, cameraYaw, cameraPitch, cameraRoll, viewDistance, anInt428);
 		anInt429 = 0;
 		for(int k3 = 0; k3 < anInt402; k3++) {
 			Model model = aModelArray401[k3];
@@ -1755,7 +1758,7 @@ public class Scene {
 					boolean flag = false;
 					for(int k4 = 0; k4 < l3; k4++) {
 						int i1 = model.anIntArray293[ai1[k4]];
-						if(i1 <= anInt428 || i1 >= anInt426)
+						if(i1 <= anInt428 || i1 >= clipFar3d)
 							continue;
 						flag = true;
 						break;
@@ -1813,7 +1816,7 @@ public class Scene {
 			}
 		}
 
-		Model model1 = aModel392;
+		Model model1 = view;
 		if(model1.aBoolean287) {
 			for(int k = 0; k < model1.anInt235; k++) {
 				int[] ai = model1.anIntArrayArray245[k];
@@ -1821,9 +1824,9 @@ public class Scene {
 				int l4 = model1.anIntArray289[j4];
 				int l5 = model1.anIntArray290[j4];
 				int i7 = model1.anIntArray293[j4];
-				if(i7 > anInt428 && i7 < anInt430) {
-					int i8 = (anIntArray431[k] << anInt427) / i7;
-					int i9 = (anIntArray432[k] << anInt427) / i7;
+				if(i7 > anInt428 && i7 < clipFar2d) {
+					int i8 = (spriteWidth[k] << viewDistance) / i7;
+					int i9 = (spriteHeight[k] << viewDistance) / i7;
 					if(l4 - i8 / 2 <= anInt425 && l4 + i8 / 2 >= -anInt425 && l5 - i9 <= anInt405 && l5 >= -anInt405) {
 						Polygon polygon2 = aPolygonArray416[anInt429];
 						polygon2.aModel359 = model1;
@@ -1845,23 +1848,23 @@ public class Scene {
 			Polygon polygon = aPolygonArray416[i4];
 			Model model2 = polygon.aModel359;
 			int l = polygon.anInt360;
-			if(model2 == aModel392) {
+			if(model2 == view) {
 				int[] ai2 = model2.anIntArrayArray245[l];
 				int i6 = ai2[0];
 				int j7 = model2.anIntArray289[i6];
 				int j8 = model2.anIntArray290[i6];
 				int j9 = model2.anIntArray293[i6];
-				int i10 = (anIntArray431[l] << anInt427) / j9;
-				int k10 = (anIntArray432[l] << anInt427) / j9;
+				int i10 = (spriteWidth[l] << viewDistance) / j9;
+				int k10 = (spriteHeight[l] << viewDistance) / j9;
 				int i11 = j8 - model2.anIntArray290[ai2[1]];
 				int j11 = ((model2.anIntArray289[ai2[1]] - j7) * i11) / k10;
 				j11 = model2.anIntArray289[ai2[1]] - j7;
 				int l11 = j7 - i10 / 2;
 				int j12 = (anInt404 + j8) - k10;
-				aSurface423.method220(l11 + anInt417, j12, i10, k10, anIntArray434[l], j11, (256 << anInt427) / j9);
+				aSurface423.method220(l11 + anInt417, j12, i10, k10, spriteId[l], j11, (256 << viewDistance) / j9);
 				if(aBoolean409 && anInt410 < anInt411) {
-					l11 += (anIntArray435[l] << anInt427) / j9;
-					if(anInt412 >= j12 && anInt412 <= j12 + k10 && anInt413 >= l11 && anInt413 <= l11 + i10 && !model2.aBoolean264 && model2.aByteArray296[l] == 0) {
+					l11 += (spriteTranslateX[l] << viewDistance) / j9;
+					if(anInt412 >= j12 && anInt412 <= j12 + k10 && anInt413 >= l11 && anInt413 <= l11 + i10 && !model2.aBoolean264 && model2.isLocalPlayer[l] == 0) {
 						aModelArray414[anInt410] = model2;
 						anIntArray415[anInt410] = l;
 						anInt410++;
@@ -1891,8 +1894,8 @@ public class Scene {
 						anIntArray439[k8] = model2.anIntArray289[k2];
 						anIntArray440[k8] = model2.anIntArray290[k2];
 						anIntArray441[k8] = j10;
-						if(model2.anIntArray293[k2] > anInt442)
-							anIntArray441[k8] += (model2.anIntArray293[k2] - anInt442) / anInt443;
+						if(model2.anIntArray293[k2] > fogZDistance)
+							anIntArray441[k8] += (model2.anIntArray293[k2] - fogZDistance) / fogZFalloff;
 						k8++;
 					} else {
 						int k9;
@@ -1904,8 +1907,8 @@ public class Scene {
 							int k7 = model2.anIntArray293[k2] - model2.anIntArray293[k9];
 							int i5 = model2.anIntArray291[k2] - ((model2.anIntArray291[k2] - model2.anIntArray291[k9]) * (model2.anIntArray293[k2] - anInt428)) / k7;
 							int j6 = model2.anIntArray292[k2] - ((model2.anIntArray292[k2] - model2.anIntArray292[k9]) * (model2.anIntArray293[k2] - anInt428)) / k7;
-							anIntArray439[k8] = (i5 << anInt427) / anInt428;
-							anIntArray440[k8] = (j6 << anInt427) / anInt428;
+							anIntArray439[k8] = (i5 << viewDistance) / anInt428;
+							anIntArray440[k8] = (j6 << viewDistance) / anInt428;
 							anIntArray441[k8] = j10;
 							k8++;
 						}
@@ -1917,8 +1920,8 @@ public class Scene {
 							int l7 = model2.anIntArray293[k2] - model2.anIntArray293[k9];
 							int j5 = model2.anIntArray291[k2] - ((model2.anIntArray291[k2] - model2.anIntArray291[k9]) * (model2.anIntArray293[k2] - anInt428)) / l7;
 							int k6 = model2.anIntArray292[k2] - ((model2.anIntArray292[k2] - model2.anIntArray292[k9]) * (model2.anIntArray293[k2] - anInt428)) / l7;
-							anIntArray439[k8] = (j5 << anInt427) / anInt428;
-							anIntArray440[k8] = (k6 << anInt427) / anInt428;
+							anIntArray439[k8] = (j5 << viewDistance) / anInt428;
+							anIntArray440[k8] = (k6 << viewDistance) / anInt428;
 							anIntArray441[k8] = j10;
 							k8++;
 						}
@@ -1996,23 +1999,23 @@ public class Scene {
 		method264(i);
 	}
 
-	public int method290(int i, int j, int k, int l, int i1, int j1, int k1) {
-		anIntArray434[anInt391] = i;
-		anIntArray444[anInt391] = j;
-		anIntArray445[anInt391] = k;
-		anIntArray446[anInt391] = l;
-		anIntArray431[anInt391] = i1;
-		anIntArray432[anInt391] = j1;
-		anIntArray435[anInt391] = 0;
-		int l1 = aModel392.method194(j, k, l);
-		int i2 = aModel392.method194(j, k - j1, l);
+	public int addSprite(int id, int x, int z, int y, int width, int height, int tag) {
+		spriteId[spriteCount] = id;
+		spriteX[spriteCount] = x;
+		spriteZ[spriteCount] = z;
+		spriteY[spriteCount] = y;
+		spriteWidth[spriteCount] = width;
+		spriteHeight[spriteCount] = height;
+		spriteTranslateX[spriteCount] = 0;
+		int l1 = view.createVertex(x, z, y);
+		int i2 = view.createVertex(x, z - height, y);
 		int[] ai = {
 			l1, i2
 		};
-		aModel392.method184(2, ai, 0, 0);
-		aModel392.anIntArray265[anInt391] = k1;
-		aModel392.aByteArray296[anInt391++] = 0;
-		return anInt391 - 1;
+		view.createFace(2, ai, 0, 0);
+		view.faceTag[spriteCount] = tag;
+		view.isLocalPlayer[spriteCount++] = 0;
+		return spriteCount - 1;
 	}
 
 	private boolean method291(Polygon polygon, Polygon polygon1) {
@@ -2131,15 +2134,15 @@ public class Scene {
 		anInt417 = i;
 		anInt404 = j;
 		anInt447 = i1;
-		anInt427 = j1;
+		viewDistance = j1;
 		aScanlineArray408 = new Scanline[l + j];
 		for(int k1 = 0; k1 < l + j; k1++)
 			aScanlineArray408[k1] = new Scanline();
 
 	}
 
-	public void method293(int i, int j) {
-		anIntArray435[i] = j;
+	public void setSpriteTranslateX(int i, int j) {
+		spriteTranslateX[i] = j;
 	}
 
 	private static void method294(int[] ai, int[] ai1, int i, int j, int k, int l, int i1, int j1,
@@ -2461,10 +2464,10 @@ public class Scene {
 		anIntArray449 = new int[anInt452];
 		anIntArrayArray450 = new int[anInt452][256];
 		anInt428 = 5;
-		anInt426 = 1000;
-		anInt430 = 1000;
-		anInt443 = 20;
-		anInt442 = 10;
+		clipFar3d = 1000;
+		clipFar2d = 1000;
+		fogZFalloff = 20;
+		fogZDistance = 10;
 		aBoolean453 = false;
 		aDouble375 = 1.1000000000000001D;
 		anInt376 = 1;
@@ -2477,7 +2480,7 @@ public class Scene {
 		anInt405 = 192;
 		anInt417 = 256;
 		anInt404 = 256;
-		anInt427 = 8;
+		viewDistance = 8;
 		anInt454 = 4;
 		anIntArray439 = new int[40];
 		anIntArray440 = new int[40];
@@ -2499,23 +2502,23 @@ public class Scene {
 		for(int l = 0; l < j; l++)
 			aPolygonArray416[l] = new Polygon();
 
-		anInt391 = 0;
-		aModel392 = new Model(k * 2, k);
-		anIntArray434 = new int[k];
-		anIntArray431 = new int[k];
-		anIntArray432 = new int[k];
-		anIntArray444 = new int[k];
-		anIntArray445 = new int[k];
-		anIntArray446 = new int[k];
-		anIntArray435 = new int[k];
+		spriteCount = 0;
+		view = new Model(k * 2, k);
+		spriteId = new int[k];
+		spriteWidth = new int[k];
+		spriteHeight = new int[k];
+		spriteX = new int[k];
+		spriteZ = new int[k];
+		spriteY = new int[k];
+		spriteTranslateX = new int[k];
 		if(aByteArray377 == null)
 			aByteArray377 = new byte[17691];
-		anInt383 = 0;
-		anInt384 = 0;
-		anInt385 = 0;
-		anInt379 = 0;
-		anInt380 = 0;
-		anInt381 = 0;
+		cameraX = 0;
+		cameraY = 0;
+		cameraZ = 0;
+		cameraYaw = 0;
+		cameraPitch = 0;
+		cameraRoll = 0;
 		for(int i1 = 0; i1 < 256; i1++) {
 			anIntArray374[i1] = (int)(Math.sin((double)i1 * 0.02454369D) * 32768D);
 			anIntArray374[i1 + 256] = (int)(Math.cos((double)i1 * 0.02454369D) * 32768D);
@@ -2575,14 +2578,14 @@ public class Scene {
 			int k8 = ai2[k] - j2;
 			if(anIntArray386[l] == 1) {
 				int l9 = i6 * k1 - j7 * i1 << 12;
-				int k10 = j7 * j2 - k8 * k1 << (5 - anInt427) + 7 + 4;
-				int i11 = k8 * i1 - i6 * j2 << (5 - anInt427) + 7;
+				int k10 = j7 * j2 - k8 * k1 << (5 - viewDistance) + 7 + 4;
+				int i11 = k8 * i1 - i6 * j2 << (5 - viewDistance) + 7;
 				int k11 = i3 * k1 - k3 * i1 << 12;
-				int i12 = k3 * j2 - i4 * k1 << (5 - anInt427) + 7 + 4;
-				int k12 = i4 * i1 - i3 * j2 << (5 - anInt427) + 7;
+				int i12 = k3 * j2 - i4 * k1 << (5 - viewDistance) + 7 + 4;
+				int k12 = i4 * i1 - i3 * j2 << (5 - viewDistance) + 7;
 				int i13 = k3 * i6 - i3 * j7 << 5;
-				int k13 = i4 * j7 - k3 * k8 << (5 - anInt427) + 4;
-				int i14 = i3 * k8 - i4 * i6 >> anInt427 - 5;
+				int k13 = i4 * j7 - k3 * k8 << (5 - viewDistance) + 4;
+				int i14 = i3 * k8 - i4 * i6 >> viewDistance - 5;
 				int k14 = k10 >> 4;
 				int i15 = i12 >> 4;
 				int k15 = k13 >> 4;
@@ -2706,14 +2709,14 @@ public class Scene {
 				return;
 			}
 			int i10 = i6 * k1 - j7 * i1 << 11;
-			int l10 = j7 * j2 - k8 * k1 << (5 - anInt427) + 6 + 4;
-			int j11 = k8 * i1 - i6 * j2 << (5 - anInt427) + 6;
+			int l10 = j7 * j2 - k8 * k1 << (5 - viewDistance) + 6 + 4;
+			int j11 = k8 * i1 - i6 * j2 << (5 - viewDistance) + 6;
 			int l11 = i3 * k1 - k3 * i1 << 11;
-			int j12 = k3 * j2 - i4 * k1 << (5 - anInt427) + 6 + 4;
-			int l12 = i4 * i1 - i3 * j2 << (5 - anInt427) + 6;
+			int j12 = k3 * j2 - i4 * k1 << (5 - viewDistance) + 6 + 4;
+			int l12 = i4 * i1 - i3 * j2 << (5 - viewDistance) + 6;
 			int j13 = k3 * i6 - i3 * j7 << 5;
-			int l13 = i4 * j7 - k3 * k8 << (5 - anInt427) + 4;
-			int j14 = i3 * k8 - i4 * i6 >> anInt427 - 5;
+			int l13 = i4 * j7 - k3 * k8 << (5 - viewDistance) + 4;
+			int j14 = i3 * k8 - i4 * i6 >> viewDistance - 5;
 			int l14 = l10 >> 4;
 			int j15 = j12 >> 4;
 			int l15 = l13 >> 4;
@@ -3085,20 +3088,20 @@ public class Scene {
 	public int anInt376;
 	private static byte[] aByteArray377;
 	private static final int[] anIntArray378 = new int[256];
-	private int anInt379;
-	private int anInt380;
-	private int anInt381;
+	private int cameraYaw;
+	private int cameraPitch;
+	private int cameraRoll;
 	public static int[] anIntArray382 = new int[2048];
-	private int anInt383;
-	private int anInt384;
-	private int anInt385;
+	private int cameraX;
+	private int cameraY;
+	private int cameraZ;
 	int[] anIntArray386;
 	int[][] anIntArrayArray387;
 	int[][] anIntArrayArray388;
 	byte[][] aByteArrayArray389;
 	boolean[] aBooleanArray390;
-	private int anInt391;
-	public Model aModel392;
+	private int spriteCount;
+	public Model view;
 	int anInt393;
 	int anInt394;
 	static int anInt395;
@@ -3132,27 +3135,27 @@ public class Scene {
 	Surface aSurface423;
 	boolean aBoolean424;
 	private int anInt425;
-	public int anInt426;
-	private int anInt427;
+	public int clipFar3d;
+	private int viewDistance;
 	public int anInt428;
 	private int anInt429;
-	public int anInt430;
-	private final int[] anIntArray431;
-	private final int[] anIntArray432;
+	public int clipFar2d;
+	private final int[] spriteWidth;
+	private final int[] spriteHeight;
 	public int anInt433;
-	private final int[] anIntArray434;
-	private final int[] anIntArray435;
+	private final int[] spriteId;
+	private final int[] spriteTranslateX;
 	int[] anIntArray436;
 	int[] anIntArray437;
 	int[] anIntArray438;
 	int[] anIntArray439;
 	int[] anIntArray440;
 	int[] anIntArray441;
-	public int anInt442;
-	public int anInt443;
-	private final int[] anIntArray444;
-	private final int[] anIntArray445;
-	private final int[] anIntArray446;
+	public int fogZDistance;
+	public int fogZFalloff;
+	private final int[] spriteX;
+	private final int[] spriteZ;
+	private final int[] spriteY;
 	private int anInt447;
 	public int[] anIntArray448;
 	int[] anIntArray449;

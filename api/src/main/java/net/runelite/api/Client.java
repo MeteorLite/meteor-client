@@ -144,4 +144,24 @@ public interface Client
 	void setHitsplatsAboveScene(boolean hitsplatsAboveScene);
 
 	boolean isHitsplatsAboveScene();
+
+	int getCameraX();
+	int getCameraY();
+	int getCameraZ();
+	int getCameraPitch();
+	int getCameraYaw();
+	int getScale();
+	void setScale(int scale);
+
+	int getBaseX();
+
+	int getBaseY();
+
+	int getPlane();
+
+	boolean isGPU();
+
+	byte[][] getTileHeights();
+
+	String getUsername();
 }

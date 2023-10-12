@@ -43,7 +43,7 @@ public class Model {
 				for(int k1 = 0; k1 < model.anIntArray244[j1]; k1++)
 					ai[k1] = method198(model.anIntArray246[ai1[k1]], model.anIntArray247[ai1[k1]], model.anIntArray248[ai1[k1]]);
 
-				int l1 = method184(model.anIntArray244[j1], ai, model.anIntArray249[j1], model.anIntArray250[j1]);
+				int l1 = createFace(model.anIntArray244[j1], ai, model.anIntArray249[j1], model.anIntArray250[j1]);
 				anIntArray251[l1] = model.anIntArray251[j1];
 				anIntArray252[l1] = model.anIntArray252[j1];
 				anIntArray253[l1] = model.anIntArray253[j1];
@@ -113,9 +113,9 @@ public class Model {
 			model.aByteArray263[l] = aByteArray263[ai[k]];
 		}
 
-		int i1 = model.method184(i, ai1, anIntArray249[j], anIntArray250[j]);
+		int i1 = model.createFace(i, ai1, anIntArray249[j], anIntArray250[j]);
 		if(!model.aBoolean264 && !aBoolean264)
-			model.anIntArray265[i1] = anIntArray265[j];
+			model.faceTag[i1] = faceTag[j];
 		model.anIntArray251[i1] = anIntArray251[j];
 		model.anIntArray252[i1] = anIntArray252[j];
 		model.anIntArray253[i1] = anIntArray253[j];
@@ -214,7 +214,7 @@ public class Model {
 
 	}
 
-	public int method184(int i, int[] ai, int j, int k) {
+	public int createFace(int i, int[] ai, int j, int k) {
 		if(anInt235 >= anInt294) {
 			return -1;
 		} else {
@@ -256,8 +256,8 @@ public class Model {
 			anIntArray290 = new int[i];
 		}
 		if(!aBoolean264) {
-			aByteArray296 = new byte[j];
-			anIntArray265 = new int[j];
+			isLocalPlayer = new byte[j];
+			faceTag = new int[j];
 		}
 		if(aBoolean297) {
 			anIntArray257 = anIntArray246;
@@ -427,7 +427,7 @@ public class Model {
 
 	}
 
-	public int method194(int i, int j, int k) {
+	public int createVertex(int i, int j, int k) {
 		if(anInt236 >= anInt309) {
 			return -1;
 		} else {
@@ -852,7 +852,7 @@ public class Model {
 			for(int i4 = 0; i4 < l2; i4++)
 				ai1[i4] = method174(abyte0);
 
-			int j4 = method184(i2, ai, j2, k2);
+			int j4 = createFace(i2, ai, j2, k2);
 			anIntArrayArray237[k3] = ai1;
 			if(i3 == 0)
 				anIntArray251[j4] = 0;
@@ -998,7 +998,7 @@ public class Model {
 	public int[] anIntArray262;
 	public byte[] aByteArray263;
 	public boolean aBoolean264;
-	public int[] anIntArray265;
+	public int[] faceTag;
 	public int anInt266;
 	public boolean aBoolean267;
 	private int anInt268;
@@ -1029,7 +1029,7 @@ public class Model {
 	public int[] anIntArray293;
 	private int anInt294;
 	public boolean aBoolean295;
-	public byte[] aByteArray296;
+	public byte[] isLocalPlayer;
 	private boolean aBoolean297;
 	public boolean aBoolean298;
 	public boolean aBoolean299;

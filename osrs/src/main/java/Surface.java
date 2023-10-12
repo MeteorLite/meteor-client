@@ -12,18 +12,18 @@ public class Surface
 	implements ImageProducer, ImageObserver {
 
 	public void method207(int i, int j, int k, int l, int i1) {
-		if(i < anInt316) {
-			k -= anInt316 - i;
-			i = anInt316;
+		if(i < boundsTopX) {
+			k -= boundsTopX - i;
+			i = boundsTopX;
 		}
-		if(j < anInt317) {
-			l -= anInt317 - j;
-			j = anInt317;
+		if(j < boundsTopY) {
+			l -= boundsTopY - j;
+			j = boundsTopY;
 		}
-		if(i + k > anInt318)
-			k = anInt318 - i;
-		if(j + l > anInt319)
-			l = anInt319 - j;
+		if(i + k > boundsBottomX)
+			k = boundsBottomX - i;
+		if(j + l > boundsBottomY)
+			l = boundsBottomY - j;
 		int j1 = width2 - k;
 		byte byte0 = 1;
 		if(aBoolean321) {
@@ -148,7 +148,7 @@ public class Surface
 
 	}
 
-	public int method212(String s, int i) {
+	public int textWidth(String s, int i) {
 		int j = 0;
 		byte[] abyte0 = fonts[i];
 		for(int k = 0; k < s.length(); k++)
@@ -163,7 +163,7 @@ public class Surface
 		return j;
 	}
 
-	private void method213(int i, int j, int k, int l, byte[] abyte0, boolean flag) {
+	private void drawCharacter(int i, int j, int k, int l, byte[] abyte0, boolean flag) {
 		int i1 = j + abyte0[i + 5];
 		int j1 = k - abyte0[i + 6];
 		int k1 = abyte0[i + 3];
@@ -172,26 +172,26 @@ public class Surface
 		int j2 = i1 + j1 * width2;
 		int k2 = width2 - k1;
 		int l2 = 0;
-		if(j1 < anInt317) {
-			int i3 = anInt317 - j1;
+		if(j1 < boundsTopY) {
+			int i3 = boundsTopY - j1;
 			l1 -= i3;
-			j1 = anInt317;
+			j1 = boundsTopY;
 			i2 += i3 * k1;
 			j2 += i3 * width2;
 		}
-		if(j1 + l1 >= anInt319)
-			l1 -= ((j1 + l1) - anInt319) + 1;
-		if(i1 < anInt316) {
-			int j3 = anInt316 - i1;
+		if(j1 + l1 >= boundsBottomY)
+			l1 -= ((j1 + l1) - boundsBottomY) + 1;
+		if(i1 < boundsTopX) {
+			int j3 = boundsTopX - i1;
 			k1 -= j3;
-			i1 = anInt316;
+			i1 = boundsTopX;
 			i2 += j3;
 			j2 += j3;
 			l2 += j3;
 			k2 += j3;
 		}
-		if(i1 + k1 >= anInt318) {
-			int k3 = ((i1 + k1) - anInt318) + 1;
+		if(i1 + k1 >= boundsBottomX) {
+			int k3 = ((i1 + k1) - boundsBottomX) + 1;
 			k1 -= k3;
 			l2 += k3;
 			k2 += k3;
@@ -220,18 +220,18 @@ public class Surface
 	}
 
 	public void drawStringCenter(String s, int i, int j, int k, int l) {
-		drawString(s, i - method212(s, k) / 2, j, k, l);
+		drawString(s, i - textWidth(s, k) / 2, j, k, l);
 	}
 
 	public void method217(int i, int j, int k, int l) {
-		if(i < anInt316 || i >= anInt318)
+		if(i < boundsTopX || i >= boundsBottomX)
 			return;
-		if(j < anInt317) {
-			k -= anInt317 - j;
-			j = anInt317;
+		if(j < boundsTopY) {
+			k -= boundsTopY - j;
+			j = boundsTopY;
 		}
-		if(j + k > anInt318)
-			k = anInt319 - j;
+		if(j + k > boundsBottomX)
+			k = boundsBottomY - j;
 		int i1 = i + j * width2;
 		for(int j1 = 0; j1 < k; j1++)
 			pixels[i1 + j1 * width2] = l;
@@ -344,16 +344,16 @@ public class Surface
 			}
 			int j4 = j * width2;
 			i3 += i << 16;
-			if(j < anInt317) {
-				int l4 = anInt317 - j;
+			if(j < boundsTopY) {
+				int l4 = boundsTopY - j;
 				l -= l4;
-				j = anInt317;
+				j = boundsTopY;
 				j4 += l4 * width2;
 				l2 += k3 * l4;
 				i3 += l3 * l4;
 			}
-			if(j + l >= anInt319)
-				l -= ((j + l) - anInt319) + 1;
+			if(j + l >= boundsBottomY)
+				l -= ((j + l) - boundsBottomY) + 1;
 			int i5 = j4 / width2 & 1;
 			if(!aBoolean321)
 				i5 = 2;
@@ -398,25 +398,25 @@ public class Surface
 	}
 
 	public void method223() {
-		anInt316 = 0;
-		anInt317 = 0;
-		anInt318 = width2;
-		anInt319 = height2;
+		boundsTopX = 0;
+		boundsTopY = 0;
+		boundsBottomX = width2;
+		boundsBottomY = height2;
 	}
 
 	public void method224(int i, int j, int k, int l, int i1, int j1) {
-		if(i < anInt316) {
-			k -= anInt316 - i;
-			i = anInt316;
+		if(i < boundsTopX) {
+			k -= boundsTopX - i;
+			i = boundsTopX;
 		}
-		if(j < anInt317) {
-			l -= anInt317 - j;
-			j = anInt317;
+		if(j < boundsTopY) {
+			l -= boundsTopY - j;
+			j = boundsTopY;
 		}
-		if(i + k > anInt318)
-			k = anInt318 - i;
-		if(j + l > anInt319)
-			l = anInt319 - j;
+		if(i + k > boundsBottomX)
+			k = boundsBottomX - i;
+		if(j + l > boundsBottomY)
+			l = boundsBottomY - j;
 		int k1 = 256 - j1;
 		int l1 = (i1 >> 16 & 0xff) * j1;
 		int i2 = (i1 >> 8 & 0xff) * j1;
@@ -474,12 +474,12 @@ public class Surface
 	}
 
 	public void method226(int i, int j, int k, int l, int i1, int j1) {
-		if(i < anInt316) {
-			k -= anInt316 - i;
-			i = anInt316;
+		if(i < boundsTopX) {
+			k -= boundsTopX - i;
+			i = boundsTopX;
 		}
-		if(i + k > anInt318)
-			k = anInt318 - i;
+		if(i + k > boundsBottomX)
+			k = boundsBottomX - i;
 		int k1 = j1 >> 16 & 0xff;
 		int l1 = j1 >> 8 & 0xff;
 		int i2 = j1 & 0xff;
@@ -498,7 +498,7 @@ public class Surface
 		}
 		int j3 = i + j * width2;
 		for(int k3 = 0; k3 < l; k3 += byte0)
-			if(k3 + j >= anInt317 && k3 + j < anInt319) {
+			if(k3 + j >= boundsTopY && k3 + j < boundsBottomY) {
 				int l3 = ((k1 * k3 + j2 * (l - k3)) / l << 16) + ((l1 * k3 + k2 * (l - k3)) / l << 8) + (i2 * k3 + l2 * (l - k3)) / l;
 				for(int i4 = -k; i4 < 0; i4++)
 					pixels[j3++] = l3;
@@ -525,14 +525,14 @@ public class Surface
 				int j6 = (k >> 16) * i2;
 				int k6 = l2 >> 16;
 				int l6 = i1;
-				if(k6 < anInt316) {
-					int i7 = anInt316 - k6;
+				if(k6 < boundsTopX) {
+					int i7 = boundsTopX - k6;
 					l6 -= i7;
-					k6 = anInt316;
+					k6 = boundsTopX;
 					j += k1 * i7;
 				}
-				if(k6 + l6 >= anInt318) {
-					int j7 = (k6 + l6) - anInt318;
+				if(k6 + l6 >= boundsBottomX) {
+					int j7 = (k6 + l6) - boundsBottomX;
 					l6 -= j7;
 				}
 				j3 = 1 - j3;
@@ -583,14 +583,14 @@ public class Surface
 				int j6 = (k >> 16) * i2;
 				int k6 = l2 >> 16;
 				int l6 = i1;
-				if(k6 < anInt316) {
-					int i7 = anInt316 - k6;
+				if(k6 < boundsTopX) {
+					int i7 = boundsTopX - k6;
 					l6 -= i7;
-					k6 = anInt316;
+					k6 = boundsTopX;
 					j += k1 * i7;
 				}
-				if(k6 + l6 >= anInt318) {
-					int j7 = (k6 + l6) - anInt318;
+				if(k6 + l6 >= boundsBottomX) {
+					int j7 = (k6 + l6) - boundsBottomX;
 					l6 -= j7;
 				}
 				j3 = 1 - j3;
@@ -637,14 +637,14 @@ public class Surface
 				int j5 = (k >> 16) * i2;
 				int k5 = k2 >> 16;
 				int l5 = i1;
-				if(k5 < anInt316) {
-					int i6 = anInt316 - k5;
+				if(k5 < boundsTopX) {
+					int i6 = boundsTopX - k5;
 					l5 -= i6;
-					k5 = anInt316;
+					k5 = boundsTopX;
 					j += k1 * i6;
 				}
-				if(k5 + l5 >= anInt318) {
-					int j6 = (k5 + l5) - anInt318;
+				if(k5 + l5 >= boundsBottomX) {
+					int j6 = (k5 + l5) - boundsBottomX;
 					l5 -= j6;
 				}
 				i3 = 1 - i3;
@@ -725,14 +725,14 @@ public class Surface
 				int j5 = (k >> 16) * i2;
 				int k5 = k2 >> 16;
 				int l5 = i1;
-				if(k5 < anInt316) {
-					int i6 = anInt316 - k5;
+				if(k5 < boundsTopX) {
+					int i6 = boundsTopX - k5;
 					l5 -= i6;
-					k5 = anInt316;
+					k5 = boundsTopX;
 					j += k1 * i6;
 				}
-				if(k5 + l5 >= anInt318) {
-					int j6 = (k5 + l5) - anInt318;
+				if(k5 + l5 >= boundsBottomX) {
+					int j6 = (k5 + l5) - boundsBottomX;
 					l5 -= j6;
 				}
 				i3 = 1 - i3;
@@ -994,10 +994,10 @@ public class Surface
 		else
 		if(j6 > l6)
 			l6 = j6;
-		if(k6 < anInt317)
-			k6 = anInt317;
-		if(l6 > anInt319)
-			l6 = anInt319;
+		if(k6 < boundsTopY)
+			k6 = boundsTopY;
+		if(l6 > boundsBottomY)
+			l6 = boundsBottomY;
 		if(anIntArray340 == null || anIntArray340.length != k1 + 1) {
 			anIntArray340 = new int[k1 + 1];
 			anIntArray341 = new int[k1 + 1];
@@ -1186,13 +1186,13 @@ public class Surface
 				int i12 = ((anIntArray343[i11] << 9) - l11) / (k11 - j11);
 				int j12 = anIntArray344[i11] << 9;
 				int k12 = ((anIntArray345[i11] << 9) - j12) / (k11 - j11);
-				if(j11 < anInt316) {
-					l11 += (anInt316 - j11) * i12;
-					j12 += (anInt316 - j11) * k12;
-					j11 = anInt316;
+				if(j11 < boundsTopX) {
+					l11 += (boundsTopX - j11) * i12;
+					j12 += (boundsTopX - j11) * k12;
+					j11 = boundsTopX;
 				}
-				if(k11 > anInt318)
-					k11 = anInt318;
+				if(k11 > boundsBottomX)
+					k11 = boundsBottomX;
 				if(!aBoolean321 || (i11 & 1) == 0)
 					if(!aBooleanArray333[k])
 						method255(pixels, ai, 0, l10 + j11, l11, j12, i12, k12, j11 - k11, j9);
@@ -1427,7 +1427,7 @@ label3:
 	}
 
 	public void method243(String s, int i, int j, int k, int l) {
-		drawString(s, i - method212(s, k), j, k, l);
+		drawString(s, i - textWidth(s, k), j, k, l);
 	}
 
 	public void method244() {
@@ -1472,25 +1472,25 @@ label3:
 			}
 			int i3 = i + j * width2;
 			int k3 = width2 - k;
-			if(j < anInt317) {
-				int l3 = anInt317 - j;
+			if(j < boundsTopY) {
+				int l3 = boundsTopY - j;
 				l -= l3;
 				j = 0;
 				i3 += l3 * width2;
 				i2 += k2 * l3;
 			}
-			if(j + l >= anInt319)
-				l -= ((j + l) - anInt319) + 1;
-			if(i < anInt316) {
-				int i4 = anInt316 - i;
+			if(j + l >= boundsBottomY)
+				l -= ((j + l) - boundsBottomY) + 1;
+			if(i < boundsTopX) {
+				int i4 = boundsTopX - i;
 				k -= i4;
 				i = 0;
 				i3 += i4;
 				l1 += j2 * i4;
 				k3 += i4;
 			}
-			if(i + k >= anInt318) {
-				int j4 = ((i + k) - anInt318) + 1;
+			if(i + k >= boundsBottomX) {
+				int j4 = ((i + k) - boundsBottomX) + 1;
 				k -= j4;
 				k3 += j4;
 			}
@@ -1522,26 +1522,26 @@ label3:
 		int k1 = anIntArray325[k];
 		int l1 = width2 - k1;
 		int i2 = 0;
-		if(j < anInt317) {
-			int j2 = anInt317 - j;
+		if(j < boundsTopY) {
+			int j2 = boundsTopY - j;
 			j1 -= j2;
-			j = anInt317;
+			j = boundsTopY;
 			i1 += j2 * k1;
 			l += j2 * width2;
 		}
-		if(j + j1 >= anInt319)
-			j1 -= ((j + j1) - anInt319) + 1;
-		if(i < anInt316) {
-			int k2 = anInt316 - i;
+		if(j + j1 >= boundsBottomY)
+			j1 -= ((j + j1) - boundsBottomY) + 1;
+		if(i < boundsTopX) {
+			int k2 = boundsTopX - i;
 			k1 -= k2;
-			i = anInt316;
+			i = boundsTopX;
 			i1 += k2;
 			l += k2;
 			i2 += k2;
 			l1 += k2;
 		}
-		if(i + k1 >= anInt318) {
-			int l2 = ((i + k1) - anInt318) + 1;
+		if(i + k1 >= boundsBottomX) {
+			int l2 = ((i + k1) - boundsBottomX) + 1;
 			k1 -= l2;
 			i2 += l2;
 			l1 += l2;
@@ -1566,7 +1566,7 @@ label3:
 	}
 
 	public void method247(int i, int j, int k) {
-		if(i < anInt316 || j < anInt317 || i >= anInt318 || j >= anInt319) {
+		if(i < boundsTopX || j < boundsTopY || i >= boundsBottomX || j >= boundsBottomY) {
         } else {
 			pixels[i + j * width2] = k;
         }
@@ -1596,25 +1596,25 @@ label3:
 			}
 			int j3 = i + j * width2;
 			int l3 = width2 - k;
-			if(j < anInt317) {
-				int i4 = anInt317 - j;
+			if(j < boundsTopY) {
+				int i4 = boundsTopY - j;
 				l -= i4;
 				j = 0;
 				j3 += i4 * width2;
 				j2 += l2 * i4;
 			}
-			if(j + l >= anInt319)
-				l -= ((j + l) - anInt319) + 1;
-			if(i < anInt316) {
-				int j4 = anInt316 - i;
+			if(j + l >= boundsBottomY)
+				l -= ((j + l) - boundsBottomY) + 1;
+			if(i < boundsTopX) {
+				int j4 = boundsTopX - i;
 				k -= j4;
 				i = 0;
 				j3 += j4;
 				i2 += k2 * j4;
 				l3 += j4;
 			}
-			if(i + k >= anInt318) {
-				int k4 = ((i + k) - anInt318) + 1;
+			if(i + k >= boundsBottomX) {
+				int k4 = ((i + k) - boundsBottomX) + 1;
 				k -= k4;
 				l3 += k4;
 			}
@@ -1650,8 +1650,8 @@ label3:
 		aBoolean321 = false;
 		aBoolean352 = false;
 		aComponent314 = component;
-		anInt319 = j;
-		anInt318 = i;
+		boundsBottomY = j;
+		boundsBottomX = i;
 		anInt312 = width2 = i;
 		anInt313 = height2 = j;
 		anInt311 = i * j;
@@ -1754,14 +1754,14 @@ label3:
 	}
 
 	public void method251(int i, int j, int k, int l) {
-		if(j < anInt317 || j >= anInt319)
+		if(j < boundsTopY || j >= boundsBottomY)
 			return;
-		if(i < anInt316) {
-			k -= anInt316 - i;
-			i = anInt316;
+		if(i < boundsTopX) {
+			k -= boundsTopX - i;
+			i = boundsTopX;
 		}
-		if(i + k > anInt318)
-			k = anInt318 - i;
+		if(i + k > boundsBottomX)
+			k = boundsBottomX - i;
 		int i1 = i + j * width2;
 		for(int j1 = 0; j1 < k; j1++)
 			pixels[i1 + j1] = l;
@@ -1796,10 +1796,10 @@ label3:
 			k = width2;
 		if(l > height2)
 			l = height2;
-		anInt316 = i;
-		anInt317 = j;
-		anInt318 = k;
-		anInt319 = l;
+		boundsTopX = i;
+		boundsTopY = j;
+		boundsBottomX = k;
+		boundsBottomY = l;
 	}
 
 	public void drawString(String s, int i, int j, int k, int l) {
@@ -1872,10 +1872,10 @@ label3:
 				} else {
 					int j1 = anIntArray335[s.charAt(i1)];
 					if(aBoolean352 && !aBooleanArray348[k] && l != 0)
-						method213(j1, i + 1, j, 0, abyte0, aBooleanArray348[k]);
+						drawCharacter(j1, i + 1, j, 0, abyte0, aBooleanArray348[k]);
 					if(aBoolean352 && !aBooleanArray348[k] && l != 0)
-						method213(j1, i, j + 1, 0, abyte0, aBooleanArray348[k]);
-					method213(j1, i, j, l, abyte0, aBooleanArray348[k]);
+						drawCharacter(j1, i, j + 1, 0, abyte0, aBooleanArray348[k]);
+					drawCharacter(j1, i, j, l, abyte0, aBooleanArray348[k]);
 					i += abyte0[j1 + 7];
 				}
 
@@ -1968,26 +1968,26 @@ label3:
 		int l1 = anIntArray325[k];
 		int i2 = width2 - l1;
 		int j2 = 0;
-		if(j < anInt317) {
-			int k2 = anInt317 - j;
+		if(j < boundsTopY) {
+			int k2 = boundsTopY - j;
 			k1 -= k2;
-			j = anInt317;
+			j = boundsTopY;
 			j1 += k2 * l1;
 			i1 += k2 * width2;
 		}
-		if(j + k1 >= anInt319)
-			k1 -= ((j + k1) - anInt319) + 1;
-		if(i < anInt316) {
-			int l2 = anInt316 - i;
+		if(j + k1 >= boundsBottomY)
+			k1 -= ((j + k1) - boundsBottomY) + 1;
+		if(i < boundsTopX) {
+			int l2 = boundsTopX - i;
 			l1 -= l2;
-			i = anInt316;
+			i = boundsTopX;
 			j1 += l2;
 			i1 += l2;
 			j2 += l2;
 			i2 += l2;
 		}
-		if(i + l1 >= anInt318) {
-			int i3 = ((i + l1) - anInt318) + 1;
+		if(i + l1 >= boundsBottomX) {
+			int i3 = ((i + l1) - boundsBottomX) + 1;
 			l1 -= i3;
 			j2 += i3;
 			i2 += i3;
@@ -2056,25 +2056,25 @@ label3:
 			}
 			int j3 = i + j * width2;
 			int l3 = width2 - k;
-			if(j < anInt317) {
-				int i4 = anInt317 - j;
+			if(j < boundsTopY) {
+				int i4 = boundsTopY - j;
 				l -= i4;
 				j = 0;
 				j3 += i4 * width2;
 				j2 += l2 * i4;
 			}
-			if(j + l >= anInt319)
-				l -= ((j + l) - anInt319) + 1;
-			if(i < anInt316) {
-				int j4 = anInt316 - i;
+			if(j + l >= boundsBottomY)
+				l -= ((j + l) - boundsBottomY) + 1;
+			if(i < boundsTopX) {
+				int j4 = boundsTopX - i;
 				k -= j4;
 				i = 0;
 				j3 += j4;
 				i2 += k2 * j4;
 				l3 += j4;
 			}
-			if(i + k >= anInt318) {
-				int k4 = ((i + k) - anInt318) + 1;
+			if(i + k >= boundsBottomX) {
+				int k4 = ((i + k) - boundsBottomX) + 1;
 				k -= k4;
 				l3 += k4;
 			}
@@ -2100,10 +2100,10 @@ label3:
 	public int anInt313;
 	private final Component aComponent314;
 	public static int anInt315;
-	private int anInt316;
-	private int anInt317;
-	private int anInt318;
-	private int anInt319;
+	private int boundsTopX;
+	private int boundsTopY;
+	private int boundsBottomX;
+	private int boundsBottomY;
 	public int width2;
 	public boolean aBoolean321;
 	public static int[] pixels;

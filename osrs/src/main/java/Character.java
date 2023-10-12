@@ -49,7 +49,6 @@ final class Character {
 	public int combatLevel;
 
 	//Added
-
-	public int screenX;
-	public int screenY;
+	public int screenCenterX;
+	public int screenCenterY;
 }

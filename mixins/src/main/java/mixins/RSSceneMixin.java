@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,42 +23,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package mixins;
 
-import net.runelite.mapping.Import;
+import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSGameShell;
+import net.runelite.rs.api.RSScene;
 
-public interface Character
-{
 
-    long getHash();
-    String getName();
-    int getServerIndex();
-    int getServerID();
-    int getCurrentX();
-    int getCurrentY();
-    int getNPCID();
-    int getAnimation();
-    String getMessage();
-    int getBubbleItem();
-    void setBubbleItem(int itemID);
-    int getCurrentHealth();
-    int getMaxHealth();
-    int getCombatLevel();
-    void drawHitSplat(int spriteID);
+@Mixin(RSScene.class)
+public abstract class RSSceneMixin implements RSScene {
 
-    int getScreenX();
+	@Shadow("mudClient")
+	public static RSClient client;
 
-    void setScreenX(int screenX);
+	@Inject
+	@FieldHook(value = "fogZDistance")
+	void onFogDistanceChanged(int idx) {
+		setFogDistance(Integer.MAX_VALUE);
+	}
 
-    int getScreenY();
+	@Inject
+	@FieldHook(value = "clipFar2d")
+	void onClipFar2DChanged(int idx) {
+		setClipFar2D(Integer.MAX_VALUE);
+	}
 
-    void setScreenY(int screenY);
-
-    int getScreenWidth();
-
-    void setScreenWidth(int screenWidth);
-
-    int getScreenHeight();
-
-    void setScreenHeight(int screenHeight);
+	@Inject
+	@FieldHook(value = "clipFar3d")
+	void onClipFar3DChanged(int idx) {
+		setClipFar3D(Integer.MAX_VALUE);
+	}
 }

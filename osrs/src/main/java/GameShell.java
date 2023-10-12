@@ -14,7 +14,7 @@ import java.net.*;
 
 @Implements("RSGameShell")
 public class GameShell extends Applet
-	implements Runnable, MouseListener, MouseMotionListener, KeyListener {
+	implements Runnable, MouseListener, MouseWheelListener, MouseMotionListener, KeyListener {
 
 	protected final void method1(int i, String s) {
 		try {
@@ -679,5 +679,10 @@ public class GameShell extends Applet
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mouseMove(null, e.getX(), e.getY());
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+
 	}
 }

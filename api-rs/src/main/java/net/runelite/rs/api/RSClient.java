@@ -127,4 +127,22 @@ public interface RSClient extends Client
 	@Import("drawHitsplatsAboveScene")
 	@Override
 	boolean isHitsplatsAboveScene();
+
+	@Import("baseX")
+	int getBaseX();
+
+	@Import("baseY")
+	int getBaseY();
+
+	@Import("plane")
+	int getPlane();
+
+	@Import("scene")
+	RSScene getScene();
+
+	@Import("cameraZoom")
+	int getScale();
+
+	@Import("cameraZoom")
+	void setScale(int scale);
 }
