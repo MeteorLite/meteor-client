@@ -42,7 +42,7 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	@Inject
 	@Override
 	public void drawHitSplat(int spriteID) {
-		if (getScreenX() <= 0 || getScreenY() <= 0)
+		if (getScreenCenterX() <= 0 || getScreenCenterY() <= 0)
 			return;
 		int sprite = spriteID;
 		if (getCombatTimer() > 150) {
@@ -54,8 +54,8 @@ public abstract class RSCharacterMixin implements RSCharacter {
 					if (getDamageTaken() == 0)
 						sprite = SpriteID.HITSPLAT_BLUE;
 			}
-			client.getSurface().drawSprite$api(getScreenX() - 12, getScreenY() - 12, sprite);
-			client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenX() - 1, getScreenY() + 5, 3, 0xffffff);
+			client.getSurface().drawSprite$api(getScreenCenterX() - 12, getScreenCenterY() - 12, sprite);
+			client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenCenterX() - 1, getScreenCenterY() + 5, 3, 0xffffff);
 		}
 	}
 

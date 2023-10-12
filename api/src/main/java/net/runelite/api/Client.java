@@ -164,4 +164,6 @@ public interface Client
 	byte[][] getTileHeights();
 
 	String getUsername();
+
+	void setShowUITab(int tab);
 }

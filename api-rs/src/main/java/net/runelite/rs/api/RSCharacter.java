@@ -81,6 +81,12 @@ public interface RSCharacter extends Character
     @Import("screenY")
     int getScreenY();
 
+    @Import("screenCenterX")
+    int getScreenCenterX();
+
+    @Import("screenCenterY")
+    int getScreenCenterY();
+
     @Import("screenY")
     void setScreenY(int screenY);
 

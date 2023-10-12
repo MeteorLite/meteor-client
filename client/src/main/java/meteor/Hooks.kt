@@ -268,6 +268,9 @@ class Hooks : Callbacks {
                 client.`chooseOption$api`(5)
                 keyEvent.consume()
             }
+        if (client.showingInventory())
+            if (keyEvent.keyCode == KeyEvent.VK_ESCAPE)
+                client.setShowUITab(0)
         return KeyManager.processKeyPressed(keyEvent)
     }
 
