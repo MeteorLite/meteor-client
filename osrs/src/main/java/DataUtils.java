@@ -151,11 +151,11 @@ public class DataUtils {
 		return method342(s, i, abyte0, null);
 	}
 
+
 	public static InputStream method353(String s) throws IOException {
 		Object obj;
 		if(anURL542 == null) {
-			if (mudclient.injected)
-				s = "./data/" + s;
+			s = GameShell.dataDir.getAbsolutePath() + "/" + s;
 			obj = new BufferedInputStream(new FileInputStream(s));
 		} else {
 			System.out.println(anURL542.getPath() + s);

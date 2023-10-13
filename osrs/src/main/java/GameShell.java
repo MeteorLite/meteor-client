@@ -11,6 +11,9 @@ import java.awt.image.IndexColorModel;
 import java.awt.image.MemoryImageSource;
 import java.io.*;
 import java.net.*;
+import java.nio.file.Files;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 @Implements("RSGameShell")
 public class GameShell extends Applet
@@ -198,10 +201,70 @@ public class GameShell extends Applet
 
 	}
 
+	private static void unzipData() {
+		File meteorDir = new File(System.getProperty("user.home"), "meteor-rsc/");
+		File dataDir = new File(meteorDir, "data/");
+		File dataZip = new File(meteorDir, "data.zip");
+
+		// create output directory if it doesn't exist
+		if(!dataDir.exists()) dataDir.mkdirs();
+		FileInputStream fis;
+		//buffer for read and write data to file
+		byte[] buffer = new byte[1024];
+		try {
+			fis = new FileInputStream(dataZip);
+			ZipInputStream zis = new ZipInputStream(fis);
+			ZipEntry ze = zis.getNextEntry();
+			while(ze != null){
+				String fileName = ze.getName();
+				File newFile = new File(dataDir + File.separator + fileName);
+				System.out.println("Unzipping to "+newFile.getAbsolutePath());
+				//create directories for sub directories in zip
+				new File(newFile.getParent()).mkdirs();
+				FileOutputStream fos = new FileOutputStream(newFile);
+				int len;
+				while ((len = zis.read(buffer)) > 0) {
+					fos.write(buffer, 0, len);
+				}
+				fos.close();
+				//close this ZipEntry
+				zis.closeEntry();
+				ze = zis.getNextEntry();
+			}
+			//close last ZipEntry
+			zis.closeEntry();
+			zis.close();
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static File meteorDir = new File(System.getProperty("user.home"), "meteor-rsc/");
+	public static File dataDir = new File(meteorDir, "data/");
+	File dataZipLocal = new File(meteorDir, "data.zip");
+
+	public void initCache() {
+
+		if (!meteorDir.exists())
+			meteorDir.mkdir();
+		if (!dataDir.exists()) {
+			dataZipLocal.delete();
+			try (InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("data.zip")) {
+				Files.copy(is, dataZipLocal.toPath());
+				unzipData();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public final void run() {
 
 		if(loadingState == 1) {
 			loadingState = 2;
+			initCache();
 			loadJagex();
 			drawLoadingScreen(0, "Loading...");
 			startGame();

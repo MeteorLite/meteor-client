@@ -125,7 +125,7 @@ compose {
         application {
             mainClass = "meteor.Main"
             nativeDistributions {
-                version = "1.9.0"
+                version = "1.0.0"
                 targetFormats(Exe, Deb, Dmg)
                 includeAllModules = true
                 windows {

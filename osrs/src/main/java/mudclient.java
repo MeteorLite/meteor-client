@@ -8,10 +8,13 @@ import org.rationalityfrontline.kevent.Event;
 import org.rationalityfrontline.kevent.KEventKt;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 @Implements("RSClient")
 public final class mudclient extends NetworkedGame {
@@ -938,7 +941,7 @@ public final class mudclient extends NetworkedGame {
 
 	protected byte[] readDataFile(String s, String s1, int i) {
 		if(!aBoolean782)
-			s = "data/" + s;
+			s = "/" + s;
 		byte[] abyte0 = link.getjag(s);
 		if(abyte0 != null) {
 			int j = ((abyte0[0] & 0xff) << 16) + ((abyte0[1] & 0xff) << 8) + (abyte0[2] & 0xff);
@@ -5136,6 +5139,8 @@ label0:
 		main();
 	}
 
+
+
 	public static void main() {
 		mudClient.method17(mudClient.anInt764, mudClient.gameHeight + 11, "Runescape by Andrew Gower", false);
 		mudClient.threadSleep = 10;
@@ -6515,9 +6520,7 @@ label0:
 
 	private void loadSounds() {
 		try {
-			File folder = new File("./data/audio");
-			if (!folder.exists())
-				folder = new File("../data/audio");
+			File folder = GameShell.dataDir;
 			File[] listOfFiles = folder.listFiles();
 
             for (File listOfFile : listOfFiles)
