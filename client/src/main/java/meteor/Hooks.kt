@@ -192,8 +192,14 @@ class Hooks : Callbacks {
         return image
     }
 
+    var mouseWheelPressed = false
+
     override fun mousePressed(mouseEvent: MouseEvent): MouseEvent {
         val newEvent = MouseManager.processMousePressed(mouseEvent)
+        if (mouseEvent.button == MouseEvent.BUTTON2) {
+            println("WheelPressed")
+            mouseWheelPressed = true
+        }
         return newEvent
     }
 
@@ -205,6 +211,10 @@ class Hooks : Callbacks {
     }
 
     override fun mouseReleased(mouseEvent: MouseEvent): MouseEvent {
+        if (mouseEvent.button == MouseEvent.BUTTON2) {
+            println("WheelReleased")
+            mouseWheelPressed = false
+        }
         return MouseManager.processMouseReleased(mouseEvent)
     }
 
@@ -221,8 +231,18 @@ class Hooks : Callbacks {
     }
 
     override fun mouseDragged(mouseEvent: MouseEvent): MouseEvent {
+        val xGain = mouseEvent.x - lastMouseX
+        lastMouseX = mouseEvent.x
+        if (mouseWheelPressed) {
+            if (xGain > 0)
+                client.cameraRotation += 1
+            if (xGain < 0)
+                client.cameraRotation -= 1
+        }
         return MouseManager.processMouseDragged(mouseEvent)
     }
+
+    var lastMouseX = 0
 
     override fun mouseMoved(mouseEvent: MouseEvent): MouseEvent {
         return MouseManager.processMouseMoved(mouseEvent)

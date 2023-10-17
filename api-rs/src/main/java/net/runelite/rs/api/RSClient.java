@@ -145,4 +145,10 @@ public interface RSClient extends Client
 
 	@Import("cameraZoom")
 	void setScale(int scale);
+
+	@Import("cameraRotation")
+	int getCameraRotation();
+
+	@Import("cameraRotation")
+	void setCameraRotation(int cameraAngle);
 }

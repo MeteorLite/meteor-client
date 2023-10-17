@@ -166,4 +166,8 @@ public interface Client
 	String getUsername();
 
 	void setShowUITab(int tab);
+
+	int getCameraRotation();
+
+	void setCameraRotation(int cameraAngle);
 }
