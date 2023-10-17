@@ -1,7 +1,6 @@
 package meteor.plugins
 
 import androidx.compose.runtime.Composable
-import meteor.Main
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
@@ -12,6 +11,7 @@ import meteor.ui.composables.preferences.pluginPanelIsOpen
 
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.overlay.Overlay
+import orsc.Main
 
 open class Plugin : EventSubscriber() {
     var configuration: Config? = null

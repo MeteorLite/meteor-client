@@ -2,7 +2,6 @@
 
 package meteor.config
 
-import meteor.Main
 import com.google.common.base.Strings
 import meteor.Configuration.CONFIG_FILE
 import meteor.config.legacy.*
@@ -11,6 +10,7 @@ import meteor.config.descriptor.*
 import eventbus.events.ConfigChanged
 import meteor.plugins.Plugin
 import net.runelite.api.coords.WorldPoint
+import orsc.Main
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.Color
 import java.awt.Dimension

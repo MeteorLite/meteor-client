@@ -54,8 +54,8 @@ public abstract class RSCharacterMixin implements RSCharacter {
 					if (getDamageTaken() == 0)
 						sprite = SpriteID.HITSPLAT_BLUE;
 			}
-			client.getSurface().drawSprite$api(getScreenCenterX() - 12, getScreenCenterY() - 12, sprite);
-			client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenCenterX() - 1, getScreenCenterY() + 5, 3, 0xffffff);
+			//client.getSurface().drawSprite$api(getScreenCenterX() - 12, getScreenCenterY() - 12, sprite);
+			//client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenCenterX() - 1, getScreenCenterY() + 5, 3, 0xffffff);
 		}
 	}
 

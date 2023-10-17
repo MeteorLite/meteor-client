@@ -55,11 +55,16 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
     init {
         position = (OverlayPosition.DYNAMIC)
         layer = (OverlayLayer.ABOVE_SCENE)
-        for (skill in Skill.values()) {
+        for (skill in Skill.entries) {
             if (skill == Skill.OVERALL)
                 continue
-            smallSkillIconMap[skill] = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(skill, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
-            skillXPBars[skill] = getSkilXOBar(skill)
+            try {
+                println("Loading skill icon for ${skill.getName()}")
+                smallSkillIconMap[skill] = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(skill, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+                skillXPBars[skill] = getSkilXOBar(skill)
+            } catch (e: Exception) {
+                throw RuntimeException("${skill.getName()} icon failed to load")
+            }
         }
         fatigueIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.AGILITY, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
         initRenderers()
@@ -93,7 +98,7 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
             maxValueSupplier = {100},
             currentValueSupplier = {client.fatiguePercentage},
             healSupplier = { 0 },
-            colorSupplier = {Color.YELLOW},
+            colorSupplier = {Color.ORANGE},
             healColorSupplier = {Color.BLACK},
             iconSupplier = {fatigueIcon!!})
     }

@@ -18,6 +18,7 @@ dependencies {
     }
 
     with(libs) {
+        implementation(files("./src/main/resources/discord-rpc.jar"))
         implementation(bouncycastle)
         implementation(json)
         testImplementation(junit.jupiter.api)

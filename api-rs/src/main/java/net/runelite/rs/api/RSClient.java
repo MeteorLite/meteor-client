@@ -27,122 +27,35 @@ package net.runelite.rs.api;
 import net.runelite.api.*;
 import net.runelite.mapping.Import;
 
-import java.awt.*;
-
 public interface RSClient extends Client
 {
-	//inits the applet for us
-	@Import("main")
-	void main$api();
+    @Import("gameState1")
+    RSGameState getGameState();
 
-	@Import("injected")
-	boolean isInjected();
+    @Import("boostedSkillLevels")
+    int[] getBoostedSkillLevels();
 
-	@Import("injected")
-	void setInjected(boolean isInjected);
+    @Import("realSkillLevels")
+    int[] getRealSkillLevels();
 
-	@Import("isMembers")
-	void setIsMembers(boolean isMembers);
+    @Import("skillXPs")
+    int[] getSkillXPs();
 
-	@Import("inventorySize")
-	int getInventorySize();
+    @Import("levelXPs")
+    int[] getLevelXPs$api();
 
-	@Import("inventoryItemsIDs")
-	int[] getInventoryItemsIDs();
+    @Import("statFatigue")
+    int getFatigue();
 
-	@Import("inventoryItemsEquipped")
-	int[] getInventoryItemsEquipped();
+    @Import("showUiTab")
+    int getShowUITab();
 
-	@Import("inventoryItemsStackable")
-	int[] getInventoryItemsStackable();
+    @Import("showUiTab")
+    void setShowUITab(int showUITab);
 
-	@Import("inventoryItemsQuantities")
-	int[] getInventoryItemsQuantities();
+    @Import("inventory")
+    RSItem[] getInventory();
 
-	@Import("loggedIn")
-	int getRSCLoggedIn();
-
-	@Import("fogOfWar")
-	void setFogOfWar(boolean fogOfWar);
-
-	@Import("localPlayer")
-	@Override
-	RSCharacter getLocalPlayer();
-
-	@Import("skillNamesShort")
-	String[] getSkillNamesShort();
-
-	@Import("boostedSkillLevels")
-	int[] getBoostedSkillLevels();
-
-	@Import("realSkillLevels")
-	int[] getRealSkillLevels();
-
-	@Import("statFatigue")
-	int getFatigue();
-
-	@Import("levelXPs")
-	int[] getLevelXPs();
-
-	@Import("skillXPs")
-	int[] getSkillXPs();
-
-	@Import("graphics")
-	Graphics getGraphics$api();
-
-	@Import("surface")
-	RSSpriteSurface getSurface();
-
-	@Import("showUiTab")
-	int getShowUITab();
-
-	@Import("showUiTab")
-	void setShowUITab(int tab);
-
-	@Import("optionMenuCount")
-	int getMenuOptionsSize();
-
-	@Import("chooseOption")
-	void chooseOption$api(int optionIdx);
-
-	@Import("selectedItemSlot")
-	int getSelectedItemSlot();
-
-	@Import("combatStyle")
-	int getCombatStyle();
-
-	@Import("combatStyle")
-	void setCombatStyle(int idx);
-
-	@Import("npcs")
-	RSCharacter[] getNPCs();
-
-	@Import("players")
-	RSCharacter[] getPlayers();
-
-	@Import("drawHitsplatsAboveScene")
-	@Override
-	void setHitsplatsAboveScene(boolean hitsplatsAboveScene);
-
-	@Import("drawHitsplatsAboveScene")
-	@Override
-	boolean isHitsplatsAboveScene();
-
-	@Import("baseX")
-	int getBaseX();
-
-	@Import("baseY")
-	int getBaseY();
-
-	@Import("plane")
-	int getPlane();
-
-	@Import("scene")
-	RSScene getScene();
-
-	@Import("cameraZoom")
-	int getScale();
-
-	@Import("cameraZoom")
-	void setScale(int scale);
+    @Import("selectedItemInventoryIndex")
+    int getSelectedItemSlot();
 }

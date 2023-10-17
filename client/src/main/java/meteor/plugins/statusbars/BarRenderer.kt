@@ -25,10 +25,10 @@
  */
 package meteor.plugins.statusbars
 
-import meteor.Main
 import meteor.game.FontManager
 import meteor.ui.overlay.components.TextComponent
 import net.runelite.api.Skill
+import orsc.Main
 import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.Image
@@ -71,9 +71,9 @@ internal class BarRenderer(var maxValueSupplier: Supplier<Int>? = null,
                 y + BORDER_SIZE + (height - filledHeight),
                 width - BORDER_SIZE * 2,
                 filledHeight - BORDER_SIZE * 2)
-        if (config.enableRestorationBars()) {
+/*        if (config.enableRestorationBars()) {
             renderRestore(graphics, x, y, width, height)
-        }
+        }*/
         if (config.enableSkillIcon() || config.enableCounter()) {
             renderIconsAndCounters(config, graphics, x, y, width)
         }

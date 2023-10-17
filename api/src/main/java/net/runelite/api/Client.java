@@ -25,11 +25,13 @@
 package net.runelite.api;
 
 import net.runelite.api.hooks.Callbacks;
-import rscplus.ItemNamePatchLevel;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import rscplus.ItemNamePatchLevel;
 
 public interface Client
 {
@@ -37,11 +39,9 @@ public interface Client
 
 	void setCallbacks(Callbacks callbacks);
 
-	void main$api();
+	ArrayList<Item> getInventoryItems();
 
-	ArrayList<InventoryItem> getInventoryItems();
-
-	void setInventoryItems(ArrayList<InventoryItem> inventoryItems);
+	void setInventoryItems(ArrayList<Item> inventoryItems);
 
 	int getInventorySize();
 
@@ -63,9 +63,9 @@ public interface Client
 
 	void setCanvas(Canvas canvas);
 
-	JPanel getGamePanel();
+	BufferedImage getGamePanel();
 
-	void setGamePanel(JPanel gamePanel);
+	void setGamePanel(BufferedImage gamePanel);
 
 	void setMaxCanvasWidth(int width);
 
@@ -166,4 +166,7 @@ public interface Client
 	String getUsername();
 
 	void setShowUITab(int tab);
+
+	GameState getGameState();
+
 }

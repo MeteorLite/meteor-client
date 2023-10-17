@@ -68,6 +68,8 @@ public interface Callbacks
 	 */
 	void drawScene(int[] pixels);
 
+	void drawOnTop(int[] pixels);
+
 	/**
 	 * Called after logic that is drawing 2D objects is processed.
 	 */

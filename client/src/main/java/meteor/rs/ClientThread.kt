@@ -24,7 +24,8 @@
  */
 package meteor.rs
 
-import meteor.Main.client
+
+import orsc.Main
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.Executor
 import java.util.function.BooleanSupplier
@@ -49,7 +50,7 @@ object ClientThread : Executor {
      * be ran again, at a later point
      */
     private operator fun invoke(r: BooleanSupplier) {
-        if (client.isClientThread) {
+        if (Main.client.isClientThread) {
             if (!r.asBoolean) {
                 invokes.add(r)
             }
@@ -74,7 +75,7 @@ object ClientThread : Executor {
     }
 
     operator fun invoke() {
-        assert(client.isClientThread)
+        assert(Main.client.isClientThread)
         val ir = invokes.iterator()
         while (ir.hasNext()) {
             val r = ir.next()

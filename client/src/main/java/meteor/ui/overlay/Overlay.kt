@@ -25,10 +25,10 @@
 package meteor.ui.overlay
 
 import com.google.common.base.Strings
-import meteor.Main
 import meteor.plugins.EventSubscriber
 import meteor.ui.components.LayoutableRenderableEntity
 import meteor.util.ColorUtil
+import orsc.Main
 import java.awt.*
 import java.awt.image.BufferedImage
 import kotlin.math.abs

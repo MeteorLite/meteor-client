@@ -5,7 +5,6 @@ import eventbus.events.ConfigChanged
 
 import meteor.Configuration
 import meteor.Logger
-import meteor.Main
 
 import meteor.config.ConfigManager
 
@@ -59,7 +58,7 @@ class Meteor : Plugin() {
 
 
     override fun onConfigChanged(it: ConfigChanged) {
-        if (it.group == Configuration.MASTER_GROUP) {
+/*        if (it.group == Configuration.MASTER_GROUP) {
             when(it.key) {
                 "alwaysOnTop" -> {
                     Main.window!!.window.isAlwaysOnTop = config.alwaysOnTop()
@@ -76,7 +75,7 @@ class Meteor : Plugin() {
                     }
                 }
             }
-        }
+        }*/
 
         when {
             !config.theme() && it.key == "Light theme/Dark theme" -> {

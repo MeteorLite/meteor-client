@@ -1,5 +1,6 @@
 package meteor.plugins.inventorycount
 
+import meteor.game.FontManager
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
 import net.runelite.api.Constants
@@ -17,14 +18,14 @@ class InventoryCountOverlay : Overlay() {
 
     override fun render(graphics: Graphics2D): Dimension? {
         if (client.isLoggedIn) {
-            graphics.color = Color.red
-            graphics.color = Color.white
-            val itemsCarried = if (client.inventoryItems == null) 0 else client.inventoryItems.size - 1
+            graphics.font = FontManager.runescapeFont
+            graphics.color = if (client.inventoryItems.size == 30) Color.red else Color.white
+            val itemsCarried = if (client.inventoryItems == null) 0 else client.inventoryItems.size
             val text = "$itemsCarried/30"
             val tWidth = graphics.fontMetrics.getStringBounds(text, graphics).width
             val tHeight = graphics.fontMetrics.getStringBounds(text, graphics).height + 6
             val padding = 32 - tWidth.toInt()
-            graphics.drawString(text, invRect.x + (padding / 2) + 2, (invRect.y + 32) - tHeight.toInt())
+            graphics.drawString(text, invRect.x + (padding / 2), (invRect.y + 32) - 2)
         }
         return null
     }

@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.FontWeight
 
 object FontUtil {
 
-    val crimson = FontFamily(
+/*    val crimson = FontFamily(
         androidx.compose.ui.text.platform.Font(
             resource = "CrimsonPro-VariableFont_wght.ttf",
             weight = FontWeight.Bold,
@@ -27,5 +27,5 @@ object FontUtil {
             weight = FontWeight.Bold,
             style = FontStyle.Normal
         )
-    )
+    )*/
 }

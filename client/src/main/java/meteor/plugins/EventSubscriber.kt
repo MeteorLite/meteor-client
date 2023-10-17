@@ -3,7 +3,6 @@ package meteor.plugins
 
 import eventbus.events.*
 import kotlinx.coroutines.DelicateCoroutinesApi
-import meteor.Main
 import meteor.events.*
 import org.rationalityfrontline.kevent.*
 

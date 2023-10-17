@@ -18,13 +18,12 @@ import compose.icons.LineAwesomeIcons
 import compose.icons.Octicons
 import compose.icons.lineawesomeicons.PlugSolid
 import compose.icons.octicons.Alert24
-import meteor.Main
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.plugins.Plugin
-import meteor.rs.Applet
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
+import orsc.Main
 
 
 var pluginsOpen = mutableStateOf(false)
@@ -40,9 +39,7 @@ var error = mutableStateOf(false)
 var errorText = mutableStateOf("")
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 const val consoleHeight = 500
-val minimumHeight = Applet().minimalHeight
-val totalClientWidth = Applet().clientWidth + Main.meteorConfig.toolbarWidth()
-val totalMinimalWidth = Applet().minimalWidth
+
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var searchValue = mutableStateOf("")
 var lastButtonClicked : ToolbarButton? = null

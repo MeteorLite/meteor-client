@@ -1,7 +1,5 @@
 package meteor.util
 
-import com.google.common.primitives.Ints
-import meteor.Main
 import java.awt.Image
 import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp

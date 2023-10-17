@@ -145,7 +145,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		//transform(new Java8Ifier(this));
 
-		//transform(new EnumInvokeVirtualFixer(this));
+		transform(new EnumInvokeVirtualFixer(this));
 
 		inject(new CreateAnnotations(this));
 

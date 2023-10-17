@@ -13,11 +13,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import meteor.Main
-import meteor.rs.Applet
 import meteor.ui.composables.preferences.background
 import meteor.ui.composables.preferences.darkThemeColors
 import meteor.ui.composables.toolbar.ToolbarPanel
+import orsc.Main
 
 
 @DslMarker

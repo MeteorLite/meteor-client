@@ -66,7 +66,7 @@ fun hotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDes
     }
     MaterialTheme(colors = darkThemeColors) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth().height(60.dp)) {
-            OutlinedTextField(textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp, textDirection = TextDirection.Ltr, fontFamily = FontUtil.righteous), label = {
+            OutlinedTextField(textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp, textDirection = TextDirection.Ltr/*, fontFamily = FontUtil.righteous*/), label = {
                 Text(configItemDescriptor.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
             }, value = keyBind.toString(), onValueChange = {
                 keyBind.toString()

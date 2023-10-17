@@ -25,10 +25,6 @@
 package meteor.util
 
 import java.awt.image.BufferedImage
-import javax.swing.ImageIcon
-import javax.swing.JButton
-import javax.swing.JComponent
-import javax.swing.JLabel
 
 class AsyncBufferedImage(width: Int, height: Int, imageType: Int) : BufferedImage(width, height, imageType) {
     private val listeners: MutableList<Runnable> = ArrayList()
@@ -58,28 +54,5 @@ class AsyncBufferedImage(width: Int, height: Int, imageType: Int) : BufferedImag
             return
         }
         listeners.add(r)
-    }
-
-    /**
-     * Calls setIcon on c, ensuring it is repainted when this changes
-     */
-    fun addTo(c: JButton) {
-        c.icon = makeIcon(c)
-    }
-
-    /**
-     * Calls setIcon on c, ensuring it is repainted when this changes
-     */
-    fun addTo(c: JLabel) {
-        c.icon = makeIcon(c)
-    }
-
-    private fun makeIcon(c: JComponent): ImageIcon {
-        synchronized(this) {
-            if (!loaded) {
-                listeners.add(Runnable { c.repaint() })
-            }
-        }
-        return ImageIcon(this)
     }
 }

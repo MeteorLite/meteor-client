@@ -26,6 +26,7 @@ dependencies {
     }
 
     with(projects){
+        compileOnly(eventbus)
         compileOnly(api)
         compileOnly(apiRs)
         compileOnly(annotations)

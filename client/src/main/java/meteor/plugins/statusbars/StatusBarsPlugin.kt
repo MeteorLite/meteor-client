@@ -32,7 +32,8 @@ import net.runelite.api.Skill
 
 @PluginDescriptor(
     name = "Status Bars",
-    description = "Draws status bars next to players inventory showing current HP & Prayer and healing amounts"
+    description = "Draws status bars next to players inventory showing current HP & Prayer and healing amounts",
+    enabledByDefault = true
 )
 class StatusBarsPlugin : Plugin() {
     val config = configuration<StatusBarsConfig>()

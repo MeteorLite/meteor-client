@@ -27,12 +27,12 @@ import androidx.compose.ui.unit.sp
 import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft16
 import compose.icons.octicons.ChevronRight16
-import meteor.Main
 
 import meteor.ui.composables.preferences.darkLightMode
 import meteor.ui.composables.preferences.darkThemeColors
 import meteor.ui.composables.preferences.lightThemeColors
 import meteor.ui.composables.preferences.uiColor
+import orsc.Main
 
 
 @Composable

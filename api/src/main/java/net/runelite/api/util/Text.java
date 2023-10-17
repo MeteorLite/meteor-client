@@ -167,7 +167,7 @@ public class Text
      */
     public static String removeFormattingTags(String str)
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuffer stringBuilder = new StringBuffer();
         Matcher matcher = TAG_REGEXP.matcher(str);
         while (matcher.find())
         {

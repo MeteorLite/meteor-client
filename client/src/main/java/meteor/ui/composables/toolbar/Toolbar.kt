@@ -13,8 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
-import meteor.Main
 import meteor.ui.composables.preferences.*
+import orsc.Main
 
 
 val topToolbar: SnapshotStateList<ToolbarButton> by lazy { topButtons }

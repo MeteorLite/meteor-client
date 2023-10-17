@@ -25,8 +25,6 @@
 package meteor.input
 
 import meteor.Logger
-import meteor.Main.client
-import net.runelite.api.GameState
 import java.awt.event.KeyEvent
 import java.util.concurrent.CopyOnWriteArrayList
 

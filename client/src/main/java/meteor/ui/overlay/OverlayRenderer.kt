@@ -2,10 +2,10 @@ package meteor.ui.overlay
 
 import com.google.common.base.MoreObjects
 import com.google.common.primitives.Ints
-import meteor.Main.client
-import meteor.Main.overlayManager
 import meteor.game.FontManager
 import net.runelite.api.Constants
+import orsc.Main.client
+import orsc.Main.overlayManager
 import java.awt.*
 
 class OverlayRenderer {

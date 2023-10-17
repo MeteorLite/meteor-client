@@ -28,7 +28,6 @@ import java.awt.Font
 import java.awt.FontFormatException
 import java.awt.GraphicsEnvironment
 import java.io.IOException
-import javax.swing.text.StyleContext
 
 object FontManager {
     var runescapeFont: Font
@@ -38,34 +37,21 @@ object FontManager {
     var defaultBoldFont: Font? = null
 
     init {
-        val ge: GraphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment()
         try {
-            FontManager::class.java.getResourceAsStream("runescape.ttf").use { inRunescape ->
-                FontManager::class.java.getResourceAsStream("runescape_small.ttf").use { inRunescapeSmall ->
-                    FontManager::class.java.getResourceAsStream("runescape_bold.ttf").use { inRunescapeBold ->
+            ClassLoader.getSystemClassLoader().getResourceAsStream("runescape.ttf").use { inRunescape ->
+                ClassLoader.getSystemClassLoader().getResourceAsStream("runescape_small.ttf").use { inRunescapeSmall ->
+                    ClassLoader.getSystemClassLoader().getResourceAsStream("runescape_bold.ttf").use { inRunescapeBold ->
                         // runescape
-                        val font = Font.createFont(Font.TRUETYPE_FONT, inRunescape)
+                        runescapeFont = Font.createFont(Font.TRUETYPE_FONT, inRunescape)
                             .deriveFont(Font.PLAIN, 16f)
-                        ge.registerFont(font)
-                        runescapeFont = StyleContext.getDefaultStyleContext()
-                            .getFont(font.name, Font.PLAIN, 16)
-                        ge.registerFont(runescapeFont)
 
                         // small
-                        val smallFont = Font.createFont(Font.TRUETYPE_FONT, inRunescapeSmall)
-                            .deriveFont(Font.PLAIN, 16f)
-                        ge.registerFont(smallFont)
-                        runescapeSmallFont = StyleContext.getDefaultStyleContext()
-                            .getFont(smallFont.name, Font.PLAIN, 16)
-                        ge.registerFont(runescapeSmallFont)
+                        runescapeSmallFont = Font.createFont(Font.TRUETYPE_FONT, inRunescapeSmall)
+                            .deriveFont(Font.PLAIN, 12f)
 
                         // bold
-                        val boldFont = Font.createFont(Font.TRUETYPE_FONT, inRunescapeBold)
+                        runescapeBoldFont = Font.createFont(Font.TRUETYPE_FONT, inRunescapeBold)
                             .deriveFont(Font.BOLD, 16f)
-                        ge.registerFont(boldFont)
-                        runescapeBoldFont = StyleContext.getDefaultStyleContext()
-                            .getFont(boldFont.name, Font.BOLD, 16)
-                        ge.registerFont(runescapeBoldFont)
                     }
                 }
             }
@@ -74,7 +60,7 @@ object FontManager {
         } catch (ex: IOException) {
             throw RuntimeException("Font file not found.", ex)
         }
-        defaultFont = Font(Font.DIALOG, Font.PLAIN, 16)
-        defaultBoldFont = Font(Font.DIALOG, Font.BOLD, 16)
+        defaultFont = runescapeFont
+        defaultBoldFont = runescapeBoldFont
     }
 }

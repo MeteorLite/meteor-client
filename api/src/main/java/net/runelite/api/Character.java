@@ -24,7 +24,6 @@
  */
 package net.runelite.api;
 
-import net.runelite.mapping.Import;
 
 public interface Character
 {

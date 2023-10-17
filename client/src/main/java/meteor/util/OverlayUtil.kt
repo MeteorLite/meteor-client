@@ -1,8 +1,5 @@
 package meteor.util
 
-import meteor.Main
-import net.runelite.api.*
-import net.runelite.api.coords.WorldPoint
 import java.awt.*
 import java.awt.image.BufferedImage
 

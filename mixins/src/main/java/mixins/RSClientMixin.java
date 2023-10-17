@@ -25,27 +25,20 @@
  */
 package mixins;
 
-import eventbus.events.ClientTick;
-import eventbus.events.ExperienceGained;
-import eventbus.events.GameStateChanged;
-import net.runelite.api.GameState;
 import net.runelite.api.InventoryItem;
+import net.runelite.api.Item;
 import net.runelite.api.Skill;
-import net.runelite.api.SpriteID;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.mixins.*;
-import net.runelite.rs.api.RSCharacter;
 import net.runelite.rs.api.RSClient;
-import rscplus.ItemNamePatch;
-import rscplus.ItemNamePatchLevel;
+import net.runelite.rs.api.RSItem;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import eventbus.events.ExperienceGained;
+import eventbus.events.GameStateChanged;
+import rscplus.ItemNamePatchLevel;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient {
@@ -70,127 +63,99 @@ public abstract class RSClientMixin implements RSClient {
 	}
 
 	@Inject
-	@FieldHook("isMembers")
-	public void onIsMembersChanged(int idx) {
-		setIsMembers(true);
-	}
-
-	@Inject
-	@MethodHook("<init>")
-	public void onInit() {
-		setInjected(true);
-	}
-
-	@Inject
-	public ArrayList<InventoryItem> inventoryItems = new ArrayList<InventoryItem>();
-
-	@Inject
-	@Override
-	public ArrayList<InventoryItem> getInventoryItems() {
-		return inventoryItems;
-	}
-
-	@Inject
-	@Override
-	public void setInventoryItems(ArrayList<InventoryItem> inventoryItems) {
-		this.inventoryItems = inventoryItems;
-	}
-
-	@Inject
-	Canvas canvas = null;
-
-	@Inject
-	@Override
-	public Canvas getCanvas() {
-		return canvas;
-	}
-
-	@Inject
-	@Override
-	public void setCanvas(Canvas canvas) {
-		this.canvas = canvas;
-	}
-
-	@Inject
-	JPanel gamePanel = null;
-
-	@Inject
-	@Override
-	public JPanel getGamePanel() {
-		return gamePanel;
-	}
-
-	@Inject
-	@Override
-	public void setGamePanel(JPanel canvas) {
-		this.gamePanel = gamePanel;
-	}
-
-	@Inject
-	public boolean isResized = false;
-
-	@Inject
-	@Override
-	public boolean isResized() {
-		return isResized;
-	}
-
-	@Inject
-	@Override
-	public void setResized(boolean resized) {
-		this.isResized = resized;
-	}
-
-	@Inject
-	boolean isResizeCanvasNextFrame = false;
-
-	@Inject
-	@Override
-	public boolean isResizeCanvasNextFrame() {
-		return isResizeCanvasNextFrame;
-	}
-
-	@Inject
-	@Override
-	public void setResizeCanvasNextFrame(boolean resizeCanvasNextFrame) {
-		this.isResizeCanvasNextFrame = resizeCanvasNextFrame;
-	}
-
-	@Inject
-	@Override
-	public void setMaxCanvasHeight(int maxHeight) {
-		int maxWidth = getCanvas().getMaximumSize().width;
-		getCanvas().setMaximumSize(new Dimension(maxWidth, maxHeight));
-	}
-
-	@Inject
-	@Override
-	public void setMaxCanvasWidth(int maxWidth) {
-		int maxHeight = getCanvas().getMaximumSize().height;
-		getCanvas().setMaximumSize(new Dimension(maxWidth, maxHeight));
-	}
+	HashMap<Skill, Integer> lastXPs = new HashMap<>();
 
 	@Inject
 	@Override
 	public boolean isLoggedIn() {
-		return getRSCLoggedIn() == 1;
+		return getGameState() == getGameState().GAME();
+	}
+
+
+	@Inject
+	@FieldHook("gameState1")
+	public void onLoggedInChanged(int idx) {
+		if (!isLoggedIn())
+			lastXPs = null;
+		client.getCallbacks().post(new GameStateChanged(getGameState()));
 	}
 
 	@Inject
-	private Thread thread;
+	@FieldHook("skillXPs")
+	public void onSkillXPChanged(int idx) {
+		if (lastXPs == null)
+			lastXPs = new HashMap<>();
+
+		for (Skill skillChanged : Skill.values()) {
+			if (skillChanged == Skill.OVERALL)
+				continue;
+			int newXP = getSkillXPs()[skillChanged.ordinal()];
+
+			if (lastXPs.get(skillChanged) != null) {
+				int lastXP = lastXPs.get(skillChanged);
+
+				//Only post if it skill already initialized after login
+				if (lastXP != 0 && lastXP != -1 && lastXP != newXP) {
+					client.getCallbacks().post(new ExperienceGained(skillChanged));
+				}
+			}
+
+			lastXPs.put(skillChanged, newXP);
+		}
+	}
+
+	@Inject
+	private ItemNamePatchLevel itemPatchLevel = ItemNamePatchLevel.DISABLED;
 
 	@Inject
 	@Override
-	public boolean isClientThread()
-	{
-		return thread == Thread.currentThread();
+	public  void setItemPatchLevel(ItemNamePatchLevel itemPatchLevel) {
+		this.itemPatchLevel = itemPatchLevel;
 	}
 
 	@Inject
-	@FieldHook(value = "cycle")
-	void onCycle(int idx) {
-		client.getCallbacks().post(ClientTick.INSTANCE);
+	@Override
+	public ItemNamePatchLevel getItemPatchLevel() {
+		return itemPatchLevel;
 	}
+
+	@Shadow("pixels")
+	public static int[] pixels;
+
+	@Inject
+	@MethodHook("drawUi")
+	public void drawUi$head(int var1){
+/*		if (client.isHitsplatsAboveScene())
+			drawHitsplats();*/
+		client.getCallbacks().drawScene(pixels);
+	}
+
+	@Inject
+	@MethodHook(value = "drawUi", end = true)
+	public void drawUi$tail(int var1){
+		client.getCallbacks().drawOnTop(pixels);
+	}
+
+/*	@Shadow("itemNames")
+	public static String[] itemNames;
+
+	@Inject
+	@MethodHook(value = "loadData", end = true)
+	void loadData$tail(){
+		ItemNamePatch.init(itemNames);
+	}
+
+	@Inject
+	@Override
+	public String[] getItemNames() {
+		return itemNames;
+	}
+
+	@Inject
+	@Override
+	public void setItemNames(String[] itemNames) {
+		this.itemNames = itemNames;
+	}*/
 
 	@Inject
 	@Override
@@ -206,27 +171,27 @@ public abstract class RSClientMixin implements RSClient {
 
 	@Inject
 	@Override
-	public int getFatiguePercentage() {
-		return (getFatigue() * 100) / 750;
-	}
-
-	@Inject
-	@Override
 	public int getNextLevelXP(Skill skill) {
-		int nextLevelXP = getLevelXPs()[0];
+		int nextLevelXP = getLevelXPs$api()[0];
 		for(int level = 0; level < 98; level++)
-			if(getXP(skill) >= getLevelXPs()[level])
-				nextLevelXP = getLevelXPs()[level + 1];
+			if(getXP(skill) >= getLevelXPs$api()[level])
+				nextLevelXP = getLevelXPs$api()[level + 1];
 		return nextLevelXP;
 	}
 
 	@Inject
 	@Override
+	public int getFatiguePercentage() {
+		return getFatigue();
+	}
+
+	@Inject
+	@Override
 	public int getCurrentLevelXP(Skill skill) {
-		int nextLevelXP = getLevelXPs()[0];
+		int nextLevelXP = getLevelXPs$api()[0];
 		for(int level = 0; level < 98; level++)
-			if(getXP(skill) >= getLevelXPs()[level])
-				nextLevelXP = getLevelXPs()[level];
+			if(getXP(skill) >= getLevelXPs$api()[level])
+				nextLevelXP = getLevelXPs$api()[level];
 		return nextLevelXP;
 	}
 
@@ -237,42 +202,35 @@ public abstract class RSClientMixin implements RSClient {
 		return nextLevelXP - getXP(skill);
 	}
 
-
 	@Inject
 	@Override
 	public int getXP(Skill skill) {
 		return getSkillXPs()[skill.ordinal()];
 	}
 
-	@Shadow("pixels")
-	public static int[] pixels;
-
-	@Inject
-	@MethodHook("drawUI")
-	public void beforeDrawUI(){
-		if (client.isHitsplatsAboveScene())
-			drawHitsplats();
-		client.getCallbacks().drawScene(pixels);
-	}
-
-	@Inject
-	public void drawHitsplats() {
-		for (RSCharacter npc : client.getNPCs())
-			if (npc != null)
-				npc.drawHitSplat(SpriteID.HITSPLAT_BLUE);
-		for (RSCharacter player : client.getPlayers())
-			if (player != null)
-				player.drawHitSplat(SpriteID.HITSPLAT_RED);
-	}
-
-	@Inject
-	public int lastUITab = -1;
-
 	@Inject
 	@Override
 	public boolean showingInventory() {
 		return getShowUITab() == 1;
 	}
+
+	@Inject
+	public ArrayList<Item> inventoryItems = new ArrayList<>();
+
+	@Inject
+	@Override
+	public ArrayList<Item> getInventoryItems() {
+		return inventoryItems;
+	}
+
+	@Inject
+	@Override
+	public void setInventoryItems(ArrayList<Item> inventoryItems) {
+		this.inventoryItems = inventoryItems;
+	}
+
+	@Inject
+	public int lastUITab = -1;
 
 	@Inject
 	@FieldHook("showUiTab")
@@ -298,210 +256,5 @@ public abstract class RSClientMixin implements RSClient {
 	@MethodHook(value = "chooseOption", end = true)
 	void chooseOption$tail(int optionIdx){
 		setShowUITab(0);
-	}
-
-	@Inject
-	HashMap<Skill, Integer> lastXPs = new HashMap<>();
-
-	@Inject
-	@FieldHook("loggedIn")
-	public void onLoggedInChanged(int idx) {
-		if (!isLoggedIn())
-			lastXPs = null;
-		client.getCallbacks().post(new GameStateChanged(GameState.of(getRSCLoggedIn())));
-	}
-
-	@Inject
-	@FieldHook("skillXPs")
-	public void onSkillXPChanged(int idx) {
-		if (lastXPs == null)
-			lastXPs = new HashMap<>();
-
-		for (Skill skillChanged : Skill.values()) {
-			if (skillChanged == Skill.OVERALL)
-				continue;
-			int newXP = getSkillXPs()[skillChanged.ordinal()];
-
-			if (lastXPs.get(skillChanged) != null) {
-				int lastXP = lastXPs.get(skillChanged);
-
-				//Only post if it skill already initialized after login
-				if (lastXP != 0 && lastXP != -1 && lastXP != newXP) {
-
-					client.getCallbacks().post(new ExperienceGained(skillChanged));
-				}
-			}
-
-			lastXPs.put(skillChanged, newXP);
-		}
-	}
-
-	@Inject
-	public int lastCombatStyle = 0;
-
-	@Inject
-	public File meteorDir;
-
-	@Inject
-	public File lastCombatStyleFile;
-
-	@Inject
-	@FieldHook("combatStyle")
-	public void onCombatStyleChanged(int idx) {
-		if (isLoggedIn()) {
-			try {
-				Files.writeString(lastCombatStyleFile.toPath(), String.valueOf(getCombatStyle()));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	@Replace(value = "getDefaultCombatStyle")
-	public int getDefaultCombatStyle(){
-		int combatStyle = 0;
-
-		//TODO: This should be initialized in a better place
-		if (meteorDir == null)
-			meteorDir = new File(System.getProperty("user.home"), ".meteor-rsc");
-		if (lastCombatStyleFile == null)
-			lastCombatStyleFile = new File(meteorDir, "lastCombatStyle.txt");
-
-		if (!lastCombatStyleFile.exists()) {
-			try {
-				Files.writeString(lastCombatStyleFile.toPath(), String.valueOf(0));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		try {
-			combatStyle = Integer.parseInt(Files.readString(lastCombatStyleFile.toPath()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return combatStyle;
-	}
-
-	@Inject
-	private ItemNamePatchLevel itemPatchLevel = ItemNamePatchLevel.DISABLED;
-
-	@Inject
-	@Override
-	public  void setItemPatchLevel(ItemNamePatchLevel itemPatchLevel) {
-		this.itemPatchLevel = itemPatchLevel;
-	}
-
-	@Inject
-	@Override
-	public ItemNamePatchLevel getItemPatchLevel() {
-		return itemPatchLevel;
-	}
-
-	@Shadow("itemNames")
-	public static String[] itemNames;
-
-	@Inject
-	@MethodHook(value = "loadData", end = true)
-	void loadData$tail(){
-		ItemNamePatch.init(itemNames);
-	}
-
-	@Inject
-	@Override
-	public String[] getItemNames() {
-		return itemNames;
-	}
-
-	@Inject
-	@Override
-	public void setItemNames(String[] itemNames) {
-		this.itemNames = itemNames;
-	}
-
-	@Inject
-	boolean correctHitsplats = false;
-
-	@Inject
-	@Override
-	public boolean isCorrectHitsplats() {
-		return correctHitsplats;
-	}
-
-	@Inject
-	@Override
-	public void setCorrectHitsplats(boolean correctHitsplats) {
-		this.correctHitsplats = correctHitsplats;
-	}
-
-	//This is a placeholder. for now ;p
-	@Inject
-	@Override
-	public boolean isGPU() {
-		return false;
-	}
-
-	@Shadow("tileHeights")
-	public static byte[][] tileHeights;
-
-	@Inject
-	@Override
-	public byte[][] getTileHeights() {
-		return tileHeights;
-	}
-
-	@Inject
-	@Override
-	public int getCameraX() {
-		return getScene().getCameraX();
-	}
-
-	@Inject
-	@Override
-	public int getCameraY() {
-		return getScene().getCameraY();
-	}
-
-	@Inject
-	@Override
-	public int getCameraZ() {
-		return getScene().getCameraZ();
-	}
-
-	@Inject
-	@Override
-	public int getCameraPitch() {
-		return getScene().getCameraPitch();
-	}
-
-	@Inject
-	@Override
-	public int getCameraYaw() {
-		return getScene().getCameraYaw();
-	}
-
-	//Prevent camera from zooming in slowly whil in buildings etc
-	@Inject
-	@FieldHook("fogOfWar")
-	public void onFogOfWarChanged(int idx) {
-		setFogOfWar(false);
-	}
-
-	@Inject
-	@MethodHook(value = "drawPlayer")
-	void drawPlayer$head(int screenX, int screenY, int width, int height, int idx, int j1, int k1){
-		getPlayers()[idx].setScreenX(screenX);
-		getPlayers()[idx].setScreenY(screenY);
-		getPlayers()[idx].setScreenWidth(width);
-		getPlayers()[idx].setScreenHeight(height);
-	}
-
-	@Shadow("username")
-	public static String username;
-
-	@Inject
-	@Override
-	public String getUsername() {
-		return username;
 	}
 }

@@ -1,31 +1,24 @@
 package meteor.plugins
 
 import androidx.compose.runtime.mutableStateListOf
-import meteor.Main.logger
-import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
-import meteor.plugins.hitsplats.HitSplatsPlugin
+import meteor.plugins.inventorycount.InventoryCountPlugin
 import meteor.plugins.meteor.Meteor
 import meteor.plugins.statusbars.StatusBarsPlugin
-import meteor.plugins.itemnamepatch.ItemNamePatchPlugin
-import meteor.plugins.inventorycount.InventoryCountPlugin
-import meteor.plugins.perspectivetest.DevelopPlugin
-import meteor.plugins.stretchedmode.StretchedModePlugin
+import orsc.Main
 
 
 object PluginManager {
     var plugins = mutableStateListOf<Plugin>()
     val runningMap = HashMap<Plugin, Boolean>()
-    init {
+
+    fun start() {
         init<Meteor>()
-        if (pluginsEnabled) {
-            init<ItemNamePatchPlugin>()
-            init<HitSplatsPlugin>()
-            init<InventoryCountPlugin>()
-            init<DevelopPlugin>()
-            init<StatusBarsPlugin>()
-            init<StretchedModePlugin>()
-        }
+        //init<ItemNamePatchPlugin>()
+        //init<HitsplatsPlugin>()
+        init<InventoryCountPlugin>()
+        //init<DevelopPlugin>()
+        init<StatusBarsPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {
@@ -34,7 +27,7 @@ object PluginManager {
             throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
         plugin.configuration?.let {
-            ConfigManager.setDefaultConfiguration(it, false)
+            ConfigManager.setDefaultConfiguration(it::class.java, false)
         }
 
         if (ConfigManager.getConfiguration(
@@ -47,6 +40,7 @@ object PluginManager {
         runningMap[plugin] = plugin.shouldEnable()
         plugins.add(plugin)
 
+        println("Started ${plugin.getName()}!")
         if (runningMap[plugin]!!)
             start(plugin)
     }
@@ -99,7 +93,7 @@ object PluginManager {
         }catch (e:Throwable)
         {
             runningMap[plugin] = false
-            logger.error("FAILED TO START PLUGIN")
+            Main.logger.error("FAILED TO START PLUGIN")
             e.printStackTrace()
         }
     }

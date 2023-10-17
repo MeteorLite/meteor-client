@@ -65,7 +65,8 @@ dependencies {
     with(libs) {
         implementation(guice)
         implementation(java.inject)
-        runtimeOnly(files("./src/main/resources/injected-client.jar"))
+        implementation(files("./src/main/resources/injected-client.jar"))
+        implementation(files("./src/main/resources/discord-rpc.jar"))
 
         //Deob
         implementation(bouncycastle)
