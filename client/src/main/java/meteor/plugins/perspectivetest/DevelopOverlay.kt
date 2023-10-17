@@ -4,16 +4,27 @@ import meteor.ui.overlay.Overlay
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
-import java.awt.Rectangle
 
 class DevelopOverlay : Overlay() {
     override fun render(graphics: Graphics2D): Dimension? {
-        graphics.color = Color.red
-        val rectangle = Rectangle(client.localPlayer.screenX,client.localPlayer.screenY, client.localPlayer.screenWidth, client.localPlayer.screenHeight)
-        val tWidth = graphics.fontMetrics.getStringBounds(client.username, graphics).width
-        val padding = client.localPlayer.screenWidth - tWidth.toInt()
-        graphics.drawString(client.username, client.localPlayer.screenX + (padding / 2), client.localPlayer.screenY)
-        graphics.draw(rectangle)
+        for (player in client.players.filterNotNull()) {
+            player.bounds?.let {
+                graphics.color = if (player == client.localPlayer) Color.blue else Color.red
+                player.name?.let { playerName ->
+                    player.drawTextAboveBounds(graphics, playerName)
+                }
+                graphics.draw(it)
+            }
+        }
+        for (npc in client.npCs.filterNotNull()) {
+            npc.bounds?.let {
+                graphics.color = Color.yellow
+                npc.name?.let { npcName ->
+                    npc.drawTextAboveBounds(graphics, npcName)
+                }
+                graphics.draw(it)
+            }
+        }
         return null
     }
 }

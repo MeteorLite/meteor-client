@@ -10,11 +10,7 @@ import org.rationalityfrontline.kevent.KEventKt;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 @Implements("RSClient")
 public final class mudclient extends NetworkedGame {
@@ -278,7 +274,7 @@ public final class mudclient extends NetworkedGame {
 		return model;
 	}
 
-	void method51(int x, int y, int width, int height, int i1, int j1, int k1) {
+	void drawNPC(int x, int y, int width, int height, int i1, int j1, int k1) {
 		Character rscharacter = npcs[i1];
 		int l1 = rscharacter.animation + (cameraRotation + 16) / 32 & 7;
 		boolean flag = false;
@@ -1571,7 +1567,7 @@ public final class mudclient extends NetworkedGame {
 						if(selectedSpell >= 0) {
 							if(Definitions.anIntArray137[selectedSpell] == 2) {
 								aStringArray727[menuItemsCount] = "Cast " + Definitions.aStringArray133[selectedSpell] + " on";
-								aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+								aStringArray728[menuItemsCount] = "@yel@" + Definitions.npcName[npcs[i2].npcID];
 								menuItemOpcodes[menuItemsCount] = 700;
 								menuItemX[menuItemsCount] = npcs[i2].currentX;
 								menuItemY[menuItemsCount] = npcs[i2].currentY;
@@ -1582,7 +1578,7 @@ public final class mudclient extends NetworkedGame {
 						} else
 						if(selectedItemSlot >= 0) {
 							aStringArray727[menuItemsCount] = "Use " + selectedItemName + " with";
-							aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+							aStringArray728[menuItemsCount] = "@yel@" + Definitions.npcName[npcs[i2].npcID];
 							menuItemOpcodes[menuItemsCount] = 710;
 							menuItemX[menuItemsCount] = npcs[i2].currentX;
 							menuItemY[menuItemsCount] = npcs[i2].currentY;
@@ -1592,7 +1588,7 @@ public final class mudclient extends NetworkedGame {
 						} else {
 							if(Definitions.anIntArray83[i4] > 0) {
 								aStringArray727[menuItemsCount] = "Attack";
-								aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID] + s1;
+								aStringArray728[menuItemsCount] = "@yel@" + Definitions.npcName[npcs[i2].npcID] + s1;
 								if(l3 >= 0)
 									menuItemOpcodes[menuItemsCount] = 715;
 								else
@@ -1603,7 +1599,7 @@ public final class mudclient extends NetworkedGame {
 								menuItemsCount++;
 							}
 							aStringArray727[menuItemsCount] = "Talk-to";
-							aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+							aStringArray728[menuItemsCount] = "@yel@" + Definitions.npcName[npcs[i2].npcID];
 							menuItemOpcodes[menuItemsCount] = 720;
 							menuItemX[menuItemsCount] = npcs[i2].currentX;
 							menuItemY[menuItemsCount] = npcs[i2].currentY;
@@ -1611,7 +1607,7 @@ public final class mudclient extends NetworkedGame {
 							menuItemsCount++;
 							if(!Definitions.aStringArray78[i4].equals("")) {
 								aStringArray727[menuItemsCount] = Definitions.aStringArray78[i4];
-								aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+								aStringArray728[menuItemsCount] = "@yel@" + Definitions.npcName[npcs[i2].npcID];
 								menuItemOpcodes[menuItemsCount] = 725;
 								menuItemX[menuItemsCount] = npcs[i2].currentX;
 								menuItemY[menuItemsCount] = npcs[i2].currentY;
@@ -1619,7 +1615,7 @@ public final class mudclient extends NetworkedGame {
 								menuItemsCount++;
 							}
 							aStringArray727[menuItemsCount] = "Examine";
-							aStringArray728[menuItemsCount] = "@yel@" + Definitions.aStringArray76[npcs[i2].npcID];
+							aStringArray728[menuItemsCount] = "@yel@" + Definitions.npcName[npcs[i2].npcID];
 							menuItemOpcodes[menuItemsCount] = 3700;
 							menuItemIDs[menuItemsCount] = npcs[i2].npcID;
 							menuItemsCount++;
@@ -3760,7 +3756,7 @@ label0:
 							rscharacter2.messageTimeout = 150;
 							rscharacter2.message = s4;
 							if(k32 == localPlayer.serverIndex)
-								sendMessage("@yel@" + Definitions.aStringArray76[rscharacter2.npcID] + ": " + rscharacter2.message, 5);
+								sendMessage("@yel@" + Definitions.npcName[rscharacter2.npcID] + ": " + rscharacter2.message, 5);
 						}
 						i10 += byte9;
 					} else
@@ -6703,7 +6699,7 @@ label0:
 		mouseButtonClick = 0;
 	}
 
-	void method118(int i, int j, int k, int l, int i1, int j1, int k1) {
+	void drawItem(int i, int j, int k, int l, int i1, int j1, int k1) {
 		int l1 = Definitions.anIntArray66[i1] + anInt786;
 		int i2 = Definitions.anIntArray71[i1];
 		surface.method221(i, j, k, l, l1, i2, 0, 0, false);

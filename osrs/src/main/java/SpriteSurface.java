@@ -15,11 +15,11 @@ public final class SpriteSurface extends Surface {
 			return;
 		}
 		if(i1 >= 40000) {
-			aMudclient627.method118(i, j, k, l, i1 - 40000, j1, k1);
+			aMudclient627.drawItem(i, j, k, l, i1 - 40000, j1, k1);
 			return;
 		}
 		if(i1 >= 20000) {
-			aMudclient627.method51(i, j, k, l, i1 - 20000, j1, k1);
+			aMudclient627.drawNPC(i, j, k, l, i1 - 20000, j1, k1);
 			return;
 		}
 		if(i1 >= 5000) {

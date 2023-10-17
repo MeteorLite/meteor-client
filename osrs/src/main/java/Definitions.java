@@ -107,7 +107,7 @@ public class Definitions {
 			}
 
 		anInt75 = method124();
-		aStringArray76 = new String[anInt75];
+		npcName = new String[anInt75];
 		aStringArray77 = new String[anInt75];
 		aStringArray78 = new String[anInt75];
 		anIntArray79 = new int[anInt75];
@@ -126,7 +126,7 @@ public class Definitions {
 		anIntArray92 = new int[anInt75];
 		anIntArray93 = new int[anInt75];
 		for(int i3 = 0; i3 < anInt75; i3++)
-			aStringArray76[i3] = readString();
+			npcName[i3] = readString();
 
 		for(int j3 = 0; j3 < anInt75; j3++)
 			aStringArray77[j3] = readString();
@@ -400,7 +400,7 @@ public class Definitions {
 	public static int[] anIntArray73;
 	public static int anInt74;
 	public static int anInt75;
-	public static String[] aStringArray76;
+	public static String[] npcName;
 	public static String[] aStringArray77;
 	public static String[] aStringArray78;
 	public static int[] anIntArray79;

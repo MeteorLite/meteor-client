@@ -36,6 +36,9 @@ public interface RSCharacter extends Character
     @Import("name")
     String getName();
 
+    @Import("name")
+    void setName(String name);
+
     @Import("serverIndex")
     int getServerIndex();
 

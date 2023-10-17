@@ -32,6 +32,9 @@ import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSCharacter;
 import net.runelite.rs.api.RSClient;
 
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
+
 
 @Mixin(RSCharacter.class)
 public abstract class RSCharacterMixin implements RSCharacter {
@@ -115,5 +118,32 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	@Override
 	public int getScreenHeight() {
 		return this.screenHeight;
+	}
+
+	@Inject
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(screenX, screenY, screenWidth, screenHeight);
+	}
+
+	@Inject
+	@Override
+	public void drawTextAboveBounds(Graphics2D graphics, String text) {
+		int textWidth = (int) graphics.getFontMetrics().getStringBounds(text, graphics).getWidth();
+		int padding = getScreenWidth() - textWidth;
+		graphics.drawString(text, getScreenX() + (padding / 2), getScreenY());
+	}
+
+	@Inject
+	public boolean isNPC = false;
+
+	@Inject
+	public boolean isNPC() {
+		return isNPC;
+	}
+
+	@Inject
+	public void setIsNPC(boolean isNPC) {
+		this.isNPC = isNPC;
 	}
 }

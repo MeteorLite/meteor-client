@@ -496,6 +496,38 @@ public abstract class RSClientMixin implements RSClient {
 		getPlayers()[idx].setScreenHeight(height);
 	}
 
+	@Inject
+	@MethodHook(value = "drawNPC")
+	void drawNPC$head(int screenX, int screenY, int width, int height, int idx, int j1, int k1){
+		getNPCs()[idx].setIsNPC(true);
+		getNPCs()[idx].setName(npcNames[getNPCs()[idx].getNPCID()]);
+		getNPCs()[idx].setScreenX(screenX);
+		getNPCs()[idx].setScreenY(screenY);
+		getNPCs()[idx].setScreenWidth(width);
+		getNPCs()[idx].setScreenHeight(height);
+	}
+
+	@Inject
+	@Override
+	public void resetScreenData() {
+		for (RSCharacter character : getNPCs()) {
+			if (character != null) {
+				character.setScreenX(-1);
+				character.setScreenY(-1);
+				character.setScreenWidth(-1);
+				character.setScreenHeight(-1);
+			}
+		}
+		for (RSCharacter character : getPlayers()) {
+			if (character != null) {
+				character.setScreenX(-1);
+				character.setScreenY(-1);
+				character.setScreenWidth(-1);
+				character.setScreenHeight(-1);
+			}
+		}
+	}
+
 	@Shadow("username")
 	public static String username;
 
@@ -504,4 +536,7 @@ public abstract class RSClientMixin implements RSClient {
 	public String getUsername() {
 		return username;
 	}
+
+	@Shadow("npcName")
+	public static String[] npcNames;
 }

@@ -170,4 +170,10 @@ public interface Client
 	int getCameraRotation();
 
 	void setCameraRotation(int cameraAngle);
+
+	Character[] getNPCs();
+
+	Character[] getPlayers();
+
+	void resetScreenData();
 }

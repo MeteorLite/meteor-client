@@ -31,7 +31,7 @@ import meteor.plugins.PluginDescriptor
 @PluginDescriptor(
     name = "Dev", configGroup = "dev",
     description = "",
-    enabledByDefault = true
+    enabledByDefault = false
 )
 class DevelopPlugin : Plugin() {
 

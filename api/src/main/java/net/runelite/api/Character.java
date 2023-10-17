@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import net.runelite.mapping.Import;
+import java.awt.*;
 
 public interface Character
 {
@@ -60,4 +60,12 @@ public interface Character
     int getScreenHeight();
 
     void setScreenHeight(int screenHeight);
+
+    Rectangle getBounds();
+
+    void drawTextAboveBounds(Graphics2D graphics, String text);
+
+    boolean isNPC();
+
+    void setIsNPC(boolean isNPC);
 }

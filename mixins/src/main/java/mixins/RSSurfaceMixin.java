@@ -45,5 +45,7 @@ public abstract class RSSurfaceMixin implements RSSurface {
 	{
 		if (getGameImage() != null)
 			client.getCallbacks().draw(getGameImage(), x, y);
+
+		client.resetScreenData();
 	}
 }
