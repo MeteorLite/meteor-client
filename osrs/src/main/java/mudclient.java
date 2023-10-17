@@ -6902,10 +6902,17 @@ label0:
 				cameraAutoRotatePlayerX = localPlayer.currentX;
 				cameraAutoRotatePlayerY = localPlayer.currentY;
 			}
+			//These changes prevent camera snapping when zoomed out far
 			if(cameraAutoRotatePlayerX != localPlayer.currentX)
-				cameraAutoRotatePlayerX += (localPlayer.currentX - cameraAutoRotatePlayerX) / (16 + (cameraZoom - 500) / 15);
+				if (!injected)
+					cameraAutoRotatePlayerX += (localPlayer.currentX - cameraAutoRotatePlayerX) / (16 + (cameraZoom - 500) / 15);
+				else
+					cameraAutoRotatePlayerX += (localPlayer.currentX - cameraAutoRotatePlayerX) / 64;
 			if(cameraAutoRotatePlayerY != localPlayer.currentY)
-				cameraAutoRotatePlayerY += (localPlayer.currentY - cameraAutoRotatePlayerY) / (16 + (cameraZoom - 500) / 15);
+				if (!injected)
+					cameraAutoRotatePlayerY += (localPlayer.currentY - cameraAutoRotatePlayerY) / (16 + (cameraZoom - 500) / 15);
+				else
+					cameraAutoRotatePlayerY += (localPlayer.currentY - cameraAutoRotatePlayerY) / 64;
 			if(optionCameraModeAuto) {
 				int k1 = cameraAngle * 32;
 				int j3 = k1 - cameraRotation;

@@ -157,9 +157,12 @@ public class Model {
 	public void method183(int i, int j, int k, int l, int i1, int j1, int k1, 
 			int l1) {
 		method200();
-		if(anInt281 > Scene.anInt400 || anInt282 < Scene.anInt399 || anInt283 > Scene.anInt396 || anInt284 < Scene.anInt395 || anInt285 > Scene.anInt398 || anInt286 < Scene.anInt397) {
-			aBoolean287 = false;
-			return;
+		//This causes a bug when rendering distance is extended and camera angles are specific
+		if (!mudclient.injected) {
+			if(anInt281 > Scene.anInt400 || anInt282 < Scene.anInt399 || anInt283 > Scene.anInt396 || anInt284 < Scene.anInt395 || anInt285 > Scene.anInt398 || anInt286 < Scene.anInt397) {
+				aBoolean287 = false;
+				return;
+			}
 		}
 		aBoolean287 = true;
 		int l2 = 0;

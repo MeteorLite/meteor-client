@@ -480,7 +480,7 @@ public abstract class RSClientMixin implements RSClient {
 		return getScene().getCameraYaw();
 	}
 
-	//Prevent camera from zooming in slowly whil in buildings etc
+	//Prevent camera from zooming in slowly while in buildings etc
 	@Inject
 	@FieldHook("fogOfWar")
 	public void onFogOfWarChanged(int idx) {

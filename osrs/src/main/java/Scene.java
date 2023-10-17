@@ -490,8 +490,8 @@ public class Scene {
 		}
 	}
 
-	private void method273(int i, int j, int k, int l, int i1, int[] ai, int[] ai1,
-                           int[] ai2, Model model, int j1) {
+	private void generateScanLines(int i, int j, int k, int l, int i1, int[] ai, int[] ai1,
+								   int[] ai2, Model model, int j1) {
 		if(i1 == 3) {
 			int k1 = ai1[0] + anInt404;
 			int k2 = ai1[1] + anInt404;
@@ -1941,7 +1941,7 @@ public class Scene {
 							anIntArray441[i12] <<= 6;
 				}
 
-				method273(0, 0, 0, 0, k8, anIntArray439, anIntArray440, anIntArray441, model2, l);
+				generateScanLines(0, 0, 0, 0, k8, anIntArray439, anIntArray440, anIntArray441, model2, l);
 				if(anInt407 > anInt406)
 					method302(0, 0, l10, anIntArray436, anIntArray437, anIntArray438, polygon.anInt366, model2);
 			}
