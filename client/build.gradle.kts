@@ -12,6 +12,7 @@ plugins {
 
 group = "meteor"
 version = "1.0.1-SNAPSHOT"
+val javaVersion = "21"
 
 publishing {
 
@@ -123,7 +124,9 @@ compose {
         application {
             mainClass = "meteor.Main"
             nativeDistributions {
-                version = "1.0.0"
+                packageVersion = project.version.toString().replace("-SNAPSHOT", "")
+                packageName = "meteor-rsc-${project.version}-J$javaVersion"
+
                 targetFormats(Exe, Deb, Dmg)
                 includeAllModules = true
                 windows {
