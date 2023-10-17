@@ -17,9 +17,16 @@ class InventoryCountOverlay : Overlay() {
 
     override fun render(graphics: Graphics2D): Dimension? {
         if (client.isLoggedIn) {
-            graphics.color = Color.red
             graphics.color = Color.white
-            val itemsCarried = if (client.inventoryItems == null) 0 else client.inventoryItems.size - 1
+
+            var itemsCarried = 0
+            if (client.inventoryItems != null)
+                itemsCarried = client.inventoryItems.size - 1
+            if (itemsCarried == 30)
+                graphics.color = Color.red
+            else if (itemsCarried >= 27)
+                graphics.color = Color.yellow
+
             val text = "$itemsCarried/30"
             val tWidth = graphics.fontMetrics.getStringBounds(text, graphics).width
             val tHeight = graphics.fontMetrics.getStringBounds(text, graphics).height + 6
