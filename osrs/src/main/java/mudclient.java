@@ -3783,7 +3783,6 @@ label0:
 				return;
 			}
 			if(i == 245) {
-				System.out.println("Show optionMenu");
 				showOptionMenu = true;
 				int k2 = DataUtils.method340(buffer[1]);
 				optionMenuCount = k2;

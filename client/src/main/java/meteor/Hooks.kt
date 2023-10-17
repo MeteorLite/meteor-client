@@ -233,7 +233,6 @@ class Hooks : Callbacks {
         if (newScale > 4000 || newScale < 300)
             return MouseManager.processMouseWheelMoved(mouseEvent)
         client.scale = newScale
-        println("zoom change: ${client.scale}")
         return MouseManager.processMouseWheelMoved(mouseEvent)
     }
 
