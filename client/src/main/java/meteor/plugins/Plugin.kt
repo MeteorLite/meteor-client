@@ -49,7 +49,6 @@ open class Plugin : EventSubscriber() {
     }
 
     fun start() {
-        println("started ${getName()}")
         subscribe()
         eventListening = true
         for (overlay in overlays)

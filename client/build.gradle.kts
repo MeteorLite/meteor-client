@@ -4,10 +4,10 @@ plugins {
     java
     `maven-publish`
     kotlin("jvm")
-    kotlin("plugin.serialization") version "1.7.21"
-    id("org.jetbrains.compose") version "1.5.10-beta02"
-    id("org.jetbrains.dokka") version "1.7.20"
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    kotlin("plugin.serialization")
+    id("org.jetbrains.compose") version "1.5.10-rc01"
+    id("org.jetbrains.dokka")
+    id("com.github.johnrengelman.shadow")
 }
 
 val majorRelease by rootProject.extra { "1.7" }
@@ -72,7 +72,7 @@ dependencies {
         implementation(proguard)
 
         //GPU
-        //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+        //implementation(KotlinX.serialization.json)
         implementation(jocl)
         implementation(lwjgl)
         implementation(lwjgl.opengl)

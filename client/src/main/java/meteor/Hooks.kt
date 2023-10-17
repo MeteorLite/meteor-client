@@ -193,10 +193,8 @@ class Hooks : Callbacks {
 
     override fun mousePressed(mouseEvent: MouseEvent): MouseEvent {
         val newEvent = MouseManager.processMousePressed(mouseEvent)
-        if (mouseEvent.button == MouseEvent.BUTTON2) {
-            println("WheelPressed")
+        if (mouseEvent.button == MouseEvent.BUTTON2)
             mouseWheelPressed = true
-        }
         return newEvent
     }
 
@@ -208,10 +206,8 @@ class Hooks : Callbacks {
     }
 
     override fun mouseReleased(mouseEvent: MouseEvent): MouseEvent {
-        if (mouseEvent.button == MouseEvent.BUTTON2) {
-            println("WheelReleased")
+        if (mouseEvent.button == MouseEvent.BUTTON2)
             mouseWheelPressed = false
-        }
         return MouseManager.processMouseReleased(mouseEvent)
     }
 
