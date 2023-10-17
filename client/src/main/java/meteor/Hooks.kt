@@ -69,25 +69,22 @@ class Hooks : Callbacks {
 
     }
 
-    val sceneOverlays = createRSBufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
-    val transparent = Color(5,5,5)
+    val transparent = 0
 
-    @OptIn(ExperimentalStdlibApi::class)
     override fun drawScene(pixels: IntArray) {
-        val graphics2d = sceneOverlays.graphics as Graphics2D
-        graphics2d.color = transparent;
-        graphics2d.fillRect(0, 0, sceneOverlays.width, sceneOverlays.height);
+        val overlayImage = BufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT, BufferedImage.TYPE_INT_ARGB)
+        val graphics2d = overlayImage.graphics as Graphics2D
         try {
             overlayRenderer.renderOverlayLayer(graphics2d, OverlayLayer.ABOVE_SCENE)
         } catch (ex: java.lang.Exception) {
             ex.printStackTrace()
         }
-        for (y in 0..<sceneOverlays.height) {
-            for (x in 0..<sceneOverlays.width) {
-                val color = sceneOverlays.getRGB(x, y)
-                if (color != transparent.rgb)
-                setPixel(pixels, sceneOverlays.width+1, sceneOverlays.height+1, x, y,
-                    sceneOverlays.getRGB(x, y))
+        for (y in 0..<Constants.GAME_FIXED_HEIGHT) {
+            for (x in 0..<Constants.GAME_FIXED_WIDTH) {
+                val color = overlayImage.getRGB(x, y)
+                if (color != transparent)
+                setPixel(pixels, Constants.GAME_FIXED_WIDTH+1, Constants.GAME_FIXED_HEIGHT+1, x, y,
+                        overlayImage.getRGB(x, y))
             }
         }
     }
