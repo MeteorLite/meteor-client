@@ -176,4 +176,6 @@ public interface Client
 	Character[] getPlayers();
 
 	void resetScreenData();
+
+	boolean getShowOptionsMenu();
 }

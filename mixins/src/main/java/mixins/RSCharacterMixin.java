@@ -129,9 +129,26 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	@Inject
 	@Override
 	public void drawTextAboveBounds(Graphics2D graphics, String text) {
-		int textWidth = (int) graphics.getFontMetrics().getStringBounds(text, graphics).getWidth();
+		int textWidth = getTextWidth(graphics, text);
 		int padding = getScreenWidth() - textWidth;
 		graphics.drawString(text, getScreenX() + (padding / 2), getScreenY());
+	}
+
+	@Inject
+	@Override
+	public void drawTextAboveBoundsShadowed(Graphics2D graphics, String text) {
+		Color originalColor = graphics.getColor();
+		int textWidth = getTextWidth(graphics, text);
+		int padding = getScreenWidth() - textWidth;
+		graphics.setColor(Color.BLACK);
+		graphics.drawString(text, getScreenX() + (padding / 2) + 1, getScreenY() + 1);
+		graphics.setColor(originalColor);
+		graphics.drawString(text, getScreenX() + (padding / 2), getScreenY());
+	}
+
+	@Inject
+	public int getTextWidth(Graphics2D graphics, String text) {
+		return (int) graphics.getFontMetrics().getStringBounds(text, graphics).getWidth();
 	}
 
 	@Inject

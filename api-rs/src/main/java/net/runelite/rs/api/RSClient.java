@@ -151,4 +151,7 @@ public interface RSClient extends Client
 
 	@Import("cameraRotation")
 	void setCameraRotation(int cameraAngle);
+
+	@Import("showOptionMenu")
+	boolean getShowOptionsMenu();
 }

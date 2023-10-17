@@ -65,6 +65,8 @@ public interface Character
 
     void drawTextAboveBounds(Graphics2D graphics, String text);
 
+    void drawTextAboveBoundsShadowed(Graphics2D graphics, String text);
+
     boolean isNPC();
 
     void setIsNPC(boolean isNPC);

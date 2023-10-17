@@ -11,7 +11,7 @@ class DevelopOverlay : Overlay() {
             player.bounds?.let {
                 graphics.color = if (player == client.localPlayer) Color.blue else Color.red
                 player.name?.let { playerName ->
-                    player.drawTextAboveBounds(graphics, playerName)
+                    player.drawTextAboveBoundsShadowed(graphics, playerName)
                 }
                 graphics.draw(it)
             }
@@ -20,7 +20,7 @@ class DevelopOverlay : Overlay() {
             npc.bounds?.let {
                 graphics.color = Color.yellow
                 npc.name?.let { npcName ->
-                    npc.drawTextAboveBounds(graphics, npcName)
+                    npc.drawTextAboveBoundsShadowed(graphics, npcName)
                 }
                 graphics.draw(it)
             }

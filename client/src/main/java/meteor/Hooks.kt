@@ -250,37 +250,37 @@ class Hooks : Callbacks {
     }
 
     override fun keyPressed(keyEvent: KeyEvent) {
-        if (client.menuOptionsSize >= 1)
+        if (client.showOptionsMenu)
         if (keyEvent.keyCode == KeyEvent.VK_1) {
             client.`chooseOption$api`(0)
             keyEvent.consume()
         }
-        if (client.menuOptionsSize >= 2)
+        if (client.showOptionsMenu)
             if (keyEvent.keyCode == KeyEvent.VK_2) {
                 client.`chooseOption$api`(1)
                 keyEvent.consume()
             }
-        if (client.menuOptionsSize >= 3)
+        if (client.showOptionsMenu)
             if (keyEvent.keyCode == KeyEvent.VK_3) {
                 client.`chooseOption$api`(2)
                 keyEvent.consume()
             }
-        if (client.menuOptionsSize >= 4)
+        if (client.showOptionsMenu)
             if (keyEvent.keyCode == KeyEvent.VK_4) {
                 client.`chooseOption$api`(3)
                 keyEvent.consume()
             }
-        if (client.menuOptionsSize >= 5)
+        if (client.showOptionsMenu)
             if (keyEvent.keyCode == KeyEvent.VK_5) {
                 client.`chooseOption$api`(4)
                 keyEvent.consume()
             }
-        if (client.menuOptionsSize >= 6)
+        if (client.showOptionsMenu)
             if (keyEvent.keyCode == KeyEvent.VK_6) {
                 client.`chooseOption$api`(5)
                 keyEvent.consume()
             }
-        if (client.showingInventory())
+        if (client.showOptionsMenu)
             if (keyEvent.keyCode == KeyEvent.VK_ESCAPE)
                 client.setShowUITab(0)
         return KeyManager.processKeyPressed(keyEvent)
