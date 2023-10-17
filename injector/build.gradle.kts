@@ -49,8 +49,8 @@ tasks{
 }
 
 tasks.compileJava {
-    sourceCompatibility = JavaVersion.VERSION_20.toString()
-    targetCompatibility = JavaVersion.VERSION_20.toString()
+    sourceCompatibility = JavaVersion.VERSION_21.toString()
+    targetCompatibility = JavaVersion.VERSION_21.toString()
 }
 
 

@@ -10,10 +10,8 @@ plugins {
     id("com.github.johnrengelman.shadow")
 }
 
-val majorRelease by rootProject.extra { "1.7" }
-val release by rootProject.extra { "2" }
 group = "meteor"
-version = "${majorRelease.split(".")[0]}.${majorRelease.split(".")[1]}.$release"
+version = "1.0.1-SNAPSHOT"
 
 publishing {
 
@@ -170,7 +168,7 @@ tasks {
         dependsOn(":injector:inject")
     }
     jar {
-        archiveFileName.set("meteor-client-$majorRelease-r$release.jar")
+        archiveFileName.set("meteor-client-$version.jar")
 
         manifest {
             attributes(mutableMapOf("Main-class" to "meteor.Main"))
@@ -214,14 +212,14 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
 }
 
 tasks.compileJava {
-    sourceCompatibility = JavaVersion.VERSION_20.toString()
-    targetCompatibility = JavaVersion.VERSION_20.toString()
+    sourceCompatibility = JavaVersion.VERSION_21.toString()
+    targetCompatibility = JavaVersion.VERSION_21.toString()
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         languageVersion = "2.0"
-        jvmTarget = "20"
+        jvmTarget = "21"
         freeCompilerArgs = listOf(
             "-Xjvm-default=all",
             "-Xbackend-threads=4"
