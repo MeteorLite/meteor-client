@@ -1,9 +1,15 @@
 package meteor.plugins.indicators
 
 import meteor.ui.overlay.Overlay
+import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Point
+import java.text.DecimalFormat
+import kotlin.math.floor
+import kotlin.math.log10
+import kotlin.math.pow
+
 
 class IndicatorsOverlay(val config: IndicatorsConfig) : Overlay() {
     val tileItemPiles = HashMap<Point, Int>()
@@ -55,8 +61,17 @@ class IndicatorsOverlay(val config: IndicatorsConfig) : Overlay() {
                         graphics.color = config.tileItemColor()
                         var text = client.itemNames[tileItemKey.id]
                         if (tileItemValue > 1)
-                            text += " ($tileItemValue)"
-                        text += " (${getValueText((client.getItemBasePrice(tileItemKey.id) * tileItemValue))}gp)"
+                            text += " x$tileItemValue"
+                        val itemStackValue = (client.getItemBasePrice(tileItemKey.id) * tileItemValue).toDouble()
+                        if (itemStackValue >= lowValuePrice())
+                            graphics.color = lowValueColor()
+                        if (itemStackValue >= mediumValuePrice())
+                            graphics.color = mediumValueColor()
+                        if (itemStackValue >= highValuePrice())
+                            graphics.color = highValueColor()
+                        if (itemStackValue >= insaneValuePrice())
+                            graphics.color = insaneValueColor()
+                        text += " (${prettyCount(itemStackValue)})"
                         if (config.drawTileItemName())
                             tileItemKey.drawTextAboveBoundsShadowed(graphics, text, tileItemPiles[point]!!)
                         if (config.drawTileItemBounds())
@@ -67,10 +82,46 @@ class IndicatorsOverlay(val config: IndicatorsConfig) : Overlay() {
         return null
     }
 
-    fun getValueText(value: Int): String {
-        return if (value < 10000)
-            "$value"
-        else
-            "%.2f".format(value)
+    fun prettyCount(number: Number): String {
+        val suffix = charArrayOf(' ', 'k', 'M', 'B', 'T', 'P', 'E')
+        val numValue = number.toLong()
+        val value = floor(log10(numValue.toDouble())).toInt()
+        val base = value / 3
+        return if (value >= 3 && base < suffix.size) {
+            DecimalFormat("#0.0").format(numValue / 10.toDouble().pow((base * 3).toDouble())) + suffix[base]
+        } else {
+            DecimalFormat("#,##0").format(numValue)
+        }
+    }
+    fun lowValuePrice(): Int {
+        return 10000
+    }
+
+    fun lowValueColor(): Color {
+        return Color.decode("#66B2FF")
+    }
+
+    fun mediumValuePrice(): Int {
+        return 50000
+    }
+
+    fun mediumValueColor(): Color {
+        return Color.decode("#99FF99")
+    }
+
+    fun highValuePrice(): Int {
+        return 350000
+    }
+
+    fun highValueColor(): Color {
+        return Color.decode("#FF9600")
+    }
+
+    fun insaneValuePrice(): Int {
+        return 2000000
+    }
+
+    fun insaneValueColor(): Color {
+        return Color.decode("#FF66B2")
     }
 }
