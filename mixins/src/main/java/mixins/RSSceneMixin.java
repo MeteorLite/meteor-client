@@ -25,10 +25,7 @@
  */
 package mixins;
 
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
+import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSGameShell;
 import net.runelite.rs.api.RSScene;
@@ -56,5 +53,11 @@ public abstract class RSSceneMixin implements RSScene {
 	@FieldHook(value = "clipFar3d")
 	void onClipFar3DChanged(int idx) {
 		setClipFar3D(Integer.MAX_VALUE);
+	}
+
+	@Inject
+	@MethodHook(value = "render")
+	public void onRender$head() {
+		client.clearItems();
 	}
 }

@@ -1861,7 +1861,7 @@ public class Scene {
 				j11 = model2.anIntArray289[ai2[1]] - j7;
 				int l11 = j7 - i10 / 2;
 				int j12 = (anInt404 + j8) - k10;
-				aSurface423.method220(l11 + anInt417, j12, i10, k10, spriteId[l], j11, (256 << viewDistance) / j9);
+				aSurface423.spriteClipping(l11 + anInt417, j12, i10, k10, spriteId[l], j11, (256 << viewDistance) / j9);
 				if(aBoolean409 && anInt410 < anInt411) {
 					l11 += (spriteTranslateX[l] << viewDistance) / j9;
 					if(anInt412 >= j12 && anInt412 <= j12 + k10 && anInt413 >= l11 && anInt413 <= l11 + i10 && !model2.aBoolean264 && model2.isLocalPlayer[l] == 0) {

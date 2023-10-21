@@ -28,10 +28,7 @@ package mixins;
 import eventbus.events.ClientTick;
 import eventbus.events.ExperienceGained;
 import eventbus.events.GameStateChanged;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryItem;
-import net.runelite.api.Skill;
-import net.runelite.api.SpriteID;
+import net.runelite.api.*;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSCharacter;
@@ -42,7 +39,6 @@ import rscplus.ItemNamePatchLevel;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -507,6 +503,69 @@ public abstract class RSClientMixin implements RSClient {
 		getNPCs()[idx].setScreenHeight(height);
 	}
 
+
+	@Inject
+	@MethodHook(value = "drawItem")
+	void drawItem$head(int screenX, int screenY, int width, int height, int idx, int j1, int k1){
+		TileItem tileItem = new TileItem(idx, screenX, screenY, width, height);
+		tileItems.add(tileItem);
+		Point existingPoint = null;
+		for (Point point : tileItemQuantities.keySet()) {
+			if (point.x == screenX)
+				if (point.y == screenY)
+					existingPoint = point;
+		}
+		if (existingPoint != null) {
+			HashMap<TileItem, Integer> itemPiles = tileItemQuantities.get(existingPoint);
+			TileItem existingTileItemPile = null;
+			for (TileItem itemPile : itemPiles.keySet()) {
+				if (itemPile.getX() == screenX)
+					if (itemPile.getY() == screenY)
+						if (itemPile.getId() == idx)
+							existingTileItemPile = itemPile;
+			}
+			if (existingTileItemPile != null) {
+				int itemQuantity = itemPiles.get(existingTileItemPile) + 1;
+				itemPiles.put(existingTileItemPile, itemQuantity);
+			} else
+				itemPiles.put(tileItem, 1);
+			tileItemQuantities.put(existingPoint, itemPiles);
+		} else {
+			HashMap<TileItem, Integer> newItemPileSizes = new HashMap<>();
+			newItemPileSizes.put(tileItem, 1);
+			tileItemQuantities.put(new Point(screenX, screenY), newItemPileSizes);
+		}
+	}
+
+	@Inject
+	public ArrayList<TileItem> tileItems = new ArrayList<>();
+
+	@Inject
+	public HashMap<Point, HashMap<TileItem, Integer>> tileItemQuantities = new HashMap<>();
+
+	@Inject
+	@Override
+	public ArrayList<TileItem> getTileItems() {
+		return tileItems;
+	}
+
+	@Inject
+	@Override
+	public HashMap<Point, HashMap<TileItem, Integer>> getTileItemQuantities() {
+		return tileItemQuantities;
+	}
+
+	@Inject
+	@Override
+	public void clearItems() {
+		if (tileItems == null)
+			tileItems = new ArrayList<>();
+		tileItems.clear();
+		if (tileItemQuantities == null)
+			tileItemQuantities = new HashMap<>();
+		tileItemQuantities.clear();
+	}
+
 	@Inject
 	@Override
 	public void resetScreenData() {
@@ -539,4 +598,13 @@ public abstract class RSClientMixin implements RSClient {
 
 	@Shadow("npcName")
 	public static String[] npcNames;
+
+	@Shadow("itemBasePrice")
+	public static int[] itemBasePrices;
+
+	@Inject
+	@Override
+	public int getItemBasePrice(int itemID) {
+		return itemBasePrices[itemID];
+	}
 }

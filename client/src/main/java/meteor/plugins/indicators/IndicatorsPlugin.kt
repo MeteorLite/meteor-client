@@ -23,20 +23,21 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.perspectivetest
+package meteor.plugins.indicators
 
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 
 @PluginDescriptor(
-    name = "Dev", configGroup = "dev",
+    name = "Indicators", configGroup = "indicators",
     description = "",
-    enabledByDefault = false
+    enabledByDefault = true
 )
-class DevelopPlugin : Plugin() {
-
-    val overlay = overlay(DevelopOverlay())
+class IndicatorsPlugin : Plugin() {
+    val config = configuration<IndicatorsConfig>()
+    val overlay = overlay(IndicatorsOverlay(config))
     override fun onStart() {
+
     }
 
     override fun onStop() {

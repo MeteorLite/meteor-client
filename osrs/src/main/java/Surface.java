@@ -303,12 +303,12 @@ public class Surface
 
 	}
 
-	public void method220(int i, int j, int k, int l, int i1, int j1, int k1) {
-		method245(i, j, k, l, i1);
+	public void spriteClipping(int i, int j, int k, int l, int i1, int j1, int k1) {
+		spriteClipping(i, j, k, l, i1);
 	}
 
-	public void method221(int i, int j, int k, int l, int i1, int j1, int k1, 
-			int l1, boolean flag) {
+	public void spriteClipping(int i, int j, int k, int l, int i1, int j1, int k1,
+							   int l1, boolean flag) {
 		try {
 			if(j1 == 0)
 				j1 = 0xffffff;
@@ -1448,7 +1448,7 @@ label3:
 
 	}
 
-	public void method245(int i, int j, int k, int l, int i1) {
+	public void spriteClipping(int i, int j, int k, int l, int i1) {
 		try {
 			int j1 = anIntArray325[i1];
 			int k1 = anIntArray326[i1];

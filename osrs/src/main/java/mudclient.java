@@ -167,7 +167,7 @@ public final class mudclient extends NetworkedGame {
 		surface.method235(anInt658 + 10);
 	}
 
-	void method48(int i, int j, int k, int l, int i1, int j1, int k1) {
+	void drawTeleportBubble(int i, int j, int k, int l, int i1, int j1, int k1) {
 		int l1 = teleportBubbleType[i1];
 		int i2 = teleportBubbleTime[i1];
 		if(l1 == 0) {
@@ -335,7 +335,7 @@ public final class mudclient extends NetworkedGame {
 						j5 = Definitions.anIntArray87[rscharacter.npcID];
 						k5 = Definitions.anIntArray88[rscharacter.npcID];
 					}
-					surface.method221(x + i4, y + j4, i5, height, l4, j5, k5, j1, flag);
+					surface.spriteClipping(x + i4, y + j4, i5, height, l4, j5, k5, j1, flag);
 				}
 			}
 		}
@@ -473,7 +473,7 @@ public final class mudclient extends NetworkedGame {
 					else
 					if(i6 == 3)
 						i6 = anIntArray697[rscharacter.bottomColor];
-					surface.method221(x + k4, y + i5, l5, height, k5, i6, j6, j1, flag);
+					surface.spriteClipping(x + k4, y + i5, l5, height, k5, i6, j6, j1, flag);
 				}
 			}
 		}
@@ -533,7 +533,7 @@ public final class mudclient extends NetworkedGame {
 				k3 += (20 * k1) / 100;
 			int j4 = (16 * k1) / 100;
 			int l4 = (16 * k1) / 100;
-			surface.method245(k3 - j4 / 2, y - l4 / 2 - (10 * k1) / 100, j4, l4, anInt658 + 13);
+			surface.spriteClipping(k3 - j4 / 2, y - l4 / 2 - (10 * k1) / 100, j4, l4, anInt658 + 13);
 		}
 	}
 
@@ -990,7 +990,7 @@ public final class mudclient extends NetworkedGame {
 			surface.method262(i1 - l3 / 2, k4, l3, j4, anInt658 + 9, 85);
 			int l4 = (36 * k2) / 100;
 			int i5 = (24 * k2) / 100;
-			surface.method221(i1 - l4 / 2, (k4 + j4 / 2) - i5 / 2, l4, i5, Definitions.anIntArray66[j3] + anInt786, Definitions.anIntArray71[j3], 0, 0, false);
+			surface.spriteClipping(i1 - l4 / 2, (k4 + j4 / 2) - i5 / 2, l4, i5, Definitions.itemImages[j3] + spriteItem, Definitions.itemMasks[j3], 0, 0, false);
 		}
 
 		for(int j1 = 0; j1 < anInt691; j1++) {
@@ -1198,14 +1198,14 @@ public final class mudclient extends NetworkedGame {
 		i += 116;
 		j -= 25;
 		surface.method248(i - 32 - 55, j, 64, 102, Definitions.anIntArray103[anInt750], anIntArray697[anInt747]);
-		surface.method221(i - 32 - 55, j, 64, 102, Definitions.anIntArray103[anInt739], anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
-		surface.method221(i - 32 - 55, j, 64, 102, Definitions.anIntArray103[anInt731], anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
+		surface.spriteClipping(i - 32 - 55, j, 64, 102, Definitions.anIntArray103[anInt739], anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
+		surface.spriteClipping(i - 32 - 55, j, 64, 102, Definitions.anIntArray103[anInt731], anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
 		surface.method248(i - 32, j, 64, 102, Definitions.anIntArray103[anInt750] + 6, anIntArray697[anInt747]);
-		surface.method221(i - 32, j, 64, 102, Definitions.anIntArray103[anInt739] + 6, anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
-		surface.method221(i - 32, j, 64, 102, Definitions.anIntArray103[anInt731] + 6, anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
+		surface.spriteClipping(i - 32, j, 64, 102, Definitions.anIntArray103[anInt739] + 6, anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
+		surface.spriteClipping(i - 32, j, 64, 102, Definitions.anIntArray103[anInt731] + 6, anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
 		surface.method248((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt750] + 12, anIntArray697[anInt747]);
-		surface.method221((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt739] + 12, anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
-		surface.method221((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt731] + 12, anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
+		surface.spriteClipping((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt739] + 12, anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
+		surface.spriteClipping((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt731] + 12, anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
 		surface.drawSprite(0, gameHeight, anInt658 + 22);
 		surface.drawSurface(graphics, 0, 0);
 	}
@@ -2014,7 +2014,7 @@ public final class mudclient extends NetworkedGame {
 					surface.method224(l8, i9, 49, 34, i7, 160);
 				surface.method214(l8, i9, 50, 35, 0);
 				if(k7 < anInt663 && anIntArray664[k7] != -1) {
-					surface.method221(l8, i9, 48, 32, anInt786 + Definitions.anIntArray66[anIntArray664[k7]], Definitions.anIntArray71[anIntArray664[k7]], 0, 0, false);
+					surface.spriteClipping(l8, i9, 48, 32, spriteItem + Definitions.itemImages[anIntArray664[k7]], Definitions.itemMasks[anIntArray664[k7]], 0, 0, false);
 					surface.drawString(String.valueOf(anIntArray666[k7]), l8 + 1, i9 + 10, 1, 65280);
 					surface.method243(String.valueOf(method68(anIntArray664[k7])), l8 + 47, i9 + 29, 1, 65535);
 				}
@@ -2135,23 +2135,23 @@ public final class mudclient extends NetworkedGame {
 				}
 
 				if(anInt850 >= 0) {
-					int j2 = anIntArray849[anInt850];
-					if(j2 != -1) {
+					int itemType = anIntArray849[anInt850];
+					if(itemType != -1) {
 						if(anIntArray852[anInt850] > 0 && i > 298 && j >= 204 && i < 408 && j <= 215) {
 							int i3 = anInt853 + anIntArray854[anInt850];
 							if(i3 < 10)
 								i3 = 10;
-							int i4 = (i3 * Definitions.anIntArray67[j2]) / 100;
+							int i4 = (i3 * Definitions.itemBasePrice[itemType]) / 100;
 							super.packetStream.createPacket(236);
 							super.packetStream.putShort(anIntArray849[anInt850]);
 							super.packetStream.put4(i4);
 							super.packetStream.endPacket();
 						}
-						if(method68(j2) > 0 && i > 2 && j >= 229 && i < 112 && j <= 240) {
+						if(method68(itemType) > 0 && i > 2 && j >= 229 && i < 112 && j <= 240) {
 							int j3 = anInt855 + anIntArray854[anInt850];
 							if(j3 < 10)
 								j3 = 10;
-							int j4 = (j3 * Definitions.anIntArray67[j2]) / 100;
+							int j4 = (j3 * Definitions.itemBasePrice[itemType]) / 100;
 							super.packetStream.createPacket(221);
 							super.packetStream.putShort(anIntArray849[anInt850]);
 							super.packetStream.put4(j4);
@@ -2194,7 +2194,7 @@ public final class mudclient extends NetworkedGame {
 					surface.method224(j5, i6, 49, 34, k2, 160);
 				surface.method214(j5, i6, 50, 35, 0);
 				if(anIntArray849[k3] != -1) {
-					surface.method221(j5, i6, 48, 32, anInt786 + Definitions.anIntArray66[anIntArray849[k3]], Definitions.anIntArray71[anIntArray849[k3]], 0, 0, false);
+					surface.spriteClipping(j5, i6, 48, 32, spriteItem + Definitions.itemImages[anIntArray849[k3]], Definitions.itemMasks[anIntArray849[k3]], 0, 0, false);
 					surface.drawString(String.valueOf(anIntArray852[k3]), j5 + 1, i6 + 10, 1, 65280);
 					surface.method243(String.valueOf(method68(anIntArray849[k3])), j5 + 47, i6 + 10, 1, 65535);
 				}
@@ -2214,7 +2214,7 @@ public final class mudclient extends NetworkedGame {
 				int k5 = anInt853 + anIntArray854[anInt850];
 				if(k5 < 10)
 					k5 = 10;
-				int j6 = (k5 * Definitions.anIntArray67[i5]) / 100;
+				int j6 = (k5 * Definitions.itemBasePrice[i5]) / 100;
 				surface.drawString("Buy a new " + Definitions.itemNames[i5] + " for " + j6 + "gp", byte0 + 2, byte1 + 214, 1, 0xffff00);
 				int k1 = 0xffffff;
 				if(super.mouseX > byte0 + 298 && super.mouseY >= byte1 + 204 && super.mouseX < byte0 + 408 && super.mouseY <= byte1 + 215)
@@ -2227,7 +2227,7 @@ public final class mudclient extends NetworkedGame {
 				int l5 = anInt855 + anIntArray854[anInt850];
 				if(l5 < 10)
 					l5 = 10;
-				int k6 = (l5 * Definitions.anIntArray67[i5]) / 100;
+				int k6 = (l5 * Definitions.itemBasePrice[i5]) / 100;
 				surface.method243("Sell your " + Definitions.itemNames[i5] + " for " + k6 + "gp", byte0 + 405, byte1 + 239, 1, 0xffff00);
 				int l1 = 0xffffff;
 				if(super.mouseX > byte0 + 2 && super.mouseY >= byte1 + 229 && super.mouseX < byte0 + 112 && super.mouseY <= byte1 + 240)
@@ -4528,7 +4528,7 @@ label0:
 			i -= 30;
 			if(k > 30)
 				k = 30;
-			surface.method211(anInt786 + (j - 1) * 30, DataUtils.loadData("objects" + j + ".dat", 0, abyte0), abyte1, k);
+			surface.method211(spriteItem + (j - 1) * 30, DataUtils.loadData("objects" + j + ".dat", 0, abyte0), abyte1, k);
 		}
 
 		surface.method210(anInt658);
@@ -4540,7 +4540,7 @@ label0:
 			surface.method210(anInt942 + i1);
 
 		for(int j1 = 0; j1 < Definitions.anInt74; j1++)
-			surface.method210(anInt786 + j1);
+			surface.method210(spriteItem + j1);
 
 	}
 
@@ -5387,7 +5387,7 @@ label0:
 				surface.drawString(Definitions.aStringArray134[i3], i + 2, j + 136, 0, 0xffffff);
 				for(int i4 = 0; i4 < Definitions.anIntArray136[i3]; i4++) {
 					int i5 = Definitions.anIntArrayArray138[i3][i4];
-					surface.drawSprite(i + 2 + i4 * 44, j + 150, anInt786 + Definitions.anIntArray66[i5]);
+					surface.drawSprite(i + 2 + i4 * 44, j + 150, spriteItem + Definitions.itemImages[i5]);
 					int j5 = method68(i5);
 					int k5 = Definitions.anIntArrayArray139[i3][i4];
 					String s2 = "@red@";
@@ -5501,7 +5501,7 @@ label0:
 			else
 				surface.method224(k, i1, 49, 34, Surface.method222(181, 181, 181), 128);
 			if(j < inventorySize) {
-				surface.method221(k, i1, 48, 32, anInt786 + Definitions.anIntArray66[inventoryItemsIDs[j]], Definitions.anIntArray71[inventoryItemsIDs[j]], 0, 0, false);
+				surface.spriteClipping(k, i1, 48, 32, spriteItem + Definitions.itemImages[inventoryItemsIDs[j]], Definitions.itemMasks[inventoryItemsIDs[j]], 0, 0, false);
 				if(Definitions.inventoryItemsStackable[inventoryItemsIDs[j]] == 0)
 					surface.drawString(String.valueOf(inventoryItemsQuantities[j]), k + 1, i1 + 10, 1, 0xffff00);
 			}
@@ -6198,7 +6198,7 @@ label0:
 		for(int l4 = 0; l4 < inventorySize; l4++) {
 			int i5 = 217 + byte0 + (l4 % 5) * 49;
 			int k5 = 31 + byte1 + (l4 / 5) * 34;
-			surface.method221(i5, k5, 48, 32, anInt786 + Definitions.anIntArray66[inventoryItemsIDs[l4]], Definitions.anIntArray71[inventoryItemsIDs[l4]], 0, 0, false);
+			surface.spriteClipping(i5, k5, 48, 32, spriteItem + Definitions.itemImages[inventoryItemsIDs[l4]], Definitions.itemMasks[inventoryItemsIDs[l4]], 0, 0, false);
 			if(Definitions.inventoryItemsStackable[inventoryItemsIDs[l4]] == 0)
 				surface.drawString(String.valueOf(inventoryItemsQuantities[l4]), i5 + 1, k5 + 10, 1, 0xffff00);
 		}
@@ -6206,7 +6206,7 @@ label0:
 		for(int j5 = 0; j5 < anInt893; j5++) {
 			int l5 = 9 + byte0 + (j5 % 4) * 49;
 			int j6 = 31 + byte1 + (j5 / 4) * 34;
-			surface.method221(l5, j6, 48, 32, anInt786 + Definitions.anIntArray66[anIntArray971[j5]], Definitions.anIntArray71[anIntArray971[j5]], 0, 0, false);
+			surface.spriteClipping(l5, j6, 48, 32, spriteItem + Definitions.itemImages[anIntArray971[j5]], Definitions.itemMasks[anIntArray971[j5]], 0, 0, false);
 			if(Definitions.inventoryItemsStackable[anIntArray971[j5]] == 0)
 				surface.drawString(String.valueOf(anIntArray972[j5]), l5 + 1, j6 + 10, 1, 0xffff00);
 			if(super.mouseX > l5 && super.mouseX < l5 + 48 && super.mouseY > j6 && super.mouseY < j6 + 32)
@@ -6216,7 +6216,7 @@ label0:
 		for(int i6 = 0; i6 < anInt894; i6++) {
 			int k6 = 9 + byte0 + (i6 % 4) * 49;
 			int l6 = 124 + byte1 + (i6 / 4) * 34;
-			surface.method221(k6, l6, 48, 32, anInt786 + Definitions.anIntArray66[anIntArray909[i6]], Definitions.anIntArray71[anIntArray909[i6]], 0, 0, false);
+			surface.spriteClipping(k6, l6, 48, 32, spriteItem + Definitions.itemImages[anIntArray909[i6]], Definitions.itemMasks[anIntArray909[i6]], 0, 0, false);
 			if(Definitions.inventoryItemsStackable[anIntArray909[i6]] == 0)
 				surface.drawString(String.valueOf(anIntArray910[i6]), k6 + 1, l6 + 10, 1, 0xffff00);
 			if(super.mouseX > k6 && super.mouseX < k6 + 48 && super.mouseY > l6 && super.mouseY < l6 + 32)
@@ -6379,7 +6379,7 @@ label0:
 		for(int l4 = 0; l4 < inventorySize; l4++) {
 			int i5 = 217 + byte0 + (l4 % 5) * 49;
 			int k5 = 31 + byte1 + (l4 / 5) * 34;
-			surface.method221(i5, k5, 48, 32, anInt786 + Definitions.anIntArray66[inventoryItemsIDs[l4]], Definitions.anIntArray71[inventoryItemsIDs[l4]], 0, 0, false);
+			surface.spriteClipping(i5, k5, 48, 32, spriteItem + Definitions.itemImages[inventoryItemsIDs[l4]], Definitions.itemMasks[inventoryItemsIDs[l4]], 0, 0, false);
 			if(Definitions.inventoryItemsStackable[inventoryItemsIDs[l4]] == 0)
 				surface.drawString(String.valueOf(inventoryItemsQuantities[l4]), i5 + 1, k5 + 10, 1, 0xffff00);
 		}
@@ -6387,7 +6387,7 @@ label0:
 		for(int j5 = 0; j5 < anInt887; j5++) {
 			int l5 = 9 + byte0 + (j5 % 4) * 49;
 			int j6 = 31 + byte1 + (j5 / 4) * 34;
-			surface.method221(l5, j6, 48, 32, anInt786 + Definitions.anIntArray66[anIntArray974[j5]], Definitions.anIntArray71[anIntArray974[j5]], 0, 0, false);
+			surface.spriteClipping(l5, j6, 48, 32, spriteItem + Definitions.itemImages[anIntArray974[j5]], Definitions.itemMasks[anIntArray974[j5]], 0, 0, false);
 			if(Definitions.inventoryItemsStackable[anIntArray974[j5]] == 0)
 				surface.drawString(String.valueOf(anIntArray975[j5]), l5 + 1, j6 + 10, 1, 0xffff00);
 			if(super.mouseX > l5 && super.mouseX < l5 + 48 && super.mouseY > j6 && super.mouseY < j6 + 32)
@@ -6397,7 +6397,7 @@ label0:
 		for(int i6 = 0; i6 < anInt888; i6++) {
 			int k6 = 9 + byte0 + (i6 % 4) * 49;
 			int l6 = 156 + byte1 + (i6 / 4) * 34;
-			surface.method221(k6, l6, 48, 32, anInt786 + Definitions.anIntArray66[anIntArray889[i6]], Definitions.anIntArray71[anIntArray889[i6]], 0, 0, false);
+			surface.spriteClipping(k6, l6, 48, 32, spriteItem + Definitions.itemImages[anIntArray889[i6]], Definitions.itemMasks[anIntArray889[i6]], 0, 0, false);
 			if(Definitions.inventoryItemsStackable[anIntArray889[i6]] == 0)
 				surface.drawString(String.valueOf(anIntArray890[i6]), k6 + 1, l6 + 10, 1, 0xffff00);
 			if(super.mouseX > k6 && super.mouseX < k6 + 48 && super.mouseY > l6 && super.mouseY < l6 + 32)
@@ -6452,15 +6452,14 @@ label0:
 			return;
 		anInt658 = 2000;
 		anInt941 = anInt658 + 100;
-		anInt786 = anInt941 + 50;
-		anInt659 = anInt786 + 1000;
+		spriteItem = anInt941 + 50;
+		anInt659 = spriteItem + 1000;
 		anInt942 = anInt659 + 10;
 		anInt933 = anInt942 + 50;
 		anInt969 = anInt933 + 10;
 		graphics = getGraphics();
 		method18(50);
 		surface = new SpriteSurface(anInt764, gameHeight + 12, 4000, this);
-		surface.aMudclient627 = this;
 		surface.method253(0, 0, anInt764, gameHeight + 12);
 		Panel.aBoolean190 = false;
 		Panel.anInt191 = anInt941;
@@ -6700,9 +6699,9 @@ label0:
 	}
 
 	void drawItem(int i, int j, int k, int l, int i1, int j1, int k1) {
-		int l1 = Definitions.anIntArray66[i1] + anInt786;
-		int i2 = Definitions.anIntArray71[i1];
-		surface.method221(i, j, k, l, l1, i2, 0, 0, false);
+		int image = Definitions.itemImages[i1] + spriteItem;
+		int mask = Definitions.itemMasks[i1];
+		surface.spriteClipping(i, j, k, l, image, mask, 0, 0, false);
 	}
 
 	private void doCycleLoggedIn() {
@@ -7352,7 +7351,7 @@ label0:
 	private SoundPlayer aSunAudioPlayer783;
 	private boolean aBoolean784;
 	private byte[] aByteArray785;
-	private int anInt786;
+	private int spriteItem;
 	private Model[] objectModel;
 	private boolean aBoolean788;
 	private String aString789;

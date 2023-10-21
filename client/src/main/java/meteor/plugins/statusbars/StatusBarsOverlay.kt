@@ -37,7 +37,9 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Image
+import java.awt.image.BufferedImage
 import java.util.*
+import javax.imageio.ImageIO
 import kotlin.collections.HashMap
 
 internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: StatusBarsConfig) : Overlay() {
@@ -61,7 +63,8 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
             smallSkillIconMap[skill] = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(skill, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
             skillXPBars[skill] = getSkilXOBar(skill)
         }
-        fatigueIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.AGILITY, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        val bedImage: BufferedImage = ClassLoader.getSystemClassLoader().getResourceAsStream("bed2.png").use { `in` -> synchronized(ImageIO::class.java) { return@synchronized ImageIO.read(`in`) } }
+        fatigueIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(bedImage, IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
         initRenderers()
     }
 
@@ -93,9 +96,13 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
             maxValueSupplier = {100},
             currentValueSupplier = {client.fatiguePercentage},
             healSupplier = { 0 },
-            colorSupplier = {Color.YELLOW},
+            colorSupplier = {getTransparentColor(Color.ORANGE)},
             healColorSupplier = {Color.BLACK},
             iconSupplier = {fatigueIcon!!})
+    }
+
+    fun getTransparentColor(color: Color): Color {
+        return Color(color.red, color.green, color.blue, 190)
     }
 
     fun getSmallSkillImage(skill: Skill) : Image {
@@ -114,8 +121,8 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
 
     fun getColorForSkill(skill: Skill) : Color {
         return when (skill) {
-            Skill.HITS -> Color.GRAY
-            else -> SkillColor.find(skill).color
+            Skill.HITS -> getTransparentColor(Color.GRAY)
+            else -> getTransparentColor(SkillColor.find(skill).color)
         }
     }
 
@@ -141,11 +148,11 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
             offsetY += 205
         if (renderHits) {
             hitsBar?.renderBar(config, g, offsetX, offsetY, width, height)
-            offsetX-=20
+            offsetX-=BarRenderer.DEFAULT_WIDTH
         }
         if (renderPrayer) {
             prayerBar?.renderBar(config, g, offsetX, offsetY, width, height)
-            offsetX-=20
+            offsetX-=BarRenderer.DEFAULT_WIDTH
         }
         if (renderFatigue) {
             fatigueBar?.renderBar(config, g, offsetX, offsetY, width, height)
@@ -157,7 +164,7 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
             if (lastUpdate != null) {
                 if (lastUpdate + 60000 > System.currentTimeMillis()) {
                     skillXPBars[skill]?.renderBar(config, g, offsetX, offsetY, width, height)
-                    offsetX-=20
+                    offsetX-=BarRenderer.DEFAULT_WIDTH
                 }
             }
         }
@@ -174,9 +181,9 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
         var renderStrengthXP = true
         var renderHitsXP = true
 
-        private val PRAYER_COLOR = Color(50, 200, 200, 175)
+        private val PRAYER_COLOR = Color(50, 200, 200, 190)
         private val ACTIVE_PRAYER_COLOR = Color(57, 255, 186, 225)
-        private val HEALTH_COLOR = Color(225, 35, 0, 125)
+        private val HEALTH_COLOR = Color(225, 35, 0, 190)
         private val POISONED_COLOR = Color(0, 145, 0, 150)
         private val VENOMED_COLOR = Color(0, 65, 0, 150)
         private val HEAL_COLOR = Color(255, 112, 6, 150)

@@ -51,12 +51,12 @@ public class Definitions {
 		itemNames = new String[itemsSize];
 		aStringArray64 = new String[itemsSize];
 		aStringArray65 = new String[itemsSize];
-		anIntArray66 = new int[itemsSize];
-		anIntArray67 = new int[itemsSize];
+		itemImages = new int[itemsSize];
+		itemBasePrice = new int[itemsSize];
 		inventoryItemsStackable = new int[itemsSize];
 		anIntArray69 = new int[itemsSize];
 		anIntArray70 = new int[itemsSize];
-		anIntArray71 = new int[itemsSize];
+		itemMasks = new int[itemsSize];
 		anIntArray72 = new int[itemsSize];
 		anIntArray73 = new int[itemsSize];
 		for(int i = 0; i < itemsSize; i++)
@@ -69,13 +69,13 @@ public class Definitions {
 			aStringArray65[k] = readString();
 
 		for(int l = 0; l < itemsSize; l++) {
-			anIntArray66[l] = method124();
-			if(anIntArray66[l] + 1 > anInt74)
-				anInt74 = anIntArray66[l] + 1;
+			itemImages[l] = method124();
+			if(itemImages[l] + 1 > anInt74)
+				anInt74 = itemImages[l] + 1;
 		}
 
 		for(int i1 = 0; i1 < itemsSize; i1++)
-			anIntArray67[i1] = method125();
+			itemBasePrice[i1] = method125();
 
 		for(int j1 = 0; j1 < itemsSize; j1++)
 			inventoryItemsStackable[j1] = method123();
@@ -87,7 +87,7 @@ public class Definitions {
 			anIntArray70[l1] = method124();
 
 		for(int i2 = 0; i2 < itemsSize; i2++)
-			anIntArray71[i2] = method125();
+			itemMasks[i2] = method125();
 
 		for(int j2 = 0; j2 < itemsSize; j2++)
 			anIntArray72[j2] = method123();
@@ -99,7 +99,7 @@ public class Definitions {
 			if(!flag && anIntArray73[l2] == 1) {
 				itemNames[l2] = "Members object";
 				aStringArray64[l2] = "You need to be a member to use this object";
-				anIntArray67[l2] = 0;
+				itemBasePrice[l2] = 0;
 				aStringArray65[l2] = "";
 				anIntArray69[0] = 0;
 				anIntArray70[l2] = 0;
@@ -390,12 +390,12 @@ public class Definitions {
 	public static String[] itemNames;
 	public static String[] aStringArray64;
 	public static String[] aStringArray65;
-	public static int[] anIntArray66;
-	public static int[] anIntArray67;
+	public static int[] itemImages;
+	public static int[] itemBasePrice;
 	public static int[] inventoryItemsStackable;
 	public static int[] anIntArray69;
 	public static int[] anIntArray70;
-	public static int[] anIntArray71;
+	public static int[] itemMasks;
 	public static int[] anIntArray72;
 	public static int[] anIntArray73;
 	public static int anInt74;

@@ -9,7 +9,7 @@ import meteor.plugins.meteor.Meteor
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.itemnamepatch.ItemNamePatchPlugin
 import meteor.plugins.inventorycount.InventoryCountPlugin
-import meteor.plugins.perspectivetest.DevelopPlugin
+import meteor.plugins.indicators.IndicatorsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 
 
@@ -22,7 +22,7 @@ object PluginManager {
             init<ItemNamePatchPlugin>()
             init<HitSplatsPlugin>()
             init<InventoryCountPlugin>()
-            init<DevelopPlugin>()
+            init<IndicatorsPlugin>()
             init<StatusBarsPlugin>()
             init<StretchedModePlugin>()
         }

@@ -30,6 +30,7 @@ import rscplus.ItemNamePatchLevel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface Client
 {
@@ -178,4 +179,12 @@ public interface Client
 	void resetScreenData();
 
 	boolean getShowOptionsMenu();
+
+	void clearItems();
+
+	ArrayList<TileItem> getTileItems();
+
+	HashMap<Point, HashMap<TileItem, Integer>> getTileItemQuantities();
+
+	int getItemBasePrice(int itemID);
 }

@@ -63,7 +63,7 @@ internal class BarRenderer(var maxValueSupplier: Supplier<Int>? = null,
         val filledHeight = getBarHeight(maxValue, currentValue, height)
         val fill = colorSupplier!!.get()
         refreshSkills()
-        graphics.color = BACKGROUND
+        graphics.color = Color(0, 0, 0, 120)
         graphics.drawRect(x, y, width - BORDER_SIZE, height - BORDER_SIZE)
         graphics.fillRect(x, y, width, height)
         graphics.color = fill
@@ -139,7 +139,7 @@ internal class BarRenderer(var maxValueSupplier: Supplier<Int>? = null,
         private const val COUNTER_ICON_HEIGHT = 18
         private const val BORDER_SIZE = 1
         private const val MIN_ICON_AND_COUNTER_WIDTH = 16
-        const val DEFAULT_WIDTH = 20
+        const val DEFAULT_WIDTH = 24
         const val MIN_WIDTH = 3
         const val MAX_WIDTH = 40
         private fun getBarHeight(base: Int, current: Int, size: Int): Int {

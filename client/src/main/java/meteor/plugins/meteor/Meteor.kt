@@ -12,10 +12,14 @@ import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.themes.MeteorliteTheme
+import openrsc.constants.ItemID
+import openrsc.constants.ObjectID
+import openrsc.skills.woodcutting.WoodcuttingDefinition
 
 import java.awt.Color
 import java.awt.Point
 import java.awt.Rectangle
+import kotlin.system.exitProcess
 
 @PluginDescriptor(name = "Meteor", enabledByDefault = true, disabledOnStartup = false)
 class Meteor : Plugin() {

@@ -125,7 +125,7 @@ compose {
             mainClass = "meteor.Main"
             nativeDistributions {
                 packageVersion = project.version.toString().replace("-SNAPSHOT", "")
-                packageName = "meteor-rsc-${project.version}-J$javaVersion"
+                packageName = "meteor-rsc-203-${project.version}-J$javaVersion"
 
                 targetFormats(Exe, Deb, Dmg)
                 includeAllModules = true

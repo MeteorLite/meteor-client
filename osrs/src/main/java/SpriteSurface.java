@@ -9,23 +9,23 @@ import java.awt.Component;
 @Implements("RSSpriteSurface")
 public final class SpriteSurface extends Surface {
 
-	public void method220(int i, int j, int k, int l, int i1, int j1, int k1) {
-		if(i1 >= 50000) {
-			aMudclient627.method48(i, j, k, l, i1 - 50000, j1, k1);
+	public void spriteClipping(int x, int y, int width, int height, int id, int tX, int tY) {
+		if(id >= 50000) {
+			mudclient.mudClient.drawTeleportBubble(x, y, width, height, id - 50000, tX, tY);
 			return;
 		}
-		if(i1 >= 40000) {
-			aMudclient627.drawItem(i, j, k, l, i1 - 40000, j1, k1);
+		if(id >= 40000) {
+			mudclient.mudClient.drawItem(x, y, width, height, id - 40000, tX, tY);
 			return;
 		}
-		if(i1 >= 20000) {
-			aMudclient627.drawNPC(i, j, k, l, i1 - 20000, j1, k1);
+		if(id >= 20000) {
+			mudclient.mudClient.drawNPC(x, y, width, height, id - 20000, tX, tY);
 			return;
 		}
-		if(i1 >= 5000) {
-			aMudclient627.drawPlayer(i, j, k, l, i1 - 5000, j1, k1);
+		if(id >= 5000) {
+			mudclient.mudClient.drawPlayer(x, y, width, height, id - 5000, tX, tY);
         } else {
-			super.method245(i, j, k, l, i1);
+			super.spriteClipping(x, y, width, height, id);
         }
 	}
 
@@ -35,6 +35,4 @@ public final class SpriteSurface extends Surface {
 		if(flag)
 			new Surface(i, j, k, component);
 	}
-
-	public mudclient aMudclient627;
 }

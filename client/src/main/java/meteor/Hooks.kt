@@ -72,25 +72,32 @@ class Hooks : Callbacks {
     val transparent = 0
 
     override fun drawScene(pixels: IntArray) {
+        val gameImage = createRSBufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
+        //Draw Game pixels to overlay backing (for transparency without a backing image)
+        for (y in 0..<Constants.GAME_FIXED_HEIGHT) {
+            for (x in 0..<Constants.GAME_FIXED_WIDTH)
+                gameImage.setRGB(x, y, getPixel(pixels, Constants.GAME_FIXED_WIDTH+1, Constants.GAME_FIXED_HEIGHT+1, x, y))
+        }
         val overlayImage = BufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT, BufferedImage.TYPE_INT_ARGB)
         val graphics2d = overlayImage.graphics as Graphics2D
+        graphics2d.drawImage(gameImage, 0, 0, null)
+
         try {
             overlayRenderer.renderOverlayLayer(graphics2d, OverlayLayer.ABOVE_SCENE)
         } catch (ex: java.lang.Exception) {
             ex.printStackTrace()
         }
+
         for (y in 0..<Constants.GAME_FIXED_HEIGHT) {
             for (x in 0..<Constants.GAME_FIXED_WIDTH) {
                 val color = overlayImage.getRGB(x, y)
-                if (color != transparent)
-                setPixel(pixels, Constants.GAME_FIXED_WIDTH+1, Constants.GAME_FIXED_HEIGHT+1, x, y,
-                        overlayImage.getRGB(x, y))
+                setPixel(pixels, Constants.GAME_FIXED_WIDTH+1, Constants.GAME_FIXED_HEIGHT+1, x, y, color)
             }
         }
     }
 
     private fun createRSBufferedImage(width: Int, height: Int): BufferedImage {
-        val colorModel = DirectColorModel(32, 0xff0000, 65280, 255, 1);
+        val colorModel = DirectColorModel(32, 0xff0000, 65280, 255);
         val raster: WritableRaster = colorModel.createCompatibleWritableRaster(width, height)
         return BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied, null)
     }
@@ -103,6 +110,17 @@ class Hooks : Callbacks {
         if (x >= 0 && y >= 0 && x < rw && y < rh) {
             pixels[x + y * rw] = colour
         }
+    }
+
+    fun getPixel(
+            pixels: IntArray,
+            rw: Int, rh: Int,
+            x: Int, y: Int
+    ): Int {
+        if (x >= 0 && y >= 0 && x < rw && y < rh) {
+            return pixels[x + y * rw]
+        }
+        return 0
     }
 
 
@@ -280,9 +298,8 @@ class Hooks : Callbacks {
                 client.`chooseOption$api`(5)
                 keyEvent.consume()
             }
-        if (client.showOptionsMenu)
-            if (keyEvent.keyCode == KeyEvent.VK_ESCAPE)
-                client.setShowUITab(0)
+        if (keyEvent.keyCode == KeyEvent.VK_ESCAPE)
+            client.setShowUITab(0)
         return KeyManager.processKeyPressed(keyEvent)
     }
 
