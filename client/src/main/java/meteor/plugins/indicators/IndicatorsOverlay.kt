@@ -1,6 +1,8 @@
 package meteor.plugins.indicators
 
 import meteor.ui.overlay.Overlay
+import net.runelite.api.Perspective
+import net.runelite.api.coords.LocalPoint
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
@@ -79,6 +81,12 @@ class IndicatorsOverlay(val config: IndicatorsConfig) : Overlay() {
                     }
                 }
             }
+        if (config.drawLocalPlayerTile()) {
+            graphics.color = Color.cyan
+            Perspective.getCanvasTilePoly(client, client.localPlayer.localLocation).let {
+                graphics.draw(it)
+            }
+        }
         return null
     }
 

@@ -187,4 +187,6 @@ public interface Client
 	HashMap<Point, HashMap<TileItem, Integer>> getTileItemQuantities();
 
 	int getItemBasePrice(int itemID);
+
+	Scene getScene();
 }

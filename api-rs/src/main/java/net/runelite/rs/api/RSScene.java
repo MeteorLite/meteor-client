@@ -24,11 +24,12 @@
  */
 package net.runelite.rs.api;
 
+import net.runelite.api.Scene;
 import net.runelite.mapping.Import;
 
 import java.awt.*;
 
-public interface RSScene
+public interface RSScene extends Scene
 {
     @Import("cameraX")
     int getCameraX();

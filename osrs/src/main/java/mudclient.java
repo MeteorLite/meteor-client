@@ -778,8 +778,8 @@ public final class mudclient extends NetworkedGame {
 		int i1 = cameraRotation + anInt755 & 0xff;
 		int k1 = ((localPlayer.currentX - 6040) * 3 * k) / 2048;
 		int i3 = ((localPlayer.currentY - 6040) * 3 * k) / 2048;
-		int k4 = Scene.anIntArray382[1024 - i1 * 4 & 0x3ff];
-		int i5 = Scene.anIntArray382[(1024 - i1 * 4 & 0x3ff) + 1024];
+		int k4 = Scene.sin2048Cache[1024 - i1 * 4 & 0x3ff];
+		int i5 = Scene.sin2048Cache[(1024 - i1 * 4 & 0x3ff) + 1024];
 		int k5 = i3 * k4 + k1 * i5 >> 18;
 		i3 = i3 * i5 - k1 * k4 >> 18;
 		k1 = k5;
@@ -846,8 +846,8 @@ public final class mudclient extends NetworkedGame {
 			j += 40;
 			int l2 = ((super.mouseX - (j + c1 / 2)) * 16384) / (3 * l);
 			int j4 = ((super.mouseY - (36 + c3 / 2)) * 16384) / (3 * l);
-			int l4 = Scene.anIntArray382[1024 - j1 * 4 & 0x3ff];
-			int j5 = Scene.anIntArray382[(1024 - j1 * 4 & 0x3ff) + 1024];
+			int l4 = Scene.sin2048Cache[1024 - j1 * 4 & 0x3ff];
+			int j5 = Scene.sin2048Cache[(1024 - j1 * 4 & 0x3ff) + 1024];
 			int l6 = j4 * l4 + l2 * j5 >> 15;
 			j4 = j4 * j5 - l2 * l4 >> 15;
 			l2 = l6;
@@ -1103,18 +1103,18 @@ public final class mudclient extends NetworkedGame {
 
 	private boolean method69(int i, int j, int k, int l, int i1, int j1, boolean flag,
                              boolean flag1) {
-		int k1 = world.method398(i, j, k, l, i1, j1, anIntArray796, anIntArray797, flag);
+		int k1 = world.method398(i, j, k, l, i1, j1, walkPathX, walkPathY, flag);
 		if(k1 == -1)
 			if(flag1) {
 				k1 = 1;
-				anIntArray796[0] = k;
-				anIntArray797[0] = l;
+				walkPathX[0] = k;
+				walkPathY[0] = l;
 			} else {
 				return false;
 			}
 		k1--;
-		i = anIntArray796[k1];
-		j = anIntArray797[k1];
+		i = walkPathX[k1];
+		j = walkPathY[k1];
 		k1--;
 		if(flag1)
 			super.packetStream.createPacket(16);
@@ -1125,8 +1125,8 @@ public final class mudclient extends NetworkedGame {
 		if(flag1 && k1 == -1 && (i + baseX) % 5 == 0)
 			k1 = 0;
 		for(int l1 = k1; l1 >= 0 && l1 > k1 - 25; l1--) {
-			super.packetStream.putByte(anIntArray796[l1] - i);
-			super.packetStream.putByte(anIntArray797[l1] - j);
+			super.packetStream.putByte(walkPathX[l1] - i);
+			super.packetStream.putByte(walkPathY[l1] - j);
 		}
 
 		super.packetStream.endPacket();
@@ -4344,12 +4344,12 @@ label0:
 
 	private boolean method92(int i, int j, int k, int l, int i1, int j1, boolean flag,
                              boolean flag1) {
-		int k1 = world.method398(i, j, k, l, i1, j1, anIntArray796, anIntArray797, flag);
+		int k1 = world.method398(i, j, k, l, i1, j1, walkPathX, walkPathY, flag);
 		if(k1 == -1)
 			return false;
 		k1--;
-		i = anIntArray796[k1];
-		j = anIntArray797[k1];
+		i = walkPathX[k1];
+		j = walkPathY[k1];
 		k1--;
 		if(flag1)
 			super.packetStream.createPacket(16);
@@ -4360,8 +4360,8 @@ label0:
 		if(flag1 && k1 == -1 && (i + baseX) % 5 == 0)
 			k1 = 0;
 		for(int l1 = k1; l1 >= 0 && l1 > k1 - 25; l1--) {
-			super.packetStream.putByte(anIntArray796[l1] - i);
-			super.packetStream.putByte(anIntArray797[l1] - j);
+			super.packetStream.putByte(walkPathX[l1] - i);
+			super.packetStream.putByte(walkPathY[l1] - j);
 		}
 
 		super.packetStream.endPacket();
@@ -5063,8 +5063,8 @@ label0:
 		anIntArray692 = new int[50];
 		anIntArray693 = new int[50];
 		aCharacterArray806 = new Character[4000];
-		anIntArray796 = new int[8000];
-		anIntArray797 = new int[8000];
+		walkPathX = new int[8000];
+		walkPathY = new int[8000];
 		anIntArray822 = new int[500];
 		anIntArray823 = new int[500];
 		aStringArray728 = new String[250];
@@ -7361,8 +7361,8 @@ label0:
 	private boolean isSleeping;
 	private Panel panelMessageTabs;
 	private final int[] inventoryItemsQuantities;
-	private final int[] anIntArray796;
-	private final int[] anIntArray797;
+	private final int[] walkPathX;
+	private final int[] walkPathY;
 	private int baseX;
 	private int baseY;
 	private int mouseClickXStep;

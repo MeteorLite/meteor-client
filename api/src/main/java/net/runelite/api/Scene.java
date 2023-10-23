@@ -24,57 +24,7 @@
  */
 package net.runelite.api;
 
-import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldPoint;
-
-import java.awt.*;
-
-public interface Character
+public interface Scene
 {
-
-    long getHash();
-    String getName();
-    int getServerIndex();
-    int getServerID();
-    int getCurrentX();
-    int getCurrentY();
-    int getNPCID();
-    int getAnimation();
-    String getMessage();
-    int getBubbleItem();
-    void setBubbleItem(int itemID);
-    int getCurrentHealth();
-    int getMaxHealth();
-    int getCombatLevel();
-    void drawHitSplat(int spriteID);
-
-    int getScreenX();
-
-    void setScreenX(int screenX);
-
-    int getScreenY();
-
-    void setScreenY(int screenY);
-
-    int getScreenWidth();
-
-    void setScreenWidth(int screenWidth);
-
-    int getScreenHeight();
-
-    void setScreenHeight(int screenHeight);
-
-    Rectangle getBounds();
-
-    void drawTextAboveBounds(Graphics2D graphics, String text);
-
-    void drawTextAboveBoundsShadowed(Graphics2D graphics, String text);
-
-    boolean isNPC();
-
-    void setIsNPC(boolean isNPC);
-
-    LocalPoint getLocalLocation();
-
-    WorldPoint getWorldLocation();
+	int getViewDistance();
 }

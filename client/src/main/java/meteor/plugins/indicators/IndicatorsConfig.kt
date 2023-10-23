@@ -127,7 +127,7 @@ interface IndicatorsConfig : Config {
             position = 9
     )
     fun drawLocalPlayerName(): Boolean {
-        return true
+        return false
     }
 
     @ConfigItem(
@@ -141,10 +141,20 @@ interface IndicatorsConfig : Config {
     }
 
     @ConfigItem(
+            keyName = "drawLocalPlayerTile",
+            name = "Draw local Player Tile",
+            description = "render local Player bounding box",
+            position = 11
+    )
+    fun drawLocalPlayerTile(): Boolean {
+        return false
+    }
+
+    @ConfigItem(
             keyName = "localPlayerColor",
             name = "Local Player Color",
             description = "render color for local Player configs",
-            position = 11
+            position = 12
 
     )
     fun localPlayerColor(): Color {

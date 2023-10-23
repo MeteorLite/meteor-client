@@ -127,10 +127,10 @@ public class WorldPoint
 	 * @param local  the local coordinate
 	 * @return the tile coordinate containing the local point
 	 */
-/*	public static WorldPoint fromLocal(Client client, LocalPoint local)
+	public static WorldPoint fromLocal(Client client, LocalPoint local)
 	{
 		return fromLocal(client, local.getX(), local.getY(), client.getPlane());
-	}*/
+	}
 
 	/**
 	 * Gets the coordinate of the tile that contains the passed local point.
@@ -141,14 +141,14 @@ public class WorldPoint
 	 * @param plane  the plane
 	 * @return the tile coordinate containing the local point
 	 */
-/*	public static WorldPoint fromLocal(Client client, int x, int y, int plane)
+	public static WorldPoint fromLocal(Client client, int x, int y, int plane)
 	{
 		return new WorldPoint(
 			(x >>> Perspective.LOCAL_COORD_BITS) + client.getBaseX(),
 			(y >>> Perspective.LOCAL_COORD_BITS) + client.getBaseY(),
 			plane
 		);
-	}*/
+	}
 /*
 	*//**
 	 * Gets the coordinate of the tile that contains the passed local point,

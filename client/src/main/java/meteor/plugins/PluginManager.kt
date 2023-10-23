@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateListOf
 import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
+import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.hitsplats.HitSplatsPlugin
 import meteor.plugins.meteor.Meteor
 import meteor.plugins.statusbars.StatusBarsPlugin
@@ -19,10 +20,11 @@ object PluginManager {
     init {
         init<Meteor>()
         if (pluginsEnabled) {
-            init<ItemNamePatchPlugin>()
+            init<DevToolsPlugin>()
             init<HitSplatsPlugin>()
-            init<InventoryCountPlugin>()
             init<IndicatorsPlugin>()
+            init<InventoryCountPlugin>()
+            init<ItemNamePatchPlugin>()
             init<StatusBarsPlugin>()
             init<StretchedModePlugin>()
         }

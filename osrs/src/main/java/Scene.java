@@ -11,36 +11,36 @@ public class Scene {
 		l &= 0x3ff;
 		i1 &= 0x3ff;
 		j1 &= 0x3ff;
-		cameraYaw = 1024 - l & 0x3ff;
-		cameraPitch = 1024 - i1 & 0x3ff;
+		cameraPitch = 1024 - l & 0x3ff;
+		cameraYaw = 1024 - i1 & 0x3ff;
 		cameraRoll = 1024 - j1 & 0x3ff;
 		int l1 = 0;
 		int i2 = 0;
 		int j2 = k1;
 		if(l != 0) {
-			int k2 = anIntArray382[l];
-			int j3 = anIntArray382[l + 1024];
+			int k2 = sin2048Cache[l];
+			int j3 = sin2048Cache[l + 1024];
 			int i4 = i2 * j3 - j2 * k2 >> 15;
 			j2 = i2 * k2 + j2 * j3 >> 15;
 			i2 = i4;
 		}
 		if(i1 != 0) {
-			int l2 = anIntArray382[i1];
-			int k3 = anIntArray382[i1 + 1024];
+			int l2 = sin2048Cache[i1];
+			int k3 = sin2048Cache[i1 + 1024];
 			int j4 = j2 * l2 + l1 * k3 >> 15;
 			j2 = j2 * k3 - l1 * l2 >> 15;
 			l1 = j4;
 		}
 		if(j1 != 0) {
-			int i3 = anIntArray382[j1];
-			int l3 = anIntArray382[j1 + 1024];
+			int i3 = sin2048Cache[j1];
+			int l3 = sin2048Cache[j1 + 1024];
 			int k4 = i2 * i3 + l1 * l3 >> 15;
 			i2 = i2 * l3 - l1 * i3 >> 15;
 			l1 = k4;
 		}
 		cameraX = i - l1;
-		cameraY = j - i2;
-		cameraZ = k - j2;
+		cameraZ = j - i2;
+		cameraY = k - j2;
 	}
 
 	private void method264(int i) {
@@ -369,27 +369,27 @@ public class Scene {
 		} while(true);
 	}
 
-	public void method268(int i, int j, int k) {
-		int l = -cameraYaw + 1024 & 0x3ff;
-		int i1 = -cameraPitch + 1024 & 0x3ff;
+	public void setFrustum(int i, int j, int k) {
+		int l = -cameraPitch + 1024 & 0x3ff;
+		int i1 = -cameraYaw + 1024 & 0x3ff;
 		int j1 = -cameraRoll + 1024 & 0x3ff;
 		if(j1 != 0) {
-			int k1 = anIntArray382[j1];
-			int j2 = anIntArray382[j1 + 1024];
+			int k1 = sin2048Cache[j1];
+			int j2 = sin2048Cache[j1 + 1024];
 			int i3 = j * k1 + i * j2 >> 15;
 			j = j * j2 - i * k1 >> 15;
 			i = i3;
 		}
 		if(l != 0) {
-			int l1 = anIntArray382[l];
-			int k2 = anIntArray382[l + 1024];
+			int l1 = sin2048Cache[l];
+			int k2 = sin2048Cache[l + 1024];
 			int j3 = j * k2 - k * l1 >> 15;
 			k = j * l1 + k * k2 >> 15;
 			j = j3;
 		}
 		if(i1 != 0) {
-			int i2 = anIntArray382[i1];
-			int l2 = anIntArray382[i1 + 1024];
+			int i2 = sin2048Cache[i1];
+			int l2 = sin2048Cache[i1 + 1024];
 			int k3 = k * i2 + i * l2 >> 15;
 			k = k * l2 - i * i2 >> 15;
 			i = k3;
@@ -1728,26 +1728,26 @@ public class Scene {
 		anInt398 = 0;
 		anInt399 = 0;
 		anInt400 = 0;
-		method268(-i3, -j3, clipFar3d);
-		method268(-i3, j3, clipFar3d);
-		method268(i3, -j3, clipFar3d);
-		method268(i3, j3, clipFar3d);
-		method268(-anInt425, -anInt405, 0);
-		method268(-anInt425, anInt405, 0);
-		method268(anInt425, -anInt405, 0);
-		method268(anInt425, anInt405, 0);
+		setFrustum(-i3, -j3, clipFar3d);
+		setFrustum(-i3, j3, clipFar3d);
+		setFrustum(i3, -j3, clipFar3d);
+		setFrustum(i3, j3, clipFar3d);
+		setFrustum(-anInt425, -anInt405, 0);
+		setFrustum(-anInt425, anInt405, 0);
+		setFrustum(anInt425, -anInt405, 0);
+		setFrustum(anInt425, anInt405, 0);
 		anInt395 += cameraX;
 		anInt396 += cameraX;
-		anInt397 += cameraY;
-		anInt398 += cameraY;
-		anInt399 += cameraZ;
-		anInt400 += cameraZ;
+		anInt397 += cameraZ;
+		anInt398 += cameraZ;
+		anInt399 += cameraY;
+		anInt400 += cameraY;
 		aModelArray401[anInt402] = view;
 		view.anInt254 = 2;
 		for(int i = 0; i < anInt402; i++)
-			aModelArray401[i].method183(cameraX, cameraY, cameraZ, cameraYaw, cameraPitch, cameraRoll, viewDistance, anInt428);
+			aModelArray401[i].method183(cameraX, cameraZ, cameraY, cameraPitch, cameraYaw, cameraRoll, viewDistance, anInt428);
 
-		aModelArray401[anInt402].method183(cameraX, cameraY, cameraZ, cameraYaw, cameraPitch, cameraRoll, viewDistance, anInt428);
+		aModelArray401[anInt402].method183(cameraX, cameraZ, cameraY, cameraPitch, cameraYaw, cameraRoll, viewDistance, anInt428);
 		anInt429 = 0;
 		for(int k3 = 0; k3 < anInt402; k3++) {
 			Model model = aModelArray401[k3];
@@ -2514,10 +2514,10 @@ public class Scene {
 		if(aByteArray377 == null)
 			aByteArray377 = new byte[17691];
 		cameraX = 0;
-		cameraY = 0;
 		cameraZ = 0;
-		cameraYaw = 0;
+		cameraY = 0;
 		cameraPitch = 0;
+		cameraYaw = 0;
 		cameraRoll = 0;
 		for(int i1 = 0; i1 < 256; i1++) {
 			anIntArray374[i1] = (int)(Math.sin((double)i1 * 0.02454369D) * 32768D);
@@ -2525,8 +2525,8 @@ public class Scene {
 		}
 
 		for(int j1 = 0; j1 < 1024; j1++) {
-			anIntArray382[j1] = (int)(Math.sin((double)j1 * 0.00613592315D) * 32768D);
-			anIntArray382[j1 + 1024] = (int)(Math.cos((double)j1 * 0.00613592315D) * 32768D);
+			sin2048Cache[j1] = (int)(Math.sin((double)j1 * 0.00613592315D) * 32768D);
+			sin2048Cache[j1 + 1024] = (int)(Math.cos((double)j1 * 0.00613592315D) * 32768D);
 		}
 
 		if(!DataUtils.aBoolean540);
@@ -3088,13 +3088,13 @@ public class Scene {
 	public int anInt376;
 	private static byte[] aByteArray377;
 	private static final int[] anIntArray378 = new int[256];
-	private int cameraYaw;
 	private int cameraPitch;
+	private int cameraYaw;
 	private int cameraRoll;
-	public static int[] anIntArray382 = new int[2048];
+	public static int[] sin2048Cache = new int[2048];
 	private int cameraX;
-	private int cameraY;
 	private int cameraZ;
+	private int cameraY;
 	int[] anIntArray386;
 	int[][] anIntArrayArray387;
 	int[][] anIntArrayArray388;

@@ -25,7 +25,10 @@
  */
 package mixins;
 
+import net.runelite.api.Perspective;
 import net.runelite.api.SpriteID;
+import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
@@ -162,5 +165,22 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	@Inject
 	public void setIsNPC(boolean isNPC) {
 		this.isNPC = isNPC;
+	}
+
+	@Inject
+	@Override
+	public LocalPoint getLocalLocation() {
+		return new LocalPoint(getCurrentX(), getCurrentY());
+	}
+
+	@Inject
+	@Override
+	public WorldPoint getWorldLocation()
+	{
+		LocalPoint localPoint = getLocalLocation();
+		return WorldPoint.fromLocal(client,
+				localPoint.getSceneX() * Perspective.LOCAL_TILE_SIZE + Perspective.LOCAL_TILE_SIZE / 2,
+				localPoint.getSceneY() * Perspective.LOCAL_TILE_SIZE + Perspective.LOCAL_TILE_SIZE / 2,
+				client.getPlane());
 	}
 }

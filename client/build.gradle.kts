@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "meteor"
-version = "1.0.1-SNAPSHOT"
+version = "1.0.2-SNAPSHOT"
 val javaVersion = "21"
 
 publishing {
@@ -142,6 +142,7 @@ compose {
                 //"-Dsun.java2d.dpiaware=false,",
                 //"-Dsun.java2d.uiScale=1.0",
 
+                "--enable-preview",
                 "-ea",
                 "-XX:+UseDynamicNumberOfGCThreads",
                 "-XX:+UseZGC",

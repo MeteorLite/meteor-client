@@ -48,12 +48,6 @@ open class Plugin : EventSubscriber() {
         return overlay
     }
 
-    inline fun <reified T : Overlay> overlay(vararg initArgs: Any): T {
-        val overlay = T::class.java.getDeclaredConstructor().newInstance(initArgs)
-        overlays.add(overlay)
-        return overlay
-    }
-
     fun start() {
         subscribe()
         eventListening = true

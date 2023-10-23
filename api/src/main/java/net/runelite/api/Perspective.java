@@ -44,7 +44,7 @@ public class Perspective
 	public static final double UNIT = Math.PI / 1024d; // How much of the circle each unit of SINE/COSINE is
 
 	public static final int LOCAL_COORD_BITS = 7;
-	public static final int LOCAL_TILE_SIZE = 96; // 128 - size of a tile in local coordinates
+	public static final int LOCAL_TILE_SIZE = 128; // 128 - size of a tile in local coordinates
 	public static final int LOCAL_HALF_TILE_SIZE = LOCAL_TILE_SIZE / 2;
 
 	public static final int SCENE_SIZE = Constants.SCENE_SIZE; // in tiles
@@ -110,32 +110,31 @@ public class Perspective
 	{
 		if (x >= 128 && y >= 128 && x <= 13056 && y <= 13056)
 		{
+			z -= (getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane) * 2);
 			x -= client.getCameraX();
 			y -= client.getCameraY();
 			z -= client.getCameraZ();
 
-			final int cameraPitch = client.getCameraPitch();
-			final int cameraYaw = client.getCameraYaw();
+			final int cameraPitch = client.getCameraPitch() * 2;
+			final int cameraYaw = client.getCameraYaw() * 2;
 
 			final int pitchSin = SINE[cameraPitch];
 			final int pitchCos = COSINE[cameraPitch];
 			final int yawSin = SINE[cameraYaw];
 			final int yawCos = COSINE[cameraYaw];
 
-			final int
-					x1 = x * yawCos + y * yawSin >> 16,
-					y1 = y * yawCos - x * yawSin >> 16,
-					y2 = z * pitchCos - y1 * pitchSin >> 16,
-					z1 = y1 * pitchCos + z * pitchSin >> 16;
+			int j2 = y * yawSin + x * yawCos >> 16;
+			y = y * yawCos - x * yawSin >> 16;
+			x = j2;
+			j2 = z * pitchCos - y * pitchSin >> 16;
+			y = z * pitchSin + y * pitchCos >> 16;
+			z = j2;
 
-			final int scale = client.getScale();
-			final int pointX = Constants.GAME_FIXED_WIDTH / 2 + x1 /** scale*/ / z1;
-			final int pointY = Constants.GAME_FIXED_HEIGHT / 2 + y2 /** scale*/ / z1;
+			int pointX = client.getRealDimensions().width / 2 + (x << 9) / y;
+			int pointY = client.getRealDimensions().height / 2 + (z << 9) / y;
 			return new Point(
-					pointX + 0,
-					pointY + 0);
-		} else {
-			System.out.println("Shouldnt happen");
+					pointX,
+					pointY);
 		}
 
 		return null;
@@ -481,6 +480,11 @@ public class Perspective
 		return getCanvasTileAreaPoly(client, localLocation, size, size, client.getPlane(), 0);
 	}
 
+	private int getSceneX(int x)
+	{
+		return x >> Perspective.LOCAL_COORD_BITS;
+	}
+
 	/**
 	 * Returns a polygon representing an area.
 	 *
@@ -515,6 +519,8 @@ public class Perspective
 			tilePlane = plane + 1;
 		}*/
 
+
+
 		final int swX = localLocation.getX() - (sizeX * LOCAL_TILE_SIZE / 2);
 		final int swY = localLocation.getY() - (sizeY * LOCAL_TILE_SIZE / 2);
 
@@ -537,13 +543,14 @@ public class Perspective
 		Point p3 = localToCanvas(client, neX, neY, neHeight);
 		Point p4 = localToCanvas(client, seX, seY, seHeight);
 
-		System.out.println(p1.x + ":" + p1.y);
 
 		Polygon poly = new Polygon();
-		poly.addPoint((int) p1.getX(), (int) p1.getY());
-		poly.addPoint((int) p2.getX(), (int) p2.getY());
-		poly.addPoint((int) p3.getX(), (int) p3.getY());
-		poly.addPoint((int) p4.getX(), (int) p4.getY());
+		if (p1 != null && p2 != null && p3 != null && p4 != null) {
+			poly.addPoint((int) p1.getX(), (int) p1.getY());
+			poly.addPoint((int) p2.getX(), (int) p2.getY());
+			poly.addPoint((int) p3.getX(), (int) p3.getY());
+			poly.addPoint((int) p4.getX(), (int) p4.getY());
+		}
 
 		return poly;
 	}
