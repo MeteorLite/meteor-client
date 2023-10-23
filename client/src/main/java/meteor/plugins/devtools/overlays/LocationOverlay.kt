@@ -22,45 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.devtools.overlays;
+package meteor.plugins.devtools.overlays
+
+import meteor.Main
+import meteor.plugins.devtools.DevToolsConfig
+import meteor.ui.components.LineComponent
+import meteor.ui.overlay.OverlayPanel
+import meteor.ui.overlay.OverlayPosition
+import net.runelite.api.Client
+import java.awt.Dimension
+import java.awt.Graphics2D
 
 
-import meteor.Main;
-import meteor.plugins.devtools.DevToolsConfig;
-import meteor.ui.components.LineComponent;
-import meteor.ui.overlay.OverlayPanel;
-import meteor.ui.overlay.OverlayPosition;
-import net.runelite.api.Client;
-import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldPoint;
+class LocationOverlay(private val config: DevToolsConfig) : OverlayPanel() {
+    init {
+        position = OverlayPosition.TOP_LEFT
+    }
 
-import java.awt.*;
+    override fun render(graphics: Graphics2D): Dimension? {
+        if (!client.isLoggedIn() || !config.location()) return null
+        val localWorld = client.getLocalPlayer().getWorldLocation()
+        val localPoint = client.getLocalPlayer().getLocalLocation()
 
-import static net.runelite.api.Constants.CHUNK_SIZE;
+        /*		int regionID = localWorld.getRegionID();*/
 
-public class LocationOverlay extends OverlayPanel
-{
-	private final Client client = Main.client;
-
-	private final DevToolsConfig config;
-
-	public LocationOverlay(DevToolsConfig config)
-	{
-		this.config = config;
-		setPosition(OverlayPosition.TOP_LEFT);
-	}
-
-	@Override
-	public Dimension render(Graphics2D graphics)
-	{
-		if (!client.isLoggedIn() || !config.location())
-			return null;
-		WorldPoint localWorld = client.getLocalPlayer().getWorldLocation();
-		LocalPoint localPoint = client.getLocalPlayer().getLocalLocation();
-
-/*		int regionID = localWorld.getRegionID();*/
-
-/*		if (client.isInInstancedRegion())
+        /*		if (client.isInInstancedRegion())
 		{
 			regionID = WorldPoint.fromLocalInstance(client, localPoint).getRegionID();
 
@@ -81,28 +67,27 @@ public class LocationOverlay extends OverlayPanel
 				.right(rotation + " " + chunkX + " " + chunkY)
 				.build());
 		}*/
+        panelComponent.children.add(LineComponent.Builder()
+                .left("Base")
+                .right(client.getBaseX().toString() + ", " + client.getBaseY())
+                .build())
 
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Base")
-				.right(client.getBaseX() + ", " + client.getBaseY())
-				.build());
+        panelComponent.children.add(LineComponent.Builder()
+                .left("Local")
+                .right(localPoint.getX().toString() + ", " + localPoint.getY())
+                .build())
 
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Local")
-				.right(localPoint.getX() + ", " + localPoint.getY())
-				.build());
+        panelComponent.children.add(LineComponent.Builder()
+                .left("Scene")
+                .right(localPoint.sceneX.toString() + ", " + localPoint.sceneY)
+                .build())
 
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Scene")
-				.right(localPoint.getSceneX() + ", " + localPoint.getSceneY())
-				.build());
+        panelComponent.children.add(LineComponent.Builder()
+                .left("Tile")
+                .right(localWorld.getX().toString() + ", " + localWorld.getY() + ", " + client.getPlane())
+                .build())
 
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-			.left("Tile")
-			.right(localWorld.getX() + ", " + localWorld.getY() + ", " + client.getPlane())
-			.build());
-
-/*		for (int i = 0; i < client.getMapRegions().length; i++)
+        /*		for (int i = 0; i < client.getMapRegions().length; i++)
 		{
 			int region = client.getMapRegions()[i];
 
@@ -112,7 +97,6 @@ public class LocationOverlay extends OverlayPanel
 				.rightColor((region == regionID) ? Color.GREEN : Color.WHITE)
 				.build());
 		}*/
-
-		return super.render(graphics);
-	}
+        return super.render(graphics)
+    }
 }

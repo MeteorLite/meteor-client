@@ -32,12 +32,22 @@ interface DevToolsConfig : Config {
     }
 
     @ConfigItem(
-            name = "Models",
-            keyName = "models",
+            name = "Game Objects",
+            keyName = "gameObjects",
             description = "",
             position = 2,
     )
-    fun models(): Boolean {
+    fun gameObjects(): Boolean {
+        return false
+    }
+
+    @ConfigItem(
+            name = "Wall Objects",
+            keyName = "wallObjects",
+            description = "",
+            position = 2,
+    )
+    fun wallObjects(): Boolean {
         return false
     }
 

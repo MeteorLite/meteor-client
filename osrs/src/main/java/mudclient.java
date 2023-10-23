@@ -234,7 +234,7 @@ public final class mudclient extends NetworkedGame {
 
 	}
 
-	private Model method50(int i, int j, int k, int l, int i1) {
+	private Model createModel(int i, int j, int k, int l, int i1) {
 		int j1 = i;
 		int k1 = j;
 		int l1 = i;
@@ -3438,7 +3438,7 @@ label0:
 							int modelIdx = Definitions.objectModelIndex[id];
 							Model model = gameModels[modelIdx].copy();
 							if (injected)
-								setModelData(model, id, (lx * 128) + 64, (ly * 128) + 64, width);
+								setModelData(model, id, (lx * 128) + 64, (ly * 128) + 64, width, false);
 							scene.addModel(model);
 							model.key = objectCount;
 							model.rotate(0, direction * 32, 0);
@@ -3661,7 +3661,9 @@ label0:
 						anInt826 = k27;
 						if(k9 != 65535) {
 							world.method401(i16, k20, byte5, k9);
-							Model model = method50(i16, k20, byte5, k9, anInt826);
+							Model model = createModel(i16, k20, byte5, k9, anInt826);
+							if (injected)
+								setModelData(model, k9, (i16 * 128) + 64, (k20 * 128) + 64, 1, true);
 							aModelArray821[anInt826] = model;
 							anIntArray822[anInt826] = i16;
 							anIntArray823[anInt826] = k20;
@@ -4450,7 +4452,7 @@ label0:
 			int i5 = wallObjectDirection[k2];
 			try {
 				world.method401(i3, l3, i5, j4);
-				Model model1 = method50(i3, l3, i5, j4, k2);
+				Model model1 = createModel(i3, l3, i5, j4, k2);
 				aModelArray821[k2] = model1;
 			}
 			catch(RuntimeException runtimeexception1) {
@@ -7565,7 +7567,7 @@ label0:
 	private boolean sleepWordDelay;
 	private int objectAnimationCount;
 
-	public void setModelData(Model model, int objectID, int localX, int localY, int width) {
+	public void setModelData(Model model, int objectID, int localX, int localY, int width, boolean wallObject) {
 
 	}
 }

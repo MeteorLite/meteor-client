@@ -38,4 +38,10 @@ public interface Model
     void setWidth(int width);
 
     LocalPoint getLocalLocation();
+
+    String getName();
+
+    boolean isWallObject();
+
+    void setIsWallObject(boolean wallObject);
 }

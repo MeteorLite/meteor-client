@@ -64,17 +64,21 @@ object TranslateMouseListener : MouseListener {
         }
         val stretchedDimensions = client.stretchedDimensions
         val realDimensions = client.realDimensions
-        val newX = (e.x / (stretchedDimensions.width / realDimensions.getWidth())).toInt()
-        val newY = (e.y / (stretchedDimensions.height / realDimensions.getHeight())).toInt()
+        realDimensions?.let {
+            val newX = (e.x / (stretchedDimensions.width / realDimensions.getWidth())).toInt()
+            val newY = (e.y / (stretchedDimensions.height / realDimensions.getHeight())).toInt()
 
-        val mouseEvent = MouseEvent(
-            client.canvas, e.id, e.getWhen(),
-            e.modifiersEx,
-            newX, newY, e.clickCount, e.isPopupTrigger, e.button
-        )
-        if (e.isConsumed) {
-            mouseEvent.consume()
+            val mouseEvent = MouseEvent(
+                    client.canvas, e.id, e.getWhen(),
+                    e.modifiersEx,
+                    newX, newY, e.clickCount, e.isPopupTrigger, e.button
+            )
+            if (e.isConsumed) {
+                mouseEvent.consume()
+            }
+            return mouseEvent
         }
-        return mouseEvent
+
+        return e
     }
 }

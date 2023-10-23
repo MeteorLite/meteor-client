@@ -605,10 +605,11 @@ public abstract class RSClientMixin implements RSClient {
 	}
 
 	@Replace("setModelData")
-	public void setModelData(Model model, int objectID, int localX, int localY, int width) {
+	public void setModelData(Model model, int objectID, int localX, int localY, int width, boolean isWallObject) {
 		model.setLocalX(localX);
 		model.setLocalY(localY);
 		model.setObjectID(objectID);
 		model.setWidth(width);
+		model.setIsWallObject(isWallObject);
 	}
 }

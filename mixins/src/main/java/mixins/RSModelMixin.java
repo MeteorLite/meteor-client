@@ -29,6 +29,8 @@ import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSModel;
+import openrsc.constants.BoundaryID;
+import openrsc.constants.ObjectID;
 
 
 @Mixin(RSModel.class)
@@ -88,5 +90,29 @@ public abstract class RSModelMixin implements RSModel {
 	@Override
 	public LocalPoint getLocalLocation() {
 		return new LocalPoint(getLocalX(), getLocalY());
+	}
+
+	@Inject
+	boolean isWallObject = false;
+
+	@Inject
+	@Override
+	public void setIsWallObject(boolean isWallObject) {
+		this.isWallObject = isWallObject;
+	}
+
+	@Inject
+	@Override
+	public boolean isWallObject() {
+		return isWallObject;
+	}
+
+	@Inject
+	@Override
+	public String getName() {
+		if (isWallObject)
+			return BoundaryID.Companion.forID(getObjectID()).name();
+		else
+			return ObjectID.Companion.forID(getObjectID()).name();
 	}
 }

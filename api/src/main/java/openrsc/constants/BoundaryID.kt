@@ -236,7 +236,7 @@ enum class BoundaryID
             }
         }
 
-        fun getById(id: Int): BoundaryID? {
+        fun forID(id: Int): BoundaryID? {
             return byId.getOrDefault(id, NOTHING)
         }
     }
