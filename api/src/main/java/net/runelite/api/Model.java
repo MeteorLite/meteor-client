@@ -24,9 +24,18 @@
  */
 package net.runelite.api;
 
-public interface Scene
-{
-	int getViewDistance();
+import net.runelite.api.coords.LocalPoint;
 
-	Model[] getModels();
+public interface Model
+{
+    int getLocalX();
+    int getLocalY();
+    int getObjectID();
+    int getWidth();
+    void setLocalX(int localX);
+    void setLocalY(int localY);
+    void setObjectID(int objectID);
+    void setWidth(int width);
+
+    LocalPoint getLocalLocation();
 }

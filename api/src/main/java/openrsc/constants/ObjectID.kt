@@ -1,6 +1,5 @@
 package openrsc.constants
 
-import java.util.*
 import kotlin.collections.HashMap
 
 enum class ObjectID
@@ -1334,8 +1333,8 @@ enum class ObjectID
             }
         }
 
-        fun getById(id: Int): ObjectID? {
-            return byId.getOrDefault(id, NOTHING)
+        fun forID(id: Int): ObjectID {
+            return byId.getOrDefault(id, NOTHING)!!
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Matthew Steglinski <https://github.com/sainttx>
+ * Copyright (c) 2018, Seth <https://github.com/sethtroll>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,67 +24,69 @@
  */
 package meteor.plugins.devtools.overlays;
 
+
 import meteor.Main;
 import meteor.plugins.devtools.DevToolsConfig;
 import meteor.ui.components.LineComponent;
+import meteor.ui.overlay.Overlay;
+import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPanel;
 import meteor.ui.overlay.OverlayPosition;
-import meteor.ui.table.TitleComponent;
 import net.runelite.api.Client;
+import net.runelite.api.Model;
+import net.runelite.api.Perspective;
+import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.coords.WorldPoint;
+import openrsc.constants.ObjectID;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
-public class CameraOverlay extends OverlayPanel
+public class ModelsOverlay extends Overlay
 {
-
 	private final Client client = Main.client;
 
 	private final DevToolsConfig config;
 
-    public CameraOverlay(DevToolsConfig config)
+	public ModelsOverlay(DevToolsConfig config)
 	{
 		this.config = config;
-		setPosition(OverlayPosition.TOP_LEFT);
+		setLayer(OverlayLayer.ABOVE_SCENE);
 	}
 
 	@Override
-	public Dimension render(Graphics2D graphics)
+	public Dimension render(@NotNull Graphics2D graphics)
 	{
-		if (!client.isLoggedIn() || !config.camera())
-			return null;
-		getPanelComponent().getChildren().add(new TitleComponent()
-				.text("Camera"));
+		if (config.models()) {
+			graphics.setColor(Color.MAGENTA);
+			for (Model m : client.getScene().getModels()) {
+				if (m != null) {
+					if (m.getLocalX() > 0 && m.getLocalY() > 0) {
+						Polygon p = Perspective.getCanvasTileAreaPoly(client, m.getLocalLocation(), m.getWidth());
+						if (p != null) {
+							graphics.draw(p);
+						}
+						drawTextAboveBoundsShadowed(m.getLocalX(), m.getLocalY(), graphics, m.getObjectID() + ":" + ObjectID.Companion.forID(m.getObjectID()).name());
+					}
+				}
+			}
+		}
+		return null;
+	}
 
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-                .left("X")
-				.right("" + client.getCameraX())
-				.build());
+	public void drawTextAboveBoundsShadowed(int x, int y, Graphics2D graphics, String text) {
+		Color originalColor = graphics.getColor();
+		int textWidth = getTextWidth(graphics, text);
+		Point p = Perspective.localToCanvas(client, x, y, client.getPlane());
+		if (p != null) {
+			graphics.setColor(Color.BLACK);
+			graphics.drawString(text, p.x - (textWidth / 2) + 1, p.y + 1);
+			graphics.setColor(originalColor);
+			graphics.drawString(text, p.x - (textWidth / 2), p.y);
+		}
+	}
 
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Y")
-				.right("" + client.getCameraY())
-				.build());
-
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Z")
-				.right("" + client.getCameraZ())
-				.build());
-
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Pitch")
-				.right("" + client.getCameraPitch())
-				.build());
-
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Yaw")
-				.right("" + client.getCameraYaw())
-				.build());
-
-		getPanelComponent().getChildren().add(new LineComponent.Builder()
-				.left("Scale")
-				.right("" + client.getScale())
-				.build());
-
-		return super.render(graphics);
+	public int getTextWidth(Graphics2D graphics, String text) {
+		return (int) graphics.getFontMetrics().getStringBounds(text, graphics).getWidth();
 	}
 }

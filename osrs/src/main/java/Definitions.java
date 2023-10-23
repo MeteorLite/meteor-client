@@ -224,9 +224,9 @@ public class Definitions {
 		aStringArray106 = new String[anInt104];
 		aStringArray107 = new String[anInt104];
 		aStringArray108 = new String[anInt104];
-		anIntArray109 = new int[anInt104];
-		anIntArray110 = new int[anInt104];
-		anIntArray111 = new int[anInt104];
+		objectModelIndex = new int[anInt104];
+		objectWidth = new int[anInt104];
+		objectHeight = new int[anInt104];
 		anIntArray112 = new int[anInt104];
 		anIntArray113 = new int[anInt104];
 		for(int l9 = 0; l9 < anInt104; l9++)
@@ -242,13 +242,13 @@ public class Definitions {
 			aStringArray108[k10] = readString();
 
 		for(int l10 = 0; l10 < anInt104; l10++)
-			anIntArray109[l10] = method127(readString());
+			objectModelIndex[l10] = method127(readString());
 
 		for(int i11 = 0; i11 < anInt104; i11++)
-			anIntArray110[i11] = method123();
+			objectWidth[i11] = method123();
 
 		for(int j11 = 0; j11 < anInt104; j11++)
-			anIntArray111[j11] = method123();
+			objectHeight[j11] = method123();
 
 		for(int k11 = 0; k11 < anInt104; k11++)
 			anIntArray112[k11] = method123();
@@ -433,9 +433,9 @@ public class Definitions {
 	public static String[] aStringArray106;
 	public static String[] aStringArray107;
 	public static String[] aStringArray108;
-	public static int[] anIntArray109;
-	public static int[] anIntArray110;
-	public static int[] anIntArray111;
+	public static int[] objectModelIndex;
+	public static int[] objectWidth;
+	public static int[] objectHeight;
 	public static int[] anIntArray112;
 	public static int[] anIntArray113;
 	public static int anInt114;

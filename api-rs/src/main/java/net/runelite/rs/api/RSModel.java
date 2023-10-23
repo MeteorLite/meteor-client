@@ -24,50 +24,15 @@
  */
 package net.runelite.rs.api;
 
-import net.runelite.api.Scene;
+import net.runelite.api.Model;
 import net.runelite.mapping.Import;
 
-import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
 
-public interface RSScene extends Scene
+public interface RSModel extends Model
 {
-    @Import("cameraX")
-    int getCameraX();
-    @Import("cameraY")
-    int getCameraY();
-    @Import("cameraZ")
-    int getCameraZ();
-    @Import("cameraYaw")
-    int getCameraYaw();
-    @Import("cameraPitch")
-    int getCameraPitch();
-    @Import("cameraRoll")
-    int getCameraRoll();
 
-    @Import("fogZDistance")
-    int getFogDistance();
-
-    @Import("fogZDistance")
-    void setFogDistance(int fogDistance);
-
-    @Import("clipFar2d")
-    int getClipFar2D();
-
-    @Import("clipFar2d")
-    void setClipFar2D(int clipFar2d);
-
-    @Import("clipFar3d")
-    int getClipFar3D();
-
-    @Import("clipFar3d")
-    void setClipFar3D(int clipFar3d);
-
-    @Import("viewDistance")
-    int getViewDistance();
-
-    @Import("viewDistance")
-    void setViewDistance(int viewDistance);
-
-    @Import("models")
-    RSModel[] getModels();
 }

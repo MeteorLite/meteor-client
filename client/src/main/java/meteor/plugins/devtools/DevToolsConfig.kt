@@ -31,4 +31,14 @@ interface DevToolsConfig : Config {
         return false
     }
 
+    @ConfigItem(
+            name = "Models",
+            keyName = "models",
+            description = "",
+            position = 2,
+    )
+    fun models(): Boolean {
+        return false
+    }
+
 }

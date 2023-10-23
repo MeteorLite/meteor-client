@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,11 +23,70 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package mixins;
 
-public interface Scene
-{
-	int getViewDistance();
+import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.rs.api.RSModel;
 
-	Model[] getModels();
+
+@Mixin(RSModel.class)
+public abstract class RSModelMixin implements RSModel {
+
+	@Inject
+	int localX;
+	@Inject
+	int localY;
+	@Inject
+	int objectID;
+	@Inject
+	int width;
+
+	@Inject
+	@Override
+	public int getLocalX() {
+		return localX;
+	}
+	@Inject
+	@Override
+	public int getLocalY() {
+		return localY;
+	}
+	@Inject
+	@Override
+	public int getObjectID() {
+		return objectID;
+	}
+	@Inject
+	@Override
+	public int getWidth() {
+		return width;
+	}
+	@Inject
+	@Override
+	public void setLocalX(int localX) {
+		this.localX = localX;
+	}
+	@Inject
+	@Override
+	public void setLocalY(int localY) {
+		this.localY = localY;
+	}
+	@Inject
+	@Override
+	public void setObjectID(int objectID) {
+		this.objectID = objectID;
+	}
+	@Inject
+	@Override
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	@Inject
+	@Override
+	public LocalPoint getLocalLocation() {
+		return new LocalPoint(getLocalX(), getLocalY());
+	}
 }

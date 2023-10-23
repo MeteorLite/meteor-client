@@ -2,8 +2,11 @@
 // Jad home page: http://www.geocities.com/kpdus/jad.html
 // Decompiler options: packimports(3) nonlb 
 
+import net.runelite.mapping.Implements;
+
 import java.io.*;
 
+@Implements("RSModel")
 public class Model {
 
 	public int method174(byte[] abyte0) {
@@ -130,7 +133,7 @@ public class Model {
 			anInt236 = 0;
 	}
 
-	public Model method181() {
+	public Model copy() {
 		Model[] amodel = new Model[1];
 		amodel[0] = this;
 		Model model = new Model(amodel, 1);
@@ -456,7 +459,7 @@ public class Model {
 		aByteArray263[i] = (byte)j;
 	}
 
-	public void method197(int i, int j, int k) {
+	public void translate(int i, int j, int k) {
 		anInt259 += i;
 		anInt260 += j;
 		anInt261 += k;
@@ -597,7 +600,7 @@ public class Model {
 		aBoolean226 = true;
 		aBoolean227 = false;
 		aBoolean267 = false;
-		anInt228 = -1;
+		key = -1;
 		aBoolean297 = false;
 		aBoolean299 = false;
 		aBoolean298 = false;
@@ -681,7 +684,7 @@ public class Model {
 		aBoolean226 = true;
 		aBoolean227 = false;
 		aBoolean267 = false;
-		anInt228 = -1;
+		key = -1;
 		aBoolean297 = false;
 		aBoolean299 = false;
 		aBoolean298 = false;
@@ -705,7 +708,7 @@ public class Model {
 		aBoolean226 = true;
 		aBoolean227 = false;
 		aBoolean267 = false;
-		anInt228 = -1;
+		key = -1;
 		aBoolean297 = false;
 		aBoolean299 = false;
 		aBoolean298 = false;
@@ -733,7 +736,7 @@ public class Model {
 		aBoolean226 = true;
 		aBoolean227 = false;
 		aBoolean267 = false;
-		anInt228 = -1;
+		key = -1;
 		aBoolean297 = false;
 		aBoolean299 = false;
 		aBoolean298 = false;
@@ -761,7 +764,7 @@ public class Model {
 		aBoolean226 = true;
 		aBoolean227 = false;
 		aBoolean267 = false;
-		anInt228 = -1;
+		key = -1;
 		aBoolean297 = false;
 		aBoolean299 = false;
 		aBoolean298 = false;
@@ -790,7 +793,7 @@ public class Model {
 		aBoolean226 = true;
 		aBoolean227 = false;
 		aBoolean267 = false;
-		anInt228 = -1;
+		key = -1;
 		aBoolean297 = false;
 		aBoolean299 = false;
 		aBoolean298 = false;
@@ -882,7 +885,7 @@ public class Model {
 		anInt254 = 1;
 	}
 
-	public void method205(boolean flag, int i, int j, int k, int l, int i1) {
+	public void setLight(boolean flag, int i, int j, int k, int l, int i1) {
 		anInt238 = 256 - i * 4;
 		anInt239 = (64 - j) * 16 + 128;
 		if(aBoolean298)
@@ -964,7 +967,7 @@ public class Model {
 
 	public boolean aBoolean226;
 	public boolean aBoolean227;
-	public int anInt228;
+	public int key;
 	private static final byte[] aByteArray229;
 	private final int anInt230;
 	private int anInt231;

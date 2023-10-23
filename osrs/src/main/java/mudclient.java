@@ -87,7 +87,7 @@ public final class mudclient extends NetworkedGame {
 		byte byte0 = 50;
 		byte byte1 = 50;
 		world.method399(byte0 * 48 + 23, byte1 * 48 + 23, i);
-		world.method402(aModelArray657);
+		world.method402(gameModels);
 		char c = '\u2600';
 		char c1 = '\u1900';
 		char c2 = '\u044C';
@@ -135,11 +135,11 @@ public final class mudclient extends NetworkedGame {
 		surface.method252(anInt659 + 1, 0, 0, 512, 200);
 		surface.method235(anInt659 + 1);
 		for(int j1 = 0; j1 < 64; j1++) {
-			scene.method271(world.aModelArrayArray598[0][j1]);
-			scene.method271(world.aModelArrayArray597[1][j1]);
-			scene.method271(world.aModelArrayArray598[1][j1]);
-			scene.method271(world.aModelArrayArray597[2][j1]);
-			scene.method271(world.aModelArrayArray598[2][j1]);
+			scene.removeModel(world.aModelArrayArray598[0][j1]);
+			scene.removeModel(world.aModelArrayArray597[1][j1]);
+			scene.removeModel(world.aModelArrayArray598[1][j1]);
+			scene.removeModel(world.aModelArrayArray597[2][j1]);
+			scene.removeModel(world.aModelArrayArray598[2][j1]);
 		}
 
 		c = '\u2B80';
@@ -267,10 +267,10 @@ public final class mudclient extends NetworkedGame {
 			i3, j3, k3, l3
 		};
 		model.createFace(4, ai, j2, k2);
-		model.method205(false, 60, 24, -50, -10, -50);
+		model.setLight(false, 60, 24, -50, -10, -50);
 		if(i >= 0 && j >= 0 && i < 96 && j < 96)
-			scene.method305(model);
-		model.anInt228 = i1 + 10000;
+			scene.addModel(model);
+		model.key = i1 + 10000;
 		return model;
 	}
 
@@ -741,11 +741,11 @@ public final class mudclient extends NetworkedGame {
 		int i1;
 		int j1;
 		if(k == 0 || k == 4) {
-			i1 = Definitions.anIntArray110[l];
-			j1 = Definitions.anIntArray111[l];
+			i1 = Definitions.objectWidth[l];
+			j1 = Definitions.objectHeight[l];
 		} else {
-			j1 = Definitions.anIntArray110[l];
-			i1 = Definitions.anIntArray111[l];
+			j1 = Definitions.objectWidth[l];
+			i1 = Definitions.objectHeight[l];
 		}
 		if(Definitions.anIntArray112[l] == 2 || Definitions.anIntArray112[l] == 3) {
 			if(k == 0) {
@@ -1010,13 +1010,13 @@ public final class mudclient extends NetworkedGame {
 		int i1 = k - localPlayer.currentY / 128;
 		byte byte0 = 7;
 		if(j >= 0 && k >= 0 && j < 96 && k < 96 && l > -byte0 && l < byte0 && i1 > -byte0 && i1 < byte0) {
-			scene.method271(objectModel[i]);
+			scene.removeModel(objectModel[i]);
 			int j1 = Definitions.method127(s);
-			Model model = aModelArray657[j1].method181();
-			scene.method305(model);
-			model.method205(true, 48, 48, -50, -10, -50);
+			Model model = gameModels[j1].copy();
+			scene.addModel(model);
+			model.setLight(true, 48, 48, -50, -10, -50);
 			model.method195(objectModel[i]);
-			model.anInt228 = i;
+			model.key = i;
 			objectModel[i] = model;
 		}
 	}
@@ -1325,12 +1325,12 @@ public final class mudclient extends NetworkedGame {
 		surface.method244();
 		surface.drawSurface(graphics, 0, 0);
 		for(int i = 0; i < objectCount; i++) {
-			scene.method271(objectModel[i]);
+			scene.removeModel(objectModel[i]);
 			world.method390(objectX[i], objectY[i], objectID[i]);
 		}
 
 		for(int j = 0; j < anInt826; j++) {
-			scene.method271(aModelArray821[j]);
+			scene.removeModel(aModelArray821[j]);
 			world.method391(anIntArray822[j], anIntArray823[j], wallObjectDirection[j], wallObjectID[j]);
 		}
 
@@ -1622,8 +1622,8 @@ public final class mudclient extends NetworkedGame {
 						}
 					}
 				} else
-				if(model != null && model.anInt228 >= 10000) {
-					int j2 = model.anInt228 - 10000;
+				if(model != null && model.key >= 10000) {
+					int j2 = model.key - 10000;
 					int i3 = wallObjectID[j2];
 					if(!aBooleanArray831[j2]) {
 						if(selectedSpell >= 0) {
@@ -1675,8 +1675,8 @@ public final class mudclient extends NetworkedGame {
 						aBooleanArray831[j2] = true;
 					}
 				} else
-				if(model != null && model.anInt228 >= 0) {
-					int k2 = model.anInt228;
+				if(model != null && model.key >= 0) {
+					int k2 = model.key;
 					int j3 = objectID[k2];
 					if(!aBooleanArray830[k2]) {
 						if(selectedSpell >= 0) {
@@ -1686,7 +1686,7 @@ public final class mudclient extends NetworkedGame {
 								menuItemOpcodes[menuItemsCount] = 400;
 								menuItemX[menuItemsCount] = objectX[k2];
 								menuItemY[menuItemsCount] = objectY[k2];
-								menuItemIDs[menuItemsCount] = anIntArray843[k2];
+								menuItemIDs[menuItemsCount] = objectDirection[k2];
 								menuItemSourceIdxs[menuItemsCount] = objectID[k2];
 								menuItemTargerIdxs[menuItemsCount] = selectedSpell;
 								menuItemsCount++;
@@ -1698,7 +1698,7 @@ public final class mudclient extends NetworkedGame {
 							menuItemOpcodes[menuItemsCount] = 410;
 							menuItemX[menuItemsCount] = objectX[k2];
 							menuItemY[menuItemsCount] = objectY[k2];
-							menuItemIDs[menuItemsCount] = anIntArray843[k2];
+							menuItemIDs[menuItemsCount] = objectDirection[k2];
 							menuItemSourceIdxs[menuItemsCount] = objectID[k2];
 							menuItemTargerIdxs[menuItemsCount] = selectedItemSlot;
 							menuItemsCount++;
@@ -1709,7 +1709,7 @@ public final class mudclient extends NetworkedGame {
 								menuItemOpcodes[menuItemsCount] = 420;
 								menuItemX[menuItemsCount] = objectX[k2];
 								menuItemY[menuItemsCount] = objectY[k2];
-								menuItemIDs[menuItemsCount] = anIntArray843[k2];
+								menuItemIDs[menuItemsCount] = objectDirection[k2];
 								menuItemSourceIdxs[menuItemsCount] = objectID[k2];
 								menuItemsCount++;
 							}
@@ -1719,7 +1719,7 @@ public final class mudclient extends NetworkedGame {
 								menuItemOpcodes[menuItemsCount] = 2400;
 								menuItemX[menuItemsCount] = objectX[k2];
 								menuItemY[menuItemsCount] = objectY[k2];
-								menuItemIDs[menuItemsCount] = anIntArray843[k2];
+								menuItemIDs[menuItemsCount] = objectDirection[k2];
 								menuItemSourceIdxs[menuItemsCount] = objectID[k2];
 								menuItemsCount++;
 							}
@@ -3017,7 +3017,7 @@ label0:
 				scene.method306();
 				scene = null;
 			}
-			aModelArray657 = null;
+			gameModels = null;
 			objectModel = null;
 			aModelArray821 = null;
 			aCharacterArray806 = null;
@@ -3385,73 +3385,77 @@ label0:
 							if(l26 != 0 || k29 != 0) {
 								if(i24 != j8) {
 									objectModel[j8] = objectModel[i24];
-									objectModel[j8].anInt228 = j8;
+									objectModel[j8].key = j8;
 									objectX[j8] = objectX[i24];
 									objectY[j8] = objectY[i24];
 									objectID[j8] = objectID[i24];
-									anIntArray843[j8] = anIntArray843[i24];
+									objectDirection[j8] = objectDirection[i24];
 								}
 								j8++;
 							} else {
-								scene.method271(objectModel[i24]);
+								scene.removeModel(objectModel[i24]);
 								world.method390(objectX[i24], objectY[i24], objectID[i24]);
 							}
 						}
 
 						objectCount = j8;
 					} else {
-						int k8 = DataUtils.method344(buffer, i1);
+						int id = DataUtils.method344(buffer, i1);
 						i1 += 2;
-						int i15 = sceneX + buffer[i1++];
-						int l19 = sceneY + buffer[i1++];
+						int lx = sceneX + buffer[i1++];
+						int ly = sceneY + buffer[i1++];
 						int j24 = 0;
 						for(int i27 = 0; i27 < objectCount; i27++)
-							if(objectX[i27] != i15 || objectY[i27] != l19) {
+							if(objectX[i27] != lx || objectY[i27] != ly) {
 								if(i27 != j24) {
 									objectModel[j24] = objectModel[i27];
-									objectModel[j24].anInt228 = j24;
+									objectModel[j24].key = j24;
 									objectX[j24] = objectX[i27];
 									objectY[j24] = objectY[i27];
 									objectID[j24] = objectID[i27];
-									anIntArray843[j24] = anIntArray843[i27];
+									objectDirection[j24] = objectDirection[i27];
 								}
 								j24++;
 							} else {
-								scene.method271(objectModel[i27]);
+								scene.removeModel(objectModel[i27]);
 								world.method390(objectX[i27], objectY[i27], objectID[i27]);
 							}
 
 						objectCount = j24;
-						if(k8 != 60000) {
-							int l29 = world.method407(i15, l19);
-							int i34;
-							int j37;
-							if(l29 == 0 || l29 == 4) {
-								i34 = Definitions.anIntArray110[k8];
-								j37 = Definitions.anIntArray111[k8];
+						if(id != 60000) {
+							int direction = world.getTileDirection(lx, ly);
+							int width;
+							int height;
+							if(direction == 0 || direction == 4) {
+								width = Definitions.objectWidth[id];
+								height = Definitions.objectHeight[id];
 							} else {
-								j37 = Definitions.anIntArray110[k8];
-								i34 = Definitions.anIntArray111[k8];
+								height = Definitions.objectWidth[id];
+								width = Definitions.objectHeight[id];
 							}
-							int j40 = ((i15 + i15 + i34) * magicLoc) / 2;
-							int i42 = ((l19 + l19 + j37) * magicLoc) / 2;
-							int k43 = Definitions.anIntArray109[k8];
-							Model model1 = aModelArray657[k43].method181();
-							scene.method305(model1);
-							model1.anInt228 = objectCount;
-							model1.rotate(0, l29 * 32, 0);
-							model1.method197(j40, -world.method410(j40, i42), i42);
-							model1.method205(true, 48, 48, -50, -10, -50);
-							world.method400(i15, l19, k8);
-							if(k8 == 74)
-								model1.method197(0, -480, 0);
-							objectX[objectCount] = i15;
-							objectY[objectCount] = l19;
-							objectID[objectCount] = k8;
-							anIntArray843[objectCount] = l29;
-							objectModel[objectCount++] = model1;
+							int j40 = ((lx + lx + width) * magicLoc) / 2;
+							int i42 = ((ly + ly + height) * magicLoc) / 2;
+							int modelIdx = Definitions.objectModelIndex[id];
+							Model model = gameModels[modelIdx].copy();
+							if (injected)
+								setModelData(model, id, (lx * 128) + 64, (ly * 128) + 64, width);
+							scene.addModel(model);
+							model.key = objectCount;
+							model.rotate(0, direction * 32, 0);
+							model.translate(j40, -world.method410(j40, i42), i42);
+							model.setLight(true, 48, 48, -50, -10, -50);
+							world.removeObject2(lx, ly, id);
+							if(id == 74)
+								model.translate(0, -480, 0);
+							objectX[objectCount] = lx;
+							objectY[objectCount] = ly;
+							objectID[objectCount] = id;
+							objectDirection[objectCount] = direction;
+							objectModel[objectCount++] = model;
 						}
 					}
+
+
 
 				return;
 			}
@@ -3617,7 +3621,7 @@ label0:
 							if(j27 != 0 || k31 != 0) {
 								if(k24 != j9) {
 									aModelArray821[j9] = aModelArray821[k24];
-									aModelArray821[j9].anInt228 = j9 + 10000;
+									aModelArray821[j9].key = j9 + 10000;
 									anIntArray822[j9] = anIntArray822[k24];
 									anIntArray823[j9] = anIntArray823[k24];
 									wallObjectDirection[j9] = wallObjectDirection[k24];
@@ -3625,7 +3629,7 @@ label0:
 								}
 								j9++;
 							} else {
-								scene.method271(aModelArray821[k24]);
+								scene.removeModel(aModelArray821[k24]);
 								world.method391(anIntArray822[k24], anIntArray823[k24], wallObjectDirection[k24], wallObjectID[k24]);
 							}
 						}
@@ -3642,7 +3646,7 @@ label0:
 							if(anIntArray822[l31] != i16 || anIntArray823[l31] != k20 || wallObjectDirection[l31] != byte5) {
 								if(l31 != k27) {
 									aModelArray821[k27] = aModelArray821[l31];
-									aModelArray821[k27].anInt228 = k27 + 10000;
+									aModelArray821[k27].key = k27 + 10000;
 									anIntArray822[k27] = anIntArray822[l31];
 									anIntArray823[k27] = anIntArray823[l31];
 									wallObjectDirection[k27] = wallObjectDirection[l31];
@@ -3650,7 +3654,7 @@ label0:
 								}
 								k27++;
 							} else {
-								scene.method271(aModelArray821[l31]);
+								scene.removeModel(aModelArray821[l31]);
 								world.method391(anIntArray822[l31], anIntArray823[l31], wallObjectDirection[l31], wallObjectID[l31]);
 							}
 
@@ -3860,15 +3864,15 @@ label0:
 						if(k36 != 0 || l38 != 0) {
 							if(j33 != i25) {
 								objectModel[i25] = objectModel[j33];
-								objectModel[i25].anInt228 = i25;
+								objectModel[i25].key = i25;
 								objectX[i25] = objectX[j33];
 								objectY[i25] = objectY[j33];
 								objectID[i25] = objectID[j33];
-								anIntArray843[i25] = anIntArray843[j33];
+								objectDirection[i25] = objectDirection[j33];
 							}
 							i25++;
 						} else {
-							scene.method271(objectModel[j33]);
+							scene.removeModel(objectModel[j33]);
 							world.method390(objectX[j33], objectY[j33], objectID[j33]);
 						}
 					}
@@ -3881,7 +3885,7 @@ label0:
 						if(i39 != 0 || j41 != 0) {
 							if(l36 != i25) {
 								aModelArray821[i25] = aModelArray821[l36];
-								aModelArray821[i25].anInt228 = i25 + 10000;
+								aModelArray821[i25].key = i25 + 10000;
 								anIntArray822[i25] = anIntArray822[l36];
 								anIntArray823[i25] = anIntArray823[l36];
 								wallObjectDirection[i25] = wallObjectDirection[l36];
@@ -3889,7 +3893,7 @@ label0:
 							}
 							i25++;
 						} else {
-							scene.method271(aModelArray821[l36]);
+							scene.removeModel(aModelArray821[l36]);
 							world.method391(anIntArray822[l36], anIntArray823[l36], wallObjectDirection[l36], wallObjectID[l36]);
 						}
 					}
@@ -4410,24 +4414,24 @@ label0:
 			int k3 = objectID[i2];
 			Model model = objectModel[i2];
 			try {
-				int l4 = anIntArray843[i2];
+				int l4 = objectDirection[i2];
 				int k5;
 				int i6;
 				if(l4 == 0 || l4 == 4) {
-					k5 = Definitions.anIntArray110[k3];
-					i6 = Definitions.anIntArray111[k3];
+					k5 = Definitions.objectWidth[k3];
+					i6 = Definitions.objectHeight[k3];
 				} else {
-					i6 = Definitions.anIntArray110[k3];
-					k5 = Definitions.anIntArray111[k3];
+					i6 = Definitions.objectWidth[k3];
+					k5 = Definitions.objectHeight[k3];
 				}
 				int j6 = ((j2 + j2 + k5) * magicLoc) / 2;
 				int k6 = ((l2 + l2 + i6) * magicLoc) / 2;
 				if(j2 >= 0 && l2 >= 0 && j2 < 96 && l2 < 96) {
-					scene.method305(model);
+					scene.addModel(model);
 					model.method177(j6, -world.method410(j6, k6), k6);
-					world.method400(j2, l2, k3);
+					world.removeObject2(j2, l2, k3);
 					if(k3 == 74)
-						model.method197(0, -480, 0);
+						model.translate(0, -480, 0);
 				}
 			}
 			catch(RuntimeException runtimeexception) {
@@ -4642,21 +4646,21 @@ label0:
 		if(!world.aBoolean572)
 			return;
 		for(int i = 0; i < 64; i++) {
-			scene.method271(world.aModelArrayArray598[plane][i]);
+			scene.removeModel(world.aModelArrayArray598[plane][i]);
 			if(plane == 0) {
-				scene.method271(world.aModelArrayArray597[1][i]);
-				scene.method271(world.aModelArrayArray598[1][i]);
-				scene.method271(world.aModelArrayArray597[2][i]);
-				scene.method271(world.aModelArrayArray598[2][i]);
+				scene.removeModel(world.aModelArrayArray597[1][i]);
+				scene.removeModel(world.aModelArrayArray598[1][i]);
+				scene.removeModel(world.aModelArrayArray597[2][i]);
+				scene.removeModel(world.aModelArrayArray598[2][i]);
 			}
 			fogOfWar = true;
 			if(plane == 0 && (world.anIntArrayArray573[localPlayer.currentX / 128][localPlayer.currentY / 128] & 0x80) == 0) {
-				scene.method305(world.aModelArrayArray598[plane][i]);
+				scene.addModel(world.aModelArrayArray598[plane][i]);
 				if(plane == 0) {
-					scene.method305(world.aModelArrayArray597[1][i]);
-					scene.method305(world.aModelArrayArray598[1][i]);
-					scene.method305(world.aModelArrayArray597[2][i]);
-					scene.method305(world.aModelArrayArray598[2][i]);
+					scene.addModel(world.aModelArrayArray597[1][i]);
+					scene.addModel(world.aModelArrayArray598[1][i]);
+					scene.addModel(world.aModelArrayArray597[2][i]);
+					scene.addModel(world.aModelArrayArray598[2][i]);
 				}
 				fogOfWar = false;
 			}
@@ -4991,7 +4995,7 @@ label0:
 		anIntArray854 = new int[256];
 		aBoolean895 = false;
 		aBoolean896 = false;
-		aModelArray657 = new Model[1000];
+		gameModels = new Model[1000];
 		showDialogDuel = false;
 		aString789 = "";
 		aBoolean788 = false;
@@ -5015,7 +5019,7 @@ label0:
 		objectX = new int[1500];
 		objectY = new int[1500];
 		objectID = new int[1500];
-		anIntArray843 = new int[1500];
+		objectDirection = new int[1500];
 		selectedItemSlot = -1;
 		selectedItemName = "";
 		aBoolean877 = false;
@@ -6556,20 +6560,20 @@ label0:
 			for(int j = 0; j < Definitions.anInt61; j++) {
 				int k = DataUtils.method347(Definitions.aStringArray60[j] + ".ob3", abyte0);
 				if(k != 0)
-					aModelArray657[j] = new Model(abyte0, k, true);
+					gameModels[j] = new Model(abyte0, k, true);
 				else
-					aModelArray657[j] = new Model(1, 1);
+					gameModels[j] = new Model(1, 1);
 				if(Definitions.aStringArray60[j].equals("giantcrystal"))
-					aModelArray657[j].aBoolean267 = true;
+					gameModels[j].aBoolean267 = true;
 			}
 
 			return;
 		}
 		method1(70, "Loading 3d models");
 		for(int i = 0; i < Definitions.anInt61; i++) {
-			aModelArray657[i] = new Model("../gamedata/models/" + Definitions.aStringArray60[i] + ".ob2");
+			gameModels[i] = new Model("../gamedata/models/" + Definitions.aStringArray60[i] + ".ob2");
 			if(Definitions.aStringArray60[i].equals("giantcrystal"))
-				aModelArray657[i].aBoolean267 = true;
+				gameModels[i].aBoolean267 = true;
 		}
 
 	}
@@ -7181,7 +7185,7 @@ label0:
 	private int optionMenuCount;
 	private boolean showOptionMenu;
 	private World world;
-	private Model[] aModelArray657;
+	private Model[] gameModels;
 	private Scene scene;
 	private int anInt658;
 	private int anInt659;
@@ -7408,7 +7412,7 @@ label0:
 	private boolean isMembers;
 	private final int[] anIntArray841;
 	private final int[] realSkillLevels;
-	private final int[] anIntArray843;
+	private final int[] objectDirection;
 	private final int[] menuItemTargerIdxs;
 	int messageTabSelected;
 	private int anInt846;
@@ -7560,4 +7564,8 @@ label0:
 	private int anInt978;
 	private boolean sleepWordDelay;
 	private int objectAnimationCount;
+
+	public void setModelData(Model model, int objectID, int localX, int localY, int width) {
+
+	}
 }

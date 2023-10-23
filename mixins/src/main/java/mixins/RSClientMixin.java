@@ -466,15 +466,11 @@ public abstract class RSClientMixin implements RSClient {
 
 	@Inject
 	@Override
-	public int getCameraPitch() {
-		return getScene().getCameraPitch();
-	}
+	public int getCameraPitch() {return getScene().getCameraPitch() * 2;}
 
 	@Inject
 	@Override
-	public int getCameraYaw() {
-		return getScene().getCameraYaw();
-	}
+	public int getCameraYaw() {return getScene().getCameraYaw() * 2;}
 
 	//Prevent camera from zooming in slowly while in buildings etc
 	@Inject
@@ -606,5 +602,13 @@ public abstract class RSClientMixin implements RSClient {
 	@Override
 	public int getItemBasePrice(int itemID) {
 		return itemBasePrices[itemID];
+	}
+
+	@Replace("setModelData")
+	public void setModelData(Model model, int objectID, int localX, int localY, int width) {
+		model.setLocalX(localX);
+		model.setLocalY(localY);
+		model.setObjectID(objectID);
+		model.setWidth(width);
 	}
 }

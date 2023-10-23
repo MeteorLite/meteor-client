@@ -450,13 +450,13 @@ public class Scene {
 
 	}
 
-	public void method271(Model model) {
-		for(int i = 0; i < anInt402; i++)
-			if(aModelArray401[i] == model) {
-				anInt402--;
-				for(int j = i; j < anInt402; j++) {
-					aModelArray401[j] = aModelArray401[j + 1];
-					anIntArray403[j] = anIntArray403[j + 1];
+	public void removeModel(Model model) {
+		for(int i = 0; i < modelCount; i++)
+			if(models[i] == model) {
+				modelCount--;
+				for(int j = i; j < modelCount; j++) {
+					models[j] = models[j + 1];
+					modelState[j] = modelState[j + 1];
 				}
 
 			}
@@ -1742,15 +1742,15 @@ public class Scene {
 		anInt398 += cameraZ;
 		anInt399 += cameraY;
 		anInt400 += cameraY;
-		aModelArray401[anInt402] = view;
+		models[modelCount] = view;
 		view.anInt254 = 2;
-		for(int i = 0; i < anInt402; i++)
-			aModelArray401[i].method183(cameraX, cameraZ, cameraY, cameraPitch, cameraYaw, cameraRoll, viewDistance, anInt428);
+		for(int i = 0; i < modelCount; i++)
+			models[i].method183(cameraX, cameraZ, cameraY, cameraPitch, cameraYaw, cameraRoll, viewDistance, anInt428);
 
-		aModelArray401[anInt402].method183(cameraX, cameraZ, cameraY, cameraPitch, cameraYaw, cameraRoll, viewDistance, anInt428);
+		models[modelCount].method183(cameraX, cameraZ, cameraY, cameraPitch, cameraYaw, cameraRoll, viewDistance, anInt428);
 		anInt429 = 0;
-		for(int k3 = 0; k3 < anInt402; k3++) {
-			Model model = aModelArray401[k3];
+		for(int k3 = 0; k3 < modelCount; k3++) {
+			Model model = models[k3];
 			if(model.aBoolean287) {
 				for(int j = 0; j < model.anInt235; j++) {
 					int l3 = model.anIntArray244[j];
@@ -2450,8 +2450,8 @@ public class Scene {
 	public void method297(int i, int j, int k, int l, int i1) {
 		if(k == 0 && l == 0 && i1 == 0)
 			k = 32;
-		for(int j1 = 0; j1 < anInt402; j1++)
-			aModelArray401[j1].method199(i, j, k, l, i1);
+		for(int j1 = 0; j1 < modelCount; j1++)
+			models[j1].method199(i, j, k, l, i1);
 
 	}
 
@@ -2493,10 +2493,10 @@ public class Scene {
 		anInt425 = surface.width2 / 2;
 		anInt405 = surface.height2 / 2;
 		anIntArray448 = surface.pixels;
-		anInt402 = 0;
-		anInt455 = i;
-		aModelArray401 = new Model[anInt455];
-		anIntArray403 = new int[anInt455];
+		modelCount = 0;
+		maxModelCount = i;
+		models = new Model[maxModelCount];
+		modelState = new int[maxModelCount];
 		anInt429 = 0;
 		aPolygonArray416 = new Polygon[j];
 		for(int l = 0; l < j; l++)
@@ -3047,21 +3047,21 @@ public class Scene {
 		polygon.anInt356 = k5;
 	}
 
-	public void method305(Model model) {
+	public void addModel(Model model) {
 		if(model == null)
 			System.out.println("Warning tried to add null object!");
-		if(anInt402 < anInt455) {
-			anIntArray403[anInt402] = 0;
-			aModelArray401[anInt402++] = model;
+		if(modelCount < maxModelCount) {
+			modelState[modelCount] = 0;
+			models[modelCount++] = model;
 		}
 	}
 
 	public void method306() {
 		method276();
-		for(int i = 0; i < anInt402; i++)
-			aModelArray401[i] = null;
+		for(int i = 0; i < modelCount; i++)
+			models[i] = null;
 
-		anInt402 = 0;
+		modelCount = 0;
 	}
 
 	public int[] method307() {
@@ -3078,8 +3078,8 @@ public class Scene {
 	public void method309(int i, int j, int k) {
 		if(i == 0 && j == 0 && k == 0)
 			i = 32;
-		for(int l = 0; l < anInt402; l++)
-			aModelArray401[l].method202(i, j, k);
+		for(int l = 0; l < modelCount; l++)
+			models[l].method202(i, j, k);
 
 	}
 
@@ -3110,9 +3110,9 @@ public class Scene {
 	static int anInt398;
 	static int anInt399;
 	static int anInt400;
-	public Model[] aModelArray401;
-	public int anInt402;
-	private final int[] anIntArray403;
+	public Model[] models;
+	public int modelCount;
+	private final int[] modelState;
 	private int anInt404;
 	private int anInt405;
 	int anInt406;
@@ -3164,6 +3164,6 @@ public class Scene {
 	int anInt452;
 	public boolean aBoolean453;
 	private final int anInt454;
-	public int anInt455;
+	public int maxModelCount;
 
 }

@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import static net.runelite.api.Constants.TILE_FLAG_BRIDGE;
+
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 
@@ -115,8 +115,8 @@ public class Perspective
 			y -= client.getCameraY();
 			z -= client.getCameraZ();
 
-			final int cameraPitch = client.getCameraPitch() * 2;
-			final int cameraYaw = client.getCameraYaw() * 2;
+			final int cameraPitch = client.getCameraPitch();
+			final int cameraYaw = client.getCameraYaw();
 
 			final int pitchSin = SINE[cameraPitch];
 			final int pitchCos = COSINE[cameraPitch];
@@ -130,11 +130,13 @@ public class Perspective
 			y = z * pitchSin + y * pitchCos >> 16;
 			z = j2;
 
-			int pointX = client.getRealDimensions().width / 2 + (x << 9) / y;
-			int pointY = client.getRealDimensions().height / 2 + (z << 9) / y;
-			return new Point(
-					pointX,
-					pointY);
+			if (y > 0) {
+				int pointX = client.getRealDimensions().width / 2 + (x << 9) / y;
+				int pointY = client.getRealDimensions().height / 2 + (z << 9) / y;
+				return new Point(
+						pointX,
+						pointY);
+			}
 		}
 
 		return null;
@@ -429,12 +431,12 @@ public class Perspective
 				byte0 = 2;
 				sceneY -= 48;
 			} else
-			if(sceneX >= 48 && sceneY >= 48) {
+			if(sceneX >= 48) {
 				byte0 = 3;
 				sceneX -= 48;
 				sceneY -= 48;
 			}
-			return (tileHeights[byte0][sceneX * 48 + sceneY] & 0xff) * 3;
+			return (tileHeights[byte0][sceneX * 48 + sceneY] & 255) * 3;
 		}
 
 		return 0;
@@ -504,22 +506,10 @@ public class Perspective
 			int plane,
 			int zOffset)
 	{
-/*		if (!localLocation.isInScene())
+		if (!localLocation.isInScene())
 		{
 			return null;
-		}*/
-
-		//final byte[][][] tileSettings = client.getTileSettings();
-		final int sceneX = localLocation.getSceneX();
-		final int sceneY = localLocation.getSceneY();
-
-		int tilePlane = client.getPlane();
-/*		if (plane < Constants.MAX_Z - 1 && (tileSettings[1][sceneX][sceneY] & TILE_FLAG_BRIDGE) == TILE_FLAG_BRIDGE)
-		{
-			tilePlane = plane + 1;
-		}*/
-
-
+		}
 
 		final int swX = localLocation.getX() - (sizeX * LOCAL_TILE_SIZE / 2);
 		final int swY = localLocation.getY() - (sizeY * LOCAL_TILE_SIZE / 2);
@@ -533,10 +523,10 @@ public class Perspective
 		final int nwX = neX;
 		final int nwY = swY;
 
-		final int swHeight = getHeight(client, swX, swY, tilePlane) - zOffset;
-		final int nwHeight = getHeight(client, nwX, nwY, tilePlane) - zOffset;
-		final int neHeight = getHeight(client, neX, neY, tilePlane) - zOffset;
-		final int seHeight = getHeight(client, seX, seY, tilePlane) - zOffset;
+		final int swHeight = getHeight(client, swX, swY, plane) - zOffset;
+		final int nwHeight = getHeight(client, nwX, nwY, plane) - zOffset;
+		final int neHeight = getHeight(client, neX, neY, plane) - zOffset;
+		final int seHeight = getHeight(client, seX, seY, plane) - zOffset;
 
 		Point p1 = localToCanvas(client, swX, swY, swHeight);
 		Point p2 = localToCanvas(client, nwX, nwY, nwHeight);

@@ -10,15 +10,15 @@ public class World {
 		if(i < 0 || j < 0 || i >= 95 || j >= 95)
 			return;
 		if(Definitions.anIntArray112[k] == 1 || Definitions.anIntArray112[k] == 2) {
-			int l = method407(i, j);
+			int l = getTileDirection(i, j);
 			int i1;
 			int j1;
 			if(l == 0 || l == 4) {
-				i1 = Definitions.anIntArray110[k];
-				j1 = Definitions.anIntArray111[k];
+				i1 = Definitions.objectWidth[k];
+				j1 = Definitions.objectHeight[k];
 			} else {
-				j1 = Definitions.anIntArray110[k];
-				i1 = Definitions.anIntArray111[k];
+				j1 = Definitions.objectWidth[k];
+				i1 = Definitions.objectHeight[k];
 			}
 			for(int k1 = i; k1 < i + i1; k1++) {
 				for(int l1 = j; l1 < j + j1; l1++)
@@ -319,19 +319,19 @@ public class World {
 		}
 	}
 
-	public void method400(int i, int j, int k) {
+	public void removeObject2(int i, int j, int k) {
 		if(i < 0 || j < 0 || i >= 95 || j >= 95)
 			return;
 		if(Definitions.anIntArray112[k] == 1 || Definitions.anIntArray112[k] == 2) {
-			int l = method407(i, j);
+			int l = getTileDirection(i, j);
 			int i1;
 			int j1;
 			if(l == 0 || l == 4) {
-				i1 = Definitions.anIntArray110[k];
-				j1 = Definitions.anIntArray111[k];
+				i1 = Definitions.objectWidth[k];
+				j1 = Definitions.objectHeight[k];
 			} else {
-				j1 = Definitions.anIntArray110[k];
-				i1 = Definitions.anIntArray111[k];
+				j1 = Definitions.objectWidth[k];
+				i1 = Definitions.objectHeight[k];
 			}
 			for(int k1 = i; k1 < i + i1; k1++) {
 				for(int l1 = j; l1 < j + j1; l1++)
@@ -393,23 +393,23 @@ public class World {
 			for(int j = 0; j < 94; j++)
 				if(method419(i, j) > 48000 && method419(i, j) < 60000) {
 					int k = method419(i, j) - 48001;
-					int l = method407(i, j);
+					int l = getTileDirection(i, j);
 					int i1;
 					int j1;
 					if(l == 0 || l == 4) {
-						i1 = Definitions.anIntArray110[k];
-						j1 = Definitions.anIntArray111[k];
+						i1 = Definitions.objectWidth[k];
+						j1 = Definitions.objectHeight[k];
 					} else {
-						j1 = Definitions.anIntArray110[k];
-						i1 = Definitions.anIntArray111[k];
+						j1 = Definitions.objectWidth[k];
+						i1 = Definitions.objectHeight[k];
 					}
-					method400(i, j, k);
-					Model model = amodel[Definitions.anIntArray109[k]].method192(false, true, false, false);
+					removeObject2(i, j, k);
+					Model model = amodel[Definitions.objectModelIndex[k]].method192(false, true, false, false);
 					int k1 = ((i + i + i1) * 128) / 2;
 					int i2 = ((j + j + j1) * 128) / 2;
-					model.method197(k1, -method410(k1, i2), i2);
-					model.method203(0, method407(i, j) * 32, 0);
-					aScene575.method305(model);
+					model.translate(k1, -method410(k1, i2), i2);
+					model.method203(0, getTileDirection(i, j) * 32, 0);
+					aScene575.addModel(model);
 					model.method199(48, 48, -50, -10, -50);
 					if(i1 > 1 || j1 > 1) {
 						for(int k2 = i; k2 < i + i1; k2++) {
@@ -504,7 +504,7 @@ public class World {
 		return aByteArrayArray582[byte0][i * 48 + j] & 0xff;
 	}
 
-	public int method407(int i, int j) {
+	public int getTileDirection(int i, int j) {
 		if(i < 0 || i >= 96 || j < 0 || j >= 96)
 			return 0;
 		byte byte0 = 0;
@@ -1112,10 +1112,10 @@ public class World {
 
 			}
 
-			model.method205(true, 40, 48, -50, -10, -50);
+			model.setLight(true, 40, 48, -50, -10, -50);
 			aModelArray578 = aModel591.method201(0, 0, 1536, 1536, 8, 64, 233, false);
 			for(int j6 = 0; j6 < 64; j6++)
-				aScene575.method305(aModelArray578[j6]);
+				aScene575.addModel(aModelArray578[j6]);
 
 			for(int i9 = 0; i9 < 96; i9++) {
 				for(int k11 = 0; k11 < 96; k11++)
@@ -1177,10 +1177,10 @@ public class World {
 
 		if(flag)
 			aSurface576.method237(anInt596 - 1, 0, 0, 285, 285);
-		aModel591.method205(false, 60, 24, -50, -10, -50);
+		aModel591.setLight(false, 60, 24, -50, -10, -50);
 		aModelArrayArray597[k] = aModel591.method201(0, 0, 1536, 1536, 8, 64, 338, true);
 		for(int l2 = 0; l2 < 64; l2++)
-			aScene575.method305(aModelArrayArray597[k][l2]);
+			aScene575.addModel(aModelArrayArray597[k][l2]);
 
 		for(int l3 = 0; l3 < 95; l3++) {
 			for(int l4 = 0; l4 < 95; l4++) {
@@ -1419,10 +1419,10 @@ public class World {
 
 		}
 
-		aModel591.method205(true, 50, 50, -50, -10, -50);
+		aModel591.setLight(true, 50, 50, -50, -10, -50);
 		aModelArrayArray598[k] = aModel591.method201(0, 0, 1536, 1536, 8, 64, 169, true);
 		for(int l9 = 0; l9 < 64; l9++)
-			aScene575.method305(aModelArrayArray598[k][l9]);
+			aScene575.addModel(aModelArrayArray598[k][l9]);
 
 		if(aModelArrayArray598[k][0] == null)
 			throw new RuntimeException("null roof!");
