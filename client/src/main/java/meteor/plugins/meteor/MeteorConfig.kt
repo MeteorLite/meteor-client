@@ -135,6 +135,16 @@ interface MeteorConfig : Config {
         return ComponentConstants.STANDARD_BACKGROUND_COLOR
     }
 
+    @ConfigItem(
+            name = "Mimic Mobile UI",
+            keyName = "mimicMobileUI",
+            description = "Keep inventory open more than usual",
+            position = 12,
+    )
+    fun mimicMobileUI(): Boolean {
+        return false
+    }
+
     enum class ToolbarPosition(val position: String) {
         NORTH(BorderLayout.NORTH), SOUTH(BorderLayout.SOUTH), EAST(BorderLayout.EAST), WEST(BorderLayout.WEST);
     }

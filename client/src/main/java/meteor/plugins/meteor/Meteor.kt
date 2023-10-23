@@ -75,6 +75,9 @@ class Meteor : Plugin() {
                         Main.window!!.window.size = lockedSize
                     }
                 }
+                "mimicMobileChanged" -> {
+                    client.setMimicMobileUI(config.mimicMobileUI())
+                }
             }
         }
 

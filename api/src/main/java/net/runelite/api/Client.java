@@ -189,4 +189,8 @@ public interface Client
 	int getItemBasePrice(int itemID);
 
 	Scene getScene();
+
+	boolean mimicMobileUI();
+
+	void setMimicMobileUI(boolean mimicMobileUI);
 }

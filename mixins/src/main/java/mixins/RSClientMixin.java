@@ -273,6 +273,10 @@ public abstract class RSClientMixin implements RSClient {
 	@Inject
 	@FieldHook("showUiTab")
 	public void onShowUiTabChanged(int idx) {
+		if (!client.mimicMobileUI()) {
+			lastUITab = getShowUITab();
+			return;
+		}
 		boolean keptInventory = false;
 		if (getShowUITab() != 1) {
 			if (lastUITab == 1) {
@@ -611,5 +615,20 @@ public abstract class RSClientMixin implements RSClient {
 		model.setObjectID(objectID);
 		model.setWidth(width);
 		model.setIsWallObject(isWallObject);
+	}
+
+	@Inject
+	public boolean mimicMobileUI;
+
+	@Inject
+	@Override
+	public boolean mimicMobileUI() {
+		return mimicMobileUI;
+	}
+
+	@Inject
+	@Override
+	public void setMimicMobileUI(boolean mimicMobileUI) {
+		this.mimicMobileUI = mimicMobileUI;
 	}
 }
