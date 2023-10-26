@@ -25,7 +25,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 /**
  * A utility class containing constant values.
@@ -46,6 +46,7 @@ public class Constants
 	 * Dimension representation of the width and height of the game in fixed mode.
 	 */
 	public static final Dimension GAME_FIXED_SIZE = new Dimension(GAME_FIXED_WIDTH, GAME_FIXED_HEIGHT);
+	public static final Rectangle GAME_FIXED_WINDOW = new Rectangle(GAME_FIXED_WIDTH, GAME_FIXED_HEIGHT);
 
 	/**
 	 * The aspect ratio of the game when running in fixed mode.

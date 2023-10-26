@@ -25,6 +25,7 @@
  */
 package mixins;
 
+import net.runelite.api.Constants;
 import net.runelite.api.Perspective;
 import net.runelite.api.SpriteID;
 import net.runelite.api.coords.LocalPoint;
@@ -48,7 +49,9 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	@Inject
 	@Override
 	public void drawHitSplat(int spriteID) {
-		if (getScreenCenterX() <= 0 || getScreenCenterY() <= 0)
+		int x = getScreenCenterX() - 12;
+		int y = getScreenCenterY() - 12;
+		if (!Constants.GAME_FIXED_WINDOW.contains(x, y))
 			return;
 		int sprite = spriteID;
 		if (getCombatTimer() > 150) {
@@ -60,7 +63,7 @@ public abstract class RSCharacterMixin implements RSCharacter {
 					if (getDamageTaken() == 0)
 						sprite = SpriteID.HITSPLAT_BLUE;
 			}
-			client.getSurface().drawSprite$api(getScreenCenterX() - 12, getScreenCenterY() - 12, sprite);
+			client.getSurface().drawSprite$api(x, y, sprite);
 			client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenCenterX() - 1, getScreenCenterY() + 5, 3, 0xffffff);
 		}
 	}
