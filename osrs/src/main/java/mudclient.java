@@ -3,6 +3,7 @@
 // Decompiler options: packimports(3) nonlb 
 
 import events.UpdateInventoryPacket;
+import net.runelite.api.Constants;
 import net.runelite.mapping.Implements;
 import org.rationalityfrontline.kevent.Event;
 import org.rationalityfrontline.kevent.KEventKt;
@@ -1089,7 +1090,7 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private int method68(int i) {
+	private int getInventoryItemCount(int i) {
 		int j = 0;
 		for(int k = 0; k < inventorySize; k++)
 			if(inventoryItemsIDs[k] == i)
@@ -1227,7 +1228,7 @@ public final class mudclient extends NetworkedGame {
 			method77();
 		else
 		if(aBoolean813 && combatTimeout == 0)
-			method78();
+			drawDialogShop();
 		else
 		if(showDialogTradeConfirm)
 			method101();
@@ -1886,42 +1887,42 @@ public final class mudclient extends NetworkedGame {
 						super.packetStream.put4(0x12345678);
 						super.packetStream.endPacket();
 					}
-					if(method68(k2) >= 1 && super.mouseX >= i + 220 && super.mouseY >= k + 263 && super.mouseX < i + 250 && super.mouseY <= k + 274) {
+					if(getInventoryItemCount(k2) >= 1 && super.mouseX >= i + 220 && super.mouseY >= k + 263 && super.mouseX < i + 250 && super.mouseY <= k + 274) {
 						super.packetStream.createPacket(23);
 						super.packetStream.putShort(k2);
 						super.packetStream.putShort(1);
 						super.packetStream.put4(0x87654321);
 						super.packetStream.endPacket();
 					}
-					if(method68(k2) >= 5 && super.mouseX >= i + 250 && super.mouseY >= k + 263 && super.mouseX < i + 280 && super.mouseY <= k + 274) {
+					if(getInventoryItemCount(k2) >= 5 && super.mouseX >= i + 250 && super.mouseY >= k + 263 && super.mouseX < i + 280 && super.mouseY <= k + 274) {
 						super.packetStream.createPacket(23);
 						super.packetStream.putShort(k2);
 						super.packetStream.putShort(5);
 						super.packetStream.put4(0x87654321);
 						super.packetStream.endPacket();
 					}
-					if(method68(k2) >= 25 && super.mouseX >= i + 280 && super.mouseY >= k + 263 && super.mouseX < i + 305 && super.mouseY <= k + 274) {
+					if(getInventoryItemCount(k2) >= 25 && super.mouseX >= i + 280 && super.mouseY >= k + 263 && super.mouseX < i + 305 && super.mouseY <= k + 274) {
 						super.packetStream.createPacket(23);
 						super.packetStream.putShort(k2);
 						super.packetStream.putShort(25);
 						super.packetStream.put4(0x87654321);
 						super.packetStream.endPacket();
 					}
-					if(method68(k2) >= 100 && super.mouseX >= i + 305 && super.mouseY >= k + 263 && super.mouseX < i + 335 && super.mouseY <= k + 274) {
+					if(getInventoryItemCount(k2) >= 100 && super.mouseX >= i + 305 && super.mouseY >= k + 263 && super.mouseX < i + 335 && super.mouseY <= k + 274) {
 						super.packetStream.createPacket(23);
 						super.packetStream.putShort(k2);
 						super.packetStream.putShort(100);
 						super.packetStream.put4(0x87654321);
 						super.packetStream.endPacket();
 					}
-					if(method68(k2) >= 500 && super.mouseX >= i + 335 && super.mouseY >= k + 263 && super.mouseX < i + 368 && super.mouseY <= k + 274) {
+					if(getInventoryItemCount(k2) >= 500 && super.mouseX >= i + 335 && super.mouseY >= k + 263 && super.mouseX < i + 368 && super.mouseY <= k + 274) {
 						super.packetStream.createPacket(23);
 						super.packetStream.putShort(k2);
 						super.packetStream.putShort(500);
 						super.packetStream.put4(0x87654321);
 						super.packetStream.endPacket();
 					}
-					if(method68(k2) >= 2500 && super.mouseX >= i + 370 && super.mouseY >= k + 263 && super.mouseX < i + 400 && super.mouseY <= k + 274) {
+					if(getInventoryItemCount(k2) >= 2500 && super.mouseX >= i + 370 && super.mouseY >= k + 263 && super.mouseX < i + 400 && super.mouseY <= k + 274) {
 						super.packetStream.createPacket(23);
 						super.packetStream.putShort(k2);
 						super.packetStream.putShort(2500);
@@ -2016,14 +2017,14 @@ public final class mudclient extends NetworkedGame {
 				if(k7 < anInt663 && anIntArray664[k7] != -1) {
 					surface.spriteClipping(l8, i9, 48, 32, spriteItem + Definitions.itemImages[anIntArray664[k7]], Definitions.itemMasks[anIntArray664[k7]], 0, 0, false);
 					surface.drawString(String.valueOf(anIntArray666[k7]), l8 + 1, i9 + 10, 1, 65280);
-					surface.method243(String.valueOf(method68(anIntArray664[k7])), l8 + 47, i9 + 29, 1, 65535);
+					surface.method243(String.valueOf(getInventoryItemCount(anIntArray664[k7])), l8 + 47, i9 + 29, 1, 65535);
 				}
 				k7++;
 			}
 
 		}
 
-		surface.method251(j + 5, l + 256, 398, 0);
+		surface.drawHorizontalLine(j + 5, l + 256, 398, 0);
 		if(anInt847 == -1) {
 			surface.drawStringCenter("Select an object to withdraw or deposit", j + 204, l + 248, 3, 0xffff00);
 			return;
@@ -2074,37 +2075,37 @@ public final class mudclient extends NetworkedGame {
 					surface.drawString("2500", j + 370, l + 248, 1, i5);
 				}
 			}
-			if(method68(k8) > 0) {
+			if(getInventoryItemCount(k8) > 0) {
 				surface.drawString("Deposit " + Definitions.itemNames[k8], j + 2, l + 273, 1, 0xffffff);
 				int j5 = 0xffffff;
 				if(super.mouseX >= j + 220 && super.mouseY >= l + 263 && super.mouseX < j + 250 && super.mouseY <= l + 274)
 					j5 = 0xff0000;
 				surface.drawString("One", j + 222, l + 273, 1, j5);
-				if(method68(k8) >= 5) {
+				if(getInventoryItemCount(k8) >= 5) {
 					int k5 = 0xffffff;
 					if(super.mouseX >= j + 250 && super.mouseY >= l + 263 && super.mouseX < j + 280 && super.mouseY <= l + 274)
 						k5 = 0xff0000;
 					surface.drawString("Five", j + 252, l + 273, 1, k5);
 				}
-				if(method68(k8) >= 25) {
+				if(getInventoryItemCount(k8) >= 25) {
 					int l5 = 0xffffff;
 					if(super.mouseX >= j + 280 && super.mouseY >= l + 263 && super.mouseX < j + 305 && super.mouseY <= l + 274)
 						l5 = 0xff0000;
 					surface.drawString("25", j + 282, l + 273, 1, l5);
 				}
-				if(method68(k8) >= 100) {
+				if(getInventoryItemCount(k8) >= 100) {
 					int i6 = 0xffffff;
 					if(super.mouseX >= j + 305 && super.mouseY >= l + 263 && super.mouseX < j + 335 && super.mouseY <= l + 274)
 						i6 = 0xff0000;
 					surface.drawString("100", j + 307, l + 273, 1, i6);
 				}
-				if(method68(k8) >= 500) {
+				if(getInventoryItemCount(k8) >= 500) {
 					int j6 = 0xffffff;
 					if(super.mouseX >= j + 335 && super.mouseY >= l + 263 && super.mouseX < j + 368 && super.mouseY <= l + 274)
 						j6 = 0xff0000;
 					surface.drawString("500", j + 337, l + 273, 1, j6);
 				}
-				if(method68(k8) >= 2500) {
+				if(getInventoryItemCount(k8) >= 2500) {
 					int k6 = 0xffffff;
 					if(super.mouseX >= j + 370 && super.mouseY >= l + 263 && super.mouseX < j + 400 && super.mouseY <= l + 274)
 						k6 = 0xff0000;
@@ -2114,46 +2115,49 @@ public final class mudclient extends NetworkedGame {
 		}
 	}
 
-	private void method78() {
+	private void drawDialogShop() {
 		if(mouseButtonClick != 0) {
 			mouseButtonClick = 0;
 			int i = super.mouseX - 52;
 			int j = super.mouseY - 44;
+			int mlx = this.mouseX - (Constants.GAME_FIXED_WIDTH - 408) / 2;
+			int mly = this.mouseY - (Constants.GAME_FIXED_HEIGHT - 246) / 2;
 			if(i >= 0 && j >= 12 && i < 408 && j < 246) {
 				int k = 0;
 				for(int i1 = 0; i1 < 5; i1++) {
 					for(int i2 = 0; i2 < 8; i2++) {
 						int l2 = 7 + i2 * 49;
 						int l3 = 28 + i1 * 34;
-						if(i > l2 && i < l2 + 49 && j > l3 && j < l3 + 34 && anIntArray849[k] != -1) {
-							anInt850 = k;
-							anInt851 = anIntArray849[k];
+						if(i > l2 && i < l2 + 49 && j > l3 && j < l3 + 34 && shopCategoryID[k] != -1) {
+							shopSelectedItemIndex = k;
+							shopSelectedItemType = shopCategoryID[k];
 						}
 						k++;
 					}
 
 				}
 
-				if(anInt850 >= 0) {
-					int itemType = anIntArray849[anInt850];
-					if(itemType != -1) {
-						if(anIntArray852[anInt850] > 0 && i > 298 && j >= 204 && i < 408 && j <= 215) {
-							int i3 = anInt853 + anIntArray854[anInt850];
+				if(shopSelectedItemIndex >= 0) {
+					int id = shopCategoryID[shopSelectedItemIndex];
+					if(id != -1) {
+						int count = this.shopItemQuantities[this.shopSelectedItemIndex];
+						if(shopItemQuantities[shopSelectedItemIndex] > 0 && i > 298 && j >= 204 && i < 408 && j <= 215) {
+							int i3 = shopPriceMod + shopItemPrices[shopSelectedItemIndex];
 							if(i3 < 10)
 								i3 = 10;
-							int i4 = (i3 * Definitions.itemBasePrice[itemType]) / 100;
+							int i4 = (i3 * Definitions.itemBasePrice[id]) / 100;
 							super.packetStream.createPacket(236);
-							super.packetStream.putShort(anIntArray849[anInt850]);
+							super.packetStream.putShort(shopCategoryID[shopSelectedItemIndex]);
 							super.packetStream.put4(i4);
 							super.packetStream.endPacket();
 						}
-						if(method68(itemType) > 0 && i > 2 && j >= 229 && i < 112 && j <= 240) {
-							int j3 = anInt855 + anIntArray854[anInt850];
+						if(getInventoryItemCount(id) > 0 && i > 2 && j >= 229 && i < 112 && j <= 240) {
+							int j3 = anInt855 + shopItemPrices[shopSelectedItemIndex];
 							if(j3 < 10)
 								j3 = 10;
-							int j4 = (j3 * Definitions.itemBasePrice[itemType]) / 100;
+							int j4 = (j3 * Definitions.itemBasePrice[id]) / 100;
 							super.packetStream.createPacket(221);
-							super.packetStream.putShort(anIntArray849[anInt850]);
+							super.packetStream.putShort(shopCategoryID[shopSelectedItemIndex]);
 							super.packetStream.put4(j4);
 							super.packetStream.endPacket();
 						}
@@ -2166,76 +2170,183 @@ public final class mudclient extends NetworkedGame {
 				return;
 			}
 		}
-		byte byte0 = 52;
-		byte byte1 = 44;
-		surface.method207(byte0, byte1, 408, 12, 192);
+		byte xr = 52;
+		byte yr = 44;
+		surface.method207(xr, yr, 408, 12, 192);
 		int l = 0x989898;
-		surface.method224(byte0, byte1 + 12, 408, 17, l, 160);
-		surface.method224(byte0, byte1 + 29, 8, 170, l, 160);
-		surface.method224(byte0 + 399, byte1 + 29, 9, 170, l, 160);
-		surface.method224(byte0, byte1 + 199, 408, 47, l, 160);
-		surface.drawString("Buying and selling items", byte0 + 1, byte1 + 10, 1, 0xffffff);
-		int j1 = 0xffffff;
-		if(super.mouseX > byte0 + 320 && super.mouseY >= byte1 && super.mouseX < byte0 + 408 && super.mouseY < byte1 + 12)
-			j1 = 0xff0000;
-		surface.method243("Close window", byte0 + 406, byte1 + 10, 1, j1);
-		surface.drawString("Shops stock in green", byte0 + 2, byte1 + 24, 1, 65280);
-		surface.drawString("Number you own in blue", byte0 + 135, byte1 + 24, 1, 65535);
-		surface.drawString("Your money: " + method68(10) + "gp", byte0 + 280, byte1 + 24, 1, 0xffff00);
+		surface.method224(xr, yr + 12, 408, 17, l, 160);
+		surface.method224(xr, yr + 29, 8, 170, l, 160);
+		surface.method224(xr + 399, yr + 29, 9, 170, l, 160);
+		surface.method224(xr, yr + 199, 408, 47, l, 160);
+		surface.drawString("Buying and selling items", xr + 1, yr + 10, 1, 0xffffff);
+		int color2 = 0xffffff;
+		if(super.mouseX > xr + 320 && super.mouseY >= yr && super.mouseX < xr + 408 && super.mouseY < yr + 12)
+			color2 = 0xff0000;
+		surface.method243("Close window", xr + 406, yr + 10, 1, color2);
+		surface.drawString("Shops stock in green", xr + 2, yr + 24, 1, 65280);
+		surface.drawString("Number you own in blue", xr + 135, yr + 24, 1, 65535);
+		surface.drawString("Your money: " + getInventoryItemCount(10) + "gp", xr + 280, yr + 24, 1, 0xffff00);
 		int k2 = 0xd0d0d0;
 		int k3 = 0;
 		for(int k4 = 0; k4 < 5; k4++) {
 			for(int l4 = 0; l4 < 8; l4++) {
-				int j5 = byte0 + 7 + l4 * 49;
-				int i6 = byte1 + 28 + k4 * 34;
-				if(anInt850 == k3)
+				int j5 = xr + 7 + l4 * 49;
+				int i6 = yr + 28 + k4 * 34;
+				if(shopSelectedItemIndex == k3)
 					surface.method224(j5, i6, 49, 34, 0xff0000, 160);
 				else
 					surface.method224(j5, i6, 49, 34, k2, 160);
 				surface.method214(j5, i6, 50, 35, 0);
-				if(anIntArray849[k3] != -1) {
-					surface.spriteClipping(j5, i6, 48, 32, spriteItem + Definitions.itemImages[anIntArray849[k3]], Definitions.itemMasks[anIntArray849[k3]], 0, 0, false);
-					surface.drawString(String.valueOf(anIntArray852[k3]), j5 + 1, i6 + 10, 1, 65280);
-					surface.method243(String.valueOf(method68(anIntArray849[k3])), j5 + 47, i6 + 10, 1, 65535);
+				if(shopCategoryID[k3] != -1) {
+					surface.spriteClipping(j5, i6, 48, 32, spriteItem + Definitions.itemImages[shopCategoryID[k3]], Definitions.itemMasks[shopCategoryID[k3]], 0, 0, false);
+					surface.drawString(String.valueOf(shopItemQuantities[k3]), j5 + 1, i6 + 10, 1, 65280);
+					surface.method243(String.valueOf(getInventoryItemCount(shopCategoryID[k3])), j5 + 47, i6 + 10, 1, 65535);
 				}
 				k3++;
 			}
 
 		}
 
-		surface.method251(byte0 + 5, byte1 + 222, 398, 0);
-		if(anInt850 == -1) {
-			surface.drawStringCenter("Select an object to buy or sell", byte0 + 204, byte1 + 214, 3, 0xffff00);
+		surface.drawHorizontalLine(xr + 5, yr + 222, 398, 0);
+		if(shopSelectedItemIndex == -1) {
+			surface.drawStringCenter("Select an object to buy or sell", xr + 204, yr + 214, 3, 0xffff00);
 			return;
 		}
-		int i5 = anIntArray849[anInt850];
-		if(i5 != -1) {
-			if(anIntArray852[anInt850] > 0) {
-				int k5 = anInt853 + anIntArray854[anInt850];
-				if(k5 < 10)
-					k5 = 10;
-				int j6 = (k5 * Definitions.itemBasePrice[i5]) / 100;
-				surface.drawString("Buy a new " + Definitions.itemNames[i5] + " for " + j6 + "gp", byte0 + 2, byte1 + 214, 1, 0xffff00);
-				int k1 = 0xffffff;
-				if(super.mouseX > byte0 + 298 && super.mouseY >= byte1 + 204 && super.mouseX < byte0 + 408 && super.mouseY <= byte1 + 215)
-					k1 = 0xff0000;
-				surface.method243("Click here to buy", byte0 + 405, byte1 + 214, 3, k1);
+		int id = shopCategoryID[shopSelectedItemIndex];
+		if(id != -1) {
+			if (!injected) {
+				if(shopItemQuantities[shopSelectedItemIndex] > 0) {
+					int k5 = shopPriceMod + shopItemPrices[shopSelectedItemIndex];
+					if(k5 < 10)
+						k5 = 10;
+					int buyCost = (k5 * Definitions.itemBasePrice[id]) / 100;
+					surface.drawString("Buy a new " + Definitions.itemNames[id] + " for " + buyCost + "gp", xr + 2, yr + 214, 1, 0xffff00);
+					int k1 = 0xffffff;
+					if(super.mouseX > xr + 298 && super.mouseY >= yr + 204 && super.mouseX < xr + 408 && super.mouseY <= yr + 215)
+						k1 = 0xff0000;
+					surface.method243("Click here to buy", xr + 405, yr + 214, 3, k1);
+				} else {
+					surface.drawStringCenter("This item is not currently available to buy", xr + 204, yr + 214, 3, 0xffff00);
+				}
+				if(getInventoryItemCount(id) > 0) {
+					int l5 = anInt855 + shopItemPrices[shopSelectedItemIndex];
+					if(l5 < 10)
+						l5 = 10;
+					int sellCost = (l5 * Definitions.itemBasePrice[id]) / 100;
+					surface.method243("Sell your " + Definitions.itemNames[id] + " for " + sellCost + "gp", xr + 405, yr + 239, 1, 0xffff00);
+					int l1 = 0xffffff;
+					if(super.mouseX > xr + 2 && super.mouseY >= yr + 229 && super.mouseX < xr + 112 && super.mouseY <= yr + 240)
+						l1 = 0xff0000;
+					surface.drawString("Click here to sell", xr + 2, yr + 239, 3, l1);
+					return;
+				}
+				surface.drawStringCenter("You do not have any of this item to sell", xr + 204, yr + 239, 3, 0xffff00);
 			} else {
-				surface.drawStringCenter("This item is not currently available to buy", byte0 + 204, byte1 + 214, 3, 0xffff00);
-			}
-			if(method68(i5) > 0) {
-				int l5 = anInt855 + anIntArray854[anInt850];
+				int shopQuantity = shopItemQuantities[shopSelectedItemIndex];
+				int playerQuantity = getInventoryItemCount(id);
+
+				int l5 = anInt855 + shopItemPrices[shopSelectedItemIndex];
 				if(l5 < 10)
 					l5 = 10;
-				int k6 = (l5 * Definitions.itemBasePrice[i5]) / 100;
-				surface.method243("Sell your " + Definitions.itemNames[i5] + " for " + k6 + "gp", byte0 + 405, byte1 + 239, 1, 0xffff00);
-				int l1 = 0xffffff;
-				if(super.mouseX > byte0 + 2 && super.mouseY >= byte1 + 229 && super.mouseX < byte0 + 112 && super.mouseY <= byte1 + 240)
-					l1 = 0xff0000;
-				surface.drawString("Click here to sell", byte0 + 2, byte1 + 239, 3, l1);
-				return;
+				int sellCost = (l5 * Definitions.itemBasePrice[id]) / 100;
+
+				int k5 = shopPriceMod + shopItemPrices[shopSelectedItemIndex];
+				if(k5 < 10)
+					k5 = 10;
+				int buyCost = (k5 * Definitions.itemBasePrice[id]) / 100;
+
+				// Buy
+				if (shopQuantity <= 0) {
+					surface.drawStringCenter("This item is not currently available to buy",204 + xr,  214 + yr, 3, 0xFFFF00);
+				} else {
+					surface.drawString(
+							Definitions.itemNames[id] + ": buy for " + buyCost + "gp each", 2 + xr,
+							yr + 214, 1, 0xFFFF00);
+					boolean mouseInRow = 204 + yr <= this.mouseY && yr + 215 >= this.mouseY;
+					surface.drawString("Buy:", xr + 285, 214 + yr, 3, 0xFFFFFF);
+					color2 = 0xFFFFFF;
+					if (mouseInRow && this.mouseX > 318 + xr && this.mouseX < xr + 330) {
+						color2 = 0xFF0000;
+					}
+					surface.drawString("1", xr + 320, 214 + yr, 3, color2);
+					if (shopQuantity >= 5) {
+						color2 = 0xFFFFFF;
+						if (mouseInRow && this.mouseX > 333 + xr && this.mouseX < 345 + xr) {
+							color2 = 0xFF0000;
+						}
+						surface.drawString("5", 335 + xr, 214 + yr, 3, color2);
+					}
+					if (shopQuantity >= 10) {
+						color2 = 0xFFFFFF;
+						if (mouseInRow && 348 + xr < this.mouseX && this.mouseX < xr + 365) {
+							color2 = 0xFF0000;
+						}
+						surface.drawString("10", 350 + xr, 214 + yr, 3, color2);
+					}
+
+					if (shopQuantity >= 50) {
+						color2 = 0xFFFFFF;
+						if (mouseInRow && this.mouseX > 368 + xr && 385 + xr > this.mouseX) {
+							color2 = 0xFF0000;
+						}
+						surface.drawString("50", xr + 370, 214 + yr, 3, color2);
+					}
+
+					color2 = 0xFFFFFF;
+					if (mouseInRow && this.mouseX > xr + 388 && this.mouseX < 400 + xr) {
+						color2 = 0xFF0000;
+					}
+					surface.drawString("X", 390 + xr, 214 + yr, 3, color2);
+				}
+
+				//Sell
+
+				if (playerQuantity <=0) {
+					surface.drawString("You do not have any of this item to sell",xr + 204, 239 + yr, 3, 0xFFFF00);
+				} else {
+					surface.drawString(
+							Definitions.itemNames[id] + ": sell for " + sellCost + "gp each", 2 + xr,
+							yr + 239, 1, 0xFFFF00);
+					boolean mouseInRow = this.mouseY >= yr + 229 && yr + 240 >= this.mouseY;
+
+					color2 = 0xFFFFFF;
+					surface.drawString("Sell:", xr + 285, yr + 239, 3, 0xFFFFFF);
+					if (mouseInRow && xr + 318 < this.mouseX && this.mouseX < xr + 330) {
+						color2 = 0xFF0000;
+					}
+					surface.drawString("1", xr + 320, 239 + yr, 3, color2);
+
+					if (playerQuantity >= 5) {
+						color2 = 0xFFFFFF;
+						if (mouseInRow && xr + 333 < this.mouseX && this.mouseX < xr + 345) {
+							color2 = 0xFF0000;
+						}
+						surface.drawString("5", 335 + xr, 239 + yr, 3, color2);
+					}
+
+					if (playerQuantity >= 10) {
+						color2 = 0xFFFFFF;
+						if (mouseInRow && 348 + xr < this.mouseX && 365 + xr > this.mouseX) {
+							color2 = 0xFF0000;
+						}
+						surface.drawString("10", xr + 350, 239 + yr, 3, color2);
+					}
+
+					if (playerQuantity >= 50) {
+						color2 = 0xFFFFFF;
+						if (mouseInRow && this.mouseX > xr + 368 && 385 + xr > this.mouseX) {
+							color2 = 0xFF0000;
+						}
+						surface.drawString("50", xr + 370, 239 + yr, 3, color2);
+					}
+
+					color2 = 0xFFFFFF;
+					if (mouseInRow && this.mouseX > 388 + xr && xr + 400 > this.mouseX) {
+						color2 = 0xFF0000;
+					}
+					surface.drawString("X", xr + 390, yr + 239, 3, color2);
+				}
 			}
-			surface.drawStringCenter("You do not have any of this item to sell", byte0 + 204, byte1 + 239, 3, 0xffff00);
 		}
 	}
 
@@ -2873,7 +2984,7 @@ label0:
 			return true;
 		if(i == 34 && (method115(103) || method115(618) || method115(685)))
 			return true;
-		return method68(i) >= j;
+		return getInventoryItemCount(i) >= j;
 	}
 
 	private void drawUiTabSocial(boolean flag) {
@@ -2891,9 +3002,9 @@ label0:
 		surface.method224(i, j, c / 2, 24, k, 128);
 		surface.method224(i + c / 2, j, c / 2, 24, l, 128);
 		surface.method224(i, j + 24, c, c1 - 24, Surface.method222(220, 220, 220), 128);
-		surface.method251(i, j + 24, c, 0);
+		surface.drawHorizontalLine(i, j + 24, c, 0);
 		surface.method217(i + c / 2, j, 24, 0);
-		surface.method251(i, (j + c1) - 16, c, 0);
+		surface.drawHorizontalLine(i, (j + c1) - 16, c, 0);
 		surface.drawStringCenter("Friends", i + c / 4, j + 16, 4, 0);
 		surface.drawStringCenter("Ignore", i + c / 4 + c / 2, j + 16, 4, 0);
 		aPanel867.method154(anInt868);
@@ -3955,16 +4066,16 @@ label0:
 				int j11 = buffer[i4++] & 0xff;
 				byte byte4 = buffer[i4++];
 				anInt855 = buffer[i4++] & 0xff;
-				anInt853 = buffer[i4++] & 0xff;
+				shopPriceMod = buffer[i4++] & 0xff;
 				for(int i22 = 0; i22 < 40; i22++)
-					anIntArray849[i22] = -1;
+					shopCategoryID[i22] = -1;
 
 				for(int j25 = 0; j25 < j11; j25++) {
-					anIntArray849[j25] = DataUtils.method344(buffer, i4);
+					shopCategoryID[j25] = DataUtils.method344(buffer, i4);
 					i4 += 2;
-					anIntArray852[j25] = DataUtils.method344(buffer, i4);
+					shopItemQuantities[j25] = DataUtils.method344(buffer, i4);
 					i4 += 2;
-					anIntArray854[j25] = buffer[i4++];
+					shopItemPrices[j25] = buffer[i4++];
 				}
 
 				if(byte4 == 1) {
@@ -3974,7 +4085,7 @@ label0:
 							break;
 						boolean flag2 = false;
 						for(int j39 = 0; j39 < 40; j39++) {
-							if(anIntArray849[j39] != inventoryItemsIDs[k33])
+							if(shopCategoryID[j39] != inventoryItemsIDs[k33])
 								continue;
 							flag2 = true;
 							break;
@@ -3983,17 +4094,17 @@ label0:
 						if(inventoryItemsIDs[k33] == 10)
 							flag2 = true;
 						if(!flag2) {
-							anIntArray849[l28] = inventoryItemsIDs[k33] & 0x7fff;
-							anIntArray852[l28] = 0;
-							anIntArray854[l28] = 0;
+							shopCategoryID[l28] = inventoryItemsIDs[k33] & 0x7fff;
+							shopItemQuantities[l28] = 0;
+							shopItemPrices[l28] = 0;
 							l28--;
 						}
 					}
 
 				}
-				if(anInt850 >= 0 && anInt850 < 40 && anIntArray849[anInt850] != anInt851) {
-					anInt850 = -1;
-					anInt851 = -2;
+				if(shopSelectedItemIndex >= 0 && shopSelectedItemIndex < 40 && shopCategoryID[shopSelectedItemIndex] != shopSelectedItemType) {
+					shopSelectedItemIndex = -1;
+					shopSelectedItemType = -2;
 				}
 				return;
 			}
@@ -4878,7 +4989,7 @@ label0:
 		surface.method260(surface.width2 - 3 - 197, 3, anInt658, 128);
 		drawUI();
 		drawMouseClick(true);
-		surface.aBoolean352 = false;
+		surface.loggedIn = false;
 		method76();
 		surface.drawSurface(graphics, 0, 0);
 	}
@@ -4992,9 +5103,9 @@ label0:
 		teleportBubbleType = new int[50];
 		errorLoadingCodebase = false;
 		aBoolean813 = false;
-		anIntArray849 = new int[256];
-		anIntArray852 = new int[256];
-		anIntArray854 = new int[256];
+		shopCategoryID = new int[256];
+		shopItemQuantities = new int[256];
+		shopItemPrices = new int[256];
 		aBoolean895 = false;
 		aBoolean896 = false;
 		gameModels = new Model[1000];
@@ -5060,8 +5171,8 @@ label0:
 		anIntArray702 = new int[50];
 		sleepWordDelay = true;
 		changeAppearanceVisible = false;
-		anInt850 = -1;
-		anInt851 = -2;
+		shopSelectedItemIndex = -1;
+		shopSelectedItemType = -2;
 		anInt876 = 40;
 		npcs = new Character[500];
 		levelXPs = new int[99];
@@ -5362,9 +5473,9 @@ label0:
 		surface.method224(i + c / 2, j, c / 2, 24, l, 128);
 		surface.method224(i, j + 24, c, 90, Surface.method222(220, 220, 220), 128);
 		surface.method224(i, j + 24 + 90, c, c1 - 90 - 24, Surface.method222(160, 160, 160), 128);
-		surface.method251(i, j + 24, c, 0);
+		surface.drawHorizontalLine(i, j + 24, c, 0);
 		surface.method217(i + c / 2, j, 24, 0);
-		surface.method251(i, j + 113, c, 0);
+		surface.drawHorizontalLine(i, j + 113, c, 0);
 		surface.drawStringCenter("Magic", i + c / 4, j + 16, 4, 0);
 		surface.drawStringCenter("Prayers", i + c / 4 + c / 2, j + 16, 4, 0);
 		if(anInt958 == 0) {
@@ -5394,7 +5505,7 @@ label0:
 				for(int i4 = 0; i4 < Definitions.anIntArray136[i3]; i4++) {
 					int i5 = Definitions.anIntArrayArray138[i3][i4];
 					surface.drawSprite(i + 2 + i4 * 44, j + 150, spriteItem + Definitions.itemImages[i5]);
-					int j5 = method68(i5);
+					int j5 = getInventoryItemCount(i5);
 					int k5 = Definitions.anIntArrayArray139[i3][i4];
 					String s2 = "@red@";
 					if(method86(i5, k5))
@@ -5517,7 +5628,7 @@ label0:
 			surface.method217(i + l * 49, 36, (inventoryMaxItemCount / 5) * 34, 0);
 
 		for(int j1 = 1; j1 <= inventoryMaxItemCount / 5 - 1; j1++)
-			surface.method251(i, 36 + j1 * 34, 245, 0);
+			surface.drawHorizontalLine(i, 36 + j1 * 34, 245, 0);
 
 		if(!flag)
 			return;
@@ -5616,8 +5727,8 @@ label0:
 				surface.method224(byte0, byte1 + j * 20, c, 20, Surface.method222(255, 0, 0), 128);
 			else
 				surface.method224(byte0, byte1 + j * 20, c, 20, Surface.method222(190, 190, 190), 128);
-			surface.method251(byte0, byte1 + j * 20, c, 0);
-			surface.method251(byte0, byte1 + j * 20 + 20, c, 0);
+			surface.drawHorizontalLine(byte0, byte1 + j * 20, c, 0);
+			surface.drawHorizontalLine(byte0, byte1 + j * 20 + 20, c, 0);
 		}
 
 		surface.drawStringCenter("Select combat style", byte0 + c / 2, byte1 + 16, 3, 0xffffff);
@@ -5681,11 +5792,11 @@ label0:
 		}
 		try {
 			if(loggedIn == 0) {
-				surface.aBoolean352 = false;
+				surface.loggedIn = false;
 				method73();
 			}
 			if(loggedIn == 1) {
-				surface.aBoolean352 = true;
+				surface.loggedIn = true;
 				drawGame();
             }
 		}
@@ -5731,7 +5842,7 @@ label0:
 		surface.method224(i, j, c / 2, 24, k, 128);
 		surface.method224(i + c / 2, j, c / 2, 24, l, 128);
 		surface.method224(i, j + 24, c, c1 - 24, Surface.method222(220, 220, 220), 128);
-		surface.method251(i, j + 24, c, 0);
+		surface.drawHorizontalLine(i, j + 24, c, 0);
 		surface.method217(i + c / 2, j, 24, 0);
 		surface.drawStringCenter("Stats", i + c / 4, j + 16, 4, 0);
 		surface.drawStringCenter("Quests", i + c / 4 + c / 2, j + 16, 4, 0);
@@ -5770,7 +5881,7 @@ label0:
 			}
 
 			i1 += 6;
-			surface.method251(i, i1 - 15, c, 0);
+			surface.drawHorizontalLine(i, i1 - 15, c, 0);
 			if(skill != -1) {
 				surface.drawString(skillNameLong[skill] + " skill", i + 5, i1, 1, 0xffff00);
 				i1 += 12;
@@ -6026,7 +6137,7 @@ label0:
 									l1++;
 								}
 
-						if(method68(k2) <= l1)
+						if(getInventoryItemCount(k2) <= l1)
 							flag1 = true;
 						if(Definitions.anIntArray72[k2] == 1) {
 							sendMessage("This object cannot be added to a duel offer", 3);
@@ -6149,13 +6260,13 @@ label0:
 		surface.method224(byte0 + 8, byte1 + 215, 197, 43, k1, 160);
 		surface.method224(byte0 + 216, byte1 + 30, 246, 205, k1, 160);
 		for(int j2 = 0; j2 < 3; j2++)
-			surface.method251(byte0 + 8, byte1 + 30 + j2 * 34, 197, 0);
+			surface.drawHorizontalLine(byte0 + 8, byte1 + 30 + j2 * 34, 197, 0);
 
 		for(int j3 = 0; j3 < 3; j3++)
-			surface.method251(byte0 + 8, byte1 + 123 + j3 * 34, 197, 0);
+			surface.drawHorizontalLine(byte0 + 8, byte1 + 123 + j3 * 34, 197, 0);
 
 		for(int l3 = 0; l3 < 7; l3++)
-			surface.method251(byte0 + 216, byte1 + 30 + l3 * 34, 246, 0);
+			surface.drawHorizontalLine(byte0 + 216, byte1 + 30 + l3 * 34, 246, 0);
 
 		for(int k4 = 0; k4 < 6; k4++) {
 			if(k4 < 5)
@@ -6165,8 +6276,8 @@ label0:
 			surface.method217(byte0 + 216 + k4 * 49, byte1 + 30, 205, 0);
 		}
 
-		surface.method251(byte0 + 8, byte1 + 215, 197, 0);
-		surface.method251(byte0 + 8, byte1 + 257, 197, 0);
+		surface.drawHorizontalLine(byte0 + 8, byte1 + 215, 197, 0);
+		surface.drawHorizontalLine(byte0 + 8, byte1 + 257, 197, 0);
 		surface.method217(byte0 + 8, byte1 + 215, 43, 0);
 		surface.method217(byte0 + 204, byte1 + 215, 43, 0);
 		surface.drawString("Preparing to duel with: " + aString892, byte0 + 1, byte1 + 10, 1, 0xffffff);
@@ -6257,7 +6368,7 @@ label0:
 									l1++;
 								}
 
-						if(method68(k2) <= l1)
+						if(getInventoryItemCount(k2) <= l1)
 							flag = true;
 						if(Definitions.anIntArray72[k2] == 1) {
 							sendMessage("This object cannot be traded with other players", 3);
@@ -6351,13 +6462,13 @@ label0:
 		surface.method224(byte0 + 8, byte1 + 155, 197, 103, k1, 160);
 		surface.method224(byte0 + 216, byte1 + 30, 246, 205, k1, 160);
 		for(int j2 = 0; j2 < 4; j2++)
-			surface.method251(byte0 + 8, byte1 + 30 + j2 * 34, 197, 0);
+			surface.drawHorizontalLine(byte0 + 8, byte1 + 30 + j2 * 34, 197, 0);
 
 		for(int j3 = 0; j3 < 4; j3++)
-			surface.method251(byte0 + 8, byte1 + 155 + j3 * 34, 197, 0);
+			surface.drawHorizontalLine(byte0 + 8, byte1 + 155 + j3 * 34, 197, 0);
 
 		for(int l3 = 0; l3 < 7; l3++)
-			surface.method251(byte0 + 216, byte1 + 30 + l3 * 34, 246, 0);
+			surface.drawHorizontalLine(byte0 + 216, byte1 + 30 + l3 * 34, 246, 0);
 
 		for(int k4 = 0; k4 < 6; k4++) {
 			if(k4 < 5)
@@ -7420,12 +7531,12 @@ label0:
 	private int anInt846;
 	private int anInt847;
 	private int anInt848;
-	private final int[] anIntArray849;
-	private int anInt850;
-	private int anInt851;
-	private final int[] anIntArray852;
-	private int anInt853;
-	private final int[] anIntArray854;
+	private final int[] shopCategoryID;
+	private int shopSelectedItemIndex;
+	private int shopSelectedItemType;
+	private final int[] shopItemQuantities;
+	private int shopPriceMod;
+	private final int[] shopItemPrices;
 	private int anInt855;
 	private final String[] aStringArray856;
 	private final int[] messageHistoryTimeout;

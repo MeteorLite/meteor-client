@@ -110,7 +110,7 @@ public class Perspective
 	{
 		if (x >= 128 && y >= 128 && x <= 13056 && y <= 13056)
 		{
-			z -= (getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane) * 2);
+			z -= (getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane));
 			x -= client.getCameraX();
 			y -= client.getCameraY();
 			z -= client.getCameraZ();
@@ -436,9 +436,11 @@ public class Perspective
 				sceneX -= 48;
 				sceneY -= 48;
 			}
-			return (tileHeights[byte0][sceneX * 48 + sceneY] & 255) * 3;
+			try {
+				return (tileHeights[byte0][sceneX * 48 + sceneY] & 255) * 3;
+			} catch (Exception e) {
+			}
 		}
-
 		return 0;
 	}
 
@@ -523,15 +525,10 @@ public class Perspective
 		final int nwX = neX;
 		final int nwY = swY;
 
-		final int swHeight = getHeight(client, swX, swY, plane) - zOffset;
-		final int nwHeight = getHeight(client, nwX, nwY, plane) - zOffset;
-		final int neHeight = getHeight(client, neX, neY, plane) - zOffset;
-		final int seHeight = getHeight(client, seX, seY, plane) - zOffset;
-
-		Point p1 = localToCanvas(client, swX, swY, swHeight);
-		Point p2 = localToCanvas(client, nwX, nwY, nwHeight);
-		Point p3 = localToCanvas(client, neX, neY, neHeight);
-		Point p4 = localToCanvas(client, seX, seY, seHeight);
+		Point p1 = localToCanvas(client, swX, swY, -zOffset);
+		Point p2 = localToCanvas(client, nwX, nwY, -zOffset);
+		Point p3 = localToCanvas(client, neX, neY, -zOffset);
+		Point p4 = localToCanvas(client, seX, seY, -zOffset);
 
 
 		Polygon poly = new Polygon();

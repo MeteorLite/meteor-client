@@ -158,7 +158,7 @@ public class Surface
 			if(s.charAt(k) == '~' && k + 4 < s.length() && s.charAt(k + 4) == '~')
 				k += 4;
 			else
-				j += abyte0[anIntArray335[s.charAt(k)] + 7];
+				j += abyte0[inputFilterCharFontAddr[s.charAt(k)] + 7];
 
 		return j;
 	}
@@ -206,8 +206,8 @@ public class Surface
 	}
 
 	public void method214(int i, int j, int k, int l, int i1) {
-		method251(i, j, k, i1);
-		method251(i, (j + l) - 1, k, i1);
+		drawHorizontalLine(i, j, k, i1);
+		drawHorizontalLine(i, (j + l) - 1, k, i1);
 		method217(i, j, l, i1);
 		method217((i + k) - 1, j, l, i1);
 	}
@@ -1257,7 +1257,7 @@ public class Surface
 				if(s.charAt(i2) == '~' && i2 + 4 < s.length() && s.charAt(i2 + 4) == '~')
 					i2 += 4;
 				else
-					j1 += abyte0[anIntArray335[s.charAt(i2)] + 7];
+					j1 += abyte0[inputFilterCharFontAddr[s.charAt(i2)] + 7];
 				if(s.charAt(i2) == ' ')
 					l1 = i2;
 				if(s.charAt(i2) == '%') {
@@ -1382,7 +1382,7 @@ label3:
 			for(int i6 = l1; i6 < j2; i6++) {
 				int j6 = ai[i6 + k5 * k] & 0xff;
 				if(j6 > 30 && j6 < 230)
-					aBooleanArray348[j] = true;
+					fontAntiAliased[j] = true;
 				aByteArray346[anInt347++] = (byte)j6;
 			}
 
@@ -1648,7 +1648,7 @@ label3:
 
 	public Surface(int i, int j, int k, Component component) {
 		aBoolean321 = false;
-		aBoolean352 = false;
+		loggedIn = false;
 		aComponent314 = component;
 		boundsBottomY = j;
 		boundsBottomX = i;
@@ -1753,7 +1753,7 @@ label3:
         }
 	}
 
-	public void method251(int i, int j, int k, int l) {
+	public void drawHorizontalLine(int i, int j, int k, int l) {
 		if(j < boundsTopY || j >= boundsBottomY)
 			return;
 		if(i < boundsTopX) {
@@ -1802,81 +1802,81 @@ label3:
 		boundsBottomY = l;
 	}
 
-	public void drawString(String s, int i, int j, int k, int l) {
+	public void drawString(String text, int x, int y, int font, int color) {
 		try {
-			byte[] abyte0 = fonts[k];
-			for(int i1 = 0; i1 < s.length(); i1++)
-				if(s.charAt(i1) == '@' && i1 + 4 < s.length() && s.charAt(i1 + 4) == '@') {
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("red"))
-						l = 0xff0000;
+			byte[] abyte0 = fonts[font];
+			for(int i1 = 0; i1 < text.length(); i1++)
+				if(text.charAt(i1) == '@' && i1 + 4 < text.length() && text.charAt(i1 + 4) == '@') {
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("red"))
+						color = 0xff0000;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("lre"))
-						l = 0xff9040;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("lre"))
+						color = 0xff9040;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("yel"))
-						l = 0xffff00;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("yel"))
+						color = 0xffff00;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gre"))
-						l = 65280;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gre"))
+						color = 65280;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("blu"))
-						l = 255;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("blu"))
+						color = 255;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("cya"))
-						l = 65535;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("cya"))
+						color = 65535;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("mag"))
-						l = 0xff00ff;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("mag"))
+						color = 0xff00ff;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("whi"))
-						l = 0xffffff;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("whi"))
+						color = 0xffffff;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("bla"))
-						l = 0;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("bla"))
+						color = 0;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("dre"))
-						l = 0xc00000;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("dre"))
+						color = 0xc00000;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("ora"))
-						l = 0xff9040;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("ora"))
+						color = 0xff9040;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("ran"))
-						l = (int)(Math.random() * 16777215D);
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("ran"))
+						color = (int)(Math.random() * 16777215D);
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("or1"))
-						l = 0xffb000;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("or1"))
+						color = 0xffb000;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("or2"))
-						l = 0xff7000;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("or2"))
+						color = 0xff7000;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("or3"))
-						l = 0xff3000;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("or3"))
+						color = 0xff3000;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gr1"))
-						l = 0xc0ff00;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gr1"))
+						color = 0xc0ff00;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gr2"))
-						l = 0x80ff00;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gr2"))
+						color = 0x80ff00;
 					else
-					if(s.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gr3"))
-						l = 0x40ff00;
+					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gr3"))
+						color = 0x40ff00;
 					i1 += 4;
 				} else
-				if(s.charAt(i1) == '~' && i1 + 4 < s.length() && s.charAt(i1 + 4) == '~') {
-					char c = s.charAt(i1 + 1);
-					char c1 = s.charAt(i1 + 2);
-					char c2 = s.charAt(i1 + 3);
+				if(text.charAt(i1) == '~' && i1 + 4 < text.length() && text.charAt(i1 + 4) == '~') {
+					char c = text.charAt(i1 + 1);
+					char c1 = text.charAt(i1 + 2);
+					char c2 = text.charAt(i1 + 3);
 					if(c >= '0' && c <= '9' && c1 >= '0' && c1 <= '9' && c2 >= '0' && c2 <= '9')
-						i = Integer.parseInt(s.substring(i1 + 1, i1 + 4));
+						x = Integer.parseInt(text.substring(i1 + 1, i1 + 4));
 					i1 += 4;
 				} else {
-					int j1 = anIntArray335[s.charAt(i1)];
-					if(aBoolean352 && !aBooleanArray348[k] && l != 0)
-						drawCharacter(j1, i + 1, j, 0, abyte0, aBooleanArray348[k]);
-					if(aBoolean352 && !aBooleanArray348[k] && l != 0)
-						drawCharacter(j1, i, j + 1, 0, abyte0, aBooleanArray348[k]);
-					drawCharacter(j1, i, j, l, abyte0, aBooleanArray348[k]);
-					i += abyte0[j1 + 7];
+					int addr = inputFilterCharFontAddr[text.charAt(i1)];
+					if(loggedIn && !fontAntiAliased[font] && color != 0)
+						drawCharacter(addr, x + 1, y, 0, abyte0, fontAntiAliased[font]);
+					if(loggedIn && !fontAntiAliased[font] && color != 0)
+						drawCharacter(addr, x, y + 1, 0, abyte0, fontAntiAliased[font]);
+					drawCharacter(addr, x, y, color, abyte0, fontAntiAliased[font]);
+					x += abyte0[addr + 7];
 				}
 
         }
@@ -2119,7 +2119,7 @@ label3:
 	public int[] anIntArray332;
 	public boolean[] aBooleanArray333;
 	static byte[][] fonts = new byte[50][];
-	static int[] anIntArray335;
+	static int[] inputFilterCharFontAddr;
 	int[] anIntArray336;
 	public static int anInt337;
 	public static int anInt338;
@@ -2132,20 +2132,20 @@ label3:
 	int[] anIntArray345;
 	private static final byte[] aByteArray346 = new byte[0x186a0];
 	private static int anInt347;
-	private static final boolean[] aBooleanArray348 = new boolean[12];
+	private static final boolean[] fontAntiAliased = new boolean[12];
 	public static Image image;
 	ImageConsumer anImageConsumer350;
 	ColorModel colorModel;
-	public boolean aBoolean352;
+	public boolean loggedIn;
 
 	static  {
 		String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"\243$%^&*()-_=+[{]};:'@#~,<.>/?\\| ";
-		anIntArray335 = new int[256];
+		inputFilterCharFontAddr = new int[256];
 		for(int i = 0; i < 256; i++) {
 			int j = s.indexOf(i);
 			if(j == -1)
 				j = 74;
-			anIntArray335[i] = j * 9;
+			inputFilterCharFontAddr[i] = j * 9;
 		}
 
 	}
