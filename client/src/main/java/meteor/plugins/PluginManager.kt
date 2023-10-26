@@ -6,11 +6,12 @@ import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.hitsplats.HitSplatsPlugin
-import meteor.plugins.meteor.Meteor
+import meteor.plugins.thieving.ThievingPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.itemnamepatch.ItemNamePatchPlugin
 import meteor.plugins.inventorycount.InventoryCountPlugin
 import meteor.plugins.indicators.IndicatorsPlugin
+import meteor.plugins.meteor.Meteor
 import meteor.plugins.stretchedmode.StretchedModePlugin
 
 
@@ -27,6 +28,7 @@ object PluginManager {
             init<ItemNamePatchPlugin>()
             init<StatusBarsPlugin>()
             init<StretchedModePlugin>()
+            init<ThievingPlugin>()
         }
     }
 
