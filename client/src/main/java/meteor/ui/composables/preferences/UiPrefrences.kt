@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
-import androidx.compose.ui.window.WindowState
 import compose.icons.LineAwesomeIcons
 import compose.icons.Octicons
 import compose.icons.lineawesomeicons.PlugSolid

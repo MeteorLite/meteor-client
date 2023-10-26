@@ -613,7 +613,7 @@ public abstract class RSClientMixin implements RSClient {
 		model.setLocalX(localX);
 		model.setLocalY(localY);
 		model.setObjectID(objectID);
-		model.setWidth(width);
+		model.setSize(width);
 		model.setIsWallObject(isWallObject);
 	}
 

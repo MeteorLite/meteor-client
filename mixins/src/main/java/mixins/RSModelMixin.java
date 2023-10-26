@@ -43,7 +43,7 @@ public abstract class RSModelMixin implements RSModel {
 	@Inject
 	int objectID;
 	@Inject
-	int width;
+	int size;
 
 	@Inject
 	@Override
@@ -62,8 +62,8 @@ public abstract class RSModelMixin implements RSModel {
 	}
 	@Inject
 	@Override
-	public int getWidth() {
-		return width;
+	public int getSize() {
+		return size;
 	}
 	@Inject
 	@Override
@@ -82,14 +82,24 @@ public abstract class RSModelMixin implements RSModel {
 	}
 	@Inject
 	@Override
-	public void setWidth(int width) {
-		this.width = width;
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	@Inject
 	@Override
 	public LocalPoint getLocalLocation() {
 		return new LocalPoint(getLocalX(), getLocalY());
+	}
+
+	@Inject
+	@Override
+	public LocalPoint getCenterLocation() {
+		int x = getLocalX();
+		int y = getLocalY();
+		x += (size - 1) * 64;
+		y += (size - 1) * 64;
+		return new LocalPoint(x, y);
 	}
 
 	@Inject

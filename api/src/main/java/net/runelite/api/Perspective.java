@@ -91,8 +91,7 @@ public class Perspective
 	@Nullable
 	public static Point localToCanvas(@Nonnull Client client, @Nonnull LocalPoint point, int plane, int zOffset)
 	{
-		final int tileHeight = getTileHeight(client, point, plane);
-		return localToCanvas(client, point.getX(), point.getY(), tileHeight - zOffset);
+		return localToCanvas(client, point.getX(), point.getY(), zOffset, false);
 	}
 
 	/**
@@ -106,11 +105,14 @@ public class Perspective
 	 * @return a {@link Point} on screen corresponding to the position in
 	 * 3D-space
 	 */
-	public static Point localToCanvas(@Nonnull Client client, int x, int y, int z)
+	public static Point localToCanvas(@Nonnull Client client, int x, int y, int z, boolean reduceDoubleHeight)
 	{
 		if (x >= 128 && y >= 128 && x <= 13056 && y <= 13056)
 		{
-			z -= (getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane) * 2);
+			if (reduceDoubleHeight)
+				z -= (getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane) * 2);
+			else
+				z -= getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane);
 			x -= client.getCameraX();
 			y -= client.getCameraY();
 			z -= client.getCameraZ();
@@ -511,11 +513,19 @@ public class Perspective
 			return null;
 		}
 
-		final int swX = localLocation.getX() - (sizeX * LOCAL_TILE_SIZE / 2);
-		final int swY = localLocation.getY() - (sizeY * LOCAL_TILE_SIZE / 2);
+		int swX = localLocation.getX() - (sizeX * LOCAL_TILE_SIZE / 2);
+		int swY = localLocation.getY() - (sizeY * LOCAL_TILE_SIZE / 2);
 
-		final int neX = localLocation.getX() + (sizeX * LOCAL_TILE_SIZE / 2);
-		final int neY = localLocation.getY() + (sizeY * LOCAL_TILE_SIZE / 2);
+		int neX = localLocation.getX() + (sizeX * LOCAL_TILE_SIZE / 2);
+		int neY = localLocation.getY() + (sizeY * LOCAL_TILE_SIZE / 2);
+
+		if (sizeX > 1 && sizeY > 1) {
+			swX += 64;
+			swY += 64;
+
+			neX += 64;
+			neY += 64;
+		}
 
 		final int seX = swX;
 		final int seY = neY;
@@ -528,10 +538,10 @@ public class Perspective
 		final int neHeight = getHeight(client, neX, neY, plane) - zOffset;
 		final int seHeight = getHeight(client, seX, seY, plane) - zOffset;
 
-		Point p1 = localToCanvas(client, swX, swY, swHeight);
-		Point p2 = localToCanvas(client, nwX, nwY, nwHeight);
-		Point p3 = localToCanvas(client, neX, neY, neHeight);
-		Point p4 = localToCanvas(client, seX, seY, seHeight);
+		Point p1 = localToCanvas(client, swX, swY, swHeight, true);
+		Point p2 = localToCanvas(client, nwX, nwY, nwHeight, true);
+		Point p3 = localToCanvas(client, neX, neY, neHeight, true);
+		Point p4 = localToCanvas(client, seX, seY, seHeight, true);
 
 
 		Polygon poly = new Polygon();

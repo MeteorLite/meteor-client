@@ -31,13 +31,14 @@ public interface Model
     int getLocalX();
     int getLocalY();
     int getObjectID();
-    int getWidth();
+    int getSize();
     void setLocalX(int localX);
     void setLocalY(int localY);
     void setObjectID(int objectID);
-    void setWidth(int width);
+    void setSize(int size);
 
     LocalPoint getLocalLocation();
+    LocalPoint getCenterLocation();
 
     String getName();
 

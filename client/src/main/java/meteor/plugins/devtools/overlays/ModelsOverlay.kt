@@ -24,11 +24,9 @@
  */
 package meteor.plugins.devtools.overlays
 
-import meteor.Main
 import meteor.plugins.devtools.DevToolsConfig
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
-import net.runelite.api.Client
 import net.runelite.api.Model
 import net.runelite.api.Perspective
 import java.awt.Color
@@ -56,18 +54,19 @@ class ModelsOverlay(private val config: DevToolsConfig) : Overlay() {
         if (m.getLocalX() > 0 && m.getLocalY() > 0) {
             if (m.isWallObject()) graphics.color = Color.GREEN
             else graphics.color = Color.MAGENTA
-            val p = Perspective.getCanvasTileAreaPoly(client, m.getLocalLocation(), m.getWidth())
+            val p = Perspective.getCanvasTileAreaPoly(client, m.getLocalLocation(), m.getSize())
             if (p != null) {
                 graphics.draw(p)
             }
-            drawTextAboveBoundsShadowed(m.getLocalX(), m.getLocalY(), graphics, m.getObjectID().toString() + ":" + m.getName())
+            val centerPoint = m.centerLocation
+            drawTextAboveBoundsShadowed(centerPoint.x, centerPoint.y, graphics, m.getObjectID().toString() + ":" + m.getName())
         }
     }
 
     fun drawTextAboveBoundsShadowed(x: Int, y: Int, graphics: Graphics2D, text: String?) {
         val originalColor = graphics.color
         val textWidth = getTextWidth(graphics, text)
-        val p = Perspective.localToCanvas(client, x, y, client.getPlane())
+        val p = Perspective.localToCanvas(client, x, y, client.getPlane(), false)
         if (p != null) {
             graphics.color = Color.BLACK
             graphics.drawString(text, p.x - (textWidth / 2) + 1, p.y + 1)
