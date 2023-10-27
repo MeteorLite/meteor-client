@@ -13,7 +13,6 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="clean" />
           <option value="client:run" />
         </list>
       </option>
@@ -22,6 +21,7 @@
     <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
     <DebugAllEnabled>false</DebugAllEnabled>
+    <RunAsTest>false</RunAsTest>
     <method v="2" />
   </configuration>
 </component>

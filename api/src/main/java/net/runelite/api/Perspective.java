@@ -438,9 +438,11 @@ public class Perspective
 				sceneX -= 48;
 				sceneY -= 48;
 			}
-			return (tileHeights[byte0][sceneX * 48 + sceneY] & 255) * 3;
+			try {
+				return (tileHeights[byte0][sceneX * 48 + sceneY] & 255) * 3;
+			} catch (Exception e) {
+			}
 		}
-
 		return 0;
 	}
 
@@ -542,7 +544,6 @@ public class Perspective
 		Point p2 = localToCanvas(client, nwX, nwY, nwHeight, true);
 		Point p3 = localToCanvas(client, neX, neY, neHeight, true);
 		Point p4 = localToCanvas(client, seX, seY, seHeight, true);
-
 
 		Polygon poly = new Polygon();
 		if (p1 != null && p2 != null && p3 != null && p4 != null) {

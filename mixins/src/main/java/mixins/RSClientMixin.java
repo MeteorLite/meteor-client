@@ -254,10 +254,10 @@ public abstract class RSClientMixin implements RSClient {
 	@Inject
 	public void drawHitsplats() {
 		for (RSCharacter npc : client.getNPCs())
-			if (npc != null)
+			if (npc != null && npc.getLocalLocation().isInScene())
 				npc.drawHitSplat(SpriteID.HITSPLAT_BLUE);
 		for (RSCharacter player : client.getPlayers())
-			if (player != null)
+			if (player != null && player.getLocalLocation().isInScene())
 				player.drawHitSplat(SpriteID.HITSPLAT_RED);
 	}
 

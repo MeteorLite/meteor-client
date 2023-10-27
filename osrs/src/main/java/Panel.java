@@ -54,15 +54,15 @@ public class Panel {
 			}
 
 		}
-		aSurface181.method251(i, j, k, anInt189);
-		aSurface181.method251(i + 1, j + 1, k - 2, anInt189);
-		aSurface181.method251(i + 2, j + 2, k - 4, anInt192);
+		aSurface181.drawHorizontalLine(i, j, k, anInt189);
+		aSurface181.drawHorizontalLine(i + 1, j + 1, k - 2, anInt189);
+		aSurface181.drawHorizontalLine(i + 2, j + 2, k - 4, anInt192);
 		aSurface181.method217(i, j, l, anInt189);
 		aSurface181.method217(i + 1, j + 1, l - 2, anInt189);
 		aSurface181.method217(i + 2, j + 2, l - 4, anInt192);
-		aSurface181.method251(i, (j + l) - 1, k, anInt188);
-		aSurface181.method251(i + 1, (j + l) - 2, k - 2, anInt188);
-		aSurface181.method251(i + 2, (j + l) - 3, k - 4, anInt193);
+		aSurface181.drawHorizontalLine(i, (j + l) - 1, k, anInt188);
+		aSurface181.drawHorizontalLine(i + 1, (j + l) - 2, k - 2, anInt188);
+		aSurface181.drawHorizontalLine(i + 2, (j + l) - 3, k - 4, anInt193);
 		aSurface181.method217((i + k) - 1, j, l, anInt188);
 		aSurface181.method217((i + k) - 2, j + 1, l - 2, anInt188);
 		aSurface181.method217((i + k) - 3, j + 2, l - 4, anInt193);
@@ -129,19 +129,19 @@ public class Panel {
 	}
 
 	protected void method143(int i, int j, int k) {
-		aSurface181.method251(i, j, k, 0);
+		aSurface181.drawHorizontalLine(i, j, k, 0);
 	}
 
 	protected void method144(int i, int j, int k, int l, int i1) {
 		aSurface181.method207(j, k, l, i1, 0xffffff);
-		aSurface181.method251(j, k, l, anInt189);
+		aSurface181.drawHorizontalLine(j, k, l, anInt189);
 		aSurface181.method217(j, k, i1, anInt189);
-		aSurface181.method251(j, (k + i1) - 1, l, anInt188);
+		aSurface181.drawHorizontalLine(j, (k + i1) - 1, l, anInt188);
 		aSurface181.method217((j + l) - 1, k, i1, anInt188);
 		if(anIntArray186[i] == 1) {
 			for(int j1 = 0; j1 < i1; j1++) {
-				aSurface181.method251(j + j1, k + j1, 1, 0);
-				aSurface181.method251((j + l) - 1 - j1, k + j1, 1, 0);
+				aSurface181.drawHorizontalLine(j + j1, k + j1, 1, 0);
+				aSurface181.drawHorizontalLine((j + l) - 1 - j1, k + j1, 1, 0);
 			}
 
 		}
@@ -183,8 +183,8 @@ public class Panel {
 		aSurface181.method214(k1, j, 12, l, 0);
 		aSurface181.drawSprite(k1 + 1, j + 1, anInt191);
 		aSurface181.drawSprite(k1 + 1, (j + l) - 12, 1 + anInt191);
-		aSurface181.method251(k1, j + 13, 12, 0);
-		aSurface181.method251(k1, (j + l) - 13, 12, 0);
+		aSurface181.drawHorizontalLine(k1, j + 13, 12, 0);
+		aSurface181.drawHorizontalLine(k1, (j + l) - 13, 12, 0);
 		aSurface181.method226(k1 + 1, j + 14, 11, l - 27, anInt210, anInt211);
 		aSurface181.method207(k1 + 3, i1 + j + 14, 7, j1, anInt212);
 		aSurface181.method217(k1 + 2, i1 + j + 14, j1, anInt213);

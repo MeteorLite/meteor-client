@@ -122,19 +122,19 @@ public class World {
 		l1 = l1 >> 1 & 0x7f7f7f;
 		i2 = i2 >> 1 & 0x7f7f7f;
 		if(k == 0) {
-			aSurface576.method251(j1, k1, 3, l1);
-			aSurface576.method251(j1, k1 + 1, 2, l1);
-			aSurface576.method251(j1, k1 + 2, 1, l1);
-			aSurface576.method251(j1 + 2, k1 + 1, 1, i2);
-			aSurface576.method251(j1 + 1, k1 + 2, 2, i2);
+			aSurface576.drawHorizontalLine(j1, k1, 3, l1);
+			aSurface576.drawHorizontalLine(j1, k1 + 1, 2, l1);
+			aSurface576.drawHorizontalLine(j1, k1 + 2, 1, l1);
+			aSurface576.drawHorizontalLine(j1 + 2, k1 + 1, 1, i2);
+			aSurface576.drawHorizontalLine(j1 + 1, k1 + 2, 2, i2);
 			return;
 		}
 		if(k == 1) {
-			aSurface576.method251(j1, k1, 3, i2);
-			aSurface576.method251(j1 + 1, k1 + 1, 2, i2);
-			aSurface576.method251(j1 + 2, k1 + 2, 1, i2);
-			aSurface576.method251(j1, k1 + 1, 1, l1);
-			aSurface576.method251(j1, k1 + 2, 2, l1);
+			aSurface576.drawHorizontalLine(j1, k1, 3, i2);
+			aSurface576.drawHorizontalLine(j1 + 1, k1 + 1, 2, i2);
+			aSurface576.drawHorizontalLine(j1 + 2, k1 + 2, 1, i2);
+			aSurface576.drawHorizontalLine(j1, k1 + 1, 1, l1);
+			aSurface576.drawHorizontalLine(j1, k1 + 2, 2, l1);
 		}
 	}
 
@@ -1137,7 +1137,7 @@ public class World {
 							method412(i2, k2 - 1, 4);
 					}
 					if(flag)
-						aSurface576.method251(i2 * 3, k2 * 3, 3, k1);
+						aSurface576.drawHorizontalLine(i2 * 3, k2 * 3, 3, k1);
 				}
 				k3 = method406(i2, k2);
 				if(k3 > 0 && (Definitions.anIntArray123[k3 - 1] == 0 || aBoolean595)) {
