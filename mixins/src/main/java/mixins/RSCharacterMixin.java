@@ -51,7 +51,7 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	public void drawHitSplat(int spriteID) {
 		int x = getScreenCenterX() - 12;
 		int y = getScreenCenterY() - 12;
-		if (!Constants.GAME_FIXED_WINDOW.contains(x, y))
+		if (x > client.getGameWidth() || y > client.getGameHeight())
 			return;
 		int sprite = spriteID;
 		if (getCombatTimer() > 150) {
