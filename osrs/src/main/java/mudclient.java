@@ -674,7 +674,7 @@ public final class mudclient extends NetworkedGame {
 	}
 
 	private void processChangeAppearance() {
-		aPanel729.method142(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
+		aPanel729.handleMouse(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
 		if(aPanel729.isClicked(anInt730))
 			do
 				anInt731 = ((anInt731 - 1) + Definitions.anInt97) % Definitions.anInt97;
@@ -775,7 +775,7 @@ public final class mudclient extends NetworkedGame {
 		surface.drawSprite(i - 49, 3, anInt658 + 2);
 		i += 40;
 		surface.method207(i, 36, c, c2, 0);
-		surface.method253(i, 36, i + c, 36 + c2);
+		surface.resize(i, 36, i + c, 36 + c2);
 		int k = 192 + anInt754;
 		int i1 = cameraRotation + anInt755 & 0xff;
 		int k1 = ((localPlayer.currentX - 6040) * 3 * k) / 2048;
@@ -834,7 +834,7 @@ public final class mudclient extends NetworkedGame {
 
 		surface.method258(i + c / 2, 36 + c2 / 2, 2, 0xffffff, 255);
 		surface.method236(i + 19, 55, anInt658 + 24, cameraRotation + 128 & 0xff, 128);
-		surface.method253(0, 0, anInt764, gameHeight + 12);
+		surface.resize(0, 0, gameWidth, gameHeight + 12);
 		if(!flag)
 			return;
 		i = super.mouseX - (surface.width2 - 199);
@@ -865,7 +865,7 @@ public final class mudclient extends NetworkedGame {
 		if(super.anInt618 > 0)
 			super.anInt618--;
 		if(loginState == 0) {
-			aPanel767.method142(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
+			aPanel767.handleMouse(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
 			if(aPanel767.isClicked(anInt768))
 				loginState = 1;
 			if(aPanel767.isClicked(anInt769)) {
@@ -873,21 +873,21 @@ public final class mudclient extends NetworkedGame {
 				aPanel770.updateText(anInt771, "Please enter your username and password");
 				aPanel770.updateText(anInt772, "");
 				aPanel770.updateText(anInt773, "");
-				aPanel770.method170(anInt772);
+				aPanel770.setFocus(anInt772);
             }
 		} else
 		if(loginState == 1) {
-			aPanel774.method142(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
+			aPanel774.handleMouse(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
 			if(aPanel774.isClicked(anInt775)) {
 				loginState = 0;
             }
 		} else
 		if(loginState == 2) {
-			aPanel770.method142(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
+			aPanel770.handleMouse(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
 			if(aPanel770.isClicked(anInt776))
 				loginState = 0;
 			if(aPanel770.isClicked(anInt772))
-				aPanel770.method170(anInt773);
+				aPanel770.setFocus(anInt773);
 			if(aPanel770.isClicked(anInt773) || aPanel770.isClicked(anInt777)) {
 				aString778 = aPanel770.getText(anInt772);
 				aString779 = aPanel770.getText(anInt773);
@@ -1774,6 +1774,16 @@ public final class mudclient extends NetworkedGame {
 
 	private void method76() {
 		surface.drawSprite(0, gameHeight - 4, anInt658 + 23);
+		if (injected) {
+			surface.drawSprite(510, gameHeight, anInt658 + 22);
+			surface.drawSprite(1020, gameHeight, anInt658 + 22);
+			surface.drawSprite(1530, gameHeight, anInt658 + 22);
+			surface.drawSprite(2040, gameHeight, anInt658 + 22);
+			surface.drawSprite(2550, gameHeight, anInt658 + 22);
+			surface.drawSprite(3060, gameHeight, anInt658 + 22);
+			surface.drawSprite(3570, gameHeight, anInt658 + 22);
+			surface.drawSprite(4080, gameHeight, anInt658 + 22);
+		}
 		int i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 0)
 			i = Surface.method222(255, 200, 50);
@@ -2637,10 +2647,10 @@ public final class mudclient extends NetworkedGame {
 					anInt720 = 0;
 				if(anInt721 < 0)
 					anInt721 = 0;
-				if(anInt720 + anInt722 > 510)
-					anInt720 = 510 - anInt722;
-				if(anInt721 + anInt726 > 315)
-					anInt721 = 315 - anInt726;
+				if(anInt720 + anInt722 > gameWidth)
+					anInt720 = gameWidth - anInt722;
+				if(anInt721 + anInt726 > gameHeight)
+					anInt721 = gameHeight - anInt726;
 				mouseButtonClick = 0;
 			}
 		}
@@ -2696,7 +2706,7 @@ public final class mudclient extends NetworkedGame {
 		aPanel770.method153(410, i, "Cancel", 4, false);
 		anInt776 = aPanel770.method173(410, i, 120, 25);
 		i += 30;
-		aPanel770.method170(anInt772);
+		aPanel770.setFocus(anInt772);
 	}
 
 	private void loadData() {
@@ -3170,7 +3180,7 @@ label0:
 		surface.drawHorizontalLine(i, (j + c1) - 16, c, 0);
 		surface.drawStringCenter("Friends", i + c / 4, j + 16, 4, 0);
 		surface.drawStringCenter("Ignore", i + c / 4 + c / 2, j + 16, 4, 0);
-		aPanel867.method154(anInt868);
+		panelSocialList.method154(controlListSocialPlayers);
 		if(anInt866 == 0) {
 			for(int i1 = 0; i1 < super.anInt603; i1++) {
 				String s;
@@ -3181,20 +3191,24 @@ label0:
 					s = "@yel@";
 				else
 					s = "@red@";
-				aPanel867.method139(anInt868, i1, s + DataUtils.method351(super.friendListHashes[i1]) + "~439~@whi@Remove         WWWWWWWWWW");
+				String nameX = "~" + (gameWidth - 195) + "~";
+				String removeX = "~" + (gameWidth - 80) + "~";
+				panelSocialList.method139(controlListSocialPlayers, i1,  nameX +  s + DataUtils.method351(super.friendListHashes[i1]) + removeX + "@whi@Remove            WWWWWWWWWW");
 			}
 
 		}
 		if(anInt866 == 1) {
-			for(int j1 = 0; j1 < super.anInt606; j1++)
-				aPanel867.method139(anInt868, j1, "@yel@" + DataUtils.method351(super.ignoreList[j1]) + "~439~@whi@Remove         WWWWWWWWWW");
-
+			for(int j1 = 0; j1 < super.anInt606; j1++) {
+				String nameX = "~" + (gameWidth - 195) + "~";
+				String removeX = "~" + (gameWidth - 80) + "~";
+				panelSocialList.method139(controlListSocialPlayers, j1, nameX + "@yel@" + DataUtils.method351(super.ignoreList[j1]) + removeX + "@whi@Remove              WWWWWWWWWW");
+			}
 		}
-		aPanel867.method150();
+		panelSocialList.method150();
 		if(anInt866 == 0) {
-			int k1 = aPanel867.method164(anInt868);
-			if(k1 >= 0 && super.mouseX < 489) {
-				if(super.mouseX > 429)
+			int k1 = panelSocialList.getListEntryIndex(controlListSocialPlayers);
+			if(k1 >= 0 && super.mouseX < gameWidth - 20) {
+				if(super.mouseX > gameWidth - 80)
 					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.friendListHashes[k1]), i + c / 2, j + 35, 1, 0xffffff);
 				else
 				if(super.friendListOnline[k1] == 255)
@@ -3219,9 +3233,9 @@ label0:
 			surface.drawStringCenter("Click here to add a friend", i + c / 2, (j + c1) - 3, 1, k2);
 		}
 		if(anInt866 == 1) {
-			int l1 = aPanel867.method164(anInt868);
-			if(l1 >= 0 && super.mouseX < 489 && super.mouseX > 429) {
-				if(super.mouseX > 429)
+			int l1 = panelSocialList.getListEntryIndex(controlListSocialPlayers);
+			if(l1 >= 0 && super.mouseX < gameWidth - 20 && super.mouseX > gameWidth - 80) {
+				if(super.mouseX > gameWidth - 80)
 					surface.drawStringCenter("Click to remove " + DataUtils.method351(super.ignoreList[l1]), i + c / 2, j + 35, 1, 0xffffff);
 			} else {
 				surface.drawStringCenter("Blocking messages from:", i + c / 2, j + 35, 1, 0xffffff);
@@ -3235,23 +3249,25 @@ label0:
 		}
 		if(!flag)
 			return;
-		i = super.mouseX - (surface.width2 - 199);
+		i = super.mouseX - (gameWidth - 199);
 		j = super.mouseY - 36;
 		if(i >= 0 && j >= 0 && i < 196 && j < 182) {
-			aPanel867.method142(i + (surface.width2 - 199), j + 36, super.lastMouseButtonDown, super.mouseButtonDown);
+			panelSocialList.handleMouse(i + (gameWidth - 199), j + 36, super.lastMouseButtonDown, super.mouseButtonDown);
 			if(j <= 24 && mouseButtonClick == 1)
 				if(i < 98 && anInt866 == 1) {
 					anInt866 = 0;
-					aPanel867.method162(anInt868);
+					panelSocialList.method162(controlListSocialPlayers);
 				} else
 				if(i > 98 && anInt866 == 0) {
 					anInt866 = 1;
-					aPanel867.method162(anInt868);
+					panelSocialList.method162(controlListSocialPlayers);
 				}
 			if(mouseButtonClick == 1 && anInt866 == 0) {
-				int i2 = aPanel867.method164(anInt868);
-				if(i2 >= 0 && super.mouseX < 489)
-					if(super.mouseX > 429)
+				int i2 = panelSocialList.getListEntryIndex(controlListSocialPlayers);
+				String nameX = "~" + (gameWidth - 195) + "~";
+				String removeX = "~" + (gameWidth - 80) + "~";
+				if(i2 >= 0 && super.mouseX < gameWidth)
+					if(super.mouseX > (gameWidth - 80))
 						method21(super.friendListHashes[i2]);
 					else
 					if(super.friendListOnline[i2] != 0) {
@@ -3262,8 +3278,8 @@ label0:
 					}
 			}
 			if(mouseButtonClick == 1 && anInt866 == 1) {
-				int j2 = aPanel867.method164(anInt868);
-				if(j2 >= 0 && super.mouseX < 489 && super.mouseX > 429)
+				int j2 = panelSocialList.getListEntryIndex(controlListSocialPlayers);
+				if(j2 >= 0 && super.mouseX > (gameWidth - 80) )
 					method23(super.ignoreList[j2]);
 			}
 			if(j > 166 && mouseButtonClick == 1 && anInt866 == 0) {
@@ -3464,13 +3480,13 @@ label0:
 			return DataUtils.method349(i);
 	}
 
-	private void method91() {
+	private void createMessageTabPanel() {
 		panelMessageTabs = new Panel(surface, 10);
-		controlTextListChat = panelMessageTabs.method172(5, 269, 502, 56, 1, 20, true);
-		anInt870 = panelMessageTabs.method163(7, 324, 498, 14, 1, 80, false, true);
-		controlTextListQuest = panelMessageTabs.method172(5, 269, 502, 56, 1, 20, true);
-		controlTextListPrivate = panelMessageTabs.method172(5, 269, 502, 56, 1, 20, true);
-		panelMessageTabs.method170(anInt870);
+		controlTextListChat = panelMessageTabs.addTextList(5, gameHeight - 74, gameWidth, 56, 1, 20, true);
+		controlTextListAll = panelMessageTabs.addTextListInput(7, gameHeight - 80, gameWidth, 14, 1, 80, false, true);
+		controlTextListQuest = panelMessageTabs.addTextList(5, gameHeight - 74, gameWidth, 56, 1, 20, true);
+		controlTextListPrivate = panelMessageTabs.addTextList(5, gameHeight - 74, gameWidth, 56, 1, 20, true);
+		panelMessageTabs.setFocus(controlTextListAll);
 	}
 
 	protected void lostConnection() {
@@ -4887,7 +4903,7 @@ label0:
 	private void drawGame() {
 		if(deathScreenTimeout != 0) {
 			surface.fadeToBlack();
-			surface.drawStringCenter("Oh dear! You are dead...", anInt764 / 2, gameHeight / 2, 7, 0xff0000);
+			surface.drawStringCenter("Oh dear! You are dead...", gameWidth / 2, gameHeight / 2, 7, 0xff0000);
 			method76();
 			surface.drawSurface(graphics, 0, 0);
 			return;
@@ -4902,20 +4918,20 @@ label0:
 				surface.drawStringCenter("ZZZ", (int)(Math.random() * 80D), (int)(Math.random() * 334D), 5, (int)(Math.random() * 16777215D));
 			if(Math.random() < 0.14999999999999999D)
 				surface.drawStringCenter("ZZZ", 512 - (int)(Math.random() * 80D), (int)(Math.random() * 334D), 5, (int)(Math.random() * 16777215D));
-			surface.method207(anInt764 / 2 - 100, 160, 200, 40, 0);
-			surface.drawStringCenter("You are sleeping", anInt764 / 2, 50, 7, 0xffff00);
-			surface.drawStringCenter("Fatigue: " + (anInt932 * 100) / 750 + "%", anInt764 / 2, 90, 7, 0xffff00);
-			surface.drawStringCenter("When you want to wake up just use your", anInt764 / 2, 140, 5, 0xffffff);
-			surface.drawStringCenter("keyboard to type the word in the box below", anInt764 / 2, 160, 5, 0xffffff);
-			surface.drawStringCenter(super.inputTextCurrent + "*", anInt764 / 2, 180, 5, 65535);
+			surface.method207(gameWidth / 2 - 100, 160, 200, 40, 0);
+			surface.drawStringCenter("You are sleeping", gameWidth / 2, 50, 7, 0xffff00);
+			surface.drawStringCenter("Fatigue: " + (anInt932 * 100) / 750 + "%", gameWidth / 2, 90, 7, 0xffff00);
+			surface.drawStringCenter("When you want to wake up just use your", gameWidth / 2, 140, 5, 0xffffff);
+			surface.drawStringCenter("keyboard to type the word in the box below", gameWidth / 2, 160, 5, 0xffffff);
+			surface.drawStringCenter(super.inputTextCurrent + "*", gameWidth / 2, 180, 5, 65535);
 			if(sleepingStatusText == null)
-				surface.drawSprite(anInt764 / 2 - 127, 230, anInt933 + 1);
+				surface.drawSprite(gameWidth / 2 - 127, 230, anInt933 + 1);
 			else
-				surface.drawStringCenter(sleepingStatusText, anInt764 / 2, 260, 5, 0xff0000);
-			surface.method214(anInt764 / 2 - 128, 229, 257, 42, 0xffffff);
+				surface.drawStringCenter(sleepingStatusText, gameWidth / 2, 260, 5, 0xff0000);
+			surface.method214(gameWidth / 2 - 128, 229, 257, 42, 0xffffff);
 			method76();
-			surface.drawStringCenter("If you can't read the word", anInt764 / 2, 290, 1, 0xffffff);
-			surface.drawStringCenter("@yel@click here@whi@ to get a different one", anInt764 / 2, 305, 1, 0xffffff);
+			surface.drawStringCenter("If you can't read the word", gameWidth / 2, 290, 1, 0xffffff);
+			surface.drawStringCenter("@yel@click here@whi@ to get a different one", gameWidth / 2, 305, 1, 0xffffff);
 			surface.drawSurface(graphics, 0, 0);
 			return;
 		}
@@ -5254,7 +5270,7 @@ label0:
 		magicLoc = 128;
 		errorLoadingMemory = false;
 		fogOfWar = false;
-		anInt764 = 512;
+		gameWidth = 512;
 		gameHeight = 334;
 		anInt976 = 9;
 		anIntArray907 = new int[14];
@@ -5417,7 +5433,11 @@ label0:
 
 
 	public static void main() {
-		mudClient.method17(mudClient.anInt764, mudClient.gameHeight + 11, "Runescape by Andrew Gower", false);
+
+		if (injected)
+			mudClient.setupWindow(3840, 2160, "Runescape by Andrew Gower", false);
+		else
+			mudClient.setupWindow(Constants.GAME_FIXED_WIDTH + 1, Constants.GAME_FIXED_HEIGHT, "Runescape by Andrew Gower", false);
 		mudClient.threadSleep = 10;
 	}
 
@@ -5621,9 +5641,9 @@ label0:
 	}
 
 	private void drawUiTabMagic(boolean flag) {
-		int i = surface.width2 - 199;
-		int j = 36;
-		surface.drawSprite(i - 49, 3, anInt658 + 4);
+		int mouseX = surface.width2 - 199;
+		int mouseY = 36;
+		surface.drawSprite(mouseX - 49, 3, anInt658 + 4);
 		char c = '\304';
 		char c1 = '\266';
 		int l;
@@ -5632,15 +5652,15 @@ label0:
 			k = Surface.method222(220, 220, 220);
 		else
 			l = Surface.method222(220, 220, 220);
-		surface.method224(i, j, c / 2, 24, k, 128);
-		surface.method224(i + c / 2, j, c / 2, 24, l, 128);
-		surface.method224(i, j + 24, c, 90, Surface.method222(220, 220, 220), 128);
-		surface.method224(i, j + 24 + 90, c, c1 - 90 - 24, Surface.method222(160, 160, 160), 128);
-		surface.drawHorizontalLine(i, j + 24, c, 0);
-		surface.method217(i + c / 2, j, 24, 0);
-		surface.drawHorizontalLine(i, j + 113, c, 0);
-		surface.drawStringCenter("Magic", i + c / 4, j + 16, 4, 0);
-		surface.drawStringCenter("Prayers", i + c / 4 + c / 2, j + 16, 4, 0);
+		surface.method224(mouseX, mouseY, c / 2, 24, k, 128);
+		surface.method224(mouseX + c / 2, mouseY, c / 2, 24, l, 128);
+		surface.method224(mouseX, mouseY + 24, c, 90, Surface.method222(220, 220, 220), 128);
+		surface.method224(mouseX, mouseY + 24 + 90, c, c1 - 90 - 24, Surface.method222(160, 160, 160), 128);
+		surface.drawHorizontalLine(mouseX, mouseY + 24, c, 0);
+		surface.method217(mouseX + c / 2, mouseY, 24, 0);
+		surface.drawHorizontalLine(mouseX, mouseY + 113, c, 0);
+		surface.drawStringCenter("Magic", mouseX + c / 4, mouseY + 16, 4, 0);
+		surface.drawStringCenter("Prayers", mouseX + c / 4 + c / 2, mouseY + 16, 4, 0);
 		if(anInt958 == 0) {
 			aPanel959.method154(anInt960);
 			int i1 = 0;
@@ -5661,23 +5681,23 @@ label0:
 			}
 
 			aPanel959.method150();
-			int i3 = aPanel959.method164(anInt960);
+			int i3 = aPanel959.getListEntryIndex(anInt960);
 			if(i3 != -1) {
-				surface.drawString("Level " + Definitions.anIntArray135[i3] + ": " + Definitions.aStringArray133[i3], i + 2, j + 124, 1, 0xffff00);
-				surface.drawString(Definitions.aStringArray134[i3], i + 2, j + 136, 0, 0xffffff);
+				surface.drawString("Level " + Definitions.anIntArray135[i3] + ": " + Definitions.aStringArray133[i3], mouseX + 2, mouseY + 124, 1, 0xffff00);
+				surface.drawString(Definitions.aStringArray134[i3], mouseX + 2, mouseY + 136, 0, 0xffffff);
 				for(int i4 = 0; i4 < Definitions.anIntArray136[i3]; i4++) {
 					int i5 = Definitions.anIntArrayArray138[i3][i4];
-					surface.drawSprite(i + 2 + i4 * 44, j + 150, spriteItem + Definitions.itemImages[i5]);
+					surface.drawSprite(mouseX + 2 + i4 * 44, mouseY + 150, spriteItem + Definitions.itemImages[i5]);
 					int j5 = getInventoryItemCount(i5);
 					int k5 = Definitions.anIntArrayArray139[i3][i4];
 					String s2 = "@red@";
 					if(method86(i5, k5))
 						s2 = "@gre@";
-					surface.drawString(s2 + j5 + "/" + k5, i + 2 + i4 * 44, j + 150, 1, 0xffffff);
+					surface.drawString(s2 + j5 + "/" + k5, mouseX + 2 + i4 * 44, mouseY + 150, 1, 0xffffff);
 				}
 
 			} else {
-				surface.drawString("Point at a spell for a description", i + 2, j + 124, 1, 0);
+				surface.drawString("Point at a spell for a description", mouseX + 2, mouseY + 124, 1, 0);
 			}
 		}
 		if(anInt958 == 1) {
@@ -5693,32 +5713,32 @@ label0:
 			}
 
 			aPanel959.method150();
-			int j3 = aPanel959.method164(anInt960);
+			int j3 = aPanel959.getListEntryIndex(anInt960);
 			if(j3 != -1) {
-				surface.drawStringCenter("Level " + Definitions.anIntArray143[j3] + ": " + Definitions.aStringArray141[j3], i + c / 2, j + 130, 1, 0xffff00);
-				surface.drawStringCenter(Definitions.aStringArray142[j3], i + c / 2, j + 145, 0, 0xffffff);
-				surface.drawStringCenter("Drain rate: " + Definitions.anIntArray144[j3], i + c / 2, j + 160, 1, 0);
+				surface.drawStringCenter("Level " + Definitions.anIntArray143[j3] + ": " + Definitions.aStringArray141[j3], mouseX + c / 2, mouseY + 130, 1, 0xffff00);
+				surface.drawStringCenter(Definitions.aStringArray142[j3], mouseX + c / 2, mouseY + 145, 0, 0xffffff);
+				surface.drawStringCenter("Drain rate: " + Definitions.anIntArray144[j3], mouseX + c / 2, mouseY + 160, 1, 0);
 			} else {
-				surface.drawString("Point at a prayer for a description", i + 2, j + 124, 1, 0);
+				surface.drawString("Point at a prayer for a description", mouseX + 2, mouseY + 124, 1, 0);
 			}
 		}
 		if(!flag)
 			return;
-		i = super.mouseX - (surface.width2 - 199);
-		j = super.mouseY - 36;
-		if(i >= 0 && j >= 0 && i < 196 && j < 182) {
-			aPanel959.method142(i + (surface.width2 - 199), j + 36, super.lastMouseButtonDown, super.mouseButtonDown);
-			if(j <= 24 && mouseButtonClick == 1)
-				if(i < 98 && anInt958 == 1) {
+		mouseX = super.mouseX - (gameWidth - 199);
+		mouseY = super.mouseY - 36;
+		if(mouseX >= 0 && mouseY >= 0 && mouseX < 196 && mouseY < 182) {
+			aPanel959.handleMouse(mouseX + (gameWidth - 199), mouseY + 36, super.lastMouseButtonDown, super.mouseButtonDown);
+			if(mouseY <= 24 && mouseButtonClick == 1)
+				if(mouseX < 98 && anInt958 == 1) {
 					anInt958 = 0;
 					aPanel959.method162(anInt960);
 				} else
-				if(i > 98 && anInt958 == 0) {
+				if(mouseX > 98 && anInt958 == 0) {
 					anInt958 = 1;
 					aPanel959.method162(anInt960);
 				}
 			if(mouseButtonClick == 1 && anInt958 == 0) {
-				int k1 = aPanel959.method164(anInt960);
+				int k1 = aPanel959.getListEntryIndex(anInt960);
 				if(k1 != -1) {
 					int k2 = boostedSkillLevels[6];
 					if(Definitions.anIntArray135[k1] > k2) {
@@ -5742,7 +5762,7 @@ label0:
 				}
 			}
 			if(mouseButtonClick == 1 && anInt958 == 1) {
-				int l1 = aPanel959.method164(anInt960);
+				int l1 = aPanel959.getListEntryIndex(anInt960);
 				if(l1 != -1) {
 					int l2 = realSkillLevels[5];
 					if(Definitions.anIntArray143[l1] > l2)
@@ -5960,7 +5980,11 @@ label0:
 			}
 			if(loggedIn == 1) {
 				surface.loggedIn = true;
-				drawGame();
+				try {
+					drawGame();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
             }
 		}
 		catch(OutOfMemoryError _ex) {
@@ -6083,7 +6107,7 @@ label0:
 		j = super.mouseY - 36;
 		if(i >= 0 && j >= 0 && i < c && j < c1) {
 			if(anInt961 == 1)
-				aPanel966.method142(i + (surface.width2 - 199), j + 36, super.lastMouseButtonDown, super.mouseButtonDown);
+				aPanel966.handleMouse(i + (surface.width2 - 199), j + 36, super.lastMouseButtonDown, super.mouseButtonDown);
 			if(j <= 24 && mouseButtonClick == 1) {
 				if(i < 98) {
 					anInt961 = 0;
@@ -6686,6 +6710,26 @@ label0:
 
 	}
 
+	//This is called via api/mixins
+	public void setBounds() {
+		surface.resize(0, 0, gameWidth, gameHeight + 12);
+		surface.width2 = gameWidth;
+		surface.height2 = gameHeight + 12;
+		gameWindow.resize(gameWidth, gameHeight + 12);
+		aPanel959.anInt208 = 0;
+		int l = surface.width2 - 199;
+		byte byte0 = 36;
+		anInt960 = aPanel959.method152(l, byte0 + 24, 196, 90, 1, 500, true);
+		panelSocialList.anInt208 = 0;
+		controlListSocialPlayers = panelSocialList.method152(l, byte0 + 40, 196, 126, 1, 500, true);
+		aPanel966 = new Panel(surface, 5);
+		anInt967 = aPanel966.method152(l, byte0 + 24, 196, 251, 1, 500, true);
+		if (scene != null) {
+			scene.raster = Surface.pixels;
+			scene.setBounds(gameWidth / 2, gameHeight / 2, gameWidth / 2, gameHeight / 2, gameWidth, anInt976);
+		}
+	}
+
 	protected void startGame() {
 		//checkHost
 /*		if(aBoolean782) {
@@ -6739,16 +6783,16 @@ label0:
 		anInt969 = anInt933 + 10;
 		graphics = getGraphics();
 		method18(50);
-		surface = new SpriteSurface(anInt764, gameHeight + 12, 4000, this);
-		surface.method253(0, 0, anInt764, gameHeight + 12);
+		surface = new SpriteSurface(gameWidth, gameHeight + 12, 4000, this);
+		surface.resize(0, 0, gameWidth, gameHeight + 12);
 		Panel.aBoolean190 = false;
 		Panel.anInt191 = anInt941;
 		aPanel959 = new Panel(surface, 5);
 		int l = surface.width2 - 199;
 		byte byte0 = 36;
 		anInt960 = aPanel959.method152(l, byte0 + 24, 196, 90, 1, 500, true);
-		aPanel867 = new Panel(surface, 5);
-		anInt868 = aPanel867.method152(l, byte0 + 40, 196, 126, 1, 500, true);
+		panelSocialList = new Panel(surface, 5);
+		controlListSocialPlayers = panelSocialList.method152(l, byte0 + 40, 196, 126, 1, 500, true);
 		aPanel966 = new Panel(surface, 5);
 		anInt967 = aPanel966.method152(l, byte0 + 24, 196, 251, 1, 500, true);
 		method96();
@@ -6758,7 +6802,7 @@ label0:
 		if(errorLoadingData)
 			return;
 		scene = new Scene(surface, 15000, 15000, 1000);
-		scene.method292(anInt764 / 2, gameHeight / 2, anInt764 / 2, gameHeight / 2, anInt764, anInt976);
+		scene.setBounds(gameWidth / 2, gameHeight / 2, gameWidth / 2, gameHeight / 2, gameWidth, anInt976);
 		scene.clipFar3d = 2400;
 		scene.clipFar2d = 2400;
 		scene.fogZFalloff = 1;
@@ -6781,7 +6825,7 @@ label0:
         } else {
 			loadSounds();
 			method1(100, "Starting game...");
-			method91();
+			createMessageTabPanel();
 			method81();
 			method102();
 			method103();
@@ -7277,12 +7321,12 @@ label0:
 			super.lastMouseButtonDown = 0;
 			super.mouseButtonDown = 0;
 		}
-		panelMessageTabs.method142(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
+		panelMessageTabs.handleMouse(super.mouseX, super.mouseY, super.lastMouseButtonDown, super.mouseButtonDown);
 		if(messageTabSelected > 0 && super.mouseX >= 494 && super.mouseY >= gameHeight - 66)
 			super.lastMouseButtonDown = 0;
-		if(panelMessageTabs.isClicked(anInt870)) {
-			String s = panelMessageTabs.getText(anInt870);
-			panelMessageTabs.updateText(anInt870, "");
+		if(panelMessageTabs.isClicked(controlTextListAll)) {
+			String s = panelMessageTabs.getText(controlTextListAll);
+			panelMessageTabs.updateText(controlTextListAll, "");
 			if(s.startsWith("::")) {
 				if(s.equalsIgnoreCase("::closecon") && !aBoolean782)
 					super.packetStream.method339();
@@ -7392,7 +7436,7 @@ label0:
 		if(fogOfWar && cameraZoom > 550)
 			cameraZoom -= 4;
 		else
-		if(!fogOfWar && cameraZoom < 750)
+		if(!fogOfWar && cameraZoom < 200)
 			cameraZoom += 4;
 		if(mouseClickXStep > 0)
 			mouseClickXStep--;
@@ -7608,8 +7652,8 @@ label0:
 	private final int[] anIntArray761;
 	private int anInt762;
 	private int playerCount;
-	int anInt764;
-	int gameHeight;
+	public static int gameWidth;
+	public static int gameHeight;
 
 	private int loginState;
 	private Panel aPanel767;
@@ -7712,10 +7756,10 @@ label0:
 	private int anInt864;
 	private int anInt865;
 	int anInt866;
-	private Panel aPanel867;
-	int anInt868;
+	private Panel panelSocialList;
+	int controlListSocialPlayers;
 	private boolean optionCameraModeAuto;
-	int anInt870;
+	int controlTextListAll;
 	int localPlayerServerIdx;
 	private final int[] anIntArray872;
 	private final int[] anIntArray873;

@@ -28,6 +28,7 @@ package mixins;
 import eventbus.events.ClientTick;
 import eventbus.events.ExperienceGained;
 import eventbus.events.GameStateChanged;
+import eventbus.events.SleepingChanged;
 import net.runelite.api.*;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.mixins.*;
@@ -630,5 +631,34 @@ public abstract class RSClientMixin implements RSClient {
 	@Override
 	public void setMimicMobileUI(boolean mimicMobileUI) {
 		this.mimicMobileUI = mimicMobileUI;
+	}
+
+	@Shadow("gameWidth")
+	public static int gameWidth;
+
+	@Shadow("gameHeight")
+	public static int gameHeight;
+
+/*	@Inject
+	@FieldHook("gameWidth")
+	public static void onGameWidthChanged(int idx) {
+		if (client != null)
+			if (client.getCanvas() != null)
+				gameWidth = client.getCanvas().getWidth();
+	}
+
+	@Inject
+	@FieldHook("gameHeight")
+	public static void onGameHeightChanged(int idx) {
+		if (client != null)
+			if (client.getCanvas() != null)
+				gameWidth = client.getCanvas().getHeight();
+	}*/
+
+	@Inject
+	@FieldHook("isSleeping")
+	public void onIsSleepingChanged(int idx) {
+		if (client != null)
+			client.getCallbacks().post(new SleepingChanged(isSleeping()));
 	}
 }

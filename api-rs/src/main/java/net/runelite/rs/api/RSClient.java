@@ -154,4 +154,25 @@ public interface RSClient extends Client
 
 	@Import("showOptionMenu")
 	boolean getShowOptionsMenu();
+
+	@Import("gameWidth")
+	int getGameWidth();
+
+	@Import("gameWidth")
+	void setGameWidth(int gameWidth);
+
+	@Import("gameHeight")
+	int getGameHeight();
+
+	@Import("gameHeight")
+	void setGameHeight(int gameHeight);
+
+	@Import("setBounds")
+	void setBounds$api();
+
+	@Import("isSleeping")
+	boolean isSleeping();
+
+	@Import("createMessageTabPanel")
+	void createMessageTabPanel$api();
 }

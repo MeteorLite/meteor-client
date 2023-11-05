@@ -22,7 +22,7 @@ public class Panel {
 				k2 = 0xffffff;
 			else
 				k2 = 0;
-			if(anInt183 >= l1 && anInt183 <= l1 + aSurface181.textWidth(as[j2], l) && anInt184 <= i2 && anInt184 > i2 - aSurface181.method238(l)) {
+			if(mouseX >= l1 && mouseX <= l1 + aSurface181.textWidth(as[j2], l) && mouseY <= i2 && mouseY > i2 - aSurface181.method238(l)) {
 				if(aBooleanArray182[i])
 					k2 = 0x808080;
 				else
@@ -44,7 +44,7 @@ public class Panel {
 	}
 
 	public void method138(int i, int j, int k, int l) {
-		aSurface181.method253(i, j, i + k, j + l);
+		aSurface181.resize(i, j, i + k, j + l);
 		aSurface181.method226(i, j, k, l, anInt188, anInt189);
 		if(aBoolean190) {
 			for(int i1 = i - (j & 0x3f); i1 < i + k; i1 += 128) {
@@ -100,17 +100,17 @@ public class Panel {
 			controlFlashText[i] = 0xf423f;
 	}
 
-	public void method142(int i, int j, int k, int l) {
-		anInt183 = i;
-		anInt184 = j;
+	public void handleMouse(int i, int j, int k, int l) {
+		mouseX = i;
+		mouseY = j;
 		anInt201 = l;
 		if(k != 0)
 			anInt185 = k;
 		if(k == 1) {
 			for(int i1 = 0; i1 < anInt208; i1++) {
-				if(aBooleanArray202[i1] && anIntArray203[i1] == 10 && anInt183 >= anIntArray204[i1] && anInt184 >= anIntArray205[i1] && anInt183 <= anIntArray204[i1] + anIntArray206[i1] && anInt184 <= anIntArray205[i1] + anIntArray207[i1])
+				if(aBooleanArray202[i1] && anIntArray203[i1] == 10 && mouseX >= anIntArray204[i1] && mouseY >= anIntArray205[i1] && mouseX <= anIntArray204[i1] + anIntArray206[i1] && mouseY <= anIntArray205[i1] + anIntArray207[i1])
 					aBooleanArray187[i1] = true;
-				if(aBooleanArray202[i1] && anIntArray203[i1] == 14 && anInt183 >= anIntArray204[i1] && anInt184 >= anIntArray205[i1] && anInt183 <= anIntArray204[i1] + anIntArray206[i1] && anInt184 <= anIntArray205[i1] + anIntArray207[i1])
+				if(aBooleanArray202[i1] && anIntArray203[i1] == 14 && mouseX >= anIntArray204[i1] && mouseY >= anIntArray205[i1] && mouseX <= anIntArray204[i1] + anIntArray206[i1] && mouseY <= anIntArray205[i1] + anIntArray207[i1])
 					anIntArray186[i1] = 1 - anIntArray186[i1];
 			}
 
@@ -121,7 +121,7 @@ public class Panel {
 			anInt209 = 0;
 		if(k == 1 || anInt209 > 20) {
 			for(int j1 = 0; j1 < anInt208; j1++)
-				if(aBooleanArray202[j1] && anIntArray203[j1] == 15 && anInt183 >= anIntArray204[j1] && anInt184 >= anIntArray205[j1] && anInt183 <= anIntArray204[j1] + anIntArray206[j1] && anInt184 <= anIntArray205[j1] + anIntArray207[j1])
+				if(aBooleanArray202[j1] && anIntArray203[j1] == 15 && mouseX >= anIntArray204[j1] && mouseY >= anIntArray205[j1] && mouseX <= anIntArray204[j1] + anIntArray206[j1] && mouseY <= anIntArray205[j1] + anIntArray207[j1])
 					aBooleanArray187[j1] = true;
 
 			anInt209 -= 5;
@@ -157,7 +157,7 @@ public class Panel {
 			else
 				l1 = 0;
 			int i2 = aSurface181.textWidth(as[k1], l);
-			if(anInt183 >= j - i2 / 2 && anInt183 <= j + i2 / 2 && anInt184 - 2 <= j1 && anInt184 - 2 > j1 - aSurface181.method238(l)) {
+			if(mouseX >= j - i2 / 2 && mouseX <= j + i2 / 2 && mouseY - 2 <= j1 && mouseY - 2 > j1 - aSurface181.method238(l)) {
 				if(aBooleanArray182[i])
 					l1 = 0x808080;
 				else
@@ -205,17 +205,17 @@ public class Panel {
 			if(l2 < 6)
 				l2 = 6;
 			int j3 = ((i1 - 27 - l2) * l1) / (k1 - i2);
-			if(anInt201 == 1 && anInt183 >= j2 && anInt183 <= j2 + 12) {
-				if(anInt184 > k && anInt184 < k + 12 && l1 > 0)
+			if(anInt201 == 1 && mouseX >= j2 && mouseX <= j2 + 12) {
+				if(mouseY > k && mouseY < k + 12 && l1 > 0)
 					l1--;
-				if(anInt184 > (k + i1) - 12 && anInt184 < k + i1 && l1 < k1 - i2)
+				if(mouseY > (k + i1) - 12 && mouseY < k + i1 && l1 < k1 - i2)
 					l1++;
 				controlFlashText[i] = l1;
 			}
-			if(anInt201 == 1 && (anInt183 >= j2 && anInt183 <= j2 + 12 || anInt183 >= j2 - 12 && anInt183 <= j2 + 24 && aBooleanArray215[i])) {
-				if(anInt184 > k + 12 && anInt184 < (k + i1) - 12) {
+			if(anInt201 == 1 && (mouseX >= j2 && mouseX <= j2 + 12 || mouseX >= j2 - 12 && mouseX <= j2 + 24 && aBooleanArray215[i])) {
+				if(mouseY > k + 12 && mouseY < (k + i1) - 12) {
 					aBooleanArray215[i] = true;
-					int l3 = anInt184 - k - 12 - l2 / 2;
+					int l3 = mouseY - k - 12 - l2 / 2;
 					l1 = (l3 * k1) / (i1 - 24);
 					if(l1 > k1 - i2)
 						l1 = k1 - i2;
@@ -249,17 +249,17 @@ public class Panel {
 			if(l2 < 6)
 				l2 = 6;
 			int j3 = ((i1 - 27 - l2) * l1) / (k1 - i2);
-			if(anInt201 == 1 && anInt183 >= j2 && anInt183 <= j2 + 12) {
-				if(anInt184 > k && anInt184 < k + 12 && l1 > 0)
+			if(anInt201 == 1 && mouseX >= j2 && mouseX <= j2 + 12) {
+				if(mouseY > k && mouseY < k + 12 && l1 > 0)
 					l1--;
-				if(anInt184 > (k + i1) - 12 && anInt184 < k + i1 && l1 < k1 - i2)
+				if(mouseY > (k + i1) - 12 && mouseY < k + i1 && l1 < k1 - i2)
 					l1++;
 				controlFlashText[i] = l1;
 			}
-			if(anInt201 == 1 && (anInt183 >= j2 && anInt183 <= j2 + 12 || anInt183 >= j2 - 12 && anInt183 <= j2 + 24 && aBooleanArray215[i])) {
-				if(anInt184 > k + 12 && anInt184 < (k + i1) - 12) {
+			if(anInt201 == 1 && (mouseX >= j2 && mouseX <= j2 + 12 || mouseX >= j2 - 12 && mouseX <= j2 + 24 && aBooleanArray215[i])) {
+				if(mouseY > k + 12 && mouseY < (k + i1) - 12) {
 					aBooleanArray215[i] = true;
-					int l3 = anInt184 - k - 12 - l2 / 2;
+					int l3 = mouseY - k - 12 - l2 / 2;
 					l1 = (l3 * k1) / (i1 - 24);
 					if(l1 < 0)
 						l1 = 0;
@@ -276,21 +276,23 @@ public class Panel {
 			l1 = 0;
 			controlFlashText[i] = 0;
 		}
-		anIntArray217[i] = -1;
+		controlListEntryMouseOver[i] = -1;
 		int k2 = i1 - i2 * aSurface181.method238(j1);
 		int i3 = k + (aSurface181.method238(j1) * 5) / 6 + k2 / 2;
+
 		for(int k3 = l1; k3 < k1; k3++) {
 			int i4;
 			if(aBooleanArray182[i])
 				i4 = 0xffffff;
 			else
 				i4 = 0;
-			if(anInt183 >= j + 2 && anInt183 <= j + 2 + aSurface181.textWidth(as[k3], j1) && anInt184 - 2 <= i3 && anInt184 - 2 > i3 - aSurface181.method238(j1)) {
+
+			if(mouseX >= j + 2 && mouseX <= j + 2 + aSurface181.textWidth(as[k3], j1) && mouseY - 2 <= i3 && mouseY - 2 > i3 - aSurface181.method238(j1)) {
 				if(aBooleanArray182[i])
 					i4 = 0x808080;
 				else
 					i4 = 0xffffff;
-				anIntArray217[i] = k3;
+				controlListEntryMouseOver[i] = k3;
 				if(anInt185 == 1) {
 					anIntArray186[i] = k3;
 					aBooleanArray187[i] = true;
@@ -372,7 +374,7 @@ public class Panel {
 		anIntArray195[anInt208] = 0;
 		controlFlashText[anInt208] = 0;
 		anIntArray186[anInt208] = -1;
-		anIntArray217[anInt208] = -1;
+		controlListEntryMouseOver[anInt208] = -1;
 		return anInt208++;
 	}
 
@@ -462,11 +464,11 @@ public class Panel {
 
 	public void method162(int i) {
 		controlFlashText[i] = 0;
-		anIntArray217[i] = -1;
+		controlListEntryMouseOver[i] = -1;
 	}
 
-	public int method163(int i, int j, int k, int l, int i1, int j1, boolean flag, 
-			boolean flag1) {
+	public int addTextListInput(int i, int j, int k, int l, int i1, int j1, boolean flag,
+								boolean flag1) {
 		anIntArray203[anInt208] = 5;
 		aBooleanArray202[anInt208] = true;
 		aBooleanArray224[anInt208] = flag;
@@ -482,8 +484,8 @@ public class Panel {
 		return anInt208++;
 	}
 
-	public int method164(int i) {
-		int j = anIntArray217[i];
+	public int getListEntryIndex(int i) {
+		int j = controlListEntryMouseOver[i];
 		return j;
 	}
 
@@ -522,7 +524,7 @@ public class Panel {
 		controlFlashText = new int[i];
 		anIntArray195 = new int[i];
 		anIntArray186 = new int[i];
-		anIntArray217 = new int[i];
+		controlListEntryMouseOver = new int[i];
 		anIntArray204 = new int[i];
 		anIntArray205 = new int[i];
 		anIntArray203 = new int[i];
@@ -574,7 +576,7 @@ public class Panel {
 		}
 	}
 
-	public void method170(int i) {
+	public void setFocus(int i) {
 		anInt225 = i;
 	}
 
@@ -587,11 +589,11 @@ public class Panel {
 
 		}
 		if(anIntArray203[i] == 5) {
-			if(anInt185 == 1 && anInt183 >= j && anInt184 >= k - i1 / 2 && anInt183 <= j + l && anInt184 <= k + i1 / 2)
+			if(anInt185 == 1 && mouseX >= j && mouseY >= k - i1 / 2 && mouseX <= j + l && mouseY <= k + i1 / 2)
 				anInt225 = i;
 		} else
 		if(anIntArray203[i] == 6) {
-			if(anInt185 == 1 && anInt183 >= j - l / 2 && anInt184 >= k - i1 / 2 && anInt183 <= j + l / 2 && anInt184 <= k + i1 / 2)
+			if(anInt185 == 1 && mouseX >= j - l / 2 && mouseY >= k - i1 / 2 && mouseX <= j + l / 2 && mouseY <= k + i1 / 2)
 				anInt225 = i;
 			j -= aSurface181.textWidth(s, j1) / 2;
 		}
@@ -601,7 +603,7 @@ public class Panel {
 		method160(i, j, l1, s, j1);
 	}
 
-	public int method172(int i, int j, int k, int l, int i1, int j1, boolean flag) {
+	public int addTextList(int i, int j, int k, int l, int i1, int j1, boolean flag) {
 		anIntArray203[anInt208] = 4;
 		aBooleanArray202[anInt208] = true;
 		aBooleanArray187[anInt208] = false;
@@ -630,10 +632,10 @@ public class Panel {
 	}
 
 	int anInt180;
-	protected Surface aSurface181;
+	public Surface aSurface181;
 	boolean[] aBooleanArray182;
-	int anInt183;
-	int anInt184;
+	int mouseX;
+	int mouseY;
 	int anInt185;
 	public int[] anIntArray186;
 	public boolean[] aBooleanArray187;
@@ -666,7 +668,7 @@ public class Panel {
 	int anInt214;
 	public boolean[] aBooleanArray215;
 	public static int anInt216;
-	public int[] anIntArray217;
+	public int[] controlListEntryMouseOver;
 	public boolean aBoolean218;
 	public static int anInt219 = 114;
 	public static int anInt220 = 114;

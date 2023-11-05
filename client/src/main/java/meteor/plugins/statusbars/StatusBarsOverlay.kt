@@ -142,7 +142,7 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
         val strengthXPBar = barRenderers[BarMode.STRENGTHXP]
         val hitsXPBar = barRenderers[BarMode.HITSXP]
 
-        var offsetX = 480
+        var offsetX = client.gameWidth - 35
         var offsetY = 45
         if (client.showingInventory())
             offsetY += 205

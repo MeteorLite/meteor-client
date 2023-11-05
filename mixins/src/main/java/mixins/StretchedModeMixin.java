@@ -1,8 +1,10 @@
 package mixins;
 
+import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 
 import java.awt.*;
@@ -10,6 +12,10 @@ import java.awt.*;
 @Mixin(RSClient.class)
 public abstract class StretchedModeMixin implements RSClient
 {
+
+	@Shadow("mudClient")
+	public static Client client;
+
 	@Inject
 	private static boolean stretchedEnabled;
 
@@ -108,10 +114,10 @@ public abstract class StretchedModeMixin implements RSClient
 				int newWidth = (int) (parentWidth / scalingFactor);
 				int newHeight = (int) (parentHeight / scalingFactor);
 
-				if (newWidth < Constants.GAME_FIXED_WIDTH || newHeight < Constants.GAME_FIXED_HEIGHT)
+				if (newWidth < client.getGameWidth() || newHeight < client.getGameHeight())
 				{
-					double scalingFactorW = (double)parentWidth / Constants.GAME_FIXED_WIDTH;
-					double scalingFactorH = (double)parentHeight / Constants.GAME_FIXED_HEIGHT;
+					double scalingFactorW = (double)parentWidth / client.getGameWidth();
+					double scalingFactorH = (double)parentHeight / client.getGameHeight();
 					double scalingFactor = Math.min(scalingFactorW, scalingFactorH);
 
 					newWidth = (int) (parentWidth / scalingFactor);

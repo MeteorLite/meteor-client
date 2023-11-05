@@ -6,6 +6,8 @@ import meteor.Main.client
 import meteor.Main.overlayRenderer
 import meteor.input.KeyManager
 import meteor.input.MouseManager
+import meteor.plugins.PluginManager
+import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.ui.composables.ui.canvas
 import meteor.ui.composables.ui.gamePanel
 import meteor.ui.overlay.OverlayLayer
@@ -41,6 +43,7 @@ class Hooks : Callbacks {
     }
 
     private var lastStretchedDimensions: Dimension? = null
+    private var lastRealDimensions: Dimension? = null
     private var stretchedImage: VolatileImage? = null
     private var stretchedGraphics: Graphics2D? = null
 
@@ -72,27 +75,35 @@ class Hooks : Callbacks {
     val transparent = 0
 
     override fun drawScene(pixels: IntArray) {
-        val gameImage = createRSBufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
-        //Draw Game pixels to overlay backing (for transparency without a backing image)
-        for (y in 0..<Constants.GAME_FIXED_HEIGHT) {
-            for (x in 0..<Constants.GAME_FIXED_WIDTH)
-                gameImage.setRGB(x, y, getPixel(pixels, Constants.GAME_FIXED_WIDTH+1, Constants.GAME_FIXED_HEIGHT+1, x, y))
-        }
-        val overlayImage = BufferedImage(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT, BufferedImage.TYPE_INT_ARGB)
-        val graphics2d = overlayImage.graphics as Graphics2D
-        graphics2d.drawImage(gameImage, 0, 0, null)
-
         try {
-            overlayRenderer.renderOverlayLayer(graphics2d, OverlayLayer.ABOVE_SCENE)
-        } catch (ex: java.lang.Exception) {
-            ex.printStackTrace()
-        }
+            val overlayImage = BufferedImage(client.gameWidth, client.gameHeight, BufferedImage.TYPE_INT_ARGB)
+            val graphics2d = overlayImage.graphics as Graphics2D
 
-        for (y in 0..<Constants.GAME_FIXED_HEIGHT) {
-            for (x in 0..<Constants.GAME_FIXED_WIDTH) {
-                val color = overlayImage.getRGB(x, y)
-                setPixel(pixels, Constants.GAME_FIXED_WIDTH+1, Constants.GAME_FIXED_HEIGHT+1, x, y, color)
+            if (!Main.meteorConfig.disableOverlayAlpha()) {
+                val gameImage = createRSBufferedImage(client.gameWidth, client.gameHeight)
+                for (y in 0..<client.gameHeight) {
+                    for (x in 0..<client.gameWidth)
+                        gameImage.setRGB(x, y, getPixel(pixels, client.gameWidth, client.gameHeight, x, y))
+                }
+
+                graphics2d.drawImage(gameImage, 0, 0, null)
             }
+
+            try {
+                overlayRenderer.renderOverlayLayer(graphics2d, OverlayLayer.ABOVE_SCENE)
+            } catch (ex: java.lang.Exception) {
+                ex.printStackTrace()
+            }
+
+            for (y in 0..<client.gameHeight) {
+                for (x in 0..<client.gameWidth) {
+                    val color = overlayImage.getRGB(x, y)
+                    if (color != 0)
+                    setPixel(pixels, client.gameWidth, client.gameHeight, x, y, color)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -130,16 +141,20 @@ class Hooks : Callbacks {
 
     private lateinit var gameImage: Image
     lateinit var finalImage: Image
+    var lastWidth = -1
+    var lastHeight = -1
 
     override fun draw(mainBufferProvider: Image, x: Int, y: Int) {
         if (canvas.graphics == null) {
             return
         }
-        //TODO: Do this in a better place, we shouldn't be calling it every frame
+
         client.invalidateStretching(true)
 
-        gameImage = copy(mainBufferProvider)
-
+        gameImage = if (client.isStretchedEnabled || client.isSleeping)
+            copy(mainBufferProvider).getSubimage(0, 0, Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
+        else
+            copy(mainBufferProvider)
         val graphics2d: Graphics2D = gameImage.graphics as Graphics2D
 
         try {
@@ -195,9 +210,31 @@ class Hooks : Callbacks {
         // finalImage is backed by the client buffer which will change soon. make a copy
         // so that callbacks can safely use it later from threads.
         //drawManager.processDrawComplete { copy(finalImage) }
+
+        if (!client.isStretchedEnabled) {
+            client.gameWidth = canvas.width
+            client.gameHeight = canvas.height - 12
+            client.`setBounds$api`()
+        } else {
+            client.gameWidth = Constants.GAME_FIXED_WIDTH
+            client.gameHeight = Constants.GAME_FIXED_HEIGHT - 12
+            client.`setBounds$api`()
+        }
+
+        if (!client.isStretchedEnabled) {
+            if (client.gameWidth != lastWidth || client.gameHeight != lastHeight - 12) {
+                client.`createMessageTabPanel$api`()
+                lastWidth = client.gameWidth
+                lastHeight = client.gameHeight + 12
+            }
+        } else {
+            if (client.gameWidth != Constants.GAME_FIXED_WIDTH || client.gameHeight != Constants.GAME_FIXED_HEIGHT - 12) {
+                client.`createMessageTabPanel$api`()
+            }
+        }
     }
 
-    private fun copy(src: Image): Image {
+    private fun copy(src: Image): BufferedImage {
         val width = src.getWidth(null)
         val height = src.getHeight(null)
         val image = BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
@@ -261,7 +298,7 @@ class Hooks : Callbacks {
 
     override fun mouseWheelMoved(mouseEvent: MouseWheelEvent): MouseWheelEvent {
         val newScale = client.scale + mouseEvent.wheelRotation * 40
-        if (newScale > 4000 || newScale < 300)
+        if (newScale > 4000 || newScale < 100)
             return MouseManager.processMouseWheelMoved(mouseEvent)
         client.scale = newScale
         return MouseManager.processMouseWheelMoved(mouseEvent)

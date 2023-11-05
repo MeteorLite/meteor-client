@@ -193,4 +193,18 @@ public interface Client
 	boolean mimicMobileUI();
 
 	void setMimicMobileUI(boolean mimicMobileUI);
+
+	int getGameWidth();
+
+	void setGameWidth(int gameWidth);
+
+	int getGameHeight();
+
+	void setGameHeight(int gameHeight);
+
+	void setBounds$api();
+
+	boolean isSleeping();
+
+	void createMessageTabPanel$api();
 }

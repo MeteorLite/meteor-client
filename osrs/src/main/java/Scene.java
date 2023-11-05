@@ -6,20 +6,21 @@ import net.runelite.mapping.Implements;
 
 @Implements("RSScene")
 public class Scene {
+	public int pitch = 912;
 
 	public void setCamera(int i, int j, int k, int l, int i1, int j1, int k1) {
-		l &= 0x3ff;
+		pitch &= 0x3ff;
 		i1 &= 0x3ff;
 		j1 &= 0x3ff;
-		cameraPitch = 1024 - l & 0x3ff;
+		cameraPitch = 1024 - pitch & 0x3ff;
 		cameraYaw = 1024 - i1 & 0x3ff;
 		cameraRoll = 1024 - j1 & 0x3ff;
 		int l1 = 0;
 		int i2 = 0;
 		int j2 = k1;
-		if(l != 0) {
-			int k2 = sin2048Cache[l];
-			int j3 = sin2048Cache[l + 1024];
+		if(pitch != 0) {
+			int k2 = sin2048Cache[pitch];
+			int j3 = sin2048Cache[pitch + 1024];
 			int i4 = i2 * j3 - j2 * k2 >> 15;
 			j2 = i2 * k2 + j2 * j3 >> 15;
 			i2 = i4;
@@ -1943,7 +1944,7 @@ public class Scene {
 
 				generateScanLines(0, 0, 0, 0, k8, anIntArray439, anIntArray440, anIntArray441, model2, l);
 				if(anInt407 > anInt406)
-					method302(0, 0, l10, anIntArray436, anIntArray437, anIntArray438, polygon.anInt366, model2);
+					rasterize(0, 0, l10, anIntArray436, anIntArray437, anIntArray438, polygon.anInt366, model2);
 			}
 		}
 
@@ -2128,7 +2129,7 @@ public class Scene {
 		return !method266(ai2, ai3, ai4, ai5);
 	}
 
-	public void method292(int i, int j, int k, int l, int i1, int j1) {
+	public void setBounds(int i, int j, int k, int l, int i1, int j1) {
 		anInt425 = k;
 		anInt405 = l;
 		anInt417 = i;
@@ -2492,14 +2493,14 @@ public class Scene {
 		aSurface423 = surface;
 		anInt425 = surface.width2 / 2;
 		anInt405 = surface.height2 / 2;
-		anIntArray448 = surface.pixels;
+		raster = Surface.pixels;
 		modelCount = 0;
 		maxModelCount = i;
 		models = new Model[maxModelCount];
 		modelState = new int[maxModelCount];
 		anInt429 = 0;
-		aPolygonArray416 = new Polygon[j];
-		for(int l = 0; l < j; l++)
+		aPolygonArray416 = new Polygon[50000];
+		for(int l = 0; l < aPolygonArray416.length; l++)
 			aPolygonArray416[l] = new Polygon();
 
 		spriteCount = 0;
@@ -2558,8 +2559,8 @@ public class Scene {
 		return aModelArray414;
 	}
 
-	private void method302(int i, int j, int k, int[] ai, int[] ai1, int[] ai2, int l,
-                           Model model) {
+	private void rasterize(int i, int j, int k, int[] ai, int[] ai1, int[] ai2, int l,
+						   Model model) {
 		if(l == -2)
 			return;
 		if(l >= 0) {
@@ -2633,7 +2634,7 @@ public class Scene {
 								int l17 = anInt425;
 								k20 = l17 - j;
 							}
-							method284(anIntArray448, anIntArrayArray387[l], 0, 0, l9 + k14 * j, k11 + i15 * j, i13 + k15 * j, k10, i12, k13, k20, i17 + j, i22, k23 << 2);
+							method284(raster, anIntArrayArray387[l], 0, 0, l9 + k14 * j, k11 + i15 * j, i13 + k15 * j, k10, i12, k13, k20, i17 + j, i22, k23 << 2);
 							l9 += i11;
 							k11 += k12;
 							i13 += i14;
@@ -2666,7 +2667,7 @@ public class Scene {
 								int j18 = anInt425;
 								l20 = j18 - j;
 							}
-							method283(anIntArray448, anIntArrayArray387[l], 0, 0, l9 + k14 * j, k11 + i15 * j, i13 + k15 * j, k10, i12, k13, l20, i17 + j, j22, l23 << 2);
+							method283(raster, anIntArrayArray387[l], 0, 0, l9 + k14 * j, k11 + i15 * j, i13 + k15 * j, k10, i12, k13, l20, i17 + j, j22, l23 << 2);
 							l9 += i11;
 							k11 += k12;
 							i13 += i14;
@@ -2698,7 +2699,7 @@ public class Scene {
 							int l18 = anInt425;
 							i21 = l18 - j;
 						}
-						method280(anIntArray448, 0, 0, 0, anIntArrayArray387[l], l9 + k14 * j, k11 + i15 * j, i13 + k15 * j, k10, i12, k13, i21, i17 + j, k22, i24);
+						method280(raster, 0, 0, 0, anIntArrayArray387[l], l9 + k14 * j, k11 + i15 * j, i13 + k15 * j, k10, i12, k13, i21, i17 + j, k22, i24);
 						l9 += i11;
 						k11 += k12;
 						i13 += i14;
@@ -2764,7 +2765,7 @@ public class Scene {
 							int j19 = anInt425;
 							j21 = j19 - j;
 						}
-						method279(anIntArray448, anIntArrayArray387[l], 0, 0, i10 + l14 * j, l11 + j15 * j, j13 + l15 * j, l10, j12, l13, j21, j17 + j, l22, j24);
+						method279(raster, anIntArrayArray387[l], 0, 0, i10 + l14 * j, l11 + j15 * j, j13 + l15 * j, l10, j12, l13, j21, j17 + j, l22, j24);
 						i10 += j11;
 						l11 += l12;
 						j13 += j14;
@@ -2797,7 +2798,7 @@ public class Scene {
 							int l19 = anInt425;
 							k21 = l19 - j;
 						}
-						method294(anIntArray448, anIntArrayArray387[l], 0, 0, i10 + l14 * j, l11 + j15 * j, j13 + l15 * j, l10, j12, l13, k21, j17 + j, i23, k24);
+						method294(raster, anIntArrayArray387[l], 0, 0, i10 + l14 * j, l11 + j15 * j, j13 + l15 * j, l10, j12, l13, k21, j17 + j, i23, k24);
 						i10 += j11;
 						l11 += l12;
 						j13 += j14;
@@ -2829,7 +2830,7 @@ public class Scene {
 						int j20 = anInt425;
 						l21 = j20 - j;
 					}
-					method295(anIntArray448, 0, 0, 0, anIntArrayArray387[l], i10 + l14 * j, l11 + j15 * j, j13 + l15 * j, l10, j12, l13, l21, j17 + j, j23, l24);
+					method295(raster, 0, 0, 0, anIntArrayArray387[l], i10 + l14 * j, l11 + j15 * j, j13 + l15 * j, l10, j12, l13, l21, j17 + j, j23, l24);
 					i10 += j11;
 					l11 += l12;
 					j13 += j14;
@@ -2894,7 +2895,7 @@ public class Scene {
 						int l4 = anInt425;
 						k6 = l4 - j;
 					}
-					method281(anIntArray448, -k6, l2 + j, 0, anIntArray451, l7, i9);
+					method281(raster, -k6, l2 + j, 0, anIntArray451, l7, i9);
 					l2 += i2;
 				}
 			}
@@ -2921,7 +2922,7 @@ public class Scene {
 						int j5 = anInt425;
 						l6 = j5 - j;
 					}
-					method278(anIntArray448, -l6, l2 + j, 0, anIntArray451, i8, j9);
+					method278(raster, -l6, l2 + j, 0, anIntArray451, i8, j9);
 					l2 += i2;
 				}
 			}
@@ -2947,7 +2948,7 @@ public class Scene {
 					int l5 = anInt425;
 					i7 = l5 - j;
 				}
-				method282(anIntArray448, -i7, l2 + j, 0, anIntArray451, j8, k9);
+				method282(raster, -i7, l2 + j, 0, anIntArray451, j8, k9);
 				l2 += i2;
 			}
 		}
@@ -3157,7 +3158,7 @@ public class Scene {
 	private final int[] spriteZ;
 	private final int[] spriteY;
 	private int anInt447;
-	public int[] anIntArray448;
+	public int[] raster;
 	int[] anIntArray449;
 	int[][] anIntArrayArray450;
 	int[] anIntArray451;

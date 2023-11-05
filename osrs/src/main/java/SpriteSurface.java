@@ -29,10 +29,10 @@ public final class SpriteSurface extends Surface {
         }
 	}
 
-	public SpriteSurface(int i, int j, int k, Component component) {
-		super(i, j, k, component);
+	public SpriteSurface(int width, int height, int k, Component component) {
+		super(width, height, k, component);
 		boolean flag = false;
 		if(flag)
-			new Surface(i, j, k, component);
+			new Surface(width, height, k, component);
 	}
 }

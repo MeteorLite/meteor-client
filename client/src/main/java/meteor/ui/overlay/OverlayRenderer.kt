@@ -5,6 +5,7 @@ import com.google.common.primitives.Ints
 import meteor.Main.client
 import meteor.Main.overlayManager
 import meteor.game.FontManager
+import meteor.ui.composables.ui.gamePanel
 import net.runelite.api.Constants
 import java.awt.*
 
@@ -324,7 +325,7 @@ class OverlayRenderer {
         } else {
             graphics.setClip(0, 0, Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
         }*/
-        graphics.setClip(0, 0, Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
+        graphics.setClip(0, 0, gamePanel.width, gamePanel.height)
         val position: OverlayPosition = overlay.position
 
 

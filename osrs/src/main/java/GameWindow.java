@@ -11,8 +11,8 @@ public class GameWindow extends Frame {
 
 	public GameWindow(GameShell gameshell, int i, int j, String s, boolean flag, boolean flag1) {
 		anInt49 = 28;
-		anInt44 = i;
-		anInt45 = j;
+		frameWidth = i;
+		frameHeight = j;
 		gameShell = gameshell;
 		if(flag1)
 			anInt49 = 48;
@@ -24,7 +24,10 @@ public class GameWindow extends Frame {
 		toFront();
 		if (mudclient.injected)
 			hide();
-		resize(anInt44, anInt45);
+		if (mudclient.injected)
+			resize(frameWidth, frameHeight);
+		else
+			resize(frameWidth, frameHeight + 12);
 		graphics = getGraphics();
 
 	}
@@ -79,8 +82,8 @@ public class GameWindow extends Frame {
 		super.resize(i, j + anInt49);
 	}
 
-	int anInt44;
-	int anInt45;
+	int frameWidth;
+	int frameHeight;
 	Graphics graphics;
 	int anInt47;
 	GameShell gameShell;

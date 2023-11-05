@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import eventbus.events.ConfigChanged
+import eventbus.events.GameStateChanged
+import eventbus.events.SleepingChanged
 import meteor.Main
 import meteor.input.MouseManager
 import meteor.input.TranslateMouseListener
@@ -36,6 +38,8 @@ import meteor.input.TranslateMouseWheelListener
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.itemnamepatch.ItemNamePatchConfig
+import net.runelite.api.GameState
+import org.rationalityfrontline.kevent.KEVENT
 
 @PluginDescriptor(
     name = "Stretched Mode", configGroup = "stretchedmode",
@@ -50,19 +54,60 @@ class StretchedModePlugin : Plugin() {
     private val mouseListener = TranslateMouseListener
     private val mouseWheelListener = TranslateMouseWheelListener
 
+    // We subscribe during init block so these events are processed even if the plugin is disabled
+    init {
+        KEVENT.subscribe<GameStateChanged> {
+            if (it.data.gameState == GameState.LOGGED_OUT) {
+                if (!client.isStretchedEnabled)
+                    enable()
+            } else {
+                if (client.isStretchedEnabled) {
+                    if (!shouldEnable())
+                        disable()
+                } else {
+                    if (shouldEnable())
+                        enable()
+                }
+            }
+        }
+        KEVENT.subscribe<SleepingChanged> {
+            if (it.data.isSleeping) {
+                if (!client.isStretchedEnabled)
+                    enable()
+            } else {
+                if (client.isStretchedEnabled) {
+                    if (!shouldEnable())
+                        disable()
+                } else {
+                    if (shouldEnable())
+                        enable()
+                }
+            }
+        }
+    }
+
     override fun onStart() {
+        enable()
+    }
+
+    override fun onStop() {
+        if (client.isLoggedIn)
+            disable()
+    }
+
+    fun enable() {
         mouseManager.registerMouseListener(0, mouseListener)
         mouseManager.registerMouseWheelListener(0, mouseWheelListener)
         client.isStretchedEnabled = true
         updateConfig()
     }
 
-    override fun onStop() {
+    fun disable() {
         client.isStretchedEnabled = false
         client.invalidateStretching(true)
-        //Set absolute min window size
-        Main.windowSize.value = DpSize(1.dp, 1.dp)
-        Main.windowState.value = WindowState(size = Main.windowSize.value)
+        /*        //Set absolute min window size
+                Main.windowSize.value = DpSize(1.dp, 1.dp)
+                Main.windowState.value = WindowState(size = Main.windowSize.value)*/
         mouseManager.unregisterMouseListener(mouseListener)
         mouseManager.unregisterMouseWheelListener(mouseWheelListener)
     }
@@ -81,6 +126,6 @@ class StretchedModePlugin : Plugin() {
         client.setStretchedKeepAspectRatio(false)
         client.isStretchedFast = config.increasedPerformance()
         //client.setScalingFactor(config.scalingFactor())
-        client.invalidateStretching(true)
+        //client.invalidateStretching(true)
     }
 }

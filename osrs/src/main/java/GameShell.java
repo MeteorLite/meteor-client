@@ -74,7 +74,7 @@ public class GameShell extends Applet
 			int j = (appletWidth - 281) / 2;
 			int k = (appletHeight - 148) / 2;
 			graphics.setColor(Color.black);
-			graphics.fillRect(0, 0, appletWidth, appletHeight);
+			graphics.fillRect(0, 0, appletWidth, appletHeight + 12);
 			if(!hasRefererLogoNotused)
 				graphics.drawImage(logoImage, j, k, this);
 			j += 2;
@@ -575,8 +575,10 @@ public class GameShell extends Applet
 		thread.start();
 	}
 
-	protected final void method17(int i, int j, String s, boolean flag) {
+	protected final void setupWindow(int i, int j, String s, boolean flag) {
 		aBoolean10 = false;
+		mudclient.gameWidth = i;
+		mudclient.gameHeight = j;
 		appletWidth = i;
 		appletHeight = j;
 		gameWindow = new GameWindow(this, i, j, s, flag, false);
@@ -629,8 +631,8 @@ public class GameShell extends Applet
 	protected void startGame() {
 	}
 
-	private int appletWidth;
-	private int appletHeight;
+	public static int appletWidth;
+	public static int appletHeight;
 	private int anInt3;
 	private String loadingProgressText;
 	private Graphics graphics;

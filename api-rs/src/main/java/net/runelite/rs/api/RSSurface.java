@@ -27,6 +27,7 @@ package net.runelite.rs.api;
 import net.runelite.mapping.Import;
 
 import java.awt.*;
+import java.awt.image.ImageConsumer;
 
 public interface RSSurface
 {
@@ -38,4 +39,7 @@ public interface RSSurface
 
     @Import("drawStringCenter")
     void drawStringCenter$api(String text, int x, int y, int font, int color);
+
+    @Import("imageConsumer")
+    ImageConsumer getImageConsumer();
 }

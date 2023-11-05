@@ -50,6 +50,7 @@ fun OSRSPanel() {
                                 Main.client.canvas = canvas
                                 Main.client.gamePanel = this
                                 Main.client.`main$api`()
+
                                 canvas.addKeyListener((applet as RSGameShell).gameWindow.`gameShell$api`)
                                 canvas.addMouseListener((applet as RSGameShell).gameWindow.`gameShell$api`)
                                 canvas.addMouseMotionListener((applet as RSGameShell).gameWindow.`gameShell$api`)

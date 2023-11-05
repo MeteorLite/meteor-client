@@ -145,6 +145,16 @@ interface MeteorConfig : Config {
         return false
     }
 
+    @ConfigItem(
+        name = "Disable Overlay Alpha",
+        keyName = "disableOverlayAlpha",
+        description = "Offers a moderate speedup in high resolutions",
+        position = 13,
+    )
+    fun disableOverlayAlpha(): Boolean {
+        return false
+    }
+
     enum class ToolbarPosition(val position: String) {
         NORTH(BorderLayout.NORTH), SOUTH(BorderLayout.SOUTH), EAST(BorderLayout.EAST), WEST(BorderLayout.WEST);
     }

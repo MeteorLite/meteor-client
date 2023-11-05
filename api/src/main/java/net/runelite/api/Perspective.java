@@ -110,7 +110,7 @@ public class Perspective
 		if (x >= 128 && y >= 128 && x <= 13056 && y <= 13056)
 		{
 			if (reduceDoubleHeight)
-				z -= (getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane) * 2);
+				z -= (getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane) * 2) + 5;
 			else
 				z -= getHeight(client, x, y, client.getLocalPlayer().getWorldLocation().plane);
 			x -= client.getCameraX();
@@ -178,8 +178,8 @@ public class Perspective
 				cy = y3dCenter - client.getCameraY(),
 				cz = z3dCenter - client.getCameraZ(),
 
-				viewportXMiddle = Constants.GAME_FIXED_WIDTH / 2f,
-				viewportYMiddle = Constants.GAME_FIXED_HEIGHT / 2f,
+				viewportXMiddle = client.getGameWidth() / 2f,
+				viewportYMiddle = client.getGameHeight() / 2f,
 				viewportXOffset = 0,
 				viewportYOffset = 0,
 
@@ -243,8 +243,8 @@ public class Perspective
 				cy = y3dCenter - client.getCameraY(),
 				cz = z3dCenter - client.getCameraZ(),
 
-				viewportXMiddle = Constants.GAME_FIXED_WIDTH / 2,
-				viewportYMiddle = Constants.GAME_FIXED_HEIGHT / 2,
+				viewportXMiddle = client.getGameWidth() / 2,
+				viewportYMiddle = client.getGameHeight() / 2,
 				viewportXOffset = 0,
 				viewportYOffset = 0,
 

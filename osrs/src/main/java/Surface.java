@@ -6,6 +6,7 @@ import net.runelite.mapping.Implements;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.util.Arrays;
 
 @Implements("RSSurface")
 public class Surface
@@ -1433,9 +1434,7 @@ label3:
 	public void method244() {
 		int i = width2 * height2;
 		if(!aBoolean321) {
-			for(int j = 0; j < i; j++)
-				pixels[j] = 0;
-
+            Arrays.fill(pixels, 0);
 			return;
 		}
 		int k = 0;
@@ -1646,16 +1645,16 @@ label3:
 
 	}
 
-	public Surface(int i, int j, int k, Component component) {
+	public Surface(int width, int height, int k, Component component) {
 		aBoolean321 = false;
 		loggedIn = false;
 		aComponent314 = component;
-		boundsBottomY = j;
-		boundsBottomX = i;
-		anInt312 = width2 = i;
-		anInt313 = height2 = j;
-		anInt311 = i * j;
-		pixels = new int[i * j];
+		boundsBottomY = height;
+		boundsBottomX = width;
+		anInt312 = width2 = width;
+		anInt313 = height2 = height;
+		anInt311 = width * height;
+		pixels = new int[width * height];
 		anIntArrayArray328 = new int[k][];
 		aBooleanArray333 = new boolean[k];
 		aByteArrayArray324 = new byte[k][];
@@ -1666,7 +1665,7 @@ label3:
 		anIntArray332 = new int[k];
 		anIntArray329 = new int[k];
 		anIntArray330 = new int[k];
-		if(i > 1 && j > 1 && component != null) {
+		if(width > 1 && height > 1 && component != null) {
 			colorModel = new DirectColorModel(32, 0xff0000, 65280, 255);
 			int l = width2 * height2;
 			for(int i1 = 0; i1 < l; i1++)
@@ -1683,7 +1682,7 @@ label3:
 	}
 
 	public synchronized void addConsumer(ImageConsumer imageconsumer) {
-		anImageConsumer350 = imageconsumer;
+		imageConsumer = imageconsumer;
 		imageconsumer.setDimensions(width2, height2);
 		imageconsumer.setProperties(null);
 		imageconsumer.setColorModel(colorModel);
@@ -1695,12 +1694,12 @@ label3:
 	}
 
 	public synchronized boolean isConsumer(ImageConsumer imageconsumer) {
-		return anImageConsumer350 == imageconsumer;
+		return imageConsumer == imageconsumer;
 	}
 
 	public synchronized void removeConsumer(ImageConsumer imageconsumer) {
-		if(anImageConsumer350 == imageconsumer)
-			anImageConsumer350 = null;
+		if(imageConsumer == imageconsumer)
+			imageConsumer = null;
 	}
 
 	public void requestTopDownLeftRightResend(ImageConsumer imageconsumer) {
@@ -1787,7 +1786,7 @@ label3:
 
 	}
 
-	public void method253(int i, int j, int k, int l) {
+	public void resize(int i, int j, int k, int l) {
 		if(i < 0)
 			i = 0;
 		if(j < 0)
@@ -1861,14 +1860,21 @@ label3:
 					if(text.substring(i1 + 1, i1 + 4).equalsIgnoreCase("gr3"))
 						color = 0x40ff00;
 					i1 += 4;
-				} else
-				if(text.charAt(i1) == '~' && i1 + 4 < text.length() && text.charAt(i1 + 4) == '~') {
+				} else if (text.charAt(i1) == '~' && i1 + 4 < text.length() && text.charAt(i1 + 4) == '~') {
 					char c = text.charAt(i1 + 1);
 					char c1 = text.charAt(i1 + 2);
 					char c2 = text.charAt(i1 + 3);
 					if(c >= '0' && c <= '9' && c1 >= '0' && c1 <= '9' && c2 >= '0' && c2 <= '9')
 						x = Integer.parseInt(text.substring(i1 + 1, i1 + 4));
 					i1 += 4;
+				}else if (text.charAt(i1) == '~' && i1 + 5 < text.length() && text.charAt(i1 + 5) == '~') {
+					char c = text.charAt(i1 + 1);
+					char c1 = text.charAt(i1 + 2);
+					char c2 = text.charAt(i1 + 3);
+					char c3 = text.charAt(i1 + 4);
+					if(c >= '0' && c <= '9' && c1 >= '0' && c1 <= '9' && c2 >= '0' && c2 <= '9' && c3 >= '0' && c3 <= '9')
+						x = Integer.parseInt(text.substring(i1 + 1, i1 + 5));
+					i1 += 5;
 				} else {
 					int addr = inputFilterCharFontAddr[text.charAt(i1)];
 					if(loggedIn && !fontAntiAliased[font] && color != 0)
@@ -1897,10 +1903,10 @@ label3:
 	}
 
 	public synchronized void setComplete() {
-		if(anImageConsumer350 == null) {
+		if(imageConsumer == null) {
         } else {
-			anImageConsumer350.setPixels(0, 0, width2, height2, colorModel, pixels, 0, width2);
-			anImageConsumer350.imageComplete(2);
+			imageConsumer.setPixels(0, 0, width2, height2, colorModel, pixels, 0, width2);
+			imageConsumer.imageComplete(2);
         }
 	}
 
@@ -2134,7 +2140,7 @@ label3:
 	private static int anInt347;
 	private static final boolean[] fontAntiAliased = new boolean[12];
 	public static Image image;
-	ImageConsumer anImageConsumer350;
+	ImageConsumer imageConsumer;
 	ColorModel colorModel;
 	public boolean loggedIn;
 
