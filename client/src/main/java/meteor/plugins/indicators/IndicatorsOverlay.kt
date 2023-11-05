@@ -40,7 +40,8 @@ class IndicatorsOverlay(val config: IndicatorsConfig) : Overlay() {
                     graphics.color = config.npcColor()
                     if (config.drawNpcName())
                         npc.name?.let { npcName ->
-                            npc.drawTextAboveBoundsShadowed(graphics, npcName)
+                            if (npc.message.isNullOrEmpty())
+                                npc.drawTextAboveBoundsShadowed(graphics, npcName)
                         }
                     if (config.drawNpcBounds())
                         graphics.draw(it)

@@ -7190,6 +7190,8 @@ label0:
 			}
 			if(rscharacter1.messageTimeout > 0)
 				rscharacter1.messageTimeout--;
+			else if (injected)
+				rscharacter1.message = null;
 			if(rscharacter1.bubbleTimeout > 0)
 				rscharacter1.bubbleTimeout--;
 			if(rscharacter1.combatTimer > 0)
