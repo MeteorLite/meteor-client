@@ -143,6 +143,7 @@ class Hooks : Callbacks {
     lateinit var finalImage: Image
     var lastWidth = -1
     var lastHeight = -1
+    var skipNextFrame = false
 
     override fun draw(mainBufferProvider: Image, x: Int, y: Int) {
         if (canvas.graphics == null) {
@@ -200,9 +201,11 @@ class Hooks : Callbacks {
             finalImage = gameImage
         }
 
-
+        if (!skipNextFrame)
         // Draw the image onto the game canvas
-        canvas.graphics.drawImage(finalImage, 0, 0, null)
+            canvas.graphics.drawImage(finalImage, 0, 0, null)
+        else
+            skipNextFrame = false
 
         // finalImage is backed by the client buffer which will change soon. make a copy
         // so that callbacks can safely use it later from threads.
@@ -226,10 +229,12 @@ class Hooks : Callbacks {
                 client.`createMessageTabPanel$api`()
                 lastWidth = client.gameWidth
                 lastHeight = client.gameHeight + 12
+                skipNextFrame = true
             }
         } else {
             if (client.gameWidth != Constants.GAME_FIXED_WIDTH || client.gameHeight != Constants.GAME_FIXED_HEIGHT - 12) {
                 client.`createMessageTabPanel$api`()
+                skipNextFrame = true
             }
         }
     }
