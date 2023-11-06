@@ -5662,7 +5662,7 @@ label0:
 		surface.drawStringCenter("Magic", mouseX + c / 4, mouseY + 16, 4, 0);
 		surface.drawStringCenter("Prayers", mouseX + c / 4 + c / 2, mouseY + 16, 4, 0);
 		if(anInt958 == 0) {
-			aPanel959.method154(anInt960);
+			panelMagicPrayer.method154(controlListMagicPrayer);
 			int i1 = 0;
 			for(int i2 = 0; i2 < Definitions.anInt132; i2++) {
 				String s = "@yel@";
@@ -5677,11 +5677,11 @@ label0:
 				int l4 = boostedSkillLevels[6];
 				if(Definitions.anIntArray135[i2] > l4)
 					s = "@bla@";
-				aPanel959.method139(anInt960, i1++, s + "Level " + Definitions.anIntArray135[i2] + ": " + Definitions.aStringArray133[i2]);
+				panelMagicPrayer.method139(controlListMagicPrayer, i1++, s + "Level " + Definitions.anIntArray135[i2] + ": " + Definitions.aStringArray133[i2]);
 			}
 
-			aPanel959.method150();
-			int i3 = aPanel959.getListEntryIndex(anInt960);
+			panelMagicPrayer.method150();
+			int i3 = panelMagicPrayer.getListEntryIndex(controlListMagicPrayer);
 			if(i3 != -1) {
 				surface.drawString("Level " + Definitions.anIntArray135[i3] + ": " + Definitions.aStringArray133[i3], mouseX + 2, mouseY + 124, 1, 0xffff00);
 				surface.drawString(Definitions.aStringArray134[i3], mouseX + 2, mouseY + 136, 0, 0xffffff);
@@ -5701,7 +5701,7 @@ label0:
 			}
 		}
 		if(anInt958 == 1) {
-			aPanel959.method154(anInt960);
+			panelMagicPrayer.method154(controlListMagicPrayer);
 			int j1 = 0;
 			for(int j2 = 0; j2 < Definitions.anInt140; j2++) {
 				String s1 = "@whi@";
@@ -5709,11 +5709,11 @@ label0:
 					s1 = "@bla@";
 				if(aBooleanArray827[j2])
 					s1 = "@gre@";
-				aPanel959.method139(anInt960, j1++, s1 + "Level " + Definitions.anIntArray143[j2] + ": " + Definitions.aStringArray141[j2]);
+				panelMagicPrayer.method139(controlListMagicPrayer, j1++, s1 + "Level " + Definitions.anIntArray143[j2] + ": " + Definitions.aStringArray141[j2]);
 			}
 
-			aPanel959.method150();
-			int j3 = aPanel959.getListEntryIndex(anInt960);
+			panelMagicPrayer.method150();
+			int j3 = panelMagicPrayer.getListEntryIndex(controlListMagicPrayer);
 			if(j3 != -1) {
 				surface.drawStringCenter("Level " + Definitions.anIntArray143[j3] + ": " + Definitions.aStringArray141[j3], mouseX + c / 2, mouseY + 130, 1, 0xffff00);
 				surface.drawStringCenter(Definitions.aStringArray142[j3], mouseX + c / 2, mouseY + 145, 0, 0xffffff);
@@ -5727,18 +5727,18 @@ label0:
 		mouseX = super.mouseX - (gameWidth - 199);
 		mouseY = super.mouseY - 36;
 		if(mouseX >= 0 && mouseY >= 0 && mouseX < 196 && mouseY < 182) {
-			aPanel959.handleMouse(mouseX + (gameWidth - 199), mouseY + 36, super.lastMouseButtonDown, super.mouseButtonDown);
+			panelMagicPrayer.handleMouse(mouseX + (gameWidth - 199), mouseY + 36, super.lastMouseButtonDown, super.mouseButtonDown);
 			if(mouseY <= 24 && mouseButtonClick == 1)
 				if(mouseX < 98 && anInt958 == 1) {
 					anInt958 = 0;
-					aPanel959.method162(anInt960);
+					panelMagicPrayer.method162(controlListMagicPrayer);
 				} else
 				if(mouseX > 98 && anInt958 == 0) {
 					anInt958 = 1;
-					aPanel959.method162(anInt960);
+					panelMagicPrayer.method162(controlListMagicPrayer);
 				}
 			if(mouseButtonClick == 1 && anInt958 == 0) {
-				int k1 = aPanel959.getListEntryIndex(anInt960);
+				int k1 = panelMagicPrayer.getListEntryIndex(controlListMagicPrayer);
 				if(k1 != -1) {
 					int k2 = boostedSkillLevels[6];
 					if(Definitions.anIntArray135[k1] > k2) {
@@ -5762,7 +5762,7 @@ label0:
 				}
 			}
 			if(mouseButtonClick == 1 && anInt958 == 1) {
-				int l1 = aPanel959.getListEntryIndex(anInt960);
+				int l1 = panelMagicPrayer.getListEntryIndex(controlListMagicPrayer);
 				if(l1 != -1) {
 					int l2 = realSkillLevels[5];
 					if(Definitions.anIntArray143[l1] > l2)
@@ -6712,18 +6712,24 @@ label0:
 
 	//This is called via api/mixins
 	public void setBounds() {
-		surface.resize(0, 0, gameWidth, gameHeight + 12);
+		boolean reset = gameWidth != surface.width2 || gameHeight + 12 != surface.height2;
+
+        surface.resize(0, 0, gameWidth, gameHeight + 12);
 		surface.width2 = gameWidth;
 		surface.height2 = gameHeight + 12;
 		gameWindow.resize(gameWidth, gameHeight + 12);
-		aPanel959.anInt208 = 0;
-		int l = surface.width2 - 199;
-		byte byte0 = 36;
-		anInt960 = aPanel959.method152(l, byte0 + 24, 196, 90, 1, 500, true);
-		panelSocialList.anInt208 = 0;
-		controlListSocialPlayers = panelSocialList.method152(l, byte0 + 40, 196, 126, 1, 500, true);
-		aPanel966 = new Panel(surface, 5);
-		anInt967 = aPanel966.method152(l, byte0 + 24, 196, 251, 1, 500, true);
+
+		if (reset) {
+			int l = surface.width2 - 199;
+			byte byte0 = 36;
+			panelMagicPrayer.anInt208 = 0;
+			controlListMagicPrayer = panelMagicPrayer.method152(l, byte0 + 24, 196, 90, 1, 500, true);
+			panelSocialList.anInt208 = 0;
+			controlListSocialPlayers = panelSocialList.method152(l, byte0 + 40, 196, 126, 1, 500, true);
+			aPanel966.anInt208 = 0;
+			anInt967 = aPanel966.method152(l, byte0 + 24, 196, 251, 1, 500, true);
+		}
+
 		if (scene != null) {
 			scene.raster = Surface.pixels;
 			scene.setBounds(gameWidth / 2, gameHeight / 2, gameWidth / 2, gameHeight / 2, gameWidth, anInt976);
@@ -6787,10 +6793,10 @@ label0:
 		surface.resize(0, 0, gameWidth, gameHeight + 12);
 		Panel.aBoolean190 = false;
 		Panel.anInt191 = anInt941;
-		aPanel959 = new Panel(surface, 5);
+		panelMagicPrayer = new Panel(surface, 5);
 		int l = surface.width2 - 199;
 		byte byte0 = 36;
-		anInt960 = aPanel959.method152(l, byte0 + 24, 196, 90, 1, 500, true);
+		controlListMagicPrayer = panelMagicPrayer.method152(l, byte0 + 24, 196, 90, 1, 500, true);
 		panelSocialList = new Panel(surface, 5);
 		controlListSocialPlayers = panelSocialList.method152(l, byte0 + 40, 196, 126, 1, 500, true);
 		aPanel966 = new Panel(surface, 5);
@@ -7850,8 +7856,8 @@ label0:
 	private int cameraZoom;
 	private String aString957;
 	int anInt958;
-	private Panel aPanel959;
-	int anInt960;
+	private Panel panelMagicPrayer;
+	int controlListMagicPrayer;
 	int anInt961;
 	private final String[] skillNamesShort = {
 		"Attack", "Defense", "Strength", "Hits", "Ranged", "Prayer", "Magic", "Cooking", "Woodcut", "Fletching", 
