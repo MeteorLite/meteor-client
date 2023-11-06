@@ -373,8 +373,8 @@ public final class mudclient extends NetworkedGame {
 					x1 += (10 * k1) / 100;
 
 				//draw hitsplat. in meteor, we do this after scene so it's not hidden by models
-				rscharacter.screenCenterX = x1 + width / 2;
-				rscharacter.screenCenterY = y + height / 2;
+				rscharacter.screenCenterX = x1 + (width / 2);
+				rscharacter.screenCenterY = y + (height / 2);
 
 				if (!drawHitsplatsAboveScene) {
 					surface.drawSprite(rscharacter.screenCenterX - 12, rscharacter.screenCenterY - 12, anInt658 + 12);

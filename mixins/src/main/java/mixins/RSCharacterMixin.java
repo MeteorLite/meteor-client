@@ -25,7 +25,6 @@
  */
 package mixins;
 
-import net.runelite.api.Constants;
 import net.runelite.api.Perspective;
 import net.runelite.api.SpriteID;
 import net.runelite.api.coords.LocalPoint;
@@ -37,7 +36,6 @@ import net.runelite.rs.api.RSCharacter;
 import net.runelite.rs.api.RSClient;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 
 @Mixin(RSCharacter.class)
@@ -51,7 +49,7 @@ public abstract class RSCharacterMixin implements RSCharacter {
 	public void drawHitSplat(int spriteID) {
 		int x = getScreenCenterX() - 12;
 		int y = getScreenCenterY() - 12;
-		if (x > client.getGameWidth() || y > client.getGameHeight())
+		if (!hitsplatInScreenBounds())
 			return;
 		int sprite = spriteID;
 		if (getCombatTimer() > 150) {
@@ -67,6 +65,13 @@ public abstract class RSCharacterMixin implements RSCharacter {
 			client.getSurface().drawStringCenter$api(String.valueOf(getDamageTaken()), getScreenCenterX() - 1, getScreenCenterY() + 5, 3, 0xffffff);
 		}
 	}
+
+	@Inject
+	public boolean hitsplatInScreenBounds() {
+		Point onScreenPoint = Perspective.localToCanvas(client, getLocalLocation(), client.getPlane());
+        return onScreenPoint != null && onScreenPoint.x >= -24 && onScreenPoint.x <= client.getGameWidth()
+                && onScreenPoint.y >= -24 && onScreenPoint.y <= client.getGameHeight();
+    }
 
 	@Inject
 	public int screenX;
