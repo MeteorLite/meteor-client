@@ -6711,13 +6711,15 @@ label0:
 	}
 
 	//This is called via api/mixins
-	public void setBounds() {
-		boolean reset = gameWidth != surface.width2 || gameHeight + 12 != surface.height2;
+	public void updateBounds(int width, int height) {
+		gameWidth = width;
+		gameHeight = height - 12;
+		boolean reset = gameWidth != surface.width2 || height + 12 != surface.height2;
 
-        surface.resize(0, 0, gameWidth, gameHeight + 12);
+        surface.resize(0, 0, gameWidth, height + 12);
 		surface.width2 = gameWidth;
-		surface.height2 = gameHeight + 12;
-		gameWindow.resize(gameWidth, gameHeight + 12);
+		surface.height2 = height + 12;
+		gameWindow.resize(gameWidth, height + 12);
 
 		if (reset) {
 			int l = surface.width2 - 199;

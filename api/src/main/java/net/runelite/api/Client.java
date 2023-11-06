@@ -202,7 +202,7 @@ public interface Client
 
 	void setGameHeight(int gameHeight);
 
-	void setBounds$api();
+	void updateBounds$api(int width, int height);
 
 	boolean isSleeping();
 

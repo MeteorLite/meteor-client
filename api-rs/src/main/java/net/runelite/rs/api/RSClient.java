@@ -167,8 +167,8 @@ public interface RSClient extends Client
 	@Import("gameHeight")
 	void setGameHeight(int gameHeight);
 
-	@Import("setBounds")
-	void setBounds$api();
+	@Import("updateBounds")
+	void updateBounds$api(int width, int height);
 
 	@Import("isSleeping")
 	boolean isSleeping();

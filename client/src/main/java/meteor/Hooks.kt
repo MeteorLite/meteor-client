@@ -215,20 +215,16 @@ class Hooks : Callbacks {
         //drawManager.processDrawComplete { copy(finalImage) }
 
         if (!client.isStretchedEnabled) {
-            client.gameWidth = canvas.width
-            client.gameHeight = canvas.height - 12
-            client.`setBounds$api`()
+            client.`updateBounds$api`(canvas.width, canvas.height)
         } else {
-            client.gameWidth = Constants.GAME_FIXED_WIDTH
-            client.gameHeight = Constants.GAME_FIXED_HEIGHT - 12
-            client.`setBounds$api`()
+            client.`updateBounds$api`(Constants.GAME_FIXED_WIDTH, Constants.GAME_FIXED_HEIGHT)
         }
 
         if (!client.isStretchedEnabled) {
-            if (client.gameWidth != lastWidth || client.gameHeight != lastHeight - 12) {
+            if (client.gameWidth != lastWidth || client.gameHeight != lastHeight) {
                 client.`createMessageTabPanel$api`()
                 lastWidth = client.gameWidth
-                lastHeight = client.gameHeight + 12
+                lastHeight = client.gameHeight
                 skipNextFrame = true
             }
         } else {
