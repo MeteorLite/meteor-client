@@ -207,4 +207,8 @@ public interface Client
 	boolean isSleeping();
 
 	void createMessageTabPanel$api();
+
+	boolean isHideRoofs();
+
+	void setHideRoofs(boolean hideRoofs);
 }

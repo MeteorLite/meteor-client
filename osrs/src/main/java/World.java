@@ -2,8 +2,11 @@
 // Jad home page: http://www.geocities.com/kpdus/jad.html
 // Decompiler options: packimports(3) nonlb 
 
+import net.runelite.mapping.Implements;
+
 import java.io.IOException;
 
+@Implements("RSWorld")
 public class World {
 
 	public void method390(int i, int j, int k) {
@@ -837,7 +840,7 @@ public class World {
 		aByteArrayArray582 = new byte[4][2304];
 		aByteArrayArray590 = new byte[4][2304];
 		tileHeights = new byte[4][2304];
-		aModelArrayArray598 = new Model[4][64];
+		roofModels = new Model[4][64];
 		aByteArrayArray581 = new byte[4][2304];
 		anIntArray594 = new int[18432];
 		aByteArrayArray585 = new byte[4][2304];
@@ -1420,11 +1423,11 @@ public class World {
 		}
 
 		aModel591.setLight(true, 50, 50, -50, -10, -50);
-		aModelArrayArray598[k] = aModel591.method201(0, 0, 1536, 1536, 8, 64, 169, true);
+		roofModels[k] = aModel591.method201(0, 0, 1536, 1536, 8, 64, 169, true);
 		for(int l9 = 0; l9 < 64; l9++)
-			aScene575.addModel(aModelArrayArray598[k][l9]);
+			aScene575.addModel(roofModels[k][l9]);
 
-		if(aModelArrayArray598[k][0] == null)
+		if(roofModels[k][0] == null)
 			throw new RuntimeException("null roof!");
 		for(int j12 = 0; j12 < 96; j12++) {
 			for(int k14 = 0; k14 < 96; k14++)
@@ -1476,7 +1479,7 @@ public class World {
 				aModelArrayArray597[j][i] = null;
 
 			for(int k = 0; k < 4; k++)
-				aModelArrayArray598[k][i] = null;
+				roofModels[k][i] = null;
 
 		}
 
@@ -1501,6 +1504,10 @@ public class World {
 			j -= 48;
 		}
 		return aByteArrayArray590[byte0][i * 48 + j];
+	}
+
+	void addRoofs(int plane, int idx) {
+		mudclient.mudClient.scene.addModel(roofModels[plane][idx]);
 	}
 
 	final int anInt568 = 96;
@@ -1533,6 +1540,6 @@ public class World {
 	boolean aBoolean595;
 	int anInt596;
 	Model[][] aModelArrayArray597;
-	Model[][] aModelArrayArray598;
+	Model[][] roofModels;
 	boolean aBoolean599;
 }

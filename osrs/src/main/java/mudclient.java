@@ -137,11 +137,11 @@ public final class mudclient extends NetworkedGame {
 		surface.method252(anInt659 + 1, 0, 0, 512, 200);
 		surface.method235(anInt659 + 1);
 		for(int j1 = 0; j1 < 64; j1++) {
-			scene.removeModel(world.aModelArrayArray598[0][j1]);
+			scene.removeModel(world.roofModels[0][j1]);
 			scene.removeModel(world.aModelArrayArray597[1][j1]);
-			scene.removeModel(world.aModelArrayArray598[1][j1]);
+			scene.removeModel(world.roofModels[1][j1]);
 			scene.removeModel(world.aModelArrayArray597[2][j1]);
-			scene.removeModel(world.aModelArrayArray598[2][j1]);
+			scene.removeModel(world.roofModels[2][j1]);
 		}
 
 		c = '\u2B80';
@@ -3318,7 +3318,7 @@ label0:
 			if(world != null) {
 				world.aModelArray578 = null;
 				world.aModelArrayArray597 = null;
-				world.aModelArrayArray598 = null;
+				world.roofModels = null;
 				world.aModel591 = null;
 				world = null;
 			}
@@ -4900,6 +4900,8 @@ label0:
 		}
 	}
 
+
+
 	private void drawGame() {
 		if(deathScreenTimeout != 0) {
 			surface.fadeToBlack();
@@ -4938,21 +4940,21 @@ label0:
 		if(!world.aBoolean572)
 			return;
 		for(int i = 0; i < 64; i++) {
-			scene.removeModel(world.aModelArrayArray598[plane][i]);
+			scene.removeModel(world.roofModels[plane][i]);
 			if(plane == 0) {
 				scene.removeModel(world.aModelArrayArray597[1][i]);
-				scene.removeModel(world.aModelArrayArray598[1][i]);
+				scene.removeModel(world.roofModels[1][i]);
 				scene.removeModel(world.aModelArrayArray597[2][i]);
-				scene.removeModel(world.aModelArrayArray598[2][i]);
+				scene.removeModel(world.roofModels[2][i]);
 			}
 			fogOfWar = true;
 			if(plane == 0 && (world.anIntArrayArray573[localPlayer.currentX / 128][localPlayer.currentY / 128] & 0x80) == 0) {
-				scene.addModel(world.aModelArrayArray598[plane][i]);
+				world.addRoofs(0, i);
 				if(plane == 0) {
 					scene.addModel(world.aModelArrayArray597[1][i]);
-					scene.addModel(world.aModelArrayArray598[1][i]);
+					world.addRoofs(1, i);
 					scene.addModel(world.aModelArrayArray597[2][i]);
-					scene.addModel(world.aModelArrayArray598[2][i]);
+					world.addRoofs(2, i);
 				}
 				fogOfWar = false;
 			}
@@ -7516,7 +7518,7 @@ label0:
 	private boolean showOptionMenu;
 	private World world;
 	private Model[] gameModels;
-	private Scene scene;
+	Scene scene;
 	private int anInt658;
 	private int anInt659;
 	private final int[] teleportBubbleType;

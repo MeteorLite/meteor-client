@@ -5,6 +5,7 @@ import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
 import meteor.plugins.devtools.DevToolsPlugin
+import meteor.plugins.hideroofs.HideRoofsPlugin
 import meteor.plugins.hitsplats.HitSplatsPlugin
 import meteor.plugins.thieving.ThievingPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
@@ -22,6 +23,7 @@ object PluginManager {
         init<Meteor>()
         if (pluginsEnabled) {
             init<DevToolsPlugin>()
+            init<HideRoofsPlugin>()
             init<HitSplatsPlugin>()
             init<IndicatorsPlugin>()
             init<InventoryCountPlugin>()

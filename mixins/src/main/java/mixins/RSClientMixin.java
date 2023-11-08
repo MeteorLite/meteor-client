@@ -661,4 +661,19 @@ public abstract class RSClientMixin implements RSClient {
 		if (client != null)
 			client.getCallbacks().post(new SleepingChanged(isSleeping()));
 	}
+
+	@Inject
+	public boolean hideRoofs = false;
+
+	@Inject
+	@Override
+	public boolean isHideRoofs() {
+		return hideRoofs;
+	}
+
+	@Inject
+	@Override
+	public void setHideRoofs(boolean hideRoofs) {
+		this.hideRoofs = hideRoofs;
+	}
 }
