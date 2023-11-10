@@ -1775,14 +1775,14 @@ public final class mudclient extends NetworkedGame {
 	private void method76() {
 		surface.drawSprite(0, gameHeight - 4, spriteMedia + 23);
 		if (injected) {
-			surface.drawSprite(510, gameHeight, spriteMedia + 22);
-			surface.drawSprite(1020, gameHeight, spriteMedia + 22);
-			surface.drawSprite(1530, gameHeight, spriteMedia + 22);
-			surface.drawSprite(2040, gameHeight, spriteMedia + 22);
-			surface.drawSprite(2550, gameHeight, spriteMedia + 22);
-			surface.drawSprite(3060, gameHeight, spriteMedia + 22);
-			surface.drawSprite(3570, gameHeight, spriteMedia + 22);
-			surface.drawSprite(4080, gameHeight, spriteMedia + 22);
+			int i = 510;
+			surface.drawSprite(0, gameHeight - 2, spriteMedia + 23);
+			while (i < gameWidth) {
+				surface.drawSprite(i, gameHeight + 2, spriteMedia + 22);
+				i+= 510;
+			}
+		} else {
+			surface.drawSprite(0, gameHeight - 4, spriteMedia + 23);
 		}
 		int i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 0)
