@@ -38,12 +38,4 @@ public abstract class RSWorldMixin implements RSWorld {
 
 	@Shadow("mudClient")
 	public static Client client;
-
-	@Copy("addRoofs")
-	@Replace("addRoofs")
-	public void addRoofs(int plane, int idx) {
-		if (client.isHideRoofs())
-			return;
-		addRoofs(plane, idx);
-	}
 }

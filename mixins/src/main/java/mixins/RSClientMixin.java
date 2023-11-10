@@ -676,4 +676,12 @@ public abstract class RSClientMixin implements RSClient {
 	public void setHideRoofs(boolean hideRoofs) {
 		this.hideRoofs = hideRoofs;
 	}
+
+	@Copy("drawUpperLevelModels")
+	@Replace("drawUpperLevelModels")
+	public void drawUpperLevelModels(int idx) {
+		if (client.isHideRoofs())
+			return;
+		drawUpperLevelModels(idx);
+	}
 }

@@ -4900,6 +4900,18 @@ label0:
 		}
 	}
 
+	void drawUpperLevelModels(int idx) {
+		if(plane == 0 && (world.anIntArrayArray573[localPlayer.currentX / 128][localPlayer.currentY / 128] & 0x80) == 0) {
+			world.addRoofs(0, idx);
+			if(plane == 0) {
+				scene.addModel(world.aModelArrayArray597[1][idx]);
+				world.addRoofs(1, idx);
+				scene.addModel(world.aModelArrayArray597[2][idx]);
+				world.addRoofs(2, idx);
+			}
+			fogOfWar = false;
+		}
+	}
 
 
 	private void drawGame() {
@@ -4948,16 +4960,7 @@ label0:
 				scene.removeModel(world.roofModels[2][i]);
 			}
 			fogOfWar = true;
-			if(plane == 0 && (world.anIntArrayArray573[localPlayer.currentX / 128][localPlayer.currentY / 128] & 0x80) == 0) {
-				world.addRoofs(0, i);
-				if(plane == 0) {
-					scene.addModel(world.aModelArrayArray597[1][i]);
-					world.addRoofs(1, i);
-					scene.addModel(world.aModelArrayArray597[2][i]);
-					world.addRoofs(2, i);
-				}
-				fogOfWar = false;
-			}
+			drawUpperLevelModels(i);
 		}
 
 		if(objectAnimationNumberFireLightningSpell != anInt947) {
