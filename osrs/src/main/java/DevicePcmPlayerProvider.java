@@ -3,219 +3,244 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("az")
+import java.util.List;
+
+@ObfuscatedName("an")
 @Implements("DevicePcmPlayerProvider")
 public class DevicePcmPlayerProvider implements class51 {
-	@ObfuscatedName("ak")
-	@Export("WorldMapElement_count")
-	public static int WorldMapElement_count;
-	@ObfuscatedName("az")
-	@Export("userHomeDirectory")
-	static String userHomeDirectory;
+	@ObfuscatedName("wu")
+	static List field67;
+	@ObfuscatedName("cl")
+	static int field66;
 
 	DevicePcmPlayerProvider() {
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lbu;",
-		garbageValue = "25906"
+		descriptor = "(S)Lby;",
+		garbageValue = "-2211"
 	)
 	@Export("player")
 	public PcmPlayer player() {
 		return new DevicePcmPlayer();
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-2139426983"
+		descriptor = "(Luj;II)Ljava/lang/String;",
+		garbageValue = "1966437671"
 	)
-	static final boolean method82(char var0) {
-		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
-	}
-
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "(Lfz;FB)F",
-		garbageValue = "-61"
-	)
-	static float method84(class132 var0, float var1) {
-		if (var0 == null) {
-			return 0.0F;
-		} else {
-			float var2 = var1 - var0.field1247;
-			return var2 * (var2 * (var0.field1249 + var2 * var0.field1244) + var0.field1242) + var0.field1240;
-		}
-	}
-
-	@ObfuscatedName("ah")
-	@ObfuscatedSignature(
-		descriptor = "(Lcv;Lcv;IZIZI)I",
-		garbageValue = "-1939338222"
-	)
-	static int method83(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
-		int var6 = class64.compareWorlds(var0, var1, var2, var3);
-		if (var6 != 0) {
-			return var3 ? -var6 : var6;
-		} else if (var4 == -1) {
-			return 0;
-		} else {
-			int var7 = class64.compareWorlds(var0, var1, var4, var5);
-			return var5 ? -var7 : var7;
-		}
-	}
-
-	@ObfuscatedName("am")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lcv;",
-		garbageValue = "-784805347"
-	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? UserComparator3.World_worlds[++World.World_listCount - 1] : null;
-	}
-
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "(ILds;ZB)I",
-		garbageValue = "124"
-	)
-	static int method86(int var0, Script var1, boolean var2) {
-		Widget var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-		if (var0 == 2600) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollX;
-			return 1;
-		} else if (var0 == 2601) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollY;
-			return 1;
-		} else if (var0 == 2602) {
-			Interpreter.Interpreter_stringStack[++class180.Interpreter_stringStackSize - 1] = var3.text;
-			return 1;
-		} else if (var0 == 2603) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollWidth;
-			return 1;
-		} else if (var0 == 2604) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollHeight;
-			return 1;
-		} else if (var0 == 2605) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelZoom;
-			return 1;
-		} else if (var0 == 2606) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelAngleX;
-			return 1;
-		} else if (var0 == 2607) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelAngleZ;
-			return 1;
-		} else if (var0 == 2608) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelAngleY;
-			return 1;
-		} else if (var0 == 2609) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.transparencyTop;
-			return 1;
-		} else if (var0 == 2610) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.transparencyBot;
-			return 1;
-		} else if (var0 == 2611) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.color;
-			return 1;
-		} else if (var0 == 2612) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.color2;
-			return 1;
-		} else if (var0 == 2613) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
-			return 1;
-		} else if (var0 == 2614) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
-			return 1;
-		} else {
-			class339 var4;
-			if (var0 == 2617) {
-				var4 = var3.method1878();
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4 != null ? var4.field2923 * -1501316877 * 383918139 : 0;
+	static String method82(Buffer var0, int var1) {
+		try {
+			int var2 = var0.readUShortSmart();
+			if (var2 > var1) {
+				var2 = var1;
 			}
 
-			if (var0 == 2618) {
-				var4 = var3.method1878();
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4 != null ? var4.field2925 * 1245217763 * 1917639115 : 0;
-				return 1;
-			} else {
-				class344 var7;
-				if (var0 == 2619) {
-					var7 = var3.method1877();
-					Interpreter.Interpreter_stringStack[++class180.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1812().method2070() : "";
-					return 1;
-				} else if (var0 == 2620) {
-					var4 = var3.method1878();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4 != null ? var4.field2924 * 1697101243 * 2044708723 : 0;
-					return 1;
-				} else if (var0 == 2621) {
-					var7 = var3.method1877();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1822() : 0;
-					return 1;
-				} else if (var0 == 2622) {
-					var7 = var3.method1877();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1823() : 0;
-					return 1;
-				} else if (var0 == 2623) {
-					var7 = var3.method1877();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1824() : 0;
-					return 1;
-				} else if (var0 == 2624) {
-					var7 = var3.method1877();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null && var7.method1814() ? 1 : 0;
-					return 1;
-				} else if (var0 != 2625) {
-					if (var0 == 2626) {
-						var7 = var3.method1877();
-						Interpreter.Interpreter_stringStack[++class180.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1813().method2145() : "";
-						return 1;
-					} else if (var0 == 2627) {
-						var7 = var3.method1877();
-						int var5 = var7 != null ? var7.method1818() : 0;
-						int var6 = var7 != null ? var7.method1817() : 0;
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Math.min(var5, var6);
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Math.max(var5, var6);
-						return 1;
-					} else if (var0 == 2628) {
-						var7 = var3.method1877();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1817() : 0;
-						return 1;
-					} else if (var0 == 2629) {
-						var7 = var3.method1877();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1826() : 0;
-						return 1;
-					} else if (var0 == 2630) {
-						var7 = var3.method1877();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1825() : 0;
-						return 1;
-					} else if (var0 == 2631) {
-						var7 = var3.method1877();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1827() : 0;
-						return 1;
-					} else if (var0 == 2632) {
-						var7 = var3.method1877();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1828() : 0;
-						return 1;
-					} else {
-						class27 var8;
-						if (var0 == 2633) {
-							var8 = var3.method1879();
-							Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1] = var8 != null ? var8.method105(Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1]) : 0;
-							return 1;
-						} else if (var0 == 2634) {
-							var8 = var3.method1879();
-							Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1] = var8 != null ? var8.method106((char)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1]) : 0;
-							return 1;
-						} else {
-							return 2;
-						}
+			byte[] var3 = new byte[var2];
+			var0.offset += class350.huffman.decompress(var0.array, var0.offset, var3, 0, var2);
+			String var4 = World.decodeStringCp1252(var3, 0, var2);
+			return var4;
+		} catch (Exception var6) {
+			return "Cabbage";
+		}
+	}
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "-26053498"
+	)
+	static final int method83(int var0, int var1) {
+		int var2 = WorldMapIcon_0.method1301(45365 + var0, var1 + 91923, 4) - 128 + (WorldMapIcon_0.method1301(var0 + 10294, var1 + 37821, 2) - 128 >> 1) + (WorldMapIcon_0.method1301(var0, var1, 1) - 128 >> 2);
+		var2 = (int)((double)var2 * 0.3D) + 35;
+		if (var2 < 10) {
+			var2 = 10;
+		} else if (var2 > 60) {
+			var2 = 60;
+		}
+
+		return var2;
+	}
+
+	@ObfuscatedName("ir")
+	@ObfuscatedSignature(
+		descriptor = "(Ldf;I)V",
+		garbageValue = "1536572289"
+	)
+	static final void method84(Actor var0) {
+		var0.movementSequence = var0.idleSequence;
+		if (var0.pathLength == 0) {
+			var0.field1028 = 0;
+		} else {
+			if (var0.sequence != -1 && var0.sequenceDelay == 0) {
+				SequenceDefinition var1 = DynamicObject.SequenceDefinition_get(var0.sequence);
+				if (var0.field1029 > 0 && var1.precedenceAnimating == 0) {
+					++var0.field1028;
+					return;
+				}
+
+				if (var0.field1029 <= 0 && var1.priority == 0) {
+					++var0.field1028;
+					return;
+				}
+			}
+
+			int var10 = var0.x;
+			int var2 = var0.y;
+			int var3 = var0.field983 * 64 + var0.pathX[var0.pathLength - 1] * 128;
+			int var4 = var0.field983 * 64 + var0.pathY[var0.pathLength - 1] * 128;
+			if (var10 < var3) {
+				if (var2 < var4) {
+					var0.orientation = 1280;
+				} else if (var2 > var4) {
+					var0.orientation = 1792;
+				} else {
+					var0.orientation = 1536;
+				}
+			} else if (var10 > var3) {
+				if (var2 < var4) {
+					var0.orientation = 768;
+				} else if (var2 > var4) {
+					var0.orientation = 256;
+				} else {
+					var0.orientation = 512;
+				}
+			} else if (var2 < var4) {
+				var0.orientation = 1024;
+			} else if (var2 > var4) {
+				var0.orientation = 0;
+			}
+
+			MoveSpeed var5 = var0.pathTraversed[var0.pathLength - 1];
+			if (var3 - var10 <= 256 && var3 - var10 >= -256 && var4 - var2 <= 256 && var4 - var2 >= -256) {
+				int var6 = var0.orientation - var0.rotation & 2047;
+				if (var6 > 1024) {
+					var6 -= 2048;
+				}
+
+				int var7 = var0.walkBackSequence;
+				if (var6 >= -256 && var6 <= 256) {
+					var7 = var0.walkSequence;
+				} else if (var6 >= 256 && var6 < 768) {
+					var7 = var0.walkRightSequence;
+				} else if (var6 >= -768 && var6 <= -256) {
+					var7 = var0.walkLeftSequence;
+				}
+
+				if (var7 == -1) {
+					var7 = var0.walkSequence;
+				}
+
+				var0.movementSequence = var7;
+				int var8 = 4;
+				boolean var9 = true;
+				if (var0 instanceof NPC) {
+					var9 = ((NPC)var0).definition.isClickable;
+				}
+
+				if (var9) {
+					if (var0.rotation != var0.orientation && var0.targetIndex == -1 && var0.field1018 != 0) {
+						var8 = 2;
+					}
+
+					if (var0.pathLength > 2) {
+						var8 = 6;
+					}
+
+					if (var0.pathLength > 3) {
+						var8 = 8;
+					}
+
+					if (var0.field1028 > 0 && var0.pathLength > 1) {
+						var8 = 8;
+						--var0.field1028;
 					}
 				} else {
-					var7 = var3.method1877();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null && var7.method1815() ? 1 : 0;
-					return 1;
+					if (var0.pathLength > 1) {
+						var8 = 6;
+					}
+
+					if (var0.pathLength > 2) {
+						var8 = 8;
+					}
+
+					if (var0.field1028 > 0 && var0.pathLength > 1) {
+						var8 = 8;
+						--var0.field1028;
+					}
 				}
+
+				if (var5 == MoveSpeed.RUN) {
+					var8 <<= 1;
+				} else if (var5 == MoveSpeed.CRAWL) {
+					var8 >>= 1;
+				}
+
+				if (var8 >= 8) {
+					if (var0.walkSequence == var0.movementSequence && var0.runSequence != -1) {
+						var0.movementSequence = var0.runSequence;
+					} else if (var0.movementSequence == var0.walkBackSequence && var0.runBackSequence != -1) {
+						var0.movementSequence = var0.runBackSequence;
+					} else if (var0.movementSequence == var0.walkLeftSequence && var0.runLeftSequence != -1) {
+						var0.movementSequence = var0.runLeftSequence;
+					} else if (var0.walkRightSequence == var0.movementSequence && var0.runRightSequence != -1) {
+						var0.movementSequence = var0.runRightSequence;
+					}
+				} else if (var8 <= 2) {
+					if (var0.walkSequence == var0.movementSequence && var0.crawlSequence != -1) {
+						var0.movementSequence = var0.crawlSequence;
+					} else if (var0.walkBackSequence == var0.movementSequence && var0.crawlBackSequence != -1) {
+						var0.movementSequence = var0.crawlBackSequence;
+					} else if (var0.walkLeftSequence == var0.movementSequence && var0.crawlLeftSequence != -1) {
+						var0.movementSequence = var0.crawlLeftSequence;
+					} else if (var0.walkRightSequence == var0.movementSequence && var0.crawlRightSequence != -1) {
+						var0.movementSequence = var0.crawlRightSequence;
+					}
+				}
+
+				if (var3 != var10 || var4 != var2) {
+					if (var10 < var3) {
+						var0.x += var8;
+						if (var0.x > var3) {
+							var0.x = var3;
+						}
+					} else if (var10 > var3) {
+						var0.x -= var8;
+						if (var0.x < var3) {
+							var0.x = var3;
+						}
+					}
+
+					if (var2 < var4) {
+						var0.y += var8;
+						if (var0.y > var4) {
+							var0.y = var4;
+						}
+					} else if (var2 > var4) {
+						var0.y -= var8;
+						if (var0.y < var4) {
+							var0.y = var4;
+						}
+					}
+				}
+
+				if (var3 == var0.x && var4 == var0.y) {
+					--var0.pathLength;
+					if (var0.field1029 > 0) {
+						--var0.field1029;
+					}
+				}
+
+			} else {
+				var0.x = var3;
+				var0.y = var4;
+				--var0.pathLength;
+				if (var0.field1029 > 0) {
+					--var0.field1029;
+				}
+
 			}
 		}
 	}

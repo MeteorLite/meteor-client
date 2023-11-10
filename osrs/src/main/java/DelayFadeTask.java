@@ -3,35 +3,55 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qb")
+@ObfuscatedName("pt")
 @Implements("DelayFadeTask")
 public class DelayFadeTask extends SongTask {
-	@ObfuscatedName("ac")
-	long field3745;
-	@ObfuscatedName("al")
-	int field3744;
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Lbz;"
+	)
+	@Export("soundSystem")
+	public static SoundSystem soundSystem;
+	@ObfuscatedName("at")
+	long field3748;
+	@ObfuscatedName("ah")
+	int field3747;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqm;I)V"
+		descriptor = "(Lql;I)V"
 	)
 	public DelayFadeTask(SongTask var1, int var2) {
 		super(var1);
-		this.field3744 = var2;
-		super.field3753 = "DelayFadeTask";
+		this.field3747 = var2;
+		super.field3756 = "DelayFadeTask";
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-90"
+		descriptor = "(I)Z",
+		garbageValue = "-799935345"
 	)
 	@Export("vmethod2142")
 	public boolean vmethod2142() {
-		if (this.field3745 < (long)this.field3744) {
-			++this.field3745;
+		if (this.field3748 < (long)this.field3747) {
+			++this.field3748;
 			return false;
 		} else {
 			return true;
 		}
+	}
+
+	@ObfuscatedName("nc")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-52"
+	)
+	@Export("FriendSystem_invalidateIgnoreds")
+	static final void FriendSystem_invalidateIgnoreds() {
+		Canvas.method87();
+		if (class20.friendsChat != null) {
+			class20.friendsChat.invalidateIgnoreds();
+		}
+
 	}
 }

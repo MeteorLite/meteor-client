@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ee")
+@ObfuscatedName("ez")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lri;Lri;I)I",
-		garbageValue = "1813564346"
+		descriptor = "(Lrh;Lrh;I)I",
+		garbageValue = "573682833"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -34,76 +34,30 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("bo")
 	@ObfuscatedSignature(
-		descriptor = "(Lom;Lom;Lom;I)V",
-		garbageValue = "-1363426561"
+		descriptor = "(ILdt;ZI)I",
+		garbageValue = "1141161217"
 	)
-	public static void method680(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
-		HitSplatDefinition.HitSplatDefinition_archive = var0;
-		HitSplatDefinition.field1701 = var1;
-		class135.HitSplatDefinition_fontsArchive = var2;
-	}
-
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lva;",
-		garbageValue = "1793860244"
-	)
-	public static PrivateChatMode method679(int var0) {
-		PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field4299, PrivateChatMode.field4300, PrivateChatMode.field4298};
-		PrivateChatMode[] var2 = var1;
-
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			PrivateChatMode var4 = var2[var3];
-			if (var0 == var4.id) {
-				return var4;
-			}
-		}
-
-		return null;
-	}
-
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1897883590"
-	)
-	public static void method678() {
-		class212.field1679.clear();
-	}
-
-	@ObfuscatedName("mc")
-	@ObfuscatedSignature(
-		descriptor = "(Lnm;I)Z",
-		garbageValue = "1578685634"
-	)
-	@Export("runCs1")
-	static final boolean runCs1(Widget var0) {
-		if (var0.cs1Comparisons == null) {
-			return false;
+	static int method682(int var0, Script var1, boolean var2) {
+		if (var0 == 5630) {
+			Client.logoutTimer = 250;
+			return 1;
 		} else {
-			for (int var1 = 0; var1 < var0.cs1Comparisons.length; ++var1) {
-				int var2 = VarcInt.method977(var0, var1);
-				int var3 = var0.cs1ComparisonValues[var1];
-				if (var0.cs1Comparisons[var1] == 2) {
-					if (var2 >= var3) {
-						return false;
-					}
-				} else if (var0.cs1Comparisons[var1] == 3) {
-					if (var2 <= var3) {
-						return false;
-					}
-				} else if (var0.cs1Comparisons[var1] == 4) {
-					if (var2 == var3) {
-						return false;
-					}
-				} else if (var3 != var2) {
-					return false;
-				}
-			}
-
-			return true;
+			return 2;
 		}
+	}
+
+	@ObfuscatedName("na")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "40"
+	)
+	static final void method683() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.clearIsInClanChat();
+		}
+
 	}
 }

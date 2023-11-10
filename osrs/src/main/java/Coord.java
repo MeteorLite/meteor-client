@@ -3,23 +3,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mo")
+@ObfuscatedName("mh")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("ap")
-	public static short[] field2906;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("x")
 	public int x;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lmo;)V"
+		descriptor = "(Lmh;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -44,20 +42,20 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "2125169401"
+		garbageValue = "-497441948"
 	)
 	@Export("packed")
 	public int packed() {
-		return Player.method488(this.plane, this.x, this.y);
+		return VarpDefinition.method886(this.plane, this.x, this.y);
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lmo;I)Z",
-		garbageValue = "467966647"
+		descriptor = "(Lmh;I)Z",
+		garbageValue = "-578750151"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -70,10 +68,10 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-211582088"
+		garbageValue = "-1754319501"
 	)
 	@Export("toString")
 	String toString(String var1) {

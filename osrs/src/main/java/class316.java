@@ -1,44 +1,67 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mc")
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+@ObfuscatedName("mi")
 public class class316 {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/CharSequence;III)Ljava/lang/String;",
-		garbageValue = "1726171577"
+		descriptor = "Lol;"
 	)
-	public static String method1656(CharSequence[] var0, int var1, int var2) {
-		if (var2 == 0) {
-			return "";
-		} else if (var2 == 1) {
-			CharSequence var3 = var0[var1];
-			return var3 == null ? "null" : var3.toString();
-		} else {
-			int var8 = var2 + var1;
-			int var4 = 0;
+	public static AbstractArchive field2792;
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Lol;"
+	)
+	public static AbstractArchive field2791;
+	@ObfuscatedName("ao")
+	@Export("midiPcmStream")
+	public static ArrayList midiPcmStream;
+	@ObfuscatedName("ab")
+	public static LinkedList field2790;
+	@ObfuscatedName("au")
+	@Export("musicSongs")
+	public static ArrayList musicSongs;
+	@ObfuscatedName("aa")
+	public static ArrayList field2787;
+	@ObfuscatedName("ac")
+	static ArrayList field2798;
+	@ObfuscatedName("al")
+	public static final List field2793;
+	@ObfuscatedName("az")
+	@Export("musicPlayerStatus")
+	static int musicPlayerStatus;
+	@ObfuscatedName("ap")
+	static int field2794;
+	@ObfuscatedName("av")
+	static int field2795;
+	@ObfuscatedName("ax")
+	static int field2796;
 
-			for (int var5 = var1; var5 < var8; ++var5) {
-				CharSequence var6 = var0[var5];
-				if (var6 == null) {
-					var4 += 4;
-				} else {
-					var4 += var6.length();
-				}
-			}
+	static {
+		midiPcmStream = null;
+		field2790 = new LinkedList();
+		musicSongs = new ArrayList(3);
+		field2787 = new ArrayList(3);
+		field2798 = new ArrayList();
+		field2793 = new ArrayList();
+		musicPlayerStatus = 0;
+		field2794 = 0;
+		field2795 = 0;
+		field2796 = 0;
+	}
 
-			StringBuilder var9 = new StringBuilder(var4);
-
-			for (int var10 = var1; var10 < var8; ++var10) {
-				CharSequence var7 = var0[var10];
-				if (var7 == null) {
-					var9.append("null");
-				} else {
-					var9.append(var7);
-				}
-			}
-
-			return var9.toString();
-		}
+	@ObfuscatedName("nh")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1493963164"
+	)
+	static final void method1650() {
+		Client.field520 = Client.cycleCntr;
+		InterfaceParent.field861 = true;
 	}
 }

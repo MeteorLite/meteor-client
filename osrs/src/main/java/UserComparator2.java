@@ -5,10 +5,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.util.Comparator;
 
-@ObfuscatedName("ux")
+@ObfuscatedName("ud")
 @Implements("UserComparator2")
 public class UserComparator2 implements Comparator {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -16,10 +16,10 @@ public class UserComparator2 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lrp;Lrp;B)I",
-		garbageValue = "-19"
+		descriptor = "(Lrf;Lrf;B)I",
+		garbageValue = "1"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(User var1, User var2) {

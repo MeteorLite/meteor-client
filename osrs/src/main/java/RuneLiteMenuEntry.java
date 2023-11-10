@@ -443,22 +443,30 @@ public class RuneLiteMenuEntry implements MenuEntry
 		itemIdOverride = itemId;
 	}
 	@Override
-	public Widget getWidget() {
+	public Widget getWidget()
+	{
 		int param1 = this.getParam1();
 		int param0 = this.getParam0();
+
 		Widget widget = client.getWidget(param1);
-		if (widget == null) {
+
+		if (widget == null)
+		{
 			return null;
 		}
-		if (param0 != -1) {
+
+		if (param0 != -1)
+		{
 			Widget child = widget.getChild(param0);
-			if (child != null) {
+
+			if (child != null)
+			{
 				return child;
 			}
 		}
+
 		return widget;
 	}
-
 
 	@Override
 	public NPC getNpc()

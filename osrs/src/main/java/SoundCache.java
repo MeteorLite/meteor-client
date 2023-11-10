@@ -3,57 +3,50 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.util.concurrent.ThreadPoolExecutor;
-
-@ObfuscatedName("bl")
+@ObfuscatedName("bc")
 @Implements("SoundCache")
 public class SoundCache {
-	@ObfuscatedName("ab")
-	public static ThreadPoolExecutor field214;
-	@ObfuscatedName("jo")
+	@ObfuscatedName("gy")
+	@Export("playerUUIDLength")
+	static int playerUUIDLength;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lpu;"
-	)
-	@Export("fontBold12")
-	static Font fontBold12;
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "Lom;"
+		descriptor = "Lol;"
 	)
 	@Export("soundEffectIndex")
 	AbstractArchive soundEffectIndex;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lom;"
+		descriptor = "Lol;"
 	)
-	AbstractArchive field217;
-	@ObfuscatedName("ak")
+	AbstractArchive field212;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Ltf;"
+		descriptor = "Ltw;"
 	)
-	NodeHashTable field218;
+	NodeHashTable field214;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lom;Lom;)V"
+		descriptor = "(Lol;Lol;)V"
 	)
 	public SoundCache(AbstractArchive var1, AbstractArchive var2) {
 		new NodeHashTable(256);
-		this.field218 = new NodeHashTable(256);
+		this.field214 = new NodeHashTable(256);
 		this.soundEffectIndex = var1;
-		this.field217 = var2;
+		this.field212 = var2;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(II[II)Lbs;",
-		garbageValue = "804068595"
+		descriptor = "(II[II)Lbt;",
+		garbageValue = "1933572054"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
-		long var4 = this.method234(var1, var2, false);
-		class53 var6 = (class53)this.field218.get(var4);
+		long var4 = this.method241(var1, var2, false);
+		class53 var6 = (class53)this.field214.get(var4);
 		if (var6 != null) {
-			return var6.method300();
+			return var6.method305();
 		} else if (var3 != null && var3[0] <= 0) {
 			return null;
 		} else {
@@ -62,7 +55,7 @@ public class SoundCache {
 				return null;
 			} else {
 				RawSound var8 = var7.toRawSound();
-				this.field218.put(new class53(var8), var4);
+				this.field214.put(new class53(var8), var4);
 				if (var3 != null) {
 					var3[0] -= var8.samples.length;
 				}
@@ -72,32 +65,32 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lcu;",
-		garbageValue = "941566921"
+		descriptor = "(IIB)Lcg;",
+		garbageValue = "1"
 	)
-	class53 method229(int var1, int var2) {
-		long var3 = this.method234(var1, var2, true);
-		class53 var5 = (class53)this.field218.get(var3);
+	class53 method237(int var1, int var2) {
+		long var3 = this.method241(var1, var2, true);
+		class53 var5 = (class53)this.field214.get(var3);
 		if (var5 != null) {
 			return var5;
 		} else {
-			VorbisSample var6 = VorbisSample.readMusicSample(this.field217, var1, var2);
+			VorbisSample var6 = VorbisSample.readMusicSample(this.field212, var1, var2);
 			if (var6 == null) {
 				return new class53();
 			} else {
 				class53 var7 = new class53(var6);
-				this.field218.put(var7, var3);
+				this.field214.put(var7, var3);
 				return var7;
 			}
 		}
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I[IB)Lbs;",
-		garbageValue = "-23"
+		descriptor = "(I[IB)Lbt;",
+		garbageValue = "47"
 	)
 	@Export("getSoundEffect")
 	RawSound getSoundEffect(int var1, int[] var2) {
@@ -110,85 +103,117 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lcu;",
-		garbageValue = "0"
+		descriptor = "(II)Lcg;",
+		garbageValue = "656232055"
 	)
-	public class53 method232(int var1) {
-		if (this.field217.getGroupCount() == 1) {
-			return this.method229(0, var1);
-		} else if (this.field217.getGroupFileCount(var1) == 1) {
-			return this.method229(var1, 0);
+	public class53 method239(int var1) {
+		if (this.field212.getGroupCount() == 1) {
+			return this.method237(0, var1);
+		} else if (this.field212.getGroupFileCount(var1) == 1) {
+			return this.method237(var1, 0);
 		} else {
 			throw new RuntimeException();
 		}
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(IS)Lbs;",
-		garbageValue = "11636"
+		descriptor = "(IS)Lbt;",
+		garbageValue = "26403"
 	)
-	public RawSound method233(int var1) {
+	public RawSound method240(int var1) {
 		return this.getSoundEffect(var1, (int[])null);
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(IIZI)J",
-		garbageValue = "1435261523"
+		garbageValue = "414633479"
 	)
-	long method234(int var1, int var2, boolean var3) {
+	long method241(int var1, int var2, boolean var3) {
 		int var4 = var2 ^ (var1 << 4 & 65535 | var1 >> 12);
 		var4 |= var1 << 16;
 		return var3 ? (long)var4 ^ 4294967296L : (long)var4;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ma")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "74"
+		descriptor = "([Lnn;II)V",
+		garbageValue = "685108589"
 	)
-	static void method228() {
-		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) {
-			if (var0.stream1 != null) {
-				class140.pcmStreamMixer.removeSubStream(var0.stream1);
-				var0.stream1 = null;
-			}
+	@Export("drawModelComponents")
+	static final void drawModelComponents(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null && var3.parentId == var1 && (!var3.isIf3 || !class11.isComponentHidden(var3))) {
+				if (var3.type == 0) {
+					if (!var3.isIf3 && class11.isComponentHidden(var3) && var3 != Interpreter.mousedOverWidgetIf1) {
+						continue;
+					}
 
-			if (var0.stream2 != null) {
-				class140.pcmStreamMixer.removeSubStream(var0.stream2);
-				var0.stream2 = null;
+					drawModelComponents(var0, var3.id);
+					if (var3.children != null) {
+						drawModelComponents(var3.children, var3.id);
+					}
+
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						ClanChannel.method862(var4.group);
+					}
+				}
+
+				if (var3.type == 6) {
+					int var5;
+					if (var3.sequenceId != -1 || var3.sequenceId2 != -1) {
+						boolean var8 = WidgetDefinition.runCs1(var3);
+						if (var8) {
+							var5 = var3.sequenceId2;
+						} else {
+							var5 = var3.sequenceId;
+						}
+
+						if (var5 != -1) {
+							SequenceDefinition var6 = DynamicObject.SequenceDefinition_get(var5);
+							if (!var6.isCachedModelIdSet()) {
+								for (var3.modelFrameCycle += Client.field460; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; class159.invalidateWidget(var3)) {
+									var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame];
+									++var3.modelFrame;
+									if (var3.modelFrame >= var6.frameIds.length) {
+										var3.modelFrame -= var6.frameCount;
+										if (var3.modelFrame < 0 || var3.modelFrame >= var6.frameIds.length) {
+											var3.modelFrame = 0;
+										}
+									}
+								}
+							} else {
+								var3.modelFrame += Client.field460;
+								int var7 = var6.method1052();
+								if (var3.modelFrame >= var7) {
+									var3.modelFrame -= var6.frameCount;
+									if (var3.modelFrame < 0 || var3.modelFrame >= var7) {
+										var3.modelFrame = 0;
+									}
+								}
+
+								class159.invalidateWidget(var3);
+							}
+						}
+					}
+
+					if (var3.rotationKey != 0 && !var3.isIf3) {
+						int var9 = var3.rotationKey >> 16;
+						var5 = var3.rotationKey << 16 >> 16;
+						var9 *= Client.field460;
+						var5 *= Client.field460;
+						var3.modelAngleX = var9 + var3.modelAngleX & 2047;
+						var3.modelAngleY = var5 + var3.modelAngleY & 2047;
+						class159.invalidateWidget(var3);
+					}
+				}
 			}
 		}
 
-		ObjectSound.objectSounds.clear();
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(III)Lcr;",
-		garbageValue = "1668135160"
-	)
-	@Export("Messages_getByChannelAndID")
-	static Message Messages_getByChannelAndID(int var0, int var1) {
-		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
-		return var2.getMessage(var1);
-	}
-
-	@ObfuscatedName("og")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Luq;",
-		garbageValue = "-5"
-	)
-	static class521 method235(int var0) {
-		class521 var1 = (class521)Client.Widget_cachedModels.get((long)var0);
-		if (var1 == null) {
-			var1 = new class521(class313.field2770, AbstractArchive.method1931(var0), VarbitComposition.method1046(var0));
-			Client.Widget_cachedModels.put(var1, (long)var0);
-		}
-
-		return var1;
 	}
 }

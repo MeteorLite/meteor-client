@@ -3,48 +3,42 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jq")
+@ObfuscatedName("kg")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("nx")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
-	)
-	@Export("localPlayer")
-	static Player localPlayer;
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "[Ljo;"
+		descriptor = "[Lks;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lpf;"
+		descriptor = "Lon;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lom;"
+		descriptor = "Lol;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lom;Lom;IDI)V"
+		descriptor = "(Lol;Lol;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque();
@@ -71,10 +65,10 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "56"
+		garbageValue = "81"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -93,7 +87,7 @@ public class TextureProvider implements TextureLoader {
 
 					for (int var7 = 0; var7 < var6.length; ++var7) {
 						int var8 = var6[var7];
-						if (this.archive.method1937(var8)) {
+						if (this.archive.method1930(var8)) {
 							++var2;
 						}
 					}
@@ -108,17 +102,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1;
 		this.clear();
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(II)[I",
-		garbageValue = "-1910207818"
+		garbageValue = "2146690386"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -148,40 +142,40 @@ public class TextureProvider implements TextureLoader {
 		return null;
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(II)I",
-		garbageValue = "958373665"
+		garbageValue = "-799593144"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "-20"
+		descriptor = "(II)Z",
+		garbageValue = "-293103198"
 	)
 	@Export("vmethod3989")
 	public boolean vmethod3989(int var1) {
-		return this.textures[var1].field1999;
+		return this.textures[var1].field2171;
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "21443457"
+		descriptor = "(IS)Z",
+		garbageValue = "32621"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64;
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1815480398"
+		garbageValue = "1262125265"
 	)
 	@Export("clear")
 	public void clear() {
@@ -195,10 +189,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity;
 	}
 
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-2088818432"
+		garbageValue = "2003638345"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -212,175 +206,58 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lom;IB)V",
-		garbageValue = "32"
+		descriptor = "(I)V",
+		garbageValue = "-1703102437"
 	)
-	static void method1351(AbstractArchive var0, int var1) {
-		if ((var1 & class525.field4158.rsOrdinal()) != 0) {
-			Login.logoSprite = class167.SpriteBuffer_getIndexedSpriteByName(var0, "logo_deadman_mode", "");
-		} else if ((var1 & class525.field4159.rsOrdinal()) != 0) {
-			Login.logoSprite = class167.SpriteBuffer_getIndexedSpriteByName(var0, "logo_seasonal_mode", "");
-		} else if ((var1 & class525.field4155.rsOrdinal()) != 0) {
-			Login.logoSprite = class167.SpriteBuffer_getIndexedSpriteByName(var0, "logo_speedrunning", "");
-		} else {
-			Login.logoSprite = class167.SpriteBuffer_getIndexedSpriteByName(var0, "logo", "");
+	@Export("savePreferences")
+	static void savePreferences() {
+		AccessFile var0 = null;
+
+		try {
+			var0 = class131.getPreferencesFile("", Messages.field1156.name, true);
+			Buffer var1 = WorldMapIcon_1.clientPreferences.toBuffer();
+			var0.write(var1.array, 0, var1.offset);
+		} catch (Exception var3) {
+		}
+
+		try {
+			if (var0 != null) {
+				var0.closeSync(true);
+			}
+		} catch (Exception var2) {
 		}
 
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("iu")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-32"
+		garbageValue = "-73"
 	)
-	static final void method1350() {
-		if (!ViewportMouse.ViewportMouse_false0) {
-			int var0 = Scene.Scene_cameraPitchSine;
-			int var1 = Scene.Scene_cameraPitchCosine;
-			int var2 = Scene.Scene_cameraYawSine;
-			int var3 = Scene.Scene_cameraYawCosine;
-			byte var4 = 50;
-			short var5 = 3500;
-			int var6 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.getClipMidX()) * var4 / Rasterizer3D.get3dZoom();
-			int var7 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.getClipMidY()) * var4 / Rasterizer3D.get3dZoom();
-			int var8 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.getClipMidX()) * var5 / Rasterizer3D.get3dZoom();
-			int var9 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.getClipMidY()) * var5 / Rasterizer3D.get3dZoom();
-			int var10 = class10.method30(var7, var4, var1, var0);
-			int var13 = GrandExchangeOfferUnitPriceComparator.method1992(var7, var4, var1, var0);
-			var7 = var10;
-			var10 = class10.method30(var9, var5, var1, var0);
-			int var14 = GrandExchangeOfferUnitPriceComparator.method1992(var9, var5, var1, var0);
-			var9 = var10;
-			var10 = AbstractWorldMapData.method1556(var6, var13, var3, var2);
-			int var11 = var6 * var2 + var13 * var3 >> 16;
-			var6 = var10;
-			var10 = AbstractWorldMapData.method1556(var8, var14, var3, var2);
-			int var12 = var3 * var14 + var8 * var2 >> 16;
-			ViewportMouse.field2264 = (var6 + var10) / 2;
-			ViewportMouse.field2260 = (var9 + var7) / 2;
-			class286.field2470 = (var12 + var11) / 2;
-			class180.field1467 = (var10 - var6) / 2;
-			ViewportMouse.field2263 = (var9 - var7) / 2;
-			ViewportMouse.field2265 = (var12 - var11) / 2;
-			class190.field1495 = Math.abs(class180.field1467);
-			GraphicsObject.field718 = Math.abs(ViewportMouse.field2263);
-			HealthBar.field1073 = Math.abs(ViewportMouse.field2265);
+	static final void method1529() {
+		class314.method1649(FloorOverlayDefinition.field1772, class323.field2851, Projectile.field783);
+		class303.method1628(class127.field1224, CollisionMap.field1901);
+		if (FloorOverlayDefinition.field1772 == ViewportMouse.cameraX && SecureRandomFuture.cameraY == class323.field2851 && class36.cameraZ == Projectile.field783 && class127.field1224 == Varcs.cameraPitch && CollisionMap.field1901 == class192.cameraYaw) {
+			Client.field400 = false;
+			Client.isCameraLocked = false;
+			Client.field402 = false;
+			Client.field404 = false;
+			Messages.field1154 = 0;
+			AbstractWorldMapData.field2045 = 0;
+			class302.field2510 = 0;
+			class60.cameraLookAtSpeed = 0;
+			class134.cameraMoveToAcceleration = 0;
+			class1.cameraLookAtAcceleration = 0;
+			WorldMapIcon_0.cameraMoveToSpeed = 0;
+			ScriptFrame.cameraLookAtX = 0;
+			class216.cameraLookAtY = 0;
+			class127.cameraLookAtHeight = 0;
+			Client.field644 = null;
+			Client.field642 = null;
+			Client.field643 = null;
 		}
-	}
 
-	@ObfuscatedName("li")
-	@ObfuscatedSignature(
-		descriptor = "(IIIILjava/lang/String;I)V",
-		garbageValue = "-2147134009"
-	)
-	@Export("widgetDefaultMenuAction")
-	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
-		Widget var5 = class33.widgetDefinition.getWidgetChild(var1, var2);
-		if (var5 != null) {
-			if (var5.onOp != null) {
-				ScriptEvent var6 = new ScriptEvent();
-				var6.widget = var5;
-				var6.opIndex = var0;
-				var6.targetName = var4;
-				var6.args = var5.onOp;
-				Interpreter.runScriptEvent(var6);
-			}
-
-			boolean var11 = true;
-			if (var5.contentType > 0) {
-				var11 = EnumComposition.method1002(var5);
-			}
-
-			if (var11) {
-				int var8 = MouseRecorder.getWidgetFlags(var5);
-				int var9 = var0 - 1;
-				boolean var7 = (var8 >> var9 + 1 & 1) != 0;
-				if (var7) {
-					PacketBufferNode var10;
-					if (var0 == 1) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON1, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 2) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON2, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 3) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON3, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 4) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON4, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 5) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON5, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 6) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON6, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 7) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON7, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 8) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON8, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 9) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON9, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 10) {
-						var10 = ClanChannelMember.getPacketBufferNode(ClientPacket.IF_BUTTON10, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-				}
-			}
-		}
 	}
 }

@@ -3,44 +3,40 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ch")
+@ObfuscatedName("cu")
 @Implements("GraphicsObject")
 public class GraphicsObject extends Renderable {
-	@ObfuscatedName("aa")
-	static int field718;
-	@ObfuscatedName("bt")
-	protected static String field717;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("id")
 	int id;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("x")
 	int x;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@Export("y")
 	int y;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@Export("z")
 	int z;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Lhx;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ac")
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("am")
+	@ObfuscatedName("al")
 	@Export("frameCycle")
 	int frameCycle;
-	@ObfuscatedName("av")
+	@ObfuscatedName("az")
 	@Export("isFinished")
 	boolean isFinished;
 
@@ -54,20 +50,20 @@ public class GraphicsObject extends Renderable {
 		this.y = var4;
 		this.z = var5;
 		this.cycleStart = var7 + var6;
-		int var8 = class406.SpotAnimationDefinition_get(this.id).sequence;
+		int var8 = Canvas.SpotAnimationDefinition_get(this.id).sequence;
 		if (var8 != -1) {
 			this.isFinished = false;
-			this.sequenceDefinition = class36.SequenceDefinition_get(var8);
+			this.sequenceDefinition = DynamicObject.SequenceDefinition_get(var8);
 		} else {
 			this.isFinished = true;
 		}
 
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(IB)V",
-		garbageValue = "108"
+		garbageValue = "-19"
 	)
 	@Export("advance")
 	final void advance(int var1) {
@@ -84,7 +80,7 @@ public class GraphicsObject extends Renderable {
 				}
 			} else {
 				this.frame += var1;
-				if (this.frame >= this.sequenceDefinition.method1127()) {
+				if (this.frame >= this.sequenceDefinition.method1052()) {
 					this.isFinished = true;
 				}
 			}
@@ -92,14 +88,14 @@ public class GraphicsObject extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljn;",
-		garbageValue = "0"
+		descriptor = "(B)Lka;",
+		garbageValue = "1"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = class406.SpotAnimationDefinition_get(this.id);
+		SpotAnimationDefinition var1 = Canvas.SpotAnimationDefinition_get(this.id);
 		Model var2;
 		if (!this.isFinished) {
 			var2 = var1.getModel(this.frame);
@@ -108,6 +104,15 @@ public class GraphicsObject extends Renderable {
 		}
 
 		return var2 == null ? null : var2;
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)Z",
+		garbageValue = "-89"
+	)
+	public static boolean method428(int var0, int var1) {
+		return (var0 >> var1 + 1 & 1) != 0;
 	}
 
 	public GraphicsObject() {

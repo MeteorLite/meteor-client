@@ -2,33 +2,82 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("px")
-public final class class403 {
-	@ObfuscatedName("ac")
-	@Export("base37Table")
-	static final char[] base37Table;
-	@ObfuscatedName("al")
-	static long[] field3688;
-	@ObfuscatedName("ak")
-	@Export("KitDefinition_fileCount")
-	public static int KitDefinition_fileCount;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-	static {
-		base37Table = new char[]{'_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-		field3688 = new long[12];
+@ObfuscatedName("pg")
+public class class403 implements Iterator {
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lps;"
+	)
+	class404 field3699;
+	@ObfuscatedName("ah")
+	int field3697;
+	@ObfuscatedName("ar")
+	int field3698;
 
-		for (int var0 = 0; var0 < field3688.length; ++var0) {
-			field3688[var0] = (long)Math.pow(37.0D, (double)var0);
+	@ObfuscatedSignature(
+		descriptor = "(Lps;)V"
+	)
+	class403(class404 var1) {
+		this.field3697 = 0;
+		this.field3698 = this.field3699.field3700;
+		this.field3699 = var1;
+	}
+
+	@Export("hasNext")
+	@ObfuscatedName("hasNext")
+	public boolean hasNext() {
+		return this.field3697 < this.field3699.field3701;
+	}
+
+	@Export("next")
+	@ObfuscatedName("next")
+	public Object next() {
+		if (this.field3699.field3700 != this.field3698) {
+			throw new ConcurrentModificationException();
+		} else if (this.field3697 < this.field3699.field3701) {
+			Object var1 = this.field3699.field3703[this.field3697].field3696;
+			++this.field3697;
+			return var1;
+		} else {
+			throw new NoSuchElementException();
 		}
+	}
 
+	@Export("remove")
+	@ObfuscatedName("remove")
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Lbw;I)V",
-		garbageValue = "-1869845736"
+		descriptor = "(IIB)I",
+		garbageValue = "14"
 	)
-	public static final void method2054(class51 var0) {
-		class16.pcmPlayerProvider = var0;
+	static final int method2044(int var0, int var1) {
+		if (var0 == -2) {
+			return 12345678;
+		} else if (var0 == -1) {
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return var1;
+		} else {
+			var1 = (var0 & 127) * var1 / 128;
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1;
+		}
 	}
 }

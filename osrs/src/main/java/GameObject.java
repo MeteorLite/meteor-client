@@ -3,74 +3,58 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kl")
+@ObfuscatedName("le")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("aj")
+	static String[] field2480;
+	@ObfuscatedName("at")
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("z")
 	int z;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("centerX")
 	int centerX;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("centerY")
 	int centerY;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Ljy;"
+		descriptor = "Lkt;"
 	)
 	@Export("renderable")
 	public Renderable renderable;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ac")
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("am")
+	@ObfuscatedName("al")
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("av")
+	@ObfuscatedName("az")
 	@Export("endY")
 	int endY;
-	@ObfuscatedName("ag")
-	int field2319;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ap")
+	int field2486;
+	@ObfuscatedName("av")
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ax")
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("as")
 	@Export("flags")
 	int flags;
 
 	GameObject() {
 		this.tag = 0L;
 		this.flags = 0;
-	}
-
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/String;[SB)V",
-		garbageValue = "84"
-	)
-	public static void method1426(String[] var0, short[] var1) {
-		VarpDefinition.sortItemsByName(var0, var1, 0, var0.length - 1);
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "2128713491"
-	)
-	public static int method1427(int var0) {
-		return class479.field3939[var0 & 16383];
 	}
 }

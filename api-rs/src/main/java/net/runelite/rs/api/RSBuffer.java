@@ -22,15 +22,7 @@ int readUnsignedByteAdd$api();
 @Override
 int readUnsignedByteNeg$api();
 
-
-
-@Import("method2432")
-@Override
-byte readByteAdd();
-
-@Import("method2396")
-@Override
-byte readByteNeg();
+;
 
 @Import("readUnsignedByteSub")
 @Override

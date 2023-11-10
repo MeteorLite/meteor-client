@@ -3,9 +3,6 @@ package org.json;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,7 +37,7 @@ public class JSONTokener {
 
 	@Export("nextClean")
 	@ObfuscatedName("nextClean")
-	public char nextClean() throws org.json.JSONException {
+	public char nextClean() throws JSONException {
 		char var1;
 		do {
 			var1 = this.next();
@@ -51,7 +48,7 @@ public class JSONTokener {
 
 	@Export("next")
 	@ObfuscatedName("next")
-	public char next() throws org.json.JSONException {
+	public char next() throws JSONException {
 		if (this.useLastChar) {
 			this.useLastChar = false;
 			if (this.lastChar != 0) {
@@ -64,7 +61,7 @@ public class JSONTokener {
 			try {
 				var1 = this.reader.read();
 			} catch (IOException var3) {
-				throw new org.json.JSONException(var3);
+				throw new JSONException(var3);
 			}
 
 			if (var1 <= 0) {
@@ -80,7 +77,7 @@ public class JSONTokener {
 
 	@Export("nextTo")
 	@ObfuscatedName("nextString")
-	public String nextTo(char var1) throws org.json.JSONException {
+	public String nextTo(char var1) throws JSONException {
 		StringBuffer var3 = new StringBuffer();
 
 		while (true) {
@@ -152,24 +149,24 @@ public class JSONTokener {
 
 	@Export("back")
 	@ObfuscatedName("back")
-	public void back() throws org.json.JSONException {
+	public void back() throws JSONException {
 		if (!this.useLastChar && this.index > 0) {
 			--this.index;
 			this.useLastChar = true;
 		} else {
-			throw new org.json.JSONException("Stepping back two steps is not supported");
+			throw new JSONException("Stepping back two steps is not supported");
 		}
 	}
 
 	@Export("syntaxError")
 	@ObfuscatedName("syntaxError")
-	public org.json.JSONException syntaxError(String var1) {
-		return new org.json.JSONException(var1 + this.toString());
+	public JSONException syntaxError(String var1) {
+		return new JSONException(var1 + this.toString());
 	}
 
 	@Export("next")
 	@ObfuscatedName("next")
-	public String next(int var1) throws org.json.JSONException {
+	public String next(int var1) throws JSONException {
 		if (var1 == 0) {
 			return "";
 		} else {
@@ -187,7 +184,7 @@ public class JSONTokener {
 					var3 += var4;
 				}
 			} catch (IOException var6) {
-				throw new org.json.JSONException(var6);
+				throw new JSONException(var6);
 			}
 
 			this.index += var3;

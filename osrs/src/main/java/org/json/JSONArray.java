@@ -22,7 +22,7 @@ public class JSONArray {
 		this.myArrayList = new ArrayList();
 	}
 
-	public JSONArray(org.json.JSONTokener var1) throws org.json.JSONException {
+	public JSONArray(JSONTokener var1) throws JSONException {
 		this();
 		char var2 = var1.nextClean();
 		char var3;
@@ -72,7 +72,7 @@ public class JSONArray {
 		}
 	}
 
-	public JSONArray(String var1) throws org.json.JSONException {
+	public JSONArray(String var1) throws JSONException {
 		this(new JSONTokener(var1));
 	}
 
@@ -80,29 +80,29 @@ public class JSONArray {
 		this.myArrayList = var1 == null ? new ArrayList() : new ArrayList(var1);
 	}
 
-	public JSONArray(Object var1) throws org.json.JSONException {
+	public JSONArray(Object var1) throws JSONException {
 		this();
 		if (!var1.getClass().isArray()) {
-			throw new org.json.JSONException("JSONArray initial value should be a string or collection or array.");
+			throw new JSONException("JSONArray initial value should be a string or collection or array.");
 		} else {
 			int var2 = Array.getLength(var1);
 
 			for (int var3 = 0; var3 < var2; ++var3) {
-				this.method2746(Array.get(var1, var3));
+				this.method2723(Array.get(var1, var3));
 			}
 
 		}
 	}
 
-	public JSONArray(Object var1, boolean var2) throws org.json.JSONException {
+	public JSONArray(Object var1, boolean var2) throws JSONException {
 		this();
 		if (!var1.getClass().isArray()) {
-			throw new org.json.JSONException("JSONArray initial value should be a string or collection or array.");
+			throw new JSONException("JSONArray initial value should be a string or collection or array.");
 		} else {
 			int var3 = Array.getLength(var1);
 
 			for (int var4 = 0; var4 < var3; ++var4) {
-				this.method2746(new JSONObject(Array.get(var1, var4), var2));
+				this.method2723(new JSONObject(Array.get(var1, var4), var2));
 			}
 
 		}
@@ -121,62 +121,62 @@ public class JSONArray {
 	}
 
 	@ObfuscatedName("opt")
-	public Object method2745(int var1) {
+	public Object method2722(int var1) {
 		return var1 >= 0 && var1 < this.length() ? this.myArrayList.get(var1) : null;
 	}
 
 	@ObfuscatedName("get")
-	public Object method2744(int var1) throws org.json.JSONException {
-		Object var2 = this.method2745(var1);
+	public Object method2721(int var1) throws JSONException {
+		Object var2 = this.method2722(var1);
 		if (var2 == null) {
-			throw new org.json.JSONException("JSONArray[" + var1 + "] not found.");
+			throw new JSONException("JSONArray[" + var1 + "] not found.");
 		} else {
 			return var2;
 		}
 	}
 
 	@ObfuscatedName("put")
-	public JSONArray method2746(Object var1) {
+	public JSONArray method2723(Object var1) {
 		this.myArrayList.add(var1);
 		return this;
 	}
 
 	@Export("getBoolean")
 	@ObfuscatedName("getBoolean")
-	public boolean getBoolean(int var1) throws org.json.JSONException {
-		Object var2 = this.method2744(var1);
+	public boolean getBoolean(int var1) throws JSONException {
+		Object var2 = this.method2721(var1);
 		if (var2.equals(Boolean.FALSE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("false")) {
 			return false;
 		} else if (var2.equals(Boolean.TRUE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("true")) {
 			return true;
 		} else {
-			throw new org.json.JSONException("JSONArray[" + var1 + "] is not a Boolean.");
+			throw new JSONException("JSONArray[" + var1 + "] is not a Boolean.");
 		}
 	}
 
 	@Export("getInt")
 	@ObfuscatedName("getInt")
-	public int getInt(int var1) throws org.json.JSONException {
-		Object var2 = this.method2744(var1);
+	public int getInt(int var1) throws JSONException {
+		Object var2 = this.method2721(var1);
 		return var2 instanceof Number ? ((Number)var2).intValue() : (int)this.getDouble(var1);
 	}
 
 	@Export("getLong")
 	@ObfuscatedName("getLong")
-	public long getLong(int var1) throws org.json.JSONException {
-		Object var2 = this.method2744(var1);
+	public long getLong(int var1) throws JSONException {
+		Object var2 = this.method2721(var1);
 		return var2 instanceof Number ? ((Number)var2).longValue() : (long)this.getDouble(var1);
 	}
 
 	@Export("getDouble")
 	@ObfuscatedName("getDouble")
-	public double getDouble(int var1) throws org.json.JSONException {
-		Object var2 = this.method2744(var1);
+	public double getDouble(int var1) throws JSONException {
+		Object var2 = this.method2721(var1);
 
 		try {
 			return var2 instanceof Number ? ((Number)var2).doubleValue() : Double.valueOf((String)var2);
 		} catch (Exception var4) {
-			throw new org.json.JSONException("JSONArray[" + var1 + "] is not a number.");
+			throw new JSONException("JSONArray[" + var1 + "] is not a number.");
 		}
 	}
 
@@ -188,7 +188,7 @@ public class JSONArray {
 
 	@Export("join")
 	@ObfuscatedName("join")
-	public String join(String var1) throws org.json.JSONException {
+	public String join(String var1) throws JSONException {
 		int var2 = this.length();
 		StringBuffer var3 = new StringBuffer();
 
@@ -215,18 +215,18 @@ public class JSONArray {
 
 	@Export("getJSONObject")
 	@ObfuscatedName("getJSONObject")
-	public JSONObject getJSONObject(int var1) throws org.json.JSONException {
-		Object var2 = this.method2744(var1);
+	public JSONObject getJSONObject(int var1) throws JSONException {
+		Object var2 = this.method2721(var1);
 		if (var2 instanceof JSONObject) {
 			return (JSONObject)var2;
 		} else {
-			throw new org.json.JSONException("JSONArray[" + var1 + "] is not a JSONObject.");
+			throw new JSONException("JSONArray[" + var1 + "] is not a JSONObject.");
 		}
 	}
 
 	@Export("toString")
 	@ObfuscatedName("toString")
-	String toString(int var1, int var2) throws org.json.JSONException {
+	String toString(int var1, int var2) throws JSONException {
 		int var3 = this.length();
 		if (var3 == 0) {
 			return "[]";
@@ -265,7 +265,7 @@ public class JSONArray {
 
 	@Export("write")
 	@ObfuscatedName("write")
-	public Writer write(Writer var1) throws org.json.JSONException {
+	public Writer write(Writer var1) throws JSONException {
 		try {
 			boolean var2 = false;
 			int var3 = this.length();
@@ -291,7 +291,7 @@ public class JSONArray {
 			var1.write(93);
 			return var1;
 		} catch (IOException var7) {
-			throw new org.json.JSONException(var7);
+			throw new JSONException(var7);
 		}
 	}
 
@@ -308,7 +308,7 @@ public class JSONArray {
 	@Export("getString")
 	@ObfuscatedName("getString")
 	public String getString(int var1) throws JSONException {
-		return this.method2744(var1).toString();
+		return this.method2721(var1).toString();
 	}
 
 	@Export("optBoolean")
@@ -344,7 +344,7 @@ public class JSONArray {
 	@Export("optString")
 	@ObfuscatedName("optString")
 	public String optString(int var1, String var2) {
-		Object var3 = this.method2745(var1);
+		Object var3 = this.method2722(var1);
 		return var3 != null ? var3.toString() : var2;
 	}
 }

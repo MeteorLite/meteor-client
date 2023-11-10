@@ -1,88 +1,183 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pb")
+import java.util.Date;
+
+@ObfuscatedName("pd")
 public class class410 {
-	@ObfuscatedName("ac")
-	int field3711;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lpv;"
+	)
+	class406 field3743;
+	@ObfuscatedName("ah")
+	int field3741;
+	@ObfuscatedName("ar")
+	int field3742;
 
 	@ObfuscatedSignature(
-		descriptor = "(IZ)V",
-		garbageValue = "1"
+		descriptor = "(Lpv;II)V"
 	)
-	class410(int var1, boolean var2) {
-		this.field3711 = var1;
+	class410(class406 var1, int var2, int var3) {
+		this.field3741 = 0;
+		this.field3742 = 0;
+		this.field3743 = var1;
+		this.field3741 = var2;
+		this.field3742 = var3;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "2063026916"
+	)
+	public String method2131() {
+		if (this.method2133()) {
+			return "";
+		} else {
+			StringBuilder var1 = new StringBuilder(this.method2134());
+
+			for (int var2 = this.field3741; var2 < this.field3742; ++var2) {
+				class408 var3 = this.field3743.method2051(var2);
+				var1.append(var3.field3716);
+			}
+
+			return var1.toString();
+		}
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "1949431779"
+	)
+	boolean method2132(int var1) {
+		return this.field3743.method2083() == 2 || this.field3743.method2083() == 1 && (!this.field3743.field3705 || this.field3742 - 1 != var1);
+	}
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "43"
+	)
+	public boolean method2133() {
+		return this.field3742 == this.field3741;
+	}
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "25"
+	)
+	public int method2134() {
+		return this.field3742 - this.field3741;
+	}
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(Lpn;I)Z",
+		garbageValue = "-1150378981"
+	)
+	boolean method2135(class408 var1) {
+		if (this.field3743.field3706 == 2) {
+			return true;
+		} else if (this.field3743.field3706 == 0) {
+			return false;
+		} else {
+			return this.field3743.method2052() != var1;
+		}
+	}
+
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(S)I",
-		garbageValue = "-15695"
+		garbageValue = "128"
 	)
-	public int method2107() {
-		return this.field3711;
+	int method2136() {
+		if (this.method2133()) {
+			return 0;
+		} else {
+			class408 var1 = this.field3743.method2051(this.field3742 - 1);
+			if (var1.field3716 == '\n') {
+				return 0;
+			} else if (this.method2135(var1)) {
+				return this.field3743.field3714.advances[42];
+			} else {
+				int var2 = this.field3743.field3714.advances[var1.field3716];
+				if (var2 == 0) {
+					return var1.field3716 == '\t' ? this.field3743.field3714.advances[32] * 3 : this.field3743.field3714.advances[32];
+				} else {
+					return var2;
+				}
+			}
+		}
+	}
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lti;",
+		garbageValue = "-1126162265"
+	)
+	public class497 method2137() {
+		if (this.method2133()) {
+			return new class497(0, 0);
+		} else {
+			class408 var1 = this.field3743.method2051(this.field3742 - 1);
+			return new class497(var1.field3717 + this.method2136(), var1.field3718);
+		}
 	}
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-1656605881"
+		descriptor = "(II)Lpn;",
+		garbageValue = "262474299"
 	)
-	static final boolean method2108(char var0) {
-		if (Character.isISOControl(var0)) {
-			return false;
-		} else if (Decimator.isAlphaNumeric(var0)) {
-			return true;
-		} else {
-			char[] var1 = class508.field4108;
-
-			int var2;
-			char var3;
-			for (var2 = 0; var2 < var1.length; ++var2) {
-				var3 = var1[var2];
-				if (var0 == var3) {
-					return true;
-				}
-			}
-
-			var1 = class508.field4109;
-
-			for (var2 = 0; var2 < var1.length; ++var2) {
-				var3 = var1[var2];
-				if (var0 == var3) {
-					return true;
-				}
-			}
-
-			return false;
-		}
+	public class408 method2138(int var1) {
+		return var1 >= 0 && var1 < this.method2134() ? this.field3743.method2051(this.field3741 + var1) : null;
 	}
 
-	@ObfuscatedName("lz")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "-1849908879"
+		descriptor = "(B)V",
+		garbageValue = "-127"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (class33.widgetDefinition.loadInterface(var0)) {
-			class9.field16 = null;
-			Tile.drawInterface(class33.widgetDefinition.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
-			if (class9.field16 != null) {
-				Tile.drawInterface(class9.field16, -1412584499, var1, var2, var3, var4, GrandExchangeEvent.field3617, class10.field24, var7);
-				class9.field16 = null;
-			}
+	public static final void method2139() {
+		ViewportMouse.ViewportMouse_isInViewport = false;
+		ViewportMouse.ViewportMouse_entityCount = 0;
+	}
 
-		} else {
-			if (var7 != -1) {
-				Client.field408[var7] = true;
+	@ObfuscatedName("nz")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1487231086"
+	)
+	static void method2140(String var0) {
+		MenuAction.param9 = var0;
+
+		try {
+			String var1 = SpriteMask.client.getParameter(Integer.toString(18));
+			String var2 = SpriteMask.client.getParameter(Integer.toString(13));
+			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
+			if (var0.length() == 0) {
+				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
 			} else {
-				for (int var8 = 0; var8 < 100; ++var8) {
-					Client.field408[var8] = true;
-				}
+				String var4 = var3 + "; Expires=";
+				long var6 = SpotAnimationDefinition.method962() + 94608000000L;
+				Calendar.Calendar_calendar.setTime(new Date(var6));
+				int var8 = Calendar.Calendar_calendar.get(7);
+				int var9 = Calendar.Calendar_calendar.get(5);
+				int var10 = Calendar.Calendar_calendar.get(2);
+				int var11 = Calendar.Calendar_calendar.get(1);
+				int var12 = Calendar.Calendar_calendar.get(11);
+				int var13 = Calendar.Calendar_calendar.get(12);
+				int var14 = Calendar.Calendar_calendar.get(13);
+				String var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT";
+				var3 = var4 + var5 + "; Max-Age=" + 94608000L;
 			}
 
+			class26.method107(SpriteMask.client, "document.cookie=\"" + var3 + "\"");
+		} catch (Throwable var15) {
 		}
+
 	}
 }

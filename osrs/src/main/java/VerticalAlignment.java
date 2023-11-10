@@ -3,38 +3,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.util.Iterator;
-
-@ObfuscatedName("hr")
+@ObfuscatedName("hg")
 @Implements("VerticalAlignment")
-public enum VerticalAlignment implements class386 {
-	@ObfuscatedName("ac")
+public enum VerticalAlignment implements class383 {
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lhr;"
+		descriptor = "Lhg;"
 	)
-	field1643(1, 0),
-	@ObfuscatedName("al")
+	field1581(2, 0),
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lhr;"
+		descriptor = "Lhg;"
 	)
 	@Export("VerticalAlignment_centered")
 	VerticalAlignment_centered(0, 1),
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lhr;"
+		descriptor = "Lhg;"
 	)
-	field1644(2, 2);
+	field1580(1, 2);
 
-	@ObfuscatedName("tb")
-	@ObfuscatedSignature(
-		descriptor = "Lgi;"
-	)
-	@Export("guestClanSettings")
-	static ClanSettings guestClanSettings;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@Export("id")
 	final int id;
 
@@ -43,61 +35,80 @@ public enum VerticalAlignment implements class386 {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1243971674"
+		descriptor = "(B)I",
+		garbageValue = "-11"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("co")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "900742897"
+		descriptor = "(I)[Lnt;",
+		garbageValue = "1599103276"
 	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) {
-			if (class33.widgetDefinition.loadInterface(var0)) {
-				Widget[] var1 = class33.widgetDefinition.Widget_interfaceComponents[var0];
+	public static StudioGame[] method955() {
+		return new StudioGame[]{StudioGame.game5, StudioGame.stellardawn, StudioGame.oldscape, StudioGame.game3, StudioGame.runescape, StudioGame.game4};
+	}
 
-				for (int var2 = 0; var2 < var1.length; ++var2) {
-					Widget var3 = var1[var2];
-					if (var3.onLoad != null) {
-						ScriptEvent var4 = new ScriptEvent();
-						var4.widget = var3;
-						var4.args = var3.onLoad;
-						ArchiveDisk.runScript(var4, 5000000, 0);
-					}
-				}
-
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(IS)Lhw;",
+		garbageValue = "4625"
+	)
+	@Export("getNpcDefinition")
+	public static NPCComposition getNpcDefinition(int var0) {
+		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
+			var1 = new NPCComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
+
+			var1.postDecode();
+			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("na")
+	@ObfuscatedName("bx")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1054734987"
+		descriptor = "(ILdt;ZI)I",
+		garbageValue = "-2145020206"
 	)
-	static final void method1027() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
-			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.clearIsFriend();
+	static int method959(int var0, Script var1, boolean var2) {
+		return 2;
+	}
+
+	@ObfuscatedName("hx")
+	@ObfuscatedSignature(
+		descriptor = "(ZB)V",
+		garbageValue = "-52"
+	)
+	static final void method958(boolean var0) {
+		if (var0) {
+			Client.field419 = Login.field744 ? class124.field1205 : class124.field1206;
+		} else {
+			Client.field419 = WorldMapIcon_1.clientPreferences.method565(Login.Login_username) ? class124.field1208 : class124.field1207;
 		}
 
-		Iterator var2 = Messages.Messages_hashTable.iterator();
+	}
 
-		while (var2.hasNext()) {
-			Message var3 = (Message)var2.next();
-			var3.clearIsFromFriend();
-		}
-
-		if (class358.friendsChat != null) {
-			class358.friendsChat.clearFriends();
+	@ObfuscatedName("oh")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-66"
+	)
+	static void method960() {
+		if (Client.oculusOrbState == 1) {
+			Client.oculusOrbOnLocalPlayer = true;
 		}
 
 	}

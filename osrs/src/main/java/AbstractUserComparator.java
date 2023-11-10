@@ -5,24 +5,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.util.Comparator;
 
-@ObfuscatedName("rv")
+@ObfuscatedName("rn")
 @Implements("AbstractUserComparator")
 public abstract class AbstractUserComparator implements Comparator {
-	@ObfuscatedName("ar")
-	static boolean[] field3833;
-	@ObfuscatedName("uj")
-	static int field3834;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("nextComparator")
 	Comparator nextComparator;
 
 	protected AbstractUserComparator() {
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/util/Comparator;I)V",
-		garbageValue = "1018649978"
+		garbageValue = "1936813741"
 	)
 	@Export("addComparator")
 	final void addComparator(Comparator var1) {
@@ -34,10 +30,10 @@ public abstract class AbstractUserComparator implements Comparator {
 
 	}
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Lrp;Lrp;B)I",
-		garbageValue = "-78"
+		descriptor = "(Lrf;Lrf;I)I",
+		garbageValue = "-94519432"
 	)
 	@Export("compareUser")
 	protected final int compareUser(User var1, User var2) {
@@ -48,5 +44,14 @@ public abstract class AbstractUserComparator implements Comparator {
 	@ObfuscatedName("equals")
 	public boolean equals(Object var1) {
 		return super.equals(var1);
+	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "-50"
+	)
+	static final void method2242(String var0) {
+		WorldMapArea.method1213("Please remove " + var0 + " from your ignore list first");
 	}
 }

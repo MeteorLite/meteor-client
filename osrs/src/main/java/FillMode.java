@@ -2,42 +2,42 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("uf")
-public enum FillMode implements class386 {
-	@ObfuscatedName("ac")
+@ObfuscatedName("uk")
+public enum FillMode implements class383 {
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Luf;"
+		descriptor = "Luk;"
 	)
 	@Export("SOLID")
 	SOLID(0, 0),
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Luf;"
+		descriptor = "Luk;"
 	)
 	field4258(1, 1),
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Luf;"
+		descriptor = "Luk;"
 	)
-	field4257(2, 2);
+	field4259(2, 2);
 
-	@ObfuscatedName("ax")
-	public final int field4260;
 	@ObfuscatedName("ao")
-	final int field4259;
+	public final int field4261;
+	@ObfuscatedName("ab")
+	final int field4260;
 
 	FillMode(int var3, int var4) {
-		this.field4260 = var3;
-		this.field4259 = var4;
+		this.field4261 = var3;
+		this.field4260 = var4;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1243971674"
+		descriptor = "(B)I",
+		garbageValue = "-11"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field4259;
+		return this.field4260;
 	}
 }

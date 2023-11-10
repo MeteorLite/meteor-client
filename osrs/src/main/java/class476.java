@@ -1,24 +1,21 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-import java.io.UnsupportedEncodingException;
+@ObfuscatedName("sc")
+public class class476 {
+	@ObfuscatedName("ab")
+	static final int[] field3936;
+	@ObfuscatedName("au")
+	static final int[] field3937;
 
-@ObfuscatedName("sd")
-public interface class476 {
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "(B)Lst;",
-		garbageValue = "1"
-	)
-	@Export("vmethod2213")
-	class475 vmethod2213();
+	static {
+		field3936 = new int[16384];
+		field3937 = new int[16384];
+		double var0 = 3.834951969714103E-4D;
 
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "(B)[B",
-		garbageValue = "17"
-	)
-	@Export("vmethod7797")
-	byte[] vmethod7797() throws UnsupportedEncodingException;
+		for (int var2 = 0; var2 < 16384; ++var2) {
+			field3936[var2] = (int)(16384.0D * Math.sin((double)var2 * var0));
+			field3937[var2] = (int)(16384.0D * Math.cos((double)var2 * var0));
+		}
+
+	}
 }

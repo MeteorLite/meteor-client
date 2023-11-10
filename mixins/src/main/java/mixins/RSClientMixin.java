@@ -3201,7 +3201,7 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @MethodHook(value = "loadRegions", end = true)
-    public static void onRegionLoad(boolean instanced, RSPacketBuffer buffer) {
+    public static void onRegionLoad(boolean instanced, RSPacketBuffer buffer, boolean bool) {
         if (!instanced) {
             return;
         }

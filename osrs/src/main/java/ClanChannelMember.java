@@ -3,24 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fv")
+@ObfuscatedName("ft")
 @Implements("ClanChannelMember")
 public class ClanChannelMember {
-	@ObfuscatedName("tt")
-	@ObfuscatedSignature(
-		descriptor = "Lgb;"
-	)
-	@Export("guestClanChannel")
-	static ClanChannel guestClanChannel;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("rank")
 	public byte rank;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("world")
 	public int world;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lvf;"
+		descriptor = "Lvj;"
 	)
 	@Export("username")
 	public Username username;
@@ -28,60 +22,33 @@ public class ClanChannelMember {
 	ClanChannelMember() {
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "1441597193"
+		descriptor = "(ILdt;ZI)I",
+		garbageValue = "-1206628329"
 	)
-	public static int method771(int var0, int var1, int var2) {
-		var2 &= 3;
-		if (var2 == 0) {
-			return var1;
-		} else if (var2 == 1) {
-			return 7 - var0;
+	static int method768(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? Interpreter.scriptDotWidget : HealthBar.scriptActiveWidget;
+		if (var0 == 1500) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.x;
+			return 1;
+		} else if (var0 == 1501) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.y;
+			return 1;
+		} else if (var0 == 1502) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.width;
+			return 1;
+		} else if (var0 == 1503) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.height;
+			return 1;
+		} else if (var0 == 1504) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
+			return 1;
+		} else if (var0 == 1505) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.parentId;
+			return 1;
 		} else {
-			return var2 == 2 ? 7 - var1 : var0;
+			return 2;
 		}
-	}
-
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "(Lln;Lvd;I)Llx;",
-		garbageValue = "2045853930"
-	)
-	@Export("getPacketBufferNode")
-	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2 = class306.method1639();
-		var2.clientPacket = var0;
-		var2.clientPacketLength = var0.length;
-		if (var2.clientPacketLength == -1) {
-			var2.packetBuffer = new PacketBuffer(260);
-		} else if (var2.clientPacketLength == -2) {
-			var2.packetBuffer = new PacketBuffer(10000);
-		} else if (var2.clientPacketLength <= 18) {
-			var2.packetBuffer = new PacketBuffer(20);
-		} else if (var2.clientPacketLength <= 98) {
-			var2.packetBuffer = new PacketBuffer(100);
-		} else {
-			var2.packetBuffer = new PacketBuffer(260);
-		}
-
-		var2.packetBuffer.setIsaacCipher(var1);
-		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id);
-		var2.index = 0;
-		return var2;
-	}
-
-	@ObfuscatedName("ms")
-	@ObfuscatedSignature(
-		descriptor = "(Lnm;I)V",
-		garbageValue = "1124709425"
-	)
-	@Export("invalidateWidget")
-	public static void invalidateWidget(Widget var0) {
-		if (var0 != null && var0.cycle == Client.field523) {
-			Client.field408[var0.rootIndex] = true;
-		}
-
 	}
 }

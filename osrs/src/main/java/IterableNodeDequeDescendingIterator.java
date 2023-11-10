@@ -5,38 +5,38 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.util.Iterator;
 
-@ObfuscatedName("pj")
+@ObfuscatedName("pk")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lpy;"
+		descriptor = "Lpm;"
 	)
 	@Export("deque")
 	IterableNodeDeque deque;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lsj;"
+		descriptor = "Lsh;"
 	)
 	Node field3672;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lsj;"
+		descriptor = "Lsh;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpy;)V"
+		descriptor = "(Lpm;)V"
 	)
 	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
 		this.last = null;
 		this.setDeque(var1);
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lpy;)V"
+		descriptor = "(Lpm;)V"
 	)
 	@Export("setDeque")
 	void setDeque(IterableNodeDeque var1) {
@@ -44,7 +44,7 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("start")
 	void start() {
 		this.field3672 = this.deque != null ? this.deque.sentinel.previous : null;

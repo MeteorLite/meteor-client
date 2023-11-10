@@ -2,51 +2,50 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hn")
+import java.util.ArrayList;
+
+@ObfuscatedName("hk")
 public class class191 extends DualNode {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Llr;"
+		descriptor = "Llk;"
 	)
-	@Export("archive7")
-	static EvictingDualNodeHashTable archive7;
-	@ObfuscatedName("gg")
-	static String field1499;
-	@ObfuscatedName("uy")
-	@Export("cameraMoveToX")
-	static int cameraMoveToX;
+	public static EvictingDualNodeHashTable field1584;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lol;"
+	)
+	static AbstractArchive field1586;
+	@ObfuscatedName("cg")
+	@ObfuscatedSignature(
+		descriptor = "Lnv;"
+	)
+	static GameBuild field1585;
 
 	static {
-		archive7 = new EvictingDualNodeHashTable(64);
+		field1584 = new EvictingDualNodeHashTable(64);
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lom;I)V",
-		garbageValue = "-1132254955"
+		descriptor = "(IIIII)V",
+		garbageValue = "-993585503"
 	)
-	public static void method958(AbstractArchive var0) {
-		class30.FloorOverlayDefinition_archive = var0;
-	}
-
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Liw;",
-		garbageValue = "0"
-	)
-	public static HitSplatDefinition method959(int var0) {
-		HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = HitSplatDefinition.HitSplatDefinition_archive.takeFile(32, var0);
-			var1 = new HitSplatDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+	@Export("someMusicMethod")
+	public static void someMusicMethod(int var0, int var1, int var2, int var3) {
+		if (class316.musicSongs.size() > 1 && class316.musicSongs.get(0) != null && ((MusicSong)class316.musicSongs.get(0)).midiPcmStream.isReady() && class316.musicSongs.get(1) != null && ((MusicSong)class316.musicSongs.get(1)).midiPcmStream.isReady()) {
+			EnumComposition.method925(var0, var1, var2, var3);
+			class316.field2798.add(new SwapSongTask((SongTask)null));
+			ArrayList var4 = new ArrayList();
+			var4.add(new DelayFadeTask(new FadeInTask((SongTask)null, 1, false, class316.field2796), class316.field2795));
+			var4.add(new DelayFadeTask(new FadeOutTask((SongTask)null, 0, false, class316.field2794), class316.musicPlayerStatus));
+			class316.field2798.add(new ConcurrentMidiTask((SongTask)null, var4));
+			if (class316.field2787.get(0) != null && class316.field2787.get(1) != null) {
+				MusicSong var5 = (MusicSong)class316.field2787.get(0);
+				class316.field2787.set(0, class316.musicSongs.get(1));
+				class316.field2787.set(1, var5);
 			}
-
-			HitSplatDefinition.HitSplatDefinition_cached.put(var1, (long)var0);
-			return var1;
 		}
+
 	}
 }

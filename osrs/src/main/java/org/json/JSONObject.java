@@ -11,6 +11,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.Map.Entry;
 
+
 @Implements("org/json/JSONObject")
 @ObfuscatedName("org/json/JSONObject")
 public class JSONObject {
@@ -18,17 +19,17 @@ public class JSONObject {
 	@ObfuscatedName("NULL")
 	public static final Object NULL;
 	@ObfuscatedName("map")
-	Map field4317;
+	Map field4322;
 
 	static {
 		NULL = new Null();
 	}
 
 	public JSONObject() {
-		this.field4317 = new HashMap();
+		this.field4322 = new HashMap();
 	}
 
-	public JSONObject(org.json.JSONTokener var1) throws org.json.JSONException {
+	public JSONObject(JSONTokener var1) throws JSONException {
 		this();
 		if (var1.nextClean() != '{') {
 			throw var1.syntaxError("A JSONObject text must begin with '{'");
@@ -72,7 +73,7 @@ public class JSONObject {
 		}
 	}
 
-	public JSONObject(String var1) throws org.json.JSONException {
+	public JSONObject(String var1) throws JSONException {
 		this(new JSONTokener(var1));
 	}
 
@@ -82,45 +83,45 @@ public class JSONObject {
 	}
 
 	public JSONObject(Map var1) {
-		this.field4317 = (Map)(var1 == null ? new HashMap() : var1);
+		this.field4322 = (Map)(var1 == null ? new HashMap() : var1);
 	}
 
 	public JSONObject(Map var1, boolean var2) {
-		this.field4317 = new HashMap();
+		this.field4322 = new HashMap();
 		if (var1 != null) {
 			Iterator var3 = var1.entrySet().iterator();
 
 			while (var3.hasNext()) {
 				Entry var4 = (Entry)var3.next();
-				this.field4317.put(var4.getKey(), new JSONObject(var4.getValue(), var2));
+				this.field4322.put(var4.getKey(), new JSONObject(var4.getValue(), var2));
 			}
 		}
 
 	}
 
 	@ObfuscatedName("opt")
-	public Object method2749(String var1) {
-		return var1 == null ? null : this.field4317.get(var1);
+	public Object method2726(String var1) {
+		return var1 == null ? null : this.field4322.get(var1);
 	}
 
 	@ObfuscatedName("get")
-	public Object method2748(String var1) throws org.json.JSONException {
-		Object var2 = this.method2749(var1);
+	public Object method2725(String var1) throws JSONException {
+		Object var2 = this.method2726(var1);
 		if (var2 == null) {
-			throw new org.json.JSONException("JSONObject[" + quote(var1) + "] not found.");
+			throw new JSONException("JSONObject[" + quote(var1) + "] not found.");
 		} else {
 			return var2;
 		}
 	}
 
 	@ObfuscatedName("put")
-	public JSONObject method2750(String var1, Object var2) throws org.json.JSONException {
+	public JSONObject method2727(String var1, Object var2) throws JSONException {
 		if (var1 == null) {
-			throw new org.json.JSONException("Null key.");
+			throw new JSONException("Null key.");
 		} else {
 			if (var2 != null) {
 				testValidity(var2);
-				this.field4317.put(var1, var2);
+				this.field4322.put(var1, var2);
 			} else {
 				this.remove(var1);
 			}
@@ -131,51 +132,51 @@ public class JSONObject {
 
 	@Export("getBoolean")
 	@ObfuscatedName("getBoolean")
-	public boolean getBoolean(String var1) throws org.json.JSONException {
-		Object var2 = this.method2748(var1);
+	public boolean getBoolean(String var1) throws JSONException {
+		Object var2 = this.method2725(var1);
 		if (var2.equals(Boolean.FALSE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("false")) {
 			return false;
 		} else if (var2.equals(Boolean.TRUE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("true")) {
 			return true;
 		} else {
-			throw new org.json.JSONException("JSONObject[" + quote(var1) + "] is not a Boolean.");
+			throw new JSONException("JSONObject[" + quote(var1) + "] is not a Boolean.");
 		}
 	}
 
 	@Export("getLong")
 	@ObfuscatedName("getLong")
-	public long getLong(String var1) throws org.json.JSONException {
-		Object var2 = this.method2748(var1);
+	public long getLong(String var1) throws JSONException {
+		Object var2 = this.method2725(var1);
 		return var2 instanceof Number ? ((Number)var2).longValue() : (long)this.getDouble(var1);
 	}
 
 	@Export("keys")
 	@ObfuscatedName("keys")
 	public Iterator keys() {
-		return this.field4317.keySet().iterator();
-	}
-
-	@Export("getInt")
-	@ObfuscatedName("getInt")
-	public int getInt(String var1) throws org.json.JSONException {
-		Object var2 = this.method2748(var1);
-		return var2 instanceof Number ? ((Number)var2).intValue() : (int)this.getDouble(var1);
+		return this.field4322.keySet().iterator();
 	}
 
 	@Export("length")
 	@ObfuscatedName("length")
 	public int length() {
-		return this.field4317.size();
+		return this.field4322.size();
+	}
+
+	@Export("getInt")
+	@ObfuscatedName("getInt")
+	public int getInt(String var1) throws JSONException {
+		Object var2 = this.method2725(var1);
+		return var2 instanceof Number ? ((Number)var2).intValue() : (int)this.getDouble(var1);
 	}
 
 	@Export("getJSONArray")
 	@ObfuscatedName("getJSONArray")
-	public org.json.JSONArray getJSONArray(String var1) throws org.json.JSONException {
-		Object var2 = this.method2748(var1);
-		if (var2 instanceof org.json.JSONArray) {
-			return (org.json.JSONArray)var2;
+	public JSONArray getJSONArray(String var1) throws JSONException {
+		Object var2 = this.method2725(var1);
+		if (var2 instanceof JSONArray) {
+			return (JSONArray)var2;
 		} else {
-			throw new org.json.JSONException("JSONObject[" + quote(var1) + "] is not a JSONArray.");
+			throw new JSONException("JSONObject[" + quote(var1) + "] is not a JSONArray.");
 		}
 	}
 
@@ -209,19 +210,19 @@ public class JSONObject {
 
 					Object var9 = Reflection.invoke(var6, var1, (Object[])null);
 					if (var9 == null) {
-						this.field4317.put(var8, NULL);
+						this.field4322.put(var8, NULL);
 					} else if (var9.getClass().isArray()) {
-						this.field4317.put(var8, new org.json.JSONArray(var9, var2));
+						this.field4322.put(var8, new JSONArray(var9, var2));
 					} else if (var9 instanceof Collection) {
-						this.field4317.put(var8, new org.json.JSONArray((Collection)var9, var2));
+						this.field4322.put(var8, new JSONArray((Collection)var9, var2));
 					} else if (var9 instanceof Map) {
-						this.field4317.put(var8, new JSONObject((Map)var9, var2));
+						this.field4322.put(var8, new JSONObject((Map)var9, var2));
 					} else if (this.isStandardProperty(var9.getClass())) {
-						this.field4317.put(var8, var9);
+						this.field4322.put(var8, var9);
 					} else if (!var9.getClass().getPackage().getName().startsWith("java") && var9.getClass().getClassLoader() != null) {
-						this.field4317.put(var8, new JSONObject(var9, var2));
+						this.field4322.put(var8, new JSONObject(var9, var2));
 					} else {
-						this.field4317.put(var8, var9.toString());
+						this.field4322.put(var8, var9.toString());
 					}
 				}
 			} catch (Exception var10) {
@@ -234,41 +235,41 @@ public class JSONObject {
 	@Export("remove")
 	@ObfuscatedName("remove")
 	public Object remove(String var1) {
-		return this.field4317.remove(var1);
+		return this.field4322.remove(var1);
 	}
 
 	@Export("getJSONObject")
 	@ObfuscatedName("getJSONObject")
-	public JSONObject getJSONObject(String var1) throws org.json.JSONException {
-		Object var2 = this.method2748(var1);
+	public JSONObject getJSONObject(String var1) throws JSONException {
+		Object var2 = this.method2725(var1);
 		if (var2 instanceof JSONObject) {
 			return (JSONObject)var2;
 		} else {
-			throw new org.json.JSONException("JSONObject[" + quote(var1) + "] is not a JSONObject.");
+			throw new JSONException("JSONObject[" + quote(var1) + "] is not a JSONObject.");
 		}
 	}
 
 	@Export("sortedKeys")
 	@ObfuscatedName("sortedKeys")
 	public Iterator sortedKeys() {
-		return (new TreeSet(this.field4317.keySet())).iterator();
+		return (new TreeSet(this.field4322.keySet())).iterator();
 	}
 
 	@Export("getDouble")
 	@ObfuscatedName("getDouble")
-	public double getDouble(String var1) throws org.json.JSONException {
-		Object var2 = this.method2748(var1);
+	public double getDouble(String var1) throws JSONException {
+		Object var2 = this.method2725(var1);
 
 		try {
 			return var2 instanceof Number ? ((Number)var2).doubleValue() : Double.valueOf((String)var2);
 		} catch (Exception var4) {
-			throw new org.json.JSONException("JSONObject[" + quote(var1) + "] is not a number.");
+			throw new JSONException("JSONObject[" + quote(var1) + "] is not a number.");
 		}
 	}
 
 	@Export("toString")
 	@ObfuscatedName("toString")
-	String toString(int var1, int var2) throws org.json.JSONException {
+	String toString(int var1, int var2) throws JSONException {
 		int var4 = this.length();
 		if (var4 == 0) {
 			return "{}";
@@ -281,7 +282,7 @@ public class JSONObject {
 				var8 = var5.next();
 				var6.append(quote(var8.toString()));
 				var6.append(": ");
-				var6.append(valueToString(this.field4317.get(var8), var1, var2));
+				var6.append(valueToString(this.field4322.get(var8), var1, var2));
 			} else {
 				while (true) {
 					int var3;
@@ -309,7 +310,7 @@ public class JSONObject {
 
 					var6.append(quote(var8.toString()));
 					var6.append(": ");
-					var6.append(valueToString(this.field4317.get(var8), var1, var7));
+					var6.append(valueToString(this.field4322.get(var8), var1, var7));
 				}
 			}
 
@@ -320,7 +321,7 @@ public class JSONObject {
 
 	@Export("write")
 	@ObfuscatedName("write")
-	public Writer write(Writer var1) throws org.json.JSONException {
+	public Writer write(Writer var1) throws JSONException {
 		try {
 			boolean var2 = false;
 			Iterator var3 = this.keys();
@@ -334,11 +335,11 @@ public class JSONObject {
 				Object var4 = var3.next();
 				var1.write(quote(var4.toString()));
 				var1.write(58);
-				Object var5 = this.field4317.get(var4);
+				Object var5 = this.field4322.get(var4);
 				if (var5 instanceof JSONObject) {
 					((JSONObject)var5).write(var1);
-				} else if (var5 instanceof org.json.JSONArray) {
-					((org.json.JSONArray)var5).write(var1);
+				} else if (var5 instanceof JSONArray) {
+					((JSONArray)var5).write(var1);
 				} else {
 					var1.write(valueToString(var5));
 				}
@@ -347,14 +348,14 @@ public class JSONObject {
 			var1.write(125);
 			return var1;
 		} catch (IOException var7) {
-			throw new org.json.JSONException(var7);
+			throw new JSONException(var7);
 		}
 	}
 
 	@Export("getString")
 	@ObfuscatedName("getString")
-	public String getString(String var1) throws org.json.JSONException {
-		return this.method2748(var1).toString();
+	public String getString(String var1) throws JSONException {
+		return this.method2725(var1).toString();
 	}
 
 	@Export("toString")
@@ -372,7 +373,7 @@ public class JSONObject {
 				Object var3 = var1.next();
 				var2.append(quote(var3.toString()));
 				var2.append(':');
-				var2.append(valueToString(this.field4317.get(var3)));
+				var2.append(valueToString(this.field4322.get(var3)));
 			}
 
 			var2.append('}');
@@ -384,13 +385,13 @@ public class JSONObject {
 
 	@Export("putOnce")
 	@ObfuscatedName("putOnce")
-	public JSONObject putOnce(String var1, Object var2) throws org.json.JSONException {
+	public JSONObject putOnce(String var1, Object var2) throws JSONException {
 		if (var1 != null && var2 != null) {
-			if (this.method2749(var1) != null) {
-				throw new org.json.JSONException("Duplicate key \"" + var1 + "\"");
+			if (this.method2726(var1) != null) {
+				throw new JSONException("Duplicate key \"" + var1 + "\"");
 			}
 
-			this.method2750(var1, var2);
+			this.method2727(var1, var2);
 		}
 
 		return this;
@@ -416,7 +417,7 @@ public class JSONObject {
 	@ObfuscatedName("optDouble")
 	public double optDouble(String var1, double var2) {
 		try {
-			Object var4 = this.method2749(var1);
+			Object var4 = this.method2726(var1);
 			return var4 instanceof Number ? ((Number)var4).doubleValue() : new Double((String)var4);
 		} catch (Exception var5) {
 			return var2;
@@ -446,15 +447,15 @@ public class JSONObject {
 	@Export("optString")
 	@ObfuscatedName("optString")
 	public String optString(String var1, String var2) {
-		Object var3 = this.method2749(var1);
+		Object var3 = this.method2726(var1);
 		return var3 != null ? var3.toString() : var2;
 	}
 
 	@Export("putOpt")
 	@ObfuscatedName("putOpt")
-	public JSONObject putOpt(String var1, Object var2) throws org.json.JSONException {
+	public JSONObject putOpt(String var1, Object var2) throws JSONException {
 		if (var1 != null && var2 != null) {
-			this.method2750(var1, var2);
+			this.method2727(var1, var2);
 		}
 
 		return this;
@@ -480,14 +481,14 @@ public class JSONObject {
 
 	@Export("testValidity")
 	@ObfuscatedName("testValidity")
-	static void testValidity(Object var0) throws org.json.JSONException {
+	static void testValidity(Object var0) throws JSONException {
 		if (var0 != null) {
 			if (var0 instanceof Double) {
 				if (((Double)var0).isInfinite() || ((Double)var0).isNaN()) {
-					throw new org.json.JSONException("JSON does not allow non-finite numbers.");
+					throw new JSONException("JSON does not allow non-finite numbers.");
 				}
 			} else if (var0 instanceof Float && (((Float)var0).isInfinite() || ((Float)var0).isNaN())) {
-				throw new org.json.JSONException("JSON does not allow non-finite numbers.");
+				throw new JSONException("JSON does not allow non-finite numbers.");
 			}
 		}
 
@@ -495,9 +496,9 @@ public class JSONObject {
 
 	@Export("numberToString")
 	@ObfuscatedName("numberToString")
-	public static String numberToString(Number var0) throws org.json.JSONException {
+	public static String numberToString(Number var0) throws JSONException {
 		if (var0 == null) {
-			throw new org.json.JSONException("Null pointer");
+			throw new JSONException("Null pointer");
 		} else {
 			testValidity(var0);
 			String var1 = var0.toString();
@@ -574,11 +575,11 @@ public class JSONObject {
 
 	@Export("valueToString")
 	@ObfuscatedName("valueToString")
-	static String valueToString(Object var0, int var1, int var2) throws org.json.JSONException {
+	static String valueToString(Object var0, int var1, int var2) throws JSONException {
 		if (var0 != null && !var0.equals((Object)null)) {
 			try {
-				if (var0 instanceof org.json.JSONString) {
-					String var3 = ((org.json.JSONString)var0).toJSONString();
+				if (var0 instanceof JSONString) {
+					String var3 = ((JSONString)var0).toJSONString();
 					if (var3 instanceof String) {
 						return (String)var3;
 					}
@@ -592,14 +593,14 @@ public class JSONObject {
 				return var0.toString();
 			} else if (var0 instanceof JSONObject) {
 				return ((JSONObject)var0).toString(var1, var2);
-			} else if (var0 instanceof org.json.JSONArray) {
-				return ((org.json.JSONArray)var0).toString(var1, var2);
+			} else if (var0 instanceof JSONArray) {
+				return ((JSONArray)var0).toString(var1, var2);
 			} else if (var0 instanceof Map) {
 				return (new JSONObject((Map)var0)).toString(var1, var2);
 			} else if (var0 instanceof Collection) {
-				return (new org.json.JSONArray((Collection)var0)).toString(var1, var2);
+				return (new JSONArray((Collection)var0)).toString(var1, var2);
 			} else {
-				return var0.getClass().isArray() ? (new org.json.JSONArray(var0)).toString(var1, var2) : quote(var0.toString());
+				return var0.getClass().isArray() ? (new JSONArray(var0)).toString(var1, var2) : quote(var0.toString());
 			}
 		} else {
 			return "null";
@@ -608,14 +609,14 @@ public class JSONObject {
 
 	@Export("valueToString")
 	@ObfuscatedName("valueToString")
-	static String valueToString(Object var0) throws org.json.JSONException {
+	static String valueToString(Object var0) throws JSONException {
 		if (var0 != null && !var0.equals((Object)null)) {
-			if (var0 instanceof org.json.JSONString) {
+			if (var0 instanceof JSONString) {
 				String var1;
 				try {
 					var1 = ((JSONString)var0).toJSONString();
 				} catch (Exception var3) {
-					throw new org.json.JSONException(var3);
+					throw new JSONException(var3);
 				}
 
 				if (var1 instanceof String) {
@@ -625,11 +626,11 @@ public class JSONObject {
 				}
 			} else if (var0 instanceof Number) {
 				return numberToString((Number)var0);
-			} else if (!(var0 instanceof Boolean) && !(var0 instanceof JSONObject) && !(var0 instanceof org.json.JSONArray)) {
+			} else if (!(var0 instanceof Boolean) && !(var0 instanceof JSONObject) && !(var0 instanceof JSONArray)) {
 				if (var0 instanceof Map) {
 					return (new JSONObject((Map)var0)).toString();
 				} else if (var0 instanceof Collection) {
-					return (new org.json.JSONArray((Collection)var0)).toString();
+					return (new JSONArray((Collection)var0)).toString();
 				} else {
 					return var0.getClass().isArray() ? (new JSONArray(var0)).toString() : quote(var0.toString());
 				}

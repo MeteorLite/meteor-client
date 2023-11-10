@@ -2,60 +2,43 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fu")
-public class class154 extends class145 {
-	@ObfuscatedName("ac")
-	String field1354;
+@ObfuscatedName("fn")
+public class class154 extends class144 {
+	@ObfuscatedName("at")
+	int field1367;
+	@ObfuscatedName("ah")
+	String field1368;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lff;"
+		descriptor = "Lfv;"
 	)
-	final class148 this$0;
+	final class147 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lff;)V"
+		descriptor = "(Lfv;)V"
 	)
-	class154(class148 var1) {
+	class154(class147 var1) {
 		this.this$0 = var1;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;I)V",
-		garbageValue = "-11659242"
+		descriptor = "(Luj;I)V",
+		garbageValue = "-734756620"
 	)
 	@Export("vmethod3254")
 	void vmethod3254(Buffer var1) {
-		this.field1354 = var1.readStringCp1252NullTerminated();
-		var1.readInt();
+		this.field1367 = var1.readInt();
+		this.field1368 = var1.readStringCp1252NullTerminated();
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Lgi;I)V",
-		garbageValue = "21847466"
+		descriptor = "(Lfc;I)V",
+		garbageValue = "-2111347169"
 	)
 	@Export("vmethod3248")
 	void vmethod3248(ClanSettings var1) {
-		var1.name = this.field1354;
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "21538"
-	)
-	public static void method802() {
-		VarcInt.VarcInt_cached.clear();
-	}
-
-	@ObfuscatedName("mr")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "354037944"
-	)
-	@Export("setTapToDrop")
-	static void setTapToDrop(boolean var0) {
-		Client.tapToDrop = var0;
+		var1.method817(this.field1367, this.field1368);
 	}
 }

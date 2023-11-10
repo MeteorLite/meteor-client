@@ -14,15 +14,15 @@ import java.net.UnknownHostException;
 import java.security.SecureRandom;
 import java.security.Security;
 
-@ObfuscatedName("aj")
+@ObfuscatedName("ak")
 public class class15 extends SSLSocketFactory {
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Laj;"
+		descriptor = "Lak;"
 	)
-	public static class15 field44;
-	@ObfuscatedName("ac")
-	SecureRandom field45;
+	public static class15 field49;
+	@ObfuscatedName("at")
+	SecureRandom field50;
 
 	static {
 		if (Security.getProvider("BC") == null) {
@@ -32,15 +32,15 @@ public class class15 extends SSLSocketFactory {
 	}
 
 	public class15() {
-		this.field45 = new SecureRandom();
+		this.field50 = new SecureRandom();
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;S)Ljavax/net/ssl/SSLSocket;",
-		garbageValue = "-369"
+		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;B)Ljavax/net/ssl/SSLSocket;",
+		garbageValue = "-15"
 	)
-	SSLSocket method51(String var1, TlsClientProtocol var2) {
+	SSLSocket method59(String var1, TlsClientProtocol var2) {
 		return new class12(this, var2, var1);
 	}
 
@@ -55,8 +55,8 @@ public class class15 extends SSLSocketFactory {
 			var1.connect(new InetSocketAddress(var2, var3));
 		}
 
-		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field45);
-		return this.method51(var2, var5);
+		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field50);
+		return this.method59(var2, var5);
 	}
 
 	public String[] getDefaultCipherSuites() {

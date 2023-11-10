@@ -3,40 +3,57 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jc")
+@ObfuscatedName("kj")
 @Implements("ItemLayer")
 public final class ItemLayer {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ht")
+	static String field2109;
+	@ObfuscatedName("jv")
+	@ObfuscatedSignature(
+		descriptor = "Lpf;"
+	)
+	@Export("fontPlain12")
+	static Font fontPlain12;
+	@ObfuscatedName("kr")
+	@ObfuscatedSignature(
+		descriptor = "Luz;"
+	)
+	@Export("compass")
+	static SpritePixels compass;
+	@ObfuscatedName("mr")
+	@Export("Client_plane")
+	static int Client_plane;
+	@ObfuscatedName("at")
 	@Export("z")
 	int z;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("x")
 	int x;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("y")
 	int y;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Ljy;"
+		descriptor = "Lkt;"
 	)
 	@Export("first")
 	Renderable first;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Ljy;"
+		descriptor = "Lkt;"
 	)
 	@Export("second")
 	Renderable second;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Ljy;"
+		descriptor = "Lkt;"
 	)
 	@Export("third")
 	Renderable third;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@Export("tag")
 	long tag;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ac")
 	@Export("height")
 	int height;
 

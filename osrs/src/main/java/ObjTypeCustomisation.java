@@ -3,17 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hy")
+@ObfuscatedName("gx")
 @Implements("ObjTypeCustomisation")
 public class ObjTypeCustomisation {
-	@ObfuscatedName("ak")
+	@ObfuscatedName("aa")
+	static int field1431;
+	@ObfuscatedName("su")
+	@ObfuscatedSignature(
+		descriptor = "Lun;"
+	)
+	@Export("privateChatMode")
+	static PrivateChatMode privateChatMode;
+	@ObfuscatedName("ar")
 	@Export("recol")
 	public short[] recol;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("retex")
 	public short[] retex;
 
-	public ObjTypeCustomisation(int var1) {
+	ObjTypeCustomisation(int var1) {
 		ItemComposition var2 = class214.ItemDefinition_get(var1);
 		if (var2.hasRecolor()) {
 			this.recol = new short[var2.recolorTo.length];
@@ -27,33 +35,12 @@ public class ObjTypeCustomisation {
 
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "466779098"
+		descriptor = "(B)V",
+		garbageValue = "-19"
 	)
-	static void method948() {
-		Tiles.Tiles_minPlane = 99;
-		World.Tiles_underlays = new short[4][104][104];
-		VertexNormal.Tiles_overlays = new short[4][104][104];
-		SecureRandomFuture.Tiles_shapes = new byte[4][104][104];
-		class199.field1563 = new byte[4][104][104];
-		UserComparator6.field1191 = new int[4][105][105];
-		Tiles.field835 = new byte[4][105][105];
-		class158.field1387 = new int[105][105];
-		SecureRandomFuture.Tiles_hue = new int[104];
-		class135.Tiles_saturation = new int[104];
-		Tiles.Tiles_lightness = new int[104];
-		WorldMapSection2.Tiles_hueMultiplier = new int[104];
-		Script.field812 = new int[104];
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "841575506"
-	)
-	public static void method947() {
-		InvDefinition.InvDefinition_cached.clear();
+	public static void method876() {
+		FileSystem.FileSystem_cacheFiles.clear();
 	}
 }

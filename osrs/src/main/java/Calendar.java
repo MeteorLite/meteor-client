@@ -1,20 +1,19 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 import java.util.TimeZone;
 
-@ObfuscatedName("na")
+@ObfuscatedName("nc")
 @Implements("Calendar")
 public class Calendar {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("MONTH_NAMES_ENGLISH_GERMAN")
 	public static final String[][] MONTH_NAMES_ENGLISH_GERMAN;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("DAYS_OF_THE_WEEK")
 	public static final String[] DAYS_OF_THE_WEEK;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("Calendar_calendar")
 	public static java.util.Calendar Calendar_calendar;
 
@@ -23,27 +22,5 @@ public class Calendar {
 		DAYS_OF_THE_WEEK = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 		java.util.Calendar.getInstance();
 		Calendar_calendar = java.util.Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lnp;",
-		garbageValue = "1714112630"
-	)
-	public static StudioGame[] method1889() {
-		return new StudioGame[]{StudioGame.game3, StudioGame.game5, StudioGame.runescape, StudioGame.stellardawn, StudioGame.oldscape, StudioGame.game4};
-	}
-
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "1782569305"
-	)
-	public static void method1890(boolean var0) {
-		if (var0 != HealthBarUpdate.ItemDefinition_inMembersWorld) {
-			class315.method1655();
-			HealthBarUpdate.ItemDefinition_inMembersWorld = var0;
-		}
-
 	}
 }

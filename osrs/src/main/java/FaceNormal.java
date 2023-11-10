@@ -3,29 +3,28 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("kp")
 @Implements("FaceNormal")
 public class FaceNormal {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("x")
 	int x;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("y")
 	int y;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("z")
 	int z;
 
 	FaceNormal() {
 	}
 
-	@ObfuscatedName("mo")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-2079902231"
+		descriptor = "(I)Lld;",
+		garbageValue = "1253542503"
 	)
-	static final int method1334() {
-		float var0 = 200.0F * ((float)class91.clientPreferences.getBrightness() - 0.5F);
-		return 100 - Math.round(var0);
+	static PacketBufferNode method1516() {
+		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
 	}
 }

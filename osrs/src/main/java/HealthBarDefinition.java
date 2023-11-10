@@ -3,67 +3,61 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hj")
+import java.security.SecureRandom;
+
+@ObfuscatedName("gh")
 @Implements("HealthBarDefinition")
 public class HealthBarDefinition extends DualNode {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lom;"
+		descriptor = "Lol;"
 	)
 	@Export("HealthBarDefinition_archive")
 	public static AbstractArchive HealthBarDefinition_archive;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lom;"
-	)
-	public static AbstractArchive field1549;
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "Llr;"
+		descriptor = "Llk;"
 	)
 	@Export("HealthBarDefinition_cached")
-	public static EvictingDualNodeHashTable HealthBarDefinition_cached;
-	@ObfuscatedName("ax")
+	static EvictingDualNodeHashTable HealthBarDefinition_cached;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Llr;"
+		descriptor = "Llk;"
 	)
 	@Export("ItemDefinition_cachedModels")
-	public static EvictingDualNodeHashTable ItemDefinition_cachedModels;
-	@ObfuscatedName("cp")
-	@Export("param9")
-	static String param9;
-	@ObfuscatedName("rn")
+	static EvictingDualNodeHashTable ItemDefinition_cachedModels;
+	@ObfuscatedName("eb")
 	@ObfuscatedSignature(
-		descriptor = "Ltx;"
+		descriptor = "Lmr;"
 	)
-	@Export("Widget_cachedModels")
-	static class512 Widget_cachedModels;
-	@ObfuscatedName("ao")
-	public int field1559;
+	@Export("widgetDefinition")
+	static WidgetDefinition widgetDefinition;
 	@ObfuscatedName("ab")
+	public int field1494;
+	@ObfuscatedName("ac")
 	@Export("int1")
 	public int int1;
-	@ObfuscatedName("am")
+	@ObfuscatedName("al")
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("av")
+	@ObfuscatedName("az")
 	@Export("int3")
 	public int int3;
-	@ObfuscatedName("ag")
-	public int field1556;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ap")
+	public int field1498;
+	@ObfuscatedName("av")
 	@Export("int5")
 	public int int5;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ax")
 	@Export("frontSpriteID")
 	int frontSpriteID;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("as")
 	@Export("backSpriteID")
 	int backSpriteID;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ay")
 	@Export("width")
 	public int width;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ak")
 	@Export("widthPadding")
 	public int widthPadding;
 
@@ -76,7 +70,7 @@ public class HealthBarDefinition extends DualNode {
 		this.int1 = 255;
 		this.int2 = 255;
 		this.int3 = -1;
-		this.field1556 = 1;
+		this.field1498 = 1;
 		this.int5 = 70;
 		this.frontSpriteID = -1;
 		this.backSpriteID = -1;
@@ -84,10 +78,10 @@ public class HealthBarDefinition extends DualNode {
 		this.widthPadding = 0;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;B)V",
-		garbageValue = "-15"
+		descriptor = "(Luj;I)V",
+		garbageValue = "-1942652761"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -101,10 +95,10 @@ public class HealthBarDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;II)V",
-		garbageValue = "1665332626"
+		descriptor = "(Luj;II)V",
+		garbageValue = "88568767"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -134,10 +128,10 @@ public class HealthBarDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lud;",
-		garbageValue = "-1762701574"
+		descriptor = "(I)Luz;",
+		garbageValue = "-309117701"
 	)
 	@Export("getFrontSprite")
 	public SpritePixels getFrontSprite() {
@@ -148,7 +142,7 @@ public class HealthBarDefinition extends DualNode {
 			if (var1 != null) {
 				return var1;
 			} else {
-				var1 = class47.SpriteBuffer_getSprite(field1549, this.frontSpriteID, 0);
+				var1 = IgnoreList.SpriteBuffer_getSprite(SecureRandomCallable.field851, this.frontSpriteID, 0);
 				if (var1 != null) {
 					ItemDefinition_cachedModels.put(var1, (long)this.frontSpriteID);
 				}
@@ -158,10 +152,10 @@ public class HealthBarDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lud;",
-		garbageValue = "665921612"
+		descriptor = "(B)Luz;",
+		garbageValue = "54"
 	)
 	@Export("getBackSprite")
 	public SpritePixels getBackSprite() {
@@ -172,7 +166,7 @@ public class HealthBarDefinition extends DualNode {
 			if (var1 != null) {
 				return var1;
 			} else {
-				var1 = class47.SpriteBuffer_getSprite(field1549, this.backSpriteID, 0);
+				var1 = IgnoreList.SpriteBuffer_getSprite(SecureRandomCallable.field851, this.backSpriteID, 0);
 				if (var1 != null) {
 					ItemDefinition_cachedModels.put(var1, (long)this.backSpriteID);
 				}
@@ -182,18 +176,34 @@ public class HealthBarDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("ju")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "-17"
+		descriptor = "(I)Ljava/security/SecureRandom;",
+		garbageValue = "1872253772"
 	)
-	static final void method991(int var0, int var1) {
-		if (Client.hintArrowType == 2) {
-			class150.worldToScreen((Client.hintArrowX - class20.baseX << 7) + Client.hintArrowSubX, (Client.hintArrowY - class19.baseY << 7) + Client.hintArrowSubY, Client.hintArrowHeight * 2);
-			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
-				UserComparator8.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
+	static SecureRandom method911() {
+		SecureRandom var0 = new SecureRandom();
+		var0.nextInt();
+		return var0;
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-876386223"
+	)
+	public static void method916() {
+		try {
+			JagexCache.JagexCache_dat2File.close();
+
+			for (int var0 = 0; var0 < UserComparator6.field1202; ++var0) {
+				KeyHandler.JagexCache_idxFiles[var0].close();
 			}
 
+			JagexCache.JagexCache_idx255File.close();
+			JagexCache.JagexCache_randomDat.close();
+		} catch (Exception var2) {
 		}
+
 	}
 }

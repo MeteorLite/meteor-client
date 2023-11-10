@@ -5,40 +5,40 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-@ObfuscatedName("ah")
+@ObfuscatedName("au")
 public class class5 implements class2 {
-	@ObfuscatedName("ac")
-	final MessageDigest field3;
+	@ObfuscatedName("at")
+	final MessageDigest field5;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lam;)V"
+		descriptor = "(Lal;)V"
 	)
 	class5(class8 var1) {
-		this.field3 = this.method12();
+		this.field5 = this.method12();
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	boolean method8(int var1, String var2, long var3) {
 		byte[] var5 = this.method11(var2, var3);
 		return method9(var5) >= var1;
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	byte[] method11(String var1, long var2) {
 		StringBuilder var4 = new StringBuilder();
 		var4.append(var1).append(Long.toHexString(var2));
-		this.field3.reset();
+		this.field5.reset();
 
 		try {
-			this.field3.update(var4.toString().getBytes("UTF-8"));
+			this.field5.update(var4.toString().getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException var6) {
 			var6.printStackTrace();
 		}
 
-		return this.field3.digest();
+		return this.field5.digest();
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	MessageDigest method12() {
 		try {
 			return MessageDigest.getInstance("SHA-256");
@@ -48,7 +48,7 @@ public class class5 implements class2 {
 		}
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	static int method9(byte[] var0) {
 		int var1 = 0;
 		byte[] var2 = var0;
@@ -65,7 +65,7 @@ public class class5 implements class2 {
 		return var1;
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	static int method10(byte var0) {
 		int var1 = 0;
 		if (var0 == 0) {

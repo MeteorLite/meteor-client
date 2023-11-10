@@ -1,35 +1,43 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("tq")
-final class class516 implements class513 {
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;Lul;I)V",
-		garbageValue = "-397863290"
-	)
-	@Export("vmethod8274")
-	public void vmethod8274(Object var1, Buffer var2) {
-		this.method2523((Long)var1, var2);
-	}
-
+@ObfuscatedName("tj")
+public final class class516 {
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;I)Ljava/lang/Object;",
-		garbageValue = "-1456241929"
+		descriptor = "(S)Z",
+		garbageValue = "6525"
 	)
-	@Export("vmethod8273")
-	public Object vmethod8273(Buffer var1) {
-		return var1.readLong();
-	}
+	public static boolean method2513() {
+		boolean var0 = false;
+		boolean var1 = false;
+		if (!class316.field2798.isEmpty()) {
+			SongTask var2 = (SongTask)class316.field2798.get(0);
+			if (var2 == null) {
+				class316.field2798.remove(0);
+			} else if (var2.vmethod2142()) {
+				if (var2.method2156()) {
+					System.out.println("Error in midimanager.service: " + var2.method2158());
+					var0 = true;
+				} else {
+					if (var2.method2159() != null) {
+						class316.field2798.add(1, var2.method2159());
+					}
 
-	@ObfuscatedName("ah")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Long;Lul;B)V",
-		garbageValue = "1"
-	)
-	void method2523(Long var1, Buffer var2) {
-		var2.writeLong(var1);
+					var1 = var2.method2157();
+				}
+
+				class316.field2798.remove(0);
+			} else {
+				var1 = var2.method2157();
+			}
+		}
+
+		if (var0) {
+			class316.field2798.clear();
+			SecureRandomCallable.method457();
+		}
+
+		return var1;
 	}
 }

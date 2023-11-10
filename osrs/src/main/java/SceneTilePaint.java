@@ -1,29 +1,30 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jz")
+@ObfuscatedName("ke")
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("swColor")
 	int swColor;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("seColor")
 	int seColor;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("neColor")
 	int neColor;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("nwColor")
 	int nwColor;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@Export("texture")
 	int texture;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@Export("rgb")
 	int rgb;
 
@@ -36,5 +37,15 @@ public final class SceneTilePaint {
 		this.texture = var5;
 		this.rgb = var6;
 		this.isFlat = var7;
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(IZB)Ljava/lang/String;",
+		garbageValue = "12"
+	)
+	@Export("intToString")
+	public static String intToString(int var0, boolean var1) {
+		return var1 && var0 >= 0 ? Players.method619(var0, 10, var1) : Integer.toString(var0);
 	}
 }

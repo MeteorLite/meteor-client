@@ -3,144 +3,130 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-@ObfuscatedName("be")
+@ObfuscatedName("bv")
 public class class30 {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lom;"
+		descriptor = "Lol;"
 	)
-	@Export("FloorOverlayDefinition_archive")
-	static AbstractArchive FloorOverlayDefinition_archive;
+	@Export("VarcInt_archive")
+	public static AbstractArchive VarcInt_archive;
 
 	static {
 		ImageIO.setUseCache(false);
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lnq;",
-		garbageValue = "-42"
+		descriptor = "(Ljava/util/ArrayList;ZI)V",
+		garbageValue = "358922906"
 	)
-	static class360[] method121() {
-		return new class360[]{class360.field3179, class360.field3180};
+	static void method131(ArrayList var0, boolean var1) {
+		if (!var1) {
+			class316.field2787.clear();
+		}
+
+		Iterator var2 = var0.iterator();
+
+		while (var2.hasNext()) {
+			MusicSong var3 = (MusicSong)var2.next();
+			if (var3.musicTrackGroupId != -1 && var3.musicTrackFileId != -1) {
+				if (!var1) {
+					class316.field2787.add(var3);
+				}
+
+				class316.field2790.add(var3);
+			}
+		}
+
 	}
 
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(Ltp;ILjava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "42"
+		descriptor = "(ILdt;ZI)I",
+		garbageValue = "-2029161315"
 	)
-	static String method122(IterableNodeHashTable var0, int var1, String var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			ObjectNode var3 = (ObjectNode)var0.get((long)var1);
-			return var3 == null ? var2 : (String)var3.obj;
-		}
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lsz;",
-		garbageValue = "-651272604"
-	)
-	static class468[] method120() {
-		return new class468[]{class468.field3927, class468.field3925, class468.field3926, class468.field3924};
-	}
-
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(ILds;ZI)I",
-		garbageValue = "2111489575"
-	)
-	static int method123(int var0, Script var1, boolean var2) {
-		Widget var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-		if (var0 == 2500) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.x;
+	static int method133(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? Interpreter.scriptDotWidget : HealthBar.scriptActiveWidget;
+		if (var0 == 1700) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.itemId;
 			return 1;
-		} else if (var0 == 2501) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.y;
-			return 1;
-		} else if (var0 == 2502) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.width;
-			return 1;
-		} else if (var0 == 2503) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.height;
-			return 1;
-		} else if (var0 == 2504) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
-			return 1;
-		} else if (var0 == 2505) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.parentId;
-			return 1;
-		} else {
-			return 2;
-		}
-	}
-
-	@ObfuscatedName("ih")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "106"
-	)
-	static void method124() {
-		if (class434.worldMap != null) {
-			class434.worldMap.method2432(class87.Client_plane, (TextureProvider.localPlayer.x >> 7) + class20.baseX, (TextureProvider.localPlayer.y >> 7) + class19.baseY, false);
-			class434.worldMap.loadCache();
-		}
-
-	}
-
-	@ObfuscatedName("ke")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-1209602899"
-	)
-	@Export("updateItemPile")
-	static final void updateItemPile(int var0, int var1) {
-		NodeDeque var2 = Client.groundItems[class87.Client_plane][var0][var1];
-		if (var2 == null) {
-			class10.scene.removeGroundItemPile(class87.Client_plane, var0, var1);
-		} else {
-			long var3 = -99999999L;
-			TileItem var5 = null;
-
-			TileItem var6;
-			for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-				ItemComposition var7 = class214.ItemDefinition_get(var6.id);
-				long var8 = (long)var7.price;
-				if (var7.isStackable == 1) {
-					var8 *= var6.quantity < Integer.MAX_VALUE ? (long)(var6.quantity + 1) : (long)var6.quantity;
-				}
-
-				if (var8 > var3) {
-					var3 = var8;
-					var5 = var6;
-				}
+		} else if (var0 == 1701) {
+			if (var3.itemId != -1) {
+				Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.itemQuantity;
+			} else {
+				Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = 0;
 			}
 
-			if (var5 == null) {
-				class10.scene.removeGroundItemPile(class87.Client_plane, var0, var1);
+			return 1;
+		} else if (var0 == 1702) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.childIndex;
+			return 1;
+		} else if (var0 == 1707) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var3.method1861() ? 1 : 0;
+			return 1;
+		} else if (var0 == 1708) {
+			return class310.method1645(var3);
+		} else {
+			return var0 == 1709 ? GrandExchangeOfferTotalQuantityComparator.method1965(var3) : 2;
+		}
+	}
+
+	@ObfuscatedName("ck")
+	@ObfuscatedSignature(
+		descriptor = "([BI)[B",
+		garbageValue = "-1158445957"
+	)
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0);
+		int var2 = var1.readUnsignedByte();
+		int var3 = var1.readInt();
+		if (var3 >= 0 && (AbstractArchive.maximumContainerSize == 0 || var3 <= AbstractArchive.maximumContainerSize)) {
+			if (var2 == 0) {
+				byte[] var4 = new byte[var3];
+				var1.readBytes(var4, 0, var3);
+				return var4;
 			} else {
-				var2.addLast(var5);
-				TileItem var12 = null;
-				TileItem var11 = null;
-
-				for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-					if (var5.id != var6.id) {
-						if (var12 == null) {
-							var12 = var6;
-						}
-
-						if (var6.id != var12.id && var11 == null) {
-							var11 = var6;
-						}
+				int var6 = var1.readInt();
+				if (var6 < 0 || AbstractArchive.maximumContainerSize != 0 && var6 > AbstractArchive.maximumContainerSize) {
+					throw new RuntimeException();
+				} else {
+					byte[] var5 = new byte[var6];
+					if (var2 == 1) {
+						BZip2Decompressor.BZip2Decompressor_decompress(var5, var6, var0, var3, 9);
+					} else {
+						AbstractArchive.gzipDecompressor.decompress(var1, var5);
 					}
-				}
 
-				long var9 = GrandExchangeOfferAgeComparator.calculateTag(var0, var1, 3, false, 0);
-				class10.scene.newGroundItemPile(class87.Client_plane, var0, var1, class115.getTileHeight(var0 * 128 + 64, var1 * 128 + 64, class87.Client_plane), var5, var9, var12, var11);
+					return var5;
+				}
+			}
+		} else {
+			throw new RuntimeException();
+		}
+	}
+
+	@ObfuscatedName("nj")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "1125993888"
+	)
+	static final void method134(int var0, int var1) {
+		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : ItemContainer.guestClanChannel;
+		if (var2 != null && var1 >= 0 && var1 < var2.method857()) {
+			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
+			if (var3.rank == -1) {
+				String var4 = var3.username.getName();
+				PacketBufferNode var5 = class113.getPacketBufferNode(ClientPacket.f65, Client.packetWriter.isaacCipher);
+				var5.packetBuffer.writeByte(3 + ClanChannel.stringCp1252NullTerminatedByteSize(var4));
+				var5.packetBuffer.writeByte(var0);
+				var5.packetBuffer.writeShort(var1);
+				var5.packetBuffer.writeStringCp1252NullTerminated(var4);
+				Client.packetWriter.addNode(var5);
 			}
 		}
 	}

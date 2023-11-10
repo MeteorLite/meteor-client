@@ -1,62 +1,28 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ny")
-public enum class354 implements class386 {
-	@ObfuscatedName("ac")
+@ObfuscatedName("nf")
+public class class354 {
+	@ObfuscatedName("bt")
 	@ObfuscatedSignature(
-		descriptor = "Lny;"
+		descriptor = "(II)I",
+		garbageValue = "1854178059"
 	)
-	field3145(0),
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "Lny;"
-	)
-	field3147(1),
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "Lny;"
-	)
-	field3146(2),
-	@ObfuscatedName("ax")
-	@ObfuscatedSignature(
-		descriptor = "Lny;"
-	)
-	field3143(3),
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "Lny;"
-	)
-	field3148(4);
-
-	@ObfuscatedName("kg")
-	static int field3144;
-	@ObfuscatedName("ah")
-	final int field3149;
-
-	class354(int var3) {
-		this.field3149 = var3;
+	static int method1896(int var0) {
+		return (int)Math.pow(2.0D, (double)(7.0F + (float)var0 / 256.0F));
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("oc")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1243971674"
+		descriptor = "(Luj;I)V",
+		garbageValue = "-390178192"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field3149;
-	}
-
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "(Lud;IIII)V",
-		garbageValue = "902612467"
-	)
-	static void method1895(SpritePixels var0, int var1, int var2, int var3) {
-		DemotingHashTable var4 = WorldMapRegion.WorldMapRegion_cachedSprites;
-		long var6 = (long)(var3 << 16 | var1 << 8 | var2);
-		var4.put(var0, var6, var0.pixels.length * 4);
+	static void method1897(Buffer var0) {
+		if (Client.randomDatData != null) {
+			var0.writeBytes(Client.randomDatData, 0, Client.randomDatData.length);
+		} else {
+			byte[] var1 = class139.method748();
+			var0.writeBytes(var1, 0, var1.length);
+		}
 	}
 }

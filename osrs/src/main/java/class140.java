@@ -2,202 +2,97 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.io.IOException;
-
-@ObfuscatedName("fy")
-public enum class140 implements class386 {
-	@ObfuscatedName("ac")
+@ObfuscatedName("fw")
+public enum class140 implements class383 {
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lfw;"
 	)
-	field1301(0, 0),
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "Lfy;"
-	)
-	field1304(1, 1),
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "Lfy;"
-	)
-	field1303(2, 2),
-	@ObfuscatedName("ax")
-	@ObfuscatedSignature(
-		descriptor = "Lfy;"
-	)
-	field1308(3, 3),
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "Lfy;"
-	)
-	field1306(4, 4),
+	field1326(0, 0),
 	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lfw;"
 	)
-	field1302(5, 5),
+	field1322(1, 1),
 	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lfw;"
 	)
-	field1307(6, 6),
+	field1325(2, 2),
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Lfw;"
+	)
+	field1324(3, 3),
 	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lfw;"
 	)
-	field1300(7, 7),
-	@ObfuscatedName("am")
+	field1320(4, 4),
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lfw;"
 	)
-	field1305(8, 8);
-
-	@ObfuscatedName("tr")
+	field1327(5, 5),
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lbm;"
+		descriptor = "Lfw;"
 	)
-	@Export("pcmStreamMixer")
-	static PcmStreamMixer pcmStreamMixer;
-	@ObfuscatedName("av")
-	final int field1310;
-	@ObfuscatedName("ag")
-	final int field1309;
-
-	class140(int var3, int var4) {
-		this.field1310 = var3;
-		this.field1309 = var4;
-	}
-
+	field1319(6, 6),
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1243971674"
+		descriptor = "Lfw;"
+	)
+	field1321(7, 7),
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "Lfw;"
+	)
+	field1323(8, 8);
+
+	@ObfuscatedName("jp")
+	@ObfuscatedSignature(
+		descriptor = "Ltk;"
+	)
+	static Fonts field1318;
+	@ObfuscatedName("az")
+	final int field1329;
+	@ObfuscatedName("ap")
+	final int field1328;
+
+	class140(int var3, int var4) {
+		this.field1329 = var3;
+		this.field1328 = var4;
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-11"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field1309;
+		return this.field1328;
 	}
 
-	@ObfuscatedName("hu")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "71"
+		descriptor = "(II)Lgk;",
+		garbageValue = "1249641264"
 	)
-	@Export("reloadJS5")
-	static void reloadJS5() {
-		if (class33.varcs.hasUnwrittenChanges()) {
-			class33.varcs.write();
-		}
-
-		MusicPatchNode2.method1658();
-		if (class233.mouseRecorder != null) {
-			class233.mouseRecorder.isRunning = false;
-		}
-
-		class233.mouseRecorder = null;
-		Client.packetWriter.close();
-		if (GameEngine.taskHandler != null) {
-			try {
-				GameEngine.taskHandler.close();
-			} catch (Exception var3) {
+	public static VarcInt method750(int var0) {
+		VarcInt var1 = (VarcInt)VarcInt.VarcInt_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = class30.VarcInt_archive.takeFile(19, var0);
+			var1 = new VarcInt();
+			if (var2 != null) {
+				var1.method901(new Buffer(var2));
 			}
+
+			VarcInt.VarcInt_cached.put(var1, (long)var0);
+			return var1;
 		}
-
-		GameEngine.taskHandler = null;
-		class214.method1052();
-		WorldMapSection0.method1551();
-		class10.scene.clear();
-
-		for (int var1 = 0; var1 < 4; ++var1) {
-			Client.collisionMaps[var1].clear();
-		}
-
-		class434.worldMap = null;
-		ItemComposition.method1088(0, 0);
-		class470.method2362();
-		Client.playingJingle = false;
-		SoundCache.method228();
-		if (class171.pcmPlayer1 != null) {
-			class171.pcmPlayer1.shutdown();
-		}
-
-		class59.field309.method1969();
-		WorldMapDecorationType.method1898();
-		if (AbstractWorldMapIcon.urlRequester != null) {
-			AbstractWorldMapIcon.urlRequester.close();
-		}
-
-		HealthBar.method577();
-		JagexCache.JagexCache_dat2File = null;
-		JagexCache.JagexCache_idx255File = null;
-		UserComparator8.JagexCache_idxFiles = null;
-		class232.method1192();
-		UserComparator10.field1188 = null;
-		Client.archiveLoaders.clear();
-		Client.field551 = 0;
-		class59.field309 = new JagNetThread();
-		AbstractWorldMapIcon.urlRequester = new class115(class159.client.field660, 217);
-
-		try {
-			class139.method735("oldschool", UserComparator3.field1184, SoundSystem.field211.name, 0, 23);
-		} catch (IOException var2) {
-			throw new RuntimeException(var2);
-		}
-
-		UserComparator10.field1188 = new ArchiveDisk(255, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idx255File, 500000);
-		GameEngine.taskHandler = new TaskHandler();
-		class159.client.method155();
-		Client.field416 = class94.field929;
-		DefaultsGroup.updateGameState(0);
-	}
-
-	@ObfuscatedName("lu")
-	@ObfuscatedSignature(
-		descriptor = "(Lnm;IIZI)V",
-		garbageValue = "1653848905"
-	)
-	@Export("alignWidgetSize")
-	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
-		int var4 = var0.width;
-		int var5 = var0.height;
-		if (var0.widthAlignment == 0) {
-			var0.width = var0.rawWidth;
-		} else if (var0.widthAlignment == 1) {
-			var0.width = var1 - var0.rawWidth;
-		} else if (var0.widthAlignment == 2) {
-			var0.width = var0.rawWidth * var1 >> 14;
-		}
-
-		if (var0.heightAlignment == 0) {
-			var0.height = var0.rawHeight;
-		} else if (var0.heightAlignment == 1) {
-			var0.height = var2 - var0.rawHeight;
-		} else if (var0.heightAlignment == 2) {
-			var0.height = var2 * var0.rawHeight >> 14;
-		}
-
-		if (var0.widthAlignment == 4) {
-			var0.width = var0.height * var0.field3017 / var0.field3012;
-		}
-
-		if (var0.heightAlignment == 4) {
-			var0.height = var0.field3012 * var0.width / var0.field3017;
-		}
-
-		if (var0.contentType == 1337) {
-			Client.viewportWidget = var0;
-		}
-
-		if (var0.type == 12) {
-			var0.method1877().method1768(var0.width, var0.height);
-		}
-
-		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
-			ScriptEvent var6 = new ScriptEvent();
-			var6.widget = var0;
-			var6.args = var0.onResize;
-			Client.scriptEvents.addFirst(var6);
-		}
-
 	}
 }

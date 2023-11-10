@@ -3,32 +3,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("od")
+@ObfuscatedName("og")
 @Implements("GrandExchangeEvent")
 public class GrandExchangeEvent {
-	@ObfuscatedName("qt")
-	static int field3617;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("jz")
+	@Export("regionMapArchives")
+	static byte[][] regionMapArchives;
+	@ObfuscatedName("at")
 	@Export("world")
 	public final int world;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("age")
 	public final long age;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Log;"
+		descriptor = "Low;"
 	)
 	@Export("grandExchangeOffer")
 	public final GrandExchangeOffer grandExchangeOffer;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("offerName")
 	String offerName;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@Export("previousOfferName")
 	String previousOfferName;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lul;BI)V"
+		descriptor = "(Luj;BI)V"
 	)
 	GrandExchangeEvent(Buffer var1, byte var2, int var3) {
 		this.offerName = var1.readStringCp1252NullTerminated();
@@ -38,8 +39,8 @@ public class GrandExchangeEvent {
 		int var4 = var1.readInt();
 		int var5 = var1.readInt();
 		this.grandExchangeOffer = new GrandExchangeOffer();
-		this.grandExchangeOffer.method1990(2);
-		this.grandExchangeOffer.method1991(var2);
+		this.grandExchangeOffer.method1978(2);
+		this.grandExchangeOffer.method1979(var2);
 		this.grandExchangeOffer.unitPrice = var4;
 		this.grandExchangeOffer.totalQuantity = var5;
 		this.grandExchangeOffer.currentQuantity = 0;
@@ -47,20 +48,20 @@ public class GrandExchangeEvent {
 		this.grandExchangeOffer.id = var3;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(S)Ljava/lang/String;",
-		garbageValue = "-12823"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "1118320286"
 	)
 	@Export("getOfferName")
 	public String getOfferName() {
 		return this.offerName;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "407762879"
+		garbageValue = "-2144907217"
 	)
 	@Export("getPreviousOfferName")
 	public String getPreviousOfferName() {

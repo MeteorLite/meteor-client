@@ -11,50 +11,43 @@ import java.net.URLConnection;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@ObfuscatedName("en")
+@ObfuscatedName("el")
 @Implements("UrlRequester")
 public abstract class UrlRequester implements Runnable {
+	@ObfuscatedName("at")
+	final Thread field1176;
 	@ObfuscatedName("ah")
-	static int field1162;
-	@ObfuscatedName("co")
-	@ObfuscatedSignature(
-		descriptor = "Lnp;"
-	)
-	static StudioGame field1163;
-	@ObfuscatedName("ac")
-	final Thread field1166;
-	@ObfuscatedName("al")
 	@Export("isClosed")
 	volatile boolean isClosed;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("requests")
 	Queue requests;
-	@ObfuscatedName("ax")
-	int field1164;
+	@ObfuscatedName("ao")
+	int field1174;
 
 	UrlRequester(int var1) {
 		this.requests = new LinkedList();
-		this.field1166 = new Thread(this);
-		this.field1166.setPriority(1);
-		this.field1166.start();
-		this.field1164 = var1;
+		this.field1176 = new Thread(this);
+		this.field1176.setPriority(1);
+		this.field1176.start();
+		this.field1174 = var1;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Leq;I)V",
-		garbageValue = "1796222901"
+		descriptor = "(Lea;I)V",
+		garbageValue = "422697771"
 	)
 	@Export("vmethod2700")
 	abstract void vmethod2700(UrlRequest var1) throws IOException;
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/net/URLConnection;B)I",
-		garbageValue = "127"
+		garbageValue = "117"
 	)
-	int method648(URLConnection var1) {
-		int var2 = UrlRequest.field1169;
+	int method645(URLConnection var1) {
+		int var2 = UrlRequest.field1181;
 		if (var1 != null) {
 			try {
 				if (var1 instanceof HttpURLConnection) {
@@ -67,25 +60,25 @@ public abstract class UrlRequester implements Runnable {
 		return var2;
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/net/URLConnection;I)V",
-		garbageValue = "204362010"
+		garbageValue = "-727405176"
 	)
-	void method649(URLConnection var1) {
+	void method646(URLConnection var1) {
 		var1.setConnectTimeout(5000);
 		var1.setReadTimeout(5000);
 		var1.setUseCaches(false);
 		var1.setRequestProperty("Connection", "close");
-		var1.setRequestProperty("User-Agent", "OldSchoolRuneScape/" + this.field1164);
+		var1.setRequestProperty("User-Agent", "OldSchoolRuneScape/" + this.field1174);
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/URLConnection;Leq;S)V",
-		garbageValue = "32767"
+		descriptor = "(Ljava/net/URLConnection;Lea;I)V",
+		garbageValue = "-1518278388"
 	)
-	void method650(URLConnection var1, UrlRequest var2) {
+	void method647(URLConnection var1, UrlRequest var2) {
 		DataInputStream var3 = null;
 
 		try {
@@ -97,7 +90,7 @@ public abstract class UrlRequester implements Runnable {
 				var3.readFully(var4);
 			} else {
 				var4 = new byte[0];
-				byte[] var6 = class148.ByteArrayPool_getArray(5000);
+				byte[] var6 = class362.ByteArrayPool_getArray(5000);
 
 				for (int var7 = var3.read(var6); var7 > -1; var7 = var3.read(var6)) {
 					byte[] var8 = new byte[var4.length + var7];
@@ -106,14 +99,14 @@ public abstract class UrlRequester implements Runnable {
 					var4 = var8;
 				}
 
-				MenuAction.ByteArrayPool_release(var6);
+				SwapSongTask.ByteArrayPool_release(var6);
 			}
 
 			var2.response0 = var4;
 		} catch (IOException var14) {
 			var2.response0 = null;
 		} finally {
-			var2.field1173 = this.method648(var1);
+			var2.field1186 = this.method645(var1);
 		}
 
 		if (var3 != null) {
@@ -125,10 +118,10 @@ public abstract class UrlRequester implements Runnable {
 
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/URL;I)Leq;",
-		garbageValue = "511979680"
+		descriptor = "(Ljava/net/URL;I)Lea;",
+		garbageValue = "-511964616"
 	)
 	@Export("request")
 	public UrlRequest request(URL var1) {
@@ -140,10 +133,10 @@ public abstract class UrlRequester implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1319494381"
+		garbageValue = "-264971545"
 	)
 	@Export("close")
 	public void close() {
@@ -154,7 +147,7 @@ public abstract class UrlRequester implements Runnable {
 				this.notify();
 			}
 
-			this.field1166.join();
+			this.field1176.join();
 		} catch (InterruptedException var4) {
 		}
 
@@ -179,53 +172,80 @@ public abstract class UrlRequester implements Runnable {
 
 				this.vmethod2700(var1);
 			} catch (Exception var7) {
-				class190.RunException_sendStackTrace((String)null, var7);
+				GrandExchangeOfferWorldComparator.RunException_sendStackTrace((String)null, var7);
 			}
 		}
 
 	}
 
-	@ObfuscatedName("br")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;III)V",
-		garbageValue = "1281314063"
+		descriptor = "(IIILhs;II)V",
+		garbageValue = "237436184"
 	)
-	public static void method653(Widget var0, int var1, int var2) {
-		PlayerComposition var3 = var0.field3127;
-		boolean var4 = var2 != var3.field2950;
-		var3.field2950 = var2;
-		if (var4) {
-			int var5;
-			int var6;
-			if (var3.field2950 == var1) {
-				for (var5 = 0; var5 < PlayerComposition.equipmentIndices.length; ++var5) {
-					var6 = PlayerComposition.equipmentIndices[var5];
-					if (var3.equipment[var6] > 0 && var3.equipment[var6] < 512) {
-						var3.equipment[var6] = var3.field2944[var6];
-					}
-				}
-			} else {
-				if (var3.equipment[0] < 512 || class286.method1574(var3)) {
-					var3.equipment[class223.field1865.field1879] = 1;
-				}
-
-				for (var5 = 0; var5 < 7; ++var5) {
-					var6 = PlayerComposition.equipmentIndices[var5];
-					if (var3.equipment[var6] > 0 && var3.equipment[var6] < 512) {
-						int[] var7 = var3.equipment;
-
-						for (int var8 = 0; var8 < class403.KitDefinition_fileCount; ++var8) {
-							KitDefinition var9 = class73.KitDefinition_get(var8);
-							if (var9 != null && !var9.nonSelectable && var9.bodypartID == (var2 == 1 ? 7 : 0) + var5) {
-								var7[PlayerComposition.equipmentIndices[var5]] = var8 + 256;
-								break;
-							}
-						}
-					}
-				}
-			}
+	static void method648(int var0, int var1, int var2, ObjectComposition var3, int var4) {
+		ObjectSound var5 = new ObjectSound();
+		var5.plane = var0;
+		var5.x = var1 * 128;
+		var5.y = var2 * 128;
+		int var6 = var3.sizeX;
+		int var7 = var3.sizeY;
+		if (var4 == 1 || var4 == 3) {
+			var6 = var3.sizeY;
+			var7 = var3.sizeX;
 		}
 
-		var3.method1760();
+		var5.maxX = (var6 + var1) * 128;
+		var5.maxY = (var7 + var2) * 128;
+		var5.soundEffectId = var3.ambientSoundId;
+		var5.field691 = var3.int7 * 128;
+		var5.field700 = var3.int5;
+		var5.field696 = var3.int6;
+		var5.soundEffectIds = var3.soundEffectIds;
+		if (var3.transforms != null) {
+			var5.obj = var3;
+			var5.set();
+		}
+
+		ObjectSound.objectSounds.addFirst(var5);
+		if (var5.soundEffectIds != null) {
+			var5.field699 = var5.field700 + (int)(Math.random() * (double)(var5.field696 - var5.field700));
+		}
+
+	}
+
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(ILdt;ZS)I",
+		garbageValue = "-175"
+	)
+	static int method651(int var0, Script var1, boolean var2) {
+		Widget var3 = HealthBarDefinition.widgetDefinition.method1733(Interpreter.Interpreter_intStack[--DbTableType.Interpreter_intStackSize]);
+		if (var0 == 2800) {
+			Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = WorldMapData_0.Widget_unpackTargetMask(class361.getWidgetFlags(var3));
+			return 1;
+		} else if (var0 != 2801) {
+			if (var0 == 2802) {
+				if (var3.dataText == null) {
+					Interpreter.Interpreter_stringStack[++class127.Interpreter_stringStackSize - 1] = "";
+				} else {
+					Interpreter.Interpreter_stringStack[++class127.Interpreter_stringStackSize - 1] = var3.dataText;
+				}
+
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			int var4 = Interpreter.Interpreter_intStack[--DbTableType.Interpreter_intStackSize];
+			--var4;
+			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+				Interpreter.Interpreter_stringStack[++class127.Interpreter_stringStackSize - 1] = var3.actions[var4];
+			} else {
+				Interpreter.Interpreter_stringStack[++class127.Interpreter_stringStackSize - 1] = "";
+			}
+
+			return 1;
+		}
 	}
 }

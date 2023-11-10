@@ -6,27 +6,36 @@ import net.runelite.mapping.ObfuscatedSignature;
 import java.util.HashMap;
 import java.util.Map;
 
-@ObfuscatedName("er")
+@ObfuscatedName("eo")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Ltp;"
+		descriptor = "Ltz;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lpt;"
+		descriptor = "Lpo;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("Messages_count")
 	static int Messages_count;
+	@ObfuscatedName("cx")
+	@ObfuscatedSignature(
+		descriptor = "Lnt;"
+	)
+	static StudioGame field1156;
+	@ObfuscatedName("gk")
+	static String field1155;
+	@ObfuscatedName("uu")
+	static int field1154;
 
 	static {
 		Messages_channels = new HashMap();
@@ -35,25 +44,29 @@ public class Messages {
 		Messages_count = 0;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lis;",
-		garbageValue = "517783557"
+		descriptor = "(IIII)I",
+		garbageValue = "292264125"
 	)
-	@Export("getWidget")
-	public static VarbitComposition getWidget(int var0) {
-		VarbitComposition var1 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
-			var1 = new VarbitComposition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			VarbitComposition.VarbitDefinition_cached.put(var1, (long)var0);
-			return var1;
+	static final int method634(int var0, int var1, int var2) {
+		if (var2 > 179) {
+			var1 /= 2;
 		}
+
+		if (var2 > 192) {
+			var1 /= 2;
+		}
+
+		if (var2 > 217) {
+			var1 /= 2;
+		}
+
+		if (var2 > 243) {
+			var1 /= 2;
+		}
+
+		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
+		return var3;
 	}
 }

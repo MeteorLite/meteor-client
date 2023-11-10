@@ -2,102 +2,126 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gp")
-public class class167 extends class145 {
-	@ObfuscatedName("ac")
-	long field1420;
-	@ObfuscatedName("al")
-	String field1419;
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.util.Iterator;
+
+@ObfuscatedName("ga")
+public class class167 extends class160 {
+	@ObfuscatedName("fb")
+	@ObfuscatedSignature(
+		descriptor = "Lro;"
+	)
+	@Export("js5Socket")
+	static AbstractSocket js5Socket;
+	@ObfuscatedName("at")
+	String field1427;
+	@ObfuscatedName("ah")
+	byte field1425;
+	@ObfuscatedName("ar")
+	byte field1426;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lff;"
+		descriptor = "Lgi;"
 	)
-	final class148 this$0;
+	final class161 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lff;)V"
+		descriptor = "(Lgi;)V"
 	)
-	class167(class148 var1) {
+	class167(class161 var1) {
 		this.this$0 = var1;
-		this.field1420 = -1L;
-		this.field1419 = null;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;I)V",
-		garbageValue = "-11659242"
+		descriptor = "(Luj;I)V",
+		garbageValue = "1810249387"
 	)
-	@Export("vmethod3254")
-	void vmethod3254(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) {
-			--var1.offset;
-			this.field1420 = var1.readLong();
+	@Export("vmethod3238")
+	void vmethod3238(Buffer var1) {
+		this.field1427 = var1.readStringCp1252NullTerminatedOrNull();
+		if (this.field1427 != null) {
+			var1.readUnsignedByte();
+			this.field1425 = var1.readByte();
+			this.field1426 = var1.readByte();
 		}
 
-		this.field1419 = var1.readStringCp1252NullTerminatedOrNull();
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Lgi;I)V",
-		garbageValue = "21847466"
+		descriptor = "(Lgn;B)V",
+		garbageValue = "-75"
 	)
-	@Export("vmethod3248")
-	void vmethod3248(ClanSettings var1) {
-		var1.method820(this.field1420, this.field1419);
-	}
-
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "(Lul;Ltp;B)Ltp;",
-		garbageValue = "8"
-	)
-	@Export("readStringIntParameters")
-	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
-		int var2 = var0.readUnsignedByte();
-		int var3;
-		if (var1 == null) {
-			var3 = EnumComposition.method999(var2);
-			var1 = new IterableNodeHashTable(var3);
+	@Export("vmethod3239")
+	void vmethod3239(ClanChannel var1) {
+		var1.name = this.field1427;
+		if (this.field1427 != null) {
+			var1.field1417 = this.field1425;
+			var1.field1418 = this.field1426;
 		}
 
-		for (var3 = 0; var3 < var2; ++var3) {
-			boolean var4 = var0.readUnsignedByte() == 1;
-			int var5 = var0.readMedium();
-			Object var6;
-			if (var4) {
-				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
-			} else {
-				var6 = new IntegerNode(var0.readInt());
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "-1882833719"
+	)
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
+	}
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)I",
+		garbageValue = "21"
+	)
+	static final int method867(int var0, int var1, int var2, int var3) {
+		return var3 * var0 + var2 * var1 >> 16;
+	}
+
+	@ObfuscatedName("bz")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-139333947"
+	)
+	@Export("getGcDuration")
+	protected static int getGcDuration() {
+		int var0 = 0;
+		if (UserComparator10.garbageCollector == null || !UserComparator10.garbageCollector.isValid()) {
+			try {
+				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
+
+				while (var1.hasNext()) {
+					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
+					if (var2.isValid()) {
+						UserComparator10.garbageCollector = var2;
+						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
+						GameEngine.garbageCollectorLastCollectionTime = -1L;
+					}
+				}
+			} catch (Throwable var11) {
+			}
+		}
+
+		if (UserComparator10.garbageCollector != null) {
+			long var9 = SpotAnimationDefinition.method962();
+			long var3 = UserComparator10.garbageCollector.getCollectionTime();
+			if (-1L != GameEngine.garbageCollectorLastCollectionTime) {
+				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
+				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
+				if (var7 != 0L) {
+					var0 = (int)(var5 * 100L / var7);
+				}
 			}
 
-			var1.put((Node)var6, (long)var5);
+			GameEngine.garbageCollectorLastCollectionTime = var3;
+			GameEngine.garbageCollectorLastCheckTimeMs = var9;
 		}
 
-		return var1;
-	}
-
-	@ObfuscatedName("ax")
-	@ObfuscatedSignature(
-		descriptor = "(Lom;Ljava/lang/String;Ljava/lang/String;I)Lun;",
-		garbageValue = "-2109687814"
-	)
-	@Export("SpriteBuffer_getIndexedSpriteByName")
-	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
-		if (!var0.isValidFileName(var1, var2)) {
-			return null;
-		} else {
-			int var3 = var0.getGroupId(var1);
-			int var4 = var0.getFileId(var3, var2);
-			IndexedSprite var5;
-			if (!class164.method862(var0, var3, var4)) {
-				var5 = null;
-			} else {
-				var5 = Widget.method1844();
-			}
-
-			return var5;
-		}
+		return var0;
 	}
 }

@@ -2,38 +2,35 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("ie")
+@ObfuscatedName("hu")
 @Implements("FloorUnderlayDefinition")
 public class FloorUnderlayDefinition extends DualNode {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lom;"
+		descriptor = "Lol;"
 	)
 	@Export("FloorUnderlayDefinition_archive")
 	public static AbstractArchive FloorUnderlayDefinition_archive;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Llr;"
+		descriptor = "Llk;"
 	)
 	@Export("FloorUnderlayDefinition_cached")
-	public static EvictingDualNodeHashTable FloorUnderlayDefinition_cached;
-	@ObfuscatedName("ak")
+	static EvictingDualNodeHashTable FloorUnderlayDefinition_cached;
+	@ObfuscatedName("ar")
 	@Export("rgb")
 	int rgb;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@Export("hueMultiplier")
 	public int hueMultiplier;
 
@@ -45,20 +42,20 @@ public class FloorUnderlayDefinition extends DualNode {
 		this.rgb = 0;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1890021577"
+		descriptor = "(B)V",
+		garbageValue = "110"
 	)
 	@Export("postDecode")
 	void postDecode() {
 		this.setHsl(this.rgb);
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;II)V",
-		garbageValue = "1012239262"
+		descriptor = "(Luj;II)V",
+		garbageValue = "-1456833472"
 	)
 	@Export("decode")
 	void decode(Buffer var1, int var2) {
@@ -72,10 +69,10 @@ public class FloorUnderlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;III)V",
-		garbageValue = "2138795593"
+		descriptor = "(Luj;IIS)V",
+		garbageValue = "29369"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -85,10 +82,10 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1881157581"
+		garbageValue = "511229306"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -115,8 +112,8 @@ public class FloorUnderlayDefinition extends DualNode {
 
 		double var12 = 0.0D;
 		double var14 = 0.0D;
-		double var16 = (var10 + var8) / 2.0D;
-		if (var10 != var8) {
+		double var16 = (var8 + var10) / 2.0D;
+		if (var8 != var10) {
 			if (var16 < 0.5D) {
 				var14 = (var10 - var8) / (var8 + var10);
 			}
@@ -125,12 +122,12 @@ public class FloorUnderlayDefinition extends DualNode {
 				var14 = (var10 - var8) / (2.0D - var10 - var8);
 			}
 
-			if (var10 == var2) {
+			if (var2 == var10) {
 				var12 = (var4 - var6) / (var10 - var8);
-			} else if (var4 == var10) {
+			} else if (var10 == var4) {
 				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
 			} else if (var10 == var6) {
-				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
+				var12 = 4.0D + (var2 - var4) / (var10 - var8);
 			}
 		}
 
@@ -150,9 +147,9 @@ public class FloorUnderlayDefinition extends DualNode {
 		}
 
 		if (var16 > 0.5D) {
-			this.hueMultiplier = (int)((1.0D - var16) * var14 * 512.0D);
+			this.hueMultiplier = (int)(512.0D * (1.0D - var16) * var14);
 		} else {
-			this.hueMultiplier = (int)(var16 * var14 * 512.0D);
+			this.hueMultiplier = (int)(512.0D * var16 * var14);
 		}
 
 		if (this.hueMultiplier < 1) {
@@ -162,55 +159,122 @@ public class FloorUnderlayDefinition extends DualNode {
 		this.hue = (int)(var12 * (double)this.hueMultiplier);
 	}
 
-	@ObfuscatedName("ai")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "65"
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "1839424065"
 	)
-	static final int method1044(int var0, int var1) {
-		if (var0 == -2) {
-			return 12345678;
-		} else if (var0 == -1) {
-			if (var1 < 2) {
-				var1 = 2;
-			} else if (var1 > 126) {
-				var1 = 126;
-			}
-
-			return var1;
-		} else {
-			var1 = (var0 & 127) * var1 / 128;
-			if (var1 < 2) {
-				var1 = 2;
-			} else if (var1 > 126) {
-				var1 = 126;
-			}
-
-			return (var0 & 65408) + var1;
-		}
+	@Export("addImageTag")
+	static String addImageTag(int var0) {
+		return "<img=" + var0 + ">";
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;I)[F",
-		garbageValue = "508880574"
+		descriptor = "([FIFZFZ[FI)I",
+		garbageValue = "-1537766732"
 	)
-	static float[] method1043(JSONObject var0, String var1) throws JSONException {
-		float[] var2 = new float[4];
+	public static int method967(float[] var0, int var1, float var2, boolean var3, float var4, boolean var5, float[] var6) {
+		float var7 = 0.0F;
 
-		try {
-			JSONArray var3 = var0.getJSONArray(var1);
-			var2[0] = (float)var3.optDouble(0, 0.0D);
-			var2[1] = (float)var3.optDouble(1, 0.0D);
-			var2[2] = (float)var3.optDouble(2, 1.0D);
-			var2[3] = (float)var3.optDouble(3, 1.0D);
-		} catch (JSONException var4) {
-			var2[0] = 0.0F;
-			var2[1] = 0.0F;
-			var2[2] = 1.0F;
-			var2[3] = 1.0F;
+		for (int var8 = 0; var8 < var1 + 1; ++var8) {
+			var7 += Math.abs(var0[var8]);
 		}
 
-		return var2;
+		float var24 = (Math.abs(var2) + Math.abs(var4)) * (float)(var1 + 1) * class127.field1219;
+		if (var7 <= var24) {
+			return -1;
+		} else {
+			float[] var9 = new float[var1 + 1];
+
+			int var10;
+			for (var10 = 0; var10 < var1 + 1; ++var10) {
+				var9[var10] = var0[var10] * (1.0F / var7);
+			}
+
+			while (Math.abs(var9[var1]) < var24) {
+				--var1;
+			}
+
+			var10 = 0;
+			if (var1 == 0) {
+				return var10;
+			} else if (var1 == 1) {
+				var6[0] = -var9[0] / var9[1];
+				boolean var11 = var3 ? var2 < var6[0] + var24 : var2 < var6[0] - var24;
+				boolean var12 = var5 ? var4 > var6[0] - var24 : var4 > var24 + var6[0];
+				var10 = var11 && var12 ? 1 : 0;
+				if (var10 > 0) {
+					if (var3 && var6[0] < var2) {
+						var6[0] = var2;
+					} else if (var5 && var6[0] > var4) {
+						var6[0] = var4;
+					}
+				}
+
+				return var10;
+			} else {
+				class464 var21 = new class464(var9, var1);
+				float[] var22 = new float[var1 + 1];
+
+				for (int var13 = 1; var13 <= var1; ++var13) {
+					var22[var13 - 1] = (float)var13 * var9[var13];
+				}
+
+				float[] var23 = new float[var1 + 1];
+				int var14 = method967(var22, var1 - 1, var2, false, var4, false, var23);
+				if (var14 == -1) {
+					return 0;
+				} else {
+					boolean var15 = false;
+					float var17 = 0.0F;
+					float var18 = 0.0F;
+					float var19 = 0.0F;
+
+					for (int var20 = 0; var20 <= var14; ++var20) {
+						if (var10 > var1) {
+							return var10;
+						}
+
+						float var16;
+						if (var20 == 0) {
+							var16 = var2;
+							var18 = class251.method1335(var9, var1, var2);
+							if (Math.abs(var18) <= var24 && var3) {
+								var6[var10++] = var2;
+							}
+						} else {
+							var16 = var19;
+							var18 = var17;
+						}
+
+						if (var20 == var14) {
+							var19 = var4;
+							var15 = false;
+						} else {
+							var19 = var23[var20];
+						}
+
+						var17 = class251.method1335(var9, var1, var19);
+						if (var15) {
+							var15 = false;
+						} else if (Math.abs(var17) < var24) {
+							if (var14 != var20 || var5) {
+								var6[var10++] = var19;
+								var15 = true;
+							}
+						} else if (var18 < 0.0F && var17 > 0.0F || var18 > 0.0F && var17 < 0.0F) {
+							var6[var10++] = ClanSettings.method805(var21, var16, var19, 0.0F);
+							if (var10 > 1 && var6[var10 - 2] >= var6[var10 - 1] - var24) {
+								var6[var10 - 2] = (var6[var10 - 2] + var6[var10 - 1]) * 0.5F;
+								--var10;
+							}
+						}
+					}
+
+					return var10;
+				}
+			}
+		}
 	}
 }

@@ -1,14 +1,45 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("tv")
-public class class508 {
-	@ObfuscatedName("ak")
-	static final char[] field4108;
-	@ObfuscatedName("ax")
-	static final char[] field4109;
+import java.util.Iterator;
 
-	static {
-		field4108 = new char[]{' ', '\u00a0', '_', '-', '\u00e0', '\u00e1', '\u00e2', '\u00e4', '\u00e3', '\u00c0', '\u00c1', '\u00c2', '\u00c4', '\u00c3', '\u00e8', '\u00e9', '\u00ea', '\u00eb', '\u00c8', '\u00c9', '\u00ca', '\u00cb', '\u00ed', '\u00ee', '\u00ef', '\u00cd', '\u00ce', '\u00cf', '\u00f2', '\u00f3', '\u00f4', '\u00f6', '\u00f5', '\u00d2', '\u00d3', '\u00d4', '\u00d6', '\u00d5', '\u00f9', '\u00fa', '\u00fb', '\u00fc', '\u00d9', '\u00da', '\u00db', '\u00dc', '\u00e7', '\u00c7', '\u00ff', '\u0178', '\u00f1', '\u00d1', '\u00df'};
-		field4109 = new char[]{'[', ']', '#'};
+@ObfuscatedName("tx")
+class class508 implements Iterator {
+	@ObfuscatedName("at")
+	int field4119;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Ltl;"
+	)
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class509 this$0;
+
+	@ObfuscatedSignature(
+		descriptor = "(Ltl;)V"
+	)
+	class508(class509 var1) {
+		this.this$0 = var1;
+	}
+
+	@Export("hasNext")
+	@ObfuscatedName("hasNext")
+	public boolean hasNext() {
+		return this.field4119 < this.this$0.method2338();
+	}
+
+	@Export("next")
+	@ObfuscatedName("next")
+	public Object next() {
+		int var1 = ++this.field4119 - 1;
+		class468 var2 = (class468)this.this$0.field4121.get((long)var1);
+		return var2 != null ? var2 : this.this$0.method2492(var1);
+	}
+
+	@Export("remove")
+	@ObfuscatedName("remove")
+	public void remove() {
+		throw new UnsupportedOperationException();
 	}
 }

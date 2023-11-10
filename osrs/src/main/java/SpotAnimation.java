@@ -1,29 +1,29 @@
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("vk")
+@ObfuscatedName("vl")
 @Implements("SpotAnimation")
 public class SpotAnimation extends Node {
-	@ObfuscatedName("ac")
-	public int field4304;
-	@ObfuscatedName("al")
-	public int field4306;
-	@ObfuscatedName("ak")
-	public int field4305;
-	@ObfuscatedName("ax")
-	public int field4308;
+	@ObfuscatedName("at")
+	public int field4313;
+	@ObfuscatedName("ah")
+	public int field4310;
+	@ObfuscatedName("ar")
+	public int field4312;
 	@ObfuscatedName("ao")
-	public int field4307;
+	public int field4311;
+	@ObfuscatedName("ab")
+	public int field4309;
 
 	public SpotAnimation(int var1, int var2, int var3, int var4) {
-		this.field4304 = -1;
-		this.field4306 = 0;
-		this.field4305 = 0;
-		this.field4308 = 0;
-		this.field4307 = 0;
-		this.field4304 = var1;
-		this.field4307 = var2;
-		this.field4308 = var3;
-		this.field4306 = var4;
+		this.field4313 = -1;
+		this.field4310 = 0;
+		this.field4312 = 0;
+		this.field4311 = 0;
+		this.field4309 = 0;
+		this.field4313 = var1;
+		this.field4309 = var2;
+		this.field4311 = var3;
+		this.field4310 = var4;
 	}
 }

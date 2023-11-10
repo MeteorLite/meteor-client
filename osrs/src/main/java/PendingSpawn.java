@@ -3,115 +3,119 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dw")
+import java.util.ArrayList;
+import java.util.Iterator;
+
+@ObfuscatedName("dp")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("dz")
-	@ObfuscatedSignature(
-		descriptor = "[Lun;"
-	)
-	@Export("worldSelectFlagSprites")
-	static IndexedSprite[] worldSelectFlagSprites;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("dy")
+	static boolean field949;
+	@ObfuscatedName("qa")
+	static int field950;
+	@ObfuscatedName("at")
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("type")
 	int type;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("x")
 	int x;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("y")
 	int y;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@Export("objectId")
 	int objectId;
-	@ObfuscatedName("ah")
-	int field947;
-	@ObfuscatedName("ar")
-	int field953;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("au")
+	int field961;
+	@ObfuscatedName("aa")
+	int field951;
+	@ObfuscatedName("ac")
 	@Export("id")
 	int id;
-	@ObfuscatedName("am")
+	@ObfuscatedName("al")
 	@Export("rotation")
 	int rotation;
-	@ObfuscatedName("av")
+	@ObfuscatedName("az")
 	@Export("objectType")
 	int objectType;
-	@ObfuscatedName("ag")
-	int field946;
 	@ObfuscatedName("ap")
-	int field952;
-	@ObfuscatedName("ay")
+	int field957;
+	@ObfuscatedName("ax")
+	int field962;
+	@ObfuscatedName("as")
 	@Export("startCycle")
 	int startCycle;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ay")
 	@Export("endCycle")
 	int endCycle;
 
 	PendingSpawn() {
-		this.field952 = 31;
+		this.field962 = 31;
 		this.startCycle = 0;
 		this.endCycle = -1;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1554580645"
+		garbageValue = "-1592817450"
 	)
-	void method506(int var1) {
-		this.field952 = var1;
+	void method503(int var1) {
+		this.field962 = var1;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "585710320"
+		descriptor = "(IS)Z",
+		garbageValue = "7928"
 	)
-	boolean method507(int var1) {
+	boolean method504(int var1) {
 		if (var1 >= 0 && var1 <= 4) {
-			return (this.field952 & 1 << var1) != 0;
+			return (this.field962 & 1 << var1) != 0;
 		} else {
 			return true;
 		}
 	}
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "-121"
+		descriptor = "(Ljava/util/ArrayList;IIIIZI)V",
+		garbageValue = "1949440150"
 	)
-	static final void method508(String var0) {
-		class436.method2211(var0 + " is already on your friend list");
-	}
+	public static void method505(ArrayList var0, int var1, int var2, int var3, int var4, boolean var5) {
+		if (!var0.isEmpty()) {
+			class316.field2790.clear();
+			class316.field2798.clear();
+			PacketBufferNode.method1637(var5);
+			class30.method131(var0, var5);
+			if (!class316.field2790.isEmpty()) {
+				EnumComposition.method925(var1, var2, var3, var4);
+				class316.field2798.add(new AddRequestTask((SongTask)null));
+				class316.field2798.add(new class420((SongTask)null, class316.field2792, class316.field2791, class168.field1428));
+				ArrayList var6 = new ArrayList();
+				var6.add(new class415(new FadeInTask((SongTask)null, 0, true, class316.field2796)));
+				if (!class316.musicSongs.isEmpty()) {
+					ArrayList var7 = new ArrayList();
+					var7.add(new DelayFadeTask(new ConcurrentMidiTask((SongTask)null, var6), class316.field2795));
+					ArrayList var9 = new ArrayList();
+					Iterator var10 = class316.musicSongs.iterator();
 
-	@ObfuscatedName("lq")
-	@ObfuscatedSignature(
-		descriptor = "([Lnm;Lnm;ZB)V",
-		garbageValue = "-37"
-	)
-	@Export("revalidateWidgetScroll")
-	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
-		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth * -935068743 * -231105911 : var1.width * -2052421073 * -1523778353;
-		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight * -356890711 * -111326055 : var1.height * -2112445931 * -503112387;
-		class360.resizeInterface(var0, var1.id, var3, var4, var2);
-		if (var1.children != null) {
-			class360.resizeInterface(var1.children, var1.id, var3, var4, var2);
-		}
+					while (var10.hasNext()) {
+						MusicSong var11 = (MusicSong)var10.next();
+						var9.add(var11);
+					}
 
-		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
-		if (var5 != null) {
-			int var6 = var5.group;
-			if (class33.widgetDefinition.loadInterface(var6)) {
-				class360.resizeInterface(class33.widgetDefinition.Widget_interfaceComponents[var6], -1, var3, var4, var2);
+					var7.add(new DelayFadeTask(new FadeOutTask(new class413((SongTask)null, var9), 0, false, class316.field2794), class316.musicPlayerStatus));
+					class316.field2798.add(new ConcurrentMidiTask((SongTask)null, var7));
+				} else {
+					class316.field2798.add(new DelayFadeTask((SongTask)null, class316.field2795));
+					class316.field2798.add(new ConcurrentMidiTask((SongTask)null, var6));
+				}
+
 			}
 		}
-
-		if (var1.contentType == 1337) {
-		}
-
 	}
 }

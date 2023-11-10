@@ -7,36 +7,35 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 
 @ObfuscatedName("aw")
 public class class20 {
-	@ObfuscatedName("jr")
-	@Export("baseX")
-	static int baseX;
-	@ObfuscatedName("ac")
-	final int field56;
-	@ObfuscatedName("al")
-	final Map field58;
-	@ObfuscatedName("ak")
-	final String field57;
+	@ObfuscatedName("tk")
+	@ObfuscatedSignature(
+		descriptor = "Lqi;"
+	)
+	@Export("friendsChat")
+	static FriendsChat friendsChat;
+	@ObfuscatedName("at")
+	final int field62;
+	@ObfuscatedName("ah")
+	final Map field64;
+	@ObfuscatedName("ar")
+	final String field63;
 
 	class20(String var1) {
-		this.field56 = 400;
-		this.field58 = null;
-		this.field57 = "";
+		this.field62 = 400;
+		this.field64 = null;
+		this.field63 = "";
 	}
 
 	class20(HttpURLConnection var1) throws IOException {
-		this.field56 = var1.getResponseCode();
+		this.field62 = var1.getResponseCode();
 		var1.getResponseMessage();
-		this.field58 = var1.getHeaderFields();
+		this.field64 = var1.getHeaderFields();
 		StringBuilder var2 = new StringBuilder();
-		InputStream var3 = this.field56 >= 300 ? var1.getErrorStream() : var1.getInputStream();
+		InputStream var3 = this.field62 >= 300 ? var1.getErrorStream() : var1.getInputStream();
 		if (var3 != null) {
 			InputStreamReader var4 = new InputStreamReader(var3);
 			BufferedReader var5 = new BufferedReader(var4);
@@ -49,142 +48,78 @@ public class class20 {
 			var3.close();
 		}
 
-		this.field57 = var2.toString();
+		this.field63 = var2.toString();
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1672578717"
+		descriptor = "(B)I",
+		garbageValue = "3"
 	)
-	public int method71() {
-		return this.field56;
+	public int method74() {
+		return this.field62;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/util/Map;",
-		garbageValue = "-85"
+		descriptor = "(I)Ljava/util/Map;",
+		garbageValue = "1360391754"
 	)
-	public Map method72() {
-		return this.field58;
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-21006210"
-	)
-	public String method73() {
-		return this.field57;
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "775264196"
-	)
-	public static int method70(int var0) {
-		return var0 + -512;
+	public Map method75() {
+		return this.field64;
 	}
 
 	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1265533406"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-541639855"
 	)
-	public static void method74() {
-		ParamComposition.ParamDefinition_cached.clear();
+	public String method76() {
+		return this.field63;
 	}
 
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/util/Date;",
-		garbageValue = "572472849"
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "564353501"
 	)
-	static Date method76() throws ParseException {
-		SimpleDateFormat var0 = new SimpleDateFormat("ddMMyyyyHH", Locale.ENGLISH);
-		var0.setLenient(false);
-		StringBuilder var1 = new StringBuilder();
-		String[] var2 = Login.field766;
+	public static String method77(String var0) {
+		int var1 = var0.length();
+		char[] var2 = new char[var1];
+		byte var3 = 2;
 
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			String var4 = var2[var3];
-			if (var4 == null) {
-				class19.method67("Date not valid.", "Please ensure all characters are populated.", "");
-				return null;
+		for (int var4 = 0; var4 < var1; ++var4) {
+			char var5 = var0.charAt(var4);
+			if (var3 == 0) {
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) {
+				char var6;
+				if (var5 != 181 && var5 != 402) {
+					var6 = Character.toTitleCase(var5);
+				} else {
+					var6 = var5;
+				}
+
+				var5 = var6;
 			}
 
-			var1.append(var4);
-		}
-
-		var1.append("12");
-		return var0.parse(var1.toString());
-	}
-
-	@ObfuscatedName("aa")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-690055453"
-	)
-	public static void method75() {
-		NPCComposition.NpcDefinition_cached.clear();
-		NPCComposition.NpcDefinition_cachedModels.clear();
-	}
-
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(ILds;ZI)I",
-		garbageValue = "1223727295"
-	)
-	static int method77(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 != 1927 && var0 != 2927) {
-			int var4;
-			if (var0 == 1928) {
-				var3 = var2 ? class416.scriptDotWidget : class306.scriptActiveWidget;
-				var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				if (var4 >= 1 && var4 <= 10) {
-					class104 var5 = new class104(var4, var3.id, var3.childIndex, var3.itemId);
-					Interpreter.field713.add(var5);
-					return 1;
+			if (Character.isLetter(var5)) {
+				var3 = 0;
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') {
+				if (Character.isSpaceChar(var5)) {
+					if (var3 != 2) {
+						var3 = 1;
+					}
 				} else {
-					throw new RuntimeException();
-				}
-			} else if (var0 == 2928) {
-				Interpreter.Interpreter_intStackSize -= 3;
-				int var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				int var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-				if (var8 >= 1 && var8 <= 10) {
-					class104 var6 = new class104(var8, var7, var4, class33.widgetDefinition.method1740(var7).itemId);
-					Interpreter.field713.add(var6);
-					return 1;
-				} else {
-					throw new RuntimeException();
+					var3 = 1;
 				}
 			} else {
-				return 2;
-			}
-		} else if (Interpreter.field706 >= 10) {
-			throw new RuntimeException();
-		} else {
-			if (var0 >= 2000) {
-				var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			} else {
-				var3 = var2 ? class416.scriptDotWidget : class306.scriptActiveWidget;
+				var3 = 2;
 			}
 
-			if (var3.onResize == null) {
-				return 0;
-			} else {
-				ScriptEvent var9 = new ScriptEvent();
-				var9.widget = var3;
-				var9.args = var3.onResize;
-				var9.field864 = Interpreter.field706 + 1;
-				Client.scriptEvents.addFirst(var9);
-				return 1;
-			}
+			var2[var4] = var5;
 		}
+
+		return new String(var2);
 	}
 }

@@ -3,22 +3,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dt")
+@ObfuscatedName("dv")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-	@ObfuscatedName("ab")
-	@Export("ItemDefinition_inMembersWorld")
-	static boolean ItemDefinition_inMembersWorld;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("health")
 	int health;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@Export("cycleOffset")
 	int cycleOffset;
 
@@ -29,10 +26,10 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "-104835898"
+		garbageValue = "857709911"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -42,74 +39,24 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-53586823"
+		descriptor = "(II)Ldt;",
+		garbageValue = "-1907419429"
 	)
-	public static String method523(String var0) {
-		int var1 = var0.length();
-		char[] var2 = new char[var1];
-		byte var3 = 2;
-
-		for (int var4 = 0; var4 < var1; ++var4) {
-			char var5 = var0.charAt(var4);
-			if (var3 == 0) {
-				var5 = Character.toLowerCase(var5);
-			} else if (var3 == 2 || Character.isUpperCase(var5)) {
-				var5 = StudioGame.method1905(var5);
-			}
-
-			if (Character.isLetter(var5)) {
-				var3 = 0;
-			} else if (var5 != '.' && var5 != '?' && var5 != '!') {
-				if (Character.isSpaceChar(var5)) {
-					if (var3 != 2) {
-						var3 = 1;
-					}
-				} else {
-					var3 = 1;
-				}
-			} else {
-				var3 = 2;
-			}
-
-			var2[var4] = var5;
-		}
-
-		return new String(var2);
-	}
-
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "(ILds;ZI)I",
-		garbageValue = "-2085144575"
-	)
-	static int method524(int var0, Script var1, boolean var2) {
-		if (var0 == 5630) {
-			Client.logoutTimer = 250;
-			return 1;
+	@Export("getScript")
+	static Script getScript(int var0) {
+		Script var1 = (Script)Script.Script_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			return 2;
-		}
-	}
-
-	@ObfuscatedName("nq")
-	@ObfuscatedSignature(
-		descriptor = "(IIZI)V",
-		garbageValue = "2104594196"
-	)
-	static final void method525(int var0, int var1, boolean var2) {
-		if (Client.currentClanChannels[var0] != null) {
-			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method868()) {
-				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
-				PacketBufferNode var4 = ClanChannelMember.getPacketBufferNode(ClientPacket.f10, Client.packetWriter.isaacCipher);
-				var4.packetBuffer.writeByte(4 + class478.stringCp1252NullTerminatedByteSize(var3.username.getName()));
-				var4.packetBuffer.writeByte(var0);
-				var4.packetBuffer.writeShort(var1);
-				var4.packetBuffer.writeBoolean(var2);
-				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName());
-				Client.packetWriter.addNode(var4);
+			byte[] var2 = class47.archive12.takeFile(var0, 0);
+			if (var2 == null) {
+				return null;
+			} else {
+				var1 = NewShit.newScript(var2);
+				Script.Script_cached.put(var1, (long)var0);
+				return var1;
 			}
 		}
 	}

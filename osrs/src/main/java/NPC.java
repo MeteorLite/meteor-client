@@ -3,76 +3,76 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dc")
+@ObfuscatedName("dn")
 @Implements("NPC")
 public final class NPC extends Actor {
-	@ObfuscatedName("ar")
-	static int field1077;
-	@ObfuscatedName("am")
-	static int field1076;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("aa")
+	static int field1080;
+	@ObfuscatedName("al")
+	static int field1081;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "Lhw;"
 	)
 	@Export("definition")
 	NPCComposition definition;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@Export("nameChange")
 	String nameChange;
-	@ObfuscatedName("ax")
-	int field1081;
 	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "Lup;"
-	)
-	class530 field1083;
-	@ObfuscatedName("ah")
-	@ObfuscatedSignature(
-		descriptor = "Lhe;"
-	)
-	NewShit field1079;
+	int field1085;
 	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lhe;"
+		descriptor = "Lum;"
 	)
-	NewShit field1078;
+	class527 field1087;
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Lhf;"
+	)
+	NewShit field1083;
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "Lhf;"
+	)
+	NewShit field1082;
 
 	static {
-		field1077 = 1;
-		field1076 = 1;
+		field1080 = 1;
+		field1081 = 1;
 	}
 
 	NPC() {
 		this.nameChange = "";
-		this.field1081 = 31;
+		this.field1085 = 31;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "218528952"
+		garbageValue = "-983100224"
 	)
-	void method578(String var1) {
+	void method575(String var1) {
 		this.nameChange = var1 == null ? "" : var1;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljn;",
-		garbageValue = "0"
+		descriptor = "(B)Lka;",
+		garbageValue = "1"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
 		if (this.definition == null) {
 			return null;
 		} else {
-			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? class36.SequenceDefinition_get(super.sequence) : null;
-			SequenceDefinition var2 = super.movementSequence == -1 || super.movementSequence == super.idleSequence && var1 != null ? null : class36.SequenceDefinition_get(super.movementSequence);
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? DynamicObject.SequenceDefinition_get(super.sequence) : null;
+			SequenceDefinition var2 = super.movementSequence == -1 || super.movementSequence == super.idleSequence && var1 != null ? null : DynamicObject.SequenceDefinition_get(super.movementSequence);
 			Model var3 = null;
-			if (this.field1079 != null && this.field1079.field1593) {
-				var3 = TextureProvider.localPlayer.appearance.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
+			if (this.field1083 != null && this.field1083.field1530) {
+				var3 = class229.localPlayer.appearance.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
 			} else {
-				var3 = this.definition.method1011(var1, super.sequenceFrame, var2, super.movementFrame, this.field1079);
+				var3 = this.definition.method940(var1, super.sequenceFrame, var2, super.movementFrame, this.field1083);
 			}
 
 			if (var3 == null) {
@@ -81,7 +81,7 @@ public final class NPC extends Actor {
 				var3.calculateBoundsCylinder();
 				super.defaultHeight = var3.height;
 				int var4 = var3.indicesCount;
-				var3 = this.method520(var3);
+				var3 = this.method514(var3);
 				if (this.definition.size == 1) {
 					var3.isSingleTile = true;
 				}
@@ -91,7 +91,7 @@ public final class NPC extends Actor {
 					var3.overrideSaturation = super.recolourSaturation;
 					var3.overrideLuminance = super.recolourLuminance;
 					var3.overrideAmount = super.recolourAmount;
-					var3.field2255 = (short)var4;
+					var3.field2423 = (short)var4;
 				} else {
 					var3.overrideAmount = 0;
 				}
@@ -101,34 +101,34 @@ public final class NPC extends Actor {
 		}
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1833659778"
+		garbageValue = "804243007"
 	)
-	void method579(int var1) {
-		this.field1081 = var1;
+	void method576(int var1) {
+		this.field1085 = var1;
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "113824049"
+		garbageValue = "1535698170"
 	)
-	boolean method580(int var1) {
+	boolean method577(int var1) {
 		if (var1 >= 0 && var1 <= 4) {
-			return (this.field1081 & 1 << var1) != 0;
+			return (this.field1085 & 1 << var1) != 0;
 		} else {
 			return true;
 		}
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "-29"
+		garbageValue = "0"
 	)
-	final String method582() {
+	final String method578() {
 		if (!this.nameChange.isEmpty()) {
 			return this.nameChange;
 		} else {
@@ -144,10 +144,10 @@ public final class NPC extends Actor {
 		}
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(ILip;B)V",
-		garbageValue = "-1"
+		descriptor = "(ILiz;I)V",
+		garbageValue = "844868343"
 	)
 	@Export("move")
 	final void move(int var1, MoveSpeed var2) {
@@ -189,7 +189,7 @@ public final class NPC extends Actor {
 			--var4;
 		}
 
-		if (super.sequence != -1 && class36.SequenceDefinition_get(super.sequence).priority == 1) {
+		if (super.sequence != -1 && DynamicObject.SequenceDefinition_get(super.sequence).priority == 1) {
 			super.sequence = -1;
 		}
 
@@ -208,13 +208,13 @@ public final class NPC extends Actor {
 		super.pathTraversed[0] = var2;
 	}
 
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(IIZI)V",
-		garbageValue = "-358090235"
+		descriptor = "(IIZB)V",
+		garbageValue = "75"
 	)
-	final void method584(int var1, int var2, boolean var3) {
-		if (super.sequence != -1 && class36.SequenceDefinition_get(super.sequence).priority == 1) {
+	final void method581(int var1, int var2, boolean var3) {
+		if (super.sequence != -1 && DynamicObject.SequenceDefinition_get(super.sequence).priority == 1) {
 			super.sequence = -1;
 		}
 
@@ -240,146 +240,214 @@ public final class NPC extends Actor {
 		}
 
 		super.pathLength = 0;
-		super.field1023 = 0;
-		super.field1024 = 0;
+		super.field1029 = 0;
+		super.field1028 = 0;
 		super.pathX[0] = var1;
 		super.pathY[0] = var2;
-		super.x = super.field971 * 64 + super.pathX[0] * 128;
-		super.y = super.field971 * 64 + super.pathY[0] * 128;
-	}
-
-	@ObfuscatedName("am")
-	@ObfuscatedSignature(
-		descriptor = "(B)[I",
-		garbageValue = "0"
-	)
-	int[] method587() {
-		return this.field1083 != null ? this.field1083.method2639() : this.definition.method1019();
+		super.x = super.pathX[0] * 128 + super.field983 * 64;
+		super.y = super.pathY[0] * 128 + super.field983 * 64;
 	}
 
 	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(I)[S",
-		garbageValue = "-288846359"
+		descriptor = "(S)[I",
+		garbageValue = "-23200"
 	)
-	short[] method588() {
-		return this.field1083 != null ? this.field1083.method2640() : this.definition.method1021();
+	int[] method584() {
+		return this.field1087 != null ? this.field1087.method2619() : this.definition.method948();
 	}
 
-	@ObfuscatedName("ag")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(IISS)V",
-		garbageValue = "-15144"
+		descriptor = "(B)[S",
+		garbageValue = "120"
 	)
-	void method589(int var1, int var2, short var3) {
-		if (this.field1083 == null) {
-			this.field1083 = new class530(this.definition);
-		}
-
-		this.field1083.method2641(var1, var2, var3);
-	}
-
-	@ObfuscatedName("aa")
-	@ObfuscatedSignature(
-		descriptor = "([I[SB)V",
-		garbageValue = "8"
-	)
-	void method590(int[] var1, short[] var2) {
-		if (this.field1083 == null) {
-			this.field1083 = new class530(this.definition);
-		}
-
-		this.field1083.method2642(var1, var2);
-	}
-
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-432488525"
-	)
-	void method591() {
-		this.field1083 = null;
-	}
-
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(Lhe;I)V",
-		garbageValue = "-1403637183"
-	)
-	void method592(NewShit var1) {
-		this.field1078 = var1;
+	short[] method585() {
+		return this.field1087 != null ? this.field1087.method2620() : this.definition.method950();
 	}
 
 	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhe;",
-		garbageValue = "905115149"
+		descriptor = "(IISI)V",
+		garbageValue = "-558766672"
 	)
-	NewShit method593() {
-		return this.field1078;
+	void method586(int var1, int var2, short var3) {
+		if (this.field1087 == null) {
+			this.field1087 = new class527(this.definition);
+		}
+
+		this.field1087.method2621(var1, var2, var3);
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "([I[SI)V",
+		garbageValue = "-1790507927"
+	)
+	void method587(int[] var1, short[] var2) {
+		if (this.field1087 == null) {
+			this.field1087 = new class527(this.definition);
+		}
+
+		this.field1087.method2622(var1, var2);
+	}
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "0"
+	)
+	void method588() {
+		this.field1087 = null;
 	}
 
 	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Lhe;I)V",
-		garbageValue = "463654606"
+		descriptor = "(Lhf;I)V",
+		garbageValue = "-906762953"
 	)
-	void method594(NewShit var1) {
-		this.field1079 = var1;
+	void method589(NewShit var1) {
+		this.field1082 = var1;
 	}
 
-	@ObfuscatedName("an")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "4"
+		descriptor = "(B)Lhf;",
+		garbageValue = "2"
+	)
+	NewShit method590() {
+		return this.field1082;
+	}
+
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(Lhf;I)V",
+		garbageValue = "-977381781"
+	)
+	void method591(NewShit var1) {
+		this.field1083 = var1;
+	}
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1221291483"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
 		return this.definition != null;
 	}
 
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-64"
-	)
-	void method595() {
-		this.field1078 = null;
-	}
-
-	@ObfuscatedName("ai")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "257879915"
+		garbageValue = "-434488190"
 	)
-	void method596() {
-		this.field1079 = null;
+	void method592() {
+		this.field1082 = null;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-965276822"
+		descriptor = "(I)V",
+		garbageValue = "-923674269"
 	)
-	static void method581(int var0) {
+	void method593() {
+		this.field1083 = null;
 	}
 
-	@ObfuscatedName("iy")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "0"
+		descriptor = "(Ljava/lang/CharSequence;IZB)I",
+		garbageValue = "-22"
 	)
-	static final int method597(int var0) {
-		return Math.abs(var0 - WallDecoration.cameraYaw) > 1024 ? 2048 * (var0 < WallDecoration.cameraYaw ? 1 : -1) + var0 : var0;
+	public static int method580(CharSequence var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) {
+			boolean var3 = false;
+			boolean var4 = false;
+			int var5 = 0;
+			int var6 = var0.length();
+
+			for (int var7 = 0; var7 < var6; ++var7) {
+				char var8 = var0.charAt(var7);
+				if (var7 == 0) {
+					if (var8 == '-') {
+						var3 = true;
+						continue;
+					}
+
+					if (var8 == '+') {
+						continue;
+					}
+				}
+
+				int var10;
+				if (var8 >= '0' && var8 <= '9') {
+					var10 = var8 - '0';
+				} else if (var8 >= 'A' && var8 <= 'Z') {
+					var10 = var8 - '7';
+				} else {
+					if (var8 < 'a' || var8 > 'z') {
+						throw new NumberFormatException();
+					}
+
+					var10 = var8 - 'W';
+				}
+
+				if (var10 >= var1) {
+					throw new NumberFormatException();
+				}
+
+				if (var3) {
+					var10 = -var10;
+				}
+
+				int var9 = var5 * var1 + var10;
+				if (var9 / var1 != var5) {
+					throw new NumberFormatException();
+				}
+
+				var5 = var9;
+				var4 = true;
+			}
+
+			if (!var4) {
+				throw new NumberFormatException();
+			} else {
+				return var5;
+			}
+		} else {
+			throw new IllegalArgumentException("" + var1);
+		}
 	}
 
-	@ObfuscatedName("ok")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Lul;II)V",
-		garbageValue = "101752739"
+		descriptor = "(III)I",
+		garbageValue = "-1588641318"
 	)
-	static void method598(Buffer var0, int var1) {
-		class266.method1432(var0.array, var1);
-		HealthBar.method576(var0, var1);
+	static final int method595(int var0, int var1) {
+		int var2 = var0 + var1 * 57;
+		var2 ^= var2 << 13;
+		int var3 = (var2 * var2 * 15731 + 789221) * var2 + 1376312589 & Integer.MAX_VALUE;
+		return var3 >> 19 & 255;
+	}
+
+	@ObfuscatedName("bv")
+	@ObfuscatedSignature(
+		descriptor = "(Lbk;I)V",
+		garbageValue = "2109670231"
+	)
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false;
+		if (var0.sound != null) {
+			var0.sound.position = 0;
+		}
+
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1);
+		}
+
 	}
 }

@@ -5,56 +5,60 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.io.IOException;
 
-@ObfuscatedName("re")
+@ObfuscatedName("ro")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
+	@ObfuscatedName("gg")
+	@Export("js5Port")
+	static int js5Port;
+
 	AbstractSocket() {
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "2050917556"
+		garbageValue = "278911957"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-111326055"
+		garbageValue = "1133909296"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-4"
+		descriptor = "(I)I",
+		garbageValue = "-1251290768"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "([BIII)I",
-		garbageValue = "-2009008666"
+		descriptor = "([BIIB)I",
+		garbageValue = "-54"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "40171702"
+		garbageValue = "-1734190943"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "2421"
+		descriptor = "(I)V",
+		garbageValue = "1195407219"
 	)
 	@Export("close")
 	public abstract void close();

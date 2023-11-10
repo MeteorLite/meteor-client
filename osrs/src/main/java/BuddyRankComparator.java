@@ -3,10 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eu")
+@ObfuscatedName("eg")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("wz")
+	@Export("foundItemIdCount")
+	static int foundItemIdCount;
+	@ObfuscatedName("gw")
+	@ObfuscatedSignature(
+		descriptor = "Loh;"
+	)
+	static Archive field1200;
+	@ObfuscatedName("at")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +22,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lri;Lri;I)I",
-		garbageValue = "383953435"
+		descriptor = "(Lrh;Lrh;B)I",
+		garbageValue = "95"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -34,32 +42,16 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1321294301"
+		descriptor = "(I)Z",
+		garbageValue = "-457265261"
 	)
-	static void method687() {
-		World.Tiles_underlays = null;
-		VertexNormal.Tiles_overlays = null;
-		SecureRandomFuture.Tiles_shapes = null;
-		class199.field1563 = null;
-		UserComparator6.field1191 = null;
-		Tiles.field835 = null;
-		class158.field1387 = null;
-		SecureRandomFuture.Tiles_hue = null;
-		class135.Tiles_saturation = null;
-		Tiles.Tiles_lightness = null;
-		WorldMapSection2.Tiles_hueMultiplier = null;
-		Script.field812 = null;
-	}
-
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "0"
-	)
-	protected static final int method688() {
-		return GameEngine.keyHandler.getIdleCycles();
+	public static boolean method687() {
+		if (!class316.field2798.isEmpty()) {
+			return true;
+		} else {
+			return !class316.musicSongs.isEmpty() && class316.musicSongs.get(0) != null && ((MusicSong)class316.musicSongs.get(0)).midiPcmStream != null ? ((MusicSong)class316.musicSongs.get(0)).midiPcmStream.isReady() : false;
+		}
 	}
 }

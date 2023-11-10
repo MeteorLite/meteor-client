@@ -3,31 +3,26 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ju")
+@ObfuscatedName("kd")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("wr")
-	@ObfuscatedSignature(
-		descriptor = "Lsx;"
-	)
-	static PlatformInfo field2060;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("au")
 	@Export("id")
 	int id;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("aa")
 	@Export("count")
 	int count;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ac")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("am")
+	@ObfuscatedName("al")
 	@Export("labels")
 	int[][] labels;
-	@ObfuscatedName("av")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Ljr;"
+		descriptor = "Lkz;"
 	)
-	class241 field2065;
+	class267 field2235;
 
 	public Skeleton(int var1, byte[] var2) {
 		this.id = var1;
@@ -54,27 +49,42 @@ public class Skeleton extends Node {
 		if (var3.offset < var3.array.length) {
 			var4 = var3.readUnsignedShort();
 			if (var4 > 0) {
-				this.field2065 = new class241(var3, var4);
+				this.field2235 = new class267(var3, var4);
 			}
 		}
 
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1245812999"
+		garbageValue = "-1055269733"
 	)
-	public int method1275() {
+	public int method1454() {
 		return this.count;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljr;",
-		garbageValue = "-13"
+		descriptor = "(I)Lkz;",
+		garbageValue = "-155827584"
 	)
-	public class241 method1276() {
-		return this.field2065;
+	public class267 method1455() {
+		return this.field2235;
+	}
+
+	@ObfuscatedName("ha")
+	@ObfuscatedSignature(
+		descriptor = "(IZZZZI)Loh;",
+		garbageValue = "-1589546581"
+	)
+	@Export("newArchive")
+	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
+		ArchiveDisk var5 = null;
+		if (JagexCache.JagexCache_dat2File != null) {
+			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, KeyHandler.JagexCache_idxFiles[var0], 1000000);
+		}
+
+		return new Archive(var5, class302.field2511, WorldMapSectionType.field2038, var0, var1, var2, var3, var4, false);
 	}
 }

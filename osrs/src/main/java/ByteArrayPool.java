@@ -3,115 +3,137 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@ObfuscatedName("qo")
+@ObfuscatedName("qq")
 @Implements("ByteArrayPool")
 public class ByteArrayPool {
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ab")
+	static final Object field3781;
+	@ObfuscatedName("au")
 	@Export("ByteArrayPool_smallCount")
 	static int ByteArrayPool_smallCount;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("aa")
 	@Export("ByteArrayPool_mediumCount")
 	static int ByteArrayPool_mediumCount;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ac")
 	@Export("ByteArrayPool_largeCount")
 	static int ByteArrayPool_largeCount;
-	@ObfuscatedName("ab")
-	static int field3772;
-	@ObfuscatedName("am")
+	@ObfuscatedName("al")
+	static int field3774;
+	@ObfuscatedName("az")
+	static int field3779;
+	@ObfuscatedName("ap")
 	static int field3775;
 	@ObfuscatedName("av")
+	static int field3777;
+	@ObfuscatedName("ax")
 	static int field3778;
-	@ObfuscatedName("ag")
-	static int field3773;
-	@ObfuscatedName("aa")
-	static int field3771;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("as")
 	@Export("ByteArrayPool_small")
 	static byte[][] ByteArrayPool_small;
 	@ObfuscatedName("ay")
 	@Export("ByteArrayPool_medium")
 	static byte[][] ByteArrayPool_medium;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ak")
 	@Export("ByteArrayPool_large")
 	static byte[][] ByteArrayPool_large;
 	@ObfuscatedName("aj")
-	static byte[][] field3767;
-	@ObfuscatedName("an")
-	@Export("ByteArrayPool_alternativeSizes")
-	public static int[] ByteArrayPool_alternativeSizes;
-	@ObfuscatedName("ae")
-	public static ArrayList field3766;
+	static byte[][] field3768;
+	@ObfuscatedName("aw")
+	static ArrayList field3780;
 
 	static {
+		field3781 = new Object();
 		ByteArrayPool_smallCount = 0;
 		ByteArrayPool_mediumCount = 0;
 		ByteArrayPool_largeCount = 0;
-		field3772 = 0;
-		field3775 = 1000;
-		field3778 = 250;
-		field3773 = 100;
-		field3771 = 50;
+		field3774 = 0;
+		field3779 = 1000;
+		field3775 = 250;
+		field3777 = 100;
+		field3778 = 50;
 		ByteArrayPool_small = new byte[1000][];
 		ByteArrayPool_medium = new byte[250][];
 		ByteArrayPool_large = new byte[100][];
-		field3767 = new byte[50][];
-		field3766 = new ArrayList();
-		field3766.clear();
-		field3766.add(100);
-		field3766.add(5000);
-		field3766.add(10000);
-		field3766.add(30000);
+		field3768 = new byte[50][];
+		field3780 = new ArrayList();
+		Renderable.method1514();
 		new HashMap();
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("hb")
 	@ObfuscatedSignature(
-		descriptor = "(IZI)[B",
-		garbageValue = "664601398"
+		descriptor = "(I)V",
+		garbageValue = "1234231525"
 	)
-	@Export("ByteArrayPool_getArrayBool")
-	public static synchronized byte[] ByteArrayPool_getArrayBool(int var0, boolean var1) {
-		byte[] var2;
-		if ((var0 == 100 || var0 < 100 && var1) && ByteArrayPool_smallCount > 0) {
-			var2 = ByteArrayPool_small[--ByteArrayPool_smallCount];
-			ByteArrayPool_small[ByteArrayPool_smallCount] = null;
-			return var2;
-		} else if ((var0 == 5000 || var0 < 5000 && var1) && ByteArrayPool_mediumCount > 0) {
-			var2 = ByteArrayPool_medium[--ByteArrayPool_mediumCount];
-			ByteArrayPool_medium[ByteArrayPool_mediumCount] = null;
-			return var2;
-		} else if ((var0 == 10000 || var0 < 10000 && var1) && ByteArrayPool_largeCount > 0) {
-			var2 = ByteArrayPool_large[--ByteArrayPool_largeCount];
-			ByteArrayPool_large[ByteArrayPool_largeCount] = null;
-			return var2;
-		} else if ((var0 == 30000 || var0 < 30000 && var1) && field3772 > 0) {
-			var2 = field3767[--field3772];
-			field3767[field3772] = null;
-			return var2;
-		} else {
-			int var4;
-			if (class28.ByteArrayPool_arrays != null) {
-				for (var4 = 0; var4 < ByteArrayPool_alternativeSizes.length; ++var4) {
-					if ((ByteArrayPool_alternativeSizes[var4] == var0 || var0 < ByteArrayPool_alternativeSizes[var4] && var1) && class425.ByteArrayPool_altSizeArrayCounts[var4] > 0) {
-						byte[] var3 = class28.ByteArrayPool_arrays[var4][--class425.ByteArrayPool_altSizeArrayCounts[var4]];
-						class28.ByteArrayPool_arrays[var4][class425.ByteArrayPool_altSizeArrayCounts[var4]] = null;
-						return var3;
-					}
-				}
-			}
-
-			if (var1 && ByteArrayPool_alternativeSizes != null) {
-				for (var4 = 0; var4 < ByteArrayPool_alternativeSizes.length; ++var4) {
-					if (var0 <= ByteArrayPool_alternativeSizes[var4] && class425.ByteArrayPool_altSizeArrayCounts[var4] < class28.ByteArrayPool_arrays[var4].length) {
-						return new byte[ByteArrayPool_alternativeSizes[var4]];
-					}
-				}
-			}
-
-			return new byte[var0];
+	@Export("reloadJS5")
+	static void reloadJS5() {
+		if (class176.varcs.hasUnwrittenChanges()) {
+			class176.varcs.write();
 		}
+
+		class53.method307();
+		if (Message.mouseRecorder != null) {
+			Message.mouseRecorder.isRunning = false;
+		}
+
+		Message.mouseRecorder = null;
+		Client.packetWriter.close();
+		if (GameEngine.taskHandler != null) {
+			try {
+				GameEngine.taskHandler.close();
+			} catch (Exception var3) {
+			}
+		}
+
+		GameEngine.taskHandler = null;
+		ObjectSound.method424();
+		class182.method921();
+		class36.scene.clear();
+
+		for (int var1 = 0; var1 < 4; ++var1) {
+			Client.collisionMaps[var1].clear();
+		}
+
+		NewShit.worldMap = null;
+		WorldMapManager.method1265(0, 0);
+		class472.method2350();
+		Client.playingJingle = false;
+		WorldMapSectionType.method1311();
+		if (MusicPatchPcmStream.pcmPlayer1 != null) {
+			MusicPatchPcmStream.pcmPlayer1.shutdown();
+		}
+
+		WorldMapSectionType.field2038.method1962();
+		class227.method1164();
+		if (class60.urlRequester != null) {
+			class60.urlRequester.close();
+		}
+
+		HealthBarDefinition.method916();
+		JagexCache.JagexCache_dat2File = null;
+		JagexCache.JagexCache_idx255File = null;
+		KeyHandler.JagexCache_idxFiles = null;
+		ObjTypeCustomisation.method876();
+		class302.field2511 = null;
+		Client.archiveLoaders.clear();
+		Client.field549 = 0;
+		WorldMapSectionType.field2038 = new JagNetThread();
+		class60.urlRequester = new class113(SpriteMask.client.field661, 218);
+
+		try {
+			class339.method1744("oldschool", ItemLayer.field2109, class191.field1585.name, 0, 23);
+		} catch (IOException var2) {
+			throw new RuntimeException(var2);
+		}
+
+		class302.field2511 = new ArchiveDisk(255, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idx255File, 500000);
+		GameEngine.taskHandler = new TaskHandler();
+		SpriteMask.client.method164();
+		Client.field414 = class92.field942;
+		WorldMapSection2.updateGameState(0);
 	}
 }
