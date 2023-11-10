@@ -110,9 +110,9 @@ public final class mudclient extends NetworkedGame {
 		for(int k = 6; k >= 1; k--)
 			surface.method225(0, k, 0, 194 - k, 512, 8);
 
-		surface.drawSprite(15, 15, anInt658 + 10);
-		surface.method252(anInt659, 0, 0, 512, 200);
-		surface.method235(anInt659);
+		surface.drawSprite(15, 15, spriteMedia + 10);
+		surface.method252(spriteLogo, 0, 0, 512, 200);
+		surface.method235(spriteLogo);
 		c = '\u2400';
 		c1 = '\u2400';
 		c2 = '\u044C';
@@ -133,9 +133,9 @@ public final class mudclient extends NetworkedGame {
 		for(int i1 = 6; i1 >= 1; i1--)
 			surface.method225(0, i1, 0, 194 - i1, 512, 8);
 
-		surface.drawSprite(15, 15, anInt658 + 10);
-		surface.method252(anInt659 + 1, 0, 0, 512, 200);
-		surface.method235(anInt659 + 1);
+		surface.drawSprite(15, 15, spriteMedia + 10);
+		surface.method252(spriteLogo + 1, 0, 0, 512, 200);
+		surface.method235(spriteLogo + 1);
 		for(int j1 = 0; j1 < 64; j1++) {
 			scene.removeModel(world.roofModels[0][j1]);
 			scene.removeModel(world.aModelArrayArray597[1][j1]);
@@ -164,9 +164,9 @@ public final class mudclient extends NetworkedGame {
 		for(int l1 = 6; l1 >= 1; l1--)
 			surface.method225(0, l1, 0, 194, 512, 8);
 
-		surface.drawSprite(15, 15, anInt658 + 10);
-		surface.method252(anInt658 + 10, 0, 0, 512, 200);
-		surface.method235(anInt658 + 10);
+		surface.drawSprite(15, 15, spriteMedia + 10);
+		surface.method252(spriteMedia + 10, 0, 0, 512, 200);
+		surface.method235(spriteMedia + 10);
 	}
 
 	void drawTeleportBubble(int i, int j, int k, int l, int i1, int j1, int k1) {
@@ -377,7 +377,7 @@ public final class mudclient extends NetworkedGame {
 				rscharacter.screenCenterY = y + (height / 2);
 
 				if (!drawHitsplatsAboveScene) {
-					surface.drawSprite(rscharacter.screenCenterX - 12, rscharacter.screenCenterY - 12, anInt658 + 12);
+					surface.drawSprite(rscharacter.screenCenterX - 12, rscharacter.screenCenterY - 12, spriteMedia + 12);
 					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenCenterX - 1, rscharacter.screenCenterY + 5, 3, 0xffffff);
 				}
 			}
@@ -520,7 +520,7 @@ public final class mudclient extends NetworkedGame {
 				rscharacter.screenCenterY = y + height / 2;
 
 				if (!drawHitsplatsAboveScene) {
-					surface.drawSprite(rscharacter.screenCenterX - 12, rscharacter.screenCenterY - 12, anInt658 + 11);
+					surface.drawSprite(rscharacter.screenCenterX - 12, rscharacter.screenCenterY - 12, spriteMedia + 11);
 					surface.drawStringCenter(String.valueOf(rscharacter.damageTaken), rscharacter.screenCenterX - 1, rscharacter.screenCenterY + 5, 3, 0xffffff);
 				}
 			}
@@ -535,7 +535,7 @@ public final class mudclient extends NetworkedGame {
 				k3 += (20 * k1) / 100;
 			int j4 = (16 * k1) / 100;
 			int l4 = (16 * k1) / 100;
-			surface.spriteClipping(k3 - j4 / 2, y - l4 / 2 - (10 * k1) / 100, j4, l4, anInt658 + 13);
+			surface.spriteClipping(k3 - j4 / 2, y - l4 / 2 - (10 * k1) / 100, j4, l4, spriteMedia + 13);
 		}
 	}
 
@@ -772,7 +772,7 @@ public final class mudclient extends NetworkedGame {
 		int i = surface.width2 - 199;
 		char c = '\234';
 		char c2 = '\230';
-		surface.drawSprite(i - 49, 3, anInt658 + 2);
+		surface.drawSprite(i - 49, 3, spriteMedia + 2);
 		i += 40;
 		surface.method207(i, 36, c, c2, 0);
 		surface.resize(i, 36, i + c, 36 + c2);
@@ -785,7 +785,7 @@ public final class mudclient extends NetworkedGame {
 		int k5 = i3 * k4 + k1 * i5 >> 18;
 		i3 = i3 * i5 - k1 * k4 >> 18;
 		k1 = k5;
-		surface.method236((i + c / 2) - k1, 36 + c2 / 2 + i3, anInt658 - 1, i1 + 64 & 0xff, k);
+		surface.method236((i + c / 2) - k1, 36 + c2 / 2 + i3, spriteMedia - 1, i1 + 64 & 0xff, k);
 		for(int i7 = 0; i7 < objectCount; i7++) {
 			int l1 = (((objectX[i7] * magicLoc + 64) - localPlayer.currentX) * 3 * k) / 2048;
 			int j3 = (((objectY[i7] * magicLoc + 64) - localPlayer.currentY) * 3 * k) / 2048;
@@ -833,7 +833,7 @@ public final class mudclient extends NetworkedGame {
 		}
 
 		surface.method258(i + c / 2, 36 + c2 / 2, 2, 0xffffff, 255);
-		surface.method236(i + 19, 55, anInt658 + 24, cameraRotation + 128 & 0xff, 128);
+		surface.method236(i + 19, 55, spriteMedia + 24, cameraRotation + 128 & 0xff, 128);
 		surface.resize(0, 0, gameWidth, gameHeight + 12);
 		if(!flag)
 			return;
@@ -989,7 +989,7 @@ public final class mudclient extends NetworkedGame {
 			int l3 = (39 * k2) / 100;
 			int j4 = (27 * k2) / 100;
 			int k4 = l1 - j4;
-			surface.method262(i1 - l3 / 2, k4, l3, j4, anInt658 + 9, 85);
+			surface.method262(i1 - l3 / 2, k4, l3, j4, spriteMedia + 9, 85);
 			int l4 = (36 * k2) / 100;
 			int i5 = (24 * k2) / 100;
 			surface.spriteClipping(i1 - l4 / 2, (k4 + j4 / 2) - i5 / 2, l4, i5, Definitions.itemImages[j3] + spriteItem, Definitions.itemMasks[j3], 0, 0, false);
@@ -1208,8 +1208,8 @@ public final class mudclient extends NetworkedGame {
 		surface.method248((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt750] + 12, anIntArray697[anInt747]);
 		surface.spriteClipping((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt739] + 12, anIntArray697[anInt741], anIntArray695[anInt744], 0, false);
 		surface.spriteClipping((i - 32) + 55, j, 64, 102, Definitions.anIntArray103[anInt731] + 12, anIntArray696[anInt735], anIntArray695[anInt744], 0, false);
-		surface.drawSprite(0, gameHeight, anInt658 + 22);
-		surface.drawSurface(graphics, 0, 0);
+		surface.drawSprite(0, gameHeight, spriteMedia + 22);
+		surface.draw(graphics, 0, 0);
 	}
 
 	private void drawUI() {
@@ -1289,18 +1289,18 @@ public final class mudclient extends NetworkedGame {
 		if(loginState == 0 || loginState == 1 || loginState == 2 || loginState == 3) {
 			int i = (cycle * 2) % 3072;
 			if(i < 1024) {
-				surface.drawSprite(0, 10, anInt659);
+				surface.drawSprite(0, 10, spriteLogo);
 				if(i > 768)
-					surface.method260(0, 10, anInt659 + 1, i - 768);
+					surface.method260(0, 10, spriteLogo + 1, i - 768);
 			} else
 			if(i < 2048) {
-				surface.drawSprite(0, 10, anInt659 + 1);
+				surface.drawSprite(0, 10, spriteLogo + 1);
 				if(i > 1792)
-					surface.method260(0, 10, anInt658 + 10, i - 1792);
+					surface.method260(0, 10, spriteMedia + 10, i - 1792);
 			} else {
-				surface.drawSprite(0, 10, anInt658 + 10);
+				surface.drawSprite(0, 10, spriteMedia + 10);
 				if(i > 2816)
-					surface.method260(0, 10, anInt659, i - 2816);
+					surface.method260(0, 10, spriteLogo, i - 2816);
 			}
 		}
 		if(loginState == 0)
@@ -1309,8 +1309,8 @@ public final class mudclient extends NetworkedGame {
 			aPanel774.method150();
 		if(loginState == 2)
 			aPanel770.method150();
-		surface.drawSprite(0, gameHeight, anInt658 + 22);
-		surface.drawSurface(graphics, 0, 0);
+		surface.drawSprite(0, gameHeight, spriteMedia + 22);
+		surface.draw(graphics, 0, 0);
 	}
 
 	public int getDefaultCombatStyle() {
@@ -1325,7 +1325,7 @@ public final class mudclient extends NetworkedGame {
 		loggedIn = 1;
 		method120();
 		surface.method244();
-		surface.drawSurface(graphics, 0, 0);
+		surface.draw(graphics, 0, 0);
 		for(int i = 0; i < objectCount; i++) {
 			scene.removeModel(objectModel[i]);
 			world.method390(objectX[i], objectY[i], objectID[i]);
@@ -1773,16 +1773,16 @@ public final class mudclient extends NetworkedGame {
 	}
 
 	private void method76() {
-		surface.drawSprite(0, gameHeight - 4, anInt658 + 23);
+		surface.drawSprite(0, gameHeight - 4, spriteMedia + 23);
 		if (injected) {
-			surface.drawSprite(510, gameHeight, anInt658 + 22);
-			surface.drawSprite(1020, gameHeight, anInt658 + 22);
-			surface.drawSprite(1530, gameHeight, anInt658 + 22);
-			surface.drawSprite(2040, gameHeight, anInt658 + 22);
-			surface.drawSprite(2550, gameHeight, anInt658 + 22);
-			surface.drawSprite(3060, gameHeight, anInt658 + 22);
-			surface.drawSprite(3570, gameHeight, anInt658 + 22);
-			surface.drawSprite(4080, gameHeight, anInt658 + 22);
+			surface.drawSprite(510, gameHeight, spriteMedia + 22);
+			surface.drawSprite(1020, gameHeight, spriteMedia + 22);
+			surface.drawSprite(1530, gameHeight, spriteMedia + 22);
+			surface.drawSprite(2040, gameHeight, spriteMedia + 22);
+			surface.drawSprite(2550, gameHeight, spriteMedia + 22);
+			surface.drawSprite(3060, gameHeight, spriteMedia + 22);
+			surface.drawSprite(3570, gameHeight, spriteMedia + 22);
+			surface.drawSprite(4080, gameHeight, spriteMedia + 22);
 		}
 		int i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 0)
@@ -3163,7 +3163,7 @@ label0:
 	private void drawUiTabSocial(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
-		surface.drawSprite(i - 49, 3, anInt658 + 5);
+		surface.drawSprite(i - 49, 3, spriteMedia + 5);
 		char c = '\304';
 		char c1 = '\266';
 		int l;
@@ -3331,7 +3331,7 @@ label0:
 	private void drawUiTabOptions(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
-		surface.drawSprite(i - 49, 3, anInt658 + 6);
+		surface.drawSprite(i - 49, 3, spriteMedia + 6);
 		char c = '\304';
 		surface.method224(i, 36, c, 65, Surface.method222(181, 181, 181), 160);
 		surface.method224(i, 101, c, 65, Surface.method222(201, 201, 201), 160);
@@ -4681,7 +4681,7 @@ label0:
 		}
 		surface.drawStringCenter("Loading... Please wait", 256, 192, 1, 0xffffff);
 		method76();
-		surface.drawSurface(graphics, 0, 0);
+		surface.draw(graphics, 0, 0);
 		int k = baseX;
 		int l = baseY;
 		int i1 = (i + 24) / 48;
@@ -4804,16 +4804,16 @@ label0:
 			return;
 		}
 		byte[] abyte1 = DataUtils.loadData("index.dat", 0, abyte0);
-		surface.method211(anInt658, DataUtils.loadData("inv1.dat", 0, abyte0), abyte1, 1);
-		surface.method211(anInt658 + 1, DataUtils.loadData("inv2.dat", 0, abyte0), abyte1, 6);
-		surface.method211(anInt658 + 9, DataUtils.loadData("bubble.dat", 0, abyte0), abyte1, 1);
-		surface.method211(anInt658 + 10, DataUtils.loadData("runescape.dat", 0, abyte0), abyte1, 1);
-		surface.method211(anInt658 + 11, DataUtils.loadData("splat.dat", 0, abyte0), abyte1, 3);
-		surface.method211(anInt658 + 14, DataUtils.loadData("icon.dat", 0, abyte0), abyte1, 8);
-		surface.method211(anInt658 + 22, DataUtils.loadData("hbar.dat", 0, abyte0), abyte1, 1);
-		surface.method211(anInt658 + 23, DataUtils.loadData("hbar2.dat", 0, abyte0), abyte1, 1);
-		surface.method211(anInt658 + 24, DataUtils.loadData("compass.dat", 0, abyte0), abyte1, 1);
-		surface.method211(anInt658 + 25, DataUtils.loadData("buttons.dat", 0, abyte0), abyte1, 2);
+		surface.method211(spriteMedia, DataUtils.loadData("inv1.dat", 0, abyte0), abyte1, 1);
+		surface.method211(spriteMedia + 1, DataUtils.loadData("inv2.dat", 0, abyte0), abyte1, 6);
+		surface.method211(spriteMedia + 9, DataUtils.loadData("bubble.dat", 0, abyte0), abyte1, 1);
+		surface.method211(spriteMedia + 10, DataUtils.loadData("runescape.dat", 0, abyte0), abyte1, 1);
+		surface.method211(spriteMedia + 11, DataUtils.loadData("splat.dat", 0, abyte0), abyte1, 3);
+		surface.method211(spriteMedia + 14, DataUtils.loadData("icon.dat", 0, abyte0), abyte1, 8);
+		surface.method211(spriteMedia + 22, DataUtils.loadData("hbar.dat", 0, abyte0), abyte1, 1);
+		surface.method211(spriteMedia + 23, DataUtils.loadData("hbar2.dat", 0, abyte0), abyte1, 1);
+		surface.method211(spriteMedia + 24, DataUtils.loadData("compass.dat", 0, abyte0), abyte1, 1);
+		surface.method211(spriteMedia + 25, DataUtils.loadData("buttons.dat", 0, abyte0), abyte1, 2);
 		surface.method211(anInt941, DataUtils.loadData("scrollbar.dat", 0, abyte0), abyte1, 2);
 		surface.method211(anInt941 + 2, DataUtils.loadData("corners.dat", 0, abyte0), abyte1, 4);
 		surface.method211(anInt941 + 6, DataUtils.loadData("arrows.dat", 0, abyte0), abyte1, 2);
@@ -4827,10 +4827,10 @@ label0:
 			surface.method211(spriteItem + (j - 1) * 30, DataUtils.loadData("objects" + j + ".dat", 0, abyte0), abyte1, k);
 		}
 
-		surface.method210(anInt658);
-		surface.method210(anInt658 + 9);
+		surface.method210(spriteMedia);
+		surface.method210(spriteMedia + 9);
 		for(int l = 11; l <= 26; l++)
-			surface.method210(anInt658 + l);
+			surface.method210(spriteMedia + l);
 
 		for(int i1 = 0; i1 < Definitions.anInt131; i1++)
 			surface.method210(anInt942 + i1);
@@ -4919,7 +4919,7 @@ label0:
 			surface.fadeToBlack();
 			surface.drawStringCenter("Oh dear! You are dead...", gameWidth / 2, gameHeight / 2, 7, 0xff0000);
 			method76();
-			surface.drawSurface(graphics, 0, 0);
+			surface.draw(graphics, 0, 0);
 			return;
 		}
 		if(changeAppearanceVisible) {
@@ -4946,7 +4946,7 @@ label0:
 			method76();
 			surface.drawStringCenter("If you can't read the word", gameWidth / 2, 290, 1, 0xffffff);
 			surface.drawStringCenter("@yel@click here@whi@ to get a different one", gameWidth / 2, 305, 1, 0xffffff);
-			surface.drawSurface(graphics, 0, 0);
+			surface.draw(graphics, 0, 0);
 			return;
 		}
 		if(!world.aBoolean572)
@@ -5139,7 +5139,7 @@ label0:
 				j6 = -50;
 			if(j6 > 0) {
 				int k8 = 1 + j6 / 6;
-				surface.drawSprite(453, gameHeight - 56, anInt658 + 13);
+				surface.drawSprite(453, gameHeight - 56, spriteMedia + 13);
 				surface.drawStringCenter("Wilderness", 465, gameHeight - 20, 1, 0xffff00);
 				surface.drawStringCenter("Level: " + k8, 465, gameHeight - 7, 1, 0xffff00);
 				if(anInt811 == 0)
@@ -5170,21 +5170,21 @@ label0:
 		Panel.anInt216 = 2;
 		panelMessageTabs.method150();
 		Panel.anInt216 = 0;
-		surface.method260(surface.width2 - 3 - 197, 3, anInt658, 128);
+		surface.method260(surface.width2 - 3 - 197, 3, spriteMedia, 128);
 		drawUI();
 		drawMouseClick(true);
 		surface.loggedIn = false;
 		method76();
-		surface.drawSurface(graphics, 0, 0);
+		surface.draw(graphics, 0, 0);
 	}
 
 	//Draw mouse later if injected so clicks show properly over map etc, but keep normal behavior in vanilla
 	public void drawMouseClick(boolean afterUI) {
 		if (!injected || afterUI) {
 			if(mouseClickXStep > 0)
-				surface.drawSprite(anInt801 - 8, anInt802 - 8, anInt658 + 14 + (24 - mouseClickXStep) / 6);
+				surface.drawSprite(anInt801 - 8, anInt802 - 8, spriteMedia + 14 + (24 - mouseClickXStep) / 6);
 			if(mouseClickXStep < 0)
-				surface.drawSprite(anInt801 - 8, anInt802 - 8, anInt658 + 18 + (24 + mouseClickXStep) / 6);
+				surface.drawSprite(anInt801 - 8, anInt802 - 8, spriteMedia + 18 + (24 + mouseClickXStep) / 6);
 		}
 	}
 
@@ -5439,10 +5439,8 @@ label0:
 
 	public static void main() {
 
-		if (injected)
-			mudClient.setupWindow(3840, 2160, "Runescape by Andrew Gower", false);
-		else
-			mudClient.setupWindow(Constants.GAME_FIXED_WIDTH + 1, Constants.GAME_FIXED_HEIGHT, "Runescape by Andrew Gower", false);
+
+		mudClient.setupWindow(Constants.GAME_FIXED_WIDTH + 1, Constants.GAME_FIXED_HEIGHT, "Runescape by Andrew Gower", false);
 		mudClient.threadSleep = 10;
 	}
 
@@ -5491,8 +5489,8 @@ label0:
 			surface.drawStringCenter("Weapons cannot be used", byte0 + 234, byte1 + 216, 1, 0xff0000);
 		surface.drawStringCenter("If you are sure click 'Accept' to begin the duel", byte0 + 234, byte1 + 230, 1, 0xffffff);
 		if(!aBoolean911) {
-			surface.drawSprite((byte0 + 118) - 35, byte1 + 238, anInt658 + 25);
-			surface.drawSprite((byte0 + 352) - 35, byte1 + 238, anInt658 + 26);
+			surface.drawSprite((byte0 + 118) - 35, byte1 + 238, spriteMedia + 25);
+			surface.drawSprite((byte0 + 352) - 35, byte1 + 238, spriteMedia + 26);
 		} else {
 			surface.drawStringCenter("Waiting for other player...", byte0 + 234, byte1 + 250, 1, 0xffff00);
 		}
@@ -5547,8 +5545,8 @@ label0:
 		surface.drawStringCenter("There is NO WAY to reverse a trade if you change your mind.", byte0 + 234, byte1 + 215, 1, 0xffffff);
 		surface.drawStringCenter("Remember that not all players are trustworthy", byte0 + 234, byte1 + 230, 1, 0xffffff);
 		if(!tradeConfirmAccepted) {
-			surface.drawSprite((byte0 + 118) - 35, byte1 + 238, anInt658 + 25);
-			surface.drawSprite((byte0 + 352) - 35, byte1 + 238, anInt658 + 26);
+			surface.drawSprite((byte0 + 118) - 35, byte1 + 238, spriteMedia + 25);
+			surface.drawSprite((byte0 + 352) - 35, byte1 + 238, spriteMedia + 26);
 		} else {
 			surface.drawStringCenter("Waiting for other player...", byte0 + 234, byte1 + 250, 1, 0xffff00);
 		}
@@ -5648,7 +5646,7 @@ label0:
 	private void drawUiTabMagic(boolean flag) {
 		int mouseX = surface.width2 - 199;
 		int mouseY = 36;
-		surface.drawSprite(mouseX - 49, 3, anInt658 + 4);
+		surface.drawSprite(mouseX - 49, 3, spriteMedia + 4);
 		char c = '\304';
 		char c1 = '\266';
 		int l;
@@ -5797,7 +5795,7 @@ label0:
 
 	private void drawUiTabInventory(boolean flag) {
 		int i = surface.width2 - 248;
-		surface.drawSprite(i, 3, anInt658 + 1);
+		surface.drawSprite(i, 3, spriteMedia + 1);
 		for(int j = 0; j < inventoryMaxItemCount; j++) {
 			int k = i + (j % 5) * 49;
 			int i1 = 36 + (j / 5) * 34;
@@ -6022,7 +6020,7 @@ label0:
 	private void drawUiTabPlayerInfo(boolean flag) {
 		int i = surface.width2 - 199;
 		int j = 36;
-		surface.drawSprite(i - 49, 3, anInt658 + 3);
+		surface.drawSprite(i - 49, 3, spriteMedia + 3);
 		char c = '\304';
 		char c1 = '\u0113';
 		int l;
@@ -6494,8 +6492,8 @@ label0:
 		if(aBoolean900)
 			surface.method207(byte0 + 193, byte1 + 215 + 27, 7, 7, 0xffff00);
 		if(!aBoolean896)
-			surface.drawSprite(byte0 + 217, byte1 + 238, anInt658 + 25);
-		surface.drawSprite(byte0 + 394, byte1 + 238, anInt658 + 26);
+			surface.drawSprite(byte0 + 217, byte1 + 238, spriteMedia + 25);
+		surface.drawSprite(byte0 + 394, byte1 + 238, spriteMedia + 26);
 		if(aBoolean895) {
 			surface.drawStringCenter("Other player", byte0 + 341, byte1 + 246, 1, 0xffffff);
 			surface.drawStringCenter("has accepted", byte0 + 341, byte1 + 256, 1, 0xffffff);
@@ -6675,8 +6673,8 @@ label0:
 		surface.drawString("Opponent's Offer", byte0 + 9, byte1 + 152, 4, 0xffffff);
 		surface.drawString("Your Inventory", byte0 + 216, byte1 + 27, 4, 0xffffff);
 		if(!aBoolean886)
-			surface.drawSprite(byte0 + 217, byte1 + 238, anInt658 + 25);
-		surface.drawSprite(byte0 + 394, byte1 + 238, anInt658 + 26);
+			surface.drawSprite(byte0 + 217, byte1 + 238, spriteMedia + 25);
+		surface.drawSprite(byte0 + 394, byte1 + 238, spriteMedia + 26);
 		if(aBoolean885) {
 			surface.drawStringCenter("Other player", byte0 + 341, byte1 + 246, 1, 0xffffff);
 			surface.drawStringCenter("has accepted", byte0 + 341, byte1 + 256, 1, 0xffffff);
@@ -6787,11 +6785,11 @@ label0:
 		loadData();
 		if(errorLoadingData)
 			return;
-		anInt658 = 2000;
-		anInt941 = anInt658 + 100;
+		spriteMedia = 2000;
+		anInt941 = spriteMedia + 100;
 		spriteItem = anInt941 + 50;
-		anInt659 = spriteItem + 1000;
-		anInt942 = anInt659 + 10;
+		spriteLogo = spriteItem + 1000;
+		anInt942 = spriteLogo + 10;
 		anInt933 = anInt942 + 50;
 		anInt969 = anInt933 + 10;
 		graphics = getGraphics();
@@ -6822,7 +6820,7 @@ label0:
 		scene.fogZDistance = 2300;
 		scene.method309(-50, -10, -50);
 		world = new World(scene, surface);
-		world.anInt596 = anInt658;
+		world.anInt596 = spriteMedia;
 		method110();
 		if(errorLoadingData)
 			return;
@@ -7521,9 +7519,9 @@ label0:
 	private boolean showOptionMenu;
 	private World world;
 	private Model[] gameModels;
-	Scene scene;
-	private int anInt658;
-	private int anInt659;
+	public Scene scene;
+	private int spriteMedia;
+	private int spriteLogo;
 	private final int[] teleportBubbleType;
 	private final int[] teleportBubbleTime;
 	private int anInt662;

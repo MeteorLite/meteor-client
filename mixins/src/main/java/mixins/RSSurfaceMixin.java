@@ -39,9 +39,9 @@ public abstract class RSSurfaceMixin implements RSSurface {
 	@Shadow("mudClient")
 	public static RSClient client;
 
-	@MethodHook("drawSurface")
+	@MethodHook("draw")
 	@Inject
-	public void onDrawSurface(Graphics g, int x, int y)
+	public void onDraw(Graphics g, int x, int y)
 	{
 		if (getGameImage() != null)
 			client.getCallbacks().draw(getGameImage(), x, y);

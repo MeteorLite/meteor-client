@@ -398,7 +398,7 @@ public class Surface
 		return (i << 16) + (j << 8) + k;
 	}
 
-	public void method223() {
+	public void resetBounds() {
 		boundsTopX = 0;
 		boundsTopY = 0;
 		boundsBottomX = width2;
@@ -1393,7 +1393,7 @@ label3:
 
 
 
-	public void drawSurface(Graphics g, int i, int j) {
+	public void draw(Graphics g, int i, int j) {
 		setComplete();
 		g.drawImage(image, i, j, this);
 	}
@@ -1903,12 +1903,16 @@ label3:
 	}
 
 	public synchronized void setComplete() {
-		if(imageConsumer == null) {
-        } else {
+        if (imageConsumer != null) {
+			if (pixels.length != (width2 * height2)) {
+				imageConsumer.setDimensions(width2, height2);
+				pixels = new int[width2 * height2];
+				mudclient.mudClient.scene.raster = Surface.pixels;
+			}
 			imageConsumer.setPixels(0, 0, width2, height2, colorModel, pixels, 0, width2);
 			imageConsumer.imageComplete(2);
         }
-	}
+    }
 
 	private void method257(int[] ai, int[] ai1, int i, int j, int k, int l, int i1,
                            int j1, int k1, int l1) {

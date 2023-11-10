@@ -66,7 +66,7 @@ public class Panel {
 		aSurface181.method217((i + k) - 1, j, l, anInt188);
 		aSurface181.method217((i + k) - 2, j + 1, l - 2, anInt188);
 		aSurface181.method217((i + k) - 3, j + 2, l - 4, anInt193);
-		aSurface181.method223();
+		aSurface181.resetBounds();
 	}
 
 	public void method139(int i, int j, String s) {
