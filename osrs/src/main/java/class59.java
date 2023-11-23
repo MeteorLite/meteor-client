@@ -164,7 +164,7 @@ public class class59 {
 		int var5;
 		int var7;
 		Object var21;
-		class518 var22;
+		DbTable var22;
 		if (var0 != 7500 && var0 != 7508) {
 			if (var0 != 7501) {
 				int var4;
@@ -270,7 +270,7 @@ public class class59 {
 						var3 = Interpreter.Interpreter_intStack[--DbTableType.Interpreter_intStackSize];
 						var21 = WorldMapLabelSize.method1187(var3);
 						var5 = Interpreter.Interpreter_intStack[--DbTableType.Interpreter_intStackSize];
-						var22 = class168.method875(var5);
+						var22 = class168.getDbTable(var5);
 						if (var22 == null) {
 							throw new RuntimeException();
 						} else if (SequenceDefinition.method1041(var5) != Client.field545) {
@@ -298,7 +298,7 @@ public class class59 {
 				} else {
 					--DbTableType.Interpreter_intStackSize;
 					var3 = Interpreter.Interpreter_intStack[DbTableType.Interpreter_intStackSize];
-					class518 var27 = UserComparator4.method668(var3);
+					DbTable var27 = UserComparator4.method668(var3);
 					if (var27 == null) {
 						throw new RuntimeException();
 					} else {
@@ -330,7 +330,7 @@ public class class59 {
 			var3 = Interpreter.Interpreter_intStack[--DbTableType.Interpreter_intStackSize];
 			var21 = WorldMapLabelSize.method1187(var3);
 			var5 = Interpreter.Interpreter_intStack[--DbTableType.Interpreter_intStackSize];
-			var22 = class168.method875(var5);
+			var22 = class168.getDbTable(var5);
 			if (var22 == null) {
 				throw new RuntimeException();
 			} else {

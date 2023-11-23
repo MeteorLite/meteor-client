@@ -51,7 +51,7 @@ public class Skills {
 			if (!var6) {
 				var5 = null;
 			} else {
-				var5 = class518.method2519();
+				var5 = DbTable.method2519();
 			}
 
 			return var5;

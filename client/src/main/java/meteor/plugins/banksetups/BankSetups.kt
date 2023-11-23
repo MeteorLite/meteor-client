@@ -8,8 +8,8 @@ import dev.hoot.api.packets.ItemPackets
 import eventbus.events.ClientTick
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
-import meteor.api.ClientPackets
 import meteor.api.Items
+import meteor.api.queueClickPacket
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -171,7 +171,7 @@ class BankSetups : Plugin() {
                             item.id,
                             item.slot
                         )
-                        ClientPackets.queueClickPacket(item.clickPoint)
+                        queueClickPacket(item.clickPoint)
                     }
                 }
                 state = 4

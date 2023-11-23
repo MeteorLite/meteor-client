@@ -28,42 +28,42 @@ public class class314 {
 	)
 	static final void method1649(int var0, int var1, int var2) {
 		if (ViewportMouse.cameraX < var0) {
-			ViewportMouse.cameraX = (var0 - ViewportMouse.cameraX) * class1.cameraLookAtAcceleration / 1000 + ViewportMouse.cameraX + WorldMapIcon_0.cameraMoveToSpeed;
+			ViewportMouse.cameraX = (var0 - ViewportMouse.cameraX) * class1.cameraLookAtAcceleration / 1000 + ViewportMouse.cameraX + WorldMapIcon_0.cameraLookAtSpeed;
 			if (ViewportMouse.cameraX > var0) {
 				ViewportMouse.cameraX = var0;
 			}
 		}
 
 		if (ViewportMouse.cameraX > var0) {
-			ViewportMouse.cameraX -= (ViewportMouse.cameraX - var0) * class1.cameraLookAtAcceleration / 1000 + WorldMapIcon_0.cameraMoveToSpeed;
+			ViewportMouse.cameraX -= (ViewportMouse.cameraX - var0) * class1.cameraLookAtAcceleration / 1000 + WorldMapIcon_0.cameraLookAtSpeed;
 			if (ViewportMouse.cameraX < var0) {
 				ViewportMouse.cameraX = var0;
 			}
 		}
 
 		if (SecureRandomFuture.cameraY < var1) {
-			SecureRandomFuture.cameraY = (var1 - SecureRandomFuture.cameraY) * class1.cameraLookAtAcceleration / 1000 + SecureRandomFuture.cameraY + WorldMapIcon_0.cameraMoveToSpeed;
+			SecureRandomFuture.cameraY = (var1 - SecureRandomFuture.cameraY) * class1.cameraLookAtAcceleration / 1000 + SecureRandomFuture.cameraY + WorldMapIcon_0.cameraLookAtSpeed;
 			if (SecureRandomFuture.cameraY > var1) {
 				SecureRandomFuture.cameraY = var1;
 			}
 		}
 
 		if (SecureRandomFuture.cameraY > var1) {
-			SecureRandomFuture.cameraY -= (SecureRandomFuture.cameraY - var1) * class1.cameraLookAtAcceleration / 1000 + WorldMapIcon_0.cameraMoveToSpeed;
+			SecureRandomFuture.cameraY -= (SecureRandomFuture.cameraY - var1) * class1.cameraLookAtAcceleration / 1000 + WorldMapIcon_0.cameraLookAtSpeed;
 			if (SecureRandomFuture.cameraY < var1) {
 				SecureRandomFuture.cameraY = var1;
 			}
 		}
 
 		if (class36.cameraZ < var2) {
-			class36.cameraZ = (var2 - class36.cameraZ) * class1.cameraLookAtAcceleration / 1000 + class36.cameraZ + WorldMapIcon_0.cameraMoveToSpeed;
+			class36.cameraZ = (var2 - class36.cameraZ) * class1.cameraLookAtAcceleration / 1000 + class36.cameraZ + WorldMapIcon_0.cameraLookAtSpeed;
 			if (class36.cameraZ > var2) {
 				class36.cameraZ = var2;
 			}
 		}
 
 		if (class36.cameraZ > var2) {
-			class36.cameraZ -= (class36.cameraZ - var2) * class1.cameraLookAtAcceleration / 1000 + WorldMapIcon_0.cameraMoveToSpeed;
+			class36.cameraZ -= (class36.cameraZ - var2) * class1.cameraLookAtAcceleration / 1000 + WorldMapIcon_0.cameraLookAtSpeed;
 			if (class36.cameraZ < var2) {
 				class36.cameraZ = var2;
 			}

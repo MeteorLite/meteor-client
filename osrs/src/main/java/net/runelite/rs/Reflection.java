@@ -3,7 +3,7 @@ package net.runelite.rs;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-//import net.runelite.rs.ObfuscatedClassMap;
+import net.runelite.rs.ObfuscatedClassMap;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -23,7 +23,7 @@ public class Reflection {
 	public static void reportInvoke(Method method, Object object, Object[] args) {}
 
 	static {
-/*		ObfuscatedClassMap.INSTANCE.forEach((deobClassName, obfuscatedClassName) -> {
+		ObfuscatedClassMap.INSTANCE.forEach((deobClassName, obfuscatedClassName) -> {
 			if (!deobClassName.contains("/") && !obfuscatedClassName.contains("/")) {
 				Class<?> c = null;
 				try {
@@ -33,7 +33,7 @@ public class Reflection {
 				}
 				classes.put(obfuscatedClassName, c);
 			}
-		});*/
+		});
 	}
 
 	public static Class<?> findClass(String name) throws ClassNotFoundException {

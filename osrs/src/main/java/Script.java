@@ -13,7 +13,7 @@ public class Script extends DualNode {
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
 	@ObfuscatedName("ah")
-	String field823;
+	String instructions;
 	@ObfuscatedName("ar")
 	@Export("opcodes")
 	int[] opcodes;

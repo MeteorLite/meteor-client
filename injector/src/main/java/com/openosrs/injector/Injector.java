@@ -8,28 +8,25 @@
 package com.openosrs.injector;
 
 import asm.util.JarUtil;
-import com.google.common.hash.Hashing;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injection.InjectTaskHandler;
 import com.openosrs.injector.injectors.*;
 import com.openosrs.injector.injectors.raw.*;
+
 import com.openosrs.injector.rsapi.RSApi;
+
 import com.openosrs.injector.transformers.EnumInvokeVirtualFixer;
 import com.openosrs.injector.transformers.InjectTransformer;
 import com.openosrs.injector.transformers.Java8Ifier;
 import com.openosrs.injector.transformers.SourceChanger;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
-import joptsimple.ArgumentAcceptingOptionSpec;
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
-import joptsimple.util.EnumConverter;
+
 import meteor.Logger;
 import asm.ClassFile;
 import asm.ClassGroup;
@@ -45,31 +42,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 	public static ArrayList<String> report = new ArrayList<>();
 
 	public static void main(String[] args) {
-		OptionParser parser = new OptionParser();
 
-		ArgumentAcceptingOptionSpec<File> vanillaFileOption =
-				parser.accepts("vanilla", "Vanilla OSRS gamepack file")
-						.withRequiredArg().ofType(File.class);
-
-		ArgumentAcceptingOptionSpec<String> oprsVerOption =
-				parser.accepts("version", "OpenOSRS version")
-						.withRequiredArg().ofType(String.class);
-
-		ArgumentAcceptingOptionSpec<File> outFileOption =
-				parser.accepts("output", "Output file, jar if outmode is jar, folder if outmode is files")
-						.withRequiredArg().ofType(File.class);
-
-		ArgumentAcceptingOptionSpec<OutputMode> outModeOption =
-				parser.accepts("outmode")
-						.withRequiredArg().ofType(OutputMode.class)
-						.withValuesConvertedBy(new EnumConverter<>(OutputMode.class) {
-							@Override
-							public OutputMode convert(String value) {
-								return super.convert(value.toUpperCase());
-							}
-						});
-
-		OptionSet options = parser.parse(args);
 		String oprsVer = "1.0-SNAPSHOT";
 
 		injector.vanilla = load(
@@ -162,6 +135,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 		transform(new SourceChanger(this));
 
 		injector.vanilla.addClass(reflection);
+
 	}
 
 	private void inject(com.openosrs.injector.injectors.Injector injector) {

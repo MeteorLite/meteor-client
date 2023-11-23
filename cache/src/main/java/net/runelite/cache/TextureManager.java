@@ -24,18 +24,14 @@
  */
 package net.runelite.cache;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import net.runelite.cache.definitions.TextureDefinition;
 import net.runelite.cache.definitions.loaders.TextureLoader;
 import net.runelite.cache.definitions.providers.TextureProvider;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
+import net.runelite.cache.fs.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TextureManager implements TextureProvider
 {

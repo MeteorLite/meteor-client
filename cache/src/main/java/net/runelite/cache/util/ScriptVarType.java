@@ -24,10 +24,11 @@
  */
 package net.runelite.cache.util;
 
-import java.util.HashMap;
-import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @AllArgsConstructor
 @Getter

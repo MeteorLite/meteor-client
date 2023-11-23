@@ -38,7 +38,7 @@ public class class72 {
 		garbageValue = "1"
 	)
 	public static void method431() {
-		class182.field1502.clear();
+		class182.e1.clear();
 	}
 
 	@ObfuscatedName("ac")

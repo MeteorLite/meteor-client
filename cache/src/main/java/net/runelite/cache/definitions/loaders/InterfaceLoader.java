@@ -24,12 +24,13 @@
  */
 package net.runelite.cache.definitions.loaders;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import net.runelite.cache.definitions.ClientScript1Instruction;
 import net.runelite.cache.definitions.InterfaceDefinition;
 import net.runelite.cache.io.InputStream;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class InterfaceLoader
 {

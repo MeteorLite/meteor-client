@@ -8,7 +8,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 	@ObfuscatedName("ul")
 	@Export("cameraMoveSpeed")
-	static int cameraMoveToSpeed;
+	static int cameraLookAtSpeed;
 	@ObfuscatedName("at")
 	@Export("element")
 	final int element;

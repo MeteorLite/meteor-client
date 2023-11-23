@@ -24,22 +24,18 @@
  */
 package net.runelite.cache;
 
+import net.runelite.cache.definitions.NpcDefinition;
+import net.runelite.cache.definitions.exporters.NpcExporter;
+import net.runelite.cache.definitions.loaders.NpcLoader;
+import net.runelite.cache.fs.*;
+import net.runelite.cache.util.IDClass;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import net.runelite.cache.definitions.NpcDefinition;
-import net.runelite.cache.definitions.exporters.NpcExporter;
-import net.runelite.cache.definitions.loaders.NpcLoader;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
-import net.runelite.cache.util.IDClass;
 
 public class NpcManager
 {

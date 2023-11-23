@@ -57,7 +57,7 @@ public class class145 extends class144 {
 		garbageValue = "-7051987"
 	)
 	public static void method764() {
-		class172.field1439.clear();
+		class172.e3.clear();
 	}
 
 	@ObfuscatedName("ao")

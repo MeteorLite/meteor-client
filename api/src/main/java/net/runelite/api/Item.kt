@@ -414,6 +414,15 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
     infix fun interact(idx: Int) {
         invoke(idx)
     }
+    // interact predicate based on the args and what arg is on the item
+    // if the item has the arg, then it will invoke the action
+    // check if it has action
+    fun interact(vararg args: String) {
+        if (hasAction(*args)) {
+            this.interact(args[0])
+        }
+    }
+
 
     fun invoke(index: Int) {
         client.callbacks.post(Events.INTERACT, getMenu(index)?.let { Interact(it) })

@@ -184,7 +184,7 @@ public class WidgetPackets
 
 	public static void queueResumePauseWidgetPacket(int widgetId, int childId)
 	{
-		createContinuePacket(widgetId, childId).send();
+	//	createContinuePacket(widgetId, childId).send();
 	}
 
 	public static void queueWidgetOnWidgetPacket(int sourceWidgetId, int sourceSlot, int sourceItemId, int destinationWidgetId, int destinationSlot, int destinationItemId)
@@ -284,8 +284,8 @@ public class WidgetPackets
 		return ClientPackets.INSTANCE.createItemWidgetOnItemWidgetPacket(sourceWidgetId, sourceSlot, sourceItemId, destinationWidgetId, destinationSlot, destinationItemId);
 	}
 
-	public static PacketBufferNode createContinuePacket(int widgetId, int childId)
+	public void createContinuePacket(int widgetId, int childId)
 	{
-		return ClientPackets.INSTANCE.createContinuePacket(widgetId, childId);
+		//TODO
 	}
 }

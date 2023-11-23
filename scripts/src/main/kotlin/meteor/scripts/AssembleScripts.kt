@@ -25,20 +25,13 @@
 package meteor.scripts
 
 import com.google.common.io.Files
-import meteor.Logger.Companion.getLogger
-import java.io.File
-import net.runelite.cache.script.assembler.Assembler
-import net.runelite.cache.definitions.savers.ScriptSaver
-import net.runelite.cache.IndexType
 import com.google.common.io.MoreFiles
 import com.google.common.io.RecursiveDeleteOption
-import java.io.IOException
-import java.io.FileInputStream
-import java.lang.RuntimeException
-import kotlin.jvm.JvmStatic
-import java.io.DataOutputStream
-import java.io.FileOutputStream
-import java.lang.NumberFormatException
+import meteor.Logger.Companion.getLogger
+import net.runelite.cache.IndexType
+import net.runelite.cache.definitions.savers.ScriptSaver
+import net.runelite.cache.script.assembler.Assembler
+import java.io.*
 
 class AssembleScripts private constructor(private val scriptDirectory: File, private val outputDirectory: File) {
     private val log = getLogger(AssembleScripts::class.java)
@@ -67,7 +60,7 @@ class AssembleScripts private constructor(private val scriptDirectory: File, pri
                 FileInputStream(scriptFile).use { fin ->
                     val script = assembler.assemble(fin)
                     val packedScript = saver.save(script)
-                    val targetFile = File(scriptOut, Integer.toString(script.id))
+                    val targetFile = File(scriptOut, script.id.toString())
                     Files.write(packedScript, targetFile)
 
                     // Copy hash file
@@ -107,8 +100,7 @@ class AssembleScripts private constructor(private val scriptDirectory: File, pri
                         if (indexFolder.isDirectory) {
                             val indexId = indexFolder.name.toInt()
                             for (archiveFile in indexFolder.listFiles()) {
-                                var archiveId: Int
-                                archiveId = try {
+                                val archiveId: Int = try {
                                     archiveFile.name.toInt()
                                 } catch (ex: NumberFormatException) {
                                     continue

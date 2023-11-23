@@ -608,7 +608,7 @@ public class class406 {
 			boolean var4 = (Integer)var3.field4074 == 0 && (Integer)var3.field4073 == this.field3713.size();
 			int var5 = (Integer)var3.field4074;
 			int var6 = 0;
-			int var7 = var4 ? 0 : ((class408)this.field3713.get((Integer)var3.field4074)).field3718 * 1044781787 * -969780909;
+			int var7 = var4 ? 0 : ((class408)this.field3713.get((Integer)var3.field4074)).field3718;
 			int var8 = 0;
 
 			int var9;

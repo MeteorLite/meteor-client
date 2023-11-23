@@ -24,19 +24,15 @@
  */
 package net.runelite.cache;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import net.runelite.cache.definitions.InterfaceDefinition;
 import net.runelite.cache.definitions.exporters.InterfaceExporter;
 import net.runelite.cache.definitions.loaders.InterfaceLoader;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
+import net.runelite.cache.fs.*;
 import net.runelite.cache.util.Namer;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class InterfaceManager
 {

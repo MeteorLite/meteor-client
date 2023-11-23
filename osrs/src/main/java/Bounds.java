@@ -78,7 +78,7 @@ public class Bounds {
 		var2.lowX = this.lowX;
 		var2.highX = this.highX;
 		if (this.lowX < var1.lowX) {
-			var2.highX = (var2.highX * -2085674849 - (var1.lowX * -2085674849 - this.lowX * -2085674849)) * 1385823071;
+			var2.highX = (var2.highX - (var1.lowX - this.lowX));
 			var2.lowX = var1.lowX;
 		}
 
@@ -101,7 +101,7 @@ public class Bounds {
 		var2.lowY = this.lowY;
 		var2.highY = this.highY;
 		if (this.lowY < var1.lowY) {
-			var2.highY = (var2.highY * -1396881341 - (var1.lowY * -1396881341 - this.lowY * -1396881341)) * -453294997;
+			var2.highY = (var2.highY - (var1.lowY - this.lowY));
 			var2.lowY = var1.lowY;
 		}
 

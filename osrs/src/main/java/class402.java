@@ -38,7 +38,7 @@ public final class class402 {
 				} else if (var0 == 4) {
 					var8 = class113.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeByteSub(0);
-					var8.packetBuffer.writeIntME(var3[var6]);
+					var8.packetBuffer.writeShortAddLE(var3[var6]);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 6) {
 					var8 = class113.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);

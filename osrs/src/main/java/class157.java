@@ -65,6 +65,7 @@ public class class157 extends class160 {
 	)
 	@Export("runScriptEvent")
 	public static void runScriptEvent(ScriptEvent var0) {
+
 		class323.runScript(var0, 500000, 475000);
 	}
 

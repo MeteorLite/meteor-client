@@ -267,7 +267,7 @@ public final class ObjectSound extends Node {
 	)
 	static final void method424() {
 		class72.method431();
-		class184.field1515.clear();
+		class184.e5.clear();
 		InvDefinition.method877();
 		KitDefinition.method907();
 		DbTableType.DBTableType_cache.clear();
@@ -281,7 +281,7 @@ public final class ObjectSound extends Node {
 		InvDefinition.InvDefinition_cached.clear();
 		class267.method1444();
 		WorldMapElement.HitSplatDefinition_cached2.clear();
-		class185.field1516.clear();
+		class185.e6.clear();
 		InterfaceParent.method464();
 		ItemComposition.ItemDefinition_cached.clear();
 		ItemComposition.HealthBarDefinition_cachedSprites.clear();
@@ -297,14 +297,14 @@ public final class ObjectSound extends Node {
 		class399.Widget_cachedModels.method2493();
 		Players.Widget_cachedFonts.method2493();
 		class189.Widget_cachedSpriteMasks.clear();
-		class191.field1584.clear();
+		class191.e7.clear();
 		VarcInt.VarcInt_cached.clear();
 		VarcInt.method900();
-		class171.field1438.clear();
+		class171.e2.clear();
 		class208.method1062();
 		class197.archive4.clear();
 		LoginPacket.method1643();
-		class195.field1619.clear();
+		class195.e8.clear();
 		Client.Widget_cachedModels.clear();
 		Client.archive11.clear();
 		RouteStrategy.method1150();

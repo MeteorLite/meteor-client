@@ -24,8 +24,9 @@
  */
 package net.runelite.cache.definitions.providers;
 
-import java.io.IOException;
 import net.runelite.cache.definitions.ModelDefinition;
+
+import java.io.IOException;
 
 public interface ModelProvider
 {

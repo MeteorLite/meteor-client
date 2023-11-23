@@ -71,7 +71,7 @@ public class class93 {
 			if (Client.isSpellSelected) {
 				var2 = class361.getWidgetFlags(var0);
 				boolean var8 = (var2 >> 21 & 1) != 0;
-				if (var8 && (UrlRequest.field1182 & 32) == 32) {
+				if (var8 && (UrlRequest.selectedSpellFlags & 32) == 32) {
 					var9 = Client.field599;
 					String var4 = Client.field598 + " " + "->" + " " + var0.dataText;
 					var5 = var0.childIndex;

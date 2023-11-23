@@ -12,10 +12,7 @@ import eventbus.events.ChatMessage
 import eventbus.events.GameTick
 import meteor.Logger
 import meteor.Main
-import meteor.api.Items
-import meteor.api.Loots
-import meteor.api.NPCs
-import meteor.api.ClientPackets
+import meteor.api.*
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -111,7 +108,7 @@ class FighterPlugin : Plugin() {
                         else
                             Regular.LOW_LEVEL_ALCHEMY.widget.id
                     alchItem?.forEach {
-                        ClientPackets.queueClickPacket(it.clickPoint)
+                        queueClickPacket(it.clickPoint)
                         ItemPackets.queueSpellOnItemPacket(it.id, it.slot, spellToUse)
                         return
                     }

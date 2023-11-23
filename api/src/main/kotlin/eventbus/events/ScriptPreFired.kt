@@ -30,4 +30,4 @@ import net.runelite.api.ScriptEvent
 /**
  * An event that is fired before the designated script is ran
  */
-class ScriptPreFired(val scriptId: Int, val scriptEvent: ScriptEvent? = null) : Event()
+data class ScriptPreFired(val scriptId: Int, val scriptEvent: ScriptEvent? = null) : Event()

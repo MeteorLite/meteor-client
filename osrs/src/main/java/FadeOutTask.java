@@ -125,7 +125,7 @@ public class FadeOutTask extends SongTask {
 		Client.isSpellSelected = true;
 		class348.selectedSpellWidget = var0;
 		Client.selectedSpellChildIndex = var1;
-		UrlRequest.field1182 = var2;
+		UrlRequest.selectedSpellFlags = var2;
 		class159.invalidateWidget(var4);
 	}
 }

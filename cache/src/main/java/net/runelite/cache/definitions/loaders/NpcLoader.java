@@ -24,12 +24,13 @@
  */
 package net.runelite.cache.definitions.loaders;
 
-import java.util.HashMap;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.cache.definitions.NpcDefinition;
 import net.runelite.cache.io.InputStream;
+
+import java.util.HashMap;
 
 @Accessors(chain = true)
 @Data

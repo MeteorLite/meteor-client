@@ -24,9 +24,10 @@
  */
 package net.runelite.cache.definitions;
 
-import java.util.List;
 import lombok.Data;
 import net.runelite.cache.region.Position;
+
+import java.util.List;
 
 @Data
 public class WorldMapDefinition

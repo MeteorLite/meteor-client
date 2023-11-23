@@ -77,7 +77,7 @@ public class InvDefinition extends DualNode {
 		garbageValue = "264426483"
 	)
 	public static void method877() {
-		class173.field1440.clear();
+		class173.e4.clear();
 	}
 
 	@ObfuscatedName("ny")

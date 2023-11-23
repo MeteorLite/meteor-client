@@ -147,7 +147,7 @@ public class class36 {
 							class147.drawSpriteOnMinimap(var1, var2, var12, var13, HorizontalAlignment.mapDotSprites[3], var4);
 						} else if (class229.localPlayer.team != 0 && var16.team != 0 && var16.team == class229.localPlayer.team) {
 							class147.drawSpriteOnMinimap(var1, var2, var12, var13, HorizontalAlignment.mapDotSprites[4], var4);
-						} else if (var16.method485()) {
+						} else if (var16.isFriendsChatMember()) {
 							class147.drawSpriteOnMinimap(var1, var2, var12, var13, HorizontalAlignment.mapDotSprites[5], var4);
 						} else if (var16.isClanMember()) {
 							class147.drawSpriteOnMinimap(var1, var2, var12, var13, HorizontalAlignment.mapDotSprites[6], var4);

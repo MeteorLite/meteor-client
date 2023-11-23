@@ -109,6 +109,8 @@ public abstract class RSClientMixin implements RSClient {
         this.callbacks = callbacks;
     }
 
+
+
     @Inject
     private DrawCallbacks drawCallbacks;
 
@@ -2454,15 +2456,32 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     public static void checkResize() {
+        check("EnumDefinition_cached", client.getEnumDefinitionCache());
+        check("SpotAnimationDefinition_cached", client.getSpotAnimationDefinitionCache());
+        check("SpotAnimationDefinition_cachedModels", client.getSpotAnimationDefinitionModlesCache());
         check("Script_cached", client.getScriptCache());
         check("StructDefinition_cached", client.getRSStructCompositionCache());
         check("HealthBarDefinition_cached", client.getHealthBarCache());
         check("HealthBarDefinition_cachedSprites", client.getHealthBarSpriteCache());
         check("ObjectDefinition_cachedModels", client.getObjectDefinitionModelsCache());
         //check("Widget_cachedSprites", client.getWidgetSpriteCache());
+
+        check("e1", client.getE1());
+        check("e2", client.getE2());
+        check("e3", client.getE3());
+        check("archive7", client.getArchive7());
+        check("archive5", client.getArchive5());
+        check("e4", client.getE4());
+        check("e5", client.getE5());
+        check("e6", client.getE6());
+        check("e7", client.getE7());
+        check("e8", client.getE8());
+        check("archive4", client.getArchive4());
+        check("archive11", client.getArchive11());
+
+
         check("ItemDefinition_cached", client.getItemCompositionCache());
         check("VarbitDefinition_cached", client.getVarbitCache());
-        check("EnumDefinition_cached", client.getEnumDefinitionCache());
         check("FloorUnderlayDefinition_cached", client.getFloorUnderlayDefinitionCache());
         check("FloorOverlayDefinition_cached", client.getFloorOverlayDefinitionCache());
         check("HitSplatDefinition_cached", client.getHitSplatDefinitionCache());
@@ -2482,12 +2501,10 @@ public abstract class RSClientMixin implements RSClient {
         check("SequenceDefinition_cached", client.getSequenceDefinitionCache());
         check("SequenceDefinition_cachedFrames", client.getSequenceDefinitionFramesCache());
         check("SequenceDefinition_cachedModel", client.getSequenceDefinitionModelsCache());
-        check("SpotAnimationDefinition_cached", client.getSpotAnimationDefinitionCache());
-        check("SpotAnimationDefinition_cachedModels", client.getSpotAnimationDefinitionModlesCache());
         check("VarcInt_cached", client.getVarcIntCache());
         check("VarpDefinition_cached", client.getVarpDefinitionCache());
         check("Widget_cachedModels", client.getModelsCache());
-    //    check("Widget_cachedFonts", client.getFontsCache());
+       // check("Widget_cachedFonts", client.getFontsCache());
         check("Widget_cachedSpriteMasks", client.getSpriteMasksCache());
      //   check("WorldMapElement_cachedSprites", client.getSpritesCache());
     }
@@ -3191,12 +3208,79 @@ public abstract class RSClientMixin implements RSClient {
     public static void onRunEnergyChanged(int idx) {
         client.getCallbacks().post(Events.RUN_ENERGY_CHANGED_EVENT, new RunEnergyChangedEvent(client.getEnergy()));
     }
+    @Inject
+    @Override
+    public void closeInterface(WidgetNode interfaceNode, boolean unload)
+    {
+        WidgetNode widgetNode = (WidgetNode) interfaceNode;
+        if (widgetNode != this.getComponentTable().get(widgetNode.getHash()))
+        {
+            throw new IllegalArgumentException("WidgetNode is no longer valid");
+        }
+        else
+        {
+            this.closeRSInterface(widgetNode, unload);
+        }
+    }
+    @Inject
+    @Override
+    public WidgetNode openInterface(int componentId, int interfaceId, int modalMode)
+    {
+        assert this.isClientThread() : "openInterface must be called on client thread";
+
+        Widget component = this.getWidget(componentId);
+        if (component == null)
+        {
+            throw new IllegalStateException("component does not exist");
+        }
+        else if (component.getType() != 0)
+        {
+            throw new IllegalStateException("component is not a layer");
+        }
+        else
+        {
+            RSInterfaceParent interfaceNode = (RSInterfaceParent) this.getComponentTable().get((long) componentId);
+            if (interfaceNode != null)
+            {
+                this.closeInterface(interfaceNode, interfaceId != interfaceNode.getId());
+            }
+
+            Iterator iter = this.getComponentTable().iterator();
+
+            RSInterfaceParent iface;
+            do
+            {
+                if (!iter.hasNext())
+                {
+                    interfaceNode = newInterfaceParent();
+                    interfaceNode.setId(interfaceId);
+                    interfaceNode.setModalMode(modalMode);
+                    this.getComponentTable().put(interfaceNode, (long) componentId);
+                    this.getWidgetDefinition().loadInterface$api(interfaceId);
+                    this.revalidateWidgetScroll(this.getWidgetDefinition().getWidgets()[componentId >> 16], component, false);
+                    this.copy$runWidgetOnLoadListener(interfaceId);
+                    int topLevelInterfaceId = this.getTopLevelInterfaceId();
+                    if (topLevelInterfaceId != -1 && this.getWidgetDefinition().loadInterface$api(topLevelInterfaceId))
+                    {
+                        this.runComponentCloseListeners (this.getWidgetDefinition().getWidgets()[topLevelInterfaceId], 1);
+                    }
+
+                    return interfaceNode;
+                }
+
+                iface = (RSInterfaceParent) iter.next();
+            }
+            while (iface.getId() != interfaceId);
+
+            throw new IllegalStateException("interface " + interfaceId + " is already open");
+        }
+    }
 
     @Inject
-    @MethodHook(value = "ifOpenSub", end = true)
+    @MethodHook(value = "openInterface", end = true)
     public static void onSubInterfaceChange(int targetComponent, int interfaceId, int walkType) {
         client.getCallbacks()
-                .post(Events.IF_OPEN_SUB_EVENT, new IfOpenSubEvent(targetComponent, interfaceId, walkType));
+                .post(Events.IF_OPEN_SUB_EVENT, new openInterfaceEvent(targetComponent, interfaceId, walkType));
     }
 
     @Inject
@@ -3230,10 +3314,18 @@ public abstract class RSClientMixin implements RSClient {
     public QuestState getQuestState(Quest quest) {
         return questStates.get(quest);
     }
-
     @Inject
     @Override
-    public Object getDBTableField(int rowID, int column, int tupleIndex, int fieldIndex)
+    public List getDBRowsByValue(int rowID, int column, int tupleIndex, Object value)
+    {
+        RSDbTable dbTable = client.getDbTable((rowID << 12 | column << 4));
+        Map columns = (Map) dbTable.getColumns().get(tupleIndex);
+        List rows = (List) columns.get(value);
+        return rows == null ? Collections.emptyList() : Collections.unmodifiableList(rows);
+    }
+    @Inject
+    @Override
+    public Object[] getDBTableField(int rowID, int column, int tupleIndex)
     {
         RSDbRowType dbRowType = client.getDbRowType(rowID);
         RSDbTableType dbTableType = client.getDbTableType(dbRowType.getTableId());
@@ -3246,26 +3338,28 @@ public abstract class RSClientMixin implements RSClient {
             columnType = dbTableType.getDefaultValues()[column];
         }
 
-        if (columnType == null)
-        {
-            return null;
-        }
-        else if (tupleIndex >= type.length)
+        if (tupleIndex >= type.length)
         {
             throw new IllegalArgumentException("tuple index too large");
         }
+        else if (columnType == null)
+        {
+            return new Object[0];
+        }
         else
         {
-            if (fieldIndex > columnType.length / type.length)
+            int fieldLength = columnType.length / type.length;
+            Object[] field = new Object[fieldLength];
+
+            for (int fieldIndex = 0; fieldIndex < fieldLength; ++fieldIndex)
             {
-                throw new IllegalArgumentException("field index too large");
+                field[fieldIndex] = columnType[fieldIndex * type.length + tupleIndex];
             }
-            else
-            {
-                return columnType[tupleIndex * type.length + fieldIndex];
-            }
+
+            return field;
         }
     }
+
 
     @Inject
     @Override

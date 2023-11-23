@@ -24,20 +24,16 @@
  */
 package net.runelite.cache;
 
+import net.runelite.cache.definitions.OverlayDefinition;
+import net.runelite.cache.definitions.loaders.OverlayLoader;
+import net.runelite.cache.definitions.providers.OverlayProvider;
+import net.runelite.cache.fs.*;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import net.runelite.cache.definitions.OverlayDefinition;
-import net.runelite.cache.definitions.loaders.OverlayLoader;
-import net.runelite.cache.definitions.providers.OverlayProvider;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
 
 public class OverlayManager implements OverlayProvider
 {

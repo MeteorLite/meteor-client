@@ -24,10 +24,6 @@
  */
 package net.runelite.cache.region;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.cache.IndexType;
 import net.runelite.cache.definitions.LocationsDefinition;
@@ -39,6 +35,11 @@ import net.runelite.cache.fs.Index;
 import net.runelite.cache.fs.Storage;
 import net.runelite.cache.fs.Store;
 import net.runelite.cache.util.KeyProvider;
+
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class RegionLoader

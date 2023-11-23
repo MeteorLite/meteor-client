@@ -14,4 +14,6 @@ public interface RSNodeHashTable extends HashTable
 
 	@Import("buckets")
 	RSNode[] getBuckets();
+	@Import("put")
+	void put(RSNode var1, long var2);
 }

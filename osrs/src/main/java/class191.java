@@ -10,7 +10,8 @@ public class class191 extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llk;"
 	)
-	public static EvictingDualNodeHashTable field1584;
+	@Export("e7")
+	public static EvictingDualNodeHashTable e7;
 	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "Lol;"
@@ -23,7 +24,7 @@ public class class191 extends DualNode {
 	static GameBuild field1585;
 
 	static {
-		field1584 = new EvictingDualNodeHashTable(64);
+		e7 = new EvictingDualNodeHashTable(64);
 	}
 
 	@ObfuscatedName("au")

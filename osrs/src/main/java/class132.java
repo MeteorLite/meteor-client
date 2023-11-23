@@ -120,8 +120,8 @@ public class class132 implements class383 {
 	)
 	@Export("revalidateWidgetScroll")
 	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
-		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth * -1611690517 * -1314049341 : var1.width * -1042121905 * -445269073;
-		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight * -987590619 * -306771027 : var1.height * -141414333 * 809475179;
+		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width;
+		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height;
 		UrlRequest.resizeInterface(var0, var1.id, var3, var4, var2);
 		if (var1.children != null) {
 			UrlRequest.resizeInterface(var1.children, var1.id, var3, var4, var2);

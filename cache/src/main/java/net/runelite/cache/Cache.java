@@ -24,14 +24,11 @@
  */
 package net.runelite.cache;
 
+import net.runelite.cache.fs.Store;
+import org.apache.commons.cli.*;
+
 import java.io.File;
 import java.io.IOException;
-import net.runelite.cache.fs.Store;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 
 public class Cache
 {

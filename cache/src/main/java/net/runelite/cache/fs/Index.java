@@ -24,15 +24,16 @@
  */
 package net.runelite.cache.fs;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import net.runelite.cache.index.ArchiveData;
 import net.runelite.cache.index.FileData;
 import net.runelite.cache.index.IndexData;
 import net.runelite.cache.util.Djb2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Index
 {

@@ -133,7 +133,7 @@ public class WorldMapLabelSize {
 						String var5 = var0.method578();
 						int var6;
 						if (var4.combatLevel != 0 && var0.combatLevelChange != 0) {
-							var6 = var0.combatLevelChange != -1 ? var0.combatLevelChange * -1350642785 * -375551905 : var4.combatLevel * 550789923 * -1916672885;
+							var6 = var0.combatLevelChange != -1 ? var0.combatLevelChange  : var4.combatLevel ;
 							var5 = var5 + class28.method126(var6, class229.localPlayer.combatLevel) + " " + " (" + "level-" + var6 + ")";
 						}
 
@@ -144,7 +144,7 @@ public class WorldMapLabelSize {
 						if (Client.isItemSelected == 1) {
 							WorldMapSectionType.insertMenuItemNoShift("Use", Client.field597 + " " + "->" + " " + class167.colorStartTag(16776960) + var5, 7, var1, var2, var3);
 						} else if (Client.isSpellSelected) {
-							if ((UrlRequest.field1182 & 2) == 2) {
+							if ((UrlRequest.selectedSpellFlags & 2) == 2) {
 								WorldMapSectionType.insertMenuItemNoShift(Client.field599, Client.field598 + " " + "->" + " " + class167.colorStartTag(16776960) + var5, 8, var1, var2, var3);
 							}
 						} else {

@@ -827,7 +827,7 @@ public class ItemComposition extends DualNode {
 	public int getShiftClickIndex() {
 		if (this.shiftClickIndex != -1 && this.inventoryActions != null) {
 			if (this.shiftClickIndex >= 0) {
-				return this.inventoryActions[this.shiftClickIndex] != null ? this.shiftClickIndex * 1804659871 * -1176948897 : -1;
+				return this.inventoryActions[this.shiftClickIndex] != null ? this.shiftClickIndex  : -1;
 			} else {
 				return "Drop".equalsIgnoreCase(this.inventoryActions[4]) ? 4 : -1;
 			}

@@ -38,6 +38,7 @@ dependencies {
     compileOnly(projects.http)
 
     with(libs) {
+        implementation(jna)
         annotationProcessor(lombok)
         compileOnly(lombok)
         implementation(gson)

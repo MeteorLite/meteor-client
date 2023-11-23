@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
-import com.google.gson.Gson
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
@@ -23,8 +22,12 @@ import eventbus.events.MenuOptionClicked
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import meteor.Configuration.EXTERNALS_DIR
-import meteor.api.loot.Interact
 import meteor.api.ClientPackets
+import meteor.api.createClientPacket
+import meteor.api.loot.Interact
+import meteor.api.queueClickPacket
+import meteor.chat.ChatCommandManager
+import meteor.chat.ChatMessageManager
 import meteor.config.ConfigManager
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.*
@@ -35,10 +38,13 @@ import meteor.menus.WidgetMenuOption
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.plugins.meteor.MeteorConfig
+import meteor.plugins.privateserver.PrivateServerConfig
 import meteor.plugins.xptracker.XpTrackerService
+import meteor.rmi.handshake.HandshakeClient
+import meteor.rmi.handshake.HandshakeService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
-import meteor.session.SessionManager
+import meteor.ui.composables.preferences.uiColor
 import meteor.ui.composables.ui.windowContent
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
@@ -53,17 +59,9 @@ import meteor.util.Proxy
 import meteor.util.RuntimeConfigLoader
 import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
-import meteor.chat.ChatCommandManager
-import meteor.chat.ChatMessageManager
-import meteor.plugins.privateserver.PrivateServerConfig
-import meteor.rmi.handshake.HandshakeService
-import meteor.rmi.handshake.HandshakeClient
-import meteor.ui.composables.preferences.uiColor
-import net.runelite.api.packets.ClientPacket
 import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
-import net.runelite.rs.api.RSClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
 import org.jetbrains.skiko.OS
@@ -296,10 +294,10 @@ object Main : ApplicationScope, EventSubscriber() {
         Player.client = client
         Tile.client = client
         KEVENT.subscribe<Interact>(Events.INTERACT) {
-            GameThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
+            GameThread.invoke { createClientPacket(it.data.menu)!!.send() }
         }
         KEVENT.subscribe<ClickPacket>(Events.SEND_CLICK_PACKET) {
-            GameThread.invoke { ClientPackets.queueClickPacket(it.data.clickPoint) }
+            GameThread.invoke {queueClickPacket(it.data.clickPoint) }
         }
         KEVENT.subscribe<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) {
             //These are api onClicks (before client code is usable)

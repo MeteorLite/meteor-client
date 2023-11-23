@@ -241,10 +241,10 @@ public class UserComparator4 implements Comparator {
 		descriptor = "(II)Lte;",
 		garbageValue = "-125616841"
 	)
-	static class518 method668(int var0) {
-		class518 var1 = (class518)Client.archive11.get((long)var0);
+	static DbTable method668(int var0) {
+		DbTable var1 = (DbTable)Client.archive11.get((long)var0);
 		if (var1 == null) {
-			var1 = new class518(class267.field2224, var0);
+			var1 = new DbTable(class267.field2224, var0);
 		}
 
 		return var1;

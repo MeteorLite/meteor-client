@@ -637,7 +637,7 @@ public class SoundSystem implements Runnable {
 													var29 = var10.getFont(HealthBarDefinition.widgetDefinition);
 													if (var29 != null) {
 														Client.field649.method2712(var12, var13, var10.width, var10.height, var37.method1816(), var37.method1817(), var37.method1813(), var37.method1814(), var37.method1812());
-														var22 = var10.textShadowed ? var10.spriteShadow * -457439149 * -1616413733 : -1;
+														var22 = var10.textShadowed ? var10.spriteShadow : -1;
 														if (!var37.method1810() && var37.method1807().method2053()) {
 															Client.field649.method2713(var35.field2922, var22, var35.field2923, var35.field2921);
 															Client.field649.method2714(var37.method1808(), var29);

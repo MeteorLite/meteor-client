@@ -24,15 +24,11 @@
  */
 package net.runelite.cache.definitions.loaders;
 
-import java.util.LinkedList;
-import net.runelite.cache.definitions.WorldMapDefinition;
-import net.runelite.cache.definitions.WorldMapType0;
-import net.runelite.cache.definitions.WorldMapType1;
-import net.runelite.cache.definitions.WorldMapType2;
-import net.runelite.cache.definitions.WorldMapType3;
-import net.runelite.cache.definitions.WorldMapTypeBase;
+import net.runelite.cache.definitions.*;
 import net.runelite.cache.io.InputStream;
 import net.runelite.cache.region.Position;
+
+import java.util.LinkedList;
 
 public class WorldMapLoader
 {

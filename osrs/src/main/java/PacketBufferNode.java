@@ -144,7 +144,7 @@ public class PacketBufferNode extends Node {
 					if (Client.isItemSelected == 1) {
 						WorldMapSectionType.insertMenuItemNoShift("Use", Client.field597 + " " + "->" + " " + class167.colorStartTag(65535) + var19.name, 1, var18, var14, var25);
 					} else if (Client.isSpellSelected) {
-						if ((UrlRequest.field1182 & 4) == 4) {
+						if ((UrlRequest.selectedSpellFlags & 4) == 4) {
 							WorldMapSectionType.insertMenuItemNoShift(Client.field599, Client.field598 + " " + "->" + " " + class167.colorStartTag(65535) + var19.name, 2, var18, var14, var25);
 						}
 					} else {
@@ -254,7 +254,7 @@ public class PacketBufferNode extends Node {
 							if (Client.isItemSelected == 1) {
 								WorldMapSectionType.insertMenuItemNoShift("Use", Client.field597 + " " + "->" + " " + class167.colorStartTag(16748608) + var38.name, 16, var34.id, var14, var25);
 							} else if (Client.isSpellSelected) {
-								if ((UrlRequest.field1182 & 1) == 1) {
+								if ((UrlRequest.selectedSpellFlags & 1) == 1) {
 									WorldMapSectionType.insertMenuItemNoShift(Client.field599, Client.field598 + " " + "->" + " " + class167.colorStartTag(16748608) + var38.name, 17, var34.id, var14, var25);
 								}
 							} else {

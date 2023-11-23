@@ -397,7 +397,8 @@ public final class Player extends Actor {
 		descriptor = "(B)Z",
 		garbageValue = "14"
 	)
-	boolean method485() {
+	@Export("isFriendsChatMember")
+	boolean isFriendsChatMember() {
 		if (this.isInFriendsChat == TriBool.TriBool_unknown) {
 			this.updateIsInFriendsChat();
 		}

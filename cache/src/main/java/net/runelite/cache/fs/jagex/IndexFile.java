@@ -24,14 +24,11 @@
  */
 package net.runelite.cache.fs.jagex;
 
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.util.Objects;
 
 public class IndexFile implements Closeable
 {

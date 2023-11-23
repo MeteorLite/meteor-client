@@ -24,11 +24,12 @@
  */
 package net.runelite.cache.definitions.exporters;
 
+import net.runelite.cache.definitions.SpriteDefinition;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import net.runelite.cache.definitions.SpriteDefinition;
 
 public class SpriteExporter
 {

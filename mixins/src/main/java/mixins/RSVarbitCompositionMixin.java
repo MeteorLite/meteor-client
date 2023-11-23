@@ -11,16 +11,16 @@ import net.runelite.rs.api.RSVarbitComposition;
 @Mixin(RSVarbitComposition.class)
 public abstract class RSVarbitCompositionMixin implements RSVarbitComposition
 {
-	@Shadow("client")
-	private static RSClient client;
+    @Shadow("client")
+    private static RSClient client;
 
-	@MethodHook(value = "<clinit>", end = true)
-	@Inject
-	public static void rl$clinit()
-	{
-		if (client != null) {
-			RSEvictingDualNodeHashTable varbitCache = client.getVarbitCache();
-			varbitCache.resize(256);
-		}
-	}
+    @MethodHook(value = "<init>", end = true)
+    @Inject
+    public void rl$init()
+    {
+        if (client != null) {
+            RSEvictingDualNodeHashTable cachedModels2 = client.getItemCompositionCache();
+            cachedModels2.resize(1024);
+        }
+    }
 }

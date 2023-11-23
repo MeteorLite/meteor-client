@@ -24,14 +24,13 @@
  */
 package net.runelite.cache.definitions.loaders;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import net.runelite.cache.definitions.ScriptDefinition;
 import net.runelite.cache.io.InputStream;
-import static net.runelite.cache.script.Opcodes.SCONST;
-import static net.runelite.cache.script.Opcodes.POP_INT;
-import static net.runelite.cache.script.Opcodes.POP_STRING;
-import static net.runelite.cache.script.Opcodes.RETURN;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static net.runelite.cache.script.Opcodes.*;
 
 public class ScriptLoader
 {

@@ -16,8 +16,6 @@ public interface RSWidgetDefinition
     @Import("Widget_cachedModels")
     RSEvictingDualNodeHashTable getModelsCache();
 
-    @Import("Widget_cachedFonts")
-    RSEvictingDualNodeHashTable getFontsCache();
 
     @Import("Widget_cachedSpriteMasks")
     RSEvictingDualNodeHashTable getSpriteMasksCache();

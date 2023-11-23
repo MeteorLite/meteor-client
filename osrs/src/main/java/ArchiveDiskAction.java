@@ -258,7 +258,7 @@ public class ArchiveDiskAction extends Node {
 				if (Client.isItemSelected == 1) {
 					WorldMapSectionType.insertMenuItemNoShift("Use", Client.field597 + " " + "->" + " " + class167.colorStartTag(16777215) + var4, 14, var1, var2, var3);
 				} else if (Client.isSpellSelected) {
-					if ((UrlRequest.field1182 & 8) == 8) {
+					if ((UrlRequest.selectedSpellFlags & 8) == 8) {
 						WorldMapSectionType.insertMenuItemNoShift(Client.field599, Client.field598 + " " + "->" + " " + class167.colorStartTag(16777215) + var4, 15, var1, var2, var3);
 					}
 				} else {

@@ -157,7 +157,7 @@ public class EventInspector extends EventInspectorSubscriber {
     private final JCheckBox groundItemDel = new JCheckBox("Ground Item Del", false);
     private final JCheckBox groundItemUpdate = new JCheckBox("Ground Item Update", false);
     private final JCheckBox ifOpenTop = new JCheckBox("Top Interfaces", false);
-    private final JCheckBox ifOpenSub = new JCheckBox("Sub Interfaces", false);
+    private final JCheckBox openInterface = new JCheckBox("Sub Interfaces", false);
     private final JCheckBox ifCloseSub = new JCheckBox("Close Sub Interfaces", false);
     private final JCheckBox ifMoveSub = new JCheckBox("Move Sub Interfaces", false);
     private final JCheckBox miscInterfacePackets = new JCheckBox("Misc. Interface Packets", true);
@@ -447,7 +447,7 @@ public class EventInspector extends EventInspectorSubscriber {
         panel.add(clientScripts);
         panel.add(ifEvents);
         panel.add(ifOpenTop);
-        panel.add(ifOpenSub);
+        panel.add(openInterface);
         panel.add(ifCloseSub);
         panel.add(ifMoveSub);
         panel.add(miscInterfacePackets);
@@ -1309,7 +1309,7 @@ public class EventInspector extends EventInspectorSubscriber {
     }
 
     @Override
-    public void onIfOpenSubEvent(IfOpenSubEvent event) {
+    public void onopenInterfaceEvent(openInterfaceEvent event) {
         resetTrackedVariables();
         /* Because open sub and move sub are quite similar in nature, we have to keep track of its state to filter out moves. */
         if (lastMoveSub != null) {
@@ -1331,9 +1331,9 @@ public class EventInspector extends EventInspectorSubscriber {
             topId = "" + (event.getTargetComponent() >> 16);
         }
         addLine("Sub interface",
-                "IfOpenSub(" + id + ", topInterface = " + topId
+                "openInterface(" + id + ", topInterface = " + topId
                         + ", topComponent = " + (event.getTargetComponent() & 0xFFFF)
-                        + ", modal = " + (event.getWalkType() == WidgetModalMode.MODAL_NOCLICKTHROUGH) + ")", true, ifOpenSub);
+                        + ", modal = " + (event.getWalkType() == WidgetModalMode.MODAL_NOCLICKTHROUGH) + ")", true, openInterface);
     }
 
     @Override
@@ -1646,7 +1646,7 @@ public class EventInspector extends EventInspectorSubscriber {
         resetTrackedVariables();
         ScriptEvent scriptEvent = event.getScriptEvent();
         /* Filter out the non-server created scripts. Do note that other plugins may call CS2s, such as the quest helper plugin. */
-        if (scriptEvent == null || scriptEvent.getSource() != null || scriptEvent.type() != 76) return;
+       // if (scriptEvent == null || scriptEvent.getSource() != null /*|| scriptEvent.type() != 76*/) return;
         final Object[] arguments = scriptEvent.getArguments();
         final int scriptId = Integer.parseInt(arguments[0].toString());
         if (ignoredClientScripts.contains(scriptId)) return;

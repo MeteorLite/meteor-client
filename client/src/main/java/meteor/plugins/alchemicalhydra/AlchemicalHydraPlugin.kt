@@ -2,17 +2,18 @@ package meteor.plugins.alchemicalhydra
 
 import dev.hoot.api.events.AutomatedMenu
 import eventbus.events.*
-import meteor.api.ClientPackets
 import meteor.api.NPCs
+import meteor.api.createClientPacket
+import meteor.api.queueClickPacket
 import meteor.game.NpcUtil
 import meteor.game.SpriteManager
+import meteor.outline.ModelOutlineRenderer
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
-import meteor.outline.ModelOutlineRenderer
 import java.util.*
 
 @PluginDescriptor(
@@ -331,8 +332,8 @@ class AlchemicalHydraPlugin : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        queueClickPacket(prayerWidget.clickPoint)
+        createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
 
     private fun deactivatePrayer(prayer: Prayer?) {
@@ -347,8 +348,8 @@ class AlchemicalHydraPlugin : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        queueClickPacket(prayerWidget.clickPoint)
+        createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
 
     companion object {

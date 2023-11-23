@@ -313,7 +313,7 @@ public class WorldMapCacheName {
 								if (!var4) {
 									var31 = null;
 								} else {
-									var31 = class518.method2519();
+									var31 = DbTable.method2519();
 								}
 
 								VarpDefinition.mapSceneSprites = var31;
@@ -371,7 +371,7 @@ public class WorldMapCacheName {
 								if (!var4) {
 									var31 = null;
 								} else {
-									var31 = class518.method2519();
+									var31 = DbTable.method2519();
 								}
 
 								class31.scrollBarSprites = var31;
@@ -393,7 +393,7 @@ public class WorldMapCacheName {
 								if (!var4) {
 									var31 = null;
 								} else {
-									var31 = class518.method2519();
+									var31 = DbTable.method2519();
 								}
 
 								class134.field1307 = var31;

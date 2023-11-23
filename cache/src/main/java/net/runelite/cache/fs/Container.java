@@ -24,9 +24,7 @@
  */
 package net.runelite.cache.fs;
 
-import static com.google.common.primitives.Bytes.concat;
 import com.google.common.primitives.Ints;
-import java.io.IOException;
 import net.runelite.cache.fs.jagex.CompressionType;
 import net.runelite.cache.io.InputStream;
 import net.runelite.cache.io.OutputStream;
@@ -36,6 +34,10 @@ import net.runelite.cache.util.GZip;
 import net.runelite.cache.util.Xtea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+
+import static com.google.common.primitives.Bytes.concat;
 
 public class Container
 {
@@ -88,6 +90,10 @@ public class Container
 		}
 
 		this.data = stream.flip();
+
+		Crc32 crc32 = new Crc32();
+		crc32.update(this.data, 0, this.data.length - (revision != -1 ? 2 : 0));
+		this.crc = crc32.getHash();
 	}
 
 	public static Container decompress(byte[] b, int[] keys) throws IOException
@@ -144,12 +150,6 @@ public class Container
 
 				int decompressedLength = stream.readInt();
 				data = BZip2.decompress(stream.getRemaining(), compressedLength);
-
-				if (data == null)
-				{
-					return null;
-				}
-
 				assert data.length == decompressedLength;
 
 				break;
@@ -172,12 +172,6 @@ public class Container
 
 				int decompressedLength = stream.readInt();
 				data = GZip.decompress(stream.getRemaining(), compressedLength);
-
-				if (data == null)
-				{
-					return null;
-				}
-
 				assert data.length == decompressedLength;
 
 				break;

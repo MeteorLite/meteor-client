@@ -381,7 +381,7 @@ public class World {
 						return 1;
 					} else if (var0 == 3140) {
 						Client.field505 = 3;
-						Client.field499 = var2 ? Interpreter.scriptDotWidget.id * 898987495 * 225496535 : HealthBar.scriptActiveWidget.id * 898987495 * 225496535;
+						Client.field499 = var2 ? Interpreter.scriptDotWidget.id  : HealthBar.scriptActiveWidget.id ;
 						return 1;
 					} else {
 						boolean var15;

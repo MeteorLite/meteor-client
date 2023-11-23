@@ -1194,7 +1194,7 @@ public class Widget extends Node {
 			var2 = false;
 		}
 
-		int var3 = var2 ? this.spriteId * -1029572693 * -2036249853 : this.spriteId2 * -1780213167 * 277573297;
+		int var3 = var2 ? this.spriteId : this.spriteId2;
 		if (var3 == -1) {
 			return null;
 		} else {

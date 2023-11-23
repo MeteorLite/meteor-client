@@ -24,10 +24,11 @@
  */
 package net.runelite.cache.definitions;
 
-import java.util.ArrayList;
-import java.util.List;
 import lombok.Data;
 import net.runelite.cache.region.Location;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class LocationsDefinition

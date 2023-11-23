@@ -9,7 +9,8 @@ import java.util.LinkedList;
 @Implements("AbstractWorldMapData")
 public abstract class AbstractWorldMapData {
 	@ObfuscatedName("uk")
-	static int field2045;
+	@Export("cameraLookAtY")
+	static int cameraMoveToY;
 	@ObfuscatedName("ab")
 	int field2051;
 	@ObfuscatedName("au")

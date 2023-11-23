@@ -74,8 +74,7 @@ VARBITS
 13742: Apprentice Tamara puzzle
 13743: Apprentice Felix puzzle
 13744: Apprentice Cordelia puzzle
-13745: Quest offered
-13747 - 13752: Energy orbs
+13745: Quest offered: Energy orbs
 13753: One-time Wizard's Tower teleport
 13759: Guardians of the Rift Tutorial progress
  */

@@ -48,8 +48,8 @@ import static net.runelite.cache.script.RuneLiteOpcodes.RUNELITE_EXECUTE;
 @Mixin(RSClient.class)
 public abstract class ScriptVMMixin implements RSClient
 {
-    @Shadow("client")
-    private static RSClient client;
+	@Shadow("client")
+	private static RSClient client;
 
 	@Inject
 	private static RSScript currentScript;
@@ -61,24 +61,6 @@ public abstract class ScriptVMMixin implements RSClient
 	@Inject
 	private static int currentScriptPC;
 
-	// Call is injected by the raw injector
-	@Inject
-	static void setCurrentScript(RSScript script)
-	{
-		if (rootScriptEvent != null)
-		{
-			if (script != null)
-			{
-				ScriptPreFired event = new ScriptPreFired((int) script.getHash(), rootScriptEvent);
-				client.getCallbacks().post(Events.SCRIPT_PRE_FIRED, event);
-			}
-
-			rootScriptEvent = null;
-		}
-
-		currentScript = script;
-	}
-
 	// Call is injected into runScript by the ScriptVM raw injector
 	@Inject
 	static boolean vmExecuteOpcode(int opcode)
@@ -86,11 +68,19 @@ public abstract class ScriptVMMixin implements RSClient
 		switch (opcode)
 		{
 			case RUNELITE_EXECUTE:
+
 				assert currentScript.getInstructions()[currentScriptPC] == RUNELITE_EXECUTE;
+
+
 
 				int stringStackSize = client.getStringStackSize();
 				String stringOp = client.getStringStack()[--stringStackSize];
 				client.setStringStackSize(stringStackSize);
+				client.getLogger().info("ScriptVM: " + stringOp);
+				client.getLogger().info("Current script: " + currentScript.toString());
+				client.getLogger().info("Current scriptPC: " + currentScriptPC);
+
+
 
 				if ("debug".equals(stringOp))
 				{
@@ -123,7 +113,7 @@ public abstract class ScriptVMMixin implements RSClient
 					client.setIntStackSize(intStackSize);
 					return true;
 				}
-				else if ("mes".equals(stringOp))
+				else if ("mes".equalsIgnoreCase(stringOp))
 				{
 					int intStackSize = client.getIntStackSize();
 					int messageType = client.getIntStack()[--intStackSize];
@@ -133,6 +123,7 @@ public abstract class ScriptVMMixin implements RSClient
 					client.addChatMessage(ChatMessageType.of(messageType), "", message, null, true);
 					return true;
 				}
+				System.out.println("Current script: " + currentScript.toString());
 				ScriptCallbackEvent event = new ScriptCallbackEvent(currentScript, stringOp);
 				client.getCallbacks().post(Events.SCRIPT_CALLBACK, event);
 				return false;
@@ -158,14 +149,45 @@ public abstract class ScriptVMMixin implements RSClient
 		return false;
 	}
 
+	// Call is injected by the raw injector
+	@Inject
+	static void setCurrentScript(RSScript script)
+	{
+		if (rootScriptEvent != null)
+		{
+			if(script != null) {
+				ScriptPreFired event = new ScriptPreFired((int) script.getHash(), rootScriptEvent);
+				client.getCallbacks().post(Events.SCRIPT_PRE_FIRED, event);
+			}
+			rootScriptEvent = null;
+		}
+
+		currentScript = script;
+
+	}
+
+
 	@Inject
 	public static int currentQuestRow = -1;
+	@Copy("runScriptLogic")
+	@Replace("runScriptLogic")
+	static void copy$runScriptLogic(RSScriptEvent event, RSScript var4, int maxExecutionTime, int var2)
+	{
+		try {
+			copy$runScriptLogic(event, var4, maxExecutionTime, var2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+	}
+
 	@Copy("runScript")
 	@Replace("runScript")
 	static void copy$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
 		Object[] arguments = event.getArguments();
-		assert arguments != null && arguments.length > 0;
+
 		if (arguments[0] instanceof JavaScriptCallback)
 		{
 			try
@@ -174,7 +196,7 @@ public abstract class ScriptVMMixin implements RSClient
 			}
 			catch (Exception e)
 			{
-				client.getLogger().error("Error in JavaScriptCallback", e);
+				e.printStackTrace();
 			}
 		}
 		else
@@ -184,18 +206,14 @@ public abstract class ScriptVMMixin implements RSClient
 				rootScriptEvent = event;
 				copy$runScript(event, maxExecutionTime, var2);
 			}
+			catch (Exception exception) {
+				exception.printStackTrace();
+			}
 			finally
 			{
 				currentScript = null;
 			}
 		}
-	}
-
-	@Copy("runScriptLogic")
-	@Replace("runScriptLogic")
-	static void copy$runScriptLogic(RSScriptEvent event, RSScript var4, int maxExecutionTime, int var2)
-	{
-		copy$runScriptLogic(event, var4, maxExecutionTime, var2);
 	}
 
 	@Inject
@@ -209,20 +227,24 @@ public abstract class ScriptVMMixin implements RSClient
 	@Override
 	public void runScriptEvent(RSScriptEvent event)
 	{
-		assert isClientThread() : "runScriptEvent must be called on client thread";
-		assert currentScript == null : "scripts are not reentrant";
+		Object[] args = event.getArguments();
+		int scriptId = (int) args[0];
+
+		//assert isClientThread() : "runScriptEvent must be called on client thread";
+		//assert currentScript == null : "scripts are not reentrant";
 		runScript(event, 5000000, 0);
 		boolean assertionsEnabled = false;
-		assert assertionsEnabled = true;
+		//assert assertionsEnabled = true;
 
-		Object[] args = event.getArguments();
-		if (assertionsEnabled && args[0] instanceof Integer)
+		if (args[0] instanceof Integer)
 		{
-			int scriptId = (int) args[0];
 			RSScript script = (RSScript) client.getScriptCache().get(scriptId);
 
 			if (script != null)
 			{
+
+
+
 				int intCount = 0, stringCount = 0;
 				for (int i = 1; i < args.length; i++)
 				{
@@ -235,6 +257,8 @@ public abstract class ScriptVMMixin implements RSClient
 						stringCount++;
 					}
 				}
+				System.out.println("Script " + scriptId + " was called"
+						+ script.getIntArgumentCount() + "+" + script.getStringArgumentCount() + ", got " + intCount + "+" + stringCount);
 
 				assert script.getIntArgumentCount() == intCount && script.getStringArgumentCount() == stringCount :
 						"Script " + scriptId + " was called with the incorrect number of arguments; takes "

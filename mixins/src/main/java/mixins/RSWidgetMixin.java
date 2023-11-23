@@ -711,4 +711,11 @@ public abstract class RSWidgetMixin implements RSWidget {
     public void onModelVisibilityChange(int idx) {
         client.getCallbacks().post(Events.WIDGET_VISIBILITY_CHANGE, new WidgetVisibilityChange(isHidden()));
     }
+
+    @Inject
+    @Override
+    public RSFont getFont()
+    {
+        return getRSFont(client.getWidgetDefinition());
+    }
 }

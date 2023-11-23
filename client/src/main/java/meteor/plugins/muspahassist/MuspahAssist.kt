@@ -15,9 +15,7 @@ import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import dev.hoot.api.widgets.Prayers
 import eventbus.events.*
-import meteor.api.ClientPackets
-import meteor.api.Items
-import meteor.api.NPCs
+import meteor.api.*
 import meteor.config.ConfigManager
 import meteor.game.ItemVariationMapping
 import meteor.plugins.Plugin
@@ -344,7 +342,7 @@ class MuspahAssist() : Plugin() {
         ClientThread.invokeLater {
             mageGear.forEach {id ->
                 Items.getFirst(id)?.let {
-                    ClientPackets.queueClickPacket(it.clickPoint)
+                    queueClickPacket(it.clickPoint)
                     it.interact(2)
                 }
             }
@@ -354,7 +352,7 @@ class MuspahAssist() : Plugin() {
         ClientThread.invokeLater {
             rangeGear.forEach {id ->
                 Items.getFirst(id)?.let {
-                 ClientPackets.queueClickPacket(it.clickPoint)
+                 queueClickPacket(it.clickPoint)
                  it.interact(2)
                 }
             }
@@ -364,7 +362,7 @@ class MuspahAssist() : Plugin() {
         ClientThread.invokeLater {
             shieldGear.forEach {id ->
                 Items.getFirst(id)?.let {
-                 ClientPackets.queueClickPacket(it.clickPoint)
+                 queueClickPacket(it.clickPoint)
                  it.interact(2)
                 }
             }
@@ -382,8 +380,8 @@ class MuspahAssist() : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        queueClickPacket(prayerWidget.clickPoint)
+        createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
     fun getActivePrayers(): List<Prayer> {
         return Prayer.values().filter { Prayers.isEnabled(it) }
@@ -400,7 +398,7 @@ class MuspahAssist() : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        queueClickPacket(prayerWidget.clickPoint)
+        createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
 }

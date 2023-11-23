@@ -64,7 +64,7 @@ public class class344 {
 				return 1;
 			} else if (var0 == 6765) {
 				var5 = VerticalAlignment.getNpcDefinition(Interpreter.Interpreter_intStack[--DbTableType.Interpreter_intStackSize]);
-				Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var5 != null ? var5.combatLevel * 550789923 * -1916672885 : 0;
+				Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var5 != null ? var5.combatLevel  : 0;
 				return 1;
 			} else {
 				return 2;

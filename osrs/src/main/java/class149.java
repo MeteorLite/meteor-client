@@ -74,107 +74,107 @@ public class class149 extends class144 {
 		descriptor = "(ILdt;ZI)I",
 		garbageValue = "1559513020"
 	)
-	static int method779(int var0, Script var1, boolean var2) {
-		if (var0 < 1000) {
-			return class47.method244(var0, var1, var2);
-		} else if (var0 < 1100) {
-			return WidgetDefinition.method1738(var0, var1, var2);
-		} else if (var0 < 1200) {
-			return class357.method1899(var0, var1, var2);
-		} else if (var0 < 1300) {
-			return class426.method2177(var0, var1, var2);
-		} else if (var0 < 1400) {
-			return WorldMapRectangle.method1327(var0, var1, var2);
-		} else if (var0 < 1500) {
-			return class1.method3(var0, var1, var2);
-		} else if (var0 < 1600) {
-			return ClanChannelMember.method768(var0, var1, var2);
-		} else if (var0 < 1700) {
-			return ReflectionCheck.method186(var0, var1, var2);
-		} else if (var0 < 1800) {
-			return class30.method133(var0, var1, var2);
-		} else if (var0 < 1900) {
-			return ItemComposition.method1031(var0, var1, var2);
-		} else if (var0 < 2000) {
-			return UserComparator6.method689(var0, var1, var2);
-		} else if (var0 < 2100) {
-			return WidgetDefinition.method1738(var0, var1, var2);
-		} else if (var0 < 2200) {
-			return class357.method1899(var0, var1, var2);
-		} else if (var0 < 2300) {
-			return class426.method2177(var0, var1, var2);
-		} else if (var0 < 2400) {
-			return WorldMapRectangle.method1327(var0, var1, var2);
-		} else if (var0 < 2500) {
-			return class1.method3(var0, var1, var2);
-		} else if (var0 < 2600) {
-			return class168.method874(var0, var1, var2);
-		} else if (var0 < 2700) {
-			return class60.method338(var0, var1, var2);
-		} else if (var0 < 2800) {
-			return FloorOverlayDefinition.method1038(var0, var1, var2);
-		} else if (var0 < 2900) {
-			return UrlRequester.method651(var0, var1, var2);
-		} else if (var0 < 3000) {
-			return UserComparator6.method689(var0, var1, var2);
-		} else if (var0 < 3200) {
-			return World.method407(var0, var1, var2);
-		} else if (var0 < 3300) {
-			return class159.method837(var0, var1, var2);
-		} else if (var0 < 3400) {
-			return class463.method2335(var0, var1, var2);
-		} else if (var0 < 3500) {
-			return ApproximateRouteStrategy.method356(var0, var1, var2);
-		} else if (var0 < 3600) {
-			return RouteStrategy.method1151(var0, var1, var2);
-		} else if (var0 < 3700) {
-			return class350.method1890(var0, var1, var2);
-		} else if (var0 < 3800) {
-			return SequenceDefinition.method1055(var0, var1, var2);
-		} else if (var0 < 3900) {
-			return WorldMapRectangle.method1328(var0, var1, var2);
-		} else if (var0 < 4000) {
-			return Actor.method517(var0, var1, var2);
-		} else if (var0 < 4100) {
-			return class422.method2168(var0, var1, var2);
-		} else if (var0 < 4200) {
-			return ArchiveDiskAction.method1909(var0, var1, var2);
-		} else if (var0 < 4300) {
-			return ObjectSound.method425(var0, var1, var2);
-		} else if (var0 < 5100) {
-			return class12.method48(var0, var1, var2);
-		} else if (var0 < 5400) {
-			return class72.method434(var0, var1, var2);
-		} else if (var0 < 5600) {
-			return SoundSystem.method232(var0, var1, var2);
-		} else if (var0 < 5700) {
-			return UserComparator9.method682(var0, var1, var2);
-		} else if (var0 < 6300) {
-			return class134.method732(var0, var1, var2);
-		} else if (var0 < 6600) {
-			return class138.method738(var0, var1, var2);
-		} else if (var0 < 6700) {
-			return SecureRandomCallable.method458(var0, var1, var2);
-		} else if (var0 < 6800) {
-			return class344.method1878(var0, var1, var2);
-		} else if (var0 < 6900) {
-			return class17.method62(var0, var1, var2);
-		} else if (var0 < 7000) {
-			return VerticalAlignment.method959(var0, var1, var2);
-		} else if (var0 < 7100) {
-			return class148.method775(var0, var1, var2);
-		} else if (var0 < 7200) {
-			return class158.method833(var0, var1, var2);
-		} else if (var0 < 7300) {
-			return ScriptEvent.method468(var0, var1, var2);
-		} else if (var0 < 7500) {
-			return class147.method771(var0, var1, var2);
-		} else if (var0 < 7600) {
-			return class59.method333(var0, var1, var2);
-		} else if (var0 < 7700) {
-			return class12.method49(var0, var1, var2);
+	static int opCodeCheck(int opCode, Script var1, boolean var2) {
+		if (opCode < 1000) {
+			return class47.method244(opCode, var1, var2);
+		} else if (opCode < 1100) {
+			return WidgetDefinition.method1738(opCode, var1, var2);
+		} else if (opCode < 1200) {
+			return class357.method1899(opCode, var1, var2);
+		} else if (opCode < 1300) {
+			return class426.method2177(opCode, var1, var2);
+		} else if (opCode < 1400) {
+			return WorldMapRectangle.method1327(opCode, var1, var2);
+		} else if (opCode < 1500) {
+			return class1.method3(opCode, var1, var2);
+		} else if (opCode < 1600) {
+			return ClanChannelMember.method768(opCode, var1, var2);
+		} else if (opCode < 1700) {
+			return ReflectionCheck.method186(opCode, var1, var2);
+		} else if (opCode < 1800) {
+			return class30.method133(opCode, var1, var2);
+		} else if (opCode < 1900) {
+			return ItemComposition.method1031(opCode, var1, var2);
+		} else if (opCode < 2000) {
+			return UserComparator6.method689(opCode, var1, var2);
+		} else if (opCode < 2100) {
+			return WidgetDefinition.method1738(opCode, var1, var2);
+		} else if (opCode < 2200) {
+			return class357.method1899(opCode, var1, var2);
+		} else if (opCode < 2300) {
+			return class426.method2177(opCode, var1, var2);
+		} else if (opCode < 2400) {
+			return WorldMapRectangle.method1327(opCode, var1, var2);
+		} else if (opCode < 2500) {
+			return class1.method3(opCode, var1, var2);
+		} else if (opCode < 2600) {
+			return class168.method874(opCode, var1, var2);
+		} else if (opCode < 2700) {
+			return class60.method338(opCode, var1, var2);
+		} else if (opCode < 2800) {
+			return FloorOverlayDefinition.method1038(opCode, var1, var2);
+		} else if (opCode < 2900) {
+			return UrlRequester.method651(opCode, var1, var2);
+		} else if (opCode < 3000) {
+			return UserComparator6.method689(opCode, var1, var2);
+		} else if (opCode < 3200) {
+			return World.method407(opCode, var1, var2);
+		} else if (opCode < 3300) {
+			return class159.method837(opCode, var1, var2);
+		} else if (opCode < 3400) {
+			return class463.method2335(opCode, var1, var2);
+		} else if (opCode < 3500) {
+			return ApproximateRouteStrategy.method356(opCode, var1, var2);
+		} else if (opCode < 3600) {
+			return RouteStrategy.method1151(opCode, var1, var2);
+		} else if (opCode < 3700) {
+			return class350.method1890(opCode, var1, var2);
+		} else if (opCode < 3800) {
+			return SequenceDefinition.method1055(opCode, var1, var2);
+		} else if (opCode < 3900) {
+			return WorldMapRectangle.method1328(opCode, var1, var2);
+		} else if (opCode < 4000) {
+			return Actor.method517(opCode, var1, var2);
+		} else if (opCode < 4100) {
+			return class422.method2168(opCode, var1, var2);
+		} else if (opCode < 4200) {
+			return ArchiveDiskAction.method1909(opCode, var1, var2);
+		} else if (opCode < 4300) {
+			return ObjectSound.method425(opCode, var1, var2);
+		} else if (opCode < 5100) {
+			return class12.method48(opCode, var1, var2);
+		} else if (opCode < 5400) {
+			return class72.method434(opCode, var1, var2);
+		} else if (opCode < 5600) {
+			return SoundSystem.method232(opCode, var1, var2);
+		} else if (opCode < 5700) {
+			return UserComparator9.method682(opCode, var1, var2);
+		} else if (opCode < 6300) {
+			return class134.method732(opCode, var1, var2);
+		} else if (opCode < 6600) {
+			return class138.method738(opCode, var1, var2);
+		} else if (opCode < 6700) {
+			return SecureRandomCallable.method458(opCode, var1, var2);
+		} else if (opCode < 6800) {
+			return class344.method1878(opCode, var1, var2);
+		} else if (opCode < 6900) {
+			return class17.method62(opCode, var1, var2);
+		} else if (opCode < 7000) {
+			return VerticalAlignment.method959(opCode, var1, var2);
+		} else if (opCode < 7100) {
+			return class148.method775(opCode, var1, var2);
+		} else if (opCode < 7200) {
+			return class158.method833(opCode, var1, var2);
+		} else if (opCode < 7300) {
+			return ScriptEvent.method468(opCode, var1, var2);
+		} else if (opCode < 7500) {
+			return class147.method771(opCode, var1, var2);
+		} else if (opCode < 7600) {
+			return class59.method333(opCode, var1, var2);
+		} else if (opCode < 7700) {
+			return class12.method49(opCode, var1, var2);
 		} else {
-			return var0 < 8100 ? ModelData0.method1599(var0, var1, var2) : 2;
+			return opCode < 8100 ? ModelData0.method1599(opCode, var1, var2) : 2;
 		}
 	}
 

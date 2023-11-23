@@ -62,8 +62,8 @@ public class UserComparator8 extends AbstractUserComparator {
 		descriptor = "(IIII)Ldc;",
 		garbageValue = "853776255"
 	)
-	@Export("ifOpenSub")
-	static final InterfaceParent ifOpenSub(int var0, int var1, int var2) {
+	@Export("openInterface")
+	static final InterfaceParent openInterface(int var0, int var1, int var2) {
 		InterfaceParent var3 = new InterfaceParent();
 		var3.group = var1;
 		var3.type = var2;

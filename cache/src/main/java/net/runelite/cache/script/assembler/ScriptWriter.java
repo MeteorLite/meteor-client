@@ -24,17 +24,14 @@
  */
 package net.runelite.cache.script.assembler;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import net.runelite.cache.definitions.ScriptDefinition;
 import net.runelite.cache.script.Instruction;
 import net.runelite.cache.script.Instructions;
 import net.runelite.cache.script.Opcodes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 public class ScriptWriter extends rs2asmBaseListener
 {

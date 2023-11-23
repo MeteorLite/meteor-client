@@ -24,10 +24,11 @@
  */
 package net.runelite.cache.models;
 
-import java.io.PrintWriter;
 import net.runelite.cache.TextureManager;
 import net.runelite.cache.definitions.ModelDefinition;
 import net.runelite.cache.definitions.TextureDefinition;
+
+import java.io.PrintWriter;
 
 public class ObjExporter
 {

@@ -8,13 +8,14 @@ public class class185 extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llk;"
 	)
-	public static EvictingDualNodeHashTable field1516;
+	@Export("e6")
+	public static EvictingDualNodeHashTable e6;
 	@ObfuscatedName("av")
 	@Export("Tiles_lightness")
 	static int[] Tiles_lightness;
 
 	static {
-		field1516 = new EvictingDualNodeHashTable(64);
+		e6 = new EvictingDualNodeHashTable(64);
 	}
 
 	@ObfuscatedName("ao")

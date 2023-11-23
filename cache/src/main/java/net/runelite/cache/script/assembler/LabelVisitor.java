@@ -24,10 +24,11 @@
  */
 package net.runelite.cache.script.assembler;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LabelVisitor extends rs2asmBaseListener
 {

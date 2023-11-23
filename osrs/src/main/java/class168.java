@@ -82,10 +82,11 @@ public class class168 extends class144 {
 		descriptor = "(II)Lte;",
 		garbageValue = "-847126653"
 	)
-	static class518 method875(int var0) {
-		class518 var1 = (class518)Client.Widget_cachedModels.get((long)var0);
+	@Export("getDbTable")
+	static DbTable getDbTable(int var0) {
+		DbTable var1 = (DbTable)Client.Widget_cachedModels.get((long)var0);
 		if (var1 == null) {
-			var1 = new class518(class267.field2224, SequenceDefinition.method1041(var0), ZoneOperation.method1630(var0));
+			var1 = new DbTable(class267.field2224, SequenceDefinition.method1041(var0), ZoneOperation.method1630(var0));
 			Client.Widget_cachedModels.put(var1, (long)var0);
 		}
 

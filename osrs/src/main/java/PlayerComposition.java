@@ -610,8 +610,8 @@ public class PlayerComposition {
 			var17 = (ScriptFrame.oculusOrbFocalPointY >> 7) + class101.baseY;
 			PacketBufferNode var18 = class113.getPacketBufferNode(ClientPacket.f20, Client.packetWriter.isaacCipher);
 			var18.packetBuffer.writeInt(Client.field367);
-			var18.packetBuffer.writeIntME(var16);
-			var18.packetBuffer.writeIntME(var17);
+			var18.packetBuffer.writeShortAddLE(var16);
+			var18.packetBuffer.writeShortAddLE(var17);
 			var18.packetBuffer.writeByte(var15);
 			Client.packetWriter.addNode(var18);
 		}
@@ -641,7 +641,7 @@ public class PlayerComposition {
 
 		for (var16 = 0; var16 < 5; ++var16) {
 			if (Client.cameraShaking[var16]) {
-				var17 = (int)(Math.random() * (double)(Client.cameraShakeIntensity[var16] * 2 + 1) - (double)Client.cameraShakeIntensity[var16] + Math.sin((double)Client.field589[var16] * ((double)Client.cameraShakeSpeed[var16] / 100.0D)) * (double)Client.cameraMoveIntensity[var16]);
+				var17 = (int)(Math.random() * (double)(Client.cameraShakeIntensity[var16] * 2 + 1) - (double)Client.cameraShakeIntensity[var16] + Math.sin((double)Client.cameraShakeCycle[var16] * ((double)Client.cameraShakeSpeed[var16] / 100.0D)) * (double)Client.cameraMoveIntensity[var16]);
 				if (var16 == 0) {
 					ViewportMouse.cameraX += var17;
 				}

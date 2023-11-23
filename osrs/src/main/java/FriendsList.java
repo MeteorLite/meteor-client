@@ -141,7 +141,7 @@ public class FriendsList extends UserList {
 					if (var6 != var11.world) {
 						var11.int2 = ++this.field3818 - 1;
 						if (var11.world == -1 && var6 == 0) {
-							var11.int2 = -(var11.int2 * 1393374135) * -977987065;
+							var11.int2 = -(var11.int2);
 						}
 
 						var11.world = var6;

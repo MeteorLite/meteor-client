@@ -9,6 +9,8 @@ import net.runelite.api.Varbits;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 
+import static meteor.api.ClientPacketManagerKt.queueClickPacket;
+
 public class Prayers
 {
 	public static boolean isEnabled(Prayer prayer)
@@ -36,7 +38,7 @@ public class Prayers
 		Widget widget = Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB);
 		if (widget != null)
 		{
-			ClientPackets.INSTANCE.queueClickPacket(widget.getClickPoint());
+			queueClickPacket(widget.getClickPoint());
 			widget.interact(enabled ? "Activate" : "Deactivate");
 		}
 

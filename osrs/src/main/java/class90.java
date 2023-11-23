@@ -217,7 +217,7 @@ public enum class90 implements class383 {
 			int var23;
 			boolean var24;
 			if ((var22 & 4096) != 0) {
-				var6 = var1.readUnsignedShortAdd();
+				var6 = var1.readUnsignedByteAdd();
 				if ((var6 & 1) == 1) {
 					var14.method593();
 				} else {
@@ -257,13 +257,13 @@ public enum class90 implements class383 {
 						var16 = new short[var10];
 
 						for (var23 = 0; var23 < var10; ++var23) {
-							var16[var23] = (short)var1.readUnsignedIntIME();
+							var16[var23] = (short)var1.readUnsignedShortAdd();
 						}
 					}
 
 					var24 = false;
 					if ((var6 & 16) != 0) {
-						var24 = var1.readUnsignedShortAdd() == 1;
+						var24 = var1.readUnsignedByteAdd() == 1;
 					}
 
 					var17 = (long)(++NPC.field1080 - 1);
@@ -291,21 +291,21 @@ public enum class90 implements class383 {
 
 			if ((var22 & 262144) != 0) {
 				var6 = var1.readUnsignedIntME();
-				var14.turnLeftSequence = (var6 & 1) != 0 ? var1.readUnsignedShort() : var14.definition.turnLeftSequence * 2124045029 * 1875038957;
-				var14.turnRightSequence = (var6 & 2) != 0 ? var1.readUnsignedIntIME() : var14.definition.turnRightSequence * 1814511787 * -810894845;
-				var14.walkSequence = (var6 & 4) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.walkSequence * -980344253 * 380025451;
-				var14.walkBackSequence = (var6 & 8) != 0 ? var1.readUnsignedIntIME() : var14.definition.walkBackSequence * -347828473 * -666784073;
-				var14.walkLeftSequence = (var6 & 16) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.walkLeftSequence * -914310317 * -1721155365;
-				var14.walkRightSequence = (var6 & 32) != 0 ? var1.readUnsignedIntIME() : var14.definition.walkRightSequence * 1760273377 * 832299041;
-				var14.runSequence = (var6 & 64) != 0 ? var1.readUnsignedShortLE() : var14.definition.runSequence * -1490443197 * 795658347;
-				var14.runBackSequence = (var6 & 128) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.runBackSequence * -217719435 * 1622952669;
-				var14.runLeftSequence = (var6 & 256) != 0 ? var1.readUnsignedIntIME() : var14.definition.runLeftSequence * -556683877 * 168358035;
-				var14.runRightSequence = (var6 & 512) != 0 ? var1.readUnsignedShort() : var14.definition.runRightSequence * -732977015 * 1800293817;
-				var14.crawlSequence = (var6 & 1024) != 0 ? var1.readUnsignedIntIME() : var14.definition.crawlSequence * -400554641 * 2053962127;
-				var14.crawlBackSequence = (var6 & 2048) != 0 ? var1.readUnsignedShort() : var14.definition.crawlBackSequence * -418592841 * -280377849;
-				var14.crawlLeftSequence = (var6 & 4096) != 0 ? var1.readUnsignedIntIME() : var14.definition.crawlLeftSequence * 1849100485 * -2053163507;
-				var14.crawlRightSequence = (var6 & 8192) != 0 ? var1.readUnsignedIntIME() : var14.definition.crawlRightSequence * 1731690515 * 694176283;
-				var14.idleSequence = (var6 & 16384) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.idleSequence * 929101693 * 70810069;
+				var14.turnLeftSequence = (var6 & 1) != 0 ? var1.readUnsignedShort() : var14.definition.turnLeftSequence ;
+				var14.turnRightSequence = (var6 & 2) != 0 ? var1.readUnsignedShortAdd() : var14.definition.turnRightSequence ;
+				var14.walkSequence = (var6 & 4) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.walkSequence ;
+				var14.walkBackSequence = (var6 & 8) != 0 ? var1.readUnsignedShortAdd() : var14.definition.walkBackSequence ;
+				var14.walkLeftSequence = (var6 & 16) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.walkLeftSequence ;
+				var14.walkRightSequence = (var6 & 32) != 0 ? var1.readUnsignedShortAdd() : var14.definition.walkRightSequence ;
+				var14.runSequence = (var6 & 64) != 0 ? var1.readUnsignedShortLE() : var14.definition.runSequence ;
+				var14.runBackSequence = (var6 & 128) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.runBackSequence ;
+				var14.runLeftSequence = (var6 & 256) != 0 ? var1.readUnsignedShortAdd() : var14.definition.runLeftSequence ;
+				var14.runRightSequence = (var6 & 512) != 0 ? var1.readUnsignedShort() : var14.definition.runRightSequence ;
+				var14.crawlSequence = (var6 & 1024) != 0 ? var1.readUnsignedShortAdd() : var14.definition.crawlSequence ;
+				var14.crawlBackSequence = (var6 & 2048) != 0 ? var1.readUnsignedShort() : var14.definition.crawlBackSequence ;
+				var14.crawlLeftSequence = (var6 & 4096) != 0 ? var1.readUnsignedShortAdd() : var14.definition.crawlLeftSequence ;
+				var14.crawlRightSequence = (var6 & 8192) != 0 ? var1.readUnsignedShortAdd() : var14.definition.crawlRightSequence ;
+				var14.idleSequence = (var6 & 16384) != 0 ? var1.readUnsignedShortAddLE() : var14.definition.idleSequence ;
 			}
 
 			if ((var22 & 1) != 0) {
@@ -354,7 +354,7 @@ public enum class90 implements class383 {
 			}
 
 			if ((var22 & 8192) != 0) {
-				var14.combatLevelChange = var1.readIntIME();
+				var14.combatLevelChange = var1.readUnsignedIntIME();
 			}
 
 			if ((var22 & 32) != 0) {
@@ -383,7 +383,7 @@ public enum class90 implements class383 {
 			}
 
 			if ((var22 & 2) != 0) {
-				var6 = var1.readUnsignedShortAdd();
+				var6 = var1.readUnsignedByteAdd();
 				if (var6 > 0) {
 					for (var19 = 0; var19 < var6; ++var19) {
 						var9 = -1;
@@ -437,7 +437,7 @@ public enum class90 implements class383 {
 				for (var19 = 0; var19 < var6; ++var19) {
 					var8 = var1.readUnsignedByte();
 					var9 = var1.readUnsignedShort();
-					var10 = var1.readIntIME();
+					var10 = var1.readUnsignedIntIME();
 					var14.updateSpotAnimation(var8, var9, var10 >> 16, var10 & 65535);
 				}
 			}
@@ -492,13 +492,13 @@ public enum class90 implements class383 {
 						var16 = new short[var10];
 
 						for (var23 = 0; var23 < var10; ++var23) {
-							var16[var23] = (short)var1.readUnsignedIntIME();
+							var16[var23] = (short)var1.readUnsignedShortAdd();
 						}
 					}
 
 					var24 = false;
 					if ((var6 & 16) != 0) {
-						var24 = var1.readUnsignedShortAdd() == 1;
+						var24 = var1.readUnsignedByteAdd() == 1;
 					}
 
 					var17 = (long)(++NPC.field1081 - 1);
@@ -518,7 +518,7 @@ public enum class90 implements class383 {
 			}
 
 			if ((var22 & 64) != 0) {
-				var1.readUnsignedIntIME();
+				var1.readUnsignedShortAdd();
 				var1.readUnsignedIntME();
 			}
 		}

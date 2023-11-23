@@ -5,13 +5,12 @@ import dev.hoot.api.magic.Regular
 import eventbus.events.GameTick
 import eventbus.events.StatChanged
 import meteor.api.Items
-import meteor.api.ClientPackets
+import meteor.api.queueClickPacket
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.util.CalcUtils
 import net.runelite.api.Skill
 import java.util.*
-import kotlin.math.roundToInt
 
 @PluginDescriptor(
     name = "Auto Alch",
@@ -44,7 +43,7 @@ class AutoAlchPlugin : Plugin() {
                 else
                     Regular.LOW_LEVEL_ALCHEMY
             Items.getFirst(config.itemID())?.let{
-                ClientPackets.queueClickPacket(it.clickPoint)
+                queueClickPacket(it.clickPoint)
                 Magic.cast(spellToUse,it)
             }
         }

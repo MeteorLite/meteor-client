@@ -3,8 +3,8 @@ package meteor.plugins.wintertodtfletcher
 import dev.hoot.api.game.Skills
 import eventbus.events.GameTick
 import eventbus.events.HitsplatApplied
-import meteor.api.ClientPackets
 import meteor.api.Items
+import meteor.api.queueClickPacket
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.Item
@@ -73,7 +73,7 @@ class WintertodtHelper : Plugin() {
                 for (item in items) {
                     if (item.actions?.contains("Eat") == true) {
                         allowance++
-                        ClientPackets.queueClickPacket(item.clickPoint)
+                        queueClickPacket(item.clickPoint)
                         item.interact("Eat")
                         return true
                     }

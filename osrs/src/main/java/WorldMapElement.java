@@ -235,7 +235,7 @@ public class WorldMapElement extends DualNode {
 	)
 	@Export("getSpriteBool")
 	public SpritePixels getSpriteBool(boolean var1) {
-		int var2 = this.sprite1 * 1450652377 * -351523479;
+		int var2 = this.sprite1 ;
 		return this.getSprite(var2);
 	}
 

@@ -117,7 +117,7 @@ open class EventInspectorSubscriber : DevToolsFrame(), KEventSubscriber {
     open fun onHashTableNodeGetCall(it: HashTableNodeGetCall) {}
     open fun onHashTableNodePut(it: HashTableNodePut) {}
     open fun onHintArrowEvent(it: HintArrowEvent) {}
-    open fun onIfOpenSubEvent(it: IfOpenSubEvent) {}
+    open fun onopenInterfaceEvent(it: openInterfaceEvent) {}
     open fun onIfOpenTopEvent(it: IfOpenTopEvent) {}
     open fun onJinglePlayed(it: JinglePlayed) {}
     open fun onMinimapStateChange(it: MinimapStateChange) {}
@@ -449,7 +449,7 @@ open class EventInspectorSubscriber : DevToolsFrame(), KEventSubscriber {
         }
         subscribeEvent<HashTableNodePut>(Events.HASH_TABLE_NODE_PUT) { executeIfListening { onHashTableNodePut(it) } }
         subscribeEvent<HintArrowEvent>(Events.HINT_ARROW_EVENT) { executeIfListening { onHintArrowEvent(it) } }
-        subscribeEvent<IfOpenSubEvent>(Events.IF_OPEN_SUB_EVENT) { executeIfListening { onIfOpenSubEvent(it) } }
+        subscribeEvent<openInterfaceEvent>(Events.IF_OPEN_SUB_EVENT) { executeIfListening { onopenInterfaceEvent(it) } }
         subscribeEvent<IfOpenTopEvent>(Events.IF_OPEN_TOP_EVENT) { executeIfListening { onIfOpenTopEvent(it) } }
         subscribeEvent<InteractingChanged>(Events.INTERACTING_CHANGED) { executeIfListening { onInteractingChanged(it) } }
         subscribeEvent<JinglePlayed>(Events.JINGLE_PLAYED) { executeIfListening { onJinglePlayed(it) } }

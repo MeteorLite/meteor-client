@@ -76,7 +76,7 @@ public class NewShit {
 		}
 
 		var2.offset = 0;
-		var1.field823 = var2.readStringCp1252NullTerminatedOrNull();
+		var1.instructions = var2.readStringCp1252NullTerminatedOrNull();
 		var1.opcodes = new int[var5];
 		var1.intOperands = new int[var5];
 		var1.stringOperands = new String[var5];

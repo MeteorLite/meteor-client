@@ -26,9 +26,11 @@ package net.runelite.rs.api;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import net.runelite.api.*;
+import net.runelite.api.mixins.Inject;
 import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.IsaacCipher;
 import net.runelite.api.clan.ClanRank;
@@ -1530,6 +1532,10 @@ public interface RSClient extends RSGameEngine, Client
 	Unethical
 	 */
 
+/*
+	@Import("runScriptLogic")
+	void runScriptLogic(RSScriptEvent ev, RSScript s, int ex, int var2);*/
+
 	@Import("Login_response0")
 	String getLoginResponse0();
 
@@ -1724,4 +1730,42 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("musicSongs")
 	ArrayList<RSMusicSong> getMusicSongs();
+
+	@Import("openInterface")
+	WidgetNode openRSInterface(int componentId, int interfaceId, int modalMode);
+	@Import("closeInterface")
+	void closeRSInterface(WidgetNode interfaceNode, boolean unload);
+	@Construct
+	RSInterfaceParent newInterfaceParent();
+	@Import("runComponentCloseListeners")
+	void runComponentCloseListeners(Widget[] var0, int var1);
+
+	@Import("e1")
+	RSEvictingDualNodeHashTable getE1();
+	@Import("e2")
+	RSEvictingDualNodeHashTable getE2();
+	@Import("e3")
+	RSEvictingDualNodeHashTable getE3();
+	@Import("e4")
+	RSEvictingDualNodeHashTable getE4();
+	@Import("e5")
+	RSEvictingDualNodeHashTable getE5();
+	@Import("e6")
+	RSEvictingDualNodeHashTable getE6();
+	@Import("e7")
+	RSEvictingDualNodeHashTable getE7();
+	@Import("e8")
+	RSEvictingDualNodeHashTable getE8();
+	@Import("archive4")
+	RSEvictingDualNodeHashTable getArchive4();
+	@Import("archive5")
+	RSEvictingDualNodeHashTable getArchive5();
+	@Import("archive7")
+	RSEvictingDualNodeHashTable getArchive7();
+	@Import("archive11")
+	RSEvictingDualNodeHashTable getArchive11();
+	@Import("getDbTable")
+	RSDbTable getDbTable(int var0);
+
+
 }

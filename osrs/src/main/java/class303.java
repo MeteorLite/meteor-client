@@ -19,12 +19,12 @@ public class class303 {
 		}
 
 		if (Varcs.cameraPitch < var0) {
-			Varcs.cameraPitch = (var0 - Varcs.cameraPitch) * class134.cameraMoveToAcceleration / 1000 + Varcs.cameraPitch + class60.cameraLookAtSpeed;
+			Varcs.cameraPitch = (var0 - Varcs.cameraPitch) * class134.cameraMoveToAcceleration / 1000 + Varcs.cameraPitch + class60.cameraMoveToSpeed;
 			if (Varcs.cameraPitch > var0) {
 				Varcs.cameraPitch = var0;
 			}
 		} else if (Varcs.cameraPitch > var0) {
-			Varcs.cameraPitch -= (Varcs.cameraPitch - var0) * class134.cameraMoveToAcceleration / 1000 + class60.cameraLookAtSpeed;
+			Varcs.cameraPitch -= (Varcs.cameraPitch - var0) * class134.cameraMoveToAcceleration / 1000 + class60.cameraMoveToSpeed;
 			if (Varcs.cameraPitch < var0) {
 				Varcs.cameraPitch = var0;
 			}
@@ -39,10 +39,10 @@ public class class303 {
 		}
 
 		if (var2 > 0) {
-			class192.cameraYaw = class192.cameraYaw + class60.cameraLookAtSpeed + var2 * class134.cameraMoveToAcceleration / 1000;
+			class192.cameraYaw = class192.cameraYaw + class60.cameraMoveToSpeed + var2 * class134.cameraMoveToAcceleration / 1000;
 			class192.cameraYaw &= 2047;
 		} else if (var2 < 0) {
-			class192.cameraYaw -= class60.cameraLookAtSpeed + -var2 * class134.cameraMoveToAcceleration / 1000;
+			class192.cameraYaw -= class60.cameraMoveToSpeed + -var2 * class134.cameraMoveToAcceleration / 1000;
 			class192.cameraYaw &= 2047;
 		}
 

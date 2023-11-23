@@ -429,7 +429,7 @@ object Items {
             } else {
                 val menu = item.getMenu(withdrawOption.menuIndex + 1)
                 menu?.let {
-                    ClientPackets.createClientPacket(it)!!.send()
+                    createClientPacket(it)!!.send()
                     if (withdrawOption == Bank.WithdrawOption.X) {
                         Dialog.enterInput(amount)
                         Time.sleepUntil({ !Dialog.isOpen() }, 1200)

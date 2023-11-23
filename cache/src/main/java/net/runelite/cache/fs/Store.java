@@ -24,17 +24,17 @@
  */
 package net.runelite.cache.fs;
 
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import net.runelite.cache.IndexType;
 import net.runelite.cache.fs.jagex.DiskStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.Closeable;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public final class Store implements Closeable
 {
@@ -94,7 +94,7 @@ public final class Store implements Closeable
 		return true;
 	}
 
-	public final Index addIndex(int id) throws FileNotFoundException
+	public final Index addIndex(int id)
 	{
 		for (Index i : indexes)
 		{

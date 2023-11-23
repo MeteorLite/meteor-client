@@ -1,16 +1,13 @@
 package meteor.plugins.jadautoprayer
 
-import com.google.common.eventbus.Subscribe
 import dev.hoot.api.events.AutomatedMenu
 import eventbus.events.AnimationChanged
-import meteor.api.ClientPackets
+import meteor.api.createClientPacket
+import meteor.api.queueClickPacket
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import net.runelite.api.*
-import net.runelite.api.mixins.Inject
-import net.runelite.api.widgets.Widget
-import net.runelite.api.widgets.WidgetInfo
 
 @PluginDescriptor(
     name = "Jad Auto Prayer",
@@ -58,8 +55,8 @@ class JadAutoPrayerPlugin : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        queueClickPacket(prayerWidget.clickPoint)
+        createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
 
     }
 

@@ -10,7 +10,8 @@ public class class302 {
 	)
 	static ArchiveDisk field2511;
 	@ObfuscatedName("up")
-	static int field2510;
+	@Export("cameraLookAtHeight")
+	static int cameraMoveToHeight;
 
 	@ObfuscatedName("bo")
 	@ObfuscatedSignature(

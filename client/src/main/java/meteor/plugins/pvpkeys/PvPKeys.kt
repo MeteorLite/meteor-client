@@ -200,7 +200,7 @@ class PvPKeys : Plugin() {
         override fun hotkeyPressed() {
             ClientThread.invokeLater {
                 meleeGear.forEach {
-                    Items.getFirst(it)?.interact(2)
+                    Items.getFirst(it)?.interact("Wield")
                 }
             }
         }

@@ -27,9 +27,8 @@ package net.runelite.cache.definitions.loaders;
 import net.runelite.cache.definitions.MapDefinition;
 import net.runelite.cache.definitions.MapDefinition.Tile;
 import net.runelite.cache.io.InputStream;
-import static net.runelite.cache.region.Region.X;
-import static net.runelite.cache.region.Region.Y;
-import static net.runelite.cache.region.Region.Z;
+
+import static net.runelite.cache.region.Region.*;
 
 public class MapLoader
 {

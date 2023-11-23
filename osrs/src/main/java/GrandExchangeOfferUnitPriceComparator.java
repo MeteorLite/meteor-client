@@ -56,13 +56,13 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 		if (!Client.isInInstance) {
 			int var4;
 			if (var2) {
-				var1.readShortLE();
+				var1.readShortAdd();
 				var4 = var1.readUnsignedShort();
 				var3 = var1.readUnsignedShort();
 				var5 = var1.readUnsignedShort();
 			} else {
 				var4 = var1.readUnsignedShort();
-				var3 = var1.readUnsignedIntIME();
+				var3 = var1.readUnsignedShortAdd();
 				var5 = var1.readUnsignedShort();
 			}
 
@@ -93,7 +93,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 
 			class292.method1606(var3, var4, true);
 		} else {
-			var3 = var1.readUnsignedIntIME();
+			var3 = var1.readUnsignedShortAdd();
 			boolean var16 = var1.readUnsignedByte() == 1;
 			var5 = var1.readUnsignedShort();
 			var6 = var1.readUnsignedShort();

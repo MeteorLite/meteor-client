@@ -97,7 +97,6 @@ public class QuestSyncStep extends QuestStep
 
 		final int newScroll = Math.max(0, Math.min(parent.getScrollHeight(),
 			(widget.getRelativeY() / 2 + (widget.getHeight()) / 2) - parent.getHeight() / 2));
-
 		client.runScript(
 			ScriptID.UPDATE_SCROLLBAR,
 			QuestWidgets.QUESTLIST_SCROLLBAR.getId(),

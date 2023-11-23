@@ -153,7 +153,7 @@ public class class404 extends AbstractQueue {
 	@ObfuscatedName("offer")
 	public boolean offer(Object var1) {
 		if (this.field3702.containsKey(var1)) {
-			throw new IllegalArgumentException("");
+			//throw new IllegalArgumentException("");
 		} else {
 			++this.field3700;
 			int var2 = this.field3701;
@@ -173,6 +173,8 @@ public class class404 extends AbstractQueue {
 
 			return true;
 		}
+		return true;
+
 	}
 
 	@Export("poll")

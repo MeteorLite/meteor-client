@@ -24,10 +24,11 @@
  */
 package net.runelite.cache.definitions;
 
-import java.util.List;
-import java.util.Map;
 import lombok.Data;
 import net.runelite.cache.util.BaseVarType;
+
+import java.util.List;
+import java.util.Map;
 
 @Data
 public class DBTableIndex

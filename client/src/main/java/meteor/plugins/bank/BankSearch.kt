@@ -27,7 +27,6 @@ package meteor.plugins.bank
 
 import meteor.Main
 import meteor.rs.ClientThread
-import net.runelite.api.Client
 import net.runelite.api.ScriptID
 import net.runelite.api.VarClientInt
 import net.runelite.api.VarClientStr

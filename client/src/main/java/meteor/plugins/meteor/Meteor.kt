@@ -17,10 +17,9 @@ import eventbus.events.MenuOptionClicked
 import meteor.Configuration
 import meteor.Logger
 import meteor.Main
-import meteor.api.ClientPackets
-
+import meteor.api.createClientPacket
+import meteor.api.queueClickPacket
 import meteor.config.ConfigManager
-
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -53,13 +52,13 @@ class Meteor : Plugin(daemon = true) {
         try {
             if (config.mouseBehavior() != MouseBehavior.DISABLED) {
                 ClientThread.invoke {
-                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
+                    queueClickPacket(clickPoint.x, clickPoint.y)
                     mouseHandler.sendMovement(clickPoint.x, clickPoint.y)
                 }
             }
             GameThread.invoke {
                 try {
-                    val packetBufferNode = ClientPackets.createClientPacket(it)
+                    val packetBufferNode = createClientPacket(it)
                     if (packetBufferNode != null) packetBufferNode.send() else println("No valid packet to write")
                 } catch (ex: InteractionException) {
                     log.debug("{}, falling back to invoke", ex.message!!)

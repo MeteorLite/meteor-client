@@ -35,7 +35,8 @@ public class Messages {
 	@ObfuscatedName("gk")
 	static String field1155;
 	@ObfuscatedName("uu")
-	static int field1154;
+	@Export("cameraLookAtX")
+	static int cameraMoveToX;
 
 	static {
 		Messages_channels = new HashMap();

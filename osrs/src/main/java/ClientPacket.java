@@ -46,7 +46,7 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("f5")
+	@Export("OPPLAYERT")
 	public static final ClientPacket OPPLAYERT;
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
@@ -69,7 +69,7 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("PING_STATS")
+	@Export("MOVE_GAMECLICK")
 	public static final ClientPacket MOVE_GAMECLICK;
 	@ObfuscatedName("av")
 	@ObfuscatedSignature(
@@ -93,8 +93,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("f6")
-	public static final ClientPacket f6;
+	@Export("IF_BUTTONT")
+	public static final ClientPacket IF_BUTTONT;
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -141,12 +141,13 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("OPLOC2")
-	public static final ClientPacket OPLOC2;
+	@Export("OPOBJ2")
+	public static final ClientPacket OPOBJ2;
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
+	@Export("OPPLAYER2")
 	public static final ClientPacket OPPLAYER2;
 	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
@@ -158,8 +159,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("IF_BUTTONT")
-	public static final ClientPacket IF_BUTTONT;
+	@Export("IDLE")
+	public static final ClientPacket IDLE;
 	@ObfuscatedName("be")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -187,7 +188,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	public static final ClientPacket field2558;
+	@Export("OPOBJ3")
+	public static final ClientPacket OPOBJ3;
 	@ObfuscatedName("bf")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -209,8 +211,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("WIDGET_TYPE")
-	public static final ClientPacket WIDGET_TYPE;
+	@Export("OPPLAYER5")
+	public static final ClientPacket OPPLAYER5;
 	@ObfuscatedName("bp")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -226,19 +228,20 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	public static final ClientPacket field2546;
+	@Export("OPOBJ4")
+	public static final ClientPacket OPOBJ4;
 	@ObfuscatedName("bn")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("OPOBJ3")
-	public static final ClientPacket OPOBJ3;
+	@Export("OPOBJT")
+	public static final ClientPacket OPOBJT;
 	@ObfuscatedName("bo")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("CLICK")
-	public static final ClientPacket CLICK;
+	@Export("EVENT_MOUSE_CLICK")
+	public static final ClientPacket EVENT_MOUSE_CLICK;
 	@ObfuscatedName("bt")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -302,7 +305,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	public static final ClientPacket OPLOC1;
+	@Export("OPOBJ1")
+	public static final ClientPacket OPOBJ1;
 	@ObfuscatedName("bq")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -367,13 +371,14 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("OPOBJ4")
+	@Export("OPLOCT")
 	public static final ClientPacket OPLOCT;
 	@ObfuscatedName("cl")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	public static final ClientPacket field2573;
+	@Export("OPLOC1")
+	public static final ClientPacket OPLOC1;
 	@ObfuscatedName("cs")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -389,8 +394,7 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("OPPLAYER5")
-	public static final ClientPacket OPPLAYER5;
+	public static final ClientPacket UNKNOWN2;
 	@ObfuscatedName("cn")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -412,8 +416,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("OPOBJ2")
-	public static final ClientPacket OPOBJ2;
+	@Export("OPOBJE")
+	public static final ClientPacket OPOBJE;
 	@ObfuscatedName("cc")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -436,8 +440,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("EVENT_MOUSE_CLICK")
-	public static final ClientPacket EVENT_MOUSE_CLICK;
+	@Export("OPPLAYERU")
+	public static final ClientPacket OPPLAYERU;
 	@ObfuscatedName("cz")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -477,7 +481,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	public static final ClientPacket field2595;
+	@Export("OPLOC2")
+	public static final ClientPacket OPLOC2;
 	@ObfuscatedName("dd")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -510,8 +515,7 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("OPOBJ5")
-	public static final ClientPacket OPOBJ5;
+	public static final ClientPacket NOTUSED1;
 	@ObfuscatedName("do")
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
@@ -522,7 +526,7 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	@Export("MOVE_GAMECLICK")
+	@Export("OPLOC5")
 	public static final ClientPacket OPLOC5;
 	@ObfuscatedName("dm")
 	@ObfuscatedSignature(
@@ -575,7 +579,8 @@ public class ClientPacket implements class304 {
 	@ObfuscatedSignature(
 		descriptor = "Llq;"
 	)
-	public static final ClientPacket field2605;
+	@Export("OPOBJ5")
+	public static final ClientPacket OPOBJ5;
 	@ObfuscatedName("dl")
 	@Export("id")
 	public final int id;
@@ -598,7 +603,7 @@ public class ClientPacket implements class304 {
 		f2 = new ClientPacket(11, -1);
 		f20 = new ClientPacket(12, 9);
 		OPPLAYER1 = new ClientPacket(13, 3);
-		f6 = new ClientPacket(14, 16);
+		IF_BUTTONT = new ClientPacket(14, 16);
 		OPNPC1 = new ClientPacket(15, 3);
 		OPNPCT = new ClientPacket(16, 11);
 		IF_BUTTON2 = new ClientPacket(17, 8);
@@ -606,24 +611,24 @@ public class ClientPacket implements class304 {
 		IF_BUTTON4 = new ClientPacket(19, 8);
 		IF_BUTTON5 = new ClientPacket(20, 8);
 		IF_BUTTON9 = new ClientPacket(21, 8);
-		OPLOC2 = new ClientPacket(22, 7);
+		OPOBJ2 = new ClientPacket(22, 7);
 		OPPLAYER2 = new ClientPacket(23, 3);
 		f88 = new ClientPacket(24, -1);
-		IF_BUTTONT = new ClientPacket(25, -2);
+		IDLE = new ClientPacket(25, -2);
 		f1 = new ClientPacket(26, 1);
 		IF_BUTTON8 = new ClientPacket(27, 8);
 		NO_TIMEOUT = new ClientPacket(28, 0);
 		OPNPC5 = new ClientPacket(29, 3);
-		field2558 = new ClientPacket(30, 7);
+		OPOBJ3 = new ClientPacket(30, 7);
 		IF_BUTTON3 = new ClientPacket(31, 8);
 		f66 = new ClientPacket(32, -2);
 		field2606 = new ClientPacket(33, 2);
-		WIDGET_TYPE = new ClientPacket(34, 3);
+		OPPLAYER5 = new ClientPacket(34, 3);
 		FREECAM_EXIT = new ClientPacket(35, 0);
 		field2559 = new ClientPacket(36, 16);
-		field2546 = new ClientPacket(37, 7);
-		OPOBJ3 = new ClientPacket(38, 15);
-		CLICK = new ClientPacket(39, 6);
+		OPOBJ4 = new ClientPacket(37, 7);
+		OPOBJT = new ClientPacket(38, 15);
+		EVENT_MOUSE_CLICK = new ClientPacket(39, 6);
 		OPLOC3 = new ClientPacket(40, 7);
 		OPPLAYER4 = new ClientPacket(41, 3);
 		RESUME_NAMEDIALOG = new ClientPacket(42, -1);
@@ -634,7 +639,7 @@ public class ClientPacket implements class304 {
 		SOUND_SONGEND = new ClientPacket(47, 4);
 		CLAN_KICKUSER = new ClientPacket(48, -1);
 		IF_BUTTON7 = new ClientPacket(49, 8);
-		OPLOC1 = new ClientPacket(50, 7);
+		OPOBJ1 = new ClientPacket(50, 7);
 		OPPLAYER7 = new ClientPacket(51, 3);
 		f51 = new ClientPacket(52, -1);
 		WIDGET_TYPE5 = new ClientPacket(53, 4);
@@ -646,31 +651,31 @@ public class ClientPacket implements class304 {
 		RESUME_OBJDIALOG = new ClientPacket(59, 2);
 		f96 = new ClientPacket(60, -1);
 		OPLOCT = new ClientPacket(61, 15);
-		field2573 = new ClientPacket(62, 7);
+		OPLOC1 = new ClientPacket(62, 7);
 		field2580 = new ClientPacket(63, 4);
 		OPPLAYER6 = new ClientPacket(64, 3);
-		OPPLAYER5 = new ClientPacket(65, 1);
+		UNKNOWN2 = new ClientPacket(65, 1);
 		FRIEND_DELETE_USER = new ClientPacket(66, -1);
 		CHAT_SEND_ABUSE_REPORT = new ClientPacket(67, -1);
 		field2608 = new ClientPacket(68, 2);
-		OPOBJ2 = new ClientPacket(69, 6);
+		OPOBJE = new ClientPacket(69, 6);
 		IF_BUTTON1 = new ClientPacket(70, 8);
 		EVENT_APPLET_FOCUS = new ClientPacket(71, 1);
 		f52 = new ClientPacket(72, -1);
-		EVENT_MOUSE_CLICK = new ClientPacket(73, 11);
+		OPPLAYERU = new ClientPacket(73, 11);
 		field2587 = new ClientPacket(74, 11);
 		f9 = new ClientPacket(75, 13);
 		RESUME_PAUSEBUTTON = new ClientPacket(76, 6);
 		CHAT_SENDPRIVATE = new ClientPacket(77, -2);
 		REFLECTION_CHECK_REPLY = new ClientPacket(78, -1);
 		IF_BUTTON6 = new ClientPacket(79, 8);
-		field2595 = new ClientPacket(80, 7);
+		OPLOC2 = new ClientPacket(80, 7);
 		FIREND_ADDUSER = new ClientPacket(81, -1);
 		field2604 = new ClientPacket(82, 15);
 		field2593 = new ClientPacket(83, 0);
 		OPPLAYER3 = new ClientPacket(84, 3);
 		f65 = new ClientPacket(85, -1);
-		OPOBJ5 = new ClientPacket(86, -1);
+		NOTUSED1 = new ClientPacket(86, -1);
 		f83 = new ClientPacket(87, -1);
 		OPLOC5 = new ClientPacket(88, 7);
 		f22 = new ClientPacket(89, -1);
@@ -681,7 +686,7 @@ public class ClientPacket implements class304 {
 		OPLOC4 = new ClientPacket(94, 7);
 		OPPLAYER8 = new ClientPacket(95, 3);
 		OPHELDD = new ClientPacket(96, 10);
-		field2605 = new ClientPacket(97, 7);
+		OPOBJ5 = new ClientPacket(97, 7);
 	}
 
 	ClientPacket(int var1, int var2) {

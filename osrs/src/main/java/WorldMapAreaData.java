@@ -203,7 +203,7 @@ public class WorldMapAreaData extends WorldMapArea {
 				}
 
 				if (var1 == 0) {
-					class36.scene.method1474(var0, var2, var3);
+					class36.scene.removeBoundaryObject(var0, var2, var3);
 					if (var14.interactType != 0) {
 						Client.collisionMaps[var0].method1142(var2, var3, var45, var46, var14.boolean1);
 					}
@@ -241,7 +241,7 @@ public class WorldMapAreaData extends WorldMapArea {
 				Scene var47 = class36.scene;
 				CollisionMap var37 = Client.collisionMaps[var0];
 				ObjectComposition var38 = WorldMapSection2.getObjectDefinition(var4);
-				var17 = var7 >= 0 ? var7 : var38.animationId * -1341489307 * 1434557037;
+				var17 = var7 >= 0 ? var7 : var38.animationId ;
 				if (var5 != 1 && var5 != 3) {
 					var18 = var38.sizeX;
 					var19 = var38.sizeY;

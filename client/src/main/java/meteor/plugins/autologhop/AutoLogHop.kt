@@ -9,7 +9,7 @@ import meteor.Main
 import meteor.Main.executor
 import meteor.Main.worldService
 import meteor.api.Items
-import meteor.api.ClientPackets
+import meteor.api.queueClickPacket
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -130,7 +130,7 @@ class AutoLogHop : Plugin() {
         //client.invokeMenuAction("Grand Exchange", "<col=ff9040>Ring of wealth ( )</col>", 3, MenuAction.CC_OP.getId(), -1, equipment.getId());
         val ring: WidgetInfo = WidgetInfo.EQUIPMENT_RING
         val ringWidget: Widget = client.getWidget(ring)!!
-        ClientPackets.queueClickPacket(ringWidget.clickPoint)
+        queueClickPacket(ringWidget.clickPoint)
         WidgetPackets.widgetAction(ringWidget, "Grand Exchange")
     }
 

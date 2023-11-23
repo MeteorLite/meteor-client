@@ -19,7 +19,8 @@ public class UrlRequest {
 	@Export("headIconPkSprites")
 	static SpritePixels[] headIconPkSprites;
 	@ObfuscatedName("pr")
-	static int field1182;
+	@Export("selectedSpellFlags")
+	static int selectedSpellFlags;
 	@ObfuscatedName("at")
 	final URL field1184;
 	@ObfuscatedName("ao")

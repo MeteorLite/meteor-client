@@ -214,7 +214,7 @@ public class RSApiInjector extends AbstractInjector
 				final ClassFile targetClass = InjectUtil.vanillaFromApiMethod(inject, apiMethod);
 				final Method vanillaMethod = inject.toVanilla(deobMethod);
 				final String garbage = DeobAnnotations.getDecoder(deobMethod);
-				log.debug("[DEBUG] Injecting invoker {} for {} into {}", apiMethod.getMethod(), vanillaMethod.getPoolMethod(), targetClass.getPoolClass());
+				//log.debug("[DEBUG] Injecting invoker {} for {} into {}", apiMethod.getMethod(), vanillaMethod.getPoolMethod(), targetClass.getPoolClass());
 				InjectInvoke.inject(targetClass, apiMethod, vanillaMethod, garbage);
 				++voke;
 				apiMethod.setInjected(true);

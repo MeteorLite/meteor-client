@@ -7,7 +7,7 @@ import dev.hoot.api.widgets.Widgets
 import eventbus.events.ClientTick
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
-import meteor.api.ClientPackets
+import meteor.api.queueClickPacket
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -35,9 +35,9 @@ class PrayerFlickerPlugin : Plugin() {
         val quickPrayerOrb = Widgets.get(quickPrayerWidgetID)
         if (!this::clickPoint.isInitialized)
             clickPoint = quickPrayerOrb.clickPoint
-        ClientPackets.queueClickPacket(clickPoint)
+        queueClickPacket(clickPoint)
         WidgetPackets.widgetAction(quickPrayerOrb, "Activate")
-        ClientPackets.queueClickPacket(clickPoint)
+        queueClickPacket(clickPoint)
         WidgetPackets.widgetAction(quickPrayerOrb, "Deactivate")
     }
 

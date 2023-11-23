@@ -48,7 +48,7 @@ commons-csv = {group = "org.apache.commons", name = "commons-csv", version = "_"
 commons-cli = {group = "commons-cli", name = "commons-cli", version = "1.4"}
 netty-buffer = {group = "io.netty", name = "netty-buffer", version = "4.1.68.Final"}
 okhttp = {group = "com.squareup.okhttp3", name = "okhttp", version = "4.9.2"}
-atlr4-runtime = {group = "org.antlr", name = "antlr4-runtime", version = "4.9.2"}
+atlr4-runtime = {group = "org.antlr", name = "antlr4-runtime", version = "4.13.1"}
 commons-compress = {group = "org.apache.commons", name = "commons-compress", version = "1.21"}
 commons-text = {group = "org.apache.commons", name = "commons-text", version = "_"}
 slf4j-simple = {group = "org.slf4j", name = "slf4j-simple", version = "_"}

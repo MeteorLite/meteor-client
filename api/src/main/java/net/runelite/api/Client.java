@@ -37,6 +37,7 @@ import dev.hoot.api.events.AutomatedMenu;
 import meteor.Logger;
 import net.runelite.api.annotations.VarCInt;
 import net.runelite.api.annotations.Varbit;
+import net.runelite.api.mixins.Inject;
 import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.IsaacCipher;
 import net.runelite.api.packets.PacketBufferNode;
@@ -53,6 +54,7 @@ import net.runelite.api.vars.AccountType;
 import net.runelite.api.widgets.ItemQuantityMode;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.widgets.WidgetModalMode;
 import org.intellij.lang.annotations.MagicConstant;
 
 /**
@@ -2544,8 +2546,9 @@ public interface Client extends GameEngine
 	/**
 	 * Gets a entry out of a DBTable Row
 	 */
-	Object getDBTableField(int rowID, int column, int tupleIndex, int fieldIndex);
+	Object[] getDBTableField(int rowID, int column, int tupleIndex);
 
+	List getDBRowsByValue(int rowID, int column, int tupleIndex, Object value);
 	void sendClickPacket(java.awt.Point clickPoint);
 
 	Boolean getPendingClickPacketOverride();
@@ -2557,4 +2560,7 @@ public interface Client extends GameEngine
 	void setPacketOverride(PacketBufferNode packetOverride);
 
 	void setHost(String host);
+	void closeInterface(WidgetNode interfaceNode, boolean unload);
+	WidgetNode openInterface(int componentId, int interfaceId, @MagicConstant(valuesFromClass = WidgetModalMode.class) int modalMode);
+
 }

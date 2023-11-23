@@ -24,19 +24,15 @@
  */
 package net.runelite.cache;
 
+import net.runelite.cache.definitions.StructDefinition;
+import net.runelite.cache.definitions.loaders.StructLoader;
+import net.runelite.cache.definitions.providers.StructProvider;
+import net.runelite.cache.fs.*;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import net.runelite.cache.definitions.StructDefinition;
-import net.runelite.cache.definitions.loaders.StructLoader;
-import net.runelite.cache.definitions.providers.StructProvider;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
 
 public class StructManager implements StructProvider
 {

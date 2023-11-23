@@ -139,7 +139,7 @@ public class class350 {
 					InvDefinition.clanKickUser(var5);
 					return 1;
 				} else if (var0 == 3618) {
-					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = class20.friendsChat != null ? class20.friendsChat.rank * 1192779189 * 1177118877 : 0;
+					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = class20.friendsChat != null ? class20.friendsChat.rank  : 0;
 					return 1;
 				} else if (var0 == 3619) {
 					var5 = Interpreter.Interpreter_stringStack[--class127.Interpreter_stringStackSize];

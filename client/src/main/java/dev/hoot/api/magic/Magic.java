@@ -14,6 +14,8 @@ import net.runelite.api.widgets.Widget;
 
 import java.util.Arrays;
 
+import static meteor.api.ClientPacketManagerKt.queueClickPacket;
+
 public class Magic
 {
 	private static final int SPELLBOOK_VARBIT = 4070;
@@ -71,7 +73,7 @@ public class Magic
 		Widget widget = Widgets.get(spell.getWidget());
 		if (widget != null)
 		{
-			ClientPackets.INSTANCE.queueClickPacket(widget.getClickPoint());
+			queueClickPacket(widget.getClickPoint());
 			widget.interact(0);
 		}
 	}

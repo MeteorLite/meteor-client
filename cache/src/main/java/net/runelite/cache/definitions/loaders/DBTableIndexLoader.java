@@ -24,13 +24,14 @@
  */
 package net.runelite.cache.definitions.loaders;
 
+import net.runelite.cache.definitions.DBTableIndex;
+import net.runelite.cache.io.InputStream;
+import net.runelite.cache.util.BaseVarType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import net.runelite.cache.definitions.DBTableIndex;
-import net.runelite.cache.io.InputStream;
-import net.runelite.cache.util.BaseVarType;
 
 public class DBTableIndexLoader
 {

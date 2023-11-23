@@ -11,36 +11,25 @@ package net.runelite.cache.util;
  * http://nyomdmegteis.hu/en/
  */
 
-import java.awt.Point;
-import java.awt.Rectangle;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.*;
 import java.awt.color.ColorSpace;
-import java.awt.image.BandedSampleModel;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.ComponentColorModel;
-import java.awt.image.DataBuffer;
-import java.awt.image.Raster;
-import java.awt.image.RenderedImage;
-import java.awt.image.SampleModel;
-import java.awt.image.WritableRaster;
+import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReadParam;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BigBufferedImage extends BufferedImage
@@ -97,7 +86,7 @@ public class BigBufferedImage extends BufferedImage
 				}
 				catch (InterruptedException ex)
 				{
-					ex.printStackTrace();
+					log.error(null, ex);
 				}
 			}
 		}

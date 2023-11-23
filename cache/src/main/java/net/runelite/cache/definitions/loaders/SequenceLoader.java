@@ -24,9 +24,10 @@
  */
 package net.runelite.cache.definitions.loaders;
 
-import java.util.HashMap;
 import net.runelite.cache.definitions.SequenceDefinition;
 import net.runelite.cache.io.InputStream;
+
+import java.util.HashMap;
 
 public class SequenceLoader
 {

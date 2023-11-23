@@ -24,10 +24,11 @@
  */
 package net.runelite.cache.fs;
 
-import java.io.IOException;
 import net.runelite.cache.index.FileData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 public class Archive
 {
@@ -41,7 +42,6 @@ public class Archive
 	private int revision;
 	private int compression;
 	private FileData[] fileData;
-	private byte[] hash; // used by webservice, sha256 hash of content
 
 	public Archive(Index index, int id)
 	{
@@ -210,15 +210,5 @@ public class Archive
 	public void setFileData(FileData[] fileData)
 	{
 		this.fileData = fileData;
-	}
-
-	public byte[] getHash()
-	{
-		return hash;
-	}
-
-	public void setHash(byte[] hash)
-	{
-		this.hash = hash;
 	}
 }

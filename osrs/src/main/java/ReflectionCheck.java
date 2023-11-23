@@ -103,12 +103,12 @@ public class ReflectionCheck extends Node {
 				class336 var4;
 				if (var0 == 1617) {
 					var4 = var3.method1872();
-					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var4 != null ? var4.field2923 * 1307671165 * -2042671403 : 0;
+					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var4 != null ? var4.field2923 : 0;
 				}
 
 				if (var0 == 1618) {
 					var4 = var3.method1872();
-					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var4 != null ? var4.field2921 * -1246608637 * -1141194837 : 0;
+					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var4 != null ? var4.field2921 : 0;
 					return 1;
 				} else if (var0 == 1619) {
 					var7 = var3.method1871();
@@ -116,7 +116,7 @@ public class ReflectionCheck extends Node {
 					return 1;
 				} else if (var0 == 1620) {
 					var4 = var3.method1872();
-					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var4 != null ? var4.field2922 * -1028807547 * -113724339 : 0;
+					Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var4 != null ? var4.field2922 : 0;
 					return 1;
 				} else if (var0 == 1621) {
 					var7 = var3.method1871();

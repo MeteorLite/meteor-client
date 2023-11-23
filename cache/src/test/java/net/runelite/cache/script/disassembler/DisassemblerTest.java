@@ -45,6 +45,7 @@ import java.nio.charset.StandardCharsets;
 
 import static net.runelite.cache.Cache.loadStore;
 
+
 public class DisassemblerTest
 {
 	private static final Logger logger = LoggerFactory.getLogger(DisassemblerTest.class);

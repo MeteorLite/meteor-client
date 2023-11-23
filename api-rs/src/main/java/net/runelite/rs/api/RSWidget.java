@@ -488,8 +488,7 @@ public interface RSWidget extends Widget
 	RSWidget setHeightMode(int heightMode);
 
 	@Import("getFont")
-	@Override
-	RSFont getFont();
+	RSFont getRSFont(RSWidgetDefinition var1);
 
 	@Import("fill")
 	@Override

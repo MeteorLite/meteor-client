@@ -24,18 +24,14 @@
  */
 package net.runelite.cache;
 
+import net.runelite.cache.definitions.InventoryDefinition;
+import net.runelite.cache.definitions.loaders.InventoryLoader;
+import net.runelite.cache.fs.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import net.runelite.cache.definitions.InventoryDefinition;
-import net.runelite.cache.definitions.loaders.InventoryLoader;
-import net.runelite.cache.fs.Archive;
-import net.runelite.cache.fs.ArchiveFiles;
-import net.runelite.cache.fs.FSFile;
-import net.runelite.cache.fs.Index;
-import net.runelite.cache.fs.Storage;
-import net.runelite.cache.fs.Store;
 
 public class InventoryManager
 {

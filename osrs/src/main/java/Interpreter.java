@@ -162,7 +162,7 @@ public class Interpreter {
 				var23 = var0.readUnsignedShortAddLE();
 				var9 = var23 >> 8;
 				var24 = var9 >= 13 && var9 <= 20 ? var9 - 12 : 0;
-				PlayerType var11 = (PlayerType)class12.findEnumerated(class320.PlayerType_values(), var0.readUnsignedShortAdd());
+				PlayerType var11 = (PlayerType)class12.findEnumerated(class320.PlayerType_values(), var0.readUnsignedByteAdd());
 				boolean var12 = var0.readUnsignedByte() == 1;
 				var13 = var0.readUnsignedByte();
 				var14 = var0.offset;
@@ -243,7 +243,7 @@ public class Interpreter {
 				for (var9 = 0; var9 < var23; ++var9) {
 					var24 = var0.readUnsignedByteSub();
 					var27 = var0.readUnsignedShort();
-					var32 = var0.readIntIME();
+					var32 = var0.readUnsignedIntIME();
 					var5.updateSpotAnimation(var24, var27, var32 >> 16, var32 & 65535);
 				}
 			}
@@ -265,7 +265,7 @@ public class Interpreter {
 
 			int var34;
 			if ((var6 & 16) != 0) {
-				var23 = var0.readUnsignedShortAdd();
+				var23 = var0.readUnsignedByteAdd();
 				if (var23 > 0) {
 					for (var9 = 0; var9 < var23; ++var9) {
 						var27 = -1;
@@ -295,7 +295,7 @@ public class Interpreter {
 						var32 = var0.readUShortSmart();
 						if (var32 != 32767) {
 							var13 = var0.readUShortSmart();
-							var14 = var0.readUnsignedShortAdd();
+							var14 = var0.readUnsignedByteAdd();
 							var34 = var32 > 0 ? var0.readUnsignedByteNeg() : var14;
 							var5.addHealthBar(var27, Client.cycle, var32, var13, var14, var34);
 						} else {
@@ -306,7 +306,7 @@ public class Interpreter {
 			}
 
 			if ((var6 & 2) != 0) {
-				var23 = var0.readUnsignedShortAdd();
+				var23 = var0.readUnsignedByteAdd();
 				byte[] var28 = new byte[var23];
 				Buffer var31 = new Buffer(var28);
 				var0.method2617(var28, 0, var23);
@@ -336,7 +336,7 @@ public class Interpreter {
 			if ((var6 & 8) != 0) {
 				var23 = var0.readUnsignedShortLE();
 				PlayerType var36 = (PlayerType)class12.findEnumerated(class320.PlayerType_values(), var0.readUnsignedByteSub());
-				boolean var35 = var0.readUnsignedShortAdd() == 1;
+				boolean var35 = var0.readUnsignedByteAdd() == 1;
 				var27 = var0.readUnsignedByte();
 				var32 = var0.offset;
 				if (var5.username != null && var5.appearance != null) {

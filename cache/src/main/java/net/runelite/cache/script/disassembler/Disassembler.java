@@ -26,15 +26,16 @@ package net.runelite.cache.script.disassembler;
 
 import com.google.common.escape.Escaper;
 import com.google.common.escape.Escapers;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Map.Entry;
 import net.runelite.cache.definitions.ScriptDefinition;
 import net.runelite.cache.script.Instruction;
 import net.runelite.cache.script.Instructions;
 import net.runelite.cache.script.Opcodes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Disassembler
 {

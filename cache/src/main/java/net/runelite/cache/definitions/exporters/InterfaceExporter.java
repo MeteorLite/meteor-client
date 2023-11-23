@@ -26,10 +26,11 @@ package net.runelite.cache.definitions.exporters;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.runelite.cache.definitions.InterfaceDefinition;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import net.runelite.cache.definitions.InterfaceDefinition;
 
 public class InterfaceExporter
 {

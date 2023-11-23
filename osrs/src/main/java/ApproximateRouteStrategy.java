@@ -3,6 +3,8 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
+import static net.runelite.rs.ScriptOpcodes.RUNELITE_EXECUTE;
+
 @ObfuscatedName("cm")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
@@ -68,7 +70,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 								}
 
 								if (var14 == -2147483645) {
-									var14 = var0.widget != null ? var0.widget.id * 898987495 * 225496535 : -1;
+									var14 = var0.widget != null ? var0.widget.id : -1;
 								}
 
 								if (var14 == -2147483644) {
@@ -76,15 +78,15 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 								}
 
 								if (var14 == -2147483643) {
-									var14 = var0.widget != null ? var0.widget.childIndex * 1774053999 * 355251343 : -1;
+									var14 = var0.widget != null ? var0.widget.childIndex : -1;
 								}
 
 								if (var14 == -2147483642) {
-									var14 = var0.dragTarget != null ? var0.dragTarget.id * 898987495 * 225496535 : -1;
+									var14 = var0.dragTarget != null ? var0.dragTarget.id: -1;
 								}
 
 								if (var14 == -2147483641) {
-									var14 = var0.dragTarget != null ? var0.dragTarget.childIndex * 1774053999 * 355251343 : -1;
+									var14 = var0.dragTarget != null ? var0.dragTarget.childIndex: -1;
 								}
 
 								if (var14 == -2147483640) {
@@ -125,7 +127,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 									var34 = false;
 								}
 
-								var14 = class149.method779(var32, var1, var34);
+								var14 = class149.opCodeCheck(var32, var1, var34);
 								switch(var14) {
 								case 0:
 									var29 = false;
@@ -134,7 +136,9 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 								default:
 									break;
 								case 2:
-									throw new IllegalStateException();
+									if(var32 !=  RUNELITE_EXECUTE) {
+										throw new IllegalStateException();
+									}
 								}
 							} else if (var32 == 0) {
 								Interpreter.Interpreter_intStack[++DbTableType.Interpreter_intStackSize - 1] = var7[var5];
@@ -342,6 +346,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 						}
 
 						var26.append("").append(var8);
+						var30.printStackTrace();
 						GrandExchangeOfferWorldComparator.RunException_sendStackTrace(var26.toString(), var30);
 						var29 = false;
 						break label860;
@@ -359,7 +364,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 						}
 
 						if (!var9 && var3 > 0 && var10 >= var3) {
-							GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.field823 + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
+							GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.instructions + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
 						}
 
 					}
@@ -376,7 +381,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 				}
 
 				if (!var9 && var3 > 0 && var10 >= var3) {
-					GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.field823 + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
+					GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.instructions + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
 				}
 
 				return;
@@ -393,7 +398,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 			}
 
 			if (!var9 && var3 > 0 && var10 >= var3) {
-				GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.field823 + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
+				GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.instructions + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
 			}
 
 			return;
@@ -410,7 +415,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 		}
 
 		if (!var9 && var3 > 0 && var10 >= var3) {
-			GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.field823 + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
+			GrandExchangeOfferWorldComparator.RunException_sendStackTrace("Warning: Script " + var1.instructions + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
 		}
 
 	}

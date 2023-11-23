@@ -8,10 +8,11 @@ public class class171 extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llk;"
 	)
-	public static EvictingDualNodeHashTable field1438;
+	@Export("e2")
+	public static EvictingDualNodeHashTable e2;
 
 	static {
-		field1438 = new EvictingDualNodeHashTable(64);
+		e2 = new EvictingDualNodeHashTable(64);
 	}
 
 	@ObfuscatedName("jy")
@@ -156,7 +157,7 @@ public class class171 extends DualNode {
 					boolean var78 = var77 || AbstractByteArrayCopier.method1879() && var92.isFriend();
 					if (!var78) {
 						boolean var79 = (Client.drawPlayerNames & 2) != 0;
-						var78 = var79 && var92.method485();
+						var78 = var79 && var92.isFriendsChatMember();
 					}
 
 					var76 = var78;

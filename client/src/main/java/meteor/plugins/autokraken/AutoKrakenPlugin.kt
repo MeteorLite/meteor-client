@@ -1,14 +1,13 @@
 package meteor.plugins.autokraken
 
 import eventbus.events.GameTick
-import meteor.api.ClientPackets
 import meteor.api.Items
 import meteor.api.Loots
 import meteor.api.NPCs
+import meteor.api.queueClickPacket
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.Skill
-import rs117.hd.data.NpcID
 import kotlin.random.Random
 
 @PluginDescriptor(name = "Auto Kraken", description = "Automatically triggers Kraken & focuses the Kraken boss.", enabledByDefault = false)
@@ -111,7 +110,7 @@ class AutoKrakenPlugin: Plugin() {
             )
 
         return if (edible != null) {
-            ClientPackets.queueClickPacket(edible.clickPoint)
+            queueClickPacket(edible.clickPoint)
             edible.interact("Eat")
             setRandomHealthThreshold()
             waitTicks = 3

@@ -25,16 +25,12 @@
 package net.runelite.cache.fs;
 
 import com.google.common.base.Preconditions;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import net.runelite.cache.io.InputStream;
 import net.runelite.cache.io.OutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 public class ArchiveFiles
 {

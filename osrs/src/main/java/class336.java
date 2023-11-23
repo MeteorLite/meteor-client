@@ -114,7 +114,7 @@ public class class336 {
 
 			var2 = 0;
 			if (var10 >= 0 || var11 != 0) {
-				var2 = Client.keyHandlerInstance.getKeyPressed(81) ? Client.oculusOrbSlowedSpeed * -1965908365 * 1910388411 : Client.oculusOrbNormalSpeed * -203139789 * -29381125;
+				var2 = Client.keyHandlerInstance.getKeyPressed(81) ? Client.oculusOrbSlowedSpeed  : Client.oculusOrbNormalSpeed ;
 				var2 *= 16;
 				Client.field462 = var10;
 				Client.field477 = var11;
@@ -159,10 +159,10 @@ public class class336 {
 		if (MouseHandler.MouseHandler_currentButton == 4 && class19.mouseCam) {
 			var0 = MouseHandler.MouseHandler_y - Client.field464;
 			Client.camAngleDX = var0 * 2;
-			Client.field464 = var0 != -1 && var0 != 1 ? (MouseHandler.MouseHandler_y + Client.field464) / 2 : MouseHandler.MouseHandler_y * -357791911 * 1534415081;
+			Client.field464 = var0 != -1 && var0 != 1 ? (MouseHandler.MouseHandler_y + Client.field464) / 2 : MouseHandler.MouseHandler_y ;
 			var1 = Client.field478 - MouseHandler.MouseHandler_x;
 			Client.camAngleDY = var1 * 2;
-			Client.field478 = var1 != -1 && var1 != 1 ? (MouseHandler.MouseHandler_x + Client.field478) / 2 : MouseHandler.MouseHandler_x * 1619580465 * -948387119;
+			Client.field478 = var1 != -1 && var1 != 1 ? (MouseHandler.MouseHandler_x + Client.field478) / 2 : MouseHandler.MouseHandler_x ;
 		} else {
 			if (Client.keyHandlerInstance.getKeyPressed(96)) {
 				Client.camAngleDY += (-24 - Client.camAngleDY) / 2;
