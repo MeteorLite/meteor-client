@@ -187,9 +187,9 @@ public class GameShell extends Applet
 	protected Socket method12(String s, int i) throws IOException {
 		Socket socket;
 		if(method14())
-			socket = new Socket(InetAddress.getByName("206.251.222.229"), 43596);
+			socket = new Socket(InetAddress.getByName("game.openrsc.com"), 43596);
 		else
-			socket = new Socket(InetAddress.getByName("206.251.222.229"), 43596);
+			socket = new Socket(InetAddress.getByName("game.openrsc.com"), 43596);
 		socket.setSoTimeout(30000);
 		socket.setTcpNoDelay(true);
 		return socket;

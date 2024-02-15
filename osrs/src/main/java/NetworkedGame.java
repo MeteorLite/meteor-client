@@ -248,7 +248,7 @@ public class NetworkedGame extends GameShell {
 	}
 
 	public NetworkedGame() {
-		aString619 = "206.251.222.229";
+		aString619 = "game.openrsc.com";
 		anInt620 = 43596;
 		username = "";
 		password = "";

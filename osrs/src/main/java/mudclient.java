@@ -889,9 +889,9 @@ public final class mudclient extends NetworkedGame {
 			if(aPanel770.isClicked(anInt772))
 				aPanel770.setFocus(anInt773);
 			if(aPanel770.isClicked(anInt773) || aPanel770.isClicked(anInt777)) {
-				aString778 = aPanel770.getText(anInt772);
+				loginUsername = aPanel770.getText(anInt772);
 				aString779 = aPanel770.getText(anInt773);
-				method39(aString778, aString779, false);
+				method39(loginUsername, aString779, false);
 			}
 		}
 	}
@@ -1217,7 +1217,7 @@ public final class mudclient extends NetworkedGame {
 			method94();
 		else
 		if(aBoolean810)
-			method117();
+			drawDialogWelcome();
 		else
 		if(aBoolean790)
 			method67();
@@ -1773,7 +1773,7 @@ public final class mudclient extends NetworkedGame {
 	}
 
 	private void method76() {
-		surface.drawSprite(0, gameHeight - 4, spriteMedia + 23);
+		//surface.drawSprite(0, gameHeight - 4, spriteMedia + 23);
 		if (injected) {
 			int i = 510;
 			surface.drawSprite(0, gameHeight - 2, spriteMedia + 23);
@@ -1785,30 +1785,33 @@ public final class mudclient extends NetworkedGame {
 			surface.drawSprite(0, gameHeight - 4, spriteMedia + 23);
 		}
 		int i = Surface.method222(200, 200, 255);
+		int textHeight = gameHeight + 6;
+		if (injected)
+			textHeight += 2;
 		if(messageTabSelected == 0)
 			i = Surface.method222(255, 200, 50);
 		if(messageTabFlashAll % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.drawStringCenter("All messages", 54, gameHeight + 6, 0, i);
+		surface.drawStringCenter("All messages", 54, textHeight, 0, i);
 		i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 1)
 			i = Surface.method222(255, 200, 50);
 		if(messageTabFlashHistory % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.drawStringCenter("Chat history", 155, gameHeight + 6, 0, i);
+		surface.drawStringCenter("Chat history", 155, textHeight, 0, i);
 		i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 2)
 			i = Surface.method222(255, 200, 50);
 		if(messtageTabFlashQuest % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.drawStringCenter("Quest history", 255, gameHeight + 6, 0, i);
+		surface.drawStringCenter("Quest history", 255, textHeight, 0, i);
 		i = Surface.method222(200, 200, 255);
 		if(messageTabSelected == 3)
 			i = Surface.method222(255, 200, 50);
 		if(messageTabFlashPrivate % 30 > 15)
 			i = Surface.method222(255, 50, 50);
-		surface.drawStringCenter("Private history", 355, gameHeight + 6, 0, i);
-		surface.drawStringCenter("Report abuse", 457, gameHeight + 6, 0, 0xffffff);
+		surface.drawStringCenter("Private history", 355, textHeight, 0, i);
+		surface.drawStringCenter("Report abuse", 457, textHeight, 0, 0xffffff);
 	}
 
 	private void method77() {
@@ -5197,7 +5200,7 @@ label0:
 				return socket;
 		}
 		Socket socket1;
-		socket1 = new Socket(InetAddress.getByName("206.251.222.229"), 43596);
+		socket1 = new Socket(InetAddress.getByName("game.openrsc.com"), 43596);
 		socket1.setSoTimeout(30000);
 		socket1.setTcpNoDelay(true);
 		return socket1;
@@ -5234,7 +5237,7 @@ label0:
 		anInt741 = 8;
 		anInt747 = 14;
 		anInt732 = 1;
-		aString778 = "";
+		loginUsername = "";
 		aString779 = "";
 		cameraAngle = 1;
 		isMembers = false;
@@ -5635,10 +5638,10 @@ label0:
 	private void method103() {
 		loggedIn = 0;
 		loginState = 0;
-		aString778 = "";
+		loginUsername = "";
 		aString779 = "";
 		aString957 = "Please enter a username:";
-		aString805 = "*" + aString778 + "*";
+		aString805 = "*" + loginUsername + "*";
 		playerCount = 0;
 		npcCount = 0;
 	}
@@ -6950,7 +6953,7 @@ label0:
 		}
 	}
 
-	private void method117() {
+	private void drawDialogWelcome() {
 		int i = 65;
 		if(anInt928 != 201)
 			i += 60;
@@ -6962,7 +6965,7 @@ label0:
 		surface.method207(56, 167 - i / 2, 400, i, 0);
 		surface.method214(56, 167 - i / 2, 400, i, 0xffffff);
 		j += 20;
-		surface.drawStringCenter("Welcome to RuneScape " + aString778, 256, j, 4, 0xffff00);
+		surface.drawStringCenter("Welcome to RuneScape " + loginUsername, 256, j, 4, 0xffff00);
 		j += 30;
 		String s;
 		if(anInt927 == 0)
@@ -7680,7 +7683,7 @@ label0:
 	private int anInt775;
 	private int anInt776;
 	private int anInt777;
-	private String aString778;
+	private String loginUsername;
 	private String aString779;
 	private int showUiTab;
 	private final int inventoryMaxItemCount;
